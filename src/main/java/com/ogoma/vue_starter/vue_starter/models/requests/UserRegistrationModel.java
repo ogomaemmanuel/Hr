@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.models;
+package com.ogoma.vue_starter.vue_starter.models.requests;
 
 public class UserRegistrationModel {
     private String email;

@@ -1,6 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.validators;
 
-import com.ogoma.vue_starter.vue_starter.models.UserRegistrationModel;
+import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

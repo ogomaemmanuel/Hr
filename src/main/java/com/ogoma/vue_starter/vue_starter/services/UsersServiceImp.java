@@ -2,7 +2,8 @@ package com.ogoma.vue_starter.vue_starter.services;
 
 import com.ogoma.vue_starter.vue_starter.entities.User;
 import com.ogoma.vue_starter.vue_starter.events.auth.UserRegistrationEvent;
-import com.ogoma.vue_starter.vue_starter.models.UserRegistrationModel;
+import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
+import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
 import com.ogoma.vue_starter.vue_starter.repository.UsersRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,10 @@ public class UsersServiceImp implements UserService {
         UserRegistrationEvent userRegistrationEvent = new UserRegistrationEvent(this, savedDetails);
         applicationEventPublisher.publishEvent(userRegistrationEvent);
         return savedDetails;
+    }
+
+    @Override
+    public void handleForgotPasswordRequest(ForgotPasswordRequest forgotPasswordRequest) {
+
     }
 }
