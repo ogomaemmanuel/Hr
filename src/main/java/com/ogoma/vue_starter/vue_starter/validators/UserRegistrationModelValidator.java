@@ -7,6 +7,8 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 @Component
 public class UserRegistrationModelValidator implements Validator {
+    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
     @Override
     public boolean supports(Class<?> clazz) {
         return UserRegistrationModel.class.equals(clazz);
@@ -23,6 +25,9 @@ public class UserRegistrationModelValidator implements Validator {
            if(!userRegistrationModel.getPassword().equals(userRegistrationModel.getConfirmPassword())){
                errors.rejectValue("password","field.mismatch","Password and confirm password do not match");
             }
+        }
+        if(!(userRegistrationModel.getEmail()!=null && userRegistrationModel.getEmail().matches(EMAIL_PATTERN))){
+            errors.rejectValue("email","pattern.mismatch","Enter a valid email address");
         }
     }
 }

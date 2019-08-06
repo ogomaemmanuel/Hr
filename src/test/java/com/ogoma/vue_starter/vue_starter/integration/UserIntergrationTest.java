@@ -39,7 +39,7 @@ public class UserIntergrationTest {
         this.mockMvc.perform(post("/register")
                 .with(csrf().asHeader()).secure(true).contentType(CONTENT_TYPE)
                 .content("{\n" +
-                        "\t\"email\":\"ogoma.emmanuel\",\n" +
+                        "\t\"email\":\"ogoma.emmanuel@gmail.com\",\n" +
                         "\t\"password\":\"123456\",\n" +
                         "\t\"confirmPassword\":\"123456\",\n" +
                         "\t\"firstName\":\"Emmanuel\",\n" +

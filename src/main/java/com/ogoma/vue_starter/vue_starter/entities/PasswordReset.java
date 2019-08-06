@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -10,10 +11,13 @@ import java.util.Date;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 public class PasswordReset {
+
+    private static final int EXPIRATION = 60 * 24;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
+    //private Long userId;
+    private String token;
     private boolean used;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -24,6 +28,11 @@ public class PasswordReset {
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiresOn;
 
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false, name = "user_id")
+    @JsonIgnoreProperties("passwordResetList")
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -32,12 +41,12 @@ public class PasswordReset {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getToken() {
+        return token;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public boolean isUsed() {
@@ -70,5 +79,13 @@ public class PasswordReset {
 
     public void setExpiresOn(Date expiresOn) {
         this.expiresOn = expiresOn;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

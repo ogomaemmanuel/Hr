@@ -30,6 +30,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
     private Set<UserRole> userRoles;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties("user")
+    private Set<PasswordReset> passwordResetList;
 
     public Long getId() {
         return id;
@@ -101,5 +104,13 @@ public class User {
 
     public void setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    public Set<PasswordReset> getPasswordResetList() {
+        return passwordResetList;
+    }
+
+    public void setPasswordResetList(Set<PasswordReset> passwordResetList) {
+        this.passwordResetList = passwordResetList;
     }
 }
