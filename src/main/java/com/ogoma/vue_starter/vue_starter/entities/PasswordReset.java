@@ -6,6 +6,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -27,11 +29,27 @@ public class PasswordReset {
     private Date updatedOn;
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiresOn;
-
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "user_id")
     @JsonIgnoreProperties("passwordResetList")
     private User user;
+
+    public PasswordReset() {
+    }
+
+    public PasswordReset(final String token, final User user) {
+        super();
+        this.token = token;
+        this.user = user;
+        this.expiresOn = calculateExpiryDate(EXPIRATION);
+    }
+
+    private Date calculateExpiryDate(int expiryTimeInMinutes) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Timestamp(cal.getTime().getTime()));
+        cal.add(Calendar.MINUTE, expiryTimeInMinutes);
+        return new Date(cal.getTime().getTime());
+    }
 
     public Long getId() {
         return id;
@@ -87,5 +105,10 @@ public class PasswordReset {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void updateToken(final String token) {
+        this.token = token;
+        this.expiresOn = calculateExpiryDate(EXPIRATION);
     }
 }

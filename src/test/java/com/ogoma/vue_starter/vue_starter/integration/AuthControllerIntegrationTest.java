@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @SpringBootTest(classes = VueStarterApplication.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class UserIntergrationTest {
+public class AuthControllerIntegrationTest {
     private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
     @Autowired
     AuthController authController;
@@ -39,12 +39,22 @@ public class UserIntergrationTest {
         this.mockMvc.perform(post("/register")
                 .with(csrf().asHeader()).secure(true).contentType(CONTENT_TYPE)
                 .content("{\n" +
-                        "\t\"email\":\"ogoma.emmanuel@gmail.com\",\n" +
+                        "\t\"email\":\"ogoma.emmanuel21@gmail.com\",\n" +
                         "\t\"password\":\"123456\",\n" +
                         "\t\"confirmPassword\":\"123456\",\n" +
                         "\t\"firstName\":\"Emmanuel\",\n" +
                         "\t\"lastName\":\"ogoma\",\n" +
                         "\t\"phone\":\"0711472504\"\n" +
+                        "}")
+        ).andDo(print()).andExpect(status().isOk());
+    }
+    @Test
+    public void test_a_user_can_submit_forgot_password_request() throws Exception {
+        this.mockMvc.perform(post("/forgot-password")
+                .with(csrf().asHeader()).secure(true).contentType(CONTENT_TYPE)
+                .content("{\n" +
+                        "\t\"email\":\"ogoma.emmanuel21@gmail.com\"\n" +
+                        "\n" +
                         "}")
         ).andDo(print()).andExpect(status().isOk());
     }

@@ -17,10 +17,15 @@ public class AppUserDetailsService implements UserDetailsService {
 
     @Autowired
     UserService userService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user= this.userService.getUserByEmail(username);
-        return  new CustomUserDetails(
+        User user = this.userService.getUserByEmail(username);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("User does not exist");
+        }
+        return new CustomUserDetails(
                 user.getEmail(),
                 user.getPassword(),
                 true,
@@ -32,7 +37,8 @@ public class AppUserDetailsService implements UserDetailsService {
         );
 
 
-        }
+    }
+
     private List<GrantedAuthority> getGrantedAuthorityList() {
 //            List<GrantedAuthority> authorities = new ArrayList<>();
 //            for (String privilege : privileges) {

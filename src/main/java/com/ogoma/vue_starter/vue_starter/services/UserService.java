@@ -1,7 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.services;
 
 import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
+import com.ogoma.vue_starter.vue_starter.models.requests.PasswordResetRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
 
 public interface UserService {
@@ -11,4 +13,6 @@ public interface UserService {
     User register(UserRegistrationModel userRegistrationModel);
 
     void handleForgotPasswordRequest(ForgotPasswordRequest forgotPasswordRequest);
+
+    ResponseModel resetUserPassword(PasswordResetRequest passwordResetRequest);
 }

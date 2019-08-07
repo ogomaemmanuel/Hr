@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -16,9 +17,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 @Configuration
 @EnableWebSecurity
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class AppSecurityConfig extends  WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -34,7 +38,7 @@ public class AppSecurityConfig extends  WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
         //        Register application requests to be ignored by Spring Security
-        webSecurity.ignoring().antMatchers("/resources/static/**", "/css/**", "/scss/**", "/images/**", "/photos/**", "/js/**", "/fonts/**", "/plugins/**", "/theme/**")
+        webSecurity.ignoring().antMatchers("/resources/**","/dist/**","/resources/static/**", "/css/**", "/scss/**", "/images/**", "/photos/**", "/js/**", "/fonts/**", "/plugins/**", "/theme/**")
                 .antMatchers("/fonts.googleapis.com/**", "/.i.pravatar.cc", "/maxcdn.bootstrapcdn.com/**", "/health");
 
         // necessary for the thymeleaf-extra-security4 to function properly and allow to use method sec:authorize="hasPermission(...)" in html view
@@ -114,5 +118,8 @@ public class AppSecurityConfig extends  WebSecurityConfigurerAdapter {
     public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
         return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
     }
-
+    @Bean
+    public SpringSecurityDialect springSecurityDialect(){
+        return new SpringSecurityDialect();
+    }
 }

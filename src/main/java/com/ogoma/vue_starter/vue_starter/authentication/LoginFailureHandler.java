@@ -41,6 +41,10 @@ public class LoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
             errors.put("msg", "Verify your account using the verification link that was sent to your email during registration");
             errors.put("state", "danger");
 
+        }  else if (exception instanceof UsernameNotFoundException) {
+            errors.put("msg", "No user found");
+            errors.put("state", "danger");
+
         } else {
             exception.printStackTrace();
             errors.put("msg", "There was an error during the login process");

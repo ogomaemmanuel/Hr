@@ -11,6 +11,7 @@ import VueBreadcrumbs from 'vue-breadcrumbs'
 import Buefy from 'buefy';
 import 'bulma';
 import 'buefy/dist/buefy.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 window.Vue = require('vue');
 import Tooltip from 'vue-directive-tooltip';
@@ -37,7 +38,7 @@ Vue.use(VueBreadcrumbs, {
 </span></span></div>`
 
 });
-
+Vue.component('password-reset', require('./components/auth/PasswordReset').default);
 Vue.use(VueSweetalert2);
 Vue.use(PasswordInput);
 

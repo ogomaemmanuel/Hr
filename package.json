@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "watch": "webpack-dev-server --inline",
-    "prod": "webpack --mode production --optimize-minimize --config webpack.config.prod.js"
+    "prod": "webpack --mode production --optimize-minimize --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",

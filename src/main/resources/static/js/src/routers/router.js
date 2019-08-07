@@ -1,8 +1,12 @@
 import Vue from "vue"
 import Router from "vue-router"
 
+const AuthLayout= () =>
+    import ("../components/auth/AuthLayout.vue");
 const Login = () =>
     import ("../components/auth/Login.vue");
+const Home= () =>
+    import ("../components/home/Home");
 const ForgotPassword = () =>
     import ("../components/auth/ForgotPassword");
 const Register = () =>
@@ -16,39 +20,49 @@ const routes = new Router({
         // {path: '*', redirect: "/login"},
         {
             path: "/login",
-            component: Login,
-            props: true,
+            component: AuthLayout,
+           // props: true,
             meta: {
                 breadcrumb: 'Login',
             },
-            // children: [{
-            //     path: "/",
-            //     name: "login",
-            //     component: Login,
+            children: [{
+                path: "/",
+                name: "login",
+                component: Login,
+            },
+
+                {
+                    path: "/register",
+                    name: "register",
+                    component: Register,
+                },
+
+
+                {
+                    path: "/forgot-password",
+                    name: "forgot-password",
+                    component: ForgotPassword,
+                },
+
+            ]
+        },
+        // {
+        //     path: "/register",
+        //     name: "register",
+        //     component: Register,
+        //     props: true
+        // },
+
+            // {
+            //     path: "/forgot-password",
+            //     name: "forgot-password",
+            //     component: ForgotPassword,
             //     props: true
             // },
-            //
-            //     {
-            //         path: "/email-login",
-            //         name: "email-login",
-            //         component: EmailLogin,
-            //         props: true
-            //     },
-            //
-            //
-            //     {
-            //         path: "/forgot-password",
-            //         name: "forgot-password",
-            //         component: ForgotPassword,
-            //         props: true
-            //     },
-            //
-            // ]
-        },
         {
-            path: "/register",
-            name: "register",
-            component: Register,
+            path: "/",
+            name: "home",
+            component: Home,
             props: true
         },
 
