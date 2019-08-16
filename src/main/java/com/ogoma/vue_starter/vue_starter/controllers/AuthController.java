@@ -14,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.MessagingException;
 import java.util.ArrayList;
@@ -53,6 +56,17 @@ public class AuthController {
         }
         Map<String, ArrayList<String>> errors = ErrorConverter.convert(bindingResult);
         return ResponseEntity.badRequest().body(errors);
+    }
+
+    @RequestMapping(value = "confirm-registration/{userId}/{token}", method = RequestMethod.GET)
+    public ModelAndView confirmRegistration(
+            @PathVariable("userId") Long userId,
+            @PathVariable("token") String token,
+            ModelMap model
+    ) {
+        model.addAttribute("msg","Account verification successful");
+        model.addAttribute("state","success");
+       return new ModelAndView("redirect:/login",model);
     }
 
     @RequestMapping(value = "forgot-password", method = RequestMethod.POST)

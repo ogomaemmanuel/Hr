@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.events.auth;
 
+import com.ogoma.vue_starter.vue_starter.controllers.AuthController;
 import com.ogoma.vue_starter.vue_starter.entities.User;
 import com.ogoma.vue_starter.vue_starter.utils.mail.EmailModel;
 import com.ogoma.vue_starter.vue_starter.utils.mail.MailSender;
@@ -8,6 +9,9 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.mail.MessagingException;
 import java.util.HashMap;
@@ -28,6 +32,9 @@ public class UserRegistrationEventListner implements ApplicationListener<UserReg
         emailModel.setTo(event.getUser().getEmail());
         emailModel.setTemplateVariable(emailTemplateVariables);
         emailModel.setTemplatePath("/registration_successful");
+        UriComponentsBuilder base = ServletUriComponentsBuilder.fromCurrentContextPath().path("/");
+        String url = MvcUriComponentsBuilder.relativeTo(base).fromMethodName(AuthController.class, "confirmRegistration", event.getUser().getId(), event.getPasswordReset().getToken(),new Object()).build().toString();
+        emailTemplateVariables.put("link",url);
         try {
             this.mailSender.sendMail(emailModel);
         } catch (MessagingException e) {

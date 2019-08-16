@@ -9,8 +9,9 @@ import store from "./store/index.js"
 import 'element-ui/lib/theme-chalk/index.css'
 import VueBreadcrumbs from 'vue-breadcrumbs'
 import Buefy from 'buefy';
-import 'bulma';
 import 'buefy/dist/buefy.css'
+import 'bulma';
+
 import 'font-awesome/css/font-awesome.min.css'
 
 window.Vue = require('vue');

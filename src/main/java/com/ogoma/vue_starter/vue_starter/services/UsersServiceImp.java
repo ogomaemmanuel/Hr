@@ -11,11 +11,15 @@ import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
 import com.ogoma.vue_starter.vue_starter.repository.PasswordResetRepository;
 import com.ogoma.vue_starter.vue_starter.repository.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
+import com.ogoma.vue_starter.vue_starter.utils.mail.MailSender;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UsersServiceImp implements UserService {
@@ -47,7 +51,15 @@ public class UsersServiceImp implements UserService {
         BeanUtils.copyProperties(userRegistrationModel, user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedDetails = this.usersRepository.save(user);
-        UserRegistrationEvent userRegistrationEvent = new UserRegistrationEvent(this, savedDetails);
+        String registrationToken = RandomStringGenerator.randomStringGenerator(32, false);
+        PasswordReset passwordReset = new PasswordReset(
+                registrationToken,
+                savedDetails);
+        passwordResetRepository.save(passwordReset);
+        Map<String,Object>  registrationData = new HashMap<>();
+        registrationData.put("user",savedDetails);
+        registrationData.put("token",passwordReset);
+        UserRegistrationEvent userRegistrationEvent = new UserRegistrationEvent(this, registrationData);
         applicationEventPublisher.publishEvent(userRegistrationEvent);
         return savedDetails;
     }

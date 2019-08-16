@@ -1,8 +1,10 @@
 package com.ogoma.vue_starter.vue_starter.events.auth;
 
+import com.ogoma.vue_starter.vue_starter.entities.PasswordReset;
 import com.ogoma.vue_starter.vue_starter.entities.User;
 import org.springframework.context.ApplicationEvent;
-import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 public class UserRegistrationEvent extends ApplicationEvent {
     /**
@@ -11,13 +13,18 @@ public class UserRegistrationEvent extends ApplicationEvent {
      * @param source the object on which the event initially occurred (never {@code null})
      */
 
-    private User user;
+    private Map<String, Object> registrationData;
 
-    public UserRegistrationEvent(Object source, User user) {
+    public UserRegistrationEvent(Object source, Map<String, Object> registrationData) {
         super(source);
-        this.user = user;
+        this.registrationData = registrationData;
     }
+
     public User getUser() {
-        return user;
+        return (User) registrationData.get("user");
+    }
+
+    public PasswordReset getPasswordReset() {
+        return (PasswordReset) registrationData.get("token");
     }
 }

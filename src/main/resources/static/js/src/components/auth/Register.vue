@@ -63,7 +63,7 @@
                             <div class="field">
                                 <div class="control">
                                     <input v-model="user.password" class="input" type="password"
-                                           placeholder="Last name">
+                                           placeholder="Password">
                                     <span class="icon is-small is-left">
     </span>
                                 </div>

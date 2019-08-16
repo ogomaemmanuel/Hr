@@ -91,7 +91,7 @@ module.exports = env => {
                 // contentBase: bundleOutputDir,
                 hot: true,
                 inline: true,
-                port:9090,
+                port:9080,
                 disableHostCheck: true,
                 proxy: {
                     '/**': {

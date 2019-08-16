@@ -33,6 +33,8 @@ public class PasswordReset {
     @JoinColumn(nullable = false, name = "user_id")
     @JsonIgnoreProperties("passwordResetList")
     private User user;
+    private String purpose;
+
 
     public PasswordReset() {
     }
@@ -107,8 +109,16 @@ public class PasswordReset {
         this.user = user;
     }
 
+    public String getPurpose() {
+        return purpose;
+    }
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
+    }
     public void updateToken(final String token) {
         this.token = token;
         this.expiresOn = calculateExpiryDate(EXPIRATION);
     }
+
+
 }
