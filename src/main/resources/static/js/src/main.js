@@ -11,6 +11,7 @@ import VueBreadcrumbs from 'vue-breadcrumbs'
 import Buefy from 'buefy';
 import 'buefy/dist/buefy.css'
 import 'bulma';
+import DownLoadFilePlugin from "./plugins/FileDownLoad"
 
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -22,6 +23,7 @@ import 'vue-directive-tooltip/src/css/index.scss';
 //     Vue.config.debug = false;
 //     Vue.config.silent = true;
 // }
+Vue.use(DownLoadFilePlugin)
 Vue.use(Tooltip, {
     delay: 50,
     triggers: ['hover'],

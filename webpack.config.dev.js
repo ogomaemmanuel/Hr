@@ -6,7 +6,7 @@ const HtmlWebpacktPlugin = require("html-webpack-plugin")
 const bundleOutputDir = "./target/classes/static/js/dist"
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
 
 let commonConfig=

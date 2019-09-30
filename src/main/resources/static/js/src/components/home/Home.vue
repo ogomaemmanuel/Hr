@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+		<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
 				<a class="navbar-item" href="https://bulma.io">
 					<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -83,7 +83,7 @@
 		
 		<section class="main-content columns is-fullheight">
 			
-			<aside class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile">
+			<aside class="column is-2 is-narrow-mobile is-fixed is-fullheight section is-hidden-mobile">
 				<p class="menu-label is-hidden-touch">Navigation</p>
 				<ul class="menu-list">
 					<li>
@@ -93,14 +93,14 @@
 					</li>
 					<li>
 						<a href="#" class="is-active">
-							<span class="icon"><i class="fa fa-table"></i></span> Links
+							<span class="icon"><i class="fa fa-table"></i></span> Access Control
 						</a>
 						
 						<ul>
 							<li>
-								<a href="#">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Link1
-								</a>
+								<router-link to="/users">
+									<span class="icon is-small"><i class="fa fa-link"></i></span> Users
+								</router-link>
 							</li>
 							<li>
 								<a href="#">
@@ -118,7 +118,7 @@
 			</aside>
 			
 			<div class="container column is-10">
-			
+                <router-view></router-view>
 			</div>
 		</section>
 	</div>

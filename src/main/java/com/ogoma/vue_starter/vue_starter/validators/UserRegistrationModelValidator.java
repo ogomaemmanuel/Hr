@@ -1,6 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.validators;
 
+import com.ogoma.vue_starter.vue_starter.entities.User;
 import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
+import com.ogoma.vue_starter.vue_starter.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -10,6 +13,9 @@ import org.springframework.validation.Validator;
 public class UserRegistrationModelValidator implements Validator {
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+    @Autowired
+    private UserService userService;
+
     @Override
     public boolean supports(Class<?> clazz) {
         return UserRegistrationModel.class.equals(clazz);
@@ -17,9 +23,12 @@ public class UserRegistrationModelValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        //Todo check if user is already registered with a given email
         //Todo check password strength
         UserRegistrationModel userRegistrationModel = (UserRegistrationModel) target;
+        User user = userService.getUserByEmail(userRegistrationModel.getEmail());
+        if (user != null) {
+            errors.rejectValue("email", "user.exists", "A user with this email already exists");
+        }
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required", "Email is required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phone", "field.required", "Phone number is required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "field.required", "Password is required");

@@ -12,13 +12,16 @@ import com.ogoma.vue_starter.vue_starter.repository.PasswordResetRepository;
 import com.ogoma.vue_starter.vue_starter.repository.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
 import com.ogoma.vue_starter.vue_starter.utils.mail.MailSender;
+import com.ogoma.vue_starter.vue_starter.utils.reports.ReportGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -28,16 +31,19 @@ public class UsersServiceImp implements UserService {
     private UsersRepository usersRepository;
     private PasswordEncoder passwordEncoder;
     private PasswordResetRepository passwordResetRepository;
+    private ReportGenerator reportGenerator;
 
 
     @Autowired
     public UsersServiceImp(UsersRepository usersRepository,
                            PasswordEncoder passwordEncoder,
-                           PasswordResetRepository passwordResetRepository
+                           PasswordResetRepository passwordResetRepository,
+                           ReportGenerator reportGenerator
     ) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.passwordResetRepository = passwordResetRepository;
+        this.reportGenerator=reportGenerator;
 
     }
 
@@ -62,6 +68,12 @@ public class UsersServiceImp implements UserService {
         UserRegistrationEvent userRegistrationEvent = new UserRegistrationEvent(this, registrationData);
         applicationEventPublisher.publishEvent(userRegistrationEvent);
         return savedDetails;
+    }
+
+    @Override
+    public List<User> getAll() {
+       List<User> users = this.usersRepository.findAll();
+       return users;
     }
 
     @Override
@@ -102,5 +114,11 @@ public class UsersServiceImp implements UserService {
         responseModel.setMessage("Invalid token");
         responseModel.setState("success");
         return responseModel;
+    }
+
+    @Override
+    public ByteArrayOutputStream report() throws Exception {
+        List<User> users = this.usersRepository.findAll();
+        return reportGenerator.generatePdfReport("reports/Blank_A4.jasper",null,users);
     }
 }

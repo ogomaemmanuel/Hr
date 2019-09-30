@@ -11,6 +11,10 @@ const ForgotPassword = () =>
     import ("../components/auth/ForgotPassword");
 const Register = () =>
     import ("../components/auth/Register");
+
+//users,user permission and roles routes go here
+const Users = () =>
+    import ("../components/access_control/Users");
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
@@ -63,8 +67,16 @@ const routes = new Router({
             path: "/",
             name: "home",
             component: Home,
-            props: true
+           children: [
+               {
+                   path: "/users",
+                   name: "users",
+                   component: Users,
+                   props: true
+               },
+           ]
         },
+
 
     ]
 });
