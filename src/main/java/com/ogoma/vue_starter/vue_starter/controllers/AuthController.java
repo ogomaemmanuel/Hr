@@ -10,6 +10,8 @@ import com.ogoma.vue_starter.vue_starter.utils.ErrorConverter;
 import com.ogoma.vue_starter.vue_starter.validators.ForgotPasswordRequestValidator;
 import com.ogoma.vue_starter.vue_starter.validators.PasswordResetRequestValidator;
 import com.ogoma.vue_starter.vue_starter.validators.UserRegistrationModelValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,8 +29,13 @@ import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.Map;
 
+
 @Controller
 public class AuthController {
+
+
+    Logger logger= LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -52,6 +59,7 @@ public class AuthController {
         userRegistrationModelValidator.validate(userRegistrationModel, bindingResult);
         if (!bindingResult.hasErrors()) {
             User user = this.userService.register(userRegistrationModel);
+            logger.debug("user successfully registere,user id %s",user.getId());
             return ResponseEntity.ok("Registration successful,a verification email has been sent to your email, please verify to complete registration");
         }
         Map<String, ArrayList<String>> errors = ErrorConverter.convert(bindingResult);
