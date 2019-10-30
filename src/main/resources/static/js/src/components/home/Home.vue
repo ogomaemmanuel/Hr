@@ -50,14 +50,7 @@
 				<div class="navbar-end">
 					
 					<div class="navbar-item">
-						<b-tooltip label="logout"
-								   type="is-dark"
-								   position="is-left">
-							<form ref="logoutForm" method="post" action="/logout">
-								<input type="hidden" name="_csrf" :value="csrfToken">
-								<i @click="logout" class="fa fa-sign-out fa-2x"></i>
-							</form>
-						</b-tooltip>
+						<LogoutForm></LogoutForm>
 					</div>
 					
 					
@@ -133,28 +126,23 @@
 	</div>
 </template>
 <script>
+	import LogoutForm from "../auth/LogoutForm.vue"
     export default {
+	    components:{
+            LogoutForm
+		},
         props: {
             user: {}
         },
         data() {
             return {
                 isFullPage: true,
-                csrfToken: null,
             }
         },
         created() {
             this.open();
-            this.csrfToken =document.querySelector("meta[name='_csrf']").getAttribute("content");
-                // document.getElementsByTagName('meta')
-                //     .find(x => x.getAttribute('name') == "_csrf")
-                //     .getAttribute('content') || "";
-        },
+		},
         methods: {
-            logout() {
-                this.$refs.logoutForm.submit();
-            },
-
             open() {
                 const loadingComponent = this.$buefy.loading.open({
                     container: this.isFullPage ? null : this.$refs.element.$el
