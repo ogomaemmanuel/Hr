@@ -49,13 +49,22 @@
 				
 				<div class="navbar-end">
 					
-					
+					<div class="navbar-item">
+						<b-tooltip label="logout"
+								   type="is-dark"
+								   position="is-left">
+							<form ref="logoutForm" method="post" action="/logout">
+								<input type="hidden" name="_csrf" :value="csrfToken">
+								<i @click="logout" class="fa fa-sign-out fa-2x"></i>
+							</form>
+						</b-tooltip>
+					</div>
 					
 					
 					<div class="navbar-item has-dropdown is-hoverable">
-<!--						<a class="navbar-link">-->
-<!--							Docs-->
-<!--						</a>-->
+						<!--						<a class="navbar-link">-->
+						<!--							Docs-->
+						<!--						</a>-->
 						
 						<figure class="image is-fullwidth navbar-link is-64x64">
 							<img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
@@ -118,7 +127,7 @@
 			</aside>
 			
 			<div class="container column is-10">
-                <router-view></router-view>
+				<router-view></router-view>
 			</div>
 		</section>
 	</div>
@@ -131,12 +140,21 @@
         data() {
             return {
                 isFullPage: true,
+                csrfToken: null,
             }
         },
         created() {
             this.open();
+            this.csrfToken =document.querySelector("meta[name='_csrf']").getAttribute("content");
+                // document.getElementsByTagName('meta')
+                //     .find(x => x.getAttribute('name') == "_csrf")
+                //     .getAttribute('content') || "";
         },
         methods: {
+            logout() {
+                this.$refs.logoutForm.submit();
+            },
+
             open() {
                 const loadingComponent = this.$buefy.loading.open({
                     container: this.isFullPage ? null : this.$refs.element.$el
@@ -149,6 +167,6 @@
 <style scoped>
 	
 	.navbar-item img {
-		 max-height: 3rem;
+		max-height: 3rem;
 	}
 </style>

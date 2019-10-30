@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.entities.User;
 import com.ogoma.vue_starter.vue_starter.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,19 +33,23 @@ public class AppUserDetailsService implements UserDetailsService {
                 true,
                 true,
                 true,
-                getGrantedAuthorityList(),
+                getGrantedAuthorityList(user),
                 user.getId()
         );
 
 
     }
 
-    private List<GrantedAuthority> getGrantedAuthorityList() {
-//            List<GrantedAuthority> authorities = new ArrayList<>();
-//            for (String privilege : privileges) {
-//                authorities.add(new SimpleGrantedAuthority(privilege));
-//            }
-//            return authorities;}
-        return new ArrayList<GrantedAuthority>();
+    private List<GrantedAuthority> getGrantedAuthorityList(User user) {
+
+        // user.getUserRoles().stream().findFirst().orElse(new Role());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        //  for (String privilege : privileges) {
+        authorities.add(new SimpleGrantedAuthority("ADMIN"));
+        // }
+        //return new ArrayList<GrantedAuthority>();
+        return authorities;
     }
+
+
 }
