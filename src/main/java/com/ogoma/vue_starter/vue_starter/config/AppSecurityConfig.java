@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
@@ -117,6 +118,10 @@ public class AppSecurityConfig extends  WebSecurityConfigurerAdapter {
     @Bean
     public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
         return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
+    }
+    @Bean
+    public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
+        return new SecurityEvaluationContextExtension();
     }
     @Bean
     public SpringSecurityDialect springSecurityDialect(){
