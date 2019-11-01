@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.repository;
+package com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories;
 
 import com.ogoma.vue_starter.vue_starter.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

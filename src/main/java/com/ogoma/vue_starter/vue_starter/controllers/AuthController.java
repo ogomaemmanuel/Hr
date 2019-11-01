@@ -5,7 +5,7 @@ import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.PasswordResetRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
-import com.ogoma.vue_starter.vue_starter.services.UserService;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
 import com.ogoma.vue_starter.vue_starter.utils.ErrorConverter;
 import com.ogoma.vue_starter.vue_starter.validators.ForgotPasswordRequestValidator;
 import com.ogoma.vue_starter.vue_starter.validators.PasswordResetRequestValidator;
@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.MessagingException;
 import java.util.ArrayList;

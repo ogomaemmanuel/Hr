@@ -1,6 +1,9 @@
 package com.ogoma.vue_starter.vue_starter;
 
 
+import io.minio.MinioClient;
+import io.minio.errors.InvalidEndpointException;
+import io.minio.errors.InvalidPortException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -27,5 +30,13 @@ public class VueStarterApplication {
     @Bean
     RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    MinioClient minioClient() throws InvalidPortException, InvalidEndpointException {
+        return new MinioClient(
+                "https://play.min.io",
+                "Q3AM3UQ867SPQQA43P2F",
+                "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG");
     }
 }

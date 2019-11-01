@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.services;
+package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.entities.User;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;

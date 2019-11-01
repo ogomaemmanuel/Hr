@@ -2,7 +2,7 @@ package com.ogoma.vue_starter.vue_starter.validators;
 
 import com.ogoma.vue_starter.vue_starter.entities.User;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
-import com.ogoma.vue_starter.vue_starter.services.UserService;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

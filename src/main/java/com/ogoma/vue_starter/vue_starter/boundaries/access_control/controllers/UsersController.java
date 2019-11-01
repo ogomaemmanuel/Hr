@@ -1,7 +1,7 @@
-package com.ogoma.vue_starter.vue_starter.controllers;
+package com.ogoma.vue_starter.vue_starter.boundaries.access_control.controllers;
 
 import com.ogoma.vue_starter.vue_starter.entities.User;
-import com.ogoma.vue_starter.vue_starter.services.UserService;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;

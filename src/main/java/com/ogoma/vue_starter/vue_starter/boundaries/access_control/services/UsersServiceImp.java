@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.services;
+package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.entities.PasswordReset;
 import com.ogoma.vue_starter.vue_starter.entities.User;
@@ -8,10 +8,9 @@ import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.PasswordResetRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
-import com.ogoma.vue_starter.vue_starter.repository.PasswordResetRepository;
-import com.ogoma.vue_starter.vue_starter.repository.UsersRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.PasswordResetRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
-import com.ogoma.vue_starter.vue_starter.utils.mail.MailSender;
 import com.ogoma.vue_starter.vue_starter.utils.reports.ReportGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
