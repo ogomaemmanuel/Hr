@@ -22,7 +22,7 @@ public class Bucket {
     public Bucket(String name,Date createdOn,Date updatedOn){
         this.name=name;
         this.createdOn=createdOn;
-        this.updatedOn= updatedOn
+        this.updatedOn= updatedOn;
     }
 
     public Long getId() {
