@@ -1,24 +1,25 @@
-package com.ogoma.vue_starter.vue_starter.boundaries.documents.entities;
+package com.ogoma.vue_starter.vue_starter.boundaries.hr_employee_management.entities;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "documents")
-public class Document {
+@Table(name = "designations")
+public class Designation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long size;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdOn;
-    private  Date updatedOn;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedOn;
 
     public Long getId() {
         return id;
     }
 
-    public Document setId(Long id) {
+    public Designation setId(Long id) {
         this.id = id;
         return this;
     }
@@ -27,7 +28,7 @@ public class Document {
         return name;
     }
 
-    public Document setName(String name) {
+    public Designation setName(String name) {
         this.name = name;
         return this;
     }
@@ -36,7 +37,7 @@ public class Document {
         return createdOn;
     }
 
-    public Document setCreatedOn(Date createdOn) {
+    public Designation setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
         return this;
     }
@@ -45,18 +46,8 @@ public class Document {
         return updatedOn;
     }
 
-    public Document setUpdatedOn(Date updatedOn) {
+    public Designation setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
-        return this;
-    }
-
-    public Long getSize() {
-        return size;
-    }
-
-
-    public Document setSize(Long size) {
-        this.size = size;
         return this;
     }
 }

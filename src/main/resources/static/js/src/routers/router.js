@@ -15,17 +15,19 @@ const Register = () =>
 //users,user permission and roles routes go here
 const Users = () =>
     import ("../components/access_control/Users");
+
+const Documents=()=>import("../components/file_management/Index")
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
     linkExactActiveClass: "",
     linkActiveClass: "ant-breadcrumb",
     routes: [
-        // {path: '*', redirect: "/login"},
+        {path: '*', redirect: "/login"},
         {
             path: "/login",
             component: AuthLayout,
-           // props: true,
+
             meta: {
                 breadcrumb: 'Login',
             },
@@ -50,12 +52,7 @@ const routes = new Router({
 
             ]
         },
-        // {
-        //     path: "/register",
-        //     name: "register",
-        //     component: Register,
-        //     props: true
-        // },
+
 
             // {
             //     path: "/forgot-password",
@@ -72,7 +69,12 @@ const routes = new Router({
                    path: "/users",
                    name: "users",
                    component: Users,
-                   props: true
+               },
+               {
+                   path: "/documents",
+                   name: "documents",
+                   component: Documents,
+
                },
            ]
         },

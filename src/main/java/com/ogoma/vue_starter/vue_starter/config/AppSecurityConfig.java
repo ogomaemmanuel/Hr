@@ -55,7 +55,7 @@ public class AppSecurityConfig extends  WebSecurityConfigurerAdapter {
         http.cors().and()
                 .authorizeRequests()
                 .antMatchers("/register/**").permitAll()
-                .antMatchers("/api/**",
+                .antMatchers(
                         "/forgot-password/**",
                         "/phone-verification-code/**",
                         "/users/resend-verification-email/**",
@@ -74,7 +74,7 @@ public class AppSecurityConfig extends  WebSecurityConfigurerAdapter {
                 .loginPage("/login").successHandler(loginSuccessfulHandler()).failureHandler(loginFailureHandler())
                 .usernameParameter("email").passwordParameter("password").permitAll()
 //                .and().exceptionHandling().accessDeniedHandler()
-            //  .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())  //used for users not authenticated, we can return 403 when on ajax  requests
+                .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())  //used for users not authenticated, we can return 403 when on ajax  requests
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
@@ -103,7 +103,7 @@ public class AppSecurityConfig extends  WebSecurityConfigurerAdapter {
 
     @Autowired
     AuthenticationEntryPoint authenticationEntryPoint(){
-        return new  CustomAuthenticationEntryPoint();
+        return new  CustomAuthenticationEntryPoint("/login");
     }
 
     @Bean
