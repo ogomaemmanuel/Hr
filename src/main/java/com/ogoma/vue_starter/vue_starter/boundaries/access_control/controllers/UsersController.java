@@ -24,12 +24,14 @@ public class UsersController {
     public UsersController(UserService userService) {
         this.userService = userService;
     }
-    @RequestMapping(value = "api/users",method = RequestMethod.GET)
+
+    @RequestMapping(value = "api/users", method = RequestMethod.GET)
     public ResponseEntity<?> getUsers() {
         List<User> userList = this.userService.getAll();
         return ResponseEntity.ok(userList);
     }
-    @RequestMapping(value="api/users/reports",method= RequestMethod.GET)
+
+    @RequestMapping(value="api/users/reports", method= RequestMethod.GET)
     public ResponseEntity<InputStreamResource> report() throws Exception {
         ByteArrayOutputStream byteArrayOutputStream = userService.report();
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
