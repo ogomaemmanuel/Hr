@@ -14,6 +14,7 @@ import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
 import com.ogoma.vue_starter.vue_starter.utils.reports.ReportGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+
 public class UsersServiceImp implements UserService {
     @Autowired
     ApplicationEventPublisher applicationEventPublisher;
