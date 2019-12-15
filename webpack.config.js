@@ -45,16 +45,7 @@ module.exports = env => {
                             // other vue-loader options go here
                         }
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            plugins: [
-                                require('tailwindcss'),
-                                require('autoprefixer'),
-                            ],
-                        },
-                    },
+
                     {
                         test: /\.js$/,
                         loader: 'babel-loader',
@@ -79,7 +70,18 @@ module.exports = env => {
                     {
                         test: /\.css$/,
                         use: isDevBuild
-                            ? ["style-loader", "css-loader"]
+                            ? ["style-loader", "css-loader",
+                                {
+                                    loader: 'postcss-loader',
+                                    options: {
+                                        ident: 'postcss',
+                                        plugins: [
+                                            require('tailwindcss'),
+                                            require('autoprefixer'),
+                                        ],
+                                    },
+                                },
+                            ]
                             : ExtractTextPlugin.extract({use: "css-loader?minimize"})
                     },
                     {test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/, use: "url-loader?limit=100000"}
