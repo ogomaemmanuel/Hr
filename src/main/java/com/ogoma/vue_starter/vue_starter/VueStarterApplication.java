@@ -2,8 +2,7 @@ package com.ogoma.vue_starter.vue_starter;
 
 
 import io.minio.MinioClient;
-import io.minio.errors.InvalidEndpointException;
-import io.minio.errors.InvalidPortException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +10,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -33,10 +31,13 @@ public class VueStarterApplication {
     }
 
     @Bean
-    MinioClient minioClient() throws InvalidPortException, InvalidEndpointException {
+    MinioClient minioClient(@Value("${minio.end_point}") String endPoint,
+                            @Value("${minio.access_key}") String accessKey,
+                            @Value("${minio.secret_key}") String secretKey) throws Exception {
         return new MinioClient(
-                "https://play.min.io",
-                "Q3AM3UQ867SPQQA43P2F",
-                "zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG");
+                endPoint,
+                accessKey,
+                secretKey
+        );
     }
 }

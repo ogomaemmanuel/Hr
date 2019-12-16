@@ -27,6 +27,10 @@
                         field: 'lastName',
                         label: 'Last Name',
                     },
+					{
+                        field: 'email',
+                        label: 'Email',
+                    },
                 ]
             }
         },

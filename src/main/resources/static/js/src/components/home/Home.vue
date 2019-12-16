@@ -5,7 +5,6 @@
 				<a class="navbar-item" href="https://bulma.io">
 					<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
 				</a>
-				
 				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
 				   data-target="navbarBasicExample">
 					<span aria-hidden="true"></span>
@@ -106,8 +105,30 @@
 							</li>
 							<li>
 								<a href="#">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Link2
+									<span class="icon is-small"><i class="fa fa-link"></i></span> Roles
 								</a>
+							</li>
+							<li>
+								<a href="#">
+									<span class="icon is-small"><i class="fa fa-link"></i></span> Permissions
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="is-active">
+							<span class="icon"><i class="fa fa-table"></i></span> File Management
+						</a>
+						<ul>
+							<li>
+								<router-link to="/documents">
+									<span class="icon is-small"><i class="fa fa-link"></i></span> Manage Files
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/documents">
+									<span class="icon is-small"><i class="fa fa-link"></i></span> My Files
+								</router-link>
 							</li>
 						</ul>
 					</li>
@@ -126,11 +147,12 @@
 	</div>
 </template>
 <script>
-	import LogoutForm from "../auth/LogoutForm.vue"
+    import LogoutForm from "../auth/LogoutForm.vue"
+
     export default {
-	    components:{
+        components: {
             LogoutForm
-		},
+        },
         props: {
             user: {}
         },
@@ -141,7 +163,7 @@
         },
         created() {
             this.open();
-		},
+        },
         methods: {
             open() {
                 const loadingComponent = this.$buefy.loading.open({

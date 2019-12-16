@@ -15,6 +15,16 @@ public class Bucket {
     private Date createdOn;
     private Date updatedOn;
 
+    public Bucket(){
+
+    }
+
+    public Bucket(String name,Date createdOn,Date updatedOn){
+        this.name=name;
+        this.createdOn=createdOn;
+        this.updatedOn= updatedOn;
+    }
+
     public Long getId() {
         return id;
     }

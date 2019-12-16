@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -19,6 +20,7 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    @JsonIgnore
     private String password;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
