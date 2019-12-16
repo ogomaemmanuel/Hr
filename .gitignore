@@ -30,3 +30,7 @@ build/
 ### VS Code ###
 .vscode/
 node_modules/
+
+### Application Properties ###
+/src/main/resources/application.properties
+/src/main/resources/message.properties
