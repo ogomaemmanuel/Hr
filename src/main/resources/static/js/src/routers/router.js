@@ -17,13 +17,14 @@ const Users = () =>
     import ("../components/access_control/Users");
 
 const Documents=()=>import("../components/file_management/Index")
+const PageNotFound=()=>import("../components/errors/PageNotFound")
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
     linkExactActiveClass: "",
     linkActiveClass: "ant-breadcrumb",
     routes: [
-        {path: '*', redirect: "/login"},
+
         {
             path: "/login",
             component: AuthLayout,
@@ -78,6 +79,7 @@ const routes = new Router({
                },
            ]
         },
+        {path: '*', component: PageNotFound},
 
 
     ]
