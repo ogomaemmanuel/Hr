@@ -58,8 +58,8 @@
 						<!--							Docs-->
 						<!--						</a>-->
 						
-						<figure class="image is-fullwidth navbar-link is-64x64">
-							<img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+						<figure class="image is-fullwidth navbar-link">
+							<img class="is-rounded profile-image" src="https://bulma.io/images/placeholders/128x128.png">
 						</figure>
 						
 						<div class="navbar-dropdown is-right">
@@ -176,7 +176,11 @@
 </script>
 <style scoped>
 	
-	.navbar-item img {
-		max-height: 3rem;
+	.navbar-item .profile-image {
+		/*border-radius: 100%;*/
+		height: 36px;
+		width: 36px;
+		max-height:36px;
+		/*max-height: 3rem;*/
 	}
 </style>
