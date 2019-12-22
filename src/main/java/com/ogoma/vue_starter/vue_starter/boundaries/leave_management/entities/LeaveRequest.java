@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.boundaries.hr_employee_management.entities;
+package com.ogoma.vue_starter.vue_starter.boundaries.leave_management.entities;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr_employee_management.enums.LeaveStatuses;
 import com.ogoma.vue_starter.vue_starter.entities.User;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "leave_requests")
-public class LeaveRequests {
+public class LeaveRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,9 +17,15 @@ public class LeaveRequests {
     private Date startDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
+
+    private Long applicantId;
+
     @OneToOne
-    @JoinColumn(name = "applicant_user_id")
+    @JoinColumn(name = "applicant_user_id",updatable = false,insertable = false)
     private User applicant;
+    @OneToOne
+    @JoinColumn(name = "in-place")
+    private User inPlace;
     @Enumerated(value = EnumType.STRING)
     private LeaveStatuses leaveStatuses;
 
@@ -27,7 +33,7 @@ public class LeaveRequests {
         return id;
     }
 
-    public LeaveRequests setId(Long id) {
+    public LeaveRequest setId(Long id) {
         this.id = id;
         return this;
     }
@@ -36,7 +42,7 @@ public class LeaveRequests {
         return description;
     }
 
-    public LeaveRequests setDescription(String description) {
+    public LeaveRequest setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -45,7 +51,7 @@ public class LeaveRequests {
         return startDate;
     }
 
-    public LeaveRequests setStartDate(Date startDate) {
+    public LeaveRequest setStartDate(Date startDate) {
         this.startDate = startDate;
         return this;
     }
@@ -54,7 +60,7 @@ public class LeaveRequests {
         return endDate;
     }
 
-    public LeaveRequests setEndDate(Date endDate) {
+    public LeaveRequest setEndDate(Date endDate) {
         this.endDate = endDate;
         return this;
     }
@@ -63,7 +69,7 @@ public class LeaveRequests {
         return applicant;
     }
 
-    public LeaveRequests setApplicant(User applicant) {
+    public LeaveRequest setApplicant(User applicant) {
         this.applicant = applicant;
         return this;
     }
@@ -72,8 +78,26 @@ public class LeaveRequests {
         return leaveStatuses;
     }
 
-    public LeaveRequests setLeaveStatuses(LeaveStatuses leaveStatuses) {
+    public LeaveRequest setLeaveStatuses(LeaveStatuses leaveStatuses) {
         this.leaveStatuses = leaveStatuses;
+        return this;
+    }
+
+    public Long getApplicantId() {
+        return applicantId;
+    }
+
+    public LeaveRequest setApplicantId(Long applicantId) {
+        this.applicantId = applicantId;
+        return this;
+    }
+
+    public User getInPlace() {
+        return inPlace;
+    }
+
+    public LeaveRequest setInPlace(User inPlace) {
+        this.inPlace = inPlace;
         return this;
     }
 }

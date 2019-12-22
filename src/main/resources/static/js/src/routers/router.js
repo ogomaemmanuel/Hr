@@ -18,6 +18,10 @@ const Users = () =>
 
 const Documents=()=>import("../components/file_management/Index")
 const PageNotFound=()=>import("../components/errors/PageNotFound")
+
+const LeavePage =()=>import("../components/leave_management/LeavePage")
+const LeaveRequestForm =()=>import("../components/leave_management/LeaveRequestForm")
+const LeaveRequests =()=>import("../components/leave_management/UserLeaveRequests")
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
@@ -76,6 +80,24 @@ const routes = new Router({
                    name: "documents",
                    component: Documents,
 
+               },
+
+               {
+                   path: "/leave",
+                   name: "leave",
+                   component: LeavePage,
+                   children:[
+                       {
+                           path:"/",
+                           name:"leave-requests",
+                           component:LeaveRequests
+                       },
+                       {
+                           path:"/leave-create",
+                           name:"leave-create",
+                           component:LeaveRequestForm
+                       }
+                   ]
                },
            ]
         },

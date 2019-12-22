@@ -133,6 +133,23 @@
 						</ul>
 					</li>
 					<li>
+						<a href="#" class="is-active">
+							<span class="icon"><i class="fa fa-table"></i></span> Leave Management
+						</a>
+						<ul>
+							<li>
+								<router-link to="/leave">
+									<span class="icon is-small"><i class="fa fa-link"></i></span> Leave
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/documents">
+									<span class="icon is-small"><i class="fa fa-link"></i></span> In Place
+								</router-link>
+							</li>
+						</ul>
+					</li>
+					<li>
 						<a href="#" class="">
 							<span class="icon"><i class="fa fa-info"></i></span> About
 						</a>
@@ -140,7 +157,7 @@
 				</ul>
 			</aside>
 			
-			<div class="container column is-10">
+			<div class="container column is-10 p-10">
 				<router-view></router-view>
 			</div>
 		</section>
@@ -177,10 +194,8 @@
 <style scoped>
 	
 	.navbar-item .profile-image {
-		/*border-radius: 100%;*/
 		height: 36px;
 		width: 36px;
 		max-height:36px;
-		/*max-height: 3rem;*/
 	}
 </style>
