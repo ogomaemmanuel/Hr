@@ -12,13 +12,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class LeaveRequestService {
-    private LeaveRequestRepository leaveRequestRepository;
+    private final LeaveRequestRepository leaveRequestRepository;
+
     @Autowired
     public LeaveRequestService(LeaveRequestRepository leaveRequestRepository) {
-        leaveRequestRepository = leaveRequestRepository;
+        this.leaveRequestRepository = leaveRequestRepository;
     }
+
     public LeaveRequest createLeaveRequest(LeaveRequestModel leaveRequestModel) {
         LeaveRequest leaveRequest = new LeaveRequest();
         BeanUtils.copyProperties(leaveRequestModel, leaveRequest);
@@ -27,9 +32,15 @@ public class LeaveRequestService {
         leaveRequestRepository.save(leaveRequest);
         return leaveRequest;
     }
+
     public Page<LeaveRequest> getLoggedInUserLeaveRequest(PagedDataRequest pagedDataRequest) {
         PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
         Page<LeaveRequest> leaveRequests = leaveRequestRepository.findCurrentUserLeaveRequest(pageRequest);
         return leaveRequests;
+    }
+
+    public List<Map<String, String>> inPlaceStaffSelectList() {
+        List<Map<String, String>> inPlaceEmployeeSelectList = this.leaveRequestRepository.getInplaceEmployeeSelectList();
+        return inPlaceEmployeeSelectList;
     }
 }

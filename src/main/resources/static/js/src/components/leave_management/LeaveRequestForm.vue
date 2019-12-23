@@ -35,7 +35,9 @@
 						<div class="select w-full">
 							<select v-model="leaveRequest.inPlaceId" class="w-full">
 								<option>Select One</option>
-								<option>With options</option>
+								<option v-for="inPlaceEmployee in inPlaceEmployees" :value="inPlaceEmployee.staffId">
+									{{inPlaceEmployee.fullName}}
+								</option>
 							</select>
 						</div>
 					</div>
@@ -77,15 +79,14 @@
         },
         data() {
             return {
-                leaveRequest:{
-                
-				},
+                leaveRequest: {},
                 leaveTypes: [],
                 inPlaceEmployees: []
             }
         },
         created() {
-            this.getLeaveTypes()
+            this.getLeaveTypes();
+            this.getInPlaceEmployees();
         },
         methods: {
             goBack() {
@@ -96,8 +97,8 @@
                     this.leaveTypes = resp.data;
                 })
             },
-            getEmployees() {
-                axios.get("/api/users").then(resp => {
+            getInPlaceEmployees() {
+                axios.get("/api/leave-requests/in-place").then(resp => {
                     this.inPlaceEmployees = resp.data;
                 })
             }
