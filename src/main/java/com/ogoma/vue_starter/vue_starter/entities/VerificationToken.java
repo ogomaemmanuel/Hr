@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 @Entity
+@Table(name = "verification_tokens")
 public class VerificationToken {
     private static final int EXPIRATION = 60 * 24;
     @Id

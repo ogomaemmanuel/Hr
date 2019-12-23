@@ -7,30 +7,57 @@
 					<div class="control w-full">
 						<div class="select w-full">
 							<select class="w-full">
-								<option>Select dropdown</option>
+								<option>Select One</option>
+								<option
+										v-for="leaveType in leaveTypes"
+										:value="leaveType.id"
+										:key="leaveType.id">{{leaveType.name}}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Start Date</label>
+					<div class="control">
+						<DatePicker v-model="leaveRequest.startDate" class="date-picker-el w-full"></DatePicker>
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Number of Days</label>
+					<div class="control">
+						<input v-model="leaveRequest.numberOfDays" class="input" type="number">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label">Employee In Place</label>
+					<div class="control w-full">
+						<div class="select w-full">
+							<select v-model="leaveRequest.inPlaceId" class="w-full">
+								<option>Select One</option>
 								<option>With options</option>
 							</select>
 						</div>
 					</div>
 				</div>
 				<div class="field">
-					<label class="label">Name</label>
+					<label class="label">Reason (Optional)</label>
 					<div class="control">
-						<input class="input" type="text" placeholder="Text input">
-					</div>
-				</div>
-				<div class="field">
-					<label class="label">Reason</label>
-					<div class="control">
-						<textarea class="textarea" placeholder="Textarea"></textarea>
+						<textarea
+								v-model="leaveRequest.reason"
+								class="textarea"
+								placeholder="Textarea">
+						</textarea>
 					</div>
 				</div>
 				<div class="field is-grouped">
 					<div class="control">
-						<button class="button is-primary">Submit</button>
+						<button class="button is-primary"><i class="fa fa-save mr-1"></i>Submit</button>
 					</div>
 					<div class="control">
-						<button @click.prevent="goBack()" class="button is-light">Cancel</button>
+						<button @click.prevent="goBack()" class="button is-light"><i class="fa fa-times mr-1"></i>
+							Cancel
+						</button>
 					</div>
 				</div>
 			</div>
@@ -40,19 +67,46 @@
 		</div>
 	</div>
 </template>
-
 <script>
+    import {DatePicker} from "element-ui"
+
     export default {
         name: "LeaveRequestForm",
-
+        components: {
+            DatePicker
+        },
+        data() {
+            return {
+                leaveRequest:{
+                
+				},
+                leaveTypes: [],
+                inPlaceEmployees: []
+            }
+        },
+        created() {
+            this.getLeaveTypes()
+        },
         methods: {
             goBack() {
                 this.$router.go(-1);
+            },
+            getLeaveTypes() {
+                axios.get("/api/leave-types").then(resp => {
+                    this.leaveTypes = resp.data;
+                })
+            },
+            getEmployees() {
+                axios.get("/api/users").then(resp => {
+                    this.inPlaceEmployees = resp.data;
+                })
             }
         }
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+	.date-picker-el {
+		width: 100% !important;
+	}
 </style>
