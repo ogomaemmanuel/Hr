@@ -47,10 +47,5 @@ public class LeaveRequestModel {
         this.inPlaceId = inPlaceId;
         return this;
     }
-    private Date getEndDate() {
-        Calendar c = Calendar.getInstance();
-        c.setTime(this.startDate);
-        c.add(Calendar.DAY_OF_MONTH, this.numberOfDays);
-        return c.getTime();
-    }
+
 }

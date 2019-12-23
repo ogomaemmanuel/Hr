@@ -58,7 +58,6 @@
 </template>
 <script>
     import LeaveBalanceCard from "./LeaveBalanceCard.vue"
-
     export default {
         components: {
             LeaveBalanceCard

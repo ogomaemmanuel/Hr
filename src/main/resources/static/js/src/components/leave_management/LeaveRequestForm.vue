@@ -20,7 +20,10 @@
 				<div class="field">
 					<label class="label">Start Date</label>
 					<div class="control">
-						<DatePicker v-model="leaveRequest.startDate" class="date-picker-el w-full"></DatePicker>
+						<DatePicker v-model="leaveRequest.startDate"
+									format="dd-MM-yyyy"
+									value-format="yyyy-MM-dd"
+									class="date-picker-el w-full"></DatePicker>
 					</div>
 				</div>
 				<div class="field">
@@ -54,7 +57,10 @@
 				</div>
 				<div class="field is-grouped">
 					<div class="control">
-						<button class="button is-primary"><i class="fa fa-save mr-1"></i>Submit</button>
+						<button :class="{'is-loading':loading}" @click.prevent="makeLeaveRequest"
+								class="button is-primary"><i
+								class="fa fa-save mr-1"></i>Submit
+						</button>
 					</div>
 					<div class="control">
 						<button @click.prevent="goBack()" class="button is-light"><i class="fa fa-times mr-1"></i>
@@ -81,7 +87,9 @@
             return {
                 leaveRequest: {},
                 leaveTypes: [],
-                inPlaceEmployees: []
+                inPlaceEmployees: [],
+                errors: {},
+                loading: false
             }
         },
         created() {
@@ -95,6 +103,26 @@
             getLeaveTypes() {
                 axios.get("/api/leave-types").then(resp => {
                     this.leaveTypes = resp.data;
+                })
+            },
+            makeLeaveRequest() {
+                let vm = this;
+                vm.loading = true;
+                axios.post("/api/leave-request", vm.leaveRequest).then(resp => {
+                    vm.loading = false;
+                    if (resp.status == 200) {
+                        vm.$swal(
+                            {
+                                type: "success",
+                                message: "Leave Request successfully submitted"
+                            }
+                        )
+                    }
+                }, error => {
+                    vm.loading = false;
+                    if (error.response.status == 400) {
+
+                    }
                 })
             },
             getInPlaceEmployees() {
