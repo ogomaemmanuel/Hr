@@ -47,12 +47,26 @@
 									<td>{{leaveRequest.numberOfDays}}</td>
 									<td>{{leaveRequest.startDate|dateFormat}}</td>
 									<td>{{leaveRequest.endDate|dateFormat}}</td>
+									<td>{{leaveRequest.leaveStatuses}}</td>
+									<td>{{leaveRequest.createdAt|dateFormat}}</td>
+									<td>
+										<b-dropdown aria-role="list">
+											<i
+													class="fa fa-ellipsis-h"
+													slot="trigger"
+													role="button">
+											</i>
+											<b-dropdown-item aria-role="listitem">Widhraw</b-dropdown-item>
+											<b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
+											<b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
+										</b-dropdown>
+									</td>
 								</tr>
 								</tbody>
 								<tfoot>
 								<tr>
-									<td colspan="6">
-										<Paginator></Paginator>
+									<td colspan="7">
+										<Paginator :paginationData="pageable"></Paginator>
 									</td>
 								</tr>
 								</tfoot>
@@ -81,6 +95,7 @@
             return {
                 loading: false,
                 leaveRequests: [],
+                pageable: false,
                 pageSize: 10,
                 page: 0
             }
@@ -99,11 +114,12 @@
                     }
                 }).then(resp => {
                     vm.leaveRequests = resp.data.content;
+                    vm.pageable = resp.data;
                 })
             }
         },
-        filters:{
-            dateFormat(date){
+        filters: {
+            dateFormat(date) {
                 return moment(date).format("LL")
             }
         }

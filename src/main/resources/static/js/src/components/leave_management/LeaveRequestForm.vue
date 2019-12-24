@@ -89,7 +89,8 @@
                 leaveTypes: [],
                 inPlaceEmployees: [],
                 errors: {},
-                loading: false
+                loading: false,
+				
             }
         },
         created() {

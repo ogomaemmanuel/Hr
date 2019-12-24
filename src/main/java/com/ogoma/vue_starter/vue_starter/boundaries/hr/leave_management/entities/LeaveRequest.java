@@ -3,12 +3,16 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entitie
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums.LeaveStatuses;
 import com.ogoma.vue_starter.vue_starter.entities.User;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "leave_requests")
+@EntityListeners(AuditingEntityListener.class)
 public class LeaveRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +27,9 @@ public class LeaveRequest {
     private Long applicantId;
     @Column(name = "leave_type_id")
     private Long leaveTypeId;
-
+    @CreatedDate
     private LocalDate createdAt;
-
+    @LastModifiedDate
     private LocalDate updatedAt;
 
     @OneToOne

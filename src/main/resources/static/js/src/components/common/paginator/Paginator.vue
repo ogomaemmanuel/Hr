@@ -1,5 +1,5 @@
 <template>
-	<div v-if="pageable" class="paginator">
+	<div v-if="paginationData" class="paginator">
 		<div class="page-per-row">
 			<label>Records per page:</label>
 			<select @change="onPaginationChanged($event)" class="page-per-row-selector">
@@ -11,11 +11,11 @@
 		</div>
 		
 		<div class="paginator-controls">
-			<label>{{numberOfElements}} of {{pageable.totalElements}}</label>
-			<button @click="goToPrevious" :disabled="pageable.first" class="previous">
+			<label>{{numberOfElements}} of {{paginationData.totalElements}}</label>
+			<button @click="goToPrevious" :disabled="paginationData.first" class="previous">
 				<i class="fa fa-angle-left"></i>
 			</button>
-			<button @click="goToNext" :disabled="pageable.last" class="next">
+			<button @click="goToNext" :disabled="paginationData.last" class="next">
 				<i class="fa fa-angle-right"></i>
 			</button>
 		</div>
@@ -24,7 +24,7 @@
 <script>
     export default {
         props: {
-            pageable: {
+            paginationData: {
                 default: false
             }
         },
@@ -46,14 +46,14 @@
         },
         computed: {
             numberOfElements() {
-                if (this.pageable) {
-                    if (this.pageable.last) {
-                        return this.pageable.totalElements;
+                if (this.paginationData) {
+                    if (this.paginationData.last) {
+                        return this.paginationData.totalElements;
                     }
-                    if (this.pageable.first) {
-                        return this.pageable.numberOfElements
+                    if (this.paginationData.first) {
+                        return this.paginationData.numberOfElements
                     }
-                    return (this.pageable.number + 1) * this.pageable.size;
+                    return (this.paginationData.number + 1) * this.paginationData.size;
                 }
             }
         }
