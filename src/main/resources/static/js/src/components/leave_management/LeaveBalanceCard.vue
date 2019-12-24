@@ -1,7 +1,8 @@
 <template>
-	<div class="card">
+	<div  class="card">
+		<b-notification class="bg-white p-0" ref="leaveBalanceCard" :closable="false">
 		<div class="card-content">
-			<div class="content">
+			<div  class="content">
 				<h4>My Leave Balances</h4>
 				<table class="table w-full">
 					<thead class="font-thin">
@@ -28,6 +29,7 @@
 				</table>
 			</div>
 		</div>
+		</b-notification>
 	</div>
 </template>
 <script>
@@ -37,20 +39,24 @@
                 leaveBalances: []
             }
         },
-        created() {
+        mounted() {
             this.getUserLeaveBalances();
         },
         methods: {
             getUserLeaveBalances() {
                 let vm = this;
+                const loadingComponent = this.$buefy.loading.open({
+                    container: this.isFullPage ? null : this.$refs.leaveBalanceCard.$el
+                })
                 axios.get("/api/user/leave-balances").then(resp => {
+                   loadingComponent.close();
                     vm.leaveBalances = resp.data;
                 })
             },
-            getDaysAvailable(daysElligible, daysApplied){
-              return   daysElligible-daysApplied
-			}
+            getDaysAvailable(daysElligible, daysApplied) {
+                return daysElligible - daysApplied
+            }
         },
-		
+
     }
 </script>
