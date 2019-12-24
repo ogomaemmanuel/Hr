@@ -55,7 +55,7 @@
 													slot="trigger"
 													role="button">
 											</i>
-											<b-dropdown-item aria-role="listitem">Widhraw</b-dropdown-item>
+											<b-dropdown-item aria-role="listitem">Withdraw</b-dropdown-item>
 											<b-dropdown-item aria-role="listitem">Edit</b-dropdown-item>
 										</b-dropdown>
 									</td>

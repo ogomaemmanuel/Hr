@@ -45,11 +45,11 @@
         methods: {
             getUserLeaveBalances() {
                 let vm = this;
-                const loadingComponent = this.$buefy.loading.open({
-                    container: this.isFullPage ? null : this.$refs.leaveBalanceCard.$el
-                })
+                // const loadingComponent = this.$buefy.loading.open({
+                //     container: this.isFullPage ? null : this.$refs.leaveBalanceCard.$el
+                // })
                 axios.get("/api/user/leave-balances").then(resp => {
-                   loadingComponent.close();
+                  // loadingComponent.close();
                     vm.leaveBalances = resp.data;
                 })
             },
