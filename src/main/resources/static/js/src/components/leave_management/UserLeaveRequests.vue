@@ -10,8 +10,7 @@
 		</div>
 		<div class="columns">
 			<div class="column is-8">
-				<div class="card">
-					
+				<div class="card" ref="leaveRequests">
 					<div class="card-content">
 						<div class="content">
 							<h4>My Leave Requests</h4>
@@ -52,13 +51,12 @@
 									<td>
 										<b-dropdown aria-role="list">
 											<i
-													class="fa fa-ellipsis-h"
+													class="fa fa-ellipsis-h text-muted"
 													slot="trigger"
 													role="button">
 											</i>
 											<b-dropdown-item aria-role="listitem">Widhraw</b-dropdown-item>
-											<b-dropdown-item aria-role="listitem">Another action</b-dropdown-item>
-											<b-dropdown-item aria-role="listitem">Something else</b-dropdown-item>
+											<b-dropdown-item aria-role="listitem">Edit</b-dropdown-item>
 										</b-dropdown>
 									</td>
 								</tr>
@@ -112,6 +110,9 @@
         methods: {
             getUserLeaveRequests() {
                 let vm = this;
+                const loadingComponent = this.$buefy.loading.open({
+                    container: this.isFullPage ? null : vm.$refs.leaveRequests
+                })
                 axios.get("/api/user/leave-requests", {
                     params: {
                         pageSize: vm.pageSize,
@@ -119,8 +120,11 @@
 
                     }
                 }).then(resp => {
+                    loadingComponent.close();
                     vm.leaveRequests = resp.data.content;
                     vm.pageable = resp.data;
+                }, error => {
+                    loadingComponent.close();
                 })
             },
             goToPrevious() {

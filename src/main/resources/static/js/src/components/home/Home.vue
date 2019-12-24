@@ -179,7 +179,7 @@
             }
         },
         created() {
-            this.open();
+           // this.open();
         },
         methods: {
             open() {

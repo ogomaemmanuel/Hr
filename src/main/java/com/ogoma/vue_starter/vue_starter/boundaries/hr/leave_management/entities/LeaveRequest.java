@@ -174,6 +174,5 @@ public class LeaveRequest {
     @PrePersist
     public void calculateEndDate() {
         this.endDate = this.startDate.plusDays(this.numberOfDays);
-
     }
 }

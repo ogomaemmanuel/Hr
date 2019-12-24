@@ -18,10 +18,12 @@ import java.util.Map;
 @Service
 public class LeaveRequestService {
     private final LeaveRequestRepository leaveRequestRepository;
+
     @Autowired
     public LeaveRequestService(LeaveRequestRepository leaveRequestRepository) {
         this.leaveRequestRepository = leaveRequestRepository;
     }
+
     public LeaveRequest createLeaveRequest(LeaveRequestModel leaveRequestModel) {
         LeaveRequest leaveRequest = new LeaveRequest();
         BeanUtils.copyProperties(leaveRequestModel, leaveRequest);
@@ -42,5 +44,11 @@ public class LeaveRequestService {
         List<Map<String, String>> inPlaceEmployeeSelectList =
                 this.leaveRequestRepository.getInplaceEmployeeSelectList();
         return inPlaceEmployeeSelectList;
+    }
+
+    public List<Map<String, String>> getLoggedInUserLeaveBalances() {
+        List<Map<String, String>> leaveBalances =
+                this.leaveRequestRepository.findCurrentUserLeaveBalances();
+        return leaveBalances;
     }
 }
