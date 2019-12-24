@@ -42,7 +42,7 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr v-for="leaveRequest in leaveRequests">
+								<tr v-for="leaveRequest in leaveRequests" :key="leaveRequest.id">
 									<td>{{leaveRequest.leaveType.name}}</td>
 									<td>{{leaveRequest.numberOfDays}}</td>
 									<td>{{leaveRequest.startDate|dateFormat}}</td>
@@ -66,7 +66,13 @@
 								<tfoot>
 								<tr>
 									<td colspan="7">
-										<Paginator :paginationData="pageable"></Paginator>
+										<Paginator
+												@previousPage="goToPrevious"
+												@nextPage="goToNext"
+												@paginationChanged="onPaginationChanged"
+												:paginationData="pageable">
+										
+										</Paginator>
 									</td>
 								</tr>
 								</tfoot>
@@ -116,6 +122,18 @@
                     vm.leaveRequests = resp.data.content;
                     vm.pageable = resp.data;
                 })
+            },
+            goToPrevious() {
+                this.page--;
+                this.getUserLeaveRequests();
+            },
+            goToNext() {
+                this.page++;
+                this.getUserLeaveRequests();
+            },
+            onPaginationChanged(pageSize) {
+                this.pageSize = pageSize;
+                this.getUserLeaveRequests();
             }
         },
         filters: {

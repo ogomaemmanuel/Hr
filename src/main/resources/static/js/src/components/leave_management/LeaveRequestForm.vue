@@ -115,7 +115,7 @@
                         vm.$swal(
                             {
                                 type: "success",
-                                message: "Leave Request successfully submitted"
+                                text: "Leave Request successfully submitted"
                             }
                         )
                     }
