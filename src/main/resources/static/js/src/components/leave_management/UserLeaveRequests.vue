@@ -42,8 +42,20 @@
 								</tr>
 								</thead>
 								<tbody>
-								
+								<tr v-for="leaveRequest in leaveRequests">
+									<td>{{leaveRequest.leaveType.name}}</td>
+									<td>{{leaveRequest.numberOfDays}}</td>
+									<td>{{leaveRequest.startDate|dateFormat}}</td>
+									<td>{{leaveRequest.endDate|dateFormat}}</td>
+								</tr>
 								</tbody>
+								<tfoot>
+								<tr>
+									<td colspan="6">
+										<Paginator></Paginator>
+									</td>
+								</tr>
+								</tfoot>
 							</table>
 						</div>
 					</div>
@@ -58,9 +70,42 @@
 </template>
 <script>
     import LeaveBalanceCard from "./LeaveBalanceCard.vue"
+    import Paginator from "../common/paginator/Paginator"
+
     export default {
         components: {
-            LeaveBalanceCard
+            LeaveBalanceCard,
+            Paginator
+        },
+        data() {
+            return {
+                loading: false,
+                leaveRequests: [],
+                pageSize: 10,
+                page: 0
+            }
+        },
+        created() {
+            this.getUserLeaveRequests();
+        },
+        methods: {
+            getUserLeaveRequests() {
+                let vm = this;
+                axios.get("/api/user/leave-requests", {
+                    params: {
+                        pageSize: vm.pageSize,
+                        page: vm.page
+
+                    }
+                }).then(resp => {
+                    vm.leaveRequests = resp.data.content;
+                })
+            }
+        },
+        filters:{
+            dateFormat(date){
+                return moment(date).format("LL")
+            }
         }
     }
 </script>

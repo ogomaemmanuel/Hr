@@ -6,7 +6,7 @@
 					<label class="label">Leave Types</label>
 					<div class="control w-full">
 						<div class="select w-full">
-							<select class="w-full">
+							<select v-model="leaveRequest.leaveTypeId" class="w-full">
 								<option>Select One</option>
 								<option
 										v-for="leaveType in leaveTypes"
@@ -130,7 +130,8 @@
                     this.inPlaceEmployees = resp.data;
                 })
             }
-        }
+        },
+		
     }
 </script>
 

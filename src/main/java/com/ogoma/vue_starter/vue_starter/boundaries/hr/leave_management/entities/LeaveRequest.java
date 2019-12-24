@@ -5,8 +5,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums
 import com.ogoma.vue_starter.vue_starter.entities.User;
 
 import javax.persistence.*;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "leave_requests")
@@ -15,21 +14,30 @@ public class LeaveRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     @Column(name = "in_place")
     private Long inPlaceId;
     private Integer numberOfDays;
     @Column(name = "applicant_user_id")
     private Long applicantId;
+    @Column(name = "leave_type_id")
+    private Long leaveTypeId;
+
+    private LocalDate createdAt;
+
+    private LocalDate updatedAt;
+
     @OneToOne
     @JoinColumn(name = "applicant_user_id", updatable = false, insertable = false)
     private User applicant;
     @OneToOne
     @JoinColumn(name = "in_place", insertable = false, updatable = false)
     private Staff inPlace;
+    @OneToOne
+    @JoinColumn(name = "leave_type_id", insertable = false, updatable = false)
+    private LeaveType leaveType;
+
     @Enumerated(value = EnumType.STRING)
     private LeaveStatuses leaveStatuses;
 
@@ -51,20 +59,20 @@ public class LeaveRequest {
         return this;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public LeaveRequest setStartDate(Date startDate) {
+    public LeaveRequest setStartDate(LocalDate startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public LeaveRequest setEndDate(Date endDate) {
+    public LeaveRequest setEndDate(LocalDate endDate) {
         this.endDate = endDate;
         return this;
     }
@@ -123,11 +131,45 @@ public class LeaveRequest {
         return this;
     }
 
+    public Long getLeaveTypeId() {
+        return leaveTypeId;
+    }
+
+    public LeaveRequest setLeaveTypeId(Long leaveTypeId) {
+        this.leaveTypeId = leaveTypeId;
+        return this;
+    }
+
+    public LeaveType getLeaveType() {
+        return leaveType;
+    }
+
+    public LeaveRequest setLeaveType(LeaveType leaveType) {
+        this.leaveType = leaveType;
+        return this;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public LeaveRequest setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public LeaveRequest setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
     @PrePersist
     public void calculateEndDate() {
-        Calendar c = Calendar.getInstance();
-        c.setTime(this.startDate);
-        c.add(Calendar.DAY_OF_MONTH, this.numberOfDays);
-        endDate = c.getTime();
+        this.endDate = this.startDate.plusDays(this.numberOfDays);
+
     }
 }
