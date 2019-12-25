@@ -27,6 +27,7 @@
 						<DatePicker
 								v-model="leaveRequest.startDate"
 								format="dd-MM-yyyy"
+								:picker-options="datePickerOptions"
 								@input="clearFieldError('startDate')"
 								value-format="yyyy-MM-dd"
 								class="date-picker-el w-full"></DatePicker>
@@ -118,6 +119,12 @@
         },
         data() {
             return {
+                datePickerOptions: {
+                    disabledDate(date) {
+                        return (date.getTime() < Date.now() - 8.64e7)||
+							moment(date.getTime()).isoWeekday()==7||moment(date.getTime()).isoWeekday()==6;
+                    }
+                },
                 leaveRequest: {
                     leaveTypeId: "",
                     inPlaceId: ""

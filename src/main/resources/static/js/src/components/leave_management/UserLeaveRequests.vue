@@ -136,6 +136,7 @@
                 this.getUserLeaveRequests();
             },
             onPaginationChanged(pageSize) {
+                this.page = 0;
                 this.pageSize = pageSize;
                 this.getUserLeaveRequests();
             }
