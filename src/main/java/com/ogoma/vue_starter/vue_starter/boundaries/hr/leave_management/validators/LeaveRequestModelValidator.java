@@ -10,19 +10,25 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 @Component
 public class LeaveRequestModelValidator implements Validator {
     private final LeaveRequestRepository leaveRequestRepository;
     private final LeaveTypesRepository leaveTypesRepository;
+
     @Autowired
     public LeaveRequestModelValidator(LeaveRequestRepository leaveRequestRepository, LeaveTypesRepository leaveTypesRepository) {
         this.leaveRequestRepository = leaveRequestRepository;
         this.leaveTypesRepository = leaveTypesRepository;
     }
+
     @Override
     public boolean supports(Class<?> clazz) {
         return LeaveRequestModel.class.equals(clazz);
     }
+
     @Override
     public void validate(Object target, Errors errors) {
         LeaveRequestModel leaveRequestModel = (LeaveRequestModel) target;
@@ -30,6 +36,14 @@ public class LeaveRequestModelValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numberOfDays", "field.required", "Enter leave days");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "inPlaceId", "field.required", "Select in place employee");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "leaveTypeId", "field.required", "Select leave type");
+        if (leaveRequestModel.getStartDate() != null) {
+            LocalDate serverLocalDate = LocalDate.now();
+            Timestamp serverTimestamp = Timestamp.valueOf(serverLocalDate.atStartOfDay());
+            Timestamp requestTimeStamp = Timestamp.valueOf(leaveRequestModel.getStartDate().atStartOfDay());
+            if (requestTimeStamp.compareTo(serverTimestamp) == -1) {
+                errors.rejectValue("startDate", "field.invalid", "Start date must be in the future");
+            }
+        }
         if (leaveRequestModel.getLeaveTypeId() != null) {
             Long leaveBalance =
                     leaveRequestRepository.currentUserLeaveBalanceByLeaveTypeId(leaveRequestModel.getLeaveTypeId());
