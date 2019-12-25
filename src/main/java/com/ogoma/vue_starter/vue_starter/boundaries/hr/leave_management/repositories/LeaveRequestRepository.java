@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,6 +27,7 @@ public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long
             " from  leave_types lt", nativeQuery = true)
     public List<Map<String, String>> findCurrentUserLeaveBalances();
 
-    @Query("select sum(c.numberOfDays) from LeaveRequest c where c.leaveTypeId=:leaveTypeId and c.applicantId=?#{ principal?.id }  group by c.applicantId")
-    public Long currentUserLeaveBalanceByLeaveTypeId(Long leaveTypeId);
+    @Nullable
+    @Query(value = "select (lt.number_of_days-coalesce(sum(lr.number_of_days),0)) leaveBalance from leave_requests lr left join leave_types lt on lr.leave_type_id=lt.id where lr.applicant_user_id=?#{ principal?.id } and lr.leave_type_id=?1 and year(now())=year(lr.created_at) group by leave_type_id",nativeQuery = true)
+    public Long currentUserLeaveBalanceByLeaveTypeId( Long leaveTypeId);
 }

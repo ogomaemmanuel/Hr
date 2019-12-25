@@ -33,7 +33,8 @@ public class LeaveRequestModelValidator implements Validator {
         if (leaveRequestModel.getLeaveTypeId() != null) {
          Long leaveBalance=
                  leaveRequestRepository.currentUserLeaveBalanceByLeaveTypeId(leaveRequestModel.getLeaveTypeId());
-         if(leaveBalance<=0l){
+
+         if(leaveBalance!=null && leaveBalance<=0l){
              errors.rejectValue("leaveTypeId","field.invalid","Your have leave balance is zero");
          }
         }
