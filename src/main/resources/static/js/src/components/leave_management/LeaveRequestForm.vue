@@ -121,8 +121,7 @@
             return {
                 datePickerOptions: {
                     disabledDate(date) {
-                        return
-						///(date.getTime() < Date.now() - 8.64e7)||
+                        return (date.getTime() < Date.now() - 8.64e7)||
 							moment(date.getTime()).isoWeekday()==7||moment(date.getTime()).isoWeekday()==6;
                     }
                 },
