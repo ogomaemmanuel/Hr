@@ -6,8 +6,9 @@
 					<label class="label">Leave Types</label>
 					<div class="control w-full">
 						<div class="select w-full">
-							<select v-model="leaveRequest.leaveTypeId" class="w-full">
-								<option>Select One</option>
+							<select @input="clearFieldError('leaveTypeId')" v-model="leaveRequest.leaveTypeId"
+									class="w-full">
+								<option value="" disabled selected>Select One</option>
 								<option
 										v-for="leaveType in leaveTypes"
 										:value="leaveType.id"
@@ -15,45 +16,75 @@
 								</option>
 							</select>
 						</div>
+						<span v-if="errors['leaveTypeId']" class="text-red-400">
+							{{errors['leaveTypeId'][0]}}
+						</span>
 					</div>
 				</div>
 				<div class="field">
 					<label class="label">Start Date</label>
 					<div class="control">
-						<DatePicker v-model="leaveRequest.startDate"
-									format="dd-MM-yyyy"
-									value-format="yyyy-MM-dd"
-									class="date-picker-el w-full"></DatePicker>
+						<DatePicker
+								v-model="leaveRequest.startDate"
+								format="dd-MM-yyyy"
+								@input="clearFieldError('startDate')"
+								value-format="yyyy-MM-dd"
+								class="date-picker-el w-full"></DatePicker>
 					</div>
+					<span v-if="errors['startDate']" class="text-red-400">
+							{{errors['startDate'][0]}}
+						</span>
 				</div>
 				<div class="field">
 					<label class="label">Number of Days</label>
 					<div class="control">
-						<input v-model="leaveRequest.numberOfDays" class="input" type="number">
+						<input
+								@input="clearFieldError('numberOfDays')"
+								v-model="leaveRequest.numberOfDays"
+								class="input"
+								type="number">
 					</div>
+					<span
+							v-if="errors['numberOfDays']"
+							
+							class="text-red-400">
+							{{errors['numberOfDays'][0]}}
+					</span>
 				</div>
 				<div class="field">
 					<label class="label">Employee In Place</label>
 					<div class="control w-full">
 						<div class="select w-full">
-							<select v-model="leaveRequest.inPlaceId" class="w-full">
-								<option>Select One</option>
+							<select
+									@input="clearFieldError('inPlaceId')"
+									v-model="leaveRequest.inPlaceId"
+									class="w-full">
+								<option value="" disabled selected>Select One</option>
 								<option v-for="inPlaceEmployee in inPlaceEmployees" :value="inPlaceEmployee.staffId">
 									{{inPlaceEmployee.fullName}}
 								</option>
 							</select>
 						</div>
+						<span
+								v-if="errors['inPlaceId']"
+								class="text-red-400">
+							{{errors['inPlaceId'][0]}}
+					</span>
 					</div>
 				</div>
 				<div class="field">
 					<label class="label">Reason (Optional)</label>
 					<div class="control">
 						<textarea
+								@input="clearFieldError('reason')"
 								v-model="leaveRequest.reason"
 								class="textarea"
 								placeholder="Textarea">
 						</textarea>
 					</div>
+					<span v-if="errors['reason']" class="text-red-400">
+							{{errors['reason'][0]}}
+					</span>
 				</div>
 				<div class="field is-grouped">
 					<div class="control">
@@ -77,20 +108,26 @@
 </template>
 <script>
     import {DatePicker} from "element-ui"
+    import CommonMixin from "../../mixins/common_mixin"
 
     export default {
         name: "LeaveRequestForm",
+        mixins: [CommonMixin],
         components: {
             DatePicker
         },
         data() {
             return {
-                leaveRequest: {},
+                leaveRequest: {
+                    leaveTypeId: "",
+                    inPlaceId: ""
+                },
                 leaveTypes: [],
                 inPlaceEmployees: [],
                 errors: {},
                 loading: false,
-				
+
+
             }
         },
         created() {
@@ -122,7 +159,7 @@
                 }, error => {
                     vm.loading = false;
                     if (error.response.status == 400) {
-
+                        this.errors = error.response.data;
                     }
                 })
             },
@@ -132,7 +169,6 @@
                 })
             }
         },
-		
     }
 </script>
 

@@ -34,7 +34,7 @@ public class LeaveRequestsController {
     @RequestMapping(value = "api/leave-request", method = RequestMethod.POST)
     public ResponseEntity<?> makeNewRequest(@RequestBody LeaveRequestModel leaveRequestModel, BindingResult bindingResult) {
         leaveRequestModelValidator.validate(leaveRequestModel, bindingResult);
-        if (bindingResult.hasErrors()) {
+        if (!bindingResult.hasErrors()) {
             LeaveRequest leaveRequest = leaveRequestService.createLeaveRequest(leaveRequestModel);
             return ResponseEntity.ok(leaveRequest);
         }
