@@ -11,7 +11,7 @@
 		</div>
 		
 		<div class="paginator-controls">
-			<label> {{numberOfElements}} of {{paginationData.totalElements}}</label>
+			<label>{{pageNumber}} - {{numberOfElements}} of {{paginationData.totalElements}}</label>
 			<button @click="goToPrevious" :disabled="paginationData.first" class="previous">
 				<i class="fa fa-angle-left"></i>
 			</button>
@@ -40,8 +40,8 @@
             goToPrevious() {
                 this.$emit("previousPage")
             },
-            onPaginationChanged(event){
-                this.$emit("paginationChanged",Number(event.target.value))
+            onPaginationChanged(event) {
+                this.$emit("paginationChanged", Number(event.target.value))
             }
         },
         computed: {
@@ -58,7 +58,10 @@
             },
             pageNumber() {
                 if (this.paginationData) {
-                    return (this.paginationData.number*this.paginationData.size)+1;
+                    if (this.paginationData.last) {
+                        return ((this.paginationData.totalPages - 1) * this.paginationData.size) + 1;
+                    }
+                    return (this.paginationData.number * this.paginationData.size) + 1;
                 }
             }
         }
@@ -81,6 +84,7 @@
 				outline: none;
 			}
 		}
+		
 		.paginator-controls {
 			button {
 				border-radius: 50px;
