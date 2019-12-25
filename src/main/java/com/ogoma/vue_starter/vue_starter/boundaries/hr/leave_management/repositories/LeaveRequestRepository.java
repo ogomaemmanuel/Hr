@@ -24,4 +24,7 @@ public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long
             "lr.applicant_user_id=?#{ principal?.id }) as totalDaysApplied " +
             " from  leave_types lt", nativeQuery = true)
     public List<Map<String, String>> findCurrentUserLeaveBalances();
+
+    @Query("select sum(c.numberOfDays) from LeaveRequest c where c.leaveTypeId=:leaveTypeId and c.applicantId=?#{ principal?.id }  group by c.applicantId")
+    public Long currentUserLeaveBalanceByLeaveTypeId(Long leaveTypeId);
 }

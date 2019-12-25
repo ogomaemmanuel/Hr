@@ -11,7 +11,7 @@
 		</div>
 		
 		<div class="paginator-controls">
-			<label>{{numberOfElements}} of {{paginationData.totalElements}}</label>
+			<label> {{numberOfElements}} of {{paginationData.totalElements}}</label>
 			<button @click="goToPrevious" :disabled="paginationData.first" class="previous">
 				<i class="fa fa-angle-left"></i>
 			</button>
@@ -54,6 +54,11 @@
                         return this.paginationData.numberOfElements
                     }
                     return (this.paginationData.number + 1) * this.paginationData.size;
+                }
+            },
+            pageNumber() {
+                if (this.paginationData) {
+                    return (this.paginationData.number*this.paginationData.size)+1;
                 }
             }
         }

@@ -18,12 +18,10 @@ import java.util.Map;
 @Service
 public class LeaveRequestService {
     private final LeaveRequestRepository leaveRequestRepository;
-
     @Autowired
     public LeaveRequestService(LeaveRequestRepository leaveRequestRepository) {
         this.leaveRequestRepository = leaveRequestRepository;
     }
-
     public LeaveRequest createLeaveRequest(LeaveRequestModel leaveRequestModel) {
         LeaveRequest leaveRequest = new LeaveRequest();
         BeanUtils.copyProperties(leaveRequestModel, leaveRequest);
@@ -50,5 +48,10 @@ public class LeaveRequestService {
         List<Map<String, String>> leaveBalances =
                 this.leaveRequestRepository.findCurrentUserLeaveBalances();
         return leaveBalances;
+    }
+
+    public Long getLoggedInUserLeaveBalance(Long leaveTypeId) {
+        Long leaveBalance = this.leaveRequestRepository.currentUserLeaveBalanceByLeaveTypeId(leaveTypeId);
+        return leaveBalance;
     }
 }

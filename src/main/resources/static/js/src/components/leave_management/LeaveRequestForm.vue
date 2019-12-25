@@ -8,7 +8,7 @@
 						<div class="select w-full">
 							<select @input="clearFieldError('leaveTypeId')" v-model="leaveRequest.leaveTypeId"
 									class="w-full">
-								<option value="" disabled selected>Select One</option>
+								<option value="" disabled selected hidden>Select One</option>
 								<option
 										v-for="leaveType in leaveTypes"
 										:value="leaveType.id"
@@ -59,7 +59,7 @@
 									@input="clearFieldError('inPlaceId')"
 									v-model="leaveRequest.inPlaceId"
 									class="w-full">
-								<option value="" disabled selected>Select One</option>
+								<option value="" disabled selected hidden>Select One</option>
 								<option v-for="inPlaceEmployee in inPlaceEmployees" :value="inPlaceEmployee.staffId">
 									{{inPlaceEmployee.fullName}}
 								</option>

@@ -18,4 +18,6 @@ public class LeaveTypesService {
         List<LeaveType> leaveTypes = this.leaveTypesRepository.findAll();
         return leaveTypes;
     }
+
+
 }
