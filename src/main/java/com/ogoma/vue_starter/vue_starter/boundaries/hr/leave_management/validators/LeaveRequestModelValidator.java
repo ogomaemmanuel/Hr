@@ -40,7 +40,7 @@ public class LeaveRequestModelValidator implements Validator {
             LocalDate serverLocalDate = LocalDate.now();
             Timestamp serverTimestamp = Timestamp.valueOf(serverLocalDate.atStartOfDay());
             Timestamp requestTimeStamp = Timestamp.valueOf(leaveRequestModel.getStartDate().atStartOfDay());
-            if (requestTimeStamp.compareTo(serverTimestamp) == -1) {
+            if (requestTimeStamp.compareTo(serverTimestamp) != 1) {
                 errors.rejectValue("startDate", "field.invalid", "Start date must be in the future");
             }
         }
