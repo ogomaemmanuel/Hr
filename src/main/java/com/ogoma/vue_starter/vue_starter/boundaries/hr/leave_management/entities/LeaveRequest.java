@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums.LeaveStatuses;
 import com.ogoma.vue_starter.vue_starter.entities.User;
@@ -9,6 +10,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "leave_requests")
@@ -41,7 +44,9 @@ public class LeaveRequest {
     @OneToOne
     @JoinColumn(name = "leave_type_id", insertable = false, updatable = false)
     private LeaveType leaveType;
-
+    @OneToMany(mappedBy = "leaveRequest",cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("leaveRequest")
+    private Set<LeaveRequestHistory> leaveRequestHistory = new HashSet<>();
     @Enumerated(value = EnumType.STRING)
     private LeaveStatuses leaveStatuses;
 
@@ -174,5 +179,21 @@ public class LeaveRequest {
     @PrePersist
     public void calculateEndDate() {
         this.endDate = this.startDate.plusDays(this.numberOfDays);
+    }
+
+    public Set<LeaveRequestHistory> getLeaveRequestHistory() {
+        return leaveRequestHistory;
+    }
+
+    public LeaveRequest setLeaveRequestHistory(Set<LeaveRequestHistory> leaveRequestHistory) {
+        this.leaveRequestHistory = leaveRequestHistory;
+        return this;
+    }
+    public void addLeaveHistory(LeaveRequestHistory leaveRequestHistory) {
+        if (leaveRequestHistory != null) {
+            leaveRequestHistory.setLeaveRequest(this);
+            this.leaveRequestHistory.add(leaveRequestHistory);
+        }
+
     }
 }

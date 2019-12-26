@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.service
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums.LeaveStatuses;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequest;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequestHistory;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.models.LeaveRequestModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.repositories.LeaveRequestRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -23,10 +24,16 @@ public class LeaveRequestService {
         this.leaveRequestRepository = leaveRequestRepository;
     }
     public LeaveRequest createLeaveRequest(LeaveRequestModel leaveRequestModel) {
+        Long userId = SecurityUtils.getCurrentUserDetails().getId();
+        LeaveRequestHistory leaveRequestHistory = new
+                LeaveRequestHistory();
+        leaveRequestHistory.setPerformedBy(userId);
+        leaveRequestHistory.setLeaveStatuses(LeaveStatuses.NEW);
         LeaveRequest leaveRequest = new LeaveRequest();
         BeanUtils.copyProperties(leaveRequestModel, leaveRequest);
         leaveRequest.setLeaveStatuses(LeaveStatuses.NEW);
-        leaveRequest.setApplicantId(SecurityUtils.getCurrentUserDetails().getId());
+        leaveRequest.setApplicantId(userId);
+        leaveRequest.addLeaveHistory(leaveRequestHistory);
         leaveRequestRepository.save(leaveRequest);
         return leaveRequest;
     }

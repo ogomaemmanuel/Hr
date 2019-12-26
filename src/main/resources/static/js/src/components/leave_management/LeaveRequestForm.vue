@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="columns">
-			<div class="column is-9">
+			<div class="column is-6">
 				<div class="field">
 					<label class="label">Leave Types</label>
 					<div class="control w-full">
@@ -101,8 +101,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="column is-3 available-leave-days-card">
-			
+			<div class="column is-6 pr-10 pl-10 pt-10 available-leave-days-card">
+			<div class="card">
+				<div class="card-content">
+					<div class="content">
+						<div class="text-center">
+						<div class="font-bold">Days Available</div>
+						<div class="font-bold text-gray-500">17</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			</div>
 		</div>
 	</div>
@@ -110,7 +119,6 @@
 <script>
     import {DatePicker} from "element-ui"
     import CommonMixin from "../../mixins/common_mixin"
-
     export default {
         name: "LeaveRequestForm",
         mixins: [CommonMixin],
