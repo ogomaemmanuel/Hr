@@ -1,11 +1,16 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.notifications.entities;
 
 import com.ogoma.vue_starter.vue_starter.entities.User;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "notifications")
+@EntityListeners(AuditingEntityListener.class)
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +19,15 @@ public class Notification {
     private String message;
     @Column(name = "user_id")
     private Long userId;
-    @JoinColumn(name = "user_id",insertable = false,updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
-
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreatedDate
+    private Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @LastModifiedDate
+    private Date updatedAt;
 
 
     public Long getId() {
@@ -62,6 +72,24 @@ public class Notification {
 
     public Notification setUser(User user) {
         this.user = user;
+        return this;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Notification setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public Notification setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
         return this;
     }
 }

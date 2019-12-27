@@ -42,9 +42,7 @@ public class LeaveRequestEventListener {
         if (leaveRequestHistory.getLeaveStatuses().equals(LeaveStatuses.NEW)) {
             processNewLeaveEvent(leaveRequestEvent);
         }
-
     }
-
     private void processNewLeaveEvent(LeaveRequestEvent leaveRequestEvent) {
         LeaveRequestHistory leaveRequestHistory = leaveRequestEvent.getRequestEventData().getLeaveRequestHistory();
         LeaveRequest leaveRequest = leaveRequestHistory.getLeaveRequest();
