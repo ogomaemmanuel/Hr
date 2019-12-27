@@ -5,14 +5,14 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums.LeaveStatuses;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequestHistory;
-import com.ogoma.vue_starter.vue_starter.controllers.AuthController;
+import com.ogoma.vue_starter.vue_starter.boundaries.notifications.entities.Notification;
+import com.ogoma.vue_starter.vue_starter.boundaries.notifications.services.NotificationsService;
 import com.ogoma.vue_starter.vue_starter.entities.User;
 import com.ogoma.vue_starter.vue_starter.utils.mail.EmailModel;
 import com.ogoma.vue_starter.vue_starter.utils.mail.MailSender;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.mail.MessagingException;
@@ -27,9 +27,12 @@ public class LeaveRequestEventListener {
 
     private final UsersRepository usersRepository;
 
-    public LeaveRequestEventListener(MailSender mailSender, UsersRepository usersRepository) {
+    private final NotificationsService notificationsService;
+
+    public LeaveRequestEventListener(MailSender mailSender, UsersRepository usersRepository, NotificationsService notificationsService) {
         this.mailSender = mailSender;
         this.usersRepository = usersRepository;
+        this.notificationsService = notificationsService;
     }
 
     @EventListener
@@ -60,6 +63,13 @@ public class LeaveRequestEventListener {
         String url = base.build().toString();
         emailTemplateVariables.put("link", url);
         try {
+            Notification notification = new Notification()
+                    .setMessage(userInPlace.getFirstName() + " has made a new leave request and" +
+                            " selected you to be in place from " + leaveRequest.getStartDate() + " to "
+                            + leaveRequest.getStartDate())
+                    .setRead(false)
+                    .setUserId(userInPlace.getId());
+            this.notificationsService.createNotification(notification);
             this.mailSender.sendMail(emailModel);
         } catch (MessagingException e) {
             e.printStackTrace();
