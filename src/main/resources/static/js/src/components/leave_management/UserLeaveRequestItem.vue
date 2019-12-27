@@ -5,7 +5,7 @@
 		<td>{{leaveRequestClone.startDate|dateFormat}}</td>
 		<td>{{leaveRequestClone.endDate|dateFormat}}</td>
 		<td>
-										<span class="tag is-success">
+										<span :class="statusColor" class="tag  is-light">
 										{{leaveRequestClone.leaveStatuses}}
 										</span>
 		</td>
@@ -45,7 +45,7 @@
                     title: 'Leave Withdrawal',
                     message: 'Are you sure you want to <b>withdraw</b> this leave?',
                     confirmText: 'Withdraw',
-                    type: 'is-primary',
+                    type: 'is-primary is-light',
                     onConfirm: () => this.withdrawLeave()
                 })
             },
@@ -61,6 +61,16 @@
             dateFormat(date) {
                 return moment(date).format("LL")
             }
-        }
+        },
+        computed:{
+            statusColor(){
+                if(this.leaveRequestClone.leaveStatuses.toLowerCase()=="new"){
+                    return 'is-primary'
+				}
+                if(this.leaveRequestClone.leaveStatuses.toLowerCase()=="withdrawn"){
+                    return 'is-warning'
+				}
+			}
+		}
     }
 </script>
