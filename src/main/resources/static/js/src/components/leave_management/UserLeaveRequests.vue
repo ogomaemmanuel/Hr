@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<div class="pb-2 flex justify-end">
-			<p class="buttons">
+			<p class="buttons ">
 			<router-link
 					to="leave-create"
 					tag="button"
-					class="button is-primary">
+					class="button  is-rounded">
 				<span class="icon">
  
-				<i class="fa fa-plus"></i>
+				<i class="fa fa-plus-circle"></i>
 				</span>
 					<span>New Requests</span>
 			</router-link>
