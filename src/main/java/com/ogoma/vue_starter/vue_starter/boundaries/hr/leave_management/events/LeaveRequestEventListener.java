@@ -81,16 +81,18 @@ public class LeaveRequestEventListener {
         LeaveRequest leaveRequest = leaveRequestHistory.getLeaveRequest();
         User userInPlace = this.usersRepository.findByStaffId(leaveRequest.getInPlaceId());
         Map<String, Object> emailTemplateVariables = new HashMap<>();
-        emailTemplateVariables.put("username", userInPlace.getFirstName());
+        //applicant username, hi ! username has withdrawn
+        emailTemplateVariables.put("username", leaveRequest.getApplicant().getFirstName());
         EmailModel emailModel = new EmailModel();
         emailModel.setSubject("Leave request withdrawn");
         emailModel.setHtml(true);
+        //message is sent to in place user
         emailModel.setTo(userInPlace.getEmail());
         emailModel.setTemplateVariable(emailTemplateVariables);
         emailModel.setTemplatePath("/leave_withdrawal");
         try {
             Notification notification = new Notification()
-                    .setMessage(userInPlace.getFirstName() + " has withdrawn the leave request made earlier. No further action is required on your part")
+                    .setMessage(leaveRequest.getApplicant().getFirstName() + " has withdrawn the leave request made earlier. No further action is required on your part")
                     .setRead(false)
                     .setUserId(userInPlace.getId());
             this.notificationsService.createNotification(notification);
