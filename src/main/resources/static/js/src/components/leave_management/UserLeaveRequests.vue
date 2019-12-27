@@ -1,12 +1,18 @@
 <template>
 	<div>
 		<div class="pb-2 flex justify-end">
+			<p class="buttons">
 			<router-link
 					to="leave-create"
 					tag="button"
 					class="button is-primary">
-				<i class="fa fa-plus mr-1"></i>New Requests
+				<span class="icon">
+ 
+				<i class="fa fa-plus"></i>
+				</span>
+					<span>New Requests</span>
 			</router-link>
+			</p>
 		</div>
 		<div class="columns">
 			<div class="column is-8">
