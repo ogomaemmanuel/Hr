@@ -1,5 +1,5 @@
 <template>
-	<div class="container is-fluid">
+	<div class="container">
 		<div @click="exportReport" class="mt-2">
 			<i class="fa fa-download"></i> Export
 		</div>

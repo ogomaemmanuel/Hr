@@ -74,16 +74,28 @@ const routes = new Router({
             path: "/",
             name: "home",
             component: Home,
-           children: [
+            meta: {
+                breadcrumb: 'Home',
+            },
+
+            children: [
                {
                    path: "/users",
                    name: "users",
                    component: Users,
+                   meta: {
+                       breadcrumb: 'Users',
+                   },
+
                },
                {
                    path: "/documents",
                    name: "documents",
                    component: Documents,
+                   meta: {
+                       breadcrumb: 'Documents',
+                   },
+
 
                },
 
@@ -95,12 +107,18 @@ const routes = new Router({
                        {
                            path:"/",
                            name:"leave-requests",
-                           component:LeaveRequests
+                           component:LeaveRequests,
+                           meta: {
+                               breadcrumb: 'Leave Requests',
+                           },
                        },
                        {
                            path:"/leave-create",
                            name:"leave-create",
-                           component:LeaveRequestForm
+                           component:LeaveRequestForm,
+                           meta: {
+                               breadcrumb: 'Leave Create',
+                           },
                        }
                    ]
                },

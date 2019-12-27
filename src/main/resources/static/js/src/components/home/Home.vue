@@ -162,7 +162,9 @@
 				</ul>
 			</aside>
 			
+			
 			<div class="container column is-10 p-10">
+				<breadcrumbs></breadcrumbs>
 				<router-view></router-view>
 			</div>
 		</section>
