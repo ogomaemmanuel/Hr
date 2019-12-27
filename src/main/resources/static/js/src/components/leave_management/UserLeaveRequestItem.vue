@@ -17,8 +17,8 @@
 						slot="trigger"
 						role="button">
 				</i>
-				<b-dropdown-item @click="confirmLeaveWithdrawal" aria-role="listitem">Withdraw</b-dropdown-item>
-				<b-dropdown-item aria-role="listitem">Edit</b-dropdown-item>
+				<b-dropdown-item :disabled="disableWithdrawOption"   value="withdraw" @click="confirmLeaveWithdrawal" aria-role="listitem">Withdraw</b-dropdown-item>
+				<b-dropdown-item :disabled="disableEditOption"  value="edit" aria-role="listitem">Edit</b-dropdown-item>
 			</b-dropdown>
 		</td>
 	</tr>
@@ -62,15 +62,23 @@
                 return moment(date).format("LL")
             }
         },
-        computed:{
-            statusColor(){
-                if(this.leaveRequestClone.leaveStatuses.toLowerCase()=="new"){
+        computed: {
+            statusColor() {
+                if (this.leaveRequestClone.leaveStatuses.toLowerCase() == "new") {
                     return 'is-primary'
-				}
-                if(this.leaveRequestClone.leaveStatuses.toLowerCase()=="withdrawn"){
+                }
+                if (this.leaveRequestClone.leaveStatuses.toLowerCase() == "withdrawn") {
                     return 'is-warning'
-				}
+                }
+            },
+            disableEditOption() {
+                let isNew= this.leaveRequestClone.leaveStatuses.toLowerCase()=="new";
+                return !isNew;
+            },
+            disableWithdrawOption(){
+                let isWithdrawn= this.leaveRequestClone.leaveStatuses.toLowerCase()=="withdrawn";
+                return isWithdrawn;
 			}
-		}
+        }
     }
 </script>
