@@ -3,26 +3,37 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.service
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums.LeaveStatuses;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequestHistory;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.events.LeaveRequestEvent;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.events.LeaveRequestEventData;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.models.LeaveRequestModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.repositories.LeaveRequestRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
+import com.ogoma.vue_starter.vue_starter.utils.BaseUrlUtil;
 import com.ogoma.vue_starter.vue_starter.utils.SecurityUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class LeaveRequestService {
     private final LeaveRequestRepository leaveRequestRepository;
+    private final ApplicationEventPublisher applicationEventPublisher;
+    private final HttpServletRequest httpServletRequest;
+
     @Autowired
-    public LeaveRequestService(LeaveRequestRepository leaveRequestRepository) {
+    public LeaveRequestService(LeaveRequestRepository leaveRequestRepository, ApplicationEventPublisher applicationEventPublisher, HttpServletRequest httpServletRequest) {
         this.leaveRequestRepository = leaveRequestRepository;
+        this.applicationEventPublisher = applicationEventPublisher;
+        this.httpServletRequest = httpServletRequest;
     }
+
     public LeaveRequest createLeaveRequest(LeaveRequestModel leaveRequestModel) {
         Long userId = SecurityUtils.getCurrentUserDetails().getId();
         LeaveRequestHistory leaveRequestHistory = new
@@ -35,6 +46,10 @@ public class LeaveRequestService {
         leaveRequest.setApplicantId(userId);
         leaveRequest.addLeaveHistory(leaveRequestHistory);
         leaveRequestRepository.save(leaveRequest);
+        LeaveRequestEventData  leaveRequestEventData= new LeaveRequestEventData(
+                leaveRequestHistory,
+                BaseUrlUtil.getBaseUrlBuilder(this.httpServletRequest));
+        applicationEventPublisher.publishEvent(new LeaveRequestEvent(this,leaveRequestEventData));
         return leaveRequest;
     }
 

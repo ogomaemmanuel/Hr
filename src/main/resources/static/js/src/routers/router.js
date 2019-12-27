@@ -22,6 +22,11 @@ const PageNotFound=()=>import("../components/errors/PageNotFound")
 const LeavePage =()=>import("../components/leave_management/LeavePage")
 const LeaveRequestForm =()=>import("../components/leave_management/LeaveRequestForm")
 const LeaveRequests =()=>import("../components/leave_management/UserLeaveRequests")
+
+const HolidaysPage =()=>import("../components/holidays/HolidaysPage.vue")
+const HolidayList =()=>import("../components/holidays/HolidayList.vue")
+
+
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
@@ -97,6 +102,18 @@ const routes = new Router({
                            name:"leave-create",
                            component:LeaveRequestForm
                        }
+                   ]
+               },
+               {
+                   path: "/holidays",
+                   name: "holidays",
+                   component: HolidaysPage,
+                   children:[
+                       {
+                           path:"/",
+                           name:"leave-requests",
+                           component:HolidayList
+                       },
                    ]
                },
            ]

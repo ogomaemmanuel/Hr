@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,6 +22,8 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    @OneToOne(mappedBy = "user")
+    private Staff staff;
     @JsonIgnore
     private String password;
     @Temporal(TemporalType.TIMESTAMP)
@@ -115,5 +118,15 @@ public class User {
 
     public void setPasswordResetList(Set<PasswordReset> passwordResetList) {
         this.passwordResetList = passwordResetList;
+    }
+    public void addStaff(Staff newStaff) {
+        if (newStaff == null) {
+            if (this.staff != null) {
+                this.staff.setUser(null);
+            }
+        } else {
+            newStaff.setUser(this);
+        }
+        this.staff = newStaff;
     }
 }

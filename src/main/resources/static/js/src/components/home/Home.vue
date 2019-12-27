@@ -147,6 +147,11 @@
 									<span class="icon is-small"><i class="fa fa-link"></i></span> In Place
 								</router-link>
 							</li>
+							<li>
+								<router-link to="/holidays">
+									<span class="icon is-small"><i class="fa fa-link"></i></span> Holidays
+								</router-link>
+							</li>
 						</ul>
 					</li>
 					<li>

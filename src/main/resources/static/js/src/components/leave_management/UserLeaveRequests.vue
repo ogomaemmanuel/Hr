@@ -14,7 +14,7 @@
 					<div class="card-content">
 						<div class="content">
 							<h4>My Leave Requests</h4>
-							<table class="table w-full">
+							<table class="table  is-hoverable">
 								<thead class="font-thin">
 								<tr>
 									<th>
@@ -46,7 +46,11 @@
 									<td>{{leaveRequest.numberOfDays}}</td>
 									<td>{{leaveRequest.startDate|dateFormat}}</td>
 									<td>{{leaveRequest.endDate|dateFormat}}</td>
-									<td>{{leaveRequest.leaveStatuses}}</td>
+									<td>
+										<span class="tag is-success">
+										{{leaveRequest.leaveStatuses}}
+										</span>
+									</td>
 									<td>{{leaveRequest.createdAt|dateFormat}}</td>
 									<td>
 										<b-dropdown aria-role="list">
