@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.models.LeaveRequestModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.services.LeaveRequestService;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.validators.LeaveRequestModelValidator;
+import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.utils.ErrorConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,6 +60,11 @@ public class LeaveRequestsController {
     public ResponseEntity<?> getUserLeaveBalancles() {
         List<Map<String, String>> leaveBalances = leaveRequestService.getLoggedInUserLeaveBalances();
         return ResponseEntity.ok(leaveBalances);
+    }
+    @RequestMapping(value = "api/user/leave-requests/withdrawal/{leaveId}",method = RequestMethod.PUT)
+    public ResponseEntity<?> withdrawLeave(@PathVariable("leaveId") Long leaveId){
+      ResponseModel responseModel =  leaveRequestService.withdrawRequest(leaveId);
+      return ResponseEntity.ok(responseModel);
     }
 
 }

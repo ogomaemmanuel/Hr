@@ -11,7 +11,7 @@
 		<div class="columns">
 			<div class="column is-8">
 				<div class="card" ref="leaveRequests">
-					<div class="card-content">
+					<div class="card-content card-simple">
 						<div class="content">
 							<h4>My Leave Requests</h4>
 							<table class="table  is-hoverable">
@@ -133,3 +133,20 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+	
+	
+	/*.card-simple {*/
+	/*	background: #fff;*/
+	/*	!*cursor: pointer !important;*!*/
+	/*	box-shadow: none !important ;*/
+	/*	transition: all 0.5s ease-in-out;*/
+	/*	border: 1px solid #e7eef7 !important;*/
+	/*}*/
+	
+	
+	 /*.card-simple:hover {*/
+		/* box-shadow: 0.5rem 1.5rem 1rem rgba(120,130,140,0.13) !important;*/
+		/* transition: all 0.5s ease-in-out;*/
+	 /*}*/
+</style>

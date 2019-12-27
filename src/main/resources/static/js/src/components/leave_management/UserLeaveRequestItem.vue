@@ -1,15 +1,15 @@
 <template>
 	<tr>
-		<td>{{leaveRequest.leaveType.name}}</td>
-		<td>{{leaveRequest.numberOfDays}}</td>
-		<td>{{leaveRequest.startDate|dateFormat}}</td>
-		<td>{{leaveRequest.endDate|dateFormat}}</td>
+		<td>{{leaveRequestClone.leaveType.name}}</td>
+		<td>{{leaveRequestClone.numberOfDays}}</td>
+		<td>{{leaveRequestClone.startDate|dateFormat}}</td>
+		<td>{{leaveRequestClone.endDate|dateFormat}}</td>
 		<td>
 										<span class="tag is-success">
-										{{leaveRequest.leaveStatuses}}
+										{{leaveRequestClone.leaveStatuses}}
 										</span>
 		</td>
-		<td>{{leaveRequest.createdAt|dateFormat}}</td>
+		<td>{{leaveRequestClone.createdAt|dateFormat}}</td>
 		<td>
 			<b-dropdown aria-role="list">
 				<i
@@ -31,6 +31,14 @@
                 type: Object,
             }
         },
+        data() {
+            return {
+                leaveRequestClone: {}
+            }
+        },
+        created() {
+            this.leaveRequestClone = {...this.leaveRequest}
+        },
         methods: {
             confirmLeaveWithdrawal() {
                 this.$buefy.dialog.confirm({
@@ -42,7 +50,11 @@
                 })
             },
             withdrawLeave() {
+                axios.put(`/api/user/leave-requests/withdrawal/${this.leaveRequestClone.id}`).then(resp => {
+                    this.leaveRequestClone = resp.data.data;
+                }, error => {
 
+                })
             }
         },
         filters: {

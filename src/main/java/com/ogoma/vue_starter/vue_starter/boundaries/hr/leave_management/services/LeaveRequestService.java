@@ -7,6 +7,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.events.L
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.events.LeaveRequestEventData;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.models.LeaveRequestModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.repositories.LeaveRequestRepository;
+import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.utils.BaseUrlUtil;
 import com.ogoma.vue_starter.vue_starter.utils.SecurityUtils;
@@ -46,10 +47,10 @@ public class LeaveRequestService {
         leaveRequest.setApplicantId(userId);
         leaveRequest.addLeaveHistory(leaveRequestHistory);
         leaveRequestRepository.save(leaveRequest);
-        LeaveRequestEventData  leaveRequestEventData= new LeaveRequestEventData(
+        LeaveRequestEventData leaveRequestEventData = new LeaveRequestEventData(
                 leaveRequestHistory,
                 BaseUrlUtil.getBaseUrlBuilder(this.httpServletRequest));
-        applicationEventPublisher.publishEvent(new LeaveRequestEvent(this,leaveRequestEventData));
+        applicationEventPublisher.publishEvent(new LeaveRequestEvent(this, leaveRequestEventData));
         return leaveRequest;
     }
 
@@ -75,5 +76,26 @@ public class LeaveRequestService {
     public Long getLoggedInUserLeaveBalance(Long leaveTypeId) {
         Long leaveBalance = this.leaveRequestRepository.currentUserLeaveBalanceByLeaveTypeId(leaveTypeId);
         return leaveBalance;
+    }
+
+    public ResponseModel withdrawRequest(Long leaveId) {
+        Long userId = SecurityUtils.getCurrentUserDetails().getId();
+        LeaveRequest leaveRequest = this.leaveRequestRepository.findById(leaveId).orElse(null);
+        leaveRequest.setLeaveStatuses(LeaveStatuses.WITHDRAWN);
+        LeaveRequestHistory leaveRequestHistory = new
+                LeaveRequestHistory();
+        leaveRequestHistory.setPerformedBy(userId);
+        leaveRequestHistory.setLeaveStatuses(LeaveStatuses.WITHDRAWN);
+        leaveRequest.addLeaveHistory(leaveRequestHistory);
+        this.leaveRequestRepository.save(leaveRequest);
+        LeaveRequestEventData leaveRequestEventData = new LeaveRequestEventData(
+                leaveRequestHistory,
+                BaseUrlUtil.getBaseUrlBuilder(this.httpServletRequest));
+        applicationEventPublisher.publishEvent(new LeaveRequestEvent(this, leaveRequestEventData));
+        ResponseModel responseModel = new ResponseModel()
+                .setStatus("success")
+                .setData(leaveRequest)
+                .setMessage("leave successfully withdrawn");
+        return responseModel;
     }
 }
