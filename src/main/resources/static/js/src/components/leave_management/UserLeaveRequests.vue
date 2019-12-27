@@ -14,12 +14,17 @@
 			</router-link>
 			</p>
 		</div>
+		<div class="tabs is-boxed">
+			<ul>
+				<li @click="showLeaveBalances=false"  :class="{'is-active':showLeaveBalances==false}"><a>My Leave Requests</a></li>
+				<li @click="showLeaveBalances=true"  :class="{'is-active':showLeaveBalances==true}"><a>My Leave Balances</a></li>
+			</ul>
+		</div>
 		<div class="columns">
-			<div class="column is-8">
+			<div v-if="showLeaveBalances==false"  class="column is-12">
 				<div class="card" ref="leaveRequests">
 					<div class="card-content card-simple">
 						<div class="content">
-							<h4>My Leave Requests</h4>
 							<table class="table  is-hoverable">
 								<thead class="font-thin">
 								<tr>
@@ -68,11 +73,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="column is-4">
+			<div v-else class="column is-12">
 				<LeaveBalanceCard></LeaveBalanceCard>
 			</div>
 		</div>
-	
 	</div>
 </template>
 <script>
@@ -92,7 +96,8 @@
                 leaveRequests: [],
                 pageable: false,
                 pageSize: 10,
-                page: 0
+                page: 0,
+				showLeaveBalances:false
             }
         },
         created() {
