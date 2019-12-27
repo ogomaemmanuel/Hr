@@ -76,6 +76,7 @@ const routes = new Router({
             component: Home,
             meta: {
                 breadcrumb: 'Home',
+                breadcrumbIcon:'fa-home'
             },
 
             children: [

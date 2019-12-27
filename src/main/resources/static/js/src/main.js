@@ -35,7 +35,13 @@ Vue.use(VueBreadcrumbs, {
         <div v-if="$breadcrumbs.length" class="ant-breadcrumb breadcrumb">
         <nav class="breadcrumb is-small" aria-label="breadcrumbs">
   <ul>
-    <li tag="span" v-for="(crumb, key) in $breadcrumbs" :class="{'is-active':key==$breadcrumbs.length-1}" :to="linkProp(crumb)" :key="key"><router-link :to="linkProp(crumb)">{{ crumb | crumbText }}</router-link></li>
+    <li tag="span" v-for="(crumb, key) in $breadcrumbs" :class="{'is-active':key==$breadcrumbs.length-1}" :to="linkProp(crumb)" :key="key">
+    <router-link :to="linkProp(crumb)">
+    <span v-if="crumb.meta.breadcrumbIcon" class="icon is-small">
+          <i :class="crumb.meta.breadcrumbIcon" class="fa" aria-hidden="true"></i>
+        </span>
+    {{ crumb | crumbText }}
+    </router-link></li>
   </ul>
 </nav>
 </div>`
