@@ -41,28 +41,7 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr v-for="leaveRequest in leaveRequests" :key="leaveRequest.id">
-									<td>{{leaveRequest.leaveType.name}}</td>
-									<td>{{leaveRequest.numberOfDays}}</td>
-									<td>{{leaveRequest.startDate|dateFormat}}</td>
-									<td>{{leaveRequest.endDate|dateFormat}}</td>
-									<td>
-										<span class="tag is-success">
-										{{leaveRequest.leaveStatuses}}
-										</span>
-									</td>
-									<td>{{leaveRequest.createdAt|dateFormat}}</td>
-									<td>
-										<b-dropdown aria-role="list">
-											<i
-													class="fa fa-ellipsis-h text-muted"
-													slot="trigger"
-													role="button">
-											</i>
-											<b-dropdown-item aria-role="listitem">Withdraw</b-dropdown-item>
-											<b-dropdown-item aria-role="listitem">Edit</b-dropdown-item>
-										</b-dropdown>
-									</td>
+								<tr is="UserLeaveRequestItem" v-for="leaveRequest in leaveRequests" :leave-request="leaveRequest" :key="leaveRequest.id">
 								</tr>
 								</tbody>
 								<tfoot>
@@ -93,11 +72,13 @@
 <script>
     import LeaveBalanceCard from "./LeaveBalanceCard.vue"
     import Paginator from "../common/paginator/Paginator"
+	import UserLeaveRequestItem from "./UserLeaveRequestItem"
 
     export default {
         components: {
             LeaveBalanceCard,
-            Paginator
+            Paginator,
+            UserLeaveRequestItem
         },
         data() {
             return {

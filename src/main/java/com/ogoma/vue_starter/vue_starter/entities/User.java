@@ -36,7 +36,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
     private Set<UserRole> userRoles;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")
     private Set<PasswordReset> passwordResetList;
 
