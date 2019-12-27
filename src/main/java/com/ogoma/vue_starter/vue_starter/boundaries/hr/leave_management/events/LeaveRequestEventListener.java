@@ -42,6 +42,9 @@ public class LeaveRequestEventListener {
         if (leaveRequestHistory.getLeaveStatuses().equals(LeaveStatuses.NEW)) {
             processNewLeaveEvent(leaveRequestEvent);
         }
+        if (leaveRequestHistory.getLeaveStatuses().equals(LeaveStatuses.WITHDRAWN)) {
+            processWithdrawalEvent(leaveRequestEvent);
+        }
     }
     private void processNewLeaveEvent(LeaveRequestEvent leaveRequestEvent) {
         LeaveRequestHistory leaveRequestHistory = leaveRequestEvent.getRequestEventData().getLeaveRequestHistory();
@@ -65,6 +68,29 @@ public class LeaveRequestEventListener {
                     .setMessage(userInPlace.getFirstName() + " has made a new leave request and" +
                             " selected you to be in place from " + leaveRequest.getStartDate() + " to "
                             + leaveRequest.getStartDate())
+                    .setRead(false)
+                    .setUserId(userInPlace.getId());
+            this.notificationsService.createNotification(notification);
+            this.mailSender.sendMail(emailModel);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+    private void processWithdrawalEvent(LeaveRequestEvent leaveRequestEvent) {
+        LeaveRequestHistory leaveRequestHistory = leaveRequestEvent.getRequestEventData().getLeaveRequestHistory();
+        LeaveRequest leaveRequest = leaveRequestHistory.getLeaveRequest();
+        User userInPlace = this.usersRepository.findByStaffId(leaveRequest.getInPlaceId());
+        Map<String, Object> emailTemplateVariables = new HashMap<>();
+        emailTemplateVariables.put("username", userInPlace.getFirstName());
+        EmailModel emailModel = new EmailModel();
+        emailModel.setSubject("Leave request withdrawn");
+        emailModel.setHtml(true);
+        emailModel.setTo(userInPlace.getEmail());
+        emailModel.setTemplateVariable(emailTemplateVariables);
+        emailModel.setTemplatePath("/leave_withdrawal");
+        try {
+            Notification notification = new Notification()
+                    .setMessage(userInPlace.getFirstName() + " has withdrawn the leave request made earlier. No further action is required on your part")
                     .setRead(false)
                     .setUserId(userInPlace.getId());
             this.notificationsService.createNotification(notification);
