@@ -1,21 +1,41 @@
 
-body{
+body {
   background-color: #f2f2f2;
 }
+.menu-list a {
+  border-radius: 2px;
+  color: #4a4a4a;
+  display: block;
+  padding: 0.5em 0.2em;
 
+}
 .menu-list li ul {
   border-left: 0px solid #dbdbdb;
-  margin: 0.75em;
-  padding-left: 0.75em;
+  margin: 0rem;
+  padding-left: 0rem;
+
+  li {
+    a {
+      padding-left: 0.9rem;
+    }
+  }
+
+  //a {
+  //  &:hover {
+  //    background-color: #000000;
+  //  }
+  //}
 }
+
 .menu-list a {
   border-radius: 2px;
   color: #ffffff;
   display: block;
-  padding: 0.5em 0.75em;
+  //padding: 0.5em 0.75em;
 }
 
- .menu-list a:hover {
-   background-color: #1a202cbf;
-   color: #FFFFFF;
- }
+.menu-list a:hover {
+  background-color: #000000;
+  border-left: 4px solid #1d8e72;
+  color: #FFFFFF;
+}
