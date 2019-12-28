@@ -1,21 +1,22 @@
 <template>
 	<div class="file-management">
+		<div class="flex justify-end pb-2">
 		<div class="columns">
 			<div class="column">
-				<button class="button">
+				<button class="button is-small is-rounded">
 					 <span class="icon">
                      <i class="fa fa-upload"></i>
                      </span>
 					<span>Upload File</span>
 				</button>
-				<button class="button">
-					<span>
+				<button class="button is-small is-rounded">
+					<span class="icon">
 						<i class="fa fa-folder-open"></i>
 					</span>
 					<span>Create Folder</span>
 				</button>
-				<button class="button">
-					<span>
+				<button class="button is-small is-rounded">
+					<span class="icon">
 						<i class="fa fa-trash"></i>
 					</span>
 					<span>
@@ -25,7 +26,8 @@
 				</button>
 			</div>
 		</div>
-		<table class="table is-striped is-hoverable is-fullwidth">
+		</div>
+		<table class="table is-striped is-hoverable is-fullwidth is-size-7">
 			<thead>
 			<th>Name</th>
 			<th>Size</th>
