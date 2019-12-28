@@ -85,7 +85,7 @@
 		
 		<section class="main-content columns  is-fullheight">
 			
-			<aside class="column is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile is-fixed bottom-0 section is-hidden-mobile">
+			<aside class="column is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile relative section is-hidden-mobile">
 				<p class="menu-label is-hidden-touch">Navigation</p>
 				<ul class="menu-list">
 					<li>
@@ -166,6 +166,16 @@
 						</a>
 					</li>
 				</ul>
+			
+					<div class="side-bar-footer bg-gray-800 left-0  right-0 h-8 absolute bottom-0">
+					<div class="flex justify-end mr-4">
+						<i><span class="fa fa-angle-left"></span></i>
+					</div>
+<!--						<div class="relative mt-5 h-full">-->
+<!--					</div>-->
+				</div>
+				
+				
 			</aside>
 			
 			
