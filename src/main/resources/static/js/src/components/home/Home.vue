@@ -59,7 +59,8 @@
 						<!--						</a>-->
 						
 						<figure class="image is-fullwidth navbar-link">
-							<img class="is-rounded profile-image" src="https://bulma.io/images/placeholders/128x128.png">
+							<img class="is-rounded profile-image"
+								 src="https://bulma.io/images/placeholders/128x128.png">
 						</figure>
 						
 						<div class="navbar-dropdown is-right">
@@ -82,9 +83,9 @@
 			</div>
 		</nav>
 		
-		<section class="main-content columns is-fullheight">
+		<section class="main-content columns  is-fullheight">
 			
-			<aside class="column is-2 is-narrow-mobile is-fixed is-fullheight section is-hidden-mobile">
+			<aside class="column is-2 bg-gray-900 text-white pr-1 is-narrow-mobile is-fixed is-fullheight section is-hidden-mobile">
 				<p class="menu-label is-hidden-touch">Navigation</p>
 				<ul class="menu-list">
 					<li>
@@ -93,63 +94,68 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="is-active">
+						<a href="#" class="">
 							<span class="icon"><i class="fa fa-table"></i></span> Access Control
 						</a>
 						
-						<ul>
+						<ul class="mr-0 pr-0 border-l-0">
 							<li>
 								<router-link to="/users">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Users
+									<span>Users</span>
 								</router-link>
 							</li>
 							<li>
 								<a href="#">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Roles
+									<span>Roles</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Permissions
+									<span>Permissions</span>
 								</a>
 							</li>
 						</ul>
 					</li>
 					<li>
-						<a href="#" class="is-active">
-							<span class="icon"><i class="fa fa-table"></i></span> File Management
+						<a href="#" class="">
+							<span class="icon"><i class="fa fa-folder-open"></i></span> File Management
 						</a>
-						<ul>
+						<ul class="border-l-0">
 							<li>
 								<router-link to="/documents">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Manage Files
+									<span>Manage Files</span>
 								</router-link>
 							</li>
 							<li>
 								<router-link to="/documents">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> My Files
+									<span>My Files</span>
 								</router-link>
 							</li>
 						</ul>
 					</li>
 					<li>
-						<a href="#" class="is-active">
+						<a href="#" class="">
 							<span class="icon"><i class="fa fa-table"></i></span> Leave Management
 						</a>
-						<ul>
+						<ul class="border-l-0">
 							<li>
 								<router-link to="/leave">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Leave
+									<span>My Leaves</span>
 								</router-link>
 							</li>
 							<li>
 								<router-link to="/documents">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> In Place
+									<span>In Place</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/documents">
+									<span>Leave approval</span>
 								</router-link>
 							</li>
 							<li>
 								<router-link to="/holidays">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Holidays
+									<span>Holidays</span>
 								</router-link>
 							</li>
 						</ul>
@@ -164,7 +170,13 @@
 			
 			
 			<div class="container column is-10 p-10">
-				<breadcrumbs></breadcrumbs>
+				<div class="flex items-center">
+					<button type="button" class="is-hidden-desktop toggle-mobile-nav">
+						<i class="fa fa-bars text-gray-600"></i>
+					</button>
+					<breadcrumbs class=""></breadcrumbs>
+				</div>
+				
 				<router-view></router-view>
 			</div>
 		</section>
@@ -186,7 +198,7 @@
             }
         },
         created() {
-           // this.open();
+            // this.open();
         },
         methods: {
             open() {
@@ -198,11 +210,21 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
 	
 	.navbar-item .profile-image {
 		height: 36px;
 		width: 36px;
-		max-height:36px;
+		max-height: 36px;
 	}
+	
+	.toggle-mobile-nav {
+		//display: none;
+		background-color: transparent;
+		border: 0px;
+		padding: 6px 16px;
+		margin: 0 0 0 -15px;
+		height: 46px;
+	}
+	
 </style>

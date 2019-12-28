@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<div class="columns">
+		<div class="columns is-size-7">
 			<div class="column is-6">
 				<div class="field">
-					<label class="label">Leave Types</label>
+					<label class="label is-size-7">Leave Types</label>
 					<div class="control w-full">
 						<div class="select w-full">
 							<select @input="clearFieldError('leaveTypeId')" v-model="leaveRequest.leaveTypeId"
@@ -22,7 +22,7 @@
 					</div>
 				</div>
 				<div class="field">
-					<label class="label">Start Date</label>
+					<label class="label is-size-7">Start Date</label>
 					<div class="control">
 						<DatePicker
 								v-model="leaveRequest.startDate"
@@ -37,7 +37,7 @@
 						</span>
 				</div>
 				<div class="field">
-					<label class="label">Number of Days</label>
+					<label class="label is-size-7">Number of Days</label>
 					<div class="control">
 						<input
 								@input="clearFieldError('numberOfDays')"
@@ -53,7 +53,7 @@
 					</span>
 				</div>
 				<div class="field">
-					<label class="label">Employee In Place</label>
+					<label class="label is-size-7">Employee In Place</label>
 					<div class="control w-full">
 						<div class="select w-full">
 							<select
@@ -74,7 +74,7 @@
 					</div>
 				</div>
 				<div class="field">
-					<label class="label">Reason (Optional)</label>
+					<label class="label is-size-7">Reason (Optional)</label>
 					<div class="control">
 						<textarea
 								@input="clearFieldError('reason')"
@@ -90,12 +90,12 @@
 				<div class="field is-grouped">
 					<div class="control">
 						<button :class="{'is-loading':loading}" @click.prevent="makeLeaveRequest"
-								class="button is-primary"><i
+								class="button is-primary is-small"><i
 								class="fa fa-save mr-1"></i>Submit
 						</button>
 					</div>
 					<div class="control">
-						<button @click.prevent="goBack()" class="button is-light"><i class="fa fa-times mr-1"></i>
+						<button @click.prevent="goBack()" class="button is-light is-small"><i class="fa fa-times mr-1"></i>
 							Cancel
 						</button>
 					</div>

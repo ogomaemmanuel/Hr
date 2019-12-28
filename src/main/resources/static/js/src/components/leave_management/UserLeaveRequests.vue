@@ -5,7 +5,7 @@
 			<router-link
 					to="leave-create"
 					tag="button"
-					class="button  is-rounded">
+					class="button  is-rounded is-small">
 				<span class="icon">
  
 				<i class="fa fa-plus-circle"></i>
@@ -14,7 +14,7 @@
 			</router-link>
 			</p>
 		</div>
-		<div class="tabs is-boxed">
+		<div class="tabs is-boxed is-small">
 			<ul>
 				<li @click="showLeaveBalances=false"  :class="{'is-active':showLeaveBalances==false}"><a>My Leave Requests</a></li>
 				<li @click="showLeaveBalances=true"  :class="{'is-active':showLeaveBalances==true}"><a>My Leave Balances</a></li>
@@ -23,7 +23,7 @@
 		<div class="columns">
 			<div v-if="showLeaveBalances==false"  class="column is-12">
 				<div class="card" ref="leaveRequests">
-					<div class="card-content card-simple">
+					<div class="card-content card-simple is-size-7">
 						<div class="content">
 							<table class="table  is-hoverable">
 								<thead class="font-thin">
@@ -73,7 +73,7 @@
 					</div>
 				</div>
 			</div>
-			<div v-else class="column is-12">
+			<div v-else class="column is-12 is-size-7">
 				<LeaveBalanceCard></LeaveBalanceCard>
 			</div>
 		</div>

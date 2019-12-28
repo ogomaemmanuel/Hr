@@ -4,11 +4,16 @@
 			<router-link
 					to="leave-create"
 					tag="button"
-					class="button is-primary">
-				<i class="fa fa-plus mr-1"></i> Add New
+					class="button is-rounded is-small">
+				<span class="icon">
+					<i class="fa fa-plus-circle mr-1"></i>
+				</span>
+				<span>
+					 Add New
+				</span>
 			</router-link>
 		</div>
-		<div class="columns">
+		<div class="columns is-size-7">
 			<div class="column is-12">
 				<div class="card" ref="leaveRequests">
 					<div class="card-content">

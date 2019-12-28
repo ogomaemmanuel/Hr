@@ -131,7 +131,10 @@ const routes = new Router({
                        {
                            path:"/",
                            name:"leave-requests",
-                           component:HolidayList
+                           component:HolidayList,
+                           meta: {
+                               breadcrumb: 'Holidays',
+                           },
                        },
                    ]
                },

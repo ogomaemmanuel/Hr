@@ -17,13 +17,17 @@
 						slot="trigger"
 						role="button">
 				</i>
-				<b-dropdown-item :disabled="disableWithdrawOption"   value="withdraw" @click="confirmLeaveWithdrawal" aria-role="listitem">Withdraw</b-dropdown-item>
-				<b-dropdown-item :disabled="disableEditOption"  value="edit" aria-role="listitem">Edit</b-dropdown-item>
+				<b-dropdown-item :disabled="disableWithdrawOption" value="withdraw" @click="confirmLeaveWithdrawal"
+								 aria-role="listitem">Withdraw
+				</b-dropdown-item>
+				<b-dropdown-item :disabled="disableEditOption" value="edit" aria-role="listitem">Edit</b-dropdown-item>
 			</b-dropdown>
 		</td>
 	</tr>
 </template>
 <script>
+    import {Message} from "element-ui"
+
     export default {
         props: {
             leaveRequest: {
@@ -52,6 +56,9 @@
             withdrawLeave() {
                 axios.put(`/api/user/leave-requests/withdrawal/${this.leaveRequestClone.id}`).then(resp => {
                     this.leaveRequestClone = resp.data.data;
+                    Message.success(
+                        resp.data.message
+                    )
                 }, error => {
 
                 })
@@ -72,13 +79,13 @@
                 }
             },
             disableEditOption() {
-                let isNew= this.leaveRequestClone.leaveStatuses.toLowerCase()=="new";
+                let isNew = this.leaveRequestClone.leaveStatuses.toLowerCase() == "new";
                 return !isNew;
             },
-            disableWithdrawOption(){
-                let isWithdrawn= this.leaveRequestClone.leaveStatuses.toLowerCase()=="withdrawn";
+            disableWithdrawOption() {
+                let isWithdrawn = this.leaveRequestClone.leaveStatuses.toLowerCase() == "withdrawn";
                 return isWithdrawn;
-			}
+            }
         }
     }
 </script>

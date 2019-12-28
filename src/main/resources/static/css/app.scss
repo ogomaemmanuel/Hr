@@ -1,1 +1,21 @@
-@import "tailwind.css";
+
+body{
+  background-color: #f2f2f2;
+}
+
+.menu-list li ul {
+  border-left: 0px solid #dbdbdb;
+  margin: 0.75em;
+  padding-left: 0.75em;
+}
+.menu-list a {
+  border-radius: 2px;
+  color: #ffffff;
+  display: block;
+  padding: 0.5em 0.75em;
+}
+
+ .menu-list a:hover {
+   background-color: #1a202cbf;
+   color: #FFFFFF;
+ }
