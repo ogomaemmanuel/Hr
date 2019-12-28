@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div class="columns is-size-7">
+	<div class="mt-5 p-5">
+		<div class="columns mt-2 bg-white is-size-7 ">
 			<div class="column is-6">
 				<div class="field">
 					<label class="label is-size-7">Leave Types</label>
