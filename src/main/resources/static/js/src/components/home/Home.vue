@@ -149,8 +149,8 @@
 								</router-link>
 							</li>
 							<li>
-								<router-link to="/documents">
-									<span>Leave approval</span>
+								<router-link to="/leave-approvals">
+									<span>Leave approvals</span>
 								</router-link>
 							</li>
 							<li>

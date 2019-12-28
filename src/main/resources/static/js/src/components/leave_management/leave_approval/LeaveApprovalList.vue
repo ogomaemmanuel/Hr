@@ -1,7 +1,6 @@
 <template>
-	<div>
-		
-		<table>
+	<div class="mt-5 is-size-7">
+		<table class="table w-full">
 			<thead>
 			<tr>
 				<th>Employee</th>
