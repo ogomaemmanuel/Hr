@@ -1,12 +1,17 @@
 <template>
 	<tr>
-		<td>{{leaveRequestClone.employee}}</td>
-		<td>{{leaveRequestClone.startDate}}</td>
-		<td>{{leaveRequestClone.endDate}}</td>
+		<td>
+			<div class="has-text-primary">
+			{{leaveRequestClone.employee}}
+			</div>
+		</td>
+		<td>{{leaveRequestClone.startDate|dateFormat}}</td>
+		<td>{{leaveRequestClone.endDate|dateFormat}}</td>
 		<td>{{leaveRequestClone.numberOfDays}}</td>
-		
-		<td>{{leaveRequestClone.leaveType}}</td>
-		<td>{{leaveRequestClone.status}}</td>
+		<td>
+			{{leaveRequestClone.leaveType}}
+		</td>
+		<td>{{statusText}}</td>
 		<td>
 			<div>
 				<button class="button is-small is-white">
@@ -39,6 +44,29 @@
             return {
                 leaveRequestClone: {}
             }
-        }
+        },
+        filters: {
+            dateFormat(date) {
+                return moment(date).format("LL")
+            }
+        },
+		computed:{
+            statusColor() {
+                if (this.leaveRequestClone.status.toLowerCase() == "new") {
+                    return 'is-primary'
+                }
+                if (this.leaveRequestClone.status.toLowerCase() == "withdrawn") {
+                    return 'is-warning'
+                }
+            },
+			statusText() {
+                if (this.leaveRequestClone.status.toLowerCase() == "new") {
+                    return 'Awaiting In Place Approval'
+                }
+                if (this.leaveRequestClone.status.toLowerCase() == "withdrawn") {
+                    return 'is-warning'
+                }
+            },
+		}
     }
 </script>

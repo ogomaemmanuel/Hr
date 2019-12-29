@@ -86,7 +86,6 @@
 		<section class="main-content columns  is-fullheight">
 			
 			<aside class="column is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile relative section is-hidden-mobile">
-				<p class="menu-label is-hidden-touch">Navigation</p>
 				<ul class="menu-list">
 					<li>
 						<a href="#" class="">
@@ -181,7 +180,7 @@
 			</aside>
 			
 			
-			<div class="container column is-10 p-10 h-screen mb-0">
+			<div class=" column is-10 p-10 h-screen mb-0">
 				<div class="flex items-center">
 					<button type="button" class="is-hidden-desktop toggle-mobile-nav">
 						<i class="fa fa-bars text-gray-600"></i>
