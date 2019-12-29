@@ -17,7 +17,11 @@
 		<td data-label="Leave Type">
 			{{leaveRequestClone.leaveType}}
 		</td>
-		<td data-label="Status">{{statusText}}</td>
+		<td data-label="Status">
+			<span :class="statusColor" class="tag is-light">
+				{{statusText}}
+			</span>
+		</td>
 		<td>
 			<div>
 				<router-link :to="`/leave-approvals/leave-details/${leaveRequestClone.id}`" class="button is-small is-white">

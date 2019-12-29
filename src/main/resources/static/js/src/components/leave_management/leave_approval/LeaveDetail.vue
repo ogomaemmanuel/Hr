@@ -9,19 +9,18 @@
 			</router-link>
 		</div>
 		<div class="relative bg-white mt-5 p-5">
-			
 			<div class="columns">
 				<div class="column">
 					<h4 class="has-text-black">Employee Name</h4>
-					<h4 class="has-text-grey-light">Emmanuel Ogoma</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.employee}}</h4>
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">Date Submitted</h4>
-					<h4 class="has-text-grey-light">Date Submitted</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.createdAt}}</h4>
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">Leave Type</h4>
-					<h4 class="has-text-grey-light">Leave Type</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.leaveType}}</h4>
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">Status</h4>
@@ -31,32 +30,58 @@
 			<div class="columns">
 				<div class="column">
 					<h4 class="has-text-black">Start Date</h4>
-					<h4 class="has-text-grey-light">Emmanuel Ogoma</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.startDate}}</h4>
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">End Date</h4>
-					<h4 class="has-text-grey-light">Date Submitted</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.endDate}}</h4>
+				</div>
+				<div class="column">
+					<h4 class="has-text-black">Days To End Date</h4>
+					<h4 class="has-text-grey-light">{{daysToEndDate}}</h4>
+				</div>
+				<div class="column">
+					<h4 class="has-text-black">Reason</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.status}}</h4>
+				</div>
+			</div>
+			<div class="columns">
+				<div class="column">
+					<h4 class="has-text-black">Leave Balance</h4>
+					<h4 class="has-text-grey-light">{{leaveBalance}} days</h4>
+				</div>
+				<div class="column">
+					<h4 class="has-text-black">Balance After Approval</h4>
+					<h4 class="has-text-grey-light">{{balanceAfterApproval}}</h4>
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">Leave Period in Days</h4>
-					<h4 class="has-text-grey-light">Leave Type</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.numberOfDays}}</h4>
 				</div>
 				<div class="column">
-					<h4 class="has-text-black">Status</h4>
+					<h4 class="has-text-black">Employee Department</h4>
 					<h4 class="has-text-grey-light">Status</h4>
 				</div>
 			</div>
 			<div class="flex justify-center">
-				<button class="button is-primary is-small mr-5">
+				<button @click="confirmApproval" class="button is-primary is-small mr-5">
 					<span>
 						Approve
                     </span>
 				</button>
-				<button class="button is-light is-small">
+				<button @click="openRejectDialog" class="button is-light is-small">
 					<span>
 						Reject
                     </span>
 				</button>
+			</div>
+		</div>
+		<div class="mt-1 bg-white">
+			<div class="tabs">
+				<ul>
+					<li><a>Leave Request History</a></li>
+					<li class="is-active"><a>Other Leave Requests</a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -64,8 +89,79 @@
 <script>
     export default {
         data() {
-
-            return {}
+            return {
+                leaveDetail: {},
+                leaveId: false,
+            }
+        },
+        created() {
+            this.leaveId = this.$route.params.id;
+            this.getLeaveDetails();
+        },
+        //api/user/leave-requests/{id}
+        methods: {
+            getLeaveDetails() {
+                let leaveId = this.$route.params.id;
+                let vm = this;
+                axios.get(`/api/user/leave-requests/${leaveId}`).then(resp => {
+                    vm.leaveDetail = resp.data;
+                })
+            },
+            getDateDiffence(endDate, startDate) {
+                let dateOne = moment(endDate);
+                let dateTwo = moment(startDate);
+                return dateOne.diff(dateTwo, 'days')
+            },
+            confirmApproval() {
+                this.$buefy.dialog.confirm({
+                    title: 'Leave Approve',
+                    confirmText:"Approve",
+                    message: 'Are you sure want to approve for this leave?',
+                    onConfirm: () => this.$buefy.toast.open('User confirmed')
+                })
+            },
+			openRejectDialog(){
+                    this.$buefy.dialog.prompt({
+                        message: `Add Comment (Optional)`,
+                        confirmText:"Proceed",
+                        inputAttrs: {
+                            placeholder: 'e.g. Walter',
+                            maxlength: 10
+                        },
+                        trapFocus: true,
+                        onConfirm: (value) => this.$buefy.toast.open(`Your name is: ${value}`)
+                    })
+                
+			},
+            approveLeave() {
+                axios.post(`/api/user/leave-approvals/accept/${this.leaveId}`).then(resp => {
+                    this.$buefy.toast.open('User confirmed')
+                }, error => {
+                
+                })
+            },
+            rejectLeaveApproval(comment) {
+                axios.post(`/api/user/leave-approvals/accept/${this.leaveId}`,{
+                    params:{
+                        comment:comment
+					}
+				}).then(resp => {
+                    this.$buefy.toast.open('User confirmed')
+                }, error => {
+                
+                })
+            }
+        },
+        computed: {
+            daysToEndDate() {
+                return this.getDateDiffence(this.leaveDetail.endDate, new Date())
+            },
+            leaveBalance() {
+                return this.leaveDetail.elligibleDays - this.leaveDetail.daysUsed;
+            },
+            balanceAfterApproval() {
+                return this.leaveBalance - this.leaveDetail.numberOfDays;
+            }
         }
     }
 </script>

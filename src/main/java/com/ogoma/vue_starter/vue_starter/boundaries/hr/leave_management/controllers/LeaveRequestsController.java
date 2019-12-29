@@ -49,6 +49,12 @@ public class LeaveRequestsController {
         return ResponseEntity.ok(leaveRequests);
     }
 
+    @RequestMapping(value = "api/user/leave-requests/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getLeaveRquestDetails(@PathVariable Long id) {
+       Map<String,String> leaveRequests = leaveRequestService.getLeaveDetails(id);
+       return ResponseEntity.ok(leaveRequests);
+    }
+
     @RequestMapping(value = "api/leave-requests/in-place", method = RequestMethod.GET)
     public ResponseEntity<?> getInPlaceStaffsSelectLis() {
         List<Map<String, String>> inPlaceStaffSelectList = leaveRequestService.inPlaceStaffSelectList();

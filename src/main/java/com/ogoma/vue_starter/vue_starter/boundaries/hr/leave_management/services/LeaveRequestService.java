@@ -101,11 +101,17 @@ public class LeaveRequestService {
         return responseModel;
     }
 
-    public Page<Map<String,String>> getLeaveRequestToApprove(PagedDataRequest pagedDataRequest) {
-        Pageable pageable= PageRequest.of(pagedDataRequest.getPage(),pagedDataRequest.getPageSize());
+    public Page<Map<String, String>> getLeaveRequestToApprove(PagedDataRequest pagedDataRequest) {
+        Pageable pageable = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
         List<String> leaveStatuses = new ArrayList<>();
         leaveStatuses.add(LeaveStatuses.NEW.name());
-        Page<Map<String,String>> leaveRequests = this.leaveRequestRepository.getLeaveRequestToApprove(leaveStatuses,pageable);
+        Page<Map<String, String>> leaveRequests = this.leaveRequestRepository.getLeaveRequestToApprove(leaveStatuses, pageable);
         return leaveRequests;
+    }
+
+    public Map<String, String> getLeaveDetails(Long id) {
+        Map<String, String> leaveDetails =
+                this.leaveRequestRepository.findLeaveRequestDetailsByLeaveId(id);
+        return leaveDetails;
     }
 }

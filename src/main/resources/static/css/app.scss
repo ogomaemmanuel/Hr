@@ -42,3 +42,10 @@ body {
   border-left: 4px solid #1d8e72;
   color: #FFFFFF;
 }
+
+.breadcrumb{
+  display: flex;
+  ul{
+    align-self: center;
+  }
+}
