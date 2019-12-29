@@ -1,5 +1,5 @@
 <template>
-	<div class="mt-5 p-5">
+	<div class="p-5">
 		<div class="columns mt-2 pl-5 pt-5 pb-5 bg-white is-size-7 ">
 			<div class="column is-6">
 				<div class="field">

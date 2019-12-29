@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="flex  justify-end  mb-5 mt-5">
+		<div class="flex  justify-end  mb-5">
 			<div class="columns">
 				<div class="column is-inline-flex">
 					<input class="input flex-grow-0 is-rounded is-small mr-1" type="text" placeholder="Search ...">

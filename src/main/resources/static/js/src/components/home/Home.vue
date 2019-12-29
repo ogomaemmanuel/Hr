@@ -185,7 +185,7 @@
 					<button type="button" class="is-hidden-desktop toggle-mobile-nav">
 						<i class="fa fa-bars text-gray-600"></i>
 					</button>
-					<breadcrumbs class=""></breadcrumbs>
+					<breadcrumbs class="mb-5"></breadcrumbs>
 				</div>
 				
 				<router-view></router-view>

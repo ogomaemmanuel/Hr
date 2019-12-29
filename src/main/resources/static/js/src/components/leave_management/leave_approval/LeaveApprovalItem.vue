@@ -20,11 +20,11 @@
 		<td data-label="Status">{{statusText}}</td>
 		<td>
 			<div>
-				<button class="button is-small is-white">
+				<router-link :to="`/leave-approvals/leave-details/${leaveRequestClone.id}`" class="button is-small is-white">
 					<span class="icon">
 						<i class="fa fa-eye has-text-primary"></i>
 					</span>
-				</button>
+				</router-link>
 				<button class="button is-small is-white">
 					<span class="icon ">
 						<i class="fa fa-trash has-text-danger"></i>

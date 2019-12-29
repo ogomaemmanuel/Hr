@@ -1,6 +1,5 @@
 <template>
 	<div>
-		
 		<div class="pb-2 flex justify-end">
 			<p class="buttons ">
 				<router-link
