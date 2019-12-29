@@ -1,17 +1,23 @@
 <template>
 	<tr>
-		<td>
+		<td data-label="Employee">
 			<div class="has-text-primary">
 			{{leaveRequestClone.employee}}
 			</div>
 		</td>
-		<td>{{leaveRequestClone.startDate|dateFormat}}</td>
-		<td>{{leaveRequestClone.endDate|dateFormat}}</td>
-		<td>{{leaveRequestClone.numberOfDays}}</td>
-		<td>
+		<td data-label="Start Date">
+			{{leaveRequestClone.startDate|dateFormat}}
+		</td>
+		<td data-label="End Date">
+			{{leaveRequestClone.endDate|dateFormat}}
+		</td>
+		<td data-label="Number of Days">
+			{{leaveRequestClone.numberOfDays}}
+		</td>
+		<td data-label="Leave Type">
 			{{leaveRequestClone.leaveType}}
 		</td>
-		<td>{{statusText}}</td>
+		<td data-label="Status">{{statusText}}</td>
 		<td>
 			<div>
 				<button class="button is-small is-white">

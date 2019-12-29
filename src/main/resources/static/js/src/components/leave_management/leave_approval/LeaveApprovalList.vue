@@ -1,24 +1,27 @@
 <template>
 	<div>
 		<div class="flex  justify-end  mb-5 mt-5">
-			<div class="field w-60 mr-5">
-				<div class="control">
-					<input class="input flex-grow-0 is-rounded is-small" type="text" placeholder="Search ...">
-				</div>
-			</div>
-			<button class="button is-small is-rounded">
+			<div class="columns">
+				<div class="column is-inline-flex">
+					<input class="input flex-grow-0 is-rounded is-small mr-1" type="text" placeholder="Search ...">
+						
+					<span class="">
+						<button class="button is-small is-rounded">
 				<span class="icon">
 					<i class="fa fa-download"></i>
 				</span>
-				<span>
+							<span>
 					Export All
 				</span>
-			</button>
+						</button>
+					</span>
+				</div>
+			</div>
 		</div>
 		
-		<div class="mt-5 bg-white p-5 is-size-7 is-full">
+		<div class="mt-5 b-table bg-white p-5 is-size-7 is-full">
 			
-			<table class="table w-full">
+			<table class="table has-mobile-cards  w-full">
 				<thead>
 				<tr>
 					<th>Employee</th>
