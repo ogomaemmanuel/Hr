@@ -39,10 +39,10 @@ public class LeaveRequestEventListener {
     public void handleEvent(LeaveRequestEvent leaveRequestEvent) {
         LeaveRequestHistory leaveRequestHistory =
                 leaveRequestEvent.getRequestEventData().getLeaveRequestHistory();
-        if (leaveRequestHistory.getLeaveStatuses().equals(LeaveStatuses.NEW)) {
+        if (leaveRequestHistory.getLeaveStatuses().equals(LeaveStatuses.NEW.name())) {
             processNewLeaveEvent(leaveRequestEvent);
         }
-        if (leaveRequestHistory.getLeaveStatuses().equals(LeaveStatuses.WITHDRAWN)) {
+        if (leaveRequestHistory.getLeaveStatuses().equals(LeaveStatuses.WITHDRAWN.name())) {
             processWithdrawalEvent(leaveRequestEvent);
         }
     }

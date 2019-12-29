@@ -1,28 +1,34 @@
 <template>
 	<div>
+		
 		<div class="pb-2 flex justify-end">
 			<p class="buttons ">
-			<router-link
-					to="leave-create"
-					tag="button"
-					class="button  is-rounded is-small">
+				<router-link
+						to="leave-create"
+						tag="button"
+						class="button  is-rounded is-small">
 				<span class="icon">
  
 				<i class="fa fa-plus-circle"></i>
 				</span>
 					<span>New Requests</span>
-			</router-link>
+				</router-link>
 			</p>
 		</div>
 		<div class="tabs is-boxed is-small">
 			<ul>
-				<li @click="showLeaveBalances=false"  :class="{'is-active':showLeaveBalances==false}"><a>My Leave Requests</a></li>
-				<li @click="showLeaveBalances=true"  :class="{'is-active':showLeaveBalances==true}"><a>My Leave Balances</a></li>
+				<li @click="showLeaveBalances=false" :class="{'is-active':showLeaveBalances==false}"><a>My Leave
+					Requests</a></li>
+				<li @click="showLeaveBalances=true" :class="{'is-active':showLeaveBalances==true}"><a>My Leave
+					Balances</a></li>
 			</ul>
 		</div>
 		<div class="columns">
-			<div v-if="showLeaveBalances==false"  class="column is-12">
-				<div class="card" ref="leaveRequests">
+			<div v-if="showLeaveBalances==false" class="column is-12">
+				<EmptyState v-if="showEmptyState">
+					<h4>Leave requests not found</h4>
+				</EmptyState>
+				<div v-else class="card" ref="leaveRequests">
 					<div class="card-content card-simple is-size-7">
 						<div class="content">
 							<table class="table  is-hoverable">
@@ -52,7 +58,8 @@
 								</tr>
 								</thead>
 								<tbody>
-								<tr is="UserLeaveRequestItem" v-for="leaveRequest in leaveRequests" :leave-request="leaveRequest" :key="leaveRequest.id">
+								<tr is="UserLeaveRequestItem" v-for="leaveRequest in leaveRequests"
+									:leave-request="leaveRequest" :key="leaveRequest.id">
 								</tr>
 								</tbody>
 								<tfoot>
@@ -82,13 +89,15 @@
 <script>
     import LeaveBalanceCard from "./LeaveBalanceCard.vue"
     import Paginator from "../common/paginator/Paginator"
-	import UserLeaveRequestItem from "./UserLeaveRequestItem"
+    import UserLeaveRequestItem from "./UserLeaveRequestItem"
+    import EmptyState from "../common/EmptyState"
 
     export default {
         components: {
             LeaveBalanceCard,
             Paginator,
-            UserLeaveRequestItem
+            UserLeaveRequestItem,
+            EmptyState
         },
         data() {
             return {
@@ -97,7 +106,8 @@
                 pageable: false,
                 pageSize: 10,
                 page: 0,
-				showLeaveBalances:false
+                loaded: false,
+                showLeaveBalances: false
             }
         },
         created() {
@@ -119,6 +129,7 @@
                     loadingComponent.close();
                     vm.leaveRequests = resp.data.content;
                     vm.pageable = resp.data;
+                    vm.loaded = true;
                 }, error => {
                     loadingComponent.close();
                 })
@@ -135,6 +146,11 @@
                 this.page = 0;
                 this.pageSize = pageSize;
                 this.getUserLeaveRequests();
+            }
+        },
+        computed: {
+            showEmptyState() {
+                return this.loaded && this.leaveRequests.length <= 0;
             }
         },
         filters: {
@@ -156,8 +172,8 @@
 	/*}*/
 	
 	
-	 /*.card-simple:hover {*/
-		/* box-shadow: 0.5rem 1.5rem 1rem rgba(120,130,140,0.13) !important;*/
-		/* transition: all 0.5s ease-in-out;*/
-	 /*}*/
+	/*.card-simple:hover {*/
+	/* box-shadow: 0.5rem 1.5rem 1rem rgba(120,130,140,0.13) !important;*/
+	/* transition: all 0.5s ease-in-out;*/
+	/*}*/
 </style>

@@ -17,8 +17,7 @@ public class LeaveRequestHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(value = EnumType.STRING)
-    private LeaveStatuses leaveStatuses;
+    private String leaveStatuses;
     @Column(name = "performed_by")
     private Long performedBy;
     @OneToOne
@@ -44,11 +43,11 @@ public class LeaveRequestHistory {
         return this;
     }
 
-    public LeaveStatuses getLeaveStatuses() {
+    public String getLeaveStatuses() {
         return leaveStatuses;
     }
 
-    public LeaveRequestHistory setLeaveStatuses(LeaveStatuses leaveStatuses) {
+    public LeaveRequestHistory setLeaveStatuses(String leaveStatuses) {
         this.leaveStatuses = leaveStatuses;
         return this;
     }

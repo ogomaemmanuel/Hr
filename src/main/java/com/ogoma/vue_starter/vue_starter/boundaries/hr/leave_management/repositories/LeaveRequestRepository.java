@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.repositories;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums.LeaveStatuses;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,4 +31,9 @@ public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long
     @Nullable
     @Query(value = "select (lt.number_of_days-coalesce(sum(lr.number_of_days),0)) leaveBalance from leave_requests lr left join leave_types lt on lr.leave_type_id=lt.id where lr.applicant_user_id=?#{ principal?.id } and lr.leave_type_id=?1 and year(now())=year(lr.created_at) group by leave_type_id",nativeQuery = true)
     public Long currentUserLeaveBalanceByLeaveTypeId( Long leaveTypeId);
+    @Query(value = "Select le.* from leave_requests le left join staffs s on le.in_place=s.id where le.leave_statuses in (?1) and s.user_id=?#{ principal?.id } and le.applicant_user_id !=?#{ principal?.id }",
+            nativeQuery = true,
+            countQuery = "Select le.* from leave_requests le left join staffs s on le.in_place=s.id where le.leave_statuses in ?#{#leaveStatuses} and s.user_id=?#{ principal?.id } and le.applicant_user_id !=?#{ principal?.id }"
+    )
+    public Page<LeaveRequest> getLeaveRequestToApprove(List<String> leaveStatuses,Pageable pageable);
 }

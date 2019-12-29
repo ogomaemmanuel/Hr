@@ -166,6 +166,8 @@
 						</a>
 					</li>
 				</ul>
+				
+				
 			
 					<div class="side-bar-footer bg-gray-800 left-0  right-0 h-8 absolute bottom-0">
 					<div class="flex justify-end mr-4">

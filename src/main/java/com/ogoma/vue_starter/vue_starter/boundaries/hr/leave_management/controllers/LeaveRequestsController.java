@@ -25,7 +25,6 @@ import java.util.Map;
 public class LeaveRequestsController {
     private final LeaveRequestService leaveRequestService;
     private final LeaveRequestModelValidator leaveRequestModelValidator;
-
     @Autowired
     public LeaveRequestsController(LeaveRequestService leaveRequestService,
                                    LeaveRequestModelValidator leaveRequestModelValidator) {
@@ -65,6 +64,11 @@ public class LeaveRequestsController {
     public ResponseEntity<?> withdrawLeave(@PathVariable("leaveId") Long leaveId){
       ResponseModel responseModel =  leaveRequestService.withdrawRequest(leaveId);
       return ResponseEntity.ok(responseModel);
+    }
+    @RequestMapping(value = "api/leave-request-approvals",method = RequestMethod.GET)
+    public ResponseEntity<?> getLeaveRequestToApprove(PagedDataRequest pagedDataRequest){
+        Page<LeaveRequest> leaveRequests =  leaveRequestService.getLeaveRequestToApprove(pagedDataRequest);
+      return ResponseEntity.ok(leaveRequests);
     }
 
 }

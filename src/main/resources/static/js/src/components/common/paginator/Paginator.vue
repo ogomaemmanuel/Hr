@@ -58,9 +58,13 @@
             },
             pageNumber() {
                 if (this.paginationData) {
+                    if (this.paginationData.totalPages == 0) {
+                        return 0;
+                    }
                     if (this.paginationData.last) {
                         return ((this.paginationData.totalPages - 1) * this.paginationData.size) + 1;
                     }
+
                     return (this.paginationData.number * this.paginationData.size) + 1;
                 }
             }

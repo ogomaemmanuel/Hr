@@ -16,9 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -40,10 +42,10 @@ public class LeaveRequestService {
         LeaveRequestHistory leaveRequestHistory = new
                 LeaveRequestHistory();
         leaveRequestHistory.setPerformedBy(userId);
-        leaveRequestHistory.setLeaveStatuses(LeaveStatuses.NEW);
+        leaveRequestHistory.setLeaveStatuses(LeaveStatuses.NEW.name());
         LeaveRequest leaveRequest = new LeaveRequest();
         BeanUtils.copyProperties(leaveRequestModel, leaveRequest);
-        leaveRequest.setLeaveStatuses(LeaveStatuses.NEW);
+        leaveRequest.setLeaveStatuses(LeaveStatuses.NEW.name());
         leaveRequest.setApplicantId(userId);
         leaveRequest.addLeaveHistory(leaveRequestHistory);
         leaveRequestRepository.save(leaveRequest);
@@ -81,11 +83,11 @@ public class LeaveRequestService {
     public ResponseModel withdrawRequest(Long leaveId) {
         Long userId = SecurityUtils.getCurrentUserDetails().getId();
         LeaveRequest leaveRequest = this.leaveRequestRepository.findById(leaveId).orElse(null);
-        leaveRequest.setLeaveStatuses(LeaveStatuses.WITHDRAWN);
+        leaveRequest.setLeaveStatuses(LeaveStatuses.WITHDRAWN.name());
         LeaveRequestHistory leaveRequestHistory = new
                 LeaveRequestHistory();
         leaveRequestHistory.setPerformedBy(userId);
-        leaveRequestHistory.setLeaveStatuses(LeaveStatuses.WITHDRAWN);
+        leaveRequestHistory.setLeaveStatuses(LeaveStatuses.WITHDRAWN.name());
         leaveRequest.addLeaveHistory(leaveRequestHistory);
         this.leaveRequestRepository.save(leaveRequest);
         LeaveRequestEventData leaveRequestEventData = new LeaveRequestEventData(
@@ -97,5 +99,13 @@ public class LeaveRequestService {
                 .setData(leaveRequest)
                 .setMessage("leave successfully withdrawn");
         return responseModel;
+    }
+
+    public Page<LeaveRequest> getLeaveRequestToApprove(PagedDataRequest pagedDataRequest) {
+        Pageable pageable= PageRequest.of(pagedDataRequest.getPage(),pagedDataRequest.getPageSize());
+        List<String> leaveStatuses = new ArrayList<>();
+        leaveStatuses.add(LeaveStatuses.NEW.name());
+        Page<LeaveRequest> leaveRequests = this.leaveRequestRepository.getLeaveRequestToApprove(leaveStatuses,pageable);
+        return leaveRequests;
     }
 }

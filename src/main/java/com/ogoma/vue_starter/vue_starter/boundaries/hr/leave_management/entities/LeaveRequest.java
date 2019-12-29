@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,9 +32,11 @@ public class LeaveRequest {
     @Column(name = "leave_type_id")
     private Long leaveTypeId;
     @CreatedDate
-    private LocalDate createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @LastModifiedDate
-    private LocalDate updatedAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
 
     @OneToOne
     @JoinColumn(name = "applicant_user_id", updatable = false, insertable = false)
@@ -47,8 +50,8 @@ public class LeaveRequest {
     @OneToMany(mappedBy = "leaveRequest",cascade = CascadeType.ALL)
     @JsonIgnoreProperties("leaveRequest")
     private Set<LeaveRequestHistory> leaveRequestHistory = new HashSet<>();
-    @Enumerated(value = EnumType.STRING)
-    private LeaveStatuses leaveStatuses;
+
+    private String leaveStatuses;
 
     public Long getId() {
         return id;
@@ -95,11 +98,11 @@ public class LeaveRequest {
         return this;
     }
 
-    public LeaveStatuses getLeaveStatuses() {
+    public String getLeaveStatuses() {
         return leaveStatuses;
     }
 
-    public LeaveRequest setLeaveStatuses(LeaveStatuses leaveStatuses) {
+    public LeaveRequest setLeaveStatuses(String leaveStatuses) {
         this.leaveStatuses = leaveStatuses;
         return this;
     }
@@ -158,20 +161,20 @@ public class LeaveRequest {
         return this;
     }
 
-    public LocalDate getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public LeaveRequest setCreatedAt(LocalDate createdAt) {
+    public LeaveRequest setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
         return this;
     }
 
-    public LocalDate getUpdatedAt() {
+    public Date getUpdatedAt() {
         return updatedAt;
     }
 
-    public LeaveRequest setUpdatedAt(LocalDate updatedAt) {
+    public LeaveRequest setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
         return this;
     }
