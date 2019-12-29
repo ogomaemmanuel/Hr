@@ -67,7 +67,7 @@ public class LeaveRequestsController {
     }
     @RequestMapping(value = "api/leave-request-approvals",method = RequestMethod.GET)
     public ResponseEntity<?> getLeaveRequestToApprove(PagedDataRequest pagedDataRequest){
-        Page<LeaveRequest> leaveRequests =  leaveRequestService.getLeaveRequestToApprove(pagedDataRequest);
+        Page<Map<String,String>> leaveRequests =  leaveRequestService.getLeaveRequestToApprove(pagedDataRequest);
       return ResponseEntity.ok(leaveRequests);
     }
 

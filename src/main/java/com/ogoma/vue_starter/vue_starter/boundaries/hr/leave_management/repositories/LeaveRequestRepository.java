@@ -31,9 +31,9 @@ public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long
     @Nullable
     @Query(value = "select (lt.number_of_days-coalesce(sum(lr.number_of_days),0)) leaveBalance from leave_requests lr left join leave_types lt on lr.leave_type_id=lt.id where lr.applicant_user_id=?#{ principal?.id } and lr.leave_type_id=?1 and year(now())=year(lr.created_at) group by leave_type_id",nativeQuery = true)
     public Long currentUserLeaveBalanceByLeaveTypeId( Long leaveTypeId);
-    @Query(value = "Select le.* from leave_requests le left join staffs s on le.in_place=s.id where le.leave_statuses in (?1) and s.user_id=?#{ principal?.id } and le.applicant_user_id !=?#{ principal?.id }",
+    @Query(value = "Select le.id,le.start_date startDate,le.end_date endDate,le.number_of_days numberOfDays, le.leave_statuses status,lt.name  leaveType,CONCAT_WS(applicant.first_name,applicant.last_name) employee  from leave_requests le left join staffs s on le.in_place=s.id left join leave_types  lt on le.leave_type_id=lt.id left join users applicant on le.applicant_user_id=applicant.id where le.leave_statuses in (?1) and s.user_id=?#{ principal?.id } and le.applicant_user_id !=?#{ principal?.id }",
             nativeQuery = true,
             countQuery = "Select le.* from leave_requests le left join staffs s on le.in_place=s.id where le.leave_statuses in ?#{#leaveStatuses} and s.user_id=?#{ principal?.id } and le.applicant_user_id !=?#{ principal?.id }"
     )
-    public Page<LeaveRequest> getLeaveRequestToApprove(List<String> leaveStatuses,Pageable pageable);
+    public Page<Map<String,String>> getLeaveRequestToApprove(List<String> leaveStatuses,Pageable pageable);
 }

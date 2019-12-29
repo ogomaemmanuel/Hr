@@ -18,9 +18,14 @@
 						role="button">
 				</i>
 				<b-dropdown-item :disabled="disableWithdrawOption" value="withdraw" @click="confirmLeaveWithdrawal"
-								 aria-role="listitem">Withdraw
+								 aria-role="listitem">
+					<span class="icon"><i class="fa fa-undo"></i></span>
+					Withdraw
 				</b-dropdown-item>
-				<b-dropdown-item :disabled="disableEditOption" value="edit" aria-role="listitem">Edit</b-dropdown-item>
+				<b-dropdown-item :disabled="disableEditOption" value="edit" aria-role="listitem">
+					<span class="icon"><i class="fa fa-pencil"></i></span>
+					Edit
+				</b-dropdown-item>
 			</b-dropdown>
 		</td>
 	</tr>

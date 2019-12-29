@@ -7,22 +7,13 @@
 				<th>Start Date</th>
 				<th>End Date</th>
 				<th>Days</th>
-				<th>Type</th>
 				<th>Leave Type</th>
 				<th>Status</th>
 				<th>Action</th>
 			</tr>
 			</thead>
 			<tbody>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+			<tr v-for="leaveRequest in leaveRequests" is="LeaveApprovalItem" :leaveRequest="leaveRequest">
 			</tr>
 			</tbody>
 			<tfoot>
@@ -42,10 +33,11 @@
 </template>
 <script>
     import Paginator from "../../common/paginator/Paginator"
-
+    import LeaveApprovalItem from "./LeaveApprovalItem.vue"
     export default {
         components: {
-            Paginator
+            Paginator,
+            LeaveApprovalItem
         },
         data() {
             return {
