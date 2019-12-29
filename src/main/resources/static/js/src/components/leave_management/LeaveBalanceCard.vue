@@ -1,10 +1,10 @@
 <template>
-	<div  class="card">
+	<div  class="bg-white">
 		<b-notification class="bg-white p-0" ref="leaveBalanceCard" :closable="false">
 		<div class="card-content">
 			<div  class="content">
 				<h4>My Leave Balances</h4>
-				<table class="table w-full">
+				<table class="table w-full is-hoverable">
 					<thead class="font-thin">
 					<tr>
 						<th>
@@ -33,9 +33,14 @@
 	</div>
 </template>
 <script>
+	import EmptyState from "../common/EmptyState"
     export default {
+	    components:{
+            EmptyState
+		},
         data() {
             return {
+                loaded:false,
                 leaveBalances: []
             }
         },
