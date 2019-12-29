@@ -26,7 +26,22 @@
 		<div class="columns">
 			<div v-if="showLeaveBalances==false" class="column is-12">
 				<EmptyState v-if="showEmptyState">
-					<h4>Leave requests not found</h4>
+					<h4 class="ml-3">Leave requests not found</h4>
+					<div class="flex justify-center">
+						<p class="buttons mt-5">
+							<router-link
+									to="leave-create"
+									tag="button"
+									class="button  is-rounded is-small">
+				<span class="icon">
+ 
+				<i class="fa fa-plus-circle"></i>
+				</span>
+								<span>New Requests</span>
+							</router-link>
+						</p>
+					</div>
+					
 				</EmptyState>
 				<div v-else class="card" ref="leaveRequests">
 					<div class="card-content card-simple is-size-7">
