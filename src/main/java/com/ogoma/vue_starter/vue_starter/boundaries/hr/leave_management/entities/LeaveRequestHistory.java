@@ -13,6 +13,8 @@ import java.util.Date;
 @Entity
 @Table(name = "leave_requests_history")
 @EntityListeners(AuditingEntityListener.class)
+@NamedEntityGraph(name = "LeaveRequestHistory.performed_by",
+        attributeNodes = @NamedAttributeNode("user"))
 public class LeaveRequestHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +22,7 @@ public class LeaveRequestHistory {
     private String leaveStatuses;
     @Column(name = "performed_by")
     private Long performedBy;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "performed_by", insertable = false, updatable = false)
     private User user;
     @Temporal(TemporalType.TIMESTAMP)

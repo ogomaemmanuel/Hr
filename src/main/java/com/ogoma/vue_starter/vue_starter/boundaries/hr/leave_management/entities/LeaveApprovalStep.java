@@ -2,12 +2,15 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entitie
 
 import javax.persistence.*;
 
+//@Entity
+//@Table(name ="leave_approval_steps" )
 public class LeaveApprovalStep {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(value = EnumType.STRING)
-    private LeaveApprovalStepsEnum leaveApprovalStepsEnum;
+    private String name;
+    private Integer order;
+    private boolean isActive;
 
     public Long getId() {
         return id;
@@ -18,12 +21,30 @@ public class LeaveApprovalStep {
         return this;
     }
 
-    public LeaveApprovalStepsEnum getLeaveApprovalStepsEnum() {
-        return leaveApprovalStepsEnum;
+    public String getName() {
+        return name;
     }
 
-    public LeaveApprovalStep setLeaveApprovalStepsEnum(LeaveApprovalStepsEnum leaveApprovalStepsEnum) {
-        this.leaveApprovalStepsEnum = leaveApprovalStepsEnum;
+    public LeaveApprovalStep setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public LeaveApprovalStep setOrder(Integer order) {
+        this.order = order;
+        return this;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public LeaveApprovalStep setActive(boolean active) {
+        isActive = active;
         return this;
     }
 }

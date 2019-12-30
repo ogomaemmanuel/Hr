@@ -6,6 +6,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.events.LeaveRequestEvent;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.events.LeaveRequestEventData;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.models.LeaveRequestModel;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.repositories.LeaveHistoryRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.repositories.LeaveRequestRepository;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -27,12 +28,14 @@ import java.util.Map;
 @Service
 public class LeaveRequestService {
     private final LeaveRequestRepository leaveRequestRepository;
+    private final LeaveHistoryRepository leaveHistoryRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final HttpServletRequest httpServletRequest;
 
     @Autowired
-    public LeaveRequestService(LeaveRequestRepository leaveRequestRepository, ApplicationEventPublisher applicationEventPublisher, HttpServletRequest httpServletRequest) {
+    public LeaveRequestService(LeaveRequestRepository leaveRequestRepository, LeaveHistoryRepository leaveHistoryRepository, ApplicationEventPublisher applicationEventPublisher, HttpServletRequest httpServletRequest) {
         this.leaveRequestRepository = leaveRequestRepository;
+        this.leaveHistoryRepository = leaveHistoryRepository;
         this.applicationEventPublisher = applicationEventPublisher;
         this.httpServletRequest = httpServletRequest;
     }
@@ -113,5 +116,50 @@ public class LeaveRequestService {
         Map<String, String> leaveDetails =
                 this.leaveRequestRepository.findLeaveRequestDetailsByLeaveId(id);
         return leaveDetails;
+    }
+
+    public List<LeaveRequestHistory> getLeaveRequestHistoryByLeaveId(Long leaveId) {
+        List<LeaveRequestHistory> leaveRequestHistories = this.leaveHistoryRepository.findAllByLeaveRequest_Id(leaveId);
+        return leaveRequestHistories;
+    }
+
+    public ResponseModel approveLeaveByLeaveId(Long leaveId) {
+        ResponseModel responseModel = new ResponseModel();
+        LeaveRequest leaveRequest = this.leaveRequestRepository.findById(leaveId).orElse(null);
+        if (leaveRequest == null) {
+            return responseModel.setMessage("Leave record not found");
+        }
+        if (leaveRequest.getLeaveStatuses().equals(LeaveStatuses.NEW.name())) {
+            responseModel = processInPlaceApproval(leaveRequest);
+            return responseModel;
+        }
+
+        return responseModel;
+    }
+
+    private ResponseModel processInPlaceApproval(LeaveRequest leaveRequest) {
+        ResponseModel responseModel = new ResponseModel();
+        Long userId = SecurityUtils.getCurrentUserDetails().getId();
+        if (userId.compareTo(leaveRequest.getInPlace().getUser().getId()) == 0) {
+            LeaveRequestHistory leaveRequestHistory = new LeaveRequestHistory();
+            leaveRequestHistory.setPerformedBy(userId);
+            leaveRequestHistory.setLeaveStatuses(LeaveStatuses.APPROVED.name());
+            leaveRequest.setLeaveStatuses(LeaveStatuses.APPROVED.name());
+            leaveRequest.addLeaveHistory(leaveRequestHistory);
+            this.leaveRequestRepository.save(leaveRequest);
+            responseModel
+                    .setMessage("Leave request approval successful")
+                    .setStatus("success");
+            return responseModel;
+        }
+        responseModel
+                .setStatus("fail")
+                .setMessage("Leave not approved by in place employee");
+        return responseModel;
+    }
+
+    private ResponseModel processSuppervisorApproval(){
+        ResponseModel responseModel = new ResponseModel();
+        return
     }
 }

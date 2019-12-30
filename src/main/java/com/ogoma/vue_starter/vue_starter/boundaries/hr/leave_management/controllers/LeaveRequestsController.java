@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.controllers;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequest;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequestHistory;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.models.LeaveRequestModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.services.LeaveRequestService;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.validators.LeaveRequestModelValidator;
@@ -25,6 +26,7 @@ import java.util.Map;
 public class LeaveRequestsController {
     private final LeaveRequestService leaveRequestService;
     private final LeaveRequestModelValidator leaveRequestModelValidator;
+
     @Autowired
     public LeaveRequestsController(LeaveRequestService leaveRequestService,
                                    LeaveRequestModelValidator leaveRequestModelValidator) {
@@ -51,8 +53,8 @@ public class LeaveRequestsController {
 
     @RequestMapping(value = "api/user/leave-requests/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getLeaveRquestDetails(@PathVariable Long id) {
-       Map<String,String> leaveRequests = leaveRequestService.getLeaveDetails(id);
-       return ResponseEntity.ok(leaveRequests);
+        Map<String, String> leaveRequests = leaveRequestService.getLeaveDetails(id);
+        return ResponseEntity.ok(leaveRequests);
     }
 
     @RequestMapping(value = "api/leave-requests/in-place", method = RequestMethod.GET)
@@ -66,15 +68,30 @@ public class LeaveRequestsController {
         List<Map<String, String>> leaveBalances = leaveRequestService.getLoggedInUserLeaveBalances();
         return ResponseEntity.ok(leaveBalances);
     }
-    @RequestMapping(value = "api/user/leave-requests/withdrawal/{leaveId}",method = RequestMethod.PUT)
-    public ResponseEntity<?> withdrawLeave(@PathVariable("leaveId") Long leaveId){
-      ResponseModel responseModel =  leaveRequestService.withdrawRequest(leaveId);
-      return ResponseEntity.ok(responseModel);
+
+    @RequestMapping(value = "api/user/leave-requests/withdrawal/{leaveId}", method = RequestMethod.PUT)
+    public ResponseEntity<?> withdrawLeave(@PathVariable("leaveId") Long leaveId) {
+        ResponseModel responseModel = leaveRequestService.withdrawRequest(leaveId);
+        return ResponseEntity.ok(responseModel);
     }
-    @RequestMapping(value = "api/leave-request-approvals",method = RequestMethod.GET)
-    public ResponseEntity<?> getLeaveRequestToApprove(PagedDataRequest pagedDataRequest){
-        Page<Map<String,String>> leaveRequests =  leaveRequestService.getLeaveRequestToApprove(pagedDataRequest);
-      return ResponseEntity.ok(leaveRequests);
+
+    @RequestMapping(value = "api/leave-request-approvals", method = RequestMethod.GET)
+    public ResponseEntity<?> getLeaveRequestToApprove(PagedDataRequest pagedDataRequest) {
+        Page<Map<String, String>> leaveRequests = leaveRequestService.getLeaveRequestToApprove(pagedDataRequest);
+        return ResponseEntity.ok(leaveRequests);
     }
+
+    @RequestMapping(value = "api/leave-request-approvals/{id}", method = RequestMethod.POST)
+    public ResponseEntity<?> approveLeaveRequest(@PathVariable("id") Long leaveId) {
+        ResponseModel responseModel = leaveRequestService.approveLeaveByLeaveId(leaveId);
+        return ResponseEntity.ok(responseModel);
+    }
+
+    @RequestMapping(value = "api/leave-request-history/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getLeaveRequestHistoryByLeaveId(@PathVariable("id") Long id) {
+        List<LeaveRequestHistory> leaveRequestHistories = this.leaveRequestService.getLeaveRequestHistoryByLeaveId(id);
+        return ResponseEntity.ok(leaveRequestHistories);
+    }
+
 
 }

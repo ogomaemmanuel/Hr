@@ -38,6 +38,7 @@ public class User {
     private Set<UserRole> userRoles;
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")
+    @JsonIgnore
     private Set<PasswordReset> passwordResetList;
 
     public Long getId() {

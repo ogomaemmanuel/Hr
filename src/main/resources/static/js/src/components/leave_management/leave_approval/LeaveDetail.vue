@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="is-size-7">
 		<div class="flex justify-end">
 			<router-link tag="a" to="/leave-approvals">
 				<span class="icon">
@@ -16,7 +16,7 @@
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">Date Submitted</h4>
-					<h4 class="has-text-grey-light">{{leaveDetail.createdAt}}</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.createdAt|dateFormat}}</h4>
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">Leave Type</h4>
@@ -30,11 +30,11 @@
 			<div class="columns">
 				<div class="column">
 					<h4 class="has-text-black">Start Date</h4>
-					<h4 class="has-text-grey-light">{{leaveDetail.startDate}}</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.startDate|dateFormat}}</h4>
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">End Date</h4>
-					<h4 class="has-text-grey-light">{{leaveDetail.endDate}}</h4>
+					<h4 class="has-text-grey-light">{{leaveDetail.endDate|dateFormat}}</h4>
 				</div>
 				<div class="column">
 					<h4 class="has-text-black">Days To End Date</h4>
@@ -64,12 +64,12 @@
 				</div>
 			</div>
 			<div class="flex justify-center">
-				<button @click="confirmApproval" class="button is-primary is-small mr-5">
+				<button @click="confirmApproval" class="button is-primary is-rounded is-small mr-5">
 					<span>
 						Approve
                     </span>
 				</button>
-				<button @click="openRejectDialog" class="button is-light is-small">
+				<button @click="openRejectDialog" class="button is-rounded is-light is-small">
 					<span>
 						Reject
                     </span>
@@ -79,15 +79,21 @@
 		<div class="mt-1 bg-white">
 			<div class="tabs">
 				<ul>
-					<li><a>Leave Request History</a></li>
-					<li class="is-active"><a>Other Leave Requests</a></li>
+					<li class="is-active"><a>Leave Request History</a></li>
 				</ul>
 			</div>
 		</div>
+		<LeaveRequestHistoryList></LeaveRequestHistoryList>
 	</div>
 </template>
 <script>
+    import LeaveRequestHistoryList from "./LeaveRequestHistoryList.vue"
+    import {Message} from "element-ui"
+
     export default {
+        components: {
+            LeaveRequestHistoryList
+        },
         data() {
             return {
                 leaveDetail: {},
@@ -115,40 +121,40 @@
             confirmApproval() {
                 this.$buefy.dialog.confirm({
                     title: 'Leave Approve',
-                    confirmText:"Approve",
+                    confirmText: "Approve",
                     message: 'Are you sure want to approve for this leave?',
-                    onConfirm: () => this.$buefy.toast.open('User confirmed')
+                    onConfirm: () => this.approveLeave()
                 })
             },
-			openRejectDialog(){
-                    this.$buefy.dialog.prompt({
-                        message: `Add Comment (Optional)`,
-                        confirmText:"Proceed",
-                        inputAttrs: {
-                            placeholder: 'e.g. Walter',
-                            maxlength: 10
-                        },
-                        trapFocus: true,
-                        onConfirm: (value) => this.$buefy.toast.open(`Your name is: ${value}`)
-                    })
-                
-			},
+            openRejectDialog() {
+                this.$buefy.dialog.prompt({
+                    message: `Add Comment (Optional)`,
+                    confirmText: "Proceed",
+                    inputAttrs: {
+                        placeholder: 'e.g. Walter',
+                        required: false
+                    },
+                    trapFocus: true,
+                    onConfirm: (value) => this.$buefy.toast.open(`Your name is: ${value}`)
+                })
+
+            },
             approveLeave() {
-                axios.post(`/api/user/leave-approvals/accept/${this.leaveId}`).then(resp => {
-                    this.$buefy.toast.open('User confirmed')
+                axios.post(`/api/leave-request-approvals/${this.leaveId}`).then(resp => {
+                    Message.success(resp.data.message);
                 }, error => {
-                
+
                 })
             },
             rejectLeaveApproval(comment) {
-                axios.post(`/api/user/leave-approvals/accept/${this.leaveId}`,{
-                    params:{
-                        comment:comment
-					}
-				}).then(resp => {
+                axios.post(`/api/user/leave-approvals/accept/${this.leaveId}`, {
+                    params: {
+                        comment: comment
+                    }
+                }).then(resp => {
                     this.$buefy.toast.open('User confirmed')
                 }, error => {
-                
+
                 })
             }
         },
@@ -161,6 +167,11 @@
             },
             balanceAfterApproval() {
                 return this.leaveBalance - this.leaveDetail.numberOfDays;
+            }
+        },
+        filters: {
+            dateFormat(date) {
+                return moment(date).format("DD-MM-YYYY")
             }
         }
     }

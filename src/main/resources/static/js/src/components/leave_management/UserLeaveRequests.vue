@@ -44,8 +44,8 @@
 				</EmptyState>
 				<div v-else class="card" ref="leaveRequests">
 					<div class="card-content card-simple is-size-7">
-						<div class="content">
-							<table class="table  is-hoverable">
+						<div class="content b-table">
+							<table class="table has-mobile-cards is-hoverable">
 								<thead class="font-thin">
 								<tr>
 									<th>

@@ -38,16 +38,16 @@ public class LeaveRequest {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "applicant_user_id", updatable = false, insertable = false)
     private User applicant;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "in_place", insertable = false, updatable = false)
     private Staff inPlace;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leave_type_id", insertable = false, updatable = false)
     private LeaveType leaveType;
-    @OneToMany(mappedBy = "leaveRequest",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "leaveRequest",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JsonIgnoreProperties("leaveRequest")
     private Set<LeaveRequestHistory> leaveRequestHistory = new HashSet<>();
 
