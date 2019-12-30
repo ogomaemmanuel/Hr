@@ -133,6 +133,10 @@ public class LeaveRequestService {
             responseModel = processInPlaceApproval(leaveRequest);
             return responseModel;
         }
+        if (leaveRequest.getLeaveStatuses().equals(LeaveStatuses.APPROVED.name())) {
+            responseModel = processSupervisorApproval(leaveRequest);
+            return responseModel;
+        }
 
         return responseModel;
     }
@@ -157,9 +161,8 @@ public class LeaveRequestService {
                 .setMessage("Leave not approved by in place employee");
         return responseModel;
     }
-
-    private ResponseModel processSuppervisorApproval(){
+    private ResponseModel processSupervisorApproval(LeaveRequest leaveRequest){
         ResponseModel responseModel = new ResponseModel();
-        return
+        return responseModel;
     }
 }
