@@ -1,6 +1,8 @@
-package com.ogoma.vue_starter.vue_starter.entities;
+package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 
 import javax.persistence.*;
 

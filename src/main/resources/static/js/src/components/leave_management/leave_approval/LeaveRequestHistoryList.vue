@@ -1,5 +1,5 @@
 <template>
-	<div class="min-h-64">
+	<div class="bg-white">
 		<EmptyState v-if="showEmptyState" >
 			<h4 class="ml-10">Leave request has no history</h4>
 		</EmptyState>

@@ -133,7 +133,7 @@ public class LeaveRequestService {
             responseModel = processInPlaceApproval(leaveRequest);
             return responseModel;
         }
-        if (leaveRequest.getLeaveStatuses().equals(LeaveStatuses.APPROVED.name())) {
+        if (leaveRequest.getLeaveStatuses().equals(LeaveStatuses.IN_PLACE_ACCEPTED.name())) {
             responseModel = processSupervisorApproval(leaveRequest);
             return responseModel;
         }
@@ -142,6 +142,26 @@ public class LeaveRequestService {
     }
 
     private ResponseModel processInPlaceApproval(LeaveRequest leaveRequest) {
+        ResponseModel responseModel = new ResponseModel();
+        Long userId = SecurityUtils.getCurrentUserDetails().getId();
+        if (userId.compareTo(leaveRequest.getInPlace().getUser().getId()) == 0) {
+            LeaveRequestHistory leaveRequestHistory = new LeaveRequestHistory();
+            leaveRequestHistory.setPerformedBy(userId);
+            leaveRequestHistory.setLeaveStatuses(LeaveStatuses.IN_PLACE_ACCEPTED.name());
+            leaveRequest.setLeaveStatuses(LeaveStatuses.IN_PLACE_ACCEPTED.name());
+            leaveRequest.addLeaveHistory(leaveRequestHistory);
+            this.leaveRequestRepository.save(leaveRequest);
+            responseModel
+                    .setMessage("Leave request approval successful")
+                    .setStatus("success");
+            return responseModel;
+        }
+        responseModel
+                .setStatus("fail")
+                .setMessage("Leave not approved by in place employee");
+        return responseModel;
+    }
+    private ResponseModel processSupervisorApproval(LeaveRequest leaveRequest){
         ResponseModel responseModel = new ResponseModel();
         Long userId = SecurityUtils.getCurrentUserDetails().getId();
         if (userId.compareTo(leaveRequest.getInPlace().getUser().getId()) == 0) {
@@ -159,10 +179,6 @@ public class LeaveRequestService {
         responseModel
                 .setStatus("fail")
                 .setMessage("Leave not approved by in place employee");
-        return responseModel;
-    }
-    private ResponseModel processSupervisorApproval(LeaveRequest leaveRequest){
-        ResponseModel responseModel = new ResponseModel();
         return responseModel;
     }
 }

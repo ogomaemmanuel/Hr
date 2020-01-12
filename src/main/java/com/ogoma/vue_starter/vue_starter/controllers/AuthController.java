@@ -1,6 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.controllers;
 
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.PasswordResetRequest;

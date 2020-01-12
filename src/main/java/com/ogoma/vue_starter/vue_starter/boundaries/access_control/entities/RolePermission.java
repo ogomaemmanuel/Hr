@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.entities;
+package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

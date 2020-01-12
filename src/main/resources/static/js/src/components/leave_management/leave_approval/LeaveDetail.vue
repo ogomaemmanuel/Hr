@@ -1,5 +1,5 @@
 <template>
-	<div class="is-size-7">
+	<div class="is-size-7 h-full">
 		<div class="flex justify-end">
 			<router-link tag="a" to="/leave-approvals">
 				<span class="icon">

@@ -1,16 +1,21 @@
-package com.ogoma.vue_starter.vue_starter.entities;
+package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
+
 @Entity
-@Table(name = "verification_tokens")
-public class VerificationToken {
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "password_resets")
+public class PasswordReset {
+
     private static final int EXPIRATION = 60 * 24;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +38,10 @@ public class VerificationToken {
     private String purpose;
 
 
-    public VerificationToken() {
+    public PasswordReset() {
     }
 
-    public VerificationToken(final String token, final User user) {
+    public PasswordReset(final String token, final User user) {
         super();
         this.token = token;
         this.user = user;
@@ -116,5 +121,6 @@ public class VerificationToken {
         this.token = token;
         this.expiresOn = calculateExpiryDate(EXPIRATION);
     }
+
 
 }
