@@ -1,9 +1,8 @@
 <template>
 	<div>
 		<div class="pb-2 flex justify-end">
-			<router-link
-					to="leave-create"
-					tag="button"
+			<button
+					@click="showCreateDialog=true"
 					class="button is-rounded is-small">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
@@ -11,7 +10,7 @@
 				<span>
 					 Add New
 				</span>
-			</router-link>
+			</button>
 		</div>
 		<div class="columns is-size-7">
 			<div class="column is-12">
@@ -53,12 +52,24 @@
 				</div>
 			</div>
 		</div>
+		<ModalTemplate @modalClosed="showCreateDialog=false" v-if="showCreateDialog">
+			<slot name="modal-content">
+				<HolidayCreateForm slot="modal-content"></HolidayCreateForm>
+			</slot>
+		</ModalTemplate>
 	</div>
 </template>
 <script>
+	import ModalTemplate from "../common/ModalTemplate"
+	import HolidayCreateForm from "./HolidayCreateForm.vue"
     export default {
+	    components:{
+            ModalTemplate,
+            HolidayCreateForm
+		},
         data() {
             return {
+                showCreateDialog:false,
                 holidays: []
             }
         },

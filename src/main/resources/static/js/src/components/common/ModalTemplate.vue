@@ -1,13 +1,15 @@
 <template>
 	<div ref="modal" class="modal">
 		<div ref="modalBackground" class="modal-background"></div>
-		<div ref="modalContent" class="modal-content">
-			<slot name="modal-content">
-			
-			</slot>
+		<div ref="modalContent" :style="{'max-width': width + 'px'}" class="modal-content">
+			<div class="box">
+				<slot name="modal-content">
+				
+				</slot>
+			</div>
 		</div>
 		<template v-if="showCloseButton">
-			<button @click="closeModal" class="modal-close is-large" aria-label="close"></button>
+			<button @click.stop="closeModal" class="modal-close is-large" aria-label="close"></button>
 		</template>
 	</div>
 </template>
@@ -18,6 +20,10 @@
             ModalMixin
         ],
         props: {
+            width:{
+                required:false,
+                default: 640
+            },
             showCloseButton: {
                 type: Boolean,
                 default: true
