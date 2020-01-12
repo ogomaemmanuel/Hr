@@ -59,7 +59,8 @@
 						<!--						</a>-->
 						
 						<figure class="image is-fullwidth navbar-link">
-							<img class="is-rounded profile-image" src="https://bulma.io/images/placeholders/128x128.png">
+							<img class="is-rounded profile-image"
+								 src="https://bulma.io/images/placeholders/128x128.png">
 						</figure>
 						
 						<div class="navbar-dropdown is-right">
@@ -82,10 +83,9 @@
 			</div>
 		</nav>
 		
-		<section class="main-content columns is-fullheight">
+		<section class="main-content columns  is-fullheight">
 			
-			<aside class="column is-2 is-narrow-mobile is-fixed is-fullheight section is-hidden-mobile">
-				<p class="menu-label is-hidden-touch">Navigation</p>
+			<aside class="column is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile relative section is-hidden-mobile">
 				<ul class="menu-list">
 					<li>
 						<a href="#" class="">
@@ -93,41 +93,68 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="is-active">
-							<span class="icon"><i class="fa fa-table"></i></span> Access Control
+						<a href="#" class="">
+							<span class="icon"><i class="fa fa-id-card"></i></span> Access Control
 						</a>
 						
-						<ul>
+						<ul class="mr-0 pr-0 border-l-0">
 							<li>
 								<router-link to="/users">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Users
+									<span>Users</span>
 								</router-link>
 							</li>
 							<li>
 								<a href="#">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Roles
+									<span>Roles</span>
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Permissions
+									<span>Permissions</span>
 								</a>
 							</li>
 						</ul>
 					</li>
 					<li>
-						<a href="#" class="is-active">
-							<span class="icon"><i class="fa fa-table"></i></span> File Management
+						<a href="#" class="">
+							<span class="icon"><i class="fa fa-folder-open"></i></span> File Management
 						</a>
-						<ul>
+						<ul class="border-l-0">
 							<li>
 								<router-link to="/documents">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Manage Files
+									<span>Manage Files</span>
 								</router-link>
 							</li>
 							<li>
 								<router-link to="/documents">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> My Files
+									<span>My Files</span>
+								</router-link>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="">
+							<span class="icon"><i class="fa fa-table"></i></span> Leave Management
+						</a>
+						<ul class="border-l-0">
+							<li>
+								<router-link to="/leave">
+									<span>My Leaves</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/documents">
+									<span>In Place</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/leave-approvals">
+									<span>Leave approvals</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/holidays">
+									<span>Holidays</span>
 								</router-link>
 							</li>
 						</ul>
@@ -138,10 +165,31 @@
 						</a>
 					</li>
 				</ul>
+				
+				
+			
+					<div class="side-bar-footer bg-gray-800 left-0  right-0 h-8 absolute bottom-0">
+					<div class="flex justify-end mr-4">
+						<i><span class="fa fa-angle-left"></span></i>
+					</div>
+<!--						<div class="relative mt-5 h-full">-->
+<!--					</div>-->
+				</div>
+				
+				
 			</aside>
 			
-			<div class="container column is-10">
+			
+			<div class=" column is-10 p-10 h-screen mb-0">
+				<div class="flex items-center">
+					<button type="button" class="is-hidden-desktop toggle-mobile-nav">
+						<i class="fa fa-bars text-gray-600"></i>
+					</button>
+					<breadcrumbs></breadcrumbs>
+				</div>
+				<div class="mt-5">
 				<router-view></router-view>
+				</div>
 			</div>
 		</section>
 	</div>
@@ -162,7 +210,7 @@
             }
         },
         created() {
-            this.open();
+            // this.open();
         },
         methods: {
             open() {
@@ -174,13 +222,21 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
 	
 	.navbar-item .profile-image {
-		/*border-radius: 100%;*/
 		height: 36px;
 		width: 36px;
-		max-height:36px;
-		/*max-height: 3rem;*/
+		max-height: 36px;
 	}
+	
+	.toggle-mobile-nav {
+		//display: none;
+		background-color: transparent;
+		border: 0px;
+		padding: 6px 16px;
+		margin: 0 0 0 -15px;
+		height: 46px;
+	}
+	
 </style>

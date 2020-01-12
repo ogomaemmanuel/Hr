@@ -1,9 +1,14 @@
 <template>
-	<div class="container is-fluid">
-		<div @click="exportReport" class="mt-2">
-			<i class="fa fa-download"></i> Export
+	<div class="container" >
+		<div @click="exportReport" class="flex pb-2 justify-end">
+			<button class="button is-rounded is-small">
+				<span class="icon">
+					<i class="fa fa-download"></i>
+				</span>
+				<span> Export</span>
+			</button>
 		</div>
-		<b-table :loading="isLoading" :data="users" :columns="columns"></b-table>
+		<b-table class="is-size-7" :loading="isLoading" :data="users" :columns="columns"></b-table>
 	</div>
 </template>
 <script>

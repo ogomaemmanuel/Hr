@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
@@ -20,6 +22,8 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    @OneToOne(mappedBy = "user")
+    private Staff staff;
     @JsonIgnore
     private String password;
     @Temporal(TemporalType.TIMESTAMP)
@@ -32,8 +36,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
     private Set<UserRole> userRoles;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")
+    @JsonIgnore
     private Set<PasswordReset> passwordResetList;
 
     public Long getId() {
@@ -114,5 +119,15 @@ public class User {
 
     public void setPasswordResetList(Set<PasswordReset> passwordResetList) {
         this.passwordResetList = passwordResetList;
+    }
+    public void addStaff(Staff newStaff) {
+        if (newStaff == null) {
+            if (this.staff != null) {
+                this.staff.setUser(null);
+            }
+        } else {
+            newStaff.setUser(this);
+        }
+        this.staff = newStaff;
     }
 }

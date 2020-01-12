@@ -18,6 +18,21 @@ const Users = () =>
 
 const Documents=()=>import("../components/file_management/Index")
 const PageNotFound=()=>import("../components/errors/PageNotFound")
+
+const LeavePage =()=>import("../components/leave_management/LeavePage")
+const LeaveRequestForm =()=>import("../components/leave_management/LeaveRequestForm")
+const LeaveRequests =()=>import("../components/leave_management/UserLeaveRequests")
+
+
+
+const LeaveApprovalsPage =()=>import("../components/leave_management/leave_approval/LeaveApprovalPage")
+const LeaveApprovalsList =()=>import("../components/leave_management/leave_approval/LeaveApprovalList.vue")
+const LeaveApprovalsDetails =()=>import("../components/leave_management/leave_approval/LeaveDetail.vue")
+
+const HolidaysPage =()=>import("../components/holidays/HolidaysPage.vue")
+const HolidayList =()=>import("../components/holidays/HolidayList.vue")
+
+
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
@@ -65,17 +80,94 @@ const routes = new Router({
             path: "/",
             name: "home",
             component: Home,
-           children: [
+            meta: {
+                breadcrumb: 'Home',
+                breadcrumbIcon:'fa-home'
+            },
+
+            children: [
                {
                    path: "/users",
                    name: "users",
                    component: Users,
+                   meta: {
+                       breadcrumb: 'Users',
+                   },
+
                },
                {
                    path: "/documents",
                    name: "documents",
                    component: Documents,
+                   meta: {
+                       breadcrumb: 'Documents',
+                   },
 
+
+               },
+
+               {
+                   path: "/leave",
+                   name: "leave",
+                   component: LeavePage,
+                   children:[
+                       {
+                           path:"/",
+                           name:"leave-requests",
+                           component:LeaveRequests,
+                           meta: {
+                               breadcrumb: 'Leave Requests',
+                           },
+                       },
+                       {
+                           path:"/leave-create",
+                           name:"leave-create",
+                           component:LeaveRequestForm,
+                           meta: {
+                               breadcrumb: 'Leave Create',
+                           },
+                       }
+                   ]
+               },
+               {
+                   path: "/leave-approvals",
+                   name: "leave-approvals-page",
+                   component: LeaveApprovalsPage,
+                   children:[
+                       {
+                           path:"/",
+                           name:"leave-approvals",
+                           component:LeaveApprovalsList,
+                           meta: {
+                               breadcrumb: 'Leave Approvals',
+                           },
+
+                       },
+                       {
+                           path:"leave-details/:id",
+                           name: "leave-details",
+                           component:LeaveApprovalsDetails,
+                           meta: {
+                               breadcrumb: 'Leave Details',
+                           },
+                       }
+
+                   ]
+               },
+               {
+                   path: "/holidays",
+                   name: "holidays",
+                   component: HolidaysPage,
+                   children:[
+                       {
+                           path:"/",
+                           name:"leave-requests",
+                           component:HolidayList,
+                           meta: {
+                               breadcrumb: 'Holidays',
+                           },
+                       },
+                   ]
                },
            ]
         },

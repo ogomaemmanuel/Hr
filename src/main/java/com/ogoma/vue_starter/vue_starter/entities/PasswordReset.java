@@ -12,6 +12,7 @@ import java.util.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "password_resets")
 public class PasswordReset {
 
     private static final int EXPIRATION = 60 * 24;

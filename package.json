@@ -78,7 +78,7 @@
     "@vue/babel-preset-jsx": "^1.0.0-beta.3",
     "@vuese/cli": "^2.8.3",
     "buefy": "^0.8.2",
-    "bulma": "^0.7.5",
+    "bulma": "^0.8.0",
     "bulma-tooltip": "^2.0.2",
     "chosen-js": "^1.8.7",
     "croppie": "^2.6.3",
