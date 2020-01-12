@@ -1,8 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums.LeaveStatuses;
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

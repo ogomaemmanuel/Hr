@@ -187,7 +187,7 @@
 					</button>
 					<breadcrumbs></breadcrumbs>
 				</div>
-				<div class="mt-5">
+				<div class="mt-5 h-full">
 				<router-view></router-view>
 				</div>
 			</div>

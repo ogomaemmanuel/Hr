@@ -1,7 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.events.auth;
 
-import com.ogoma.vue_starter.vue_starter.entities.PasswordReset;
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import org.springframework.context.ApplicationEvent;
 
 import java.util.Map;

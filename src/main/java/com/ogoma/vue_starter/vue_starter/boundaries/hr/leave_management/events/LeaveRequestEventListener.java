@@ -7,7 +7,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequestHistory;
 import com.ogoma.vue_starter.vue_starter.boundaries.notifications.entities.Notification;
 import com.ogoma.vue_starter.vue_starter.boundaries.notifications.services.NotificationsService;
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.utils.mail.EmailModel;
 import com.ogoma.vue_starter.vue_starter.utils.mail.MailSender;
 import org.springframework.context.event.EventListener;

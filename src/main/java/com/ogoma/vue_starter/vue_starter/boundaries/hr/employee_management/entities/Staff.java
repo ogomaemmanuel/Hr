@@ -1,6 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
