@@ -8,11 +8,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RolesService {
     @Autowired
     private RolesRepository rolesRepository;
+
+    public Optional<Role> findRoleById(long id) {
+        return rolesRepository.findById(id);
+    }
 
     public List<Role> getAllRoles() {
         List<Role> roles = rolesRepository.findAll();
