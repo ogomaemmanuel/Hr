@@ -27,7 +27,7 @@ public class ForgotPasswordRequestValidator implements Validator {
         if (forgotPasswordRequest.getEmail() != null) {
             User user = userService.getUserByEmail(forgotPasswordRequest.getEmail());
             if (user == null) {
-                errors.rejectValue("email", "field.missing", "User with this email daoes not exist");
+                errors.rejectValue("email", "field.missing", "User with this email does not exist");
             }
         }
 

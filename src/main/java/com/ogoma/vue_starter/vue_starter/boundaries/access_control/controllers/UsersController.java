@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,12 +25,15 @@ public class UsersController {
     public UsersController(UserService userService) {
         this.userService = userService;
     }
-    @RequestMapping(value = "api/users",method = RequestMethod.GET)
+
+//    @RequestMapping(value = "api/users", method = RequestMethod.GET)
+    @GetMapping("/api/users")
     public ResponseEntity<?> getUsers() {
         List<User> userList = this.userService.getAll();
         return ResponseEntity.ok(userList);
     }
-    @RequestMapping(value="api/users/reports",method= RequestMethod.GET)
+
+    @RequestMapping(value="api/users/reports", method= RequestMethod.GET)
     public ResponseEntity<InputStreamResource> report() throws Exception {
         ByteArrayOutputStream byteArrayOutputStream = userService.report();
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
