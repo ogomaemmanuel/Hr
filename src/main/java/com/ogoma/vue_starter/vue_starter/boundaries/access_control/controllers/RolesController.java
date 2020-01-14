@@ -6,9 +6,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.Role
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class RolesController {
         return ResponseEntity.ok(roles);
     }
 
-    @PostMapping("api/roles")
+    @RequestMapping(value = "api/roles",method = RequestMethod.POST)
     public ResponseEntity<?> store(@RequestBody Role roleRequest) {
         Role role = rolesService.addRole(roleRequest);
 
