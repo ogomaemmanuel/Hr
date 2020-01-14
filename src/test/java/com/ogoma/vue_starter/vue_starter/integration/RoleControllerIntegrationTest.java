@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ogoma.vue_starter.vue_starter.VueStarterApplication;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.controllers.RolesController;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role;
-import com.ogoma.vue_starter.vue_starter.controllers.AuthController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +14,13 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import javax.servlet.Filter;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,21 +34,27 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class RoleControllerIntegrationTest {
     private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
     @Autowired
+    protected Filter springSecurityFilterChain;
+    @Autowired
     MockMvc mockMvc;
     @Autowired
     RolesController rolesController;
-
     //Used for changing and Object to Json
     ObjectMapper objectMapper = new ObjectMapper();
 
+    @Autowired
+    private WebApplicationContext wac;
+
     @Before// runs before each test method
     public void setup() throws Exception {
-       // we just want to test rolesController with it's dependencies
-        this.mockMvc = standaloneSetup(this.rolesController).build();
+        // required if you would want to test a controller with spring security
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
+                .apply(springSecurity(springSecurityFilterChain))
+                .build();
     }
 
     // creates an authenticated user with user test, without this, there will be
-   // a redirect to login since path /api/roles is protected
+    // a redirect to login since path /api/roles is protected
     @WithMockUser(username = "test")
     @Test
     public void an_authenticated_user_can_create_role() throws Exception {
