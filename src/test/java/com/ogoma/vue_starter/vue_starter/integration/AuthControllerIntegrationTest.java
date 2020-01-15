@@ -26,11 +26,12 @@ public class AuthControllerIntegrationTest {
     private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
     @Autowired
     AuthController authController;
+    @Autowired
     private MockMvc mockMvc;
 
     @Before
     public void setup() throws Exception {
-        this.mockMvc = standaloneSetup(this.authController).build();
+       // this.mockMvc = standaloneSetup(this.authController).build();
         // this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
@@ -53,7 +54,7 @@ public class AuthControllerIntegrationTest {
         this.mockMvc.perform(post("/forgot-password")
                 .with(csrf().asHeader()).secure(true).contentType(CONTENT_TYPE)
                 .content("{\n" +
-                        "\t\"email\":\"ogoma.emmanuel21@gmail.com\"\n" +
+                        "\t\"email\":\"ogoma.emmanuel+55@gmail.com\"\n" +
                         "\n" +
                         "}")
         ).andDo(print()).andExpect(status().isOk());
