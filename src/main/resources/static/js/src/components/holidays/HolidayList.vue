@@ -41,8 +41,16 @@
 									<td>{{holiday.date|dateFormat}}</td>
 									<td>{{holiday.name}}</td>
 									<td>
-										<i class="fa fa-eye"></i>
-										<i class="fa fa-trash"></i>
+										<button class="button is-white is-small">
+												<span class="icon">
+					                        	<i class="fa fa-eye has-text-primary"></i>
+					                       </span>
+										</button>
+										<button class="button is-white is-small">
+										<span class="icon">
+						                  <i class="fa fa-trash-o has-text-danger"></i>
+					                    </span>
+										</button>
 									</td>
 								</tr>
 								</tbody>
@@ -91,7 +99,7 @@
         },
         filters: {
             dateFormat(value) {
-              return   moment(value).format("DD-MM-YYYY");
+                return moment(value).format("DD-MM-YYYY");
             }
         }
     }

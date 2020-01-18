@@ -33,7 +33,9 @@
 			</div>
 			<div class="flex justify-center m-3">
 				<button
+						
 						:class="{'is-loading':loading}"
+						:disabled="disableSubmitButton"
 						@click.prevent.stop="createHoliday"
 						class="button is-small is-rounded"
 						type="submit">Submit
@@ -54,8 +56,8 @@
         data() {
             return {
                 holiday: {
-                    name: null,
-                    date: null,
+                    name: "",
+                    date: "",
                 },
                 loading: false
             }
@@ -79,7 +81,12 @@
                     }
                 })
             }
-        }
+        },
+		computed:{
+            disableSubmitButton(){
+                return this.loading || this.holiday.name.length<=0|| this.holiday.date.length<=0
+			}
+		}
     }
 </script>
 <style scoped lang="scss">
