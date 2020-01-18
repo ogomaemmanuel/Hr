@@ -36,4 +36,9 @@ public class HolidaysService {
         Holiday holiday = this.holidaysRepository.findById(id).orElse(null);
         this.holidaysRepository.delete(holiday);
     }
+
+    public Holiday getAllHolidayById(Long id) {
+        Holiday holiday = this.holidaysRepository.findById(id).orElse(null);
+        return  holiday;
+    }
 }

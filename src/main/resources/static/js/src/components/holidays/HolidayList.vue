@@ -42,9 +42,9 @@
 									<td data-label="Description">{{holiday.name}}</td>
 									<td data-label="Action">
 										<div class="action-controls d-flex justify-end">
-											<button class="button is-white is-small">
+											<button @click="setHolidayToEdit(holiday)" class="button is-white is-small">
 												<span class="icon">
-					                        	<i class="fa fa-eye has-text-primary"></i>
+					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
 											</button>
 											<button
@@ -70,21 +70,31 @@
 								   slot="modal-content"></HolidayCreateForm>
 			</slot>
 		</ModalTemplate>
+		<ModalTemplate ref="editModalTemplate" @modalClosed="showEditDialog=false" v-if="showEditDialog">
+			<slot name="modal-content">
+				<HolidayEditForm :id="holidayToEditId" @holidayUpdateSuccessful="onHolidayUpdateSuccessful"
+								 slot="modal-content"></HolidayEditForm>
+			</slot>
+		</ModalTemplate>
 	</div>
 </template>
 <script>
     import ModalTemplate from "../common/ModalTemplate"
     import HolidayCreateForm from "./HolidayCreateForm.vue"
+    import HolidayEditForm from "./HolidayEditForm";
 
     export default {
         components: {
             ModalTemplate,
-            HolidayCreateForm
+            HolidayCreateForm,
+            HolidayEditForm
         },
         data() {
             return {
                 showCreateDialog: false,
-                holidays: []
+                showEditDialog: false,
+                holidays: [],
+                holidayToEditId: false
             }
         },
         created() {
@@ -100,6 +110,10 @@
                 this.$refs.modalTemplate.closeModal();
                 this.getHolidays();
             },
+            onHolidayUpdateSuccessful() {
+                this.$refs.editModalTemplate.closeModal();
+                this.getHolidays();
+            },
             confirmRemoveHoliday(holiday) {
                 this.$buefy.dialog.confirm({
                     title: 'Delete Holiday',
@@ -107,7 +121,10 @@
                     onConfirm: () => this.removeHoliday(holiday)
                 })
             },
-
+            setHolidayToEdit(holiday) {
+                this.holidayToEditId = holiday.id;
+                this.showEditDialog = true;
+            },
             removeHoliday(holiday) {
                 axios.delete(`api/holidays/${holiday.id}`).then(resp => {
                     this.$swal({

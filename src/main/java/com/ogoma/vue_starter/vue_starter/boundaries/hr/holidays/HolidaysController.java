@@ -26,6 +26,12 @@ public class HolidaysController {
         return ResponseEntity.ok(holidays);
     }
 
+    @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getAllHoliday(@PathVariable Long id) {
+        Holiday holiday = this.holidaysService.getAllHolidayById(id);
+        return ResponseEntity.ok(holiday);
+    }
+
     @RequestMapping(value = "api/holidays", method = RequestMethod.POST)
     public ResponseEntity<?> createHoliday(@RequestBody @Valid Holiday holiday) {
         holiday = this.holidaysService.createHoliday(holiday);
