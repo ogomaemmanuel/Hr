@@ -38,7 +38,7 @@
 								<tbody>
 								<tr v-for="holiday in holidays">
 									<td>{{holiday.name}}</td>
-									<td>{{holiday.date}}</td>
+									<td>{{holiday.date|dateFormat}}</td>
 									<td>{{holiday.name}}</td>
 									<td>
 										<i class="fa fa-eye"></i>
@@ -63,6 +63,7 @@
 <script>
     import ModalTemplate from "../common/ModalTemplate"
     import HolidayCreateForm from "./HolidayCreateForm.vue"
+
     export default {
         components: {
             ModalTemplate,
@@ -86,6 +87,11 @@
             onHolidayCreateSuccessful() {
                 this.$refs.modalTemplate.closeModal();
                 this.getHolidays();
+            }
+        },
+        filters: {
+            dateFormat(value) {
+              return   moment(value).format("DD-MM-YYYY");
             }
         }
     }
