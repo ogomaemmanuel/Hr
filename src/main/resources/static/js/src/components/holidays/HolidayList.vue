@@ -110,7 +110,12 @@
 
             removeHoliday(holiday) {
                 axios.delete(`api/holidays/${holiday.id}`).then(resp => {
-
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        message: "Holiday successfully removed",
+                    })
+                    this.getHolidays();
                 })
             }
         },
