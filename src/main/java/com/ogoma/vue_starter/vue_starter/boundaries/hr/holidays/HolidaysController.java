@@ -5,9 +5,11 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.services
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -22,7 +24,7 @@ public class HolidaysController {
         return ResponseEntity.ok(holidays);
     }
     @RequestMapping(value = "api/holidays", method = RequestMethod.POST)
-    public ResponseEntity<?> createHoliday(Holiday holiday) {
+    public ResponseEntity<?> createHoliday(@RequestBody @Valid Holiday holiday) {
          holiday = this.holidaysService.createHoliday(holiday);
         return ResponseEntity.ok(holiday);
     }

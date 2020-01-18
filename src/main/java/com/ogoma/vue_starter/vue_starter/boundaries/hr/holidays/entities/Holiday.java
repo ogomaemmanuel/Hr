@@ -5,6 +5,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -15,8 +18,11 @@ public class Holiday {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String name;
-    private LocalDate date;
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date date;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdAt;
@@ -60,11 +66,11 @@ public class Holiday {
         return this;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public Holiday setDate(LocalDate date) {
+    public Holiday setDate(Date date) {
         this.date = date;
         return this;
     }

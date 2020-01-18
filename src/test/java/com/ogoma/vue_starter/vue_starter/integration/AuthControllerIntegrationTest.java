@@ -31,7 +31,7 @@ public class AuthControllerIntegrationTest {
 
     @Before
     public void setup() throws Exception {
-       // this.mockMvc = standaloneSetup(this.authController).build();
+        this.mockMvc = standaloneSetup(this.authController).build();
         // this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
     }
 
