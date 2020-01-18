@@ -16,9 +16,9 @@
 			<div class="column is-12">
 				<div class="card" ref="leaveRequests">
 					<div class="card-content">
-						<div class="content">
+						<div class="content b-table">
 							<h4>Holidays</h4>
-							<table class="table w-full">
+							<table class="table has-mobile-cards w-full">
 								<thead class="font-thin">
 								<tr>
 									<th>
@@ -37,20 +37,22 @@
 								</thead>
 								<tbody>
 								<tr v-for="holiday in holidays">
-									<td>{{holiday.name}}</td>
-									<td>{{holiday.date|dateFormat}}</td>
-									<td>{{holiday.name}}</td>
-									<td>
-										<button class="button is-white is-small">
+									<td data-label="Name">{{holiday.name}}</td>
+									<td data-label="Date">{{holiday.date|dateFormat}}</td>
+									<td data-label="Description">{{holiday.name}}</td>
+									<td data-label="Action">
+										<div class="action-controls d-flex justify-end">
+											<button class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-eye has-text-primary"></i>
 					                       </span>
-										</button>
-										<button class="button is-white is-small">
+											</button>
+											<button class="button is-white is-small">
 										<span class="icon">
 						                  <i class="fa fa-trash-o has-text-danger"></i>
 					                    </span>
-										</button>
+											</button>
+										</div>
 									</td>
 								</tr>
 								</tbody>
@@ -104,3 +106,6 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+
+</style>
