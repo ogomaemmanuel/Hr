@@ -15,23 +15,33 @@ import java.util.List;
 @Controller
 public class HolidaysController {
     private final HolidaysService holidaysService;
+
     public HolidaysController(HolidaysService holidaysService) {
         this.holidaysService = holidaysService;
     }
+
     @RequestMapping(value = "api/holidays", method = RequestMethod.GET)
     public ResponseEntity<?> getAllHolidays() {
         List<Holiday> holidays = this.holidaysService.getAllHolidays();
         return ResponseEntity.ok(holidays);
     }
+
     @RequestMapping(value = "api/holidays", method = RequestMethod.POST)
     public ResponseEntity<?> createHoliday(@RequestBody @Valid Holiday holiday) {
-         holiday = this.holidaysService.createHoliday(holiday);
+        holiday = this.holidaysService.createHoliday(holiday);
         return ResponseEntity.ok(holiday);
     }
+
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateHoliday(@PathVariable Long id, Holiday holiday) {
-         holiday = this.holidaysService.updateHoliday(id,holiday);
+        holiday = this.holidaysService.updateHoliday(id, holiday);
         return ResponseEntity.ok(holiday);
+    }
+
+    @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> removeHoliday(@PathVariable Long id) {
+        this.holidaysService.deleteHoliday(id);
+        return ResponseEntity.ok().build();
     }
 
 }

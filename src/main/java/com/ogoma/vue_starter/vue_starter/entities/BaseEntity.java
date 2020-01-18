@@ -6,7 +6,6 @@ import javax.persistence.PreRemove;
 @MappedSuperclass
 public abstract class BaseEntity {
     private boolean deleted;
-
     @PreRemove
     public void updateDeleteState() {
         this.deleted = true;

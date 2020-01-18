@@ -47,10 +47,12 @@
 					                        	<i class="fa fa-eye has-text-primary"></i>
 					                       </span>
 											</button>
-											<button class="button is-white is-small">
-										<span class="icon">
-						                  <i class="fa fa-trash-o has-text-danger"></i>
-					                    </span>
+											<button
+													@click="confirmRemoveHoliday(holiday)"
+													class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-trash-o has-text-danger"></i>
+					                               </span>
 											</button>
 										</div>
 									</td>
@@ -97,6 +99,19 @@
             onHolidayCreateSuccessful() {
                 this.$refs.modalTemplate.closeModal();
                 this.getHolidays();
+            },
+            confirmRemoveHoliday(holiday) {
+                this.$buefy.dialog.confirm({
+                    title: 'Delete Holiday',
+                    message: `Are you sure want to delete <b> ${holiday.name}</b> holiday`,
+                    onConfirm: () => this.removeHoliday(holiday)
+                })
+            },
+
+            removeHoliday(holiday) {
+                axios.delete(`api/holidays/${holiday.id}`).then(resp => {
+
+                })
             }
         },
         filters: {
