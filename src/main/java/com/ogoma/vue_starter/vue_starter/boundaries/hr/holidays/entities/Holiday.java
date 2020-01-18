@@ -18,9 +18,9 @@ public class Holiday {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @NotBlank(message = "Holiday name is required")
     private String name;
-    @NotNull
+    @NotNull(message = "Holiday date is required")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     @Temporal(TemporalType.TIMESTAMP)

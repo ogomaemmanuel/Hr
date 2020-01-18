@@ -63,7 +63,6 @@
 <script>
     import ModalTemplate from "../common/ModalTemplate"
     import HolidayCreateForm from "./HolidayCreateForm.vue"
-
     export default {
         components: {
             ModalTemplate,
