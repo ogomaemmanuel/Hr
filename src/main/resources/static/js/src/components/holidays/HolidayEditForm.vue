@@ -36,7 +36,7 @@
 						
 						:class="{'is-loading':loading}"
 						:disabled="disableSubmitButton"
-						@click.prevent.stop="createHoliday"
+						@click.prevent.stop="updateHoliday"
 						class="button is-small is-rounded"
 						type="submit">Submit
 				</button>
@@ -66,7 +66,7 @@
                     date: ""
                 },
                 loading: false,
-               
+
 
             }
         },
@@ -80,7 +80,7 @@
             updateHoliday() {
                 let vm = this;
                 vm.loading = true;
-                axios.post("/api/holidays", vm.holiday).then(resp => {
+                axios.put(`/api/holidays/${vm.holiday.id}`, vm.holiday).then(resp => {
                     vm.loading = false;
                     vm.$swal({
                         type: "success",
@@ -99,12 +99,11 @@
         created() {
             this.getHolidayDetails();
         },
+
         computed: {
-            computed: {
-                disableSubmitButton() {
-                    return this.loading || this.holiday.name.length <= 0 ||
-                        this.holiday.date.length <= 0
-                }
+            disableSubmitButton() {
+                return this.loading || this.holiday.name.length <= 0 ||
+                    this.holiday.date.length <= 0
             }
         }
     }

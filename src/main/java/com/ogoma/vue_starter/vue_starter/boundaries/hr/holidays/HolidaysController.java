@@ -39,7 +39,7 @@ public class HolidaysController {
     }
 
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateHoliday(@PathVariable Long id, Holiday holiday) {
+    public ResponseEntity<?> updateHoliday(@PathVariable Long id,@RequestBody @Valid Holiday holiday) {
         holiday = this.holidaysService.updateHoliday(id, holiday);
         return ResponseEntity.ok(holiday);
     }
