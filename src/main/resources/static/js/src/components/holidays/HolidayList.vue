@@ -52,24 +52,26 @@
 				</div>
 			</div>
 		</div>
-		<ModalTemplate @modalClosed="showCreateDialog=false" v-if="showCreateDialog">
+		<ModalTemplate ref="modalTemplate" @modalClosed="showCreateDialog=false" v-if="showCreateDialog">
 			<slot name="modal-content">
-				<HolidayCreateForm slot="modal-content"></HolidayCreateForm>
+				<HolidayCreateForm @holidayCreateSuccessful="onHolidayCreateSuccessful"
+								   slot="modal-content"></HolidayCreateForm>
 			</slot>
 		</ModalTemplate>
 	</div>
 </template>
 <script>
-	import ModalTemplate from "../common/ModalTemplate"
-	import HolidayCreateForm from "./HolidayCreateForm.vue"
+    import ModalTemplate from "../common/ModalTemplate"
+    import HolidayCreateForm from "./HolidayCreateForm.vue"
+
     export default {
-	    components:{
+        components: {
             ModalTemplate,
             HolidayCreateForm
-		},
+        },
         data() {
             return {
-                showCreateDialog:false,
+                showCreateDialog: false,
                 holidays: []
             }
         },
@@ -81,8 +83,11 @@
                 axios.get("/api/holidays").then(resp => {
                     this.holidays = resp.data;
                 })
+            },
+            onHolidayCreateSuccessful() {
+                this.$refs.modalTemplate.closeModal();
+                this.getHolidays();
             }
-
         }
     }
 </script>

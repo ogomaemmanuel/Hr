@@ -21,7 +21,7 @@
 				</div>
 			</div>
 			<div class="flex justify-center m-3">
-				<button @click.stop="createHoliday" class="button is-small is-rounded" type="submit">Submit</button>
+				<button @click.prevent.stop="createHoliday" class="button is-small is-rounded" type="submit">Submit</button>
 			</div>
 		</form>
 	</div>
@@ -45,7 +45,12 @@
             createHoliday() {
                 let vm = this;
                 axios.post("/api/holidays", vm.holiday).then(resp => {
-
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Holiday created successfully"
+                    })
+                    vm.$emit("holidayCreateSuccessful")
                 }, error => {
 
                 })
