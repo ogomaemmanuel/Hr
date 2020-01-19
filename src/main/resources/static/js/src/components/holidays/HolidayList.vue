@@ -11,6 +11,16 @@
 					 Add New
 				</span>
 			</button>
+			<a
+					href="/api/holidays/excel-report"
+					class="button is-rounded is-small">
+				<span class="icon">
+					<i class="fa fa-download mr-1"></i>
+				</span>
+				<span>
+					 Export
+				</span>
+			</a>
 		</div>
 		<div class="columns is-size-7">
 			<div class="column is-12">
