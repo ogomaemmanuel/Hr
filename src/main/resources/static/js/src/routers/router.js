@@ -31,6 +31,7 @@ const LeaveApprovalsDetails =()=>import("../components/leave_management/leave_ap
 
 const HolidaysPage =()=>import("../components/holidays/HolidaysPage.vue")
 const HolidayList =()=>import("../components/holidays/HolidayList.vue")
+const HolidayEditModal =()=>import("../components/holidays/HolidayEditModal")
 
 
 Vue.use(Router);
@@ -156,7 +157,7 @@ const routes = new Router({
                },
                {
                    path: "/holidays",
-                   name: "holidays",
+                   name: "holidays-page",
                    component: HolidaysPage,
                    children:[
                        {
@@ -166,6 +167,13 @@ const routes = new Router({
                            meta: {
                                breadcrumb: 'Holidays',
                            },
+                           children:[
+                               {
+                                   path:"/holiday-edit/:id",
+                                   component:HolidayEditModal,
+                                   name:"holiday-edit"
+                               }
+                           ]
                        },
                    ]
                },

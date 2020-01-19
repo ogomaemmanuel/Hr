@@ -56,7 +56,7 @@
         props: {
             id: {
                 required: true,
-                type: Number
+               // type: Number
             }
         },
         data() {

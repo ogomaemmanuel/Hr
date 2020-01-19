@@ -52,11 +52,13 @@
 									<td data-label="Description">{{holiday.name}}</td>
 									<td data-label="Action">
 										<div class="action-controls d-flex justify-end">
-											<button @click="setHolidayToEdit(holiday)" class="button is-white is-small">
+											<router-link
+													:to="`/holiday-edit/${holiday.id}`" tag="button"
+													@click="setHolidayToEdit(holiday)" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
-											</button>
+											</router-link>
 											<button
 													@click="confirmRemoveHoliday(holiday)"
 													class="button is-white is-small">
@@ -86,16 +88,11 @@
 				</div>
 			</div>
 		</div>
+		<router-view @holidayUpdateSuccessful="onHolidayUpdateSuccessful"></router-view>
 		<ModalTemplate ref="modalTemplate" @modalClosed="showCreateDialog=false" v-if="showCreateDialog">
 			<slot name="modal-content">
 				<HolidayCreateForm @holidayCreateSuccessful="onHolidayCreateSuccessful"
 								   slot="modal-content"></HolidayCreateForm>
-			</slot>
-		</ModalTemplate>
-		<ModalTemplate ref="editModalTemplate" @modalClosed="showEditDialog=false" v-if="showEditDialog">
-			<slot name="modal-content">
-				<HolidayEditForm :id="holidayToEditId" @holidayUpdateSuccessful="onHolidayUpdateSuccessful"
-								 slot="modal-content"></HolidayEditForm>
 			</slot>
 		</ModalTemplate>
 	</div>
@@ -116,9 +113,7 @@
         data() {
             return {
                 showCreateDialog: false,
-                showEditDialog: false,
                 holidays: [],
-                holidayToEditId: false,
                 pageable: false,
                 pageSize: 10,
                 page: 0,
@@ -146,7 +141,6 @@
                 this.getHolidays();
             },
             onHolidayUpdateSuccessful() {
-                this.$refs.editModalTemplate.closeModal();
                 this.getHolidays();
             },
             confirmRemoveHoliday(holiday) {
@@ -155,10 +149,6 @@
                     message: `Are you sure want to delete <b> ${holiday.name}</b> holiday`,
                     onConfirm: () => this.removeHoliday(holiday)
                 })
-            },
-            setHolidayToEdit(holiday) {
-                this.holidayToEditId = holiday.id;
-                this.showEditDialog = true;
             },
             removeHoliday(holiday) {
                 axios.delete(`api/holidays/${holiday.id}`).then(resp => {
