@@ -1,8 +1,9 @@
 <template>
 	<div>
 		<div class="pb-2 flex justify-end">
-			<button
-					@click="showCreateDialog=true"
+			<router-link
+					to="/holiday-create"
+					tag="button"
 					class="button is-rounded is-small">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
@@ -10,7 +11,7 @@
 				<span>
 					 Add New
 				</span>
-			</button>
+			</router-link>
 			<a
 					href="/api/holidays/excel-report"
 					class="button is-rounded is-small">
@@ -88,19 +89,15 @@
 				</div>
 			</div>
 		</div>
-		<router-view @holidayUpdateSuccessful="onHolidayUpdateSuccessful"></router-view>
-		<ModalTemplate ref="modalTemplate" @modalClosed="showCreateDialog=false" v-if="showCreateDialog">
-			<slot name="modal-content">
-				<HolidayCreateForm @holidayCreateSuccessful="onHolidayCreateSuccessful"
-								   slot="modal-content"></HolidayCreateForm>
-			</slot>
-		</ModalTemplate>
+		<router-view
+				@holidayCreateSuccessful="onHolidayCreateSuccessful"
+				@holidayUpdateSuccessful="onHolidayUpdateSuccessful">
+		</router-view>
 	</div>
 </template>
 <script>
     import ModalTemplate from "../common/ModalTemplate"
     import HolidayCreateForm from "./HolidayCreateForm.vue"
-    import HolidayEditForm from "./HolidayEditForm";
     import Paginator from "../common/paginator/Paginator"
 
     export default {
@@ -108,7 +105,6 @@
             ModalTemplate,
             Paginator,
             HolidayCreateForm,
-            HolidayEditForm
         },
         data() {
             return {
@@ -137,7 +133,6 @@
                 })
             },
             onHolidayCreateSuccessful() {
-                this.$refs.modalTemplate.closeModal();
                 this.getHolidays();
             },
             onHolidayUpdateSuccessful() {

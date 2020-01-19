@@ -31,6 +31,7 @@ const LeaveApprovalsDetails =()=>import("../components/leave_management/leave_ap
 
 const HolidaysPage =()=>import("../components/holidays/HolidaysPage.vue")
 const HolidayList =()=>import("../components/holidays/HolidayList.vue")
+const HolidayCreateModal =()=>import("../components/holidays/HolidayCreateModal")
 const HolidayEditModal =()=>import("../components/holidays/HolidayEditModal")
 
 
@@ -172,6 +173,11 @@ const routes = new Router({
                                    path:"/holiday-edit/:id",
                                    component:HolidayEditModal,
                                    name:"holiday-edit"
+                               },
+                               {
+                                   path:"/holiday-create",
+                                   component:HolidayCreateModal,
+                                   name:"holiday-create"
                                }
                            ]
                        },
