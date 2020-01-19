@@ -18,7 +18,7 @@
 					<div class="card-content">
 						<div class="content b-table">
 							<h4>Holidays</h4>
-							<table class="table has-mobile-cards w-full">
+							<table class="table has-mobile-cards w-full is-hoverable">
 								<thead class="font-thin">
 								<tr>
 									<th>
@@ -58,6 +58,18 @@
 									</td>
 								</tr>
 								</tbody>
+								<tfoot>
+								<tr>
+									<td colspan="8">
+										<Paginator
+												@previousPage="goToPrevious"
+												@nextPage="goToNext"
+												@paginationChanged="onPaginationChanged"
+												:paginationData="pageable"
+										></Paginator>
+									</td>
+								</tr>
+								</tfoot>
 							</table>
 						</div>
 					</div>
@@ -82,10 +94,12 @@
     import ModalTemplate from "../common/ModalTemplate"
     import HolidayCreateForm from "./HolidayCreateForm.vue"
     import HolidayEditForm from "./HolidayEditForm";
+    import Paginator from "../common/paginator/Paginator"
 
     export default {
         components: {
             ModalTemplate,
+            Paginator,
             HolidayCreateForm,
             HolidayEditForm
         },
@@ -94,7 +108,10 @@
                 showCreateDialog: false,
                 showEditDialog: false,
                 holidays: [],
-                holidayToEditId: false
+                holidayToEditId: false,
+                pageable: false,
+                pageSize: 10,
+                page: 0,
             }
         },
         created() {
@@ -102,8 +119,16 @@
         },
         methods: {
             getHolidays() {
-                axios.get("/api/holidays").then(resp => {
-                    this.holidays = resp.data;
+                let vm = this;
+                axios.get("/api/holidays", {
+                    params: {
+                        pageSize: vm.pageSize,
+                        page: vm.page
+
+                    }
+                }).then(resp => {
+                    this.holidays = resp.data.content;
+                    this.pageable = resp.data;
                 })
             },
             onHolidayCreateSuccessful() {
@@ -134,6 +159,19 @@
                     })
                     this.getHolidays();
                 })
+            },
+            goToPrevious() {
+                this.page--;
+                this.getHolidays();
+            },
+            goToNext() {
+                this.page++;
+                this.getHolidays();
+            },
+            onPaginationChanged(pageSize) {
+                this.page = 0;
+                this.pageSize = pageSize;
+                this.getHolidays();
             }
         },
         filters: {

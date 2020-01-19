@@ -2,6 +2,10 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.holidays;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.holidays.entities.Holiday;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.services.HolidaysService;
+import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +25,11 @@ public class HolidaysController {
     }
 
     @RequestMapping(value = "api/holidays", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllHolidays() {
-        List<Holiday> holidays = this.holidaysService.getAllHolidays();
+    public ResponseEntity<?> getAllHolidays(PagedDataRequest pagedDataRequest) {
+        Pageable pageable = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
+        Page<Holiday> holidays = this.holidaysService.getAllHolidays(pageable);
         return ResponseEntity.ok(holidays);
     }
-
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getAllHoliday(@PathVariable Long id) {
         Holiday holiday = this.holidaysService.getAllHolidayById(id);
@@ -39,7 +43,7 @@ public class HolidaysController {
     }
 
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateHoliday(@PathVariable Long id,@RequestBody @Valid Holiday holiday) {
+    public ResponseEntity<?> updateHoliday(@PathVariable Long id, @RequestBody @Valid Holiday holiday) {
         holiday = this.holidaysService.updateHoliday(id, holiday);
         return ResponseEntity.ok(holiday);
     }

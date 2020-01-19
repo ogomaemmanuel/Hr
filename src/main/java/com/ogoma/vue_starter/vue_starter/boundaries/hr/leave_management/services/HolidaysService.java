@@ -2,6 +2,8 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.service
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.holidays.HolidaysRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.holidays.entities.Holiday;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +18,11 @@ public class HolidaysService {
 
     public List<Holiday> getAllHolidays() {
         List<Holiday> holidays = this.holidaysRepository.findAll();
+        return holidays;
+    }
+
+    public Page<Holiday> getAllHolidays(Pageable pageable) {
+        Page<Holiday> holidays = this.holidaysRepository.findAll(pageable);
         return holidays;
     }
 
@@ -39,6 +46,6 @@ public class HolidaysService {
 
     public Holiday getAllHolidayById(Long id) {
         Holiday holiday = this.holidaysRepository.findById(id).orElse(null);
-        return  holiday;
+        return holiday;
     }
 }
