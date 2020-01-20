@@ -5,6 +5,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -14,7 +16,9 @@ public class LeaveType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Name is required")
     private String name;
+    //@NotNull(message = "Number of days is required")
     private Integer numberOfDays;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate

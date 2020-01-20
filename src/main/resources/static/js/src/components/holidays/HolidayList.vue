@@ -4,7 +4,7 @@
 			<router-link
 					to="/holiday-create"
 					tag="button"
-					class="button is-rounded is-small">
+					class="button mr-1 is-rounded is-small">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>

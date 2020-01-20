@@ -29,6 +29,10 @@ const LeaveApprovalsPage =()=>import("../components/leave_management/leave_appro
 const LeaveApprovalsList =()=>import("../components/leave_management/leave_approval/LeaveApprovalList.vue")
 const LeaveApprovalsDetails =()=>import("../components/leave_management/leave_approval/LeaveDetail.vue")
 
+
+const LeaveTypesPage =()=>import("../components/leave_management/leave_types/LeaveTypeList.vue")
+const LeaveTypeList =()=>import("../components/leave_management/leave_types/LeaveTypeList.vue")
+
 const HolidaysPage =()=>import("../components/holidays/HolidaysPage.vue")
 const HolidayList =()=>import("../components/holidays/HolidayList.vue")
 const HolidayCreateModal =()=>import("../components/holidays/HolidayCreateModal")
@@ -179,6 +183,25 @@ const routes = new Router({
                                    component:HolidayCreateModal,
                                    name:"holiday-create"
                                }
+                           ]
+                       },
+                   ]
+               },
+               {
+                   path: "/leave-types",
+                   name: "leave-types-page",
+                   component: LeaveTypesPage,
+                   children:[
+                       {
+                           path:"/",
+                           name:"leave-types",
+                           component:LeaveTypeList,
+                           meta: {
+                               breadcrumb: 'Leave Types',
+                           },
+                           children:[
+
+
                            ]
                        },
                    ]

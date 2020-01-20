@@ -157,6 +157,11 @@
 									<span>Holidays</span>
 								</router-link>
 							</li>
+							<li>
+								<router-link to="/leave-types">
+									<span>Leave Types</span>
+								</router-link>
+							</li>
 						</ul>
 					</li>
 					<li>
