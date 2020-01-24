@@ -28,7 +28,7 @@ public class LeaveTypesService {
         return leaveTypes;
     }
 
-    private LeaveType createLeaveType(LeaveType leaveType) {
+    public LeaveType createLeaveType(LeaveType leaveType) {
         this.leaveTypesRepository.save(leaveType);
         return leaveType;
     }

@@ -37,6 +37,7 @@ public class LeaveTypesController {
 
     @RequestMapping(value = "api/leave-types", method = RequestMethod.POST)
     public ResponseEntity<?> createLeaveType(@RequestBody LeaveType leaveType) {
-        return null;
+        leaveType = this.leaveTypesService.createLeaveType(leaveType);
+        return ResponseEntity.ok(leaveType);
     }
 }

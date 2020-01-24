@@ -6,14 +6,14 @@
 <!--					<input class="input  is-rounded is-small mr-1" type="text" placeholder="Search ...">-->
 					
 					
-					<button class="button mr-1 is-small is-rounded">
+					<router-link to="/leave-type-create" class="button mr-1 is-small is-rounded">
 				          <span class="icon">
-					         <i class="fa fa-download"></i>
+					         <i class="fa fa-plus-circle"></i>
 				           </span>
 						<span>
-								Export All
+								Add New
 							</span>
-					</button>
+					</router-link>
 					<button class="button is-small is-rounded">
 				          <span class="icon">
 					         <i class="fa fa-download"></i>
@@ -55,6 +55,8 @@
 				</tfoot>
 			</table>
 		</div>
+		<router-view @holidayCreateSuccessful="getLeaveTypes">
+		</router-view>
 	</div>
 </template>
 <script>

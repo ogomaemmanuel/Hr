@@ -22,8 +22,7 @@ public class CustomAuthenticationEntryPoint   extends LoginUrlAuthenticationEntr
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
         else {
-
-            response.sendRedirect("/login");
+            super.commence(request,response,authException);
         }
 
 
