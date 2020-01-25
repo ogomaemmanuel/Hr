@@ -1,8 +1,11 @@
 <template>
-	<ModalTemplate ref="editModalTemplate" @modalClosed="onModalClosed">
+	<ModalTemplate ref="editModalTemplate"
+				   @modalClosed="onModalClosed">
 		<slot name="modal-content">
-			<HolidayEditForm :id="holidayToEditId" @holidayUpdateSuccessful="onHolidayUpdateSuccessful"
-							 slot="modal-content"></HolidayEditForm>
+			<HolidayEditForm :id="holidayToEditId"
+							 @holidayUpdateSuccessful="onHolidayUpdateSuccessful"
+							 slot="modal-content">
+			</HolidayEditForm>
 		</slot>
 	</ModalTemplate>
 </template>

@@ -31,6 +31,8 @@ const LeaveApprovalsDetails = () => import("../components/leave_management/leave
 
 const LeaveTypesPage = () => import("../components/leave_management/leave_types/LeaveTypesPage.vue")
 const LeaveTypeList = () => import("../components/leave_management/leave_types/LeaveTypeList.vue")
+const LeaveTypeCreateModal = () => import("../components/leave_management/leave_types/LeaveTypeCreateModal")
+const LeaveTypeEditModal = () => import("../components/leave_management/leave_types/LeaveTypeEditModal")
 
 const HolidaysPage = () => import("../components/holidays/HolidaysPage.vue")
 const HolidayList = () => import("../components/holidays/HolidayList.vue")
@@ -38,7 +40,6 @@ const HolidayCreateModal = () => import("../components/holidays/HolidayCreateMod
 const HolidayEditModal = () => import("../components/holidays/HolidayEditModal")
 
 
-const LeaveTypeCreateModal = () => import("../components/leave_management/leave_types/LeaveTypeCreateModal")
 
 
 Vue.use(Router);
@@ -205,6 +206,11 @@ const routes = new Router({
                                     path: "/leave-type-create",
                                     name:"leave-type-create",
                                     component: LeaveTypeCreateModal
+                                },
+                                {
+                                    path: "/leave-type-edit/:id",
+                                    name:"leave-type-edit",
+                                    component: LeaveTypeEditModal
                                 }
                             ]
                         },

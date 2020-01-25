@@ -84,7 +84,7 @@
                     page: this.page,
                     pageSize: this.pageSize,
                 }
-                axios.get("api/leave-types/paged", {
+                axios.get("/api/leave-types/paged", {
                     params: request
                 }).then(resp => {
                     this.leaveTypes = resp.data.content;
