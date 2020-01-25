@@ -64,7 +64,7 @@
            
         },
         created() {
-           // this.getLeaveTypeById();
+           this.getLeaveTypeById();
         },
         methods: {
             getLeaveTypeById() {
@@ -76,7 +76,7 @@
                 })
             },
             updateLeaveType() {
-                axios.put(`/api/leave-types/${vm.leaveTypeId}`).then(resp => {
+                axios.put(`/api/leave-types/${vm.leaveTypeId}`,this.leaveType).then(resp => {
                     this.$swal({
                         text: "Leave type successfully updated",
                         type: "success"
