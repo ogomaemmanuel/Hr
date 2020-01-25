@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LeaveTypesService {
@@ -26,6 +27,11 @@ public class LeaveTypesService {
     public Page<LeaveType> getAllLeaveTypes(Pageable pageable) {
         Page<LeaveType> leaveTypes = this.leaveTypesRepository.findAll(pageable);
         return leaveTypes;
+    }
+
+    public Optional<LeaveType> getLeaveTypeById(Long id) {
+        Optional<LeaveType> leaveType = this.leaveTypesRepository.findById(id);
+        return leaveType;
     }
 
     public LeaveType createLeaveType(LeaveType leaveType) {
