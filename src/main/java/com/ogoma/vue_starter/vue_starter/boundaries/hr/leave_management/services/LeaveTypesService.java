@@ -40,4 +40,12 @@ public class LeaveTypesService {
     }
 
 
+    public void updateLeaveType(Long id, LeaveType leaveType) {
+        LeaveType dbLeaveType = this.leaveTypesRepository.findById(id).orElse(null);
+        if (dbLeaveType != null) {
+            dbLeaveType.setName(leaveType.getName());
+            dbLeaveType.setNumberOfDays(leaveType.getNumberOfDays());
+            leaveTypesRepository.save(dbLeaveType);
+        }
+    }
 }

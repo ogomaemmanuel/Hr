@@ -55,7 +55,9 @@
 				</tfoot>
 			</table>
 		</div>
-		<router-view @holidayCreateSuccessful="getLeaveTypes">
+		<router-view
+				@leaveUpdateSuccessful="getLeaveTypes"
+				@holidayCreateSuccessful="getLeaveTypes">
 		</router-view>
 	</div>
 </template>

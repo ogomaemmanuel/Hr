@@ -45,9 +45,10 @@
 	</div>
 </template>
 <script>
-	import CommonMixin from "../../../mixins/common_mixin"
+    import CommonMixin from "../../../mixins/common_mixin"
+
     export default {
-	    mixins:[CommonMixin],
+        mixins: [CommonMixin],
         props: {
             leaveTypeId: {
                 required: true,
@@ -56,15 +57,15 @@
         data() {
             return {
                 leaveType: {
-                    name:"",
-					numberOfDays:""
-				},
-                loading:false
+                    name: "",
+                    numberOfDays: ""
+                },
+                loading: false
             }
-           
+
         },
         created() {
-           this.getLeaveTypeById();
+            this.getLeaveTypeById();
         },
         methods: {
             getLeaveTypeById() {
@@ -76,12 +77,17 @@
                 })
             },
             updateLeaveType() {
-                axios.put(`/api/leave-types/${vm.leaveTypeId}`,this.leaveType).then(resp => {
+                let vm = this;
+                this.loading = true;
+                axios.put(`/api/leave-types/${vm.leaveTypeId}`, this.leaveType).then(resp => {
+                    vm.loading = false;
                     this.$swal({
                         text: "Leave type successfully updated",
                         type: "success"
                     })
                     this.$emit("leaveUpdateSuccessful");
+                }, error => {
+                    vm.loading = false;
                 })
             }
         },

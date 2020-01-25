@@ -29,12 +29,14 @@ public class LeaveTypesController {
         List<LeaveType> leaveTypes = leaveTypesService.getAllLeaveTypes();
         return ResponseEntity.ok(leaveTypes);
     }
+
     @RequestMapping(value = "api/leave-types/paged", method = RequestMethod.GET)
     public ResponseEntity<?> getAllLeaveTypesPaged(PagedDataRequest pagedDataRequest) {
         Pageable pageable = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
         Page<LeaveType> leaveTypes = leaveTypesService.getAllLeaveTypes(pageable);
         return ResponseEntity.ok(leaveTypes);
     }
+
     @RequestMapping(value = "api/leave-types/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getLeaveById(@PathVariable Long id) {
         Optional<LeaveType> leaveType = this.leaveTypesService.getLeaveTypeById(id);
@@ -45,5 +47,11 @@ public class LeaveTypesController {
     public ResponseEntity<?> createLeaveType(@RequestBody LeaveType leaveType) {
         leaveType = this.leaveTypesService.createLeaveType(leaveType);
         return ResponseEntity.ok(leaveType);
+    }
+
+    @RequestMapping(value = "api/leave-types/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateLeaveType(@PathVariable Long id, @RequestBody LeaveType leaveType) {
+        this.leaveTypesService.updateLeaveType(id, leaveType);
+        return ResponseEntity.ok().build();
     }
 }
