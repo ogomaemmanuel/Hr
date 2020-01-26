@@ -60,7 +60,7 @@ public class HolidaysController {
     }
 
     @RequestMapping(value = "api/holidays/excel-report", method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_PDF_VALUE)
+            produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<InputStreamResource> holidaysExcelReport() throws Exception {
         ByteArrayOutputStream byteArrayOutputStream = this.holidaysService.generateExcelReport();
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());

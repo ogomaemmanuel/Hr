@@ -14,14 +14,14 @@
 								Add New
 							</span>
 					</router-link>
-					<button class="button is-small is-rounded">
+					<a href="/api/leave-types/excel-report" class="button is-small is-rounded">
 				          <span class="icon">
 					         <i class="fa fa-download"></i>
 				           </span>
 						<span>
 					Export All
 				</span>
-					</button>
+					</a>
 				
 				</div>
 			</div>

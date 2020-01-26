@@ -2,6 +2,8 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -129,5 +131,10 @@ public class User {
             newStaff.setUser(this);
         }
         this.staff = newStaff;
+    }
+
+    public String toJson() throws JsonProcessingException {
+        ObjectMapper objectMapper= new ObjectMapper();
+      return   objectMapper.writeValueAsString(this);
     }
 }

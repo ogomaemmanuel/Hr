@@ -3,9 +3,12 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.control
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveType;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.services.LeaveTypesService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +58,16 @@ public class LeaveTypesController {
     public ResponseEntity<?> updateLeaveType(@PathVariable Long id, @RequestBody LeaveType leaveType) {
         this.leaveTypesService.updateLeaveType(id, leaveType);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "api/leave-types/excel-report", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public ResponseEntity<InputStreamResource> holidaysExcelReport() throws Exception {
+        ByteArrayOutputStream byteArrayOutputStream = this.leaveTypesService.generateExcelReport();
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=leave-types-report.xlsx");
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(byteArrayInputStream));
     }
 }

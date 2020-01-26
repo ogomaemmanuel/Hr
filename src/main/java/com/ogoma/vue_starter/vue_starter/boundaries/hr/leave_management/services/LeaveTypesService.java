@@ -1,12 +1,20 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.services;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.holidays.entities.Holiday;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveType;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.repositories.LeaveTypesRepository;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +55,26 @@ public class LeaveTypesService {
             dbLeaveType.setNumberOfDays(leaveType.getNumberOfDays());
             leaveTypesRepository.save(dbLeaveType);
         }
+    }
+
+    public ByteArrayOutputStream generateExcelReport() throws IOException {
+        Workbook workbook = new XSSFWorkbook();
+        List<LeaveType> leaveTypes = this.leaveTypesRepository.findAll();
+        XSSFSheet spreadsheet = (XSSFSheet) workbook.createSheet("Leave Types");
+        XSSFRow row = spreadsheet.createRow(0);
+        XSSFCell cell;
+        row.createCell(1).setCellValue("Name");
+        row.createCell(2).setCellValue("Number of Days");
+        int rowId = 1;
+        for (LeaveType leaveType : leaveTypes) {
+            row = spreadsheet.createRow(rowId++);
+            cell = row.createCell(1);
+            cell.setCellValue(leaveType.getName());
+            cell = row.createCell(2);
+            cell.setCellValue(leaveType.getNumberOfDays());
+        }
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        workbook.write(byteArrayOutputStream);
+        return byteArrayOutputStream;
     }
 }
