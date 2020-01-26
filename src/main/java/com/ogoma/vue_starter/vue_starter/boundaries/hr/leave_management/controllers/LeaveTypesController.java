@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
@@ -49,13 +50,13 @@ public class LeaveTypesController {
     }
 
     @RequestMapping(value = "api/leave-types", method = RequestMethod.POST)
-    public ResponseEntity<?> createLeaveType(@RequestBody LeaveType leaveType) {
+    public ResponseEntity<?> createLeaveType(@Valid @RequestBody LeaveType leaveType) {
         leaveType = this.leaveTypesService.createLeaveType(leaveType);
         return ResponseEntity.ok(leaveType);
     }
 
     @RequestMapping(value = "api/leave-types/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateLeaveType(@PathVariable Long id, @RequestBody LeaveType leaveType) {
+    public ResponseEntity<?> updateLeaveType(@PathVariable Long id,@Valid @RequestBody LeaveType leaveType) {
         this.leaveTypesService.updateLeaveType(id, leaveType);
         return ResponseEntity.ok().build();
     }

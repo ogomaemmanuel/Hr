@@ -98,6 +98,7 @@
 				<LeaveBalanceCard></LeaveBalanceCard>
 			</div>
 		</div>
+		<router-view></router-view>
 	</div>
 </template>
 <script>

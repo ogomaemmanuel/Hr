@@ -22,6 +22,7 @@ const PageNotFound = () => import("../components/errors/PageNotFound")
 const LeavePage = () => import("../components/leave_management/LeavePage")
 const LeaveRequestForm = () => import("../components/leave_management/LeaveRequestForm")
 const LeaveRequests = () => import("../components/leave_management/UserLeaveRequests")
+const LeaveRequestEditModal = () => import("../components/leave_management/LeaveRequestEditModal")
 
 
 const LeaveApprovalsPage = () => import("../components/leave_management/leave_approval/LeaveApprovalPage")
@@ -135,6 +136,11 @@ const routes = new Router({
                             meta: {
                                 breadcrumb: 'Leave Create',
                             },
+                        },
+                        {
+                            path: "/leave-request-edit/:id",
+                            name: "leave-request-edit",
+                            component: LeaveTypeEditModal,
                         }
                     ]
                 },

@@ -23,8 +23,10 @@
 					Withdraw
 				</b-dropdown-item>
 				<b-dropdown-item :disabled="disableEditOption" value="edit" aria-role="listitem">
-					<span class="icon"><i class="fa fa-pencil"></i></span>
-					Edit
+					<router-link :to="`/leave-request-edit/${leaveRequestClone.id}`">
+						<span class="icon"><i class="fa fa-pencil"></i></span>
+						Edit
+					</router-link>
 				</b-dropdown-item>
 			</b-dropdown>
 		</td>
