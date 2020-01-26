@@ -23,10 +23,14 @@
 					Withdraw
 				</b-dropdown-item>
 				<b-dropdown-item :disabled="disableEditOption" value="edit" aria-role="listitem">
-					<router-link :to="`/leave-request-edit/${leaveRequestClone.id}`">
+					<router-link v-if="!disableEditOption" :to="`/leave-request-edit/${leaveRequestClone.id}`">
 						<span class="icon"><i class="fa fa-pencil"></i></span>
 						Edit
 					</router-link>
+					<template v-else>
+						<span class="icon"><i class="fa fa-pencil"></i></span>
+						Edit
+					</template>
 				</b-dropdown-item>
 			</b-dropdown>
 		</td>

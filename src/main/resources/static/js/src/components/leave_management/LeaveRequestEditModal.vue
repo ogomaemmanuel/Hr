@@ -1,19 +1,28 @@
 <template>
 	<ModalTemplate @modalClosed="$router.back()">
-		<LeaveRequestEditForm :id="leaveRequestId"></LeaveRequestEditForm>
+		<LeaveRequestEditForm
+				slot="modal-content"
+				:id="leaveRequestId"></LeaveRequestEditForm>
 	</ModalTemplate>
 </template>
-
 <script>
     import LeaveRequestEditForm from "./LeaveRequestEditForm";
+    import ModalTemplate from "../common/ModalTemplate";
+
     export default {
         name: "LeaveRequestEditModal",
         components: {
-            LeaveRequestEditForm
+            LeaveRequestEditForm,
+            ModalTemplate
         },
-        props: {
-            leaveRequestId: this.route.params.id
+        data() {
+            return {
+                leaveRequestId: ""
+            }
         },
+        created() {
+            this.leaveRequestId = this.$route.params.id;
+        }
     }
 </script>
 <style lang="scss" scoped>

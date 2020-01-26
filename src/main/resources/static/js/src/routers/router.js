@@ -41,8 +41,6 @@ const HolidayCreateModal = () => import("../components/holidays/HolidayCreateMod
 const HolidayEditModal = () => import("../components/holidays/HolidayEditModal")
 
 
-
-
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
@@ -128,6 +126,13 @@ const routes = new Router({
                             meta: {
                                 breadcrumb: 'Leave Requests',
                             },
+                            children: [
+                                {
+                                    path: "/leave-request-edit/:id",
+                                    name: "leave-request-edit",
+                                    component: LeaveRequestEditModal,
+                                }
+                            ]
                         },
                         {
                             path: "/leave-create",
@@ -137,11 +142,6 @@ const routes = new Router({
                                 breadcrumb: 'Leave Create',
                             },
                         },
-                        {
-                            path: "/leave-request-edit/:id",
-                            name: "leave-request-edit",
-                            component: LeaveTypeEditModal,
-                        }
                     ]
                 },
                 {
@@ -207,15 +207,15 @@ const routes = new Router({
                             meta: {
                                 breadcrumb: 'Leave Types',
                             },
-                            children:[
+                            children: [
                                 {
                                     path: "/leave-type-create",
-                                    name:"leave-type-create",
+                                    name: "leave-type-create",
                                     component: LeaveTypeCreateModal
                                 },
                                 {
                                     path: "/leave-type-edit/:id",
-                                    name:"leave-type-edit",
+                                    name: "leave-type-edit",
                                     component: LeaveTypeEditModal
                                 }
                             ]
