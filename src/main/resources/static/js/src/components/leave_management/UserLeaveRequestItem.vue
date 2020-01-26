@@ -1,15 +1,15 @@
 <template>
 	<tr>
-		<td>{{leaveRequestClone.leaveType.name}}</td>
-		<td>{{leaveRequestClone.numberOfDays}}</td>
-		<td>{{leaveRequestClone.startDate|dateFormat}}</td>
-		<td>{{leaveRequestClone.endDate|dateFormat}}</td>
-		<td>
+		<td data-label="Name">{{leaveRequestClone.leaveType.name}}</td>
+		<td data-label="Number of Days">{{leaveRequestClone.numberOfDays}}</td>
+		<td data-label="Start Date">{{leaveRequestClone.startDate|dateFormat}}</td>
+		<td data-label="End Date">{{leaveRequestClone.endDate|dateFormat}}</td>
+		<td data-label="Status">
 										<span :class="statusColor" class="tag  is-light">
 										{{leaveRequestClone.leaveStatuses}}
 										</span>
 		</td>
-		<td>{{leaveRequestClone.createdAt|dateFormat}}</td>
+		<td data-label="Date Requested">{{leaveRequestClone.createdAt|dateFormat}}</td>
 		<td>
 			<b-dropdown aria-role="list">
 				<i
@@ -17,20 +17,24 @@
 						slot="trigger"
 						role="button">
 				</i>
-				<b-dropdown-item :disabled="disableWithdrawOption" value="withdraw" @click="confirmLeaveWithdrawal"
+				<b-dropdown-item :disabled="disableWithdrawOption"
+								 value="withdraw"
+								 @click="confirmLeaveWithdrawal"
 								 aria-role="listitem">
 					<span class="icon"><i class="fa fa-undo"></i></span>
 					Withdraw
 				</b-dropdown-item>
-				<b-dropdown-item :disabled="disableEditOption" value="edit" aria-role="listitem">
-					<router-link v-if="!disableEditOption" :to="`/leave-request-edit/${leaveRequestClone.id}`">
-						<span class="icon"><i class="fa fa-pencil"></i></span>
-						Edit
-					</router-link>
-					<template v-else>
-						<span class="icon"><i class="fa fa-pencil"></i></span>
-						Edit
-					</template>
+				<b-dropdown-item v-if="disableEditOption"
+								 :disabled="disableEditOption" value="edit" aria-role="listitem">
+					<span class="icon"><i class="fa fa-pencil"></i></span>
+					Edit
+				</b-dropdown-item>
+				<b-dropdown-item v-else
+								 @click="goToEdit"
+								 value="edit"
+								 aria-role="listitem">
+					<span class="icon"><i class="fa fa-pencil"></i></span>
+					Edit
 				</b-dropdown-item>
 			</b-dropdown>
 		</td>
@@ -63,6 +67,9 @@
                     type: 'is-primary is-light',
                     onConfirm: () => this.withdrawLeave()
                 })
+            },
+            goToEdit() {
+                this.$router.push(`/leave-request-edit/${this.leaveRequestClone.id}`)
             },
             withdrawLeave() {
                 axios.put(`/api/user/leave-requests/withdrawal/${this.leaveRequestClone.id}`).then(resp => {
