@@ -3,7 +3,7 @@
 		<div class="flex  justify-end  mb-5">
 			<div class="columns">
 				<div class="column is-flex justify-end">
-<!--					<input class="input  is-rounded is-small mr-1" type="text" placeholder="Search ...">-->
+					<!--					<input class="input  is-rounded is-small mr-1" type="text" placeholder="Search ...">-->
 					
 					
 					<router-link to="/leave-type-create" class="button mr-1 is-small is-rounded">
@@ -38,7 +38,11 @@
 				</tr>
 				</thead>
 				<tbody>
-				<tr v-for="leaveType in leaveTypes" is="LeaveTypeItem" :leaveType="leaveType">
+				<tr
+						v-for="leaveType in leaveTypes"
+						is="LeaveTypeItem"
+						@leaveTypeRemoveSuccessful="getLeaveTypes"
+						:leaveType="leaveType">
 				</tr>
 				</tbody>
 				<tfoot>

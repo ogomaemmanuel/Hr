@@ -18,6 +18,7 @@
 					</span>
 				</router-link>
 				<button
+						@click="confirmRemove"
 						class="button is-white is-small">
 					<span class="icon">
 						<i class="fa fa-trash-o has-text-danger"></i>
@@ -33,6 +34,28 @@
             leaveType: {
                 required: true,
             }
+        },
+        methods: {
+            confirmRemove() {
+                let vm = this;
+                this.$buefy.dialog.confirm({
+                    title: 'Delete Leave Type',
+                    message: `Are you sure want to delete <b> ${vm.leaveType.name}</b> leave type`,
+                    onConfirm: () => this.removeLeaveType()
+                });
+            },
+            removeLeaveType() {
+                axios.delete(`/api/leave-types/${this.leaveType.id}`).then(resp => {
+                    this.$swal(
+                        {
+                            text: "Leave type successfully removed",
+                            type: "success"
+                        }
+                    )
+                    this.$emit("leaveTypeRemoveSuccessful")
+                })
+            },
+
         }
     }
 </script>

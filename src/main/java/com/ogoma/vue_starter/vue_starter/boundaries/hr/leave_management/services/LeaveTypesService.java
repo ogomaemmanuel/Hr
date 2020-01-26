@@ -1,6 +1,5 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.services;
 
-import com.ogoma.vue_starter.vue_starter.boundaries.hr.holidays.entities.Holiday;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveType;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.repositories.LeaveTypesRepository;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -76,5 +75,9 @@ public class LeaveTypesService {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         workbook.write(byteArrayOutputStream);
         return byteArrayOutputStream;
+    }
+
+    public void removeLeaveTypeById(Long id) {
+        this.leaveTypesRepository.deleteById(id);
     }
 }

@@ -60,6 +60,12 @@ public class LeaveTypesController {
         return ResponseEntity.ok().build();
     }
 
+    @RequestMapping(value = "api/leave-types/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> removeLeaveType(@PathVariable Long id) {
+        this.leaveTypesService.removeLeaveTypeById(id);
+        return ResponseEntity.ok().build();
+    }
+
     @RequestMapping(value = "api/leave-types/excel-report", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<InputStreamResource> holidaysExcelReport() throws Exception {
