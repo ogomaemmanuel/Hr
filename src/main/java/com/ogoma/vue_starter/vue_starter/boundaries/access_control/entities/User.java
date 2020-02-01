@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
@@ -24,6 +25,9 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    @Transient
+    @JsonProperty
+    private String fullName;
     @OneToOne(mappedBy = "user")
     private Staff staff;
     @JsonIgnore
@@ -38,7 +42,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties("user")
     private Set<UserRole> userRoles;
-    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("user")
     @JsonIgnore
     private Set<PasswordReset> passwordResetList;
@@ -83,6 +87,10 @@ public class User {
         this.phone = phone;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -122,6 +130,7 @@ public class User {
     public void setPasswordResetList(Set<PasswordReset> passwordResetList) {
         this.passwordResetList = passwordResetList;
     }
+
     public void addStaff(Staff newStaff) {
         if (newStaff == null) {
             if (this.staff != null) {
@@ -133,8 +142,13 @@ public class User {
         this.staff = newStaff;
     }
 
+    @PostLoad
+    public void setUserFullName() {
+        this.fullName = this.firstName + " " + this.lastName;
+    }
+
     public String toJson() throws JsonProcessingException {
-        ObjectMapper objectMapper= new ObjectMapper();
-      return   objectMapper.writeValueAsString(this);
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(this);
     }
 }

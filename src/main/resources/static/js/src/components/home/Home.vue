@@ -47,7 +47,8 @@
 				</div>
 				
 				<div class="navbar-end">
-					<a  ref="notification-toggle" @click="showNotifications=true" class="navbar-item is-hoverable is-relative">
+					<a ref="notification-toggle" @click="showNotifications=true"
+					   class="navbar-item is-hoverable is-relative">
 						<i class="fa fa-bell">
 						</i>
 						<NotificationDropDown v-closable="{
@@ -75,7 +76,22 @@
 						
 						<div class="navbar-dropdown is-right">
 							<a class="navbar-item">
-								Overview
+								
+								
+								<article class="media">
+									<figure class="media-left">
+										<p class="image is-32x32">
+											<img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+										</p>
+									</figure>
+									<div class="media-content">
+										<div class="content">
+											<p>
+												<strong>{{authenticatedUser.fullName}}</strong>
+											</p>
+										</div>
+									</div>
+								</article>
 							</a>
 							<a class="navbar-item">
 								Elements
@@ -211,6 +227,8 @@
 <script>
     import LogoutForm from "../auth/LogoutForm.vue"
     import NotificationDropDown from "../notifications/NotificationDropDown";
+    import {mapActions, mapGetters} from "vuex"
+
     let handleOutsideClick;
     export default {
         components: {
@@ -226,8 +244,13 @@
                 isFullPage: true,
             }
         },
+        computed: {
+            ...mapGetters(["authenticatedUser"])
+        },
         created() {
             // this.open();
+            this.setUser(JSON.parse(this.user));
+
         },
         directives: {
             closable: {
@@ -278,6 +301,7 @@
             }
         },
         methods: {
+            ...mapActions(["setUser"]),
             hideNotifications() {
                 this.showNotifications = false
             },

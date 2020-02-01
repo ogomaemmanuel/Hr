@@ -34,7 +34,9 @@ public class AppUserDetailsService implements UserDetailsService {
                 true,
                 true,
                 getGrantedAuthorityList(user),
-                user.getId()
+                user.getId(),
+                user.getFullName(),
+                user.getPhone()
         );
 
 

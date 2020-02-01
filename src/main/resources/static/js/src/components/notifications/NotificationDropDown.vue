@@ -1,7 +1,6 @@
 <template>
 	<div @wheel="fetchMoreNotification($event)" class="drop-menu-custom text-black">
-		
-		<div class="drop-menu-inner h-full w-full relative">
+		<div v-if="loaded" class="drop-menu-inner h-full w-full relative">
 			<div class="h-full">
 				<div class="notification-header p-2 h-12 has-background-white-bis">
 					<div class="flex h-full items-center">
@@ -19,12 +18,22 @@
 							:notification="notification">
 					</NotificationItem>
 				</div>
-				<div class="notification-header h-12 has-background-white-bis">
-					<div class="flex h-full items-center justify-center">
-						See All
+				<div>
+					<div class="notification-footer h-12 has-background-white-bis">
+<!--						<div class="flex h-2 pt-1 justify-center">-->
+<!--							<i v-if="loading" class="fa fa-spin  fa-spinner"></i>-->
+<!--						</div>-->
+						
+						<div class="flex h-full items-center justify-center">
+							See All
+						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	    <div v-else class="h-48 flex justify-center is-relative">
+			
+				<b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>
 		</div>
 	</div>
 </template>
@@ -39,14 +48,16 @@
         data() {
             return {
                 notifications: [],
+                loaded: false,
                 page: 0,
                 pageSize: 10,
+                loading: false,
             }
         },
         created() {
             this.getUserNotifications();
         },
-		
+
         methods: {
             getUserNotifications() {
                 let vm = this;
@@ -54,13 +65,18 @@
                     page: vm.page,
                     pageSize: vm.pageSize
                 }
+                vm.loading = true;
                 axios.get("/api/user-notifications", {
                     params: request
                 }).then(resp => {
+                    vm.loaded = true;
+                    vm.loading = false;
                     vm.notifications.push(...resp.data.content);
-                    if (resp.data.size > 0) {
+                    if (resp.data.totalPages > vm.page) {
                         vm.page++;
                     }
+                }, error => {
+                    vm.loading = false;
                 })
             },
             fetchMoreNotification: _throttle(function (event) {
@@ -97,6 +113,16 @@
 		-webkit-transition: all .3s;
 		transition: all .3s;
 		z-index: 20;
+		.loading-indicator{
+		z-index: -60;
+	}
+		.notification-header {
+			z-index: 40;
+		}
+		
+		.notification-footer {
+			z-index: 40;
+		}
 		
 		.notification-content {
 			max-height: 300px;

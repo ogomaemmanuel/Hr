@@ -3,8 +3,13 @@
 		<div>
 			{{notification.message}}
 		</div>
-		<div class="mt-1">
-		<span><i class="fa fa-calendar"></i></span>	{{notification.updatedAt|formattedDate}}
+		<div class="mt-1 is-size-7">
+<!--		<span class="text-muted">-->
+<!--			<i class="fa fa-calendar"></i>-->
+<!--		</span>-->
+			<span class="mr-2">
+				{{notification.updatedAt|formattedDate}}
+			</span>
 		</div>
 		<div>
 		</div>
@@ -18,10 +23,9 @@
                 type: Object
             }
         },
-        filters:{
-            formattedDate(value){
-
-                return    moment(value).format("LLL")
+        filters: {
+            formattedDate(value) {
+                return moment(value).format("LLL")
             }
         },
     }
@@ -30,7 +34,8 @@
 	.notification-item {
 		display: flex;
 		flex-direction: column;
-		&:hover{
+		
+		&:hover {
 			background-color: #fafafa;
 		}
 	}

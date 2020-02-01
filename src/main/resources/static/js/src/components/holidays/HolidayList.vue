@@ -27,7 +27,7 @@
 			<div class="column is-12">
 				<div class="card" ref="leaveRequests">
 					<div class="card-content">
-						<div class="content b-table">
+						<div class="content b-table is-relative">
 							<h4>Holidays</h4>
 							<table class="table has-mobile-cards w-full is-hoverable">
 								<thead class="font-thin">
@@ -84,6 +84,7 @@
 								</tr>
 								</tfoot>
 							</table>
+							<b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>
 						</div>
 					</div>
 				</div>
@@ -113,6 +114,7 @@
                 pageable: false,
                 pageSize: 10,
                 page: 0,
+                loading: false
             }
         },
         created() {
@@ -121,6 +123,7 @@
         methods: {
             getHolidays() {
                 let vm = this;
+                vm.loading = true;
                 axios.get("/api/holidays", {
                     params: {
                         pageSize: vm.pageSize,
@@ -128,8 +131,11 @@
 
                     }
                 }).then(resp => {
+                    vm.loading = false;
                     this.holidays = resp.data.content;
                     this.pageable = resp.data;
+                }, error => {
+                    vm.loading = false;
                 })
             },
             onHolidayCreateSuccessful() {
