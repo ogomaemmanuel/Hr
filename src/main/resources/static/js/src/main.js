@@ -14,6 +14,7 @@ import 'bulma';
 import DownLoadFilePlugin from "./plugins/FileDownLoad"
 import "../../css/tailwind.css"
 import "../../css/app.scss"
+import "animate.css"
 import 'font-awesome/css/font-awesome.min.css'
 import Tooltip from 'vue-directive-tooltip';
 import 'vue-directive-tooltip/src/css/index.scss';

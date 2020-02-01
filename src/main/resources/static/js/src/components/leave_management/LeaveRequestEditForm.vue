@@ -4,7 +4,7 @@
 			<h1 class="has-text-black"><b>Edit Leave</b></h1>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Leave Types</label>
+			<label class="label is-size-7">Leave Types <span><sup class="has-text-danger">*</sup></span></label>
 			<div class="control w-full">
 				<div class="select w-full">
 					<select @input="clearFieldError('leaveTypeId')"
@@ -28,12 +28,10 @@
 				<div class="field">
 					<label class="label is-size-7">From <span><sup class="has-text-danger">*</sup></span></label>
 					<div class="control">
-						<input
-								class="input"
-								type="text">
-						<!--				<span class="mb-2 has-text-danger" v-if="errors['name']">-->
-						<!--						{{errors['name'][0]}}-->
-						<!--					</span>-->
+						<DatePicker
+								v-model="leaveRequest.startDate"
+								class="min-w-full">
+						</DatePicker>
 					</div>
 				</div>
 			</div>
@@ -41,19 +39,17 @@
 				<div class="field">
 					<label class="label is-size-7">To <span><sup class="has-text-danger">*</sup></span></label>
 					<div class="control">
-						<input
-								class="input"
-								type="text">
-						<!--				<span class="mb-2 has-text-danger" v-if="errors['name']">-->
-						<!--						{{errors['name'][0]}}-->
-						<!--					</span>-->
+						<DatePicker
+								v-model="leaveRequest.endDate"
+								class="min-w-full"></DatePicker>
+					
 					</div>
 				</div>
 			</div>
-			
+		
 		</div>
 		
-	
+		
 		<div class="field">
 			<label class="label is-size-7">Number of Days<span><sup>*</sup></span></label>
 			<div class="control">
@@ -90,14 +86,29 @@
 
 <script>
     import CommonMixin from "../../mixins/common_mixin"
+    import {DatePicker} from "element-ui"
+
     export default {
         name: "LeaveRequestEditForm",
         mixins: [CommonMixin],
+        components: {
+            DatePicker
+        },
         data() {
             return {
                 leaveRequest: {},
                 leaveTypes: []
             }
+        },
+        created() {
+            this.getLeaveTypes();
+        },
+        methods: {
+            getLeaveTypes() {
+                axios.get("/api/leave-types").then(resp => {
+                    this.leaveTypes = resp.data;
+                })
+            },
         }
     }
 </script>
