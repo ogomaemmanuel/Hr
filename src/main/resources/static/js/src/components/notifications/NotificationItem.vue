@@ -21,7 +21,7 @@
         filters:{
             formattedDate(value){
 
-                return    moment(value).format("LL")
+                return    moment(value).format("LLL")
             }
         },
     }
