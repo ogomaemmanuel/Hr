@@ -33,13 +33,14 @@ public class LeaveRequestModelValidator implements Validator {
     public void validate(Object target, Errors errors) {
         LeaveRequestModel leaveRequestModel = (LeaveRequestModel) target;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "field.required", "Start date is required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endDate", "field.required", "End date is required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "numberOfDays", "field.required", "Enter leave days");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "inPlaceId", "field.required", "Select in place employee");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "leaveTypeId", "field.required", "Select leave type");
         if (leaveRequestModel.getStartDate() != null) {
             LocalDate serverLocalDate = LocalDate.now();
             Timestamp serverTimestamp = Timestamp.valueOf(serverLocalDate.atStartOfDay());
-            Timestamp requestTimeStamp = Timestamp.valueOf(leaveRequestModel.getStartDate().atStartOfDay());
+            Timestamp requestTimeStamp = new Timestamp(leaveRequestModel.getStartDate().getTime());
             if (requestTimeStamp.compareTo(serverTimestamp) != 1) {
                 errors.rejectValue("startDate", "field.invalid", "Start date must be in the future");
             }

@@ -26,6 +26,7 @@ public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long
             " from  leave_types lt", nativeQuery = true)
     public List<Map<String, String>> findCurrentUserLeaveBalances();
 
+
     @Nullable
     @Query(value = "select (lt.number_of_days-coalesce(sum(lr.number_of_days),0)) leaveBalance from leave_requests lr left join leave_types lt on lr.leave_type_id=lt.id where lr.applicant_user_id=?#{ principal?.id } and lr.leave_type_id=?1 and year(now())=year(lr.created_at) group by leave_type_id", nativeQuery = true)
     public Long currentUserLeaveBalanceByLeaveTypeId(Long leaveTypeId);

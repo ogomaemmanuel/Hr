@@ -109,7 +109,7 @@
             getLeaveDetails() {
                 let leaveId = this.$route.params.id;
                 let vm = this;
-                axios.get(`/api/user/leave-requests/${leaveId}`).then(resp => {
+                axios.get(`/api/user/leave-requests/summary/${leaveId}`).then(resp => {
                     vm.leaveDetail = resp.data;
                 })
             },

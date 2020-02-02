@@ -3,16 +3,9 @@
 		<div ref="modalBackground" class="modal-background"></div>
 		<div ref="modalContent" :style="{'max-width': width + 'px'}" class="modal-content">
 			<div class="box">
-				<transition :duration="1000" name="custom-classes-transition"
-							enter-active-class="animated tada"
-							leave-active-class="animated bounceOutRight"
-				>
 					<slot name="modal-content">
 					
 					</slot>
-				</transition>
-				
-				
 			</div>
 		</div>
 		<template v-if="showCloseButton">

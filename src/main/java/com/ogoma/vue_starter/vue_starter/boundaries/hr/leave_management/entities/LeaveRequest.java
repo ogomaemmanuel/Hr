@@ -1,14 +1,14 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,9 +20,12 @@ public class LeaveRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonProperty("reason")
     private String description;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
     @Column(name = "in_place")
     private Long inPlaceId;
     private Integer numberOfDays;
@@ -46,7 +49,7 @@ public class LeaveRequest {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leave_type_id", insertable = false, updatable = false)
     private LeaveType leaveType;
-    @OneToMany(mappedBy = "leaveRequest",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "leaveRequest", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("leaveRequest")
     private Set<LeaveRequestHistory> leaveRequestHistory = new HashSet<>();
 
@@ -70,20 +73,20 @@ public class LeaveRequest {
         return this;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public LeaveRequest setStartDate(LocalDate startDate) {
+    public LeaveRequest setStartDate(Date startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public LeaveRequest setEndDate(LocalDate endDate) {
+    public LeaveRequest setEndDate(Date endDate) {
         this.endDate = endDate;
         return this;
     }
@@ -178,11 +181,6 @@ public class LeaveRequest {
         return this;
     }
 
-    @PrePersist
-    public void calculateEndDate() {
-        this.endDate = this.startDate.plusDays(this.numberOfDays);
-    }
-
     public Set<LeaveRequestHistory> getLeaveRequestHistory() {
         return leaveRequestHistory;
     }
@@ -191,6 +189,7 @@ public class LeaveRequest {
         this.leaveRequestHistory = leaveRequestHistory;
         return this;
     }
+
     public void addLeaveHistory(LeaveRequestHistory leaveRequestHistory) {
         if (leaveRequestHistory != null) {
             leaveRequestHistory.setLeaveRequest(this);

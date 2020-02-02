@@ -1,124 +1,148 @@
 <template>
-	<div class="p-5">
-		<div class="columns mt-2 pl-5 pt-5 pb-5 bg-white is-size-7 ">
-			<div class="column is-6">
-				<div class="field">
-					<label class="label is-size-7">Leave Types</label>
-					<div class="control w-full">
-						<div class="select w-full">
-							<select @input="clearFieldError('leaveTypeId')" v-model="leaveRequest.leaveTypeId"
-									class="w-full">
-								<option value="" disabled selected hidden>Select One</option>
-								<option
-										v-for="leaveType in leaveTypes"
-										:value="leaveType.id"
-										:key="leaveType.id">{{leaveType.name}}
-								</option>
-							</select>
-						</div>
-						<span v-if="errors['leaveTypeId']" class="text-red-400">
+	<form>
+		<div class="has-text-centered m-3">
+			<h1 class="has-text-black"><b>Request Leave</b></h1>
+		</div>
+		<div class="field">
+			<label class="label is-size-7">Leave Types <span><sup class="has-text-danger">*</sup></span></label>
+			<div class="control w-full">
+				<div class="select w-full">
+					<select @input="clearFieldError('leaveTypeId')"
+							v-model="leaveRequest.leaveTypeId"
+							class="w-full">
+						<option value="" disabled selected hidden>Select One</option>
+						<option
+								v-for="leaveType in leaveTypes"
+								:value="leaveType.id"
+								:key="leaveType.id">{{leaveType.name}}
+						</option>
+					</select>
+				</div>
+				<span v-if="errors['leaveTypeId']" class="text-red-400">
 							{{errors['leaveTypeId'][0]}}
 						</span>
-					</div>
-				</div>
-				<div class="field">
-					<label class="label is-size-7">Start Date</label>
-					<div class="control">
-						<DatePicker
-								v-model="leaveRequest.startDate"
-								format="dd-MM-yyyy"
-								:picker-options="datePickerOptions"
-								@input="clearFieldError('startDate')"
-								value-format="yyyy-MM-dd"
-								class="date-picker-el w-full"></DatePicker>
-					</div>
-					<span v-if="errors['startDate']" class="text-red-400">
-							{{errors['startDate'][0]}}
-						</span>
-				</div>
-				<div class="field">
-					<label class="label is-size-7">Number of Days</label>
-					<div class="control">
-						<input
-								@input="clearFieldError('numberOfDays')"
-								v-model="leaveRequest.numberOfDays"
-								class="input"
-								type="number">
-					</div>
-					<span
-							v-if="errors['numberOfDays']"
-							
-							class="text-red-400">
-							{{errors['numberOfDays'][0]}}
-					</span>
-				</div>
-				<div class="field">
-					<label class="label is-size-7">Employee In Place</label>
-					<div class="control w-full">
-						<div class="select w-full">
-							<select
-									@input="clearFieldError('inPlaceId')"
-									v-model="leaveRequest.inPlaceId"
-									class="w-full">
-								<option value="" disabled selected hidden>Select One</option>
-								<option v-for="inPlaceEmployee in inPlaceEmployees" :value="inPlaceEmployee.staffId">
-									{{inPlaceEmployee.fullName}}
-								</option>
-							</select>
-						</div>
-						<span
-								v-if="errors['inPlaceId']"
-								class="text-red-400">
-							{{errors['inPlaceId'][0]}}
-					</span>
-					</div>
-				</div>
-				<div class="field">
-					<label class="label is-size-7">Reason (Optional)</label>
-					<div class="control">
-						<textarea
-								@input="clearFieldError('reason')"
-								v-model="leaveRequest.reason"
-								class="textarea"
-								placeholder="Textarea">
-						</textarea>
-					</div>
-					<span v-if="errors['reason']" class="text-red-400">
-							{{errors['reason'][0]}}
-					</span>
-				</div>
-				<div class="field is-grouped">
-					<div class="control">
-						<button :class="{'is-loading':loading}" @click.prevent="makeLeaveRequest"
-								class="button is-primary is-small"><i
-								class="fa fa-save mr-1"></i>Submit
-						</button>
-					</div>
-					<div class="control">
-						<button @click.prevent="goBack()" class="button is-light is-small"><i class="fa fa-times mr-1"></i>
-							Cancel
-						</button>
-					</div>
-				</div>
-			</div>
-			<div class="column is-6 pr-10 pl-10 pt-10 available-leave-days-card">
-			<div class="card">
-				<div class="card-content">
-					<div class="content">
-						<div class="text-center">
-						<div class="font-bold">Days Available</div>
-						<div class="font-bold text-gray-500">17</div>
-						</div>
-					</div>
-				</div>
-			</div>
 			</div>
 		</div>
-	</div>
+		<div class="columns">
+			<div class="column">
+				<div class="field">
+					<label class="label is-size-7">From <span><sup class="has-text-danger">*</sup></span></label>
+					<div class="control">
+						<DatePicker
+								format="dd-MM-yyyy"
+								value-format="yyyy-MM-dd"
+								@input="clearFieldError('startDate')"
+								:picker-options="datePickerOptions"
+								v-model="leaveRequest.startDate"
+								class="min-w-full">
+						</DatePicker>
+						<span
+								v-if="errors['startDate']"
+								class="text-red-400">
+								{{errors['startDate'][0]}}
+							</span>
+					</div>
+				</div>
+			</div>
+			<div class="column">
+				<div class="field">
+					<label class="label is-size-7">To <span><sup class="has-text-danger">*</sup></span></label>
+					<div class="control">
+						<DatePicker
+								format="dd-MM-yyyy"
+								value-format="yyyy-MM-dd"
+								@input="clearFieldError('endDate')"
+								v-model="leaveRequest.endDate"
+								class="min-w-full">
+						
+						</DatePicker>
+						<span
+								v-if="errors['endDate']"
+								class="text-red-400">
+								{{errors['endDate'][0]}}
+						</span>
+					
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		<div class="field">
+			<label class="label is-size-7">Employee In Place</label>
+			<div class="control w-full">
+				<div class="select w-full">
+					<select
+							@input="clearFieldError('inPlaceId')"
+							v-model="leaveRequest.inPlaceId"
+							class="w-full">
+						<option value="" disabled selected hidden>Select One</option>
+						<option v-for="inPlaceEmployee in inPlaceEmployees" :value="inPlaceEmployee.staffId">
+							{{inPlaceEmployee.fullName}}
+						</option>
+					</select>
+				</div>
+				<span
+						v-if="errors['inPlaceId']"
+						class="text-red-400">
+									{{errors['inPlaceId'][0]}}
+							</span>
+			</div>
+		</div>
+		<div class="field">
+			<label class="label is-size-7">Number of Days<span><sup>*</sup></span></label>
+			<div class="control">
+				<input
+						@change="clearFieldError('numberOfDays')"
+						disabled
+						class="input"
+						:value="numberOfDays"
+						type="text">
+				<span
+						v-if="errors['numberOfDays']"
+						class="text-red-400">
+					{{errors['numberOfDays'][0]}}
+				</span>
+			</div>
+		</div>
+		<div class="field">
+			<label class="label is-size-7">Remaining Leaves Days<span><sup>*</sup></span></label>
+			<div class="control">
+				<input
+						disabled
+						:value="remainingLeaveDays"
+						class="input"
+						type="text">
+			</div>
+		</div>
+		<div class="field">
+			<label class="label is-size-7">Reason<span><sup>*</sup></span></label>
+			<div class="control">
+					<textarea
+							@input="clearFieldError('reason')"
+							v-model="leaveRequest.reason"
+							class="textarea">
+					</textarea>
+				<span
+						v-if="errors['reason']"
+						class="text-red-400">
+					{{errors['reason'][0]}}
+				</span>
+			</div>
+		</div>
+		<div class="flex justify-center m-3">
+			<button
+					:class="{'is-loading':loading}"
+					@click.prevent="makeLeaveRequest"
+					class="button is-small is-rounded"
+					type="submit">Submit
+			</button>
+		</div>
+	</form>
 </template>
 <script>
     import {DatePicker} from "element-ui"
     import CommonMixin from "../../mixins/common_mixin"
+
     export default {
         name: "LeaveRequestForm",
         mixins: [CommonMixin],
@@ -129,16 +153,20 @@
             return {
                 datePickerOptions: {
                     disabledDate(date) {
-                        return (date.getTime() < Date.now() - 8.64e7)||
-							moment(date.getTime()).isoWeekday()==7||moment(date.getTime()).isoWeekday()==6;
+                        return (date.getTime() < Date.now() - 8.64e7) ||
+                            moment(date.getTime()).isoWeekday() == 7 || moment(date.getTime()).isoWeekday() == 6;
                     }
                 },
                 leaveRequest: {
                     leaveTypeId: "",
-                    inPlaceId: ""
+                    inPlaceId: "",
+                    startDate: "",
+                    endDate: "",
+
                 },
                 leaveTypes: [],
                 inPlaceEmployees: [],
+                remainingLeaveDays: "",
                 errors: {},
                 loading: false,
 
@@ -152,6 +180,12 @@
         methods: {
             goBack() {
                 this.$router.go(-1);
+            },
+            getLeaveBalanceByLeaveTypeId(leaveTypeId) {
+                axios.get(`/api/user/leave-balances/${leaveTypeId}`).then(resp => {
+                    this.remainingLeaveDays = resp.data;
+                })
+
             },
             getLeaveTypes() {
                 axios.get("/api/leave-types").then(resp => {
@@ -184,6 +218,29 @@
                 })
             }
         },
+        computed: {
+            numberOfDays() {
+                let vm = this;
+                let startDate = this.leaveRequest.startDate;
+                let endDate = this.leaveRequest.endDate;
+                if (startDate && endDate) {
+                    let diff = moment(endDate).diff(startDate, "days");
+                    vm.leaveRequest.numberOfDays = diff;
+                    return diff;
+                }
+                vm.leaveRequest.numberOfDays = 0;
+                return 0;
+            }
+        },
+        watch: {
+            'numberOfDays': function (val) {
+                this.clearFieldError("numberOfDays");
+            },
+            'leaveRequest.leaveTypeId': function (val) {
+                this.getLeaveBalanceByLeaveTypeId(val);
+            }
+        }
+
     }
 </script>
 

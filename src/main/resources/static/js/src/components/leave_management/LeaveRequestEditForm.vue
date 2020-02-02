@@ -48,8 +48,6 @@
 			</div>
 		
 		</div>
-		
-		
 		<div class="field">
 			<label class="label is-size-7">Number of Days<span><sup>*</sup></span></label>
 			<div class="control">
@@ -90,6 +88,9 @@
 
     export default {
         name: "LeaveRequestEditForm",
+        props: {
+            requestId: {}
+        },
         mixins: [CommonMixin],
         components: {
             DatePicker
@@ -101,9 +102,16 @@
             }
         },
         created() {
+            this.getLeaveRequestById();
             this.getLeaveTypes();
         },
         methods: {
+            getLeaveRequestById() {
+                axios.get(`/api/user/leave-requests/${this.requestId}`).then(resp => {
+                    this.leaveRequest = resp.data;
+                })
+            },
+
             getLeaveTypes() {
                 axios.get("/api/leave-types").then(resp => {
                     this.leaveTypes = resp.data;

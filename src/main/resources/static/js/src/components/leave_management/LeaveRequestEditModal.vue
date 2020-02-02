@@ -2,7 +2,7 @@
 	<ModalTemplate @modalClosed="$router.back()">
 		<LeaveRequestEditForm
 				slot="modal-content"
-				:id="leaveRequestId"></LeaveRequestEditForm>
+				:request-id="leaveRequestId"></LeaveRequestEditForm>
 	</ModalTemplate>
 </template>
 <script>

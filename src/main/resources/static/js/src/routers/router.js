@@ -20,7 +20,7 @@ const Documents = () => import("../components/file_management/Index")
 const PageNotFound = () => import("../components/errors/PageNotFound")
 
 const LeavePage = () => import("../components/leave_management/LeavePage")
-const LeaveRequestForm = () => import("../components/leave_management/LeaveRequestForm")
+const LeaveRequestForm = () => import("../components/leave_management/LeaveRequestFormModal")
 const LeaveRequests = () => import("../components/leave_management/UserLeaveRequests")
 const LeaveRequestEditModal = () => import("../components/leave_management/LeaveRequestEditModal")
 
@@ -131,16 +131,16 @@ const routes = new Router({
                                     path: "/leave-request-edit/:id",
                                     name: "leave-request-edit",
                                     component: LeaveRequestEditModal,
-                                }
+                                },
+                                {
+                                    path: "/leave-create",
+                                    name: "leave-create",
+                                    component: LeaveRequestForm,
+                                    meta: {
+                                        breadcrumb: 'Leave Create',
+                                    },
+                                },
                             ]
-                        },
-                        {
-                            path: "/leave-create",
-                            name: "leave-create",
-                            component: LeaveRequestForm,
-                            meta: {
-                                breadcrumb: 'Leave Create',
-                            },
                         },
                     ]
                 },

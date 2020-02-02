@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class LeaveRequestService {
@@ -33,7 +34,10 @@ public class LeaveRequestService {
     private final HttpServletRequest httpServletRequest;
 
     @Autowired
-    public LeaveRequestService(LeaveRequestRepository leaveRequestRepository, LeaveHistoryRepository leaveHistoryRepository, ApplicationEventPublisher applicationEventPublisher, HttpServletRequest httpServletRequest) {
+    public LeaveRequestService(LeaveRequestRepository leaveRequestRepository,
+                               LeaveHistoryRepository leaveHistoryRepository,
+                               ApplicationEventPublisher applicationEventPublisher,
+                               HttpServletRequest httpServletRequest) {
         this.leaveRequestRepository = leaveRequestRepository;
         this.leaveHistoryRepository = leaveHistoryRepository;
         this.applicationEventPublisher = applicationEventPublisher;
@@ -112,6 +116,11 @@ public class LeaveRequestService {
         return leaveRequests;
     }
 
+    public Optional<LeaveRequest> getLeaveRequestById(Long requestId) {
+        Optional<LeaveRequest> leaveRequest = this.leaveRequestRepository.findById(requestId);
+        return leaveRequest;
+    }
+
     public Map<String, String> getLeaveDetails(Long id) {
         Map<String, String> leaveDetails =
                 this.leaveRequestRepository.findLeaveRequestDetailsByLeaveId(id);
@@ -161,7 +170,8 @@ public class LeaveRequestService {
                 .setMessage("Leave not approved by in place employee");
         return responseModel;
     }
-    private ResponseModel processSupervisorApproval(LeaveRequest leaveRequest){
+
+    private ResponseModel processSupervisorApproval(LeaveRequest leaveRequest) {
         ResponseModel responseModel = new ResponseModel();
         Long userId = SecurityUtils.getCurrentUserDetails().getId();
         if (userId.compareTo(leaveRequest.getInPlace().getUser().getId()) == 0) {
@@ -180,5 +190,25 @@ public class LeaveRequestService {
                 .setStatus("fail")
                 .setMessage("Leave not approved by in place employee");
         return responseModel;
+    }
+
+    public LeaveRequest updateLeaveRequest(Long requestId, LeaveRequestModel leaveRequestModel) {
+        LeaveRequest leaveRequest = this.leaveRequestRepository.findById(requestId).orElse(null);
+        if (leaveRequest != null) {
+            leaveRequest.setStartDate(leaveRequestModel.getStartDate());
+            leaveRequest.setDescription(leaveRequestModel.getReason());
+            leaveRequest.setEndDate(leaveRequestModel.getEndDate());
+            leaveRequest.setInPlaceId(leaveRequestModel.getInPlaceId());
+            this.leaveRequestRepository.save(leaveRequest);
+        }
+        return leaveRequest;
+    }
+
+    public Long getLoggedInUserLeaveBalanceByLeaveTypeId(Long leaveTypeId) {
+        Long leaveBalance = this.leaveRequestRepository.currentUserLeaveBalanceByLeaveTypeId(leaveTypeId);
+        if (leaveBalance == null) {
+            leaveBalance = 0L;
+        }
+        return leaveBalance;
     }
 }
