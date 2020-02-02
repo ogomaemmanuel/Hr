@@ -13,17 +13,15 @@
 					</div>
 				</div>
 				<div class="notification-content">
-					<NotificationItem
-							v-for="notification in notifications"
-							:notification="notification">
-					</NotificationItem>
+					<div class="content">
+						<NotificationItem
+								v-for="notification in notifications"
+								:notification="notification">
+						</NotificationItem>
+					</div>
 				</div>
 				<div>
 					<div class="notification-footer h-12 has-background-white-bis">
-<!--						<div class="flex h-2 pt-1 justify-center">-->
-<!--							<i v-if="loading" class="fa fa-spin  fa-spinner"></i>-->
-<!--						</div>-->
-						
 						<div class="flex h-full items-center justify-center">
 							See All
 						</div>
@@ -31,9 +29,9 @@
 				</div>
 			</div>
 		</div>
-	    <div v-else class="h-48 flex justify-center is-relative">
+		<div v-else class="h-48 flex justify-center is-relative">
 			
-				<b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>
+			<b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>
 		</div>
 	</div>
 </template>
@@ -113,20 +111,18 @@
 		-webkit-transition: all .3s;
 		transition: all .3s;
 		z-index: 20;
-		.loading-indicator{
-		z-index: -60;
-	}
+		.loading-indicator {
+			z-index: -60;
+		}
 		.notification-header {
 			z-index: 40;
 		}
-		
 		.notification-footer {
 			z-index: 40;
 		}
-		
 		.notification-content {
 			max-height: 300px;
-			overflow-y: scroll;
+			overflow-y: auto;
 		}
 		
 	}

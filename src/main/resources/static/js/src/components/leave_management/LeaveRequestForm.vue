@@ -203,7 +203,8 @@
                                 type: "success",
                                 text: "Leave Request successfully submitted"
                             }
-                        )
+                        );
+                        this.$emit("leaveRequestSuccessful");
                     }
                 }, error => {
                     vm.loading = false;

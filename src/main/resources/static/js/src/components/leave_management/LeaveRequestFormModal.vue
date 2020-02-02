@@ -1,6 +1,6 @@
 <template>
 	<ModalTemplate @modalClosed="$router.back()">
-		<LeaveRequestForm slot="modal-content">
+		<LeaveRequestForm @leaveRequestSuccessful="onLeaveRequestSuccessful" slot="modal-content">
 		
 		</LeaveRequestForm>
 	</ModalTemplate>
@@ -13,6 +13,12 @@
         components: {
             ModalTemplate,
             LeaveRequestForm
+        },
+        methods: {
+            onLeaveRequestSuccessful() {
+                this.$emit("leaveRequestSuccessful");
+                this.$router.back();
+            }
         }
 
     }

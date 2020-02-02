@@ -98,7 +98,9 @@
 				<LeaveBalanceCard></LeaveBalanceCard>
 			</div>
 		</div>
-		<router-view></router-view>
+		<router-view
+				@leaveRequestSuccessful="getUserLeaveRequests">
+		</router-view>
 	</div>
 </template>
 <script>
@@ -176,19 +178,4 @@
     }
 </script>
 <style lang="scss" scoped>
-	
-	
-	/*.card-simple {*/
-	/*	background: #fff;*/
-	/*	!*cursor: pointer !important;*!*/
-	/*	box-shadow: none !important ;*/
-	/*	transition: all 0.5s ease-in-out;*/
-	/*	border: 1px solid #e7eef7 !important;*/
-	/*}*/
-	
-	
-	/*.card-simple:hover {*/
-	/* box-shadow: 0.5rem 1.5rem 1rem rgba(120,130,140,0.13) !important;*/
-	/* transition: all 0.5s ease-in-out;*/
-	/*}*/
 </style>

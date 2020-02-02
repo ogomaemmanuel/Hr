@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="is-clipped">
 		<router-view>
 		</router-view>
 	</div>
