@@ -7,7 +7,8 @@
 			<label class="label is-size-7">Leave Types <span><sup class="has-text-danger">*</sup></span></label>
 			<div class="control w-full">
 				<div class="select w-full">
-					<select @input="clearFieldError('leaveTypeId')"
+					<select
+							@input="clearFieldError('leaveTypeId')"
 							v-model="leaveRequest.leaveTypeId"
 							class="w-full">
 						<option value="" disabled selected hidden>Select One</option>
@@ -29,9 +30,15 @@
 					<label class="label is-size-7">From <span><sup class="has-text-danger">*</sup></span></label>
 					<div class="control">
 						<DatePicker
+								@input="clearFieldError('startDate')"
+								format="dd-MM-yyyy"
+								value-format="yyyy-MM-dd"
 								v-model="leaveRequest.startDate"
 								class="min-w-full">
 						</DatePicker>
+						<span v-if="errors['startDate']" class="text-red-400">
+							{{errors['startDate'][0]}}
+						</span>
 					</div>
 				</div>
 			</div>
@@ -40,9 +47,14 @@
 					<label class="label is-size-7">To <span><sup class="has-text-danger">*</sup></span></label>
 					<div class="control">
 						<DatePicker
+								@input="clearFieldError('endDate')"
+								format="dd-MM-yyyy"
+								value-format="yyyy-MM-dd"
 								v-model="leaveRequest.endDate"
 								class="min-w-full"></DatePicker>
-					
+						<span v-if="errors['endDate']" class="text-red-400">
+							{{errors['endDate'][0]}}
+						</span>
 					</div>
 				</div>
 			</div>
@@ -52,6 +64,7 @@
 			<label class="label is-size-7">Number of Days<span><sup>*</sup></span></label>
 			<div class="control">
 				<input
+						:value="numberOfDays"
 						disabled
 						class="input"
 						type="text">
@@ -61,6 +74,7 @@
 			<label class="label is-size-7">Remaining Leaves Days<span><sup>*</sup></span></label>
 			<div class="control">
 				<input
+						:value="remainingLeaveDays"
 						disabled
 						class="input"
 						type="text">
@@ -98,7 +112,8 @@
         data() {
             return {
                 leaveRequest: {},
-                leaveTypes: []
+                leaveTypes: [],
+                remainingLeaveDays: ""
             }
         },
         created() {
@@ -111,12 +126,47 @@
                     this.leaveRequest = resp.data;
                 })
             },
+            getLeaveBalanceByLeaveTypeId(leaveTypeId) {
+                axios.get(`/api/user/leave-balances/${leaveTypeId}`).then(resp => {
+                    this.remainingLeaveDays = resp.data;
+                })
 
+            },
             getLeaveTypes() {
                 axios.get("/api/leave-types").then(resp => {
                     this.leaveTypes = resp.data;
                 })
             },
+
+            updateLeaveRequest() {
+                let vm = this;
+                axios.put(`/api/leave-request/${vm.leaveRequest.id}`).then(resp => {
+
+                });
+            }
+        },
+        computed: {
+            numberOfDays() {
+                let vm = this;
+                let startDate = this.leaveRequest.startDate;
+                let endDate = this.leaveRequest.endDate;
+                if (startDate && endDate) {
+                    let diff = moment(endDate).diff(startDate, "days");
+                    vm.leaveRequest.numberOfDays = diff;
+                    return diff;
+                }
+                vm.leaveRequest.numberOfDays = 0;
+                return 0;
+            }
+        },
+        watch: {
+            'numberOfDays': function (val) {
+                this.clearFieldError("numberOfDays");
+            },
+            'leaveRequest.leaveTypeId': {
+                handler: 'getLeaveBalanceByLeaveTypeId',
+                immediate: false
+            }
         }
     }
 </script>
