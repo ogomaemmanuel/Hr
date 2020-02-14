@@ -1,6 +1,7 @@
 <template>
 	<ModalTemplate @modalClosed="$router.back()">
 		<LeaveRequestEditForm
+				@leaveUpdateSuccessful="onLeaveUpdateSuccessful"
 				slot="modal-content"
 				:request-id="leaveRequestId"></LeaveRequestEditForm>
 	</ModalTemplate>
@@ -18,6 +19,12 @@
         data() {
             return {
                 leaveRequestId: ""
+            }
+        },
+        methods: {
+            onLeaveUpdateSuccessful() {
+                this.$emit("leaveUpdateSuccessful");
+                this.$router.back();
             }
         },
         created() {

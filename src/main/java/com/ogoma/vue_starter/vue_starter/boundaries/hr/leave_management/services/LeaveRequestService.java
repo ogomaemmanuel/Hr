@@ -197,6 +197,7 @@ public class LeaveRequestService {
         if (leaveRequest != null) {
             leaveRequest.setStartDate(leaveRequestModel.getStartDate());
             leaveRequest.setDescription(leaveRequestModel.getReason());
+            leaveRequest.setNumberOfDays(leaveRequestModel.getNumberOfDays());
             leaveRequest.setEndDate(leaveRequestModel.getEndDate());
             leaveRequest.setInPlaceId(leaveRequestModel.getInPlaceId());
             this.leaveRequestRepository.save(leaveRequest);

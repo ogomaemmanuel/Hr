@@ -34,25 +34,21 @@ public class HolidaysController {
         Page<Holiday> holidays = this.holidaysService.getAllHolidays(pageable);
         return ResponseEntity.ok(holidays);
     }
-
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getAllHoliday(@PathVariable Long id) {
         Holiday holiday = this.holidaysService.getAllHolidayById(id);
         return ResponseEntity.ok(holiday);
     }
-
     @RequestMapping(value = "api/holidays", method = RequestMethod.POST)
     public ResponseEntity<?> createHoliday(@RequestBody @Valid Holiday holiday) {
         holiday = this.holidaysService.createHoliday(holiday);
         return ResponseEntity.ok(holiday);
     }
-
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateHoliday(@PathVariable Long id, @RequestBody @Valid Holiday holiday) {
         holiday = this.holidaysService.updateHoliday(id, holiday);
         return ResponseEntity.ok(holiday);
     }
-
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeHoliday(@PathVariable Long id) {
         this.holidaysService.deleteHoliday(id);

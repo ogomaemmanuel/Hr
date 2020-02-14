@@ -4,6 +4,8 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.RolesRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.holidays.entities.Holiday;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,10 @@ public class RolesService {
 
     public List<Role> getAllRoles() {
         List<Role> roles = rolesRepository.findAll();
-
+        return roles;
+    }
+    public Page<Role> getAllRoles(Pageable pageable) {
+        Page<Role> roles = rolesRepository.findAll(pageable);
         return roles;
     }
 

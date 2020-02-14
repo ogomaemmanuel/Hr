@@ -30,7 +30,6 @@
 			</div>
 		</div>
 		<div v-else class="h-48 flex justify-center is-relative">
-			
 			<b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>
 		</div>
 	</div>

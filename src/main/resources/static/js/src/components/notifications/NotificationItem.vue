@@ -4,9 +4,6 @@
 			{{notification.message}}
 		</div>
 		<div class="mt-1 is-size-7">
-<!--		<span class="text-muted">-->
-<!--			<i class="fa fa-calendar"></i>-->
-<!--		</span>-->
 			<span class="mr-2">
 				{{notification.updatedAt|formattedDate}}
 			</span>

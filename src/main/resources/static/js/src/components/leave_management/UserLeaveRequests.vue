@@ -40,7 +40,7 @@
 							</router-link>
 						</p>
 					</div>
-					
+				
 				</EmptyState>
 				<div v-else class="card" ref="leaveRequests">
 					<div class="card-content card-simple is-size-7">
@@ -84,7 +84,6 @@
 												@nextPage="goToNext"
 												@paginationChanged="onPaginationChanged"
 												:paginationData="pageable">
-										
 										</Paginator>
 									</td>
 								</tr>
@@ -99,6 +98,7 @@
 			</div>
 		</div>
 		<router-view
+				@leaveUpdateSuccessful="getUserLeaveRequests"
 				@leaveRequestSuccessful="getUserLeaveRequests">
 		</router-view>
 	</div>
@@ -144,9 +144,12 @@
                     }
                 }).then(resp => {
                     loadingComponent.close();
-                    vm.leaveRequests = resp.data.content;
-                    vm.pageable = resp.data;
-                    vm.loaded = true;
+                    vm.leaveRequests = [];
+                    this.$nextTick().then(function () {
+                        vm.leaveRequests.push(...resp.data.content);
+                        vm.pageable = resp.data;
+                        vm.loaded = true;
+                    })
                 }, error => {
                     loadingComponent.close();
                 })

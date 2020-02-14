@@ -59,3 +59,10 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+	i{
+		&:hover{
+			transform: scale(1.8);
+		}
+	}
+</style>

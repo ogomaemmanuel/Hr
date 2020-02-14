@@ -21,7 +21,6 @@ export default {
                     link.click();
 
                 }, error => {
-
                     vm.isDownloading = false
                 });
 

@@ -49,7 +49,7 @@ public class LeaveRequestsController {
     @RequestMapping(value = "api/leave-request/{requestId}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateLeaveRequest(@PathVariable("requestId") Long requestId, @RequestBody LeaveRequestModel leaveRequestModel, BindingResult bindingResult) {
         leaveRequestModelValidator.validate(leaveRequestModel, bindingResult);
-        if (bindingResult.hasErrors()) {
+        if (!bindingResult.hasErrors()) {
             LeaveRequest leaveRequest = leaveRequestService.updateLeaveRequest(requestId, leaveRequestModel);
             return ResponseEntity.ok(leaveRequest);
         }
