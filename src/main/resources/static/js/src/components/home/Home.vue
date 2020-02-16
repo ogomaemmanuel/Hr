@@ -130,9 +130,9 @@
 								</router-link>
 							</li>
 							<li>
-								<a href="#">
+								<router-link to="roles">
 									<span>Roles</span>
-								</a>
+								</router-link>
 							</li>
 							<li>
 								<a href="#">

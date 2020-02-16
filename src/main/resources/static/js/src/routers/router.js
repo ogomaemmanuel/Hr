@@ -16,6 +16,9 @@ const Register = () =>
 const Users = () =>
     import ("../components/access_control/Users");
 
+const Roles = () =>
+    import ("../components/access_control/roles/RolesPage");
+
 const Documents = () => import("../components/file_management/Index")
 const PageNotFound = () => import("../components/errors/PageNotFound")
 
@@ -100,6 +103,15 @@ const routes = new Router({
                     component: Users,
                     meta: {
                         breadcrumb: 'Users',
+                    },
+
+                },
+                {
+                    path: "/roles",
+                    name: "roles",
+                    component: Roles,
+                    meta: {
+                        breadcrumb: 'Roles',
                     },
 
                 },
