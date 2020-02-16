@@ -2,10 +2,10 @@
 	<div>
 		<form>
 			<div class="has-text-centered m-3">
-				<h1 class="has-text-black"><b>Add Holiday</b></h1>
+				<h1 class="has-text-black"><b>Add Role</b></h1>
 			</div>
 			<div class="field">
-				<label class="label is-size-7">Holiday Name <span><sup>*</sup></span></label>
+				<label class="label is-size-7">Name <span><sup>*</sup></span></label>
 				<div class="control">
 					<input
 							v-model="role.name"
@@ -31,19 +31,27 @@
 	</div>
 </template>
 <script>
-	import FormMixin from "../../../mixins/common_mixin"
+    import FormMixin from "../../../mixins/common_mixin"
+
     export default {
-	    mixins:[FormMixin],
+        mixins: [FormMixin],
         data() {
             return {
-                role: {},
+                role: {
+                    name:""
+				},
                 isLoading: false,
             }
         },
         methods: {
             createRole() {
-                axios.post("/api/roles").then(resp => {
-
+                axios.post("/api/roles", this.role).then(resp => {
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Role created successfully"
+                    })
+                    this.$emit("roleCreateSuccessful");
                 }, error => {
 
                 })

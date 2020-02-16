@@ -18,6 +18,8 @@ const Users = () =>
 
 const Roles = () =>
     import ("../components/access_control/roles/RolesPage");
+const RoleCreate = () =>
+    import ("../components/access_control/roles/RoleCreateModal");
 
 const Documents = () => import("../components/file_management/Index")
 const PageNotFound = () => import("../components/errors/PageNotFound")
@@ -113,6 +115,13 @@ const routes = new Router({
                     meta: {
                         breadcrumb: 'Roles',
                     },
+                    children: [
+                        {
+                            path: "/role-create",
+                            name: "role-create",
+                            component: RoleCreate
+                        }
+                    ]
 
                 },
                 {
