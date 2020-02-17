@@ -19,7 +19,6 @@
 			</div>
 			<div class="flex justify-center m-3">
 				<button
-						
 						:class="{'is-loading':isLoading}"
 						:disabled="disableSubmitButton"
 						@click.prevent.stop="createRole"
@@ -32,14 +31,13 @@
 </template>
 <script>
     import FormMixin from "../../../mixins/common_mixin"
-
     export default {
         mixins: [FormMixin],
         data() {
             return {
                 role: {
-                    name:""
-				},
+                    name: ""
+                },
                 isLoading: false,
             }
         },
