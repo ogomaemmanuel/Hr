@@ -43,6 +43,7 @@
         },
         methods: {
             createRole() {
+                let vm = this;
                 axios.post("/api/roles", this.role).then(resp => {
                     vm.$swal({
                         type: "success",
@@ -57,7 +58,7 @@
         },
         computed: {
             disableSubmitButton() {
-                return this.role.name.length > 0 || this.isLoading;
+                return this.role.name.length <= 0 || this.isLoading;
             }
         }
     }
