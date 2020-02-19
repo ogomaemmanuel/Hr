@@ -5,7 +5,6 @@
 				<a class="navbar-item" href="https://bulma.io">
 					<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
 				</a>
-				
 				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
 				   data-target="navbarBasicExample">
 					<span aria-hidden="true"></span>
@@ -48,7 +47,18 @@
 				</div>
 				
 				<div class="navbar-end">
-					
+					<a ref="notification-toggle" @click="showNotifications=true"
+					   class="navbar-item is-hoverable is-relative">
+						<i class="fa fa-bell">
+						</i>
+						<NotificationDropDown v-closable="{
+    exclude: ['notification-toggle'],
+    handler: 'hideNotifications'
+  }" v-if="showNotifications"></NotificationDropDown>
+					</a>
+					<a class="navbar-item">
+						<i class="fa fa-envelope"></i>
+					</a>
 					<div class="navbar-item">
 						<LogoutForm></LogoutForm>
 					</div>
@@ -59,13 +69,29 @@
 						<!--							Docs-->
 						<!--						</a>-->
 						
-						<figure class="image is-fullwidth navbar-link is-64x64">
-							<img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+						<figure class="image is-fullwidth navbar-link">
+							<img class="is-rounded profile-image"
+								 src="https://bulma.io/images/placeholders/128x128.png">
 						</figure>
 						
 						<div class="navbar-dropdown is-right">
 							<a class="navbar-item">
-								Overview
+								
+								
+								<article class="media">
+									<figure class="media-left">
+										<p class="image is-32x32">
+											<img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+										</p>
+									</figure>
+									<div class="media-content">
+										<div class="content">
+											<p>
+												<strong>{{authenticatedUser.fullName}}</strong>
+											</p>
+										</div>
+									</div>
+								</article>
 							</a>
 							<a class="navbar-item">
 								Elements
@@ -83,10 +109,9 @@
 			</div>
 		</nav>
 		
-		<section class="main-content columns is-fullheight">
+		<section class="main-content columns  is-fullheight">
 			
-			<aside class="column is-2 is-narrow-mobile is-fixed is-fullheight section is-hidden-mobile">
-				<p class="menu-label is-hidden-touch">Navigation</p>
+			<aside class="column is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile relative section is-hidden-mobile">
 				<ul class="menu-list">
 					<li>
 						<a href="#" class="">
@@ -94,20 +119,74 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="is-active">
-							<span class="icon"><i class="fa fa-table"></i></span> Access Control
+						<a href="#" class="">
+							<span class="icon"><i class="fa fa-id-card"></i></span> Access Control
 						</a>
 						
-						<ul>
+						<ul class="mr-0 pr-0 border-l-0">
 							<li>
 								<router-link to="/users">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Users
+									<span>Users</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="roles">
+									<span>Roles</span>
 								</router-link>
 							</li>
 							<li>
 								<a href="#">
-									<span class="icon is-small"><i class="fa fa-link"></i></span> Link2
+									<span>Permissions</span>
 								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="">
+							<span class="icon"><i class="fa fa-folder-open"></i></span> File Management
+						</a>
+						<ul class="border-l-0">
+							<li>
+								<router-link to="/documents">
+									<span>Manage Files</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/documents">
+									<span>My Files</span>
+								</router-link>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#" class="">
+							<span class="icon"><i class="fa fa-table"></i></span> Leave Management
+						</a>
+						<ul class="border-l-0">
+							<li>
+								<router-link to="/leave">
+									<span>My Leaves</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/documents">
+									<span>In Place</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/leave-approvals">
+									<span>Leave approvals</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/holidays">
+									<span>Holidays</span>
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/leave-types">
+									<span>Leave Types</span>
+								</router-link>
 							</li>
 						</ul>
 					</li>
@@ -117,32 +196,116 @@
 						</a>
 					</li>
 				</ul>
+				
+				
+				<div class="side-bar-footer bg-gray-800 left-0  right-0 h-8 absolute bottom-0">
+					<div class="flex justify-end mr-4">
+						<i><span class="fa fa-angle-left"></span></i>
+					</div>
+					<!--						<div class="relative mt-5 h-full">-->
+					<!--					</div>-->
+				</div>
+			
+			
 			</aside>
 			
-			<div class="container column is-10">
-				<router-view></router-view>
+			
+			<div class=" column is-10 p-10 h-screen mb-0">
+				<div class="flex items-center">
+					<button type="button" class="is-hidden-desktop toggle-mobile-nav">
+						<i class="fa fa-bars text-gray-600"></i>
+					</button>
+					<breadcrumbs></breadcrumbs>
+				</div>
+				<div class="mt-5 h-full">
+					<router-view></router-view>
+				</div>
 			</div>
 		</section>
 	</div>
 </template>
 <script>
-	import LogoutForm from "../auth/LogoutForm.vue"
+    import LogoutForm from "../auth/LogoutForm.vue"
+    import NotificationDropDown from "../notifications/NotificationDropDown";
+    import {mapActions, mapGetters} from "vuex"
+
+    let handleOutsideClick;
     export default {
-	    components:{
-            LogoutForm
-		},
+        components: {
+            LogoutForm,
+            NotificationDropDown
+        },
         props: {
             user: {}
         },
         data() {
             return {
+                showNotifications: false,
                 isFullPage: true,
             }
         },
+        computed: {
+            ...mapGetters(["authenticatedUser"])
+        },
         created() {
-            this.open();
-		},
+            // this.open();
+            this.setUser(JSON.parse(this.user));
+
+        },
+        directives: {
+            closable: {
+
+                bind(el, binding, vnode) {
+                    // Here's the click/touchstart handler
+                    // (it is registered below)
+                    handleOutsideClick = (e) => {
+                        e.stopPropagation()
+                        // Get the handler method name and the exclude array
+                        // from the object used in v-closable
+                        const {handler, exclude} = binding.value
+
+                        // This variable indicates if the clicked element is excluded
+                        let clickedOnExcludedEl = false
+                        exclude.forEach(refName => {
+                            // We only run this code if we haven't detected
+                            // any excluded element yet
+                            if (!clickedOnExcludedEl) {
+                                // Get the element using the reference name
+                                const excludedEl = vnode.context.$refs[refName]
+                                // See if this excluded element
+                                // is the same element the user just clicked on
+                                clickedOnExcludedEl = excludedEl.contains(e.target)
+                            }
+                        })
+
+                        // We check to see if the clicked element is not
+                        // the dialog element and not excluded
+                        if (!el.contains(e.target) && !clickedOnExcludedEl) {
+                            // If the clicked element is outside the dialog
+                            // and not the button, then call the outside-click handler
+                            // from the same component this directive is used in
+                            vnode.context[handler]()
+                        }
+                    }
+                    // Register click/touchstart event listeners on the whole page
+                    document.addEventListener('click', handleOutsideClick)
+                    document.addEventListener('touchstart', handleOutsideClick)
+                },
+
+                unbind() {
+                    // If the element that has v-closable is removed, then
+                    // unbind click/touchstart listeners from the whole page
+                    document.removeEventListener('click', handleOutsideClick)
+                    document.removeEventListener('touchstart', handleOutsideClick)
+                }
+            }
+        },
         methods: {
+            ...mapActions(["setUser"]),
+            hideNotifications() {
+                this.showNotifications = false
+            },
+
             open() {
                 const loadingComponent = this.$buefy.loading.open({
                     container: this.isFullPage ? null : this.$refs.element.$el
@@ -152,9 +315,21 @@
         }
     }
 </script>
-<style scoped>
+<style scoped lang="scss">
 	
-	.navbar-item img {
-		max-height: 3rem;
+	.navbar-item .profile-image {
+		height: 36px;
+		width: 36px;
+		max-height: 36px;
 	}
+	
+	.toggle-mobile-nav {
+		//display: none;
+		background-color: transparent;
+		border: 0px;
+		padding: 6px 16px;
+		margin: 0 0 0 -15px;
+		height: 46px;
+	}
+
 </style>

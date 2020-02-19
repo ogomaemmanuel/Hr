@@ -1,6 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.authentication;
 
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,7 +34,9 @@ public class AppUserDetailsService implements UserDetailsService {
                 true,
                 true,
                 getGrantedAuthorityList(user),
-                user.getId()
+                user.getId(),
+                user.getFullName(),
+                user.getPhone()
         );
 
 

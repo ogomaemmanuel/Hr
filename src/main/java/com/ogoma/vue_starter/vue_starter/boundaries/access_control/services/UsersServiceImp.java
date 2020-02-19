@@ -1,7 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
-import com.ogoma.vue_starter.vue_starter.entities.PasswordReset;
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.events.auth.PasswordResetEvent;
 import com.ogoma.vue_starter.vue_starter.events.auth.UserRegistrationEvent;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+
 public class UsersServiceImp implements UserService {
     @Autowired
     ApplicationEventPublisher applicationEventPublisher;

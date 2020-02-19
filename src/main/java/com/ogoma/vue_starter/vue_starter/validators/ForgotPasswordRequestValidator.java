@@ -1,6 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.validators;
 
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class ForgotPasswordRequestValidator implements Validator {
         if (forgotPasswordRequest.getEmail() != null) {
             User user = userService.getUserByEmail(forgotPasswordRequest.getEmail());
             if (user == null) {
-                errors.rejectValue("email", "field.missing", "User with this email daoes not exist");
+                errors.rejectValue("email", "field.missing", "User with this email does not exist");
             }
         }
 

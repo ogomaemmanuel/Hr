@@ -1,6 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.events.auth;
 
-import com.ogoma.vue_starter.vue_starter.entities.PasswordReset;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
 import org.springframework.context.ApplicationEvent;
 
 public class PasswordResetEvent extends ApplicationEvent {

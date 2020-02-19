@@ -1,0 +1,27 @@
+<template>
+	<ModalTemplate ref="modalTemplate" @modalClosed="onModalClosed">
+		<slot name="modal-content">
+			<RoleEditForm @roleUpdateSuccessful="onRoleUpdateSuccessful"
+							slot="modal-content"></RoleEditForm>
+		</slot>
+	</ModalTemplate>
+</template>
+<script>
+import RoleEditForm from "./RoleEditForm";
+    import ModalTemplate from "../../common/ModalTemplate"
+    export default {
+        components: {
+            ModalTemplate,
+            RoleEditForm
+        },
+        methods: {
+            onRoleUpdateSuccessful() {
+                this.$emit("roleUpdateSuccessful");
+                this.$router.back();
+            },
+            onModalClosed() {
+                this.$router.back();
+            }
+        }
+    }
+</script>

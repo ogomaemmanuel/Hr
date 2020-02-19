@@ -22,7 +22,7 @@ public class SmtpMailSender implements MailSender {
         MimeMessage msg = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
         helper.setTo(emailModel.getTo());
-        helper.setFrom("ogoma.emmanuel@gmail.com");
+        helper.setFrom("ogoma.emmanuel@hotmail.com");
         helper.setSubject(emailModel.getSubject());
         if (emailModel.isHtml()) {
             Context context = new Context();

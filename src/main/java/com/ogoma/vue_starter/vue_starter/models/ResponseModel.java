@@ -10,31 +10,35 @@ public class ResponseModel<T> {
         return state;
     }
 
-    public void setState(String state) {
+    public ResponseModel<T> setState(String state) {
         this.state = state;
+        return this;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public ResponseModel<T> setStatus(String status) {
         this.status = status;
+        return this;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public ResponseModel<T> setMessage(String message) {
         this.message = message;
+        return this;
     }
 
     public T getData() {
         return data;
     }
 
-    public void setData(T data) {
+    public ResponseModel<T> setData(T data) {
         this.data = data;
+        return this;
     }
 }

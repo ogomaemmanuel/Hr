@@ -26,6 +26,7 @@ public class AuthControllerIntegrationTest {
     private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
     @Autowired
     AuthController authController;
+    @Autowired
     private MockMvc mockMvc;
 
     @Before
@@ -53,7 +54,7 @@ public class AuthControllerIntegrationTest {
         this.mockMvc.perform(post("/forgot-password")
                 .with(csrf().asHeader()).secure(true).contentType(CONTENT_TYPE)
                 .content("{\n" +
-                        "\t\"email\":\"ogoma.emmanuel21@gmail.com\"\n" +
+                        "\t\"email\":\"ogoma.emmanuel+55@gmail.com\"\n" +
                         "\n" +
                         "}")
         ).andDo(print()).andExpect(status().isOk());

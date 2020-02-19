@@ -10,6 +10,7 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private Long size;
     private Date createdOn;
     private  Date updatedOn;
 
@@ -46,6 +47,16 @@ public class Document {
 
     public Document setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
+        return this;
+    }
+
+    public Long getSize() {
+        return size;
+    }
+
+
+    public Document setSize(Long size) {
+        this.size = size;
         return this;
     }
 }

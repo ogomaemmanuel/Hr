@@ -2,13 +2,18 @@ package com.ogoma.vue_starter.vue_starter.authentication;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class CustomAuthenticationEntryPoint  implements AuthenticationEntryPoint {
+public class CustomAuthenticationEntryPoint   extends LoginUrlAuthenticationEntryPoint {
+    public CustomAuthenticationEntryPoint(String loginUrl) {
+        super(loginUrl);
+    }
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
@@ -17,7 +22,7 @@ public class CustomAuthenticationEntryPoint  implements AuthenticationEntryPoint
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
         else {
-            response.sendRedirect("/login");
+            super.commence(request,response,authException);
         }
 
 

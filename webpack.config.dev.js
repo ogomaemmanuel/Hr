@@ -48,6 +48,7 @@ let commonConfig=
                         // other vue-loader options go here
                     }
                 },
+
                 {
                     test: /\.js$/,
                     loader: 'babel-loader',
@@ -77,7 +78,16 @@ let commonConfig=
                             loader: MiniCssExtractPlugin.loader,
 
                         },
-                        "css-loader"
+                        "css-loader",
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                ident: 'postcss',
+                                plugins: [
+                                    require('tailwindcss'),
+                                    require('autoprefixer'),
+                                ],
+                            }}
                     ]
                 },
                 {test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/, use: "url-loader?limit=100000"}

@@ -1,6 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.controllers;
 
-import com.ogoma.vue_starter.vue_starter.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.PasswordResetRequest;
@@ -58,7 +58,7 @@ public class AuthController {
         userRegistrationModelValidator.validate(userRegistrationModel, bindingResult);
         if (!bindingResult.hasErrors()) {
             User user = this.userService.register(userRegistrationModel);
-            logger.debug("user successfully registere,user id %s",user.getId());
+            logger.debug("user successfully registered,user id %s",user.getId());
             return ResponseEntity.ok("Registration successful,a verification email has been sent to your email, please verify to complete registration");
         }
         Map<String, ArrayList<String>> errors = ErrorConverter.convert(bindingResult);
