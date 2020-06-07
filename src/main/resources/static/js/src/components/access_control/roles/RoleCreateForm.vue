@@ -17,6 +17,20 @@
 					</span>
 				</div>
 			</div>
+			<div class="field">
+				<label class="label is-size-7">Description <span><sup>*</sup></span></label>
+				<div class="control">
+					<textarea
+							v-model="role.description"
+							@input="clearFieldError('description')"
+							class="textarea"
+							type="text">
+					</textarea>
+					<span class="mb-2 has-text-danger" v-if="errors['description']">
+						{{errors['description'][0]}}
+					</span>
+				</div>
+			</div>
 			<div class="flex justify-center m-3">
 				<button
 						:class="{'is-loading':isLoading}"

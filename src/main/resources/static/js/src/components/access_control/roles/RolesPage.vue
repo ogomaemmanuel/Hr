@@ -50,7 +50,7 @@
 									<td data-label="Action">
 										<div class="action-controls d-flex justify-end">
 											<router-link
-													:to="`/holiday-edit/${role.id}`" tag="button"
+													:to="`/role-edit/${role.id}`" tag="button"
 													class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>

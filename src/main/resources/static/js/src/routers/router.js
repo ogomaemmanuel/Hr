@@ -20,6 +20,8 @@ const Roles = () =>
     import ("../components/access_control/roles/RolesPage");
 const RoleCreate = () =>
     import ("../components/access_control/roles/RoleCreateModal");
+const RoleEdit = () =>
+    import ("../components/access_control/roles/RoleEditModal");
 
 const Documents = () => import("../components/file_management/Index")
 const PageNotFound = () => import("../components/errors/PageNotFound")
@@ -120,6 +122,11 @@ const routes = new Router({
                             path: "/role-create",
                             name: "role-create",
                             component: RoleCreate
+                        } ,
+                        {
+                            path: "/role-edit/:id",
+                            name: "role-edit",
+                            component: RoleEdit
                         }
                     ]
 
