@@ -20,11 +20,12 @@
             <div class="field">
                 <label class="label is-size-7">Description<span><sup>*</sup></span></label>
                 <div class="control">
-                    <input
+                    <textarea
                             v-model="role.description"
                             @input="clearFieldError('description')"
-                            class="input"
+                            class="textarea"
                             type="text">
+                    </textarea>
                     <span class="mb-2 has-text-danger" v-if="errors['description']">
 						{{errors['description'][0]}}
 					</span>
@@ -32,7 +33,6 @@
             </div>
             <div class="flex justify-center m-3">
                 <button
-
                         :class="{'is-loading':loading}"
                         :disabled="disableSubmitButton"
                         @click.prevent.stop="updateRole"
@@ -45,6 +45,7 @@
 </template>
 <script>
     import FormMixin from "../../../mixins/common_mixin"
+
     export default {
         mixins: [FormMixin],
         props: {
@@ -54,15 +55,20 @@
         },
         data() {
             return {
-                role: {},
+                role: {
+                    name: "",
+                    description: ""
+                },
                 loading: false
             }
         },
         methods: {
 
 
-            getRoleDetails(){
-                axios.get(`/api/roles/`)
+            getRoleDetails() {
+                axios.get(`/api/roles/${this.roleId}`).then(resp => {
+                    this.role = resp.data;
+                })
             },
 
             updateRole() {
@@ -73,12 +79,12 @@
             }
         },
         created() {
-            this.
+            this.getRoleDetails();
         },
 
         computed: {
             disableSubmitButton() {
-                return role.name.length <= 0 || this.loading;
+                return this.role.name.length <= 0 || this.loading;
             }
         }
     }

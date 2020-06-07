@@ -34,7 +34,7 @@ public class RolesController {
         return ResponseEntity.of(role);
     }
 
-    @RequestMapping(value = "api/roles/paged", method = RequestMethod.GET)
+    @RequestMapping(value = "api/roles-paged", method = RequestMethod.GET)
     public ResponseEntity<?> index(PagedDataRequest pagedDataRequest) {
         PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
         Page<Role> roles = rolesService.getAllRoles(pageRequest);
