@@ -153,7 +153,7 @@
                                 </router-link>
                             </li>
                             <li>
-                                <router-link to="roles">
+                                <router-link to="/departments">
                                     <span>Departments</span>
                                 </router-link>
                             </li>

@@ -1,6 +1,5 @@
 import Vue from "vue"
 import Router from "vue-router"
-
 const AuthLayout = () =>
     import ("../components/auth/AuthLayout.vue");
 const Login = () =>
@@ -22,6 +21,13 @@ const RoleCreate = () =>
     import ("../components/access_control/roles/RoleCreateModal");
 const RoleEdit = () =>
     import ("../components/access_control/roles/RoleEditModal");
+
+
+const DepartmentsPage = () => import("../components/employee_management/departments/DepartmentsPage")
+const DepartmentList = () => import("../components/employee_management/departments/DepartmentList")
+const DepartmentCreate = () => import("../components/employee_management/departments/DepartmentCreateModal")
+const DepartmentEdit = () => import("../components/employee_management/departments/DepartmentEditModal")
+
 
 const Documents = () => import("../components/file_management/Index")
 const PageNotFound = () => import("../components/errors/PageNotFound")
@@ -122,7 +128,7 @@ const routes = new Router({
                             path: "/role-create",
                             name: "role-create",
                             component: RoleCreate
-                        } ,
+                        },
                         {
                             path: "/role-edit/:id",
                             name: "role-edit",
@@ -194,6 +200,33 @@ const routes = new Router({
                                 breadcrumb: 'Leave Details',
                             },
                         }
+                    ]
+                },
+                {
+                    path: "/departments",
+                    name: "departments-page",
+                    component: DepartmentsPage,
+                    children: [
+                        {
+                            path: "/",
+                            name: "department-list",
+                            component: DepartmentList,
+                            meta: {
+                                breadcrumb: 'Departments',
+                            },
+                            children: [
+                                {
+                                    path: "/departments-edit/:id",
+                                    component: DepartmentEdit,
+                                    name: "departments-edit"
+                                },
+                                {
+                                    path: "/departments-create",
+                                    component: DepartmentCreate,
+                                    name: "departments-create"
+                                }
+                            ]
+                        },
                     ]
                 },
                 {
