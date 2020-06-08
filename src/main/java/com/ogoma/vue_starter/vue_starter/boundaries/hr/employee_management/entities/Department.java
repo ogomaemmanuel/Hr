@@ -6,15 +6,25 @@ import javax.persistence.*;
 @Table(name = "departments")
 public class Department {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String name;
 
     public Long getId() {
         return id;
     }
 
-    public Department setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
