@@ -3,5 +3,5 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.serv
 import org.springframework.stereotype.Service;
 
 @Service
-public class DesignationController {
+public class DesignationService {
 }

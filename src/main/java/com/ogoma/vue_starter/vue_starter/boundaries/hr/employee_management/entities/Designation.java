@@ -1,5 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,8 +13,10 @@ public class Designation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdOn;
+    @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedOn;
 
