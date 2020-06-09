@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Designation;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.DesignationUpdateRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.DesignationRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
@@ -36,10 +37,11 @@ public class DesignationService {
         return designation;
     }
 
-    public Optional<Designation> updateDesignation(Long id, Designation designation) {
-        Optional<Designation> designationDb = this.designationRepository.findById(id);
+    public Optional<Designation> updateDesignation(Long id, DesignationUpdateRequest updateRequest) {
+        Optional<Designation> designationDb = this.designationRepository.findById(updateRequest.getId());
         designationDb.ifPresent((des) -> {
-            des.setName(designation.getName());
+            des.setName(updateRequest.getName());
+            des.setDepartmentId(updateRequest.getDepartmentId());
             this.designationRepository.save(des);
         });
         return designationDb;

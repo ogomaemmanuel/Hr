@@ -13,6 +13,11 @@ public class Designation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(name = "department_id")
+    private Long departmentId;
+    @JoinColumn(name = "department_id", updatable = false, insertable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private Department department;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdOn;
@@ -36,6 +41,22 @@ public class Designation {
     public Designation setName(String name) {
         this.name = name;
         return this;
+    }
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Date getCreatedOn() {

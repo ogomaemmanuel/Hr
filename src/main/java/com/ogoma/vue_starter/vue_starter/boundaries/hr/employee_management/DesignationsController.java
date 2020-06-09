@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Designation;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.DesignationUpdateRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.services.DesignationService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
@@ -39,7 +40,7 @@ public class DesignationsController {
     }
 
     @RequestMapping(value = "api/designations/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateDesignation(@PathVariable Long id, Designation designation) {
+    public ResponseEntity<?> updateDesignation(@PathVariable Long id, DesignationUpdateRequest designation) {
         Optional<Designation> designationUpdate = this.designationService.updateDesignation(id, designation);
         return ResponseEntity.of(designationUpdate);
     }
