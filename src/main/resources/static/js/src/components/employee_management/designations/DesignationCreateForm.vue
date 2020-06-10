@@ -84,7 +84,7 @@
                 departmentName: '',
                 page: 0,
                 totalPages: 0,
-                selectedDepartment
+                selectedDepartment:{}
             }
         },
         computed: {
