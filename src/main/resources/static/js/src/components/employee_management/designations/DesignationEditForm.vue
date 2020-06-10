@@ -17,43 +17,46 @@
 					</span>
                 </div>
             </div>
-
-            <b-field label="Department">
-                <b-autocomplete
-                        :data="departments"
-                        placeholder="Department name"
-                        field="name"
-                        :loading="isFetching"
-                        :open-on-focus="true"
-                        :check-infinite-scroll="true"
-                        @typing="getAsyncData"
-                        @select="option => selectedDepartment = option"
-                        @infinite-scroll="getMoreAsyncData">
-                    <template slot="header">
-                        <a @click="showAddDepartment">
-                            <span class="has-text-link"> Add new... </span>
-                        </a>
-                    </template>
-                    <template slot-scope="props">
-                        <div class="media">
-                            <div class="media-left">
-                                <!--                                <img width="32" :src="`https://image.tmdb.org/t/p/w500/${props.option.poster_path}`">-->
+            <template>
+                <b-field label="Department">
+                    <b-autocomplete
+                            ref="autocomplete"
+                            :data="departments"
+                            placeholder="Department name"
+                            field="name"
+                            :loading="isFetching"
+                            :open-on-focus="true"
+                            :check-infinite-scroll="true"
+                            @typing="getAsyncData"
+                            @select="option => selectedDepartment  = option"
+                            @infinite-scroll="getMoreAsyncData">
+                        <template slot="header">
+                            <a @click="showAddDepartment">
+                                <span class="has-text-link"> Add new... </span>
+                            </a>
+                        </template>
+                        <template slot-scope="props">
+                            <div class="media">
+                                <div class="media-left">
+                                    <!--                                <img width="32" :src="`https://image.tmdb.org/t/p/w500/${props.option.poster_path}`">-->
+                                </div>
+                                <div class="media-content">
+                                    {{ props.option.name }}
+                                    <br>
+                                    <small>
+                                        <!--                                    Released at {{ props.option.release_date }},-->
+                                        <!--                                    rated <b>{{ props.option.vote_average }}</b>-->
+                                    </small>
+                                </div>
                             </div>
-                            <div class="media-content">
-                                {{ props.option.name }}
-                                <br>
-                                <small>
-                                    <!--                                    Released at {{ props.option.release_date }},-->
-                                    <!--                                    rated <b>{{ props.option.vote_average }}</b>-->
-                                </small>
-                            </div>
-                        </div>
-                    </template>
-                    <template slot="footer">
-                        <span v-show="page > totalPages" class="has-text-grey"> Thats it! No more movies found. </span>
-                    </template>
-                </b-autocomplete>
-            </b-field>
+                        </template>
+                        <template slot="footer">
+                            <span v-show="page > totalPages"
+                                  class="has-text-grey"> Thats it! No more movies found. </span>
+                        </template>
+                    </b-autocomplete>
+                </b-field>
+            </template>
             <div class="flex justify-center m-3">
                 <button
 
@@ -71,6 +74,7 @@
 <script>
     import CommonMixin from "../../../mixins/common_mixin"
     import _debounce from "lodash.debounce"
+
     export default {
         mixins: [CommonMixin],
         props: {
@@ -85,6 +89,7 @@
                     name: ""
                 },
                 loading: false,
+                loaded: false,
                 isFetching: false,
                 departmentName: '',
                 page: 0,
@@ -101,6 +106,9 @@
             this.getDesignationById();
         },
         methods: {
+            setSelectedDepartment(options) {
+                this.selectedDepartment = options;
+            },
 
             fetchDepartments(name) {
                 axios.get("/api/departments", {
@@ -142,10 +150,15 @@
                 this.fetchDepartments(name)
             }, 500),
             getDesignationById() {
+                this.loading = true;
                 axios.get(`/api/designations/${this.designationId}`).then(resp => {
                     this.designation = resp.data;
+                    this.selectedDepartment = resp.data.department;
+                    this.$refs.autocomplete.setSelected(resp.data.department)
+                    this.loading = false;
+                    this.loaded = true;
                 }, error => {
-
+                    this.loading = false;
                 })
             },
             getMoreAsyncData: _debounce(function () {
