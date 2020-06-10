@@ -46,7 +46,7 @@
                                 <tbody>
                                 <tr v-for="designation in designations">
                                     <td data-label="Name">{{designation.name}}</td>
-                                    <td data-label="Description">{{designation.name}}</td>
+                                    <td data-label="Description">{{designation.department.name}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link

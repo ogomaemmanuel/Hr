@@ -31,7 +31,7 @@
                             @typing="getAsyncData"
                             @select="option => selectedDepartment  = option"
                             @infinite-scroll="getMoreAsyncData">
-                        <template v-if="departments.length>0" slot="header">
+                        <template slot="header">
                             <a @click="showAddDepartment">
                                 <span class="has-text-link"> Add new... </span>
                             </a>
