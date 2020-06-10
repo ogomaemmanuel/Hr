@@ -22,15 +22,16 @@
                     <b-autocomplete
                             ref="autocomplete"
                             :data="departments"
-                            placeholder="Department name"
+                            placeholder="enter department name"
                             field="name"
+                            :clearable="true"
                             :loading="isFetching"
                             :open-on-focus="true"
                             :check-infinite-scroll="true"
                             @typing="getAsyncData"
                             @select="option => selectedDepartment  = option"
                             @infinite-scroll="getMoreAsyncData">
-                        <template slot="header">
+                        <template v-if="departments.length>0" slot="header">
                             <a @click="showAddDepartment">
                                 <span class="has-text-link"> Add new... </span>
                             </a>
@@ -104,6 +105,9 @@
         },
         created() {
             this.getDesignationById();
+        },
+        mounted() {
+            this.getAsyncData();
         },
         methods: {
             setSelectedDepartment(options) {
