@@ -158,9 +158,9 @@
                                 </router-link>
                             </li>
                             <li>
-                                <a href="#">
+                                <router-link to="/designations">
                                     <span>Designations</span>
-                                </a>
+                                </router-link>
                             </li>
                             <li>
                                 <a href="#">

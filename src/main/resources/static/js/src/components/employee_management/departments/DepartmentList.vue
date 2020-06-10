@@ -38,7 +38,7 @@
                                         </th>
                                         <th>
                                             <div class="float-right">
-                                                Action
+<!--                                                Action-->
                                             </div>
                                         </th>
                                     </tr>

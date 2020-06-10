@@ -38,7 +38,7 @@ public class DesignationService {
     }
 
     public Optional<Designation> updateDesignation(Long id, DesignationUpdateRequest updateRequest) {
-        Optional<Designation> designationDb = this.designationRepository.findById(updateRequest.getId());
+        Optional<Designation> designationDb = this.designationRepository.findById(id);
         designationDb.ifPresent((des) -> {
             des.setName(updateRequest.getName());
             des.setDepartmentId(updateRequest.getDepartmentId());

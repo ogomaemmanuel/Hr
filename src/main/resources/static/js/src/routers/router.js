@@ -1,5 +1,6 @@
 import Vue from "vue"
 import Router from "vue-router"
+
 const AuthLayout = () =>
     import ("../components/auth/AuthLayout.vue");
 const Login = () =>
@@ -27,6 +28,11 @@ const DepartmentsPage = () => import("../components/employee_management/departme
 const DepartmentList = () => import("../components/employee_management/departments/DepartmentList")
 const DepartmentCreate = () => import("../components/employee_management/departments/DepartmentCreateModal")
 const DepartmentEdit = () => import("../components/employee_management/departments/DepartmentEditModal")
+
+const DesignationsPage = () => import("../components/employee_management/designations/DesignationsPage")
+const DesignationList = () => import("../components/employee_management/designations/DesignationList")
+const DesignationsCreate = () => import("../components/employee_management/designations/DesignationCreateModal")
+const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
 
 
 const Documents = () => import("../components/file_management/Index")
@@ -224,6 +230,33 @@ const routes = new Router({
                                     path: "/departments-create",
                                     component: DepartmentCreate,
                                     name: "departments-create"
+                                }
+                            ]
+                        },
+                    ]
+                },
+                {
+                    path: "/designations",
+                    name: "designations-page",
+                    component: DesignationsPage,
+                    children: [
+                        {
+                            path: "/",
+                            name: "designation-list",
+                            component: DesignationList,
+                            meta: {
+                                breadcrumb: 'Designations',
+                            },
+                            children: [
+                                {
+                                    path: "/designations-edit/:id",
+                                    component: DesignationsEdit,
+                                    name: "designations-edit"
+                                },
+                                {
+                                    path: "/designations-create",
+                                    component: DesignationsCreate,
+                                    name: "designations-create"
                                 }
                             ]
                         },
