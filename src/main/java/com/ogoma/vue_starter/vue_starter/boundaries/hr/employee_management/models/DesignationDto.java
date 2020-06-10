@@ -1,8 +1,12 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models;
 
-public class DesignationUpdateRequest {
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+public class DesignationDto {
+    @NotBlank
     private String name;
+    @NotNull
     private Long departmentId;
 
     public String getName() {
