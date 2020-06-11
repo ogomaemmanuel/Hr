@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,11 +13,15 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Date joiningDate;
+    private Date dateOfBirth;
+    @Enumerated(EnumType.STRING)
+    private GenderEnum gender;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", updatable = false, insertable = false)
     private User user;
     @OneToOne
-    @JoinColumn(name = "designation_id",insertable = false,updatable = false)
+    @JoinColumn(name = "designation_id", insertable = false, updatable = false)
     private Designation designation;
 
     private BigDecimal salary;
