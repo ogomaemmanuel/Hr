@@ -9,7 +9,7 @@
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
                 <span>
-					 Add New
+					 Add Designation
 				</span>
             </router-link>
             <a

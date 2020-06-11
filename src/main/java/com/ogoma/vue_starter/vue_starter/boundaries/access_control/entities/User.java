@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -29,7 +29,7 @@ public class User {
     @JsonProperty
     private String fullName;
     @OneToOne(mappedBy = "user")
-    private Staff staff;
+    private Employee employee;
     @JsonIgnore
     private String password;
     @Temporal(TemporalType.TIMESTAMP)
@@ -131,15 +131,15 @@ public class User {
         this.passwordResetList = passwordResetList;
     }
 
-    public void addStaff(Staff newStaff) {
-        if (newStaff == null) {
-            if (this.staff != null) {
-                this.staff.setUser(null);
+    public void addStaff(Employee newEmployee) {
+        if (newEmployee == null) {
+            if (this.employee != null) {
+                this.employee.setUser(null);
             }
         } else {
-            newStaff.setUser(this);
+            newEmployee.setUser(this);
         }
-        this.staff = newStaff;
+        this.employee = newEmployee;
     }
 
     @PostLoad
