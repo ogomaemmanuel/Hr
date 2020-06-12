@@ -1,22 +1,27 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "staffs")
-public class Staff {
+@Table(name = "employees")
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Date joiningDate;
+    private Date dateOfBirth;
+    @Enumerated(EnumType.STRING)
+    private GenderEnum gender;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", updatable = false, insertable = false)
     private User user;
     @OneToOne
-    @JoinColumn(name = "designation_id",insertable = false,updatable = false)
+    @JoinColumn(name = "designation_id", insertable = false, updatable = false)
     private Designation designation;
 
     private BigDecimal salary;
@@ -31,7 +36,7 @@ public class Staff {
         return id;
     }
 
-    public Staff setId(Long id) {
+    public Employee setId(Long id) {
         this.id = id;
         return this;
     }
@@ -40,7 +45,7 @@ public class Staff {
         return user;
     }
 
-    public Staff setUser(User user) {
+    public Employee setUser(User user) {
         this.user = user;
         return this;
     }
@@ -49,7 +54,7 @@ public class Staff {
         return designation;
     }
 
-    public Staff setDesignation(Designation designation) {
+    public Employee setDesignation(Designation designation) {
         this.designation = designation;
         return this;
     }
@@ -58,7 +63,7 @@ public class Staff {
         return salary;
     }
 
-    public Staff setSalary(BigDecimal salary) {
+    public Employee setSalary(BigDecimal salary) {
         this.salary = salary;
         return this;
     }
@@ -67,7 +72,7 @@ public class Staff {
         return active;
     }
 
-    public Staff setActive(Boolean active) {
+    public Employee setActive(Boolean active) {
         this.active = active;
         return this;
     }
@@ -76,7 +81,7 @@ public class Staff {
         return createdOn;
     }
 
-    public Staff setCreatedOn(Date createdOn) {
+    public Employee setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
         return this;
     }
@@ -85,7 +90,7 @@ public class Staff {
         return updatedOn;
     }
 
-    public Staff setUpdatedOn(Date updatedOn) {
+    public Employee setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
         return this;
     }

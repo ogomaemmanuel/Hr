@@ -9,7 +9,7 @@
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
 				<span>
-					 Add New
+					 Add Role
 				</span>
 			</router-link>
 			<a
@@ -50,7 +50,7 @@
 									<td data-label="Action">
 										<div class="action-controls d-flex justify-end">
 											<router-link
-													:to="`/holiday-edit/${role.id}`" tag="button"
+													:to="`/role-edit/${role.id}`" tag="button"
 													class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -126,7 +126,7 @@
             getRoles() {
                 let vm = this;
                 vm.loading = true;
-                axios.get("api/roles/paged", {
+                axios.get("api/roles-paged", {
                     params: {
                         pageSize: vm.pageSize,
                         page: vm.page

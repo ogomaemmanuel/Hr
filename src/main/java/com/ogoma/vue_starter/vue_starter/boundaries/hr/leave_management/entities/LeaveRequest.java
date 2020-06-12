@@ -3,7 +3,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entitie
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
-import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Staff;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -45,7 +45,7 @@ public class LeaveRequest {
     private User applicant;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "in_place", insertable = false, updatable = false)
-    private Staff inPlace;
+    private Employee inPlace;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "leave_type_id", insertable = false, updatable = false)
     private LeaveType leaveType;
@@ -118,11 +118,11 @@ public class LeaveRequest {
         return this;
     }
 
-    public Staff getInPlace() {
+    public Employee getInPlace() {
         return inPlace;
     }
 
-    public LeaveRequest setInPlace(Staff inPlace) {
+    public LeaveRequest setInPlace(Employee inPlace) {
         this.inPlace = inPlace;
         return this;
     }

@@ -1,0 +1,6 @@
+- hosts: hr-app-nodes
+  roles:
+    - {role: db}
+    - {role: java}
+    - {role: maven}
+    - {role: app}
