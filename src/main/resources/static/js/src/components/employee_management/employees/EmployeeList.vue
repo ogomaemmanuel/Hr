@@ -36,17 +36,32 @@
                                         Name
                                     </th>
                                     <th>
-                                        Department
+                                        Employee Id
                                     </th>
                                     <th>
-                                        Action
+                                        Email
+                                    </th>
+                                    <th>
+                                        Mobile
+                                    </th>
+                                    <th>
+                                        Join Date
+                                    </th>
+                                    <th>
+                                        Designation
+                                    </th>
+                                    <th>
+
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="employee in employees">
                                     <td data-label="Name">{{employee.name}}</td>
-                                    <td data-label="Description">{{employee.name}}</td>
+                                    <td data-label="Description">{{employee.employeeId}}</td>
+                                    <td data-label="Description">{{employee.email}}</td>
+                                    <td data-label="Description">{{employee.mobile}}</td>
+                                    <td data-label="Description">{{employee.joinDate}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link

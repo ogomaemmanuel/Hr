@@ -1,14 +1,12 @@
 <template>
     <div>
-some create form
+
     </div>
 </template>
 <script>
     import EmployeeBasicInfoStep from "./EmployeeBasicInfoStep";
     export default {
-        components:{
-            EmployeeBasicInfoStep
-        },
+        components:{},
         data() {
             return {
 
