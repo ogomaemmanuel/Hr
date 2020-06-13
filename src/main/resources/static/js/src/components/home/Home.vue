@@ -148,7 +148,7 @@
                         </a>
                         <ul class="mr-0 pr-0 border-l-0">
                             <li>
-                                <router-link to="/users">
+                                <router-link to="/employees">
                                     <span>All Employees</span>
                                 </router-link>
                             </li>
@@ -254,7 +254,8 @@
                     <button type="button" class="is-hidden-desktop toggle-mobile-nav">
                         <i class="fa fa-bars text-gray-600"></i>
                     </button>
-                    <breadcrumbs></breadcrumbs>
+                    <TestBreadCrump></TestBreadCrump>
+<!--                    <breadcrumbs></breadcrumbs>-->
                 </div>
                 <div class="mt-5 h-full">
                     <router-view></router-view>
@@ -267,12 +268,13 @@
     import LogoutForm from "../auth/LogoutForm.vue"
     import NotificationDropDown from "../notifications/NotificationDropDown";
     import {mapActions, mapGetters} from "vuex"
-
+   import TestBreadCrump from "../common/TestBreadCrump";
     let handleOutsideClick;
     export default {
         components: {
             LogoutForm,
-            NotificationDropDown
+            NotificationDropDown,
+            TestBreadCrump
         },
         props: {
             user: {}
