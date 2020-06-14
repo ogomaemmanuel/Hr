@@ -35,21 +35,92 @@
             </div>
 
         </div>
+        <keep-alive>
+            <component :employeeDetails="employeeDetails"
+                       @goToNext="goToNextStep" :is="currentForm">
+                <div slot-scope="{isLoading,onNext}" class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
+                     style=" width: 95%; bottom: 30px;">
+                    <div class="col-md-12">
+                        <div class="steps-actions ">
+                            <div v-if="step>0"
+                                 class="steps-action step-action-prev-button-wrapper">
+                                <button @click="step--" type="button"
+                                        data-nav="previous"
+                                        class="button btn default-btn raised btn-align">
+                                    Previous
+                                </button>
+                            </div>
+                            <div class="steps-action pl-3 step-action-next-button-wrapper">
+                                <button :class="{'is-loading':isLoading}"
+                                        :disabled="isLoading"
+                                        @click="onNext" type="button"
+                                        data-nav="next"
+                                        class="button btn success-btn btn-align ">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </component>
+        </keep-alive>
     </div>
 </template>
 <script>
     import EmployeeBasicInfoStep from "./EmployeeBasicInfoStep";
     export default {
-        components:{},
+        components:{
+            EmployeeBasicInfoStep
+        },
         data() {
             return {
-              step:0
+              step:0,
+              employeeDetails:{},
+                visitedSteps: new Set(),
+            }
+        },
+        created() {
+            this.setVisited(0);
+        },
+        computed: {
+            currentForm() {
+                if (this.step == 0) {
+                     return EmployeeBasicInfoStep;
+                }
+                if (this.step == 1) {
+                    // return FundRaiserRulesStep;
+                }
+                if (this.step == 2) {
+                    // return FundRaiserAddMembersStep;
+                }
+                if (this.step == 3) {
+                    // return FundRaiserCreateCompletedStep;
+                }
             }
         },
         methods:{
             setStep(step){
 
-            }
+            },
+            setVisited(index) {
+                this.visitedSteps.add(index);
+            },
+            goToNextStep(employeeDetails) {
+
+                let vm = this;
+                if (employeeDetails) {
+                    this.employeeDetails = {
+                        ...vm.employeeDetails,
+                        // account: fundRaiserAccountDetails.account
+                    };
+                }
+                if (vm.step == 3) {
+                    vm.closeModal(true)
+                    return;
+                }
+                vm.step++;
+                vm.setVisited(vm.step)
+            },
         }
     }
 </script>
