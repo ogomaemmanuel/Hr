@@ -1,36 +1,164 @@
 <template>
     <div>
-        <div class="steps" id="stepsDemo3">
-            <!-- Indicator -->
-            <div @click.prevent="setStem(0)" :class="{'is-active':step>=0}"
-                 class="step-item">
-                <div class="step-marker">1</div>
-                <div class="step-details">
-                    <p class="step-title">Details</p>
+        <div>
+            <div  class="steps-body pt-4 pb-4 pl-0 pr-0">
+                <div data-v-5d80c0af="" class="steps-content">
+                    <div data-v-5d80c0af="" class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">First Name <span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">Second Name <span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">Phone<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">Email<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">Date of Birth<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">Id No<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">Residential Address<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">Postal Address<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">Marital Status<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="basicInfo.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- Indicator -->
-            <div @click.prevent="setStem(1)" :class="{'is-active':step>=1}"
-                 class="step-item">
-                <div class="step-marker">2</div>
-                <div class="step-details">
-                    <p class="step-title">Set Rules</p>
-                </div>
-            </div>
-            <!-- Indicator -->
-            <div @click.prevent="setStem(2)" :class="{'is-active':step>=2}"
-                 class="step-item">
-                <div class="step-marker">3</div>
-                <div class="step-details">
-                    <p class="step-title">Add Members</p>
-                </div>
-            </div>
-            <!-- Indicator -->
-            <div @click.prevent="setStem(3)" :class="{'is-active':step>=3}"
-                 class="step-item">
-                <div class="step-marker">4</div>
-                <div class="step-details">
-                    <p class="step-title">Finish</p>
+            <div class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
+                 style="width: 95%; bottom: 30px;">
+                <div  class="col-md-12">
+                    <div  class="steps-actions "><!---->
+                        <div class="steps-action pl-3 step-action-next-button-wrapper">
+                            <button type="button" data-nav="next"
+                                    class="button btn success-btn btn-align ">
+                                Next
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,13 +168,11 @@
     export default {
         data() {
             return {
-                step: 0
+                // step: 0
             }
         },
         methods: {
-            setStem(step) {
 
-            }
         }
     }
 </script>

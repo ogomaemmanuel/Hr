@@ -38,7 +38,8 @@
         <keep-alive>
             <component :employeeDetails="employeeDetails"
                        @goToNext="goToNextStep" :is="currentForm">
-                <div slot-scope="{isLoading,onNext}" class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
+                <div slot-scope="{isLoading,onNext}"
+                     class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
                      style=" width: 95%; bottom: 30px;">
                     <div class="col-md-12">
                         <div class="steps-actions ">
@@ -68,14 +69,17 @@
 </template>
 <script>
     import EmployeeBasicInfoStep from "./EmployeeBasicInfoStep";
+    import EmployeeInfoStep from "./EmployeeEmployementInfoStep";
+
     export default {
-        components:{
-            EmployeeBasicInfoStep
+        components: {
+            EmployeeBasicInfoStep,
+            EmployeeInfoStep
         },
         data() {
             return {
-              step:0,
-              employeeDetails:{},
+                step: 0,
+                employeeDetails: {},
                 visitedSteps: new Set(),
             }
         },
@@ -85,10 +89,10 @@
         computed: {
             currentForm() {
                 if (this.step == 0) {
-                     return EmployeeBasicInfoStep;
+                    return EmployeeBasicInfoStep;
                 }
                 if (this.step == 1) {
-                    // return FundRaiserRulesStep;
+                    return EmployeeInfoStep;
                 }
                 if (this.step == 2) {
                     // return FundRaiserAddMembersStep;
@@ -98,8 +102,8 @@
                 }
             }
         },
-        methods:{
-            setStep(step){
+        methods: {
+            setStep(step) {
 
             },
             setVisited(index) {
@@ -133,9 +137,11 @@
         font-size: 1rem;
         min-height: 2rem;
         flex-wrap: nowrap !important;
+
         &:not(:last-child) {
             margin-bottom: 1.5rem;
         }
+
         .step-item {
             margin-top: 0;
             position: relative;
@@ -145,6 +151,7 @@
             flex-basis: 0;
             background: #f2f5f9;
             padding-top: 20px;
+
             &:before {
                 background: linear-gradient(to left, #dbdbdb 50%, #00d1b2 50%);
                 background-position-x: 0%;
@@ -153,18 +160,20 @@
                 background-size: 200% 100%;
                 background-position: right bottom;
             }
-           &:not(:first-child){
-               &:before{
-                   height: .2em;
-                   width: 100%;
-                   bottom: 0;
-                   left: -50%;
-                   top: 2.2rem;
-                   content: " ";
-                   display: block;
-                   position: absolute;
-               }
-           }
+
+            &:not(:first-child) {
+                &:before {
+                    height: .2em;
+                    width: 100%;
+                    bottom: 0;
+                    left: -50%;
+                    top: 2.2rem;
+                    content: " ";
+                    display: block;
+                    position: absolute;
+                }
+            }
+
             .step-marker {
                 -ms-flex-align: center;
                 align-items: center;
@@ -183,18 +192,21 @@
                 position: absolute;
                 left: calc(50% - 1rem);
             }
+
             .step-details {
                 margin-top: 2rem;
                 margin-left: .5em;
                 margin-right: .5em;
                 padding-top: .2em;
                 text-align: center;
+
                 .step-title {
                     font-size: 0.9rem;
                     font-weight: 500;
                 }
             }
-            &.is-active{
+
+            &.is-active {
                 .step-marker {
                     background-color: #fff;
                     border-color: #00d1b2;
