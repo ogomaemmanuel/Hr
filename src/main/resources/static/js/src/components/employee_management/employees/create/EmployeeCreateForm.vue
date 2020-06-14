@@ -40,9 +40,9 @@
                        @goToNext="goToNextStep" :is="currentForm">
                 <div slot-scope="{isLoading,onNext}"
                      class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
-                     style=" width: 95%; bottom: 30px;">
+                     style="bottom: 30px;">
                     <div class="col-md-12">
-                        <div class="steps-actions ">
+                        <div class="steps-actions flex justify-between">
                             <div v-if="step>0"
                                  class="steps-action step-action-prev-button-wrapper">
                                 <button @click="step--" type="button"
@@ -51,7 +51,7 @@
                                     Previous
                                 </button>
                             </div>
-                            <div class="steps-action pl-3 step-action-next-button-wrapper">
+                            <div class="steps-action pl-3 self-end step-action-next-button-wrapper">
                                 <button :class="{'is-loading':isLoading}"
                                         :disabled="isLoading"
                                         @click="onNext" type="button"
@@ -70,11 +70,13 @@
 <script>
     import EmployeeBasicInfoStep from "./EmployeeBasicInfoStep";
     import EmployeeInfoStep from "./EmployeeEmployementInfoStep";
+    import EmployeeContactAddressesForm from "./EmployeeContactAddressesForm";
 
     export default {
         components: {
             EmployeeBasicInfoStep,
-            EmployeeInfoStep
+            EmployeeInfoStep,
+            EmployeeContactAddressesForm
         },
         data() {
             return {
@@ -95,7 +97,7 @@
                     return EmployeeInfoStep;
                 }
                 if (this.step == 2) {
-                    // return FundRaiserAddMembersStep;
+                     return EmployeeContactAddressesForm;
                 }
                 if (this.step == 3) {
                     // return FundRaiserCreateCompletedStep;

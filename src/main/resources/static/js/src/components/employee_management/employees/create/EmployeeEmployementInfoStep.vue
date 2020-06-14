@@ -69,7 +69,7 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Designation<span><sup>*</sup></span></label>
+                                    <label class="label is-size-7">Supervisor<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.name"
@@ -113,6 +113,7 @@
         mixins: [CommonMixin],
         data() {
             return {
+                isLoading: false,
                 employementDetail: {}
                 // step: 0
             }
@@ -127,69 +128,5 @@
 </script>
 
 <style lang="scss" scoped>
-    .steps {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        font-size: 1rem;
-        min-height: 2rem;
-        flex-wrap: nowrap !important;
-
-        .step-item {
-            margin-top: 0;
-            position: relative;
-            -ms-flex-positive: 1;
-            flex-grow: 1;
-            -ms-flex-preferred-size: 0;
-            flex-basis: 0;
-            background: #f2f5f9;
-            padding-top: 20px;
-
-            .step-details {
-                margin-top: 2rem;
-                margin-left: .5em;
-                margin-right: .5em;
-                padding-top: .2em;
-                text-align: center;
-
-                .step-title {
-                    font-size: 0.9rem;
-                    font-weight: 500;
-                }
-            }
-
-            & .is-active {
-                .step-marker {
-                    background-color: #fff;
-                    border-color: #00d1b2;
-                    color: #00d1b2;
-                }
-            }
-
-            .step-marker {
-                height: 2rem;
-                width: 2rem;
-                position: absolute;
-                left: calc(50% - 1rem);
-            }
-
-            .step-marker {
-                -ms-flex-align: center;
-                align-items: center;
-                display: -ms-flexbox;
-                display: flex;
-                border-radius: 50%;
-                font-weight: 700;
-                -ms-flex-pack: center;
-                justify-content: center;
-                background: rgb(181, 181, 181);
-                color: #fff;
-                border: 0.2em solid rgb(255, 255, 255);
-                z-index: 1;
-            }
-        }
-    }
-
 
 </style>
