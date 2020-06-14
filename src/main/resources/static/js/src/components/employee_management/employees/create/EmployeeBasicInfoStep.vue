@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div data-v-5d80c0af="" class="steps-body pt-4 pb-4 pl-0 pr-0">
+        <div  class="steps-body pt-4 pb-4 pl-0 pr-0">
             <div data-v-5d80c0af="" class="steps-content">
                 <div data-v-5d80c0af="" class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
                     <div class="columns">
@@ -147,21 +147,8 @@
                 </div>
             </div>
         </div>
-        <div data-v-27154f5e="" data-v-5d80c0af=""
-             class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
-             style="width: 95%; bottom: 30px;">
-            <div data-v-27154f5e="" data-v-5d80c0af="" class="col-md-12">
-                <div data-v-27154f5e="" data-v-5d80c0af="" class="steps-actions "><!---->
-                    <div data-v-27154f5e="" data-v-5d80c0af=""
-                         class="steps-action pl-3 step-action-next-button-wrapper">
-                        <button data-v-27154f5e="" data-v-5d80c0af="" type="button" data-nav="next"
-                                class="button btn success-btn btn-align ">
-                            Next
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <slot :isLoading="isLoading" :onNext="onNext">
+        </slot>
     </div>
 </template>
 <script>
@@ -170,7 +157,8 @@
         mixins:[CommonMixin],
         props: {
             employeeDetails: {
-                required: true
+                required: true,
+
             }
         },
         data() {

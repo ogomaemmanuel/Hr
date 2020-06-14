@@ -22,7 +22,7 @@
                  class="step-item">
                 <div class="step-marker">3</div>
                 <div class="step-details">
-                    <p class="step-title">Statutory Numbers</p>
+                    <p class="step-title">Employee Contact Address</p>
                 </div>
             </div>
             <!-- Indicator -->
@@ -30,7 +30,7 @@
                  class="step-item">
                 <div class="step-marker">4</div>
                 <div class="step-details">
-                    <p class="step-title">Employee Contact Address</p>
+                    <p class="step-title">Finish</p>
                 </div>
             </div>
 
@@ -103,8 +103,13 @@
             }
         },
         methods: {
-            setStep(step) {
+            setStem(index) {
+                let vm = this;
+                if (this.visitedSteps.has(index) || index < this.step) {
+                    this.step = index;
 
+                }
+                //this.step = index;
             },
             setVisited(index) {
                 this.visitedSteps.add(index);

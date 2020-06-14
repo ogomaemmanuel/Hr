@@ -1,16 +1,16 @@
 <template>
     <div>
         <div>
-            <div  class="steps-body pt-4 pb-4 pl-0 pr-0">
-                <div data-v-5d80c0af="" class="steps-content">
-                    <div data-v-5d80c0af="" class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
+            <div class="steps-body pt-4 pb-4 pl-0 pr-0">
+                <div class="steps-content">
+                    <div class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
                         <div class="columns">
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">First Name <span><sup>*</sup></span></label>
+                                    <label class="label is-size-7">Department<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
-                                                v-model="basicInfo.name"
+                                                v-model="employementDetail.name"
                                                 @input="clearFieldError('name')"
                                                 class="input"
                                                 type="text">
@@ -22,10 +22,10 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Second Name <span><sup>*</sup></span></label>
+                                    <label class="label is-size-7">Designation<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
-                                                v-model="basicInfo.name"
+                                                v-model="employementDetail.name"
                                                 @input="clearFieldError('name')"
                                                 class="input"
                                                 type="text">
@@ -37,10 +37,10 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Phone<span><sup>*</sup></span></label>
+                                    <label class="label is-size-7">Salary Amount<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
-                                                v-model="basicInfo.name"
+                                                v-model="employementDetail.name"
                                                 @input="clearFieldError('name')"
                                                 class="input"
                                                 type="text">
@@ -54,10 +54,10 @@
                         <div class="columns">
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Email<span><sup>*</sup></span></label>
+                                    <label class="label is-size-7">Joining Date<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
-                                                v-model="basicInfo.name"
+                                                v-model="employementDetail.name"
                                                 @input="clearFieldError('name')"
                                                 class="input"
                                                 type="text">
@@ -69,10 +69,10 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Date of Birth<span><sup>*</sup></span></label>
+                                    <label class="label is-size-7">Designation<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
-                                                v-model="basicInfo.name"
+                                                v-model="employementDetail.name"
                                                 @input="clearFieldError('name')"
                                                 class="input"
                                                 type="text">
@@ -84,57 +84,10 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Id No<span><sup>*</sup></span></label>
+                                    <label class="label is-size-7">Salary Amount<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
-                                                v-model="basicInfo.name"
-                                                @input="clearFieldError('name')"
-                                                class="input"
-                                                type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
-					</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="columns">
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label is-size-7">Residential Address<span><sup>*</sup></span></label>
-                                    <div class="control">
-                                        <input
-                                                v-model="basicInfo.name"
-                                                @input="clearFieldError('name')"
-                                                class="input"
-                                                type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
-					</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label is-size-7">Postal Address<span><sup>*</sup></span></label>
-                                    <div class="control">
-                                        <input
-                                                v-model="basicInfo.name"
-                                                @input="clearFieldError('name')"
-                                                class="input"
-                                                type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
-					</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="column">
-                                <div class="field">
-                                    <label class="label is-size-7">Marital Status<span><sup>*</sup></span></label>
-                                    <div class="control">
-                                        <input
-                                                v-model="basicInfo.name"
+                                                v-model="employementDetail.name"
                                                 @input="clearFieldError('name')"
                                                 class="input"
                                                 type="text">
@@ -148,31 +101,27 @@
                     </div>
                 </div>
             </div>
-            <div class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
-                 style="width: 95%; bottom: 30px;">
-                <div  class="col-md-12">
-                    <div  class="steps-actions "><!---->
-                        <div class="steps-action pl-3 step-action-next-button-wrapper">
-                            <button type="button" data-nav="next"
-                                    class="button btn success-btn btn-align ">
-                                Next
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <slot :isLoading="isLoading" :onNext="onNext">
+            </slot>
         </div>
     </div>
 </template>
 <script>
+    import CommonMixin from "../../../../mixins/common_mixin"
+
     export default {
+        mixins: [CommonMixin],
         data() {
             return {
+                employementDetail: {}
                 // step: 0
             }
         },
         methods: {
-
+            onNext() {
+                let vm = this;
+                vm.$emit("goToNext", false)
+            },
         }
     }
 </script>
