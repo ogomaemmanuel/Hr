@@ -6,7 +6,7 @@
                     <div class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
 
                         <template v-for="(index,contactAddress) in contactAddresses">
-                            <div class="flex is-hidden-desktop justify-end">
+                            <div class="flex is-hidden-desktop justify-end contact-header">
                                         <i class="fa fa-trash has-text-danger"></i>
                             </div>
                             <div class="columns">
@@ -111,5 +111,12 @@
         position: absolute;
         top: 3rem;
         right: -0.2rem;
+    }
+    .contact-header {
+        padding: 10px 10px;
+        background-color: #fafbfc;
+        /*border-bottom: 1px solid #e1e4e8;*/
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
     }
 </style>
