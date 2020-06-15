@@ -4,9 +4,13 @@
             <div class="steps-body pt-4 pb-4 pl-0 pr-0">
                 <div class="steps-content">
                     <div class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
-                        <div class="columns is-mobile is-multiline">
-                            <template v-for="(index,contactAddress) in contactAddresses" :key="index">
-                                <div class="column is-4">
+
+                        <template v-for="(index,contactAddress) in contactAddresses">
+                            <div class="flex is-hidden-desktop justify-end">
+                                        <i class="fa fa-trash has-text-danger"></i>
+                            </div>
+                            <div class="columns">
+                                <div class="column">
                                     <div class="field">
                                         <label class="label is-size-7">Contact Name <span><sup>*</sup></span></label>
                                         <div class="control">
@@ -22,7 +26,7 @@
                                     </div>
 
                                 </div>
-                                <div class="column is-4">
+                                <div class="column">
                                     <div class="field">
                                         <label class="label is-size-7">Contact Phone <span><sup>*</sup></span></label>
                                         <div class="control">
@@ -37,7 +41,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="column is-4 is-relative">
+                                <div class="column is-relative">
                                     <div class="field">
                                         <label class="label is-size-7">Relationship <span><sup>*</sup></span></label>
                                         <div class="control">
@@ -52,11 +56,13 @@
                                         </div>
                                     </div>
                                     <i v-if="contactAddresses.length > 0"
+
                                        @click="removeRow(index)"
-                                       class="fa fa-trash has-text-danger delete-contact"></i>
+                                       class="fa fa-trash has-text-danger delete-contact is-hidden-mobile"></i>
                                 </div>
-                            </template>
-                        </div>
+                            </div>
+                        </template>
+
                         <div class="flex justify-end">
                             <div>
                                 <button class="button" @click="addRow()">
