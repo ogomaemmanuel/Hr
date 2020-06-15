@@ -57,6 +57,7 @@ public class EmployeeCreateModel {
         @NotBlank
         private String city;
         private String zipCode;
+        private String postalAddress;
         private Long maritalStatusId;
         @NotNull
         @Min(value = 0)
@@ -119,6 +120,14 @@ public class EmployeeCreateModel {
 
         public void setZipCode(String zipCode) {
             this.zipCode = zipCode;
+        }
+
+        public String getPostalAddress() {
+            return postalAddress;
+        }
+
+        public void setPostalAddress(String postalAddress) {
+            this.postalAddress = postalAddress;
         }
 
         public Long getMaritalStatusId() {
