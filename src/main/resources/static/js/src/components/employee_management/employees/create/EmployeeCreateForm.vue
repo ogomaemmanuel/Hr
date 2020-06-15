@@ -44,16 +44,8 @@
                          class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
                          style="bottom: 30px;">
                         <div class="col-md-12">
-                            <div class="steps-actions flex justify-between">
-                                <div v-if="step>0"
-                                     class="steps-action step-action-prev-button-wrapper">
-                                    <button @click="step--" type="button"
-                                            data-nav="previous"
-                                            class="button btn default-btn raised btn-align">
-                                        Previous
-                                    </button>
-                                </div>
-                                <div class="steps-action pl-3 self-end step-action-next-button-wrapper">
+                            <div class="steps-actions flex flex-row-reverse justify-between">
+                                <div class="steps-action pl-3 step-action-next-button-wrapper">
                                     <button :class="{'is-loading':isLoading}"
                                             :disabled="isLoading"
                                             @click="onNext" type="button"
@@ -62,6 +54,14 @@
                                         Next
                                     </button>
                                 </div>
+                                <div v-if="step>0" class="steps-action step-action-prev-button-wrapper">
+                                    <button @click="step--" type="button"
+                                            data-nav="previous"
+                                            class="button btn default-btn raised btn-align">
+                                        Previous
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     </div>
