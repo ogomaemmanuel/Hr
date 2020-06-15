@@ -1,70 +1,74 @@
 <template>
     <div>
-        <div class="steps" id="stepsDemo3">
-            <!-- Indicator -->
-            <div @click.prevent="setStem(0)" :class="{'is-active':step>=0}"
-                 class="step-item">
-                <div class="step-marker">1</div>
-                <div class="step-details">
-                    <p class="step-title">Basic Info</p>
+        <div class="card">
+            <div class="card-content">
+            <div class="steps" id="stepsDemo3">
+                <!-- Indicator -->
+                <div @click.prevent="setStem(0)" :class="{'is-active':step>=0}"
+                     class="step-item">
+                    <div class="step-marker">1</div>
+                    <div class="step-details">
+                        <p class="step-title">Basic Info</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Indicator -->
-            <div @click.prevent="setStem(1)" :class="{'is-active':step>=1}"
-                 class="step-item">
-                <div class="step-marker">2</div>
-                <div class="step-details">
-                    <p class="step-title">Employement Details</p>
+                <!-- Indicator -->
+                <div @click.prevent="setStem(1)" :class="{'is-active':step>=1}"
+                     class="step-item">
+                    <div class="step-marker">2</div>
+                    <div class="step-details">
+                        <p class="step-title">Employement Details</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Indicator -->
-            <div @click.prevent="setStem(2)" :class="{'is-active':step>=2}"
-                 class="step-item">
-                <div class="step-marker">3</div>
-                <div class="step-details">
-                    <p class="step-title">Employee Contact Address</p>
+                <!-- Indicator -->
+                <div @click.prevent="setStem(2)" :class="{'is-active':step>=2}"
+                     class="step-item">
+                    <div class="step-marker">3</div>
+                    <div class="step-details">
+                        <p class="step-title">Employee Contact Address</p>
+                    </div>
                 </div>
-            </div>
-            <!-- Indicator -->
-            <div @click.prevent="setStem(3)" :class="{'is-active':step>=3}"
-                 class="step-item">
-                <div class="step-marker">4</div>
-                <div class="step-details">
-                    <p class="step-title">Finish</p>
+                <!-- Indicator -->
+                <div @click.prevent="setStem(3)" :class="{'is-active':step>=3}"
+                     class="step-item">
+                    <div class="step-marker">4</div>
+                    <div class="step-details">
+                        <p class="step-title">Finish</p>
+                    </div>
                 </div>
-            </div>
 
-        </div>
-        <keep-alive>
-            <component :employeeDetails="employeeDetails"
-                       @goToNext="goToNextStep" :is="currentForm">
-                <div slot-scope="{isLoading,onNext}"
-                     class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
-                     style="bottom: 30px;">
-                    <div class="col-md-12">
-                        <div class="steps-actions flex justify-between">
-                            <div v-if="step>0"
-                                 class="steps-action step-action-prev-button-wrapper">
-                                <button @click="step--" type="button"
-                                        data-nav="previous"
-                                        class="button btn default-btn raised btn-align">
-                                    Previous
-                                </button>
-                            </div>
-                            <div class="steps-action pl-3 self-end step-action-next-button-wrapper">
-                                <button :class="{'is-loading':isLoading}"
-                                        :disabled="isLoading"
-                                        @click="onNext" type="button"
-                                        data-nav="next"
-                                        class="button btn success-btn btn-align ">
-                                    Next
-                                </button>
+            </div>
+            <keep-alive>
+                <component :employeeDetails="employeeDetails"
+                           @goToNext="goToNextStep" :is="currentForm">
+                    <div slot-scope="{isLoading,onNext}"
+                         class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
+                         style="bottom: 30px;">
+                        <div class="col-md-12">
+                            <div class="steps-actions flex justify-between">
+                                <div v-if="step>0"
+                                     class="steps-action step-action-prev-button-wrapper">
+                                    <button @click="step--" type="button"
+                                            data-nav="previous"
+                                            class="button btn default-btn raised btn-align">
+                                        Previous
+                                    </button>
+                                </div>
+                                <div class="steps-action pl-3 self-end step-action-next-button-wrapper">
+                                    <button :class="{'is-loading':isLoading}"
+                                            :disabled="isLoading"
+                                            @click="onNext" type="button"
+                                            data-nav="next"
+                                            class="button btn success-btn btn-align ">
+                                        Next
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </component>
-        </keep-alive>
+                </component>
+            </keep-alive>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -97,7 +101,7 @@
                     return EmployeeInfoStep;
                 }
                 if (this.step == 2) {
-                     return EmployeeContactAddressesForm;
+                    return EmployeeContactAddressesForm;
                 }
                 if (this.step == 3) {
                     // return FundRaiserCreateCompletedStep;
@@ -158,6 +162,7 @@
             flex-basis: 0;
             background: #f2f5f9;
             padding-top: 20px;
+            padding-bottom: 15px;
 
             &:before {
                 background: linear-gradient(to left, #dbdbdb 50%, #00d1b2 50%);
