@@ -10,12 +10,12 @@
                         </div>
                         <h1 class="title is-5 mt-2">Employee Successfully created!</h1>
                         <div class="">
-                            <button type="button" class="btn  tag-btn squared ant-tag-cyan">
-                                Resend Code
+                            <button type="button" class="button is-success">
+                                Add Another Employee
                             </button>
-                            <button type="button" formaction="/logout" class="btn btn-link">
-                                Back to login
-                            </button>
+                            <router-link to="/employees" tag="button" type="button"  class="button is-clear is-text">
+                                Back to employees
+                            </router-link>
                         </div>
                         <!--                        <p class="is-muted">Another text goes here..</p>-->
                     </div>
