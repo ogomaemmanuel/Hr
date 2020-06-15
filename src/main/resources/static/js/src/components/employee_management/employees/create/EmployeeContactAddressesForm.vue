@@ -6,7 +6,8 @@
                     <div class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
 
                         <div v-for="(contactAddress,index)  in contactAddresses">
-                            <div v-if="contactAddresses.length>1" class="flex is-hidden-desktop justify-end contact-header">
+                            <div v-if="contactAddresses.length>1"
+                                 class="flex is-hidden-desktop justify-end contact-header">
                                 <i @click="removeRow(index)" class="fa fa-trash has-text-danger"></i>
                             </div>
                             <div class="columns">
@@ -46,7 +47,7 @@
                                         <label class="label is-size-7">Relationship <span><sup>*</sup></span></label>
                                         <div class="control">
                                             <input
-                                                    v-model="contactAddress.relationship"
+                                                    v-model="contactAddress.relationshipId"
                                                     @input="clearFieldError('name')"
                                                     class="input"
                                                     type="text">
@@ -87,10 +88,30 @@
             return {
                 isLoading: false,
                 contactAddresses: [
-                    {},
-                    {},
-                    {}
+                    {
+                        name: "",
+                        relationshipId: "",
+                        phone: "",
+                    },
+                    {
+                        name: "",
+                        relationshipId: "",
+                        phone: "",
+                    },
+                    {
+                        name: "",
+                        relationshipId: "",
+                        phone: "",
+                    },
+
                 ]
+            }
+        },
+        computed: {
+            contactAddressAreValid() {
+                return this.contactAddresses.every(value =>
+                    this.validateContactAddress(value)
+                )
             }
         },
         methods: {
@@ -99,7 +120,17 @@
                 vm.$emit("goToNext", false)
             },
             addRow() {
-                this.contactAddresses.push({})
+                this.contactAddresses.push({
+                    name: "",
+                    relationshipId: "",
+                    phone: "",
+                })
+            },
+
+            validateContactAddress(contactAddress) {
+                return contactAddress.name.length > 0
+                    && contactAddress.phone.length > 0
+                    && contactAddress.relationshipId.length > 0;
             },
             removeRow(index) {
                 if (this.contactAddresses.length > 1) {
