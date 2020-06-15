@@ -5,9 +5,9 @@
                 <div class="steps-content">
                     <div class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
 
-                        <template v-for="(index,contactAddress) in contactAddresses">
-                            <div class="flex is-hidden-desktop justify-end contact-header">
-                                        <i class="fa fa-trash has-text-danger"></i>
+                        <div v-for="(contactAddress,index)  in contactAddresses">
+                            <div v-if="contactAddresses.length>1" class="flex is-hidden-desktop justify-end contact-header">
+                                <i @click="removeRow(index)" class="fa fa-trash has-text-danger"></i>
                             </div>
                             <div class="columns">
                                 <div class="column">
@@ -31,7 +31,7 @@
                                         <label class="label is-size-7">Contact Phone <span><sup>*</sup></span></label>
                                         <div class="control">
                                             <input
-                                                    v-model="contactAddress.name"
+                                                    v-model="contactAddress.phone"
                                                     @input="clearFieldError('name')"
                                                     class="input"
                                                     type="text">
@@ -46,7 +46,7 @@
                                         <label class="label is-size-7">Relationship <span><sup>*</sup></span></label>
                                         <div class="control">
                                             <input
-                                                    v-model="contactAddress.name"
+                                                    v-model="contactAddress.relationship"
                                                     @input="clearFieldError('name')"
                                                     class="input"
                                                     type="text">
@@ -55,15 +55,15 @@
 					</span>
                                         </div>
                                     </div>
-                                    <i v-if="contactAddresses.length > 0"
+                                    <i v-if="contactAddresses.length > 1"
 
                                        @click="removeRow(index)"
                                        class="fa fa-trash has-text-danger delete-contact is-hidden-mobile"></i>
                                 </div>
                             </div>
-                        </template>
+                        </div>
 
-                        <div class="flex justify-end">
+                        <div class="flex justify-end pt-2">
                             <div>
                                 <button class="button" @click="addRow()">
                                     <i class="fa fa-plus"></i>
@@ -87,6 +87,8 @@
             return {
                 isLoading: false,
                 contactAddresses: [
+                    {},
+                    {},
                     {}
                 ]
             }
@@ -99,7 +101,10 @@
             addRow() {
                 this.contactAddresses.push({})
             },
-            removeRow() {
+            removeRow(index) {
+                if (this.contactAddresses.length > 1) {
+                    this.contactAddresses.splice(index, 1);
+                }
 
             }
 
@@ -112,6 +117,7 @@
         top: 3rem;
         right: -0.2rem;
     }
+
     .contact-header {
         padding: 10px 10px;
         background-color: #fafbfc;

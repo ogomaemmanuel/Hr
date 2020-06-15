@@ -98,6 +98,53 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="columns">
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">NHIF No<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="employementDetail.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">NSSF No<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="employementDetail.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label is-size-7">KRA Pin<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="employementDetail.name"
+                                                @input="clearFieldError('name')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
+						{{errors['name'][0]}}
+					</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
