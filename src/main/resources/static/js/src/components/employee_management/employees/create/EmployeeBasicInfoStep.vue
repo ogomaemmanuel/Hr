@@ -165,6 +165,7 @@
         data() {
             return {
                 basicInfo: {},
+                canMoveNext: true,
                 isLoading: false,
             }
         },

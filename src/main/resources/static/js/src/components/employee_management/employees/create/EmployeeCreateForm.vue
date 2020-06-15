@@ -40,14 +40,14 @@
             <keep-alive>
                 <component :employeeDetails="employeeDetails"
                            @goToNext="goToNextStep" :is="currentForm">
-                    <div slot-scope="{isLoading,onNext}"
+                    <div slot-scope="{isLoading,canMoveNext,onNext}"
                          class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
                          style="bottom: 30px;">
                         <div class="col-md-12">
                             <div class="steps-actions flex flex-row-reverse justify-between">
                                 <div class="steps-action pl-3 step-action-next-button-wrapper">
                                     <button :class="{'is-loading':isLoading}"
-                                            :disabled="isLoading"
+                                            :disabled="isLoading || canMoveNext==false"
                                             @click="onNext" type="button"
                                             data-nav="next"
                                             class="button btn success-btn btn-align ">
@@ -87,6 +87,7 @@
         data() {
             return {
                 step: 0,
+
                 employeeDetails: {},
                 visitedSteps: new Set(),
             }

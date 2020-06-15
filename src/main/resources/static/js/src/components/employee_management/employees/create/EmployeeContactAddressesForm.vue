@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <slot :isLoading="isLoading" :onNext="onNext">
+            <slot :isLoading="isLoading" :canMoveNext="canMoveNext" :onNext="onNext">
             </slot>
         </div>
     </div>
@@ -112,6 +112,9 @@
                 return this.contactAddresses.every(value =>
                     this.validateContactAddress(value)
                 )
+            },
+            canMoveNext(){
+              return this.contactAddressAreValid;
             }
         },
         methods: {

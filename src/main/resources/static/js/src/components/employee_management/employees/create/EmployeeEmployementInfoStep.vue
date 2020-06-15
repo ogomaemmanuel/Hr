@@ -161,6 +161,7 @@
         data() {
             return {
                 isLoading: false,
+                canMoveNext: true,
                 employementDetail: {}
                 // step: 0
             }
