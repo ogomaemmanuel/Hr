@@ -13,7 +13,7 @@
                             <button type="button" class="button is-success">
                                 Add Another Employee
                             </button>
-                            <router-link to="/employees" tag="button" type="button"  class="button is-clear is-text">
+                            <router-link to="/employees" tag="button" type="button"  class="button is-clear">
                                 Back to employees
                             </router-link>
                         </div>
