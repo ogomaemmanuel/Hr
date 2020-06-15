@@ -1,19 +1,18 @@
 package com.ogoma.vue_starter.vue_starter.utils;
 
 import com.ogoma.vue_starter.vue_starter.authentication.CustomUserDetails;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 public class SecurityUtils {
+    private static CustomUserDetailsProvider customUserDetailsProvider = new CustomUserDetailsProvider();
     public static CustomUserDetails getCurrentUserDetails() {
-        SecurityUtils securityUtils = new SecurityUtils();
-        CustomUserDetails customUserDetails= securityUtils.getUserDetailsFromProvider();
+        CustomUserDetails customUserDetails= customUserDetailsProvider.getCurrentUserDetails();
         return customUserDetails;
     }
-    public CustomUserDetails getUserDetailsFromProvider(){
-        CustomUserDetailsProvider customUserDetailsProvider = new CustomUserDetailsProvider();
-        CustomUserDetails customUserDetails = customUserDetailsProvider.provide();
-        return customUserDetails;
+    /**
+     *  Used for providing A mock CustomUserDetailsProvider when running tests
+     *  https://stackoverflow.com/questions/250137/refactoring-static-method-static-field-for-testing
+     */
+    static void setCustomUserDetailsProvider(CustomUserDetailsProvider customUserDetailsProvider) {
+        SecurityUtils.customUserDetailsProvider = customUserDetailsProvider;
     }
 }
