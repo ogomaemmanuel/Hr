@@ -75,12 +75,14 @@
     import EmployeeBasicInfoStep from "./EmployeeBasicInfoStep";
     import EmployeeInfoStep from "./EmployeeEmployementInfoStep";
     import EmployeeContactAddressesForm from "./EmployeeContactAddressesForm";
+    import EmployeeCreateComplete from "./EmployeeCreateComplete";
 
     export default {
         components: {
             EmployeeBasicInfoStep,
             EmployeeInfoStep,
-            EmployeeContactAddressesForm
+            EmployeeContactAddressesForm,
+            EmployeeCreateComplete
         },
         data() {
             return {
@@ -104,7 +106,7 @@
                     return EmployeeContactAddressesForm;
                 }
                 if (this.step == 3) {
-                    // return FundRaiserCreateCompletedStep;
+                     return EmployeeCreateComplete;
                 }
             }
         },
@@ -219,6 +221,9 @@
             }
 
             &.is-active {
+                &:before{
+                    background-position: left bottom;
+                }
                 .step-marker {
                     background-color: #fff;
                     border-color: #00d1b2;
