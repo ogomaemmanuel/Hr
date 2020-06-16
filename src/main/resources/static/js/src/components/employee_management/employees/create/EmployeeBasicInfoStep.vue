@@ -118,12 +118,12 @@
                                 <label class="label is-size-7">Postal Address<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
-                                            v-model="basicInfo.name"
-                                            @input="clearFieldError('name')"
+                                            v-model="basicInfo.postalAddress"
+                                            @input="clearFieldError('postalAddress')"
                                             class="input"
                                             type="text">
-                                    <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                                    <span class="mb-2 has-text-danger" v-if="errors['postalAddress']">
+						{{errors['postalAddress'][0]}}
 					</span>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                 <label class="label is-size-7">Marital Status<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
-                                            v-model="basicInfo.name"
+                                            v-model="basicInfo.maritalStatusId"
                                             @input="clearFieldError('name')"
                                             class="input"
                                             type="text">
@@ -164,7 +164,17 @@
         },
         data() {
             return {
-                basicInfo: {},
+                basicInfo: {
+                    firstName: "",
+                    lastName: "",
+                    phone: "",
+                    email: "",
+                    dateOfBirth: "",
+                    identityNo: "",
+                    city: "",
+                    postalAddress: "",
+                    maritalStatusId: ""
+                },
                 canMoveNext: true,
                 isLoading: false,
             }
@@ -174,6 +184,16 @@
                 let vm = this;
                 vm.$emit("goToNext", false)
             },
+            validateBasic() {
+                return this.basicInfo.firstName.length > 0
+                    && this.basicInfo.lastName.length > 0
+                    && this.basicInfo.city.length > 0
+                    && this.basicInfo.phone.length > 0
+                    && this.basicInfo.identityNo.length > 0
+                    && this.basicInfo.dateOfBirth.length > 0
+                    && this.basicInfo.postalAddress.length > 0
+                    && this.basicInfo.maritalStatusId.length > 0;
+            }
         }
     }
 </script>

@@ -87,7 +87,37 @@
         data() {
             return {
                 isLoading: false,
-                contactAddresses: [
+                contactAddresses: []
+            }
+        },
+        created() {
+            this.initialize();
+        },
+        computed: {
+            contactAddressAreValid() {
+                return this.contactAddresses.every(value =>
+                    this.validateContactAddress(value)
+                )
+            },
+            canMoveNext() {
+                return this.contactAddressAreValid;
+            }
+        },
+
+        methods: {
+            onNext() {
+                let vm = this;
+                vm.$emit("goToNext", false)
+            },
+            addRow() {
+                this.contactAddresses.push({
+                    name: "",
+                    relationshipId: "",
+                    phone: "",
+                })
+            },
+            initialize() {
+                this.contactAddresses = [
                     {
                         name: "",
                         relationshipId: "",
@@ -105,31 +135,7 @@
                     },
 
                 ]
-            }
-        },
-        computed: {
-            contactAddressAreValid() {
-                return this.contactAddresses.every(value =>
-                    this.validateContactAddress(value)
-                )
             },
-            canMoveNext(){
-              return this.contactAddressAreValid;
-            }
-        },
-        methods: {
-            onNext() {
-                let vm = this;
-                vm.$emit("goToNext", false)
-            },
-            addRow() {
-                this.contactAddresses.push({
-                    name: "",
-                    relationshipId: "",
-                    phone: "",
-                })
-            },
-
             validateContactAddress(contactAddress) {
                 return contactAddress.name.length > 0
                     && contactAddress.phone.length > 0
