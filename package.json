@@ -73,6 +73,7 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
+    "@aspnet/signalr": "^1.1.4",
     "@chenfengyuan/datepicker": "^1.0.7",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.3",
     "@vue/babel-preset-jsx": "^1.0.0-beta.3",

@@ -147,7 +147,7 @@
                 </div>
             </div>
         </div>
-        <slot :isLoading="isLoading" :onNext="onNext">
+        <slot :isLoading="isLoading" :canMoveNext="canMoveNext" :onNext="onNext">
         </slot>
     </div>
 </template>
@@ -179,12 +179,18 @@
                 isLoading: false,
             }
         },
+
+        computed: {
+            canMoveNext() {
+                return this.validateBasicInfo();
+            },
+        },
         methods: {
             onNext() {
                 let vm = this;
                 vm.$emit("goToNext", false)
             },
-            validateBasic() {
+            validateBasicInfo() {
                 return this.basicInfo.firstName.length > 0
                     && this.basicInfo.lastName.length > 0
                     && this.basicInfo.city.length > 0
