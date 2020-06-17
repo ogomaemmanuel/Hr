@@ -187,6 +187,7 @@
         methods: {
             onNext() {
                 let vm = this;
+                this.employeeDetails.basicInfo=this.basicInfo;
                 vm.$emit("goToNext", false)
             },
             validateBasicInfo() {

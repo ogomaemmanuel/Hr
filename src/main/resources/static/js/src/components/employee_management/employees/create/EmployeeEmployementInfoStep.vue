@@ -158,6 +158,11 @@
 
     export default {
         mixins: [CommonMixin],
+        props: {
+            employeeDetails: {
+                required: true,
+            }
+        },
         data() {
             return {
                 isLoading: false,
@@ -165,6 +170,10 @@
                 employementDetail: {}
                 // step: 0
             }
+        },
+        created() {
+            this.employeeDetails.employementDetail
+                = this.employementDetail;
         },
         methods: {
             onNext() {

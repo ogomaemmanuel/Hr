@@ -84,6 +84,11 @@
 
     export default {
         mixins: [CommonMixin],
+        props: {
+            employeeDetails: {
+                required: true,
+            }
+        },
         data() {
             return {
                 isLoading: false,
@@ -92,6 +97,7 @@
         },
         created() {
             this.initialize();
+
         },
         computed: {
             contactAddressAreValid() {
@@ -107,6 +113,8 @@
         methods: {
             onNext() {
                 let vm = this;
+                this.employeeDetails.contactAddresses
+                    = this.contactAddresses
                 vm.$emit("goToNext", false)
             },
             addRow() {

@@ -2,71 +2,71 @@
     <div>
         <div class="card">
             <div class="card-content">
-            <div class="steps" id="stepsDemo3">
-                <!-- Indicator -->
-                <div @click.prevent="setStem(0)" :class="{'is-active':step>=0}"
-                     class="step-item">
-                    <div class="step-marker">1</div>
-                    <div class="step-details">
-                        <p class="step-title">Basic Info</p>
-                    </div>
-                </div>
-                <!-- Indicator -->
-                <div @click.prevent="setStem(1)" :class="{'is-active':step>=1}"
-                     class="step-item">
-                    <div class="step-marker">2</div>
-                    <div class="step-details">
-                        <p class="step-title">Employement Details</p>
-                    </div>
-                </div>
-                <!-- Indicator -->
-                <div @click.prevent="setStem(2)" :class="{'is-active':step>=2}"
-                     class="step-item">
-                    <div class="step-marker">3</div>
-                    <div class="step-details">
-                        <p class="step-title">Employee Contact Address</p>
-                    </div>
-                </div>
-                <!-- Indicator -->
-                <div @click.prevent="setStem(3)" :class="{'is-active':step>=3}"
-                     class="step-item">
-                    <div class="step-marker">4</div>
-                    <div class="step-details">
-                        <p class="step-title">Finish</p>
-                    </div>
-                </div>
-
-            </div>
-            <keep-alive>
-                <component :employeeDetails="employeeDetails"
-                           @goToNext="goToNextStep" :is="currentForm">
-                    <div slot-scope="{isLoading,canMoveNext,onNext}"
-                         class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
-                         style="bottom: 30px;">
-                        <div class="col-md-12">
-                            <div class="steps-actions flex flex-row-reverse justify-between">
-                                <div class="steps-action pl-3 step-action-next-button-wrapper">
-                                    <button :class="{'is-loading':isLoading}"
-                                            :disabled="isLoading || canMoveNext==false"
-                                            @click="onNext" type="button"
-                                            data-nav="next"
-                                            class="button btn success-btn btn-align ">
-                                        Next
-                                    </button>
-                                </div>
-                                <div v-if="step>0" class="steps-action step-action-prev-button-wrapper">
-                                    <button @click="step--" type="button"
-                                            data-nav="previous"
-                                            class="button btn default-btn raised btn-align">
-                                        Previous
-                                    </button>
-                                </div>
-
-                            </div>
+                <div class="steps" id="stepsDemo3">
+                    <!-- Indicator -->
+                    <div @click.prevent="setStem(0)" :class="{'is-active':step>=0}"
+                         class="step-item">
+                        <div class="step-marker">1</div>
+                        <div class="step-details">
+                            <p class="step-title">Basic Info</p>
                         </div>
                     </div>
-                </component>
-            </keep-alive>
+                    <!-- Indicator -->
+                    <div @click.prevent="setStem(1)" :class="{'is-active':step>=1}"
+                         class="step-item">
+                        <div class="step-marker">2</div>
+                        <div class="step-details">
+                            <p class="step-title">Employement Details</p>
+                        </div>
+                    </div>
+                    <!-- Indicator -->
+                    <div @click.prevent="setStem(2)" :class="{'is-active':step>=2}"
+                         class="step-item">
+                        <div class="step-marker">3</div>
+                        <div class="step-details">
+                            <p class="step-title">Employee Contact Address</p>
+                        </div>
+                    </div>
+                    <!-- Indicator -->
+                    <div @click.prevent="setStem(3)" :class="{'is-active':step>=3}"
+                         class="step-item">
+                        <div class="step-marker">4</div>
+                        <div class="step-details">
+                            <p class="step-title">Finish</p>
+                        </div>
+                    </div>
+
+                </div>
+                <keep-alive>
+                    <component :employeeDetails="employeeDetails"
+                               @goToNext="goToNextStep" :is="currentForm">
+                        <div slot-scope="{isLoading,canMoveNext,onNext}"
+                             class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
+                             style="bottom: 30px;">
+                            <div class="col-md-12">
+                                <div class="steps-actions flex flex-row-reverse justify-between">
+                                    <div class="steps-action pl-3 step-action-next-button-wrapper">
+                                        <button :class="{'is-loading':isLoading}"
+                                                :disabled="isLoading || canMoveNext==false"
+                                                @click="onNext" type="button"
+                                                data-nav="next"
+                                                class="button btn success-btn btn-align ">
+                                            Next
+                                        </button>
+                                    </div>
+                                    <div v-if="step>0" class="steps-action step-action-prev-button-wrapper">
+                                        <button @click="step--" type="button"
+                                                data-nav="previous"
+                                                class="button btn default-btn raised btn-align">
+                                            Previous
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </component>
+                </keep-alive>
             </div>
         </div>
     </div>
@@ -87,7 +87,6 @@
         data() {
             return {
                 step: 0,
-
                 employeeDetails: {},
                 visitedSteps: new Set(),
             }
@@ -107,7 +106,7 @@
                     return EmployeeContactAddressesForm;
                 }
                 if (this.step == 3) {
-                     return EmployeeCreateComplete;
+                    return EmployeeCreateComplete;
                 }
             }
         },
@@ -123,8 +122,12 @@
             setVisited(index) {
                 this.visitedSteps.add(index);
             },
+            createEmployee() {
+                axios.post("/api/employees", this.employeeDetails).then(resp => {
+                    this.step = 3
+                })
+            },
             goToNextStep(employeeDetails) {
-
                 let vm = this;
                 if (employeeDetails) {
                     this.employeeDetails = {
@@ -132,8 +135,8 @@
                         // account: fundRaiserAccountDetails.account
                     };
                 }
-                if (vm.step == 3) {
-                    vm.closeModal(true)
+                if (vm.step == 2) {
+                    vm.createEmployee();
                     return;
                 }
                 vm.step++;
@@ -222,9 +225,10 @@
             }
 
             &.is-active {
-                &:before{
+                &:before {
                     background-position: left bottom;
                 }
+
                 .step-marker {
                     background-color: #fff;
                     border-color: #00d1b2;
