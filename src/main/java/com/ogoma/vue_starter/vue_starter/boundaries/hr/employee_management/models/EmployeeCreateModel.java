@@ -203,6 +203,8 @@ public class EmployeeCreateModel {
         private Long designationId;
         @NotNull
         private Date joiningDate;
+
+        private Long shiftId;
         @NotNull
         @Min(value = 0)
         private BigDecimal salaryAmount;

@@ -175,7 +175,6 @@
                     postalAddress: "",
                     maritalStatusId: ""
                 },
-                canMoveNext: true,
                 isLoading: false,
             }
         },
