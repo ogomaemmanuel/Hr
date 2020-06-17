@@ -14,7 +14,7 @@ public class EmployeeCreateModel {
     private BasicInfo basicInfo;
     @Valid
     @NotNull
-    private List<ContactAddress>  contactAddresses;
+    private List<ContactAddress> contactAddresses;
     @Valid
     @NotNull
     private EmployementDetail employementDetail;
@@ -57,6 +57,7 @@ public class EmployeeCreateModel {
         @NotBlank
         private String city;
         private String zipCode;
+        private String postalAddress;
         private Long maritalStatusId;
         @NotNull
         @Min(value = 0)
@@ -119,6 +120,14 @@ public class EmployeeCreateModel {
 
         public void setZipCode(String zipCode) {
             this.zipCode = zipCode;
+        }
+
+        public String getPostalAddress() {
+            return postalAddress;
+        }
+
+        public void setPostalAddress(String postalAddress) {
+            this.postalAddress = postalAddress;
         }
 
         public Long getMaritalStatusId() {
@@ -198,6 +207,9 @@ public class EmployeeCreateModel {
         @Min(value = 0)
         private BigDecimal salaryAmount;
         private Long supervisorId;
+        private String kraPinNumber;
+        private String nhifNumber;
+        private String nssfNumber;
 
         public Long getDepartmentId() {
             return departmentId;
@@ -237,6 +249,30 @@ public class EmployeeCreateModel {
 
         public void setSupervisorId(Long supervisorId) {
             this.supervisorId = supervisorId;
+        }
+
+        public String getKraPinNumber() {
+            return kraPinNumber;
+        }
+
+        public void setKraPinNumber(String kraPinNumber) {
+            this.kraPinNumber = kraPinNumber;
+        }
+
+        public String getNhifNumber() {
+            return nhifNumber;
+        }
+
+        public void setNhifNumber(String nhifNumber) {
+            this.nhifNumber = nhifNumber;
+        }
+
+        public String getNssfNumber() {
+            return nssfNumber;
+        }
+
+        public void setNssfNumber(String nssfNumber) {
+            this.nssfNumber = nssfNumber;
         }
     }
 }

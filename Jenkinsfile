@@ -24,6 +24,13 @@ pipeline {
                     sh "./mvnw clean  package"
                }
           }
+         // stage("Deploy to github repository") {
+            //   steps {
+               //     sh "./mvnw deploy  package"
+
+                  // sh "mvnw deploy -Dregistry=https://maven.pkg.github.com/ogomaemmanuel -Dtoken=GH_TOKEN"
+            //   }
+         // }
           stage("Docker build") {
                steps {
                     sh "docker build -t mudho/hr:${env.BUILD_ID} ."
@@ -37,7 +44,7 @@ pipeline {
           }
           stage("Deploy to staging") {
                steps {
-                    sh "docker run -d --rm -p 8765:8080 --name hr mudho/hr"
+                    sh "docker run -d --rm -p 8765:8080 --name hr mudho/hr:${env.BUILD_ID}"
                }
           }
      }
