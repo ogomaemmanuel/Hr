@@ -18,10 +18,8 @@ public class EmployeesController {
     private final EmployeesService employeesService;
 
     public EmployeesController(EmployeesService employeesService) {
-
         this.employeesService = employeesService;
     }
-
     @RequestMapping(value = "api/employees", method = RequestMethod.GET)
     public ResponseEntity<?> getAllEmployees(PagedDataRequest pagedDataRequest) {
         Page<Employee> employees = this.employeesService.getEmployees(pagedDataRequest);
