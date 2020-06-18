@@ -1,5 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -63,6 +66,7 @@ public class EmployeeCreateModel {
         @Min(value = 0)
         private BigDecimal salary;
         @NotNull
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         private Date dateOfBirth;
         private String avatarUrl;
 
@@ -165,34 +169,34 @@ public class EmployeeCreateModel {
 
     public static class ContactAddress {
         @NotBlank
-        private String contactNumber;
+        private String phoneNumber;
         @NotBlank
-        private String contactName;
+        private String name;
         @NotBlank
-        private String contactRelation;
+        private String relationshipId;
 
-        public String getContactNumber() {
-            return contactNumber;
+        public String getPhoneNumber() {
+            return phoneNumber;
         }
 
-        public void setContactNumber(String contactNumber) {
-            this.contactNumber = contactNumber;
+        public void setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
         }
 
-        public String getContactName() {
-            return contactName;
+        public String getName() {
+            return name;
         }
 
-        public void setContactName(String contactName) {
-            this.contactName = contactName;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getContactRelation() {
-            return contactRelation;
+        public String getRelationshipId() {
+            return relationshipId;
         }
 
-        public void setContactRelation(String contactRelation) {
-            this.contactRelation = contactRelation;
+        public void setRelationshipId(String relationshipId) {
+            this.relationshipId = relationshipId;
         }
     }
 
@@ -202,6 +206,7 @@ public class EmployeeCreateModel {
         @NotBlank
         private Long designationId;
         @NotNull
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         private Date joiningDate;
 
         private Long shiftId;
@@ -209,8 +214,11 @@ public class EmployeeCreateModel {
         @Min(value = 0)
         private BigDecimal salaryAmount;
         private Long supervisorId;
+        @JsonProperty(value = "kraPin")
         private String kraPinNumber;
+        @JsonProperty(value = "nhifNo")
         private String nhifNumber;
+        @JsonProperty("nssfNo")
         private String nssfNumber;
 
         public Long getDepartmentId() {

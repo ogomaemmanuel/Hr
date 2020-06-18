@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.serv
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.EmployeeContactAddress;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -11,6 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class EmployeesService {
@@ -30,8 +35,11 @@ public class EmployeesService {
     public Employee createEmployee(EmployeeCreateModel employeeCreateModel) {
         User user = new User();
         Employee employee = new Employee();
+        Set<EmployeeContactAddress> employeeContactAddresses= new HashSet<>();
         BeanUtils.copyProperties(employeeCreateModel.getBasicInfo(), user);
         BeanUtils.copyProperties(employeeCreateModel.getEmployementDetail(), employee);
+        BeanUtils.copyProperties(employeeCreateModel.getContactAddresses(),employeeContactAddresses );
+        employee.setEmployeeContactAddresses(employeeContactAddresses);
         employee.setUser(user);
         this.employeeRepository.save(employee);
         return employee;

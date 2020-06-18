@@ -32,7 +32,7 @@
                                         <label class="label is-size-7">Contact Phone <span><sup>*</sup></span></label>
                                         <div class="control">
                                             <input
-                                                    v-model="contactAddress.phone"
+                                                    v-model="contactAddress.phoneNumber"
                                                     @input="clearFieldError('name')"
                                                     class="input"
                                                     type="text">
@@ -121,7 +121,7 @@
                 this.contactAddresses.push({
                     name: "",
                     relationshipId: "",
-                    phone: "",
+                    phoneNumber: "",
                 })
             },
             initialize() {
@@ -129,24 +129,24 @@
                     {
                         name: "",
                         relationshipId: "",
-                        phone: "",
+                        phoneNumber: "",
                     },
                     {
                         name: "",
                         relationshipId: "",
-                        phone: "",
+                        phoneNumber: "",
                     },
                     {
                         name: "",
                         relationshipId: "",
-                        phone: "",
+                        phoneNumber: "",
                     },
 
                 ]
             },
             validateContactAddress(contactAddress) {
                 return contactAddress.name.length > 0
-                    && contactAddress.phone.length > 0
+                    && contactAddress.phoneNumber.length > 0
                     && contactAddress.relationshipId.length > 0;
             },
             removeRow(index) {

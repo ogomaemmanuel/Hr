@@ -28,7 +28,7 @@ public class EmployeesController {
     }
 
     @RequestMapping(value = "api/employees", method = RequestMethod.POST)
-    public ResponseEntity<?> createEmployee(@RequestBody @Valid EmployeeCreateModel employeeCreateModel) {
+    public ResponseEntity<?> createEmployee(@RequestBody  EmployeeCreateModel employeeCreateModel) {
         Employee employee = this.employeesService.createEmployee(employeeCreateModel);
         return ResponseEntity.ok(employee);
     }
