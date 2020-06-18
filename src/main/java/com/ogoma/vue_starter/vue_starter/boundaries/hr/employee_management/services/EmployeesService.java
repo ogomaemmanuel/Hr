@@ -35,11 +35,12 @@ public class EmployeesService {
     public Employee createEmployee(EmployeeCreateModel employeeCreateModel) {
         User user = new User();
         Employee employee = new Employee();
-        Set<EmployeeContactAddress> employeeContactAddresses= new HashSet<>();
+        Set<EmployeeContactAddress> employeeContactAddresses = new HashSet<>();
         BeanUtils.copyProperties(employeeCreateModel.getBasicInfo(), user);
         BeanUtils.copyProperties(employeeCreateModel.getEmployementDetail(), employee);
-        BeanUtils.copyProperties(employeeCreateModel.getContactAddresses(),employeeContactAddresses );
+        BeanUtils.copyProperties(employeeCreateModel.getContactAddresses(), employeeContactAddresses);
         employee.setEmployeeContactAddresses(employeeContactAddresses);
+        user.addStaff(employee);
         employee.setUser(user);
         this.employeeRepository.save(employee);
         return employee;

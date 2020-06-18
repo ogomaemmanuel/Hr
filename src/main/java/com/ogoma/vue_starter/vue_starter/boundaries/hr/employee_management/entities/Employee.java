@@ -2,6 +2,8 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enti
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -23,7 +25,7 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user_id",  updatable = false, insertable = false)
+    @JoinColumn(name = "user_id")
     private User user;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "designation_id", insertable = false, updatable = false)
@@ -35,8 +37,10 @@ public class Employee {
     @Column(name = "status")
     private Boolean active;
     @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdOn;
     @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date updatedOn;
 
     public Long getId() {

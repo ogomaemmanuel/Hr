@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public class EmployeeCreateModel {
     @Valid
@@ -17,7 +18,7 @@ public class EmployeeCreateModel {
     private BasicInfo basicInfo;
     @Valid
     @NotNull
-    private List<ContactAddress> contactAddresses;
+    private Set<ContactAddress> contactAddresses;
     @Valid
     @NotNull
     private EmployementDetail employementDetail;
@@ -30,11 +31,11 @@ public class EmployeeCreateModel {
         this.basicInfo = basicInfo;
     }
 
-    public List<ContactAddress> getContactAddresses() {
+    public Set<ContactAddress> getContactAddresses() {
         return contactAddresses;
     }
 
-    public void setContactAddresses(List<ContactAddress> contactAddresses) {
+    public void setContactAddresses(Set<ContactAddress> contactAddresses) {
         this.contactAddresses = contactAddresses;
     }
 
