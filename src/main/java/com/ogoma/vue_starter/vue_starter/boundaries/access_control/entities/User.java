@@ -25,10 +25,16 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    private Date dateOfBirth;
+    private String identityNo;
+    private String city;
+    private String postalAddress;
+    private Long maritalStatusId;
     @Transient
     @JsonProperty
     private String fullName;
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Employee employee;
     @JsonIgnore
     private String password;
@@ -81,6 +87,58 @@ public class User {
 
     public String getPhone() {
         return phone;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getIdentityNo() {
+        return identityNo;
+    }
+
+    public void setIdentityNo(String identityNo) {
+        this.identityNo = identityNo;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalAddress() {
+        return postalAddress;
+    }
+
+    public void setPostalAddress(String postalAddress) {
+        this.postalAddress = postalAddress;
+    }
+
+    public Long getMaritalStatusId() {
+        return maritalStatusId;
+    }
+
+    public void setMaritalStatusId(Long maritalStatusId) {
+        this.maritalStatusId = maritalStatusId;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public void setPhone(String phone) {

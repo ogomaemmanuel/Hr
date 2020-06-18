@@ -1,12 +1,17 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 public class EmployeeCreateModel {
     @Valid
@@ -14,7 +19,8 @@ public class EmployeeCreateModel {
     private BasicInfo basicInfo;
     @Valid
     @NotNull
-    private List<ContactAddress> contactAddresses;
+    @NotEmpty
+    private Set<ContactAddress> contactAddresses;
     @Valid
     @NotNull
     private EmployementDetail employementDetail;
@@ -27,11 +33,11 @@ public class EmployeeCreateModel {
         this.basicInfo = basicInfo;
     }
 
-    public List<ContactAddress> getContactAddresses() {
+    public Set<ContactAddress> getContactAddresses() {
         return contactAddresses;
     }
 
-    public void setContactAddresses(List<ContactAddress> contactAddresses) {
+    public void setContactAddresses(Set<ContactAddress> contactAddresses) {
         this.contactAddresses = contactAddresses;
     }
 
@@ -44,25 +50,25 @@ public class EmployeeCreateModel {
     }
 
     public static class BasicInfo {
-        @NotBlank
+        @NotBlank(message = "First name is required")
         private String firstName;
-        @NotBlank
+        @NotBlank(message = "last name is required")
         private String lastName;
-        @NotBlank
+        @NotBlank(message = "Phone number is required")
         private String phone;
-        @NotBlank
+        @NotBlank(message = "Email is required")
         private String email;
-        @NotBlank
+        @NotBlank(message = "Identity number is required")
         private String identityNo;
-        @NotBlank
+        @NotBlank(message = "Physical address is required")
         private String city;
         private String zipCode;
+        @NotBlank(message = "Postal address is required")
         private String postalAddress;
         private Long maritalStatusId;
-        @NotNull
-        @Min(value = 0)
-        private BigDecimal salary;
-        @NotNull
+
+        @NotNull(message = "Date of birth is required")
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         private Date dateOfBirth;
         private String avatarUrl;
 
@@ -138,13 +144,6 @@ public class EmployeeCreateModel {
             this.maritalStatusId = maritalStatusId;
         }
 
-        public BigDecimal getSalary() {
-            return salary;
-        }
-
-        public void setSalary(BigDecimal salary) {
-            this.salary = salary;
-        }
 
         public Date getDateOfBirth() {
             return dateOfBirth;
@@ -164,51 +163,59 @@ public class EmployeeCreateModel {
     }
 
     public static class ContactAddress {
-        @NotBlank
-        private String contactNumber;
-        @NotBlank
-        private String contactName;
-        @NotBlank
-        private String contactRelation;
-
-        public String getContactNumber() {
-            return contactNumber;
+        @NotBlank(message = "Employee contact phone is required")
+        private String phoneNumber;
+        @NotBlank(message = "Employee contact name is required")
+        private String name;
+        @NotBlank(message = "Select employee contact relationship")
+        private String relationshipId;
+        public String getPhoneNumber() {
+            return phoneNumber;
         }
 
-        public void setContactNumber(String contactNumber) {
-            this.contactNumber = contactNumber;
+        public void setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
         }
 
-        public String getContactName() {
-            return contactName;
+        public String getName() {
+            return name;
         }
 
-        public void setContactName(String contactName) {
-            this.contactName = contactName;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getContactRelation() {
-            return contactRelation;
+        public String getRelationshipId() {
+            return relationshipId;
         }
 
-        public void setContactRelation(String contactRelation) {
-            this.contactRelation = contactRelation;
+        public void setRelationshipId(String relationshipId) {
+            this.relationshipId = relationshipId;
         }
     }
 
     public static class EmployementDetail {
-        @NotBlank
+        @NotBlank(message = "Select department")
         private Long departmentId;
-        @NotBlank
+        @NotBlank(message = "Select designation")
         private Long designationId;
-        @NotNull
+        @NotNull(message = "Joining date is required")
+        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         private Date joiningDate;
-        @NotNull
+
+        private Long shiftId;
+        @NotNull(message = "Salary amount is required")
         @Min(value = 0)
         private BigDecimal salaryAmount;
         private Long supervisorId;
+        @NotBlank(message = "Kra pin number is required ")
+        @JsonProperty(value = "kraPinNumber")
         private String kraPinNumber;
+        @NotBlank(message = "Nhif number is required")
+        @JsonProperty(value = "nhifNo")
         private String nhifNumber;
+        @NotBlank(message = "Nssf number is required")
+        @JsonProperty("nssfNo")
         private String nssfNumber;
 
         public Long getDepartmentId() {

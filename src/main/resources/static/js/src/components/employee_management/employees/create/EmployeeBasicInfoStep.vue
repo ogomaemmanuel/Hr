@@ -70,11 +70,18 @@
                             <div class="field">
                                 <label class="label is-size-7">Date of Birth<span><sup>*</sup></span></label>
                                 <div class="control">
-                                    <input
+                                    <DatePicker
+                                            class="datepicker"
                                             v-model="basicInfo.dateOfBirth"
                                             @input="clearFieldError('basicInfo.dateOfBirth')"
-                                            class="input"
-                                            type="text">
+                                    >
+
+                                    </DatePicker>
+                                    <!--                                    <input-->
+                                    <!--                                            v-model="basicInfo.dateOfBirth"-->
+                                    <!--                                            @input="clearFieldError('basicInfo.dateOfBirth')"-->
+                                    <!--                                            class="input"-->
+                                    <!--                                            type="text">-->
                                     <span class="mb-2 has-text-danger" v-if="errors['basicInfo.dateOfBirth']">
 						{{errors['basicInfo.dateOfBirth'][0]}}
 					</span>
@@ -153,8 +160,12 @@
 </template>
 <script>
     import CommonMixin from "../../../../mixins/common_mixin"
+    import {DatePicker} from "element-ui"
 
     export default {
+        components: {
+            DatePicker
+        },
         mixins: [CommonMixin],
         props: {
             employeeDetails: {
@@ -175,19 +186,20 @@
                     postalAddress: "",
                     maritalStatusId: ""
                 },
-                canMoveNext: true,
                 isLoading: false,
             }
         },
 
         computed: {
             canMoveNext() {
-                return this.validateBasicInfo();
+                return true;
+                // return this.validateBasicInfo();
             },
         },
         methods: {
             onNext() {
                 let vm = this;
+                this.employeeDetails.basicInfo = this.basicInfo;
                 vm.$emit("goToNext", false)
             },
             validateBasicInfo() {
@@ -196,10 +208,15 @@
                     && this.basicInfo.city.length > 0
                     && this.basicInfo.phone.length > 0
                     && this.basicInfo.identityNo.length > 0
-                    && this.basicInfo.dateOfBirth.length > 0
+                    && this.basicInfo.dateOfBirth.toString().length > 0
                     && this.basicInfo.postalAddress.length > 0
                     && this.basicInfo.maritalStatusId.length > 0;
             }
         }
     }
 </script>
+<style lang="scss" scoped>
+    .datepicker {
+        min-width: 100%;
+    }
+</style>
