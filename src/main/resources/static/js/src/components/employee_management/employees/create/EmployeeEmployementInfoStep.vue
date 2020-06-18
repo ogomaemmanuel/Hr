@@ -134,12 +134,12 @@
                                     <label class="label is-size-7">KRA Pin<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
-                                                v-model="employementDetail.kraPin"
-                                                @input="clearFieldError('kraPin')"
+                                                v-model="employementDetail.kraPinNumber"
+                                                @input="clearFieldError('kraPinNumber')"
                                                 class="input"
                                                 type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['kraPin']">
-						{{errors['kraPin'][0]}}
+                                        <span class="mb-2 has-text-danger" v-if="errors['kraPinNumber']">
+						{{errors['kraPinNumber'][0]}}
 					</span>
                                     </div>
                                 </div>

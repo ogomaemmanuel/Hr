@@ -50,25 +50,24 @@ public class EmployeeCreateModel {
     }
 
     public static class BasicInfo {
-        @NotBlank
+        @NotBlank(message = "First name is required")
         private String firstName;
-        @NotBlank
+        @NotBlank(message = "last name is required")
         private String lastName;
-        @NotBlank
+        @NotBlank(message = "Phone number is required")
         private String phone;
-        @NotBlank
+        @NotBlank(message = "Email is required")
         private String email;
-        @NotBlank
+        @NotBlank(message = "Identity number is required")
         private String identityNo;
-        @NotBlank
+        @NotBlank(message = "Physical address is required")
         private String city;
         private String zipCode;
+        @NotBlank(message = "Postal address is required")
         private String postalAddress;
         private Long maritalStatusId;
-        @NotNull
-        @Min(value = 0)
-        private BigDecimal salary;
-        @NotNull
+
+        @NotNull(message = "Date of birth is required")
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         private Date dateOfBirth;
         private String avatarUrl;
@@ -145,13 +144,6 @@ public class EmployeeCreateModel {
             this.maritalStatusId = maritalStatusId;
         }
 
-        public BigDecimal getSalary() {
-            return salary;
-        }
-
-        public void setSalary(BigDecimal salary) {
-            this.salary = salary;
-        }
 
         public Date getDateOfBirth() {
             return dateOfBirth;
@@ -203,23 +195,26 @@ public class EmployeeCreateModel {
     }
 
     public static class EmployementDetail {
-        @NotBlank
+        @NotBlank(message = "Select department")
         private Long departmentId;
-        @NotBlank
+        @NotBlank(message = "Select designation")
         private Long designationId;
-        @NotNull
+        @NotNull(message = "Joining date is required")
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         private Date joiningDate;
 
         private Long shiftId;
-        @NotNull
+        @NotNull(message = "Salary amount is required")
         @Min(value = 0)
         private BigDecimal salaryAmount;
         private Long supervisorId;
-        @JsonProperty(value = "kraPin")
+        @NotBlank(message = "Kra pin number is required ")
+        @JsonProperty(value = "kraPinNumber")
         private String kraPinNumber;
+        @NotBlank(message = "Nhif number is required")
         @JsonProperty(value = "nhifNo")
         private String nhifNumber;
+        @NotBlank(message = "Nssf number is required")
         @JsonProperty("nssfNo")
         private String nssfNumber;
 

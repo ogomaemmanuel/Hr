@@ -183,14 +183,8 @@
 		<repository>
 			<id>github.repo</id>
 			<name>Temporary Staging Repository</name>
-<!--			the  deployment repo must be created before-->
-			<url>https://maven.pkg.github.com/ogomaemmanuel/vue_starter</url>
+			<url>https://maven.pkg.github.com/ogomaemmanuel/Hr_Artifacts</url>
 		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Snapshots</name>
-			<url>https://maven.pkg.github.com/ogomaemmanuel/vue_starter</url>
-		</snapshotRepository>
 	</distributionManagement>
 
 </project>

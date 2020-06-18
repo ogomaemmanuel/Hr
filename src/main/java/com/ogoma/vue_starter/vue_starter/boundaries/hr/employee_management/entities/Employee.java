@@ -21,7 +21,7 @@ public class Employee {
 
     private BigDecimal salaryAmount;
     private String nssfNumber;
-    private String kraNumber;
+    private String kraPinNumber;
     private String nhifNumber;
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
@@ -34,7 +34,6 @@ public class Employee {
     @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST)
     private Set<EmployeeContactAddress> employeeContactAddresses=new HashSet<>();
 
-    private BigDecimal salary;
     @Column(name = "status")
     private Boolean active;
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,7 +59,7 @@ public class Employee {
     public void setJoiningDate(Date joiningDate) {
         this.joiningDate = joiningDate;
     }
-    
+
 
     public BigDecimal getSalaryAmount() {
         return salaryAmount;
@@ -78,12 +77,12 @@ public class Employee {
         this.nssfNumber = nssfNumber;
     }
 
-    public String getKraNumber() {
-        return kraNumber;
+    public String getKraPinNumber() {
+        return kraPinNumber;
     }
 
-    public void setKraNumber(String kraNumber) {
-        this.kraNumber = kraNumber;
+    public void setKraPinNumber(String kraPinNumber) {
+        this.kraPinNumber = kraPinNumber;
     }
 
     public String getNhifNumber() {
@@ -119,16 +118,6 @@ public class Employee {
         this.designation = designation;
         return this;
     }
-
-    public BigDecimal getSalary() {
-        return salary;
-    }
-
-    public Employee setSalary(BigDecimal salary) {
-        this.salary = salary;
-        return this;
-    }
-
     public Boolean getActive() {
         return active;
     }
