@@ -207,7 +207,7 @@
                     && this.basicInfo.city.length > 0
                     && this.basicInfo.phone.length > 0
                     && this.basicInfo.identityNo.length > 0
-                    && this.basicInfo.dateOfBirth.length > 0
+                    && this.basicInfo.dateOfBirth.toString().length > 0
                     && this.basicInfo.postalAddress.length > 0
                     && this.basicInfo.maritalStatusId.length > 0;
             }

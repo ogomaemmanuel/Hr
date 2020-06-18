@@ -56,13 +56,16 @@
                                 <div class="field">
                                     <label class="label is-size-7">Joining Date<span><sup>*</sup></span></label>
                                     <div class="control">
-                                        <input
+                                        <DatePicker
+                                                class="datepicker"
                                                 v-model="employementDetail.joiningDate"
                                                 @input="clearFieldError('joiningDate')"
-                                                class="input"
-                                                type="text">
+                                        >
+
+                                        </DatePicker>
+
                                         <span class="mb-2 has-text-danger" v-if="errors['joiningDate']">
-						{{errors['name'][0]}}
+						{{errors['joiningDate'][0]}}
 					</span>
                                     </div>
                                 </div>
@@ -155,8 +158,12 @@
 </template>
 <script>
     import CommonMixin from "../../../../mixins/common_mixin"
+    import {DatePicker} from "element-ui"
 
     export default {
+        components: {
+            DatePicker
+        },
         mixins: [CommonMixin],
         props: {
             employeeDetails: {
@@ -185,5 +192,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .datepicker {
+        min-width: 100%;
+    }
 </style>
