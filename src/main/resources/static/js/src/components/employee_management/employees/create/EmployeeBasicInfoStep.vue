@@ -70,11 +70,18 @@
                             <div class="field">
                                 <label class="label is-size-7">Date of Birth<span><sup>*</sup></span></label>
                                 <div class="control">
-                                    <input
+                                    <DatePicker
+                                            class="datepicker"
                                             v-model="basicInfo.dateOfBirth"
                                             @input="clearFieldError('basicInfo.dateOfBirth')"
-                                            class="input"
-                                            type="text">
+                                    >
+
+                                    </DatePicker>
+<!--                                    <input-->
+<!--                                            v-model="basicInfo.dateOfBirth"-->
+<!--                                            @input="clearFieldError('basicInfo.dateOfBirth')"-->
+<!--                                            class="input"-->
+<!--                                            type="text">-->
                                     <span class="mb-2 has-text-danger" v-if="errors['basicInfo.dateOfBirth']">
 						{{errors['basicInfo.dateOfBirth'][0]}}
 					</span>
@@ -153,8 +160,12 @@
 </template>
 <script>
     import CommonMixin from "../../../../mixins/common_mixin"
+    import {DatePicker} from "element-ui"
 
     export default {
+        components:{
+            DatePicker
+        },
         mixins: [CommonMixin],
         props: {
             employeeDetails: {
@@ -187,7 +198,7 @@
         methods: {
             onNext() {
                 let vm = this;
-                this.employeeDetails.basicInfo=this.basicInfo;
+                this.employeeDetails.basicInfo = this.basicInfo;
                 vm.$emit("goToNext", false)
             },
             validateBasicInfo() {
@@ -203,3 +214,8 @@
         }
     }
 </script>
+<style lang="scss" scoped>
+    .datepicker{
+        min-width: 100%;
+    }
+</style>

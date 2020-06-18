@@ -6,6 +6,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entit
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
+import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -44,6 +45,8 @@ public class EmployeesService {
         BeanUtils.copyProperties(employeeCreateModel.getBasicInfo(), user);
         BeanUtils.copyProperties(employeeCreateModel.getEmployementDetail(), employee);
         employee.setEmployeeContactAddresses(employeeContactAddresses);
+        String userPassword = RandomStringGenerator.randomStringGenerator(8, true);
+        user.setPassword(userPassword);
         user.addStaff(employee);
         employee.setUser(user);
         this.employeeRepository.save(employee);
