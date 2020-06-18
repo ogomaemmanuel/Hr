@@ -34,6 +34,7 @@ public class User {
     @JsonProperty
     private String fullName;
     @OneToOne(mappedBy = "user")
+    @JsonIgnore
     private Employee employee;
     @JsonIgnore
     private String password;

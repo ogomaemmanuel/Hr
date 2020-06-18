@@ -57,11 +57,11 @@
                                     <label class="label is-size-7">Joining Date<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
-                                                v-model="employementDetail.joinDate"
-                                                @input="clearFieldError('joinDate')"
+                                                v-model="employementDetail.joiningDate"
+                                                @input="clearFieldError('joiningDate')"
                                                 class="input"
                                                 type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['joinDate']">
+                                        <span class="mb-2 has-text-danger" v-if="errors['joiningDate']">
 						{{errors['name'][0]}}
 					</span>
                                     </div>

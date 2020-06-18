@@ -18,7 +18,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date joiningDate;
-    private Date dateOfBirth;
+
     private BigDecimal salaryAmount;
     private String nssfNumber;
     private String kraNumber;
@@ -60,14 +60,7 @@ public class Employee {
     public void setJoiningDate(Date joiningDate) {
         this.joiningDate = joiningDate;
     }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+    
 
     public BigDecimal getSalaryAmount() {
         return salaryAmount;
