@@ -77,11 +77,11 @@
                                     >
 
                                     </DatePicker>
-<!--                                    <input-->
-<!--                                            v-model="basicInfo.dateOfBirth"-->
-<!--                                            @input="clearFieldError('basicInfo.dateOfBirth')"-->
-<!--                                            class="input"-->
-<!--                                            type="text">-->
+                                    <!--                                    <input-->
+                                    <!--                                            v-model="basicInfo.dateOfBirth"-->
+                                    <!--                                            @input="clearFieldError('basicInfo.dateOfBirth')"-->
+                                    <!--                                            class="input"-->
+                                    <!--                                            type="text">-->
                                     <span class="mb-2 has-text-danger" v-if="errors['basicInfo.dateOfBirth']">
 						{{errors['basicInfo.dateOfBirth'][0]}}
 					</span>
@@ -163,7 +163,7 @@
     import {DatePicker} from "element-ui"
 
     export default {
-        components:{
+        components: {
             DatePicker
         },
         mixins: [CommonMixin],
@@ -192,7 +192,8 @@
 
         computed: {
             canMoveNext() {
-                return this.validateBasicInfo();
+                return true;
+                // return this.validateBasicInfo();
             },
         },
         methods: {
@@ -215,7 +216,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    .datepicker{
+    .datepicker {
         min-width: 100%;
     }
 </style>
