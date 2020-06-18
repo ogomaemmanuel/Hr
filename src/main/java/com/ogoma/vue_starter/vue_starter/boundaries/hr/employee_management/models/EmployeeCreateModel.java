@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -18,6 +19,7 @@ public class EmployeeCreateModel {
     private BasicInfo basicInfo;
     @Valid
     @NotNull
+    @NotEmpty
     private Set<ContactAddress> contactAddresses;
     @Valid
     @NotNull
@@ -169,13 +171,12 @@ public class EmployeeCreateModel {
     }
 
     public static class ContactAddress {
-        @NotBlank
+        @NotBlank(message = "Employee contact phone is required")
         private String phoneNumber;
-        @NotBlank
+        @NotBlank(message = "Employee contact name is required")
         private String name;
-        @NotBlank
+        @NotBlank(message = "Select employee contact relationship")
         private String relationshipId;
-
         public String getPhoneNumber() {
             return phoneNumber;
         }

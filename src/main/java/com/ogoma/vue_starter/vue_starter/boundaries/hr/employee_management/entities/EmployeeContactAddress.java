@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "employee_contact_addresses")
@@ -55,7 +56,4 @@ public class EmployeeContactAddress {
         this.employee = employee;
     }
 
-    public void addEmployee(Employee employee) {
-        this.employee = employee;
-    }
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,14 +25,14 @@ public class Employee {
     private String nhifNumber;
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     private User user;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "designation_id", insertable = false, updatable = false)
     private Designation designation;
-    @OneToMany(mappedBy = "employee",cascade = CascadeType.PERSIST)
-    private Set<EmployeeContactAddress> employeeContactAddresses;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST)
+    private Set<EmployeeContactAddress> employeeContactAddresses=new HashSet<>();
 
     private BigDecimal salary;
     @Column(name = "status")
@@ -167,6 +168,9 @@ public class Employee {
     }
 
     public void setEmployeeContactAddresses(Set<EmployeeContactAddress> employeeContactAddresses) {
+        employeeContactAddresses.forEach(add -> {
+            add.setEmployee(this);
+        });
         this.employeeContactAddresses = employeeContactAddresses;
     }
 }
