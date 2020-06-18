@@ -20,6 +20,7 @@ public class EmployeesController {
     public EmployeesController(EmployeesService employeesService) {
         this.employeesService = employeesService;
     }
+
     @RequestMapping(value = "api/employees", method = RequestMethod.GET)
     public ResponseEntity<?> getAllEmployees(PagedDataRequest pagedDataRequest) {
         Page<Employee> employees = this.employeesService.getEmployees(pagedDataRequest);
@@ -28,8 +29,8 @@ public class EmployeesController {
 
     @RequestMapping(value = "api/employees", method = RequestMethod.POST)
     public ResponseEntity<?> createEmployee(@RequestBody @Valid EmployeeCreateModel employeeCreateModel) {
-        this.employeesService.createEmployee(employeeCreateModel);
-        return ResponseEntity.ok().build();
+        Employee employee = this.employeesService.createEmployee(employeeCreateModel);
+        return ResponseEntity.ok(employee);
     }
 
 
