@@ -21,4 +21,4 @@ jobs:
     # Feature number of the JDK to download
        feature: 11 # default is 14
     - name: Build with Maven
-      run: mvn  package
+      run: mvn -B package --file ../pom.xml
