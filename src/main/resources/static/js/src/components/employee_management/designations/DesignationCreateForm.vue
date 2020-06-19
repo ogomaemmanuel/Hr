@@ -5,7 +5,7 @@
                 <h1 class="has-text-black"><b>Add Designation</b></h1>
             </div>
             <div class="field">
-                <label class="label is-size-7"> Name <span><sup>*</sup></span></label>
+                <label class="label"> Name <span><sup>*</sup></span></label>
                 <div class="control">
                     <input
                             v-model="designation.name"
@@ -59,7 +59,7 @@
                         :class="{'is-loading':loading}"
                         :disabled="disableSubmitButton"
                         @click.prevent.stop="createDesignation"
-                        class="button is-small is-rounded"
+                        class="button  is-rounded"
                         type="submit">Submit
                 </button>
             </div>

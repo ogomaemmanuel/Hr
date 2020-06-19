@@ -2,10 +2,10 @@
     <div>
         <form>
             <div class="has-text-centered m-3">
-                <h1 class="has-text-black"><b>Add Designation</b></h1>
+                <h1 class="has-text-black"><b>Update Designation</b></h1>
             </div>
             <div class="field">
-                <label class="label is-size-7"> Name <span><sup>*</sup></span></label>
+                <label class="label"> Name <span><sup>*</sup></span></label>
                 <div class="control">
                     <input
                             v-model="designation.name"
@@ -18,7 +18,10 @@
                 </div>
             </div>
             <template>
-                <b-field label="Department">
+                <b-field>
+                    <template slot="label">
+                        Department <span><sup>*</sup></span>
+                    </template>
                     <b-autocomplete
                             ref="autocomplete"
                             :data="departments"
@@ -64,7 +67,7 @@
                         :class="{'is-loading':loading}"
                         :disabled="disableSubmitButton"
                         @click.prevent.stop="updateDesignation"
-                        class="button is-small is-rounded"
+                        class="button  is-rounded"
                         type="submit">Submit
                 </button>
             </div>
