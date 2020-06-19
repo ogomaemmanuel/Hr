@@ -5,15 +5,15 @@ import java.util.Date;
 public interface EmployeeQuery {
     public Long getId();
 
-    public Long getFirstName();
+    public String getFirstName();
 
-    public Long getLastName();
+    public String getLastName();
 
     public Date getDateOfBirth();
 
     public String getDesignation();
 
-    public Long getEmail();
+    public String getEmail();
 
     public String getPhone();
 
@@ -23,7 +23,15 @@ public interface EmployeeQuery {
 
     public String avatarUrl();
 
-    public default String fullName() {
-        return this.getFirstName() + " " + this.getLastName();
+    //    @Value("#{target.firstName} #{target.lastName}")
+    default String getFullName() {
+        String lastName = null;
+        if (null != getLastName()) {
+            lastName = getLastName();
+        }
+        if (null != getFirstName()) {
+            return getFirstName().concat(" ").concat(lastName);
+        }
+        return "";
     }
 }

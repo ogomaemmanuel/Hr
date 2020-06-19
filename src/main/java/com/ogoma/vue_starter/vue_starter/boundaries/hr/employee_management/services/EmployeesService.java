@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.EmployeeContactAddress;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeQuery;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
@@ -27,9 +28,9 @@ public class EmployeesService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Page<Employee> getEmployees(PagedDataRequest pagedDataRequest) {
+    public Page<EmployeeQuery> getEmployees(PagedDataRequest pagedDataRequest) {
         Pageable pageable = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
-        Page<Employee> employees = this.employeeRepository.findAll(pageable);
+        Page<EmployeeQuery> employees = this.employeeRepository.getAllEmployees(pageable);
         return employees;
     }
 
