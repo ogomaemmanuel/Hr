@@ -23,8 +23,8 @@ jobs:
         run: mvn -B clean verify
       - name: Deploy to Github Package Registry
         uses: actions/setup-java@v1
-          with:
-            java-version: 1.11
+        with:
+          java-version: 1.11
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: mvn -B clean deploy -DskipTests
