@@ -2,9 +2,9 @@ name: Main Branch
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master,eogoma ]
   pull_request:
-    branches: [ master ]
+    branches: [ master]
 
 jobs:
   test:
