@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.11
-      -name: Publish to GitHub Packages
+      - name: Publish to GitHub Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: mvn -B clean deploy -DskipTests
