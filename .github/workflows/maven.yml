@@ -27,5 +27,5 @@ jobs:
           java-version: 1.11
       - name: Publish to GitHub Packages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DEPLOY }}
         run: mvn -B clean deploy -DskipTests
