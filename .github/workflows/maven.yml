@@ -22,9 +22,9 @@ jobs:
       - name: Maven Verify
         run: mvn -B clean verify
       - name: Deploy to Github Package Registry
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: |
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
             mkdir ~/.m2
             echo "<settings><servers><server><id>github</id><username>ogomaemmanuel</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
             mvn deploy
