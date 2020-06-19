@@ -5,7 +5,7 @@
                 <router-link
                         to="/departments-create"
                         tag="button"
-                        class="button mr-1 is-rounded is-small">
+                        class="button mr-1 is-rounded">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
@@ -15,7 +15,7 @@
                 </router-link>
                 <a
                         href="/api/holidays/excel-report"
-                        class="button is-rounded is-small">
+                        class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
 				</span>
@@ -24,7 +24,7 @@
 				</span>
                 </a>
             </div>
-            <div class="columns is-size-7">
+            <div class="columns">
                 <div class="column is-12">
                     <div class="card" ref="leaveRequests">
                         <div class="card-content">

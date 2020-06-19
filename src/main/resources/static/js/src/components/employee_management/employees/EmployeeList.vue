@@ -4,7 +4,7 @@
             <router-link
                     to="/employees-create"
                     tag="button"
-                    class="button mr-1 is-rounded is-small">
+                    class="button mr-1 is-rounded">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
@@ -14,7 +14,7 @@
             </router-link>
             <a
                     href="/api/holidays/excel-report"
-                    class="button is-rounded is-small">
+                    class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
 				</span>
@@ -23,7 +23,7 @@
 				</span>
             </a>
         </div>
-        <div class="columns is-size-7">
+        <div class="columns">
             <div class="column is-12">
                 <div class="card" ref="leaveRequests">
                     <div class="card-content">
@@ -57,11 +57,12 @@
                                 </thead>
                                 <tbody>
                                 <tr v-for="employee in employees">
-                                    <td data-label="Name">{{employee.name}}</td>
+                                    <td data-label="Name">{{employee.fullName}}</td>
                                     <td data-label="Description">{{employee.employeeId}}</td>
                                     <td data-label="Description">{{employee.email}}</td>
-                                    <td data-label="Description">{{employee.mobile}}</td>
-                                    <td data-label="Description">{{employee.joinDate}}</td>
+                                    <td data-label="Description">{{employee.phone}}</td>
+                                    <td data-label="Description">{{employee.joiningDate|formatDate}}</td>
+                                    <td data-label="Description">{{employee.designation}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link
@@ -85,12 +86,12 @@
                                 <tfoot>
                                 <tr>
                                     <td colspan="8">
-<!--                                        <Paginator-->
-<!--                                                @previousPage="goToPrevious"-->
-<!--                                                @nextPage="goToNext"-->
-<!--                                                @paginationChanged="onPaginationChanged"-->
-<!--                                                :paginationData="pageable"-->
-<!--                                        ></Paginator>-->
+                                        <Paginator
+                                                @previousPage="goToPrevious"
+                                                @nextPage="goToNext"
+                                                @paginationChanged="onPaginationChanged"
+                                                :paginationData="pageable"
+                                        ></Paginator>
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -104,11 +105,61 @@
     </div>
 </template>
 <script>
+    import Paginator from "../../common/paginator/Paginator";
+
     export default {
+        components: {
+            Paginator
+        },
         data() {
             return {
-                loading:false,
-                employees: []
+                employees: [],
+                pageable: false,
+                pageSize: 10,
+                page: 0,
+                loading: false
+            }
+        },
+        methods: {
+            getEmployees() {
+                let vm = this;
+                vm.loading = true;
+                axios.get("/api/employees", {
+                    params: {
+                        pageSize: vm.pageSize,
+                        page: vm.page
+                    }
+                }).then(resp => {
+                    vm.loading = false;
+                    this.employees = resp.data.content;
+                    this.pageable = resp.data;
+                }, error => {
+                    vm.loading = false;
+                })
+            },
+            goToPrevious() {
+                this.page--;
+                this.getEmployees();
+            },
+            goToNext() {
+                this.page++;
+                this.getEmployees();
+            },
+            onPaginationChanged(pageSize) {
+                this.page = 0;
+                this.pageSize = pageSize;
+                this.getEmployees();
+            }
+        },
+        created() {
+            this.getEmployees();
+        },
+        filters: {
+            formatDate(val) {
+                if (val) {
+                    return moment(val).format("DD-MMM-YYYY");
+                }
+                return null;
             }
         }
     }

@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeQuery;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.services.EmployeesService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,7 @@ public class EmployeesController {
 
     @RequestMapping(value = "api/employees", method = RequestMethod.GET)
     public ResponseEntity<?> getAllEmployees(PagedDataRequest pagedDataRequest) {
-        Page<Employee> employees = this.employeesService.getEmployees(pagedDataRequest);
+        Page<EmployeeQuery> employees = this.employeesService.getEmployees(pagedDataRequest);
         return ResponseEntity.ok(employees);
     }
 

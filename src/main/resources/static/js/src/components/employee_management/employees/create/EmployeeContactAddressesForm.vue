@@ -13,7 +13,7 @@
                             <div class="columns">
                                 <div class="column">
                                     <div class="field">
-                                        <label class="label is-size-7">Contact Name <span><sup>*</sup></span></label>
+                                        <label class="label ">Contact Name <span><sup>*</sup></span></label>
                                         <div class="control">
                                             <input
                                                     v-model="contactAddress.name"
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="column">
                                     <div class="field">
-                                        <label class="label is-size-7">Contact Phone <span><sup>*</sup></span></label>
+                                        <label class="label ">Contact Phone <span><sup>*</sup></span></label>
                                         <div class="control">
                                             <input
                                                     v-model="contactAddress.phoneNumber"
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="column is-relative">
                                     <div class="field">
-                                        <label class="label is-size-7">Relationship <span><sup>*</sup></span></label>
+                                        <label class="label ">Relationship <span><sup>*</sup></span></label>
                                         <div class="control">
                                             <input
                                                     v-model="contactAddress.relationshipId"

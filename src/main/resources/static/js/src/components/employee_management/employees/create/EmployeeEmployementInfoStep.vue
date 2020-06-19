@@ -52,7 +52,7 @@
                         <div class="columns">
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Joining Date<span><sup>*</sup></span></label>
+                                    <label class="label ">Joining Date<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <DatePicker
                                                 class="datepicker"
@@ -70,7 +70,7 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Supervisor<span><sup>*</sup></span></label>
+                                    <label class="label ">Supervisor<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.supervisorId"
@@ -85,7 +85,7 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">Shift<span><sup>*</sup></span></label>
+                                    <label class="label ">Shift<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.shiftId"
@@ -102,7 +102,7 @@
                         <div class="columns">
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">NHIF No<span><sup>*</sup></span></label>
+                                    <label class="label ">NHIF No<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.nhifNo"
@@ -117,7 +117,7 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">NSSF No<span><sup>*</sup></span></label>
+                                    <label class="label ">NSSF No<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.nssfNo"
@@ -132,7 +132,7 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label is-size-7">KRA Pin<span><sup>*</sup></span></label>
+                                    <label class="label ">KRA Pin<span><sup>*</sup></span></label>
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.kraPinNumber"

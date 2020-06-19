@@ -5,7 +5,7 @@
                 <h1 class="has-text-black"><b>Create New Department</b></h1>
             </div>
             <div class="field">
-                <label class="label is-size-7">Department Name <span><sup>*</sup></span></label>
+                <label class="label">Department Name <span><sup>*</sup></span></label>
                 <div class="control">
                     <input
                             v-model="department.name"
@@ -23,7 +23,7 @@
                         :class="{'is-loading':loading}"
                         :disabled="disableSubmitButton"
                         @click.prevent.stop="createDepartment"
-                        class="button is-small is-rounded"
+                        class="button  is-rounded"
                         type="submit">Submit
                 </button>
             </div>

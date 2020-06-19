@@ -1,12 +1,12 @@
 <template>
     <div>
         <div class="steps-body pt-4 pb-4 pl-0 pr-0">
-            <div data-v-5d80c0af="" class="steps-content">
-                <div data-v-5d80c0af="" class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
+            <div  class="steps-content">
+                <div  class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
                     <div class="columns">
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">First Name <span><sup>*</sup></span></label>
+                                <label class="label ">First Name <span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.firstName"
@@ -21,7 +21,7 @@
                         </div>
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">Last Name <span><sup>*</sup></span></label>
+                                <label class="label ">Last Name <span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.lastName"
@@ -36,7 +36,7 @@
                         </div>
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">Phone<span><sup>*</sup></span></label>
+                                <label class="label ">Phone<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.phone"
@@ -53,7 +53,7 @@
                     <div class="columns">
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">Email<span><sup>*</sup></span></label>
+                                <label class="label ">Email<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.email"
@@ -68,7 +68,7 @@
                         </div>
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">Date of Birth<span><sup>*</sup></span></label>
+                                <label class="label ">Date of Birth<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <DatePicker
                                             class="datepicker"
@@ -90,7 +90,7 @@
                         </div>
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">Id No<span><sup>*</sup></span></label>
+                                <label class="label ">Id No<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.identityNo"
@@ -107,7 +107,7 @@
                     <div class="columns">
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">Residential Address<span><sup>*</sup></span></label>
+                                <label class="label ">Residential Address<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.city"
@@ -122,7 +122,7 @@
                         </div>
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">Postal Address<span><sup>*</sup></span></label>
+                                <label class="label ">Postal Address<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.postalAddress"
@@ -137,7 +137,7 @@
                         </div>
                         <div class="column">
                             <div class="field">
-                                <label class="label is-size-7">Marital Status<span><sup>*</sup></span></label>
+                                <label class="label ">Marital Status<span><sup>*</sup></span></label>
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.maritalStatusId"
