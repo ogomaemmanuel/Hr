@@ -1,0 +1,24 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download OpenJDK
+      uses: sormuras/download-jdk@v1
+      with:
+    # Feature number of the JDK to download
+       feature: 11 # default is 14
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
