@@ -60,8 +60,9 @@
                                     <td data-label="Name">{{employee.fullName}}</td>
                                     <td data-label="Description">{{employee.employeeId}}</td>
                                     <td data-label="Description">{{employee.email}}</td>
-                                    <td data-label="Description">{{employee.mobile}}</td>
-                                    <td data-label="Description">{{employee.joinDate}}</td>
+                                    <td data-label="Description">{{employee.phone}}</td>
+                                    <td data-label="Description">{{employee.joiningDate|formatDate}}</td>
+                                    <td data-label="Description">{{employee.designation}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link
@@ -152,6 +153,14 @@
         },
         created() {
             this.getEmployees();
+        },
+        filters: {
+            formatDate(val) {
+                if (val) {
+                    return moment(val).format("DD-MMM-YYYY");
+                }
+                return null;
+            }
         }
     }
 </script>
