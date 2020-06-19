@@ -18,7 +18,10 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date joiningDate;
-
+    @Column(name = "supervisor_id")
+    private Long supervisorId;
+    @Column(name = "designation_id")
+    private Long designationId;
     private BigDecimal salaryAmount;
     private String nssfNumber;
     private String kraPinNumber;
@@ -32,8 +35,10 @@ public class Employee {
     @JoinColumn(name = "designation_id", insertable = false, updatable = false)
     private Designation designation;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST)
-    private Set<EmployeeContactAddress> employeeContactAddresses=new HashSet<>();
-
+    private Set<EmployeeContactAddress> employeeContactAddresses = new HashSet<>();
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "supervisor_id", insertable = false, updatable = false)
+    private Employee supervisor;
     @Column(name = "status")
     private Boolean active;
     @Temporal(TemporalType.TIMESTAMP)
@@ -42,6 +47,12 @@ public class Employee {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedOn;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "department_id", updatable = false, insertable = false)
+    private Department department;
+    @Column(name = "department_id")
+    private Long departmentId;
+
 
     public Long getId() {
         return id;
@@ -118,6 +129,7 @@ public class Employee {
         this.designation = designation;
         return this;
     }
+
     public Boolean getActive() {
         return active;
     }
@@ -154,5 +166,45 @@ public class Employee {
             add.setEmployee(this);
         });
         this.employeeContactAddresses = employeeContactAddresses;
+    }
+
+    public Employee getSupervisor() {
+        return supervisor;
+    }
+
+    public void setSupervisor(Employee supervisor) {
+        this.supervisor = supervisor;
+    }
+
+    public Long getSupervisorId() {
+        return supervisorId;
+    }
+
+    public void setSupervisorId(Long supervisorId) {
+        this.supervisorId = supervisorId;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Long getDesignationId() {
+        return designationId;
+    }
+
+    public void setDesignationId(Long designationId) {
+        this.designationId = designationId;
     }
 }

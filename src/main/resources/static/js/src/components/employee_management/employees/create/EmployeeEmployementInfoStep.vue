@@ -69,19 +69,14 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <div class="field">
-                                    <label class="label ">Supervisor<span><sup>*</sup></span></label>
-                                    <div class="control">
-                                        <input
-                                                v-model="employementDetail.supervisorId"
-                                                @input="clearFieldError('supervisorId')"
-                                                class="input"
-                                                type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['supervisorId']">
+                                <EmployeeSelectInput
+                                        label="Supervisor"
+                                        v-model="employementDetail.supervisorId"
+                                        @input="clearFieldError('supervisorId')"
+                                ></EmployeeSelectInput>
+                                <span class="mb-2 has-text-danger" v-if="errors['supervisorId']">
 						{{errors['supervisorId'][0]}}
 					</span>
-                                    </div>
-                                </div>
                             </div>
                             <div class="column">
                                 <div class="field">
@@ -159,12 +154,14 @@
     import {DatePicker} from "element-ui"
     import DepartmentSelectInput from "../../../common/DepartmentSelectInput";
     import DesignationSelectInput from "../../../common/DesignationSelectInput";
+    import EmployeeSelectInput from "../../../common/EmployeeSelectInput"
 
     export default {
         components: {
             DatePicker,
             DepartmentSelectInput,
-            DesignationSelectInput
+            DesignationSelectInput,
+            EmployeeSelectInput
         },
         mixins: [CommonMixin],
         props: {
