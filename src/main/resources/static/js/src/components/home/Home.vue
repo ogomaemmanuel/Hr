@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
                     <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
@@ -112,7 +112,9 @@
 
         <section class="main-content columns  is-fullheight">
 
-            <aside class="column is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile relative section is-hidden-mobile">
+            <aside class="column pt-12 is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile fixed inset-y-0 section is-hidden-mobile">
+
+               <div class="menu-wrapper">
                 <ul class="menu-list">
                     <li>
                         <a href="#" class="">
@@ -235,6 +237,7 @@
                         </a>
                     </li>
                 </ul>
+               </div>
 
 
                 <div class="side-bar-footer bg-gray-800 left-0  right-0 h-8 absolute bottom-0">
@@ -249,21 +252,33 @@
             </aside>
 
 
-            <div class=" column is-10 p-10 h-screen mb-0">
-                <div class="flex items-center justify-space-between">
-                    <button type="button" class="is-hidden-desktop toggle-mobile-nav">
-                        <i class="fa fa-bars text-gray-600"></i>
-                    </button>
-                    <TestBreadCrump></TestBreadCrump>
+            <div class=" column is-offset-2 is-10 pr-10 pl-10 pb-10 pt-20 h-screen mb-0">
+                <div class="">
 
-                    <div class="flex justify-end">
-                        <portal-target name="page-controls">
-                            <!--
-                            This component can be located anywhere in your App.
-                            The slot content of the above portal component will be rendered here.
-                            -->
-                        </portal-target>
-                    </div>
+                    <div class="columns">
+                        <div class="column">
+
+                            <div class="flex align-center">
+                            <button type="button" class="is-hidden-desktop toggle-mobile-nav">
+                                <i class="fa fa-bars text-gray-600"></i>
+                            </button>
+                            <TestBreadCrump></TestBreadCrump>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="flex sm:justify-start md:justify-end">
+                                <portal-target name="page-controls">
+                                    <!--
+                                    This component can be located anywhere in your App.
+                                    The slot content of the above portal component will be rendered here.
+                                    -->
+                                </portal-target>
+                            </div>
+                        </div>
+                        </div>
+
+
+
 <!--                    <breadcrumbs></breadcrumbs>-->
                 </div>
                 <div class="mt-5 h-full">
@@ -381,5 +396,9 @@
         margin: 0 0 0 -15px;
         height: 46px;
     }
-
+.menu-wrapper{
+    overflow-y: scroll;
+    position: relative;
+    height: 100%;
+}
 </style>
