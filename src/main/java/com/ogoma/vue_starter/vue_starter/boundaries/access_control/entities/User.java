@@ -34,7 +34,7 @@ public class User {
     @Transient
     @JsonProperty
     private String fullName;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
     @JsonIgnore
     private Employee employee;
     @JsonIgnore
