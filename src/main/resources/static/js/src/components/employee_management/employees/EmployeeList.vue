@@ -1,6 +1,21 @@
 <template>
     <div>
         <div class="pb-2 flex justify-end">
+            <button>
+                <p class="buttons">
+                    <button class="button">
+    <span class="icon is-small">
+      <i class="fa fa-th"></i>
+    </span>
+                    </button>
+                    <button class="button">
+    <span class="icon is-small">
+      <i class="fa fa-bars"></i>
+    </span>
+                    </button>
+                </p>
+            </button>
+
             <router-link
                     to="/employees-create"
                     tag="button"

@@ -21,14 +21,14 @@ jobs:
         run: mvn -B clean package -DskipTests
       - name: Maven Verify
         run: mvn -B clean verify
-      - name: Set up Java for publishing to Maven Central Repository
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.11
-      - name: Publish to GitHub Packages
-        env:
-          GITHUB_TOKEN: ${{ secrets.DEPLOY }}
-        run: mvn -B clean deploy -DskipTests
+#      - name: Set up Java for publishing to Maven Central Repository
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 1.11
+#      - name: Publish to GitHub Packages
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.DEPLOY }}
+#        run: mvn -B clean deploy -DskipTests
   docker:
     name: Publish - Docker Hub
     runs-on: ubuntu-18.04
@@ -43,8 +43,7 @@ jobs:
       - name: Logout of docker
         run: docker logout
       - name: Login to Docker Hub
-#        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-        run: echo ${{ secrets.DOCKER_PASS }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
       - name: Build Docker image
         run: docker build -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
       - name: Publish Docker image
