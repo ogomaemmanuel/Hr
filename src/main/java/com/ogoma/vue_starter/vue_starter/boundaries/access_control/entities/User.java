@@ -9,6 +9,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entit
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -208,5 +209,13 @@ public class User {
     public String toJson() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(this);
+    }
+
+    @PrePersist
+    public void encodePassword() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        if (this.getPassword() != null) {
+            this.password = bCryptPasswordEncoder.encode(this.password);
+        }
     }
 }

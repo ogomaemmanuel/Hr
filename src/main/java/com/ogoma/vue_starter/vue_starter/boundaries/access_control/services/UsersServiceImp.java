@@ -41,9 +41,9 @@ public class UsersServiceImp implements UserService {
                            ReportGenerator reportGenerator
     ) {
         this.usersRepository = usersRepository;
-        this.passwordEncoder = passwordEncoder;
         this.passwordResetRepository = passwordResetRepository;
-        this.reportGenerator=reportGenerator;
+        this.reportGenerator = reportGenerator;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -55,16 +55,15 @@ public class UsersServiceImp implements UserService {
     public User register(UserRegistrationModel userRegistrationModel) {
         User user = new User();
         BeanUtils.copyProperties(userRegistrationModel, user);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedDetails = this.usersRepository.save(user);
         String registrationToken = RandomStringGenerator.randomStringGenerator(32, false);
         PasswordReset passwordReset = new PasswordReset(
                 registrationToken,
                 savedDetails);
         passwordResetRepository.save(passwordReset);
-        Map<String,Object>  registrationData = new HashMap<>();
-        registrationData.put("user",savedDetails);
-        registrationData.put("token",passwordReset);
+        Map<String, Object> registrationData = new HashMap<>();
+        registrationData.put("user", savedDetails);
+        registrationData.put("token", passwordReset);
         UserRegistrationEvent userRegistrationEvent = new UserRegistrationEvent(this, registrationData);
         applicationEventPublisher.publishEvent(userRegistrationEvent);
         return savedDetails;
@@ -72,8 +71,8 @@ public class UsersServiceImp implements UserService {
 
     @Override
     public List<User> getAll() {
-       List<User> users = this.usersRepository.findAll();
-       return users;
+        List<User> users = this.usersRepository.findAll();
+        return users;
     }
 
     @Override
@@ -119,6 +118,6 @@ public class UsersServiceImp implements UserService {
     @Override
     public ByteArrayOutputStream report() throws Exception {
         List<User> users = this.usersRepository.findAll();
-        return reportGenerator.generatePdfReport("reports/Blank_A4.jasper",null,users);
+        return reportGenerator.generatePdfReport("reports/Blank_A4.jasper", null, users);
     }
 }
