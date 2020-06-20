@@ -250,11 +250,20 @@
 
 
             <div class=" column is-10 p-10 h-screen mb-0">
-                <div class="flex items-center">
+                <div class="flex items-center justify-space-between">
                     <button type="button" class="is-hidden-desktop toggle-mobile-nav">
                         <i class="fa fa-bars text-gray-600"></i>
                     </button>
                     <TestBreadCrump></TestBreadCrump>
+
+                    <div class="flex justify-end">
+                        <portal-target name="page-controls">
+                            <!--
+                            This component can be located anywhere in your App.
+                            The slot content of the above portal component will be rendered here.
+                            -->
+                        </portal-target>
+                    </div>
 <!--                    <breadcrumbs></breadcrumbs>-->
                 </div>
                 <div class="mt-5 h-full">

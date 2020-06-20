@@ -15,7 +15,7 @@
                     </button>
                 </p>
             </button>
-
+            <portal to="page-controls">
             <router-link
                     to="/employees-create"
                     tag="button"
@@ -37,6 +37,7 @@
 					 Export
 				</span>
             </a>
+            </portal>
         </div>
         <div class="columns">
             <div class="column is-12">

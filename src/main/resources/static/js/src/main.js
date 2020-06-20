@@ -18,6 +18,7 @@ import "animate.css"
 import 'font-awesome/css/font-awesome.min.css'
 import Tooltip from 'vue-directive-tooltip';
 import 'vue-directive-tooltip/src/css/index.scss';
+import PortalVue from 'portal-vue'
 
 window.Vue = require('vue');
 // if (PRODUCTION) {
@@ -31,6 +32,7 @@ Vue.use(Tooltip, {
     triggers: ['hover'],
     offset: 0
 });
+Vue.use(PortalVue)
 Vue.use(VueTelInput);
 Vue.use(VueBreadcrumbs, {
     template: `
