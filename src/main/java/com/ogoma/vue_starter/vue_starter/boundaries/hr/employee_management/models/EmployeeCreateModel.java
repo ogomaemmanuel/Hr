@@ -160,6 +160,10 @@ public class EmployeeCreateModel {
         public void setAvatarUrl(String avatarUrl) {
             this.avatarUrl = avatarUrl;
         }
+
+        public String getFullName() {
+            return this.firstName.concat(" ").concat(this.lastName);
+        }
     }
 
     public static class ContactAddress {
@@ -169,6 +173,7 @@ public class EmployeeCreateModel {
         private String name;
         @NotBlank(message = "Select employee contact relationship")
         private String relationshipId;
+
         public String getPhoneNumber() {
             return phoneNumber;
         }
@@ -192,6 +197,7 @@ public class EmployeeCreateModel {
         public void setRelationshipId(String relationshipId) {
             this.relationshipId = relationshipId;
         }
+
     }
 
     public static class EmployementDetail {

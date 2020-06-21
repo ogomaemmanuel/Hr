@@ -2,8 +2,10 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.controllers;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
+import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +30,8 @@ public class UsersController {
 
 //    @RequestMapping(value = "api/users", method = RequestMethod.GET)
     @GetMapping("/api/users")
-    public ResponseEntity<?> getUsers() {
-        List<User> userList = this.userService.getAll();
+    public ResponseEntity<?> getUsers(PagedDataRequest pagedDataRequest) {
+        Page<User> userList = this.userService.getAll(pagedDataRequest);
         return ResponseEntity.ok(userList);
     }
 

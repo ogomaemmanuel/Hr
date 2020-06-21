@@ -6,6 +6,7 @@ import com.ogoma.vue_starter.vue_starter.events.auth.PasswordResetEvent;
 import com.ogoma.vue_starter.vue_starter.events.auth.UserRegistrationEvent;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
+import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.PasswordResetRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.PasswordResetRepository;
@@ -15,6 +16,8 @@ import com.ogoma.vue_starter.vue_starter.utils.reports.ReportGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -70,8 +73,9 @@ public class UsersServiceImp implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        List<User> users = this.usersRepository.findAll();
+    public Page<User> getAll(PagedDataRequest pagedDataRequest) {
+        PageRequest pageRequest= PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
+        Page<User> users = this.usersRepository.findAll(pageRequest);
         return users;
     }
 

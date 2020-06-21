@@ -14,7 +14,7 @@ const Register = () =>
 
 //users,user permission and roles routes go here
 const Users = () =>
-    import ("../components/access_control/Users");
+    import ("../components/access_control/users/UsersPage");
 
 const Roles = () =>
     import ("../components/access_control/roles/RolesPage");
