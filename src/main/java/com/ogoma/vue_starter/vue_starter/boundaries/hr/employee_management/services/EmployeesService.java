@@ -74,7 +74,7 @@ public class EmployeesService {
         emailModel.setTemplateVariable(emailTemplateVariables);
         emailModel.setTemplatePath("/employee_registration_successful");
         UriComponentsBuilder base = ServletUriComponentsBuilder.fromCurrentContextPath().path("/");
-        String url = MvcUriComponentsBuilder.relativeTo(base).toString();
+        String url = base.build().toUriString();
         emailTemplateVariables.put("link", url);
         new Thread(new Runnable() {
             @Override
