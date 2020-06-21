@@ -5,7 +5,7 @@
 				<h1 class="has-text-black"><b>Add Role</b></h1>
 			</div>
 			<div class="field">
-				<label class="label is-size-7">Name <span><sup>*</sup></span></label>
+				<label class="label">Name <span><sup>*</sup></span></label>
 				<div class="control">
 					<input
 							v-model="role.name"
@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<div class="field">
-				<label class="label is-size-7">Description <span><sup>*</sup></span></label>
+				<label class="label">Description <span><sup>*</sup></span></label>
 				<div class="control">
 					<textarea
 							v-model="role.description"
@@ -36,7 +36,7 @@
 						:class="{'is-loading':isLoading}"
 						:disabled="disableSubmitButton"
 						@click.prevent.stop="createRole"
-						class="button is-small is-rounded"
+						class="button  is-rounded"
 						type="submit">Submit
 				</button>
 			</div>
