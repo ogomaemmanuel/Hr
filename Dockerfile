@@ -9,7 +9,7 @@ RUN mkdir -p /workspace
 WORKDIR /workspace
 COPY pom.xml /workspace
 COPY src /workspace/src
-COPY --from=nodejs /app/src/main/resources/static/js/dist/*. /workspace/src/main/resources/static/js/dist
+COPY --from=nodejs /app/src/main/resources/static/js/dist /workspace/src/main/resources/static/js/dist
 RUN mvn -B -f pom.xml clean package -DskipTests
 
 
