@@ -25,13 +25,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             "FROM\n" +
             "    employees e\n" +
             "        LEFT JOIN\n" +
-            "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id",
+            "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
             countQuery = "SELECT \n" +
                     "   count(e.id)\n" +
                     "FROM\n" +
                     "    employees e\n" +
                     "        LEFT JOIN\n" +
-                    "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id",
+                    "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
             nativeQuery = true)
     public Page<EmployeeQuery> getAllEmployees(Pageable pageable);
 

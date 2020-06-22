@@ -47,7 +47,7 @@
 					                       </span>
                         </router-link>
                         <button
-                                @click=""
+                                @click="confirmRemoveEmployee(employee)"
                                 class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -105,6 +105,24 @@
                         this.pageable = resp.data;
                     }, error => {
                         vm.loading = false;
+                    })
+                },
+
+                confirmRemoveEmployee(employee) {
+                    this.$buefy.dialog.confirm({
+                        title: 'Delete Employee',
+                        message: `Are you sure want to delete <b> ${employee.fullName}</b> as an employee`,
+                        onConfirm: () => this.removeEmployee(employee)
+                    })
+                },
+                removeEmployee(employee) {
+                    axios.delete(`/api/employees/${employee.id}`).then(resp => {
+                        this.$swal({
+                            type: "success",
+                            title: "Success",
+                            message: "Holiday successfully removed",
+                        })
+                        this.getEmployees();
                     })
                 },
                 goToPrevious() {

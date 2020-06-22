@@ -65,7 +65,23 @@
             }
         },
         methods: {
-
+            confirmRemoveRemove(employee) {
+                this.$buefy.dialog.confirm({
+                    title: 'Delete Employee',
+                    message: `Are you sure want to delete <b> ${employee.fullName}</b> as an employee`,
+                    onConfirm: () => this.removeHoliday(employee)
+                })
+            },
+            removeHoliday(employee) {
+                axios.delete(`api/employees/${employee.id}`).then(resp => {
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        message: "Holiday successfully removed",
+                    })
+                    this.getHolidays();
+                })
+            },
         },
         created() {
         },

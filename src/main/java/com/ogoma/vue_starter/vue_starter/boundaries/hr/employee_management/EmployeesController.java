@@ -36,7 +36,7 @@ public class EmployeesController {
     }
 
 
-    @RequestMapping(value = "api/employees/id", method = RequestMethod.DELETE)
+    @RequestMapping(value = "api/employees/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeEmployee(@PathVariable("id") Long id) {
         this.employeesService.removeEmployee(id);
         return ResponseEntity.ok().build();
