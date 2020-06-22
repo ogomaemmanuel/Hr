@@ -1,6 +1,6 @@
-- hosts: hr-app-nodes
+- hosts: oracle_compute_one
   roles:
     - {role: db}
     - {role: java}
-    - {role: maven}
     - {role: app}
+    - {role: nginx}
