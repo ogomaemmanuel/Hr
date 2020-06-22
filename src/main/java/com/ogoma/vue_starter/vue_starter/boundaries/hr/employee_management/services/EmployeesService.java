@@ -87,4 +87,8 @@ public class EmployeesService {
             }
         }).start();
     }
+
+    public void removeEmployee(Long employeeId) {
+        this.employeeRepository.deleteById(employeeId);
+    }
 }

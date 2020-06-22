@@ -29,10 +29,16 @@ public class EmployeesController {
     }
 
     @RequestMapping(value = "api/employees", method = RequestMethod.POST)
-    public ResponseEntity<?> createEmployee(@RequestBody  EmployeeCreateModel employeeCreateModel) {
+    public ResponseEntity<?> createEmployee(@RequestBody EmployeeCreateModel employeeCreateModel) {
         Employee employee = this.employeesService.createEmployee(employeeCreateModel);
         return ResponseEntity.ok(employee);
     }
 
+
+    @RequestMapping(value = "api/employees", method = RequestMethod.DELETE)
+    public ResponseEntity<?> removeEmployee(Long employeeId) {
+        this.employeesService.removeEmployee(employeeId);
+        return ResponseEntity.ok().build();
+    }
 
 }
