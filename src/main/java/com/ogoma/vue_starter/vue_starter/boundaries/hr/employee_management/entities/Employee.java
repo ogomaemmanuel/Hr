@@ -15,7 +15,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "employees")
-@SQLDelete(sql = "update employees set deleted=true where id=?")
+@SQLDelete(sql = "update employees set deleted=true,deleted_at=now()  where id=?")
 public class Employee extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
