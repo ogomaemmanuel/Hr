@@ -28,7 +28,7 @@
 				<div class="card" ref="leaveRequests">
 					<div class="card-content">
 						<div class="content b-table is-relative" :class="{'is-loading':loading}">
-							<h4>Holidays</h4>
+							<h4>Roles</h4>
 							<table class="table has-mobile-cards w-full is-hoverable">
 								<thead class="font-thin">
 								<tr>

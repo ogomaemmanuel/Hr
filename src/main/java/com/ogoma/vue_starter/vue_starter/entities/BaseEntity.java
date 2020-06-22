@@ -13,7 +13,6 @@ public abstract class BaseEntity {
     private boolean deleted;
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
-
     @PreRemove
     public void updateDeleteState() {
         this.deleted = true;

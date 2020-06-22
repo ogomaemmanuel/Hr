@@ -42,4 +42,8 @@ public class DepartmentsService {
         });
         return departmentDb;
     }
+
+    public void removeDepartment(Long id) {
+        this.departmentsRepository.deleteById(id);
+    }
 }

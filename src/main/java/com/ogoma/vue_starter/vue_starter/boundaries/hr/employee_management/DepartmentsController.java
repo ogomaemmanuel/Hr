@@ -44,4 +44,10 @@ public class DepartmentsController {
         Optional<Department> updatedDepartment = this.departmentsService.updateDepartment(id, department);
         return ResponseEntity.of(updatedDepartment);
     }
+
+    @RequestMapping(value = "api/departments/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity<?> removeDepartment(@PathVariable Long id){
+        this.departmentsService.removeDepartment(id);
+        return ResponseEntity.ok().build();
+    }
 }
