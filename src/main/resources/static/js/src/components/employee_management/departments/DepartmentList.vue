@@ -56,7 +56,7 @@
 					                       </span>
                                                 </router-link>
                                                 <button
-                                                        @click=""
+                                                        @click="confirmRemoveDepartment(department)"
                                                         class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -112,6 +112,24 @@
             }
         },
         methods: {
+            confirmRemoveDepartment(department) {
+                this.$buefy.dialog.confirm({
+                    title: 'Remove Department',
+                    message: `Are you sure want to remove <b> ${department.name}</b> from departments`,
+                    onConfirm: () => this.removeDepartment(department)
+                })
+            },
+            removeDepartment(department)  {
+                axios.delete(`/api/departments/${department.id}`).then(resp => {
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        message: "Department successfully removed",
+                    })
+                    this.getDepartments();
+                })
+            },
+
             getDepartments() {
                 let vm = this;
                 vm.loading = true;

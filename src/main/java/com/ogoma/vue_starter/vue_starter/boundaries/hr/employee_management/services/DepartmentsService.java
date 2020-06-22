@@ -30,7 +30,7 @@ public class DepartmentsService {
     public Page<Department> getDepartments(PagedDataRequest pagedDataRequest) {
         PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(),
                 pagedDataRequest.getPageSize());
-        Page<Department> departments = this.departmentsRepository.findAll(pageRequest);
+        Page<Department> departments = this.departmentsRepository.findAllByDeletedFalse(pageRequest);
         return departments;
     }
 

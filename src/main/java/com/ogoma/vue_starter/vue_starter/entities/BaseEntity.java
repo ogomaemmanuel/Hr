@@ -18,4 +18,13 @@ public abstract class BaseEntity {
         this.deleted = true;
         this.deletedAt = Date.from(Instant.now());
     }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+    public Date getDeletedAt() {
+        return deletedAt;
+    }
+
+
 }

@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "departments")
-@SQLDelete(sql = "update departments set deleted=true,deleted_at=now()")
+@SQLDelete(sql = "update departments set deleted=true,deleted_at=now() where id=?")
 public class Department extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
