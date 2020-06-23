@@ -13,7 +13,7 @@
 				</span>
             </router-link>
             <a
-                    href="/api/holidays/excel-report"
+                    href="/api/designations/excel-report"
                     class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>

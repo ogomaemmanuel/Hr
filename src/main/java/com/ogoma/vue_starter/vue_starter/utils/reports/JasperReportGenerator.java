@@ -19,9 +19,10 @@ import java.util.HashMap;
 @Component
 @Qualifier("JasperReportGenerator")
 public class JasperReportGenerator implements ReportGenerator {
-    @Autowired
-    private DataSource dataSource;
-
+    private final DataSource dataSource;
+    public JasperReportGenerator(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
     public ByteArrayOutputStream generatePdfReport(String reportPath, HashMap reportParams) throws Exception {
         reportParams = reportParams == null ? new HashMap<String, Object>() : reportParams;
         Connection connection = dataSource.getConnection();
@@ -30,8 +31,6 @@ public class JasperReportGenerator implements ReportGenerator {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
         return outputStream;
-
-
     }
 
     public ByteArrayOutputStream generatePdfReport(String reportPath, HashMap reportParams, Collection dataSource)
