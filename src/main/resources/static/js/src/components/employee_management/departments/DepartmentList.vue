@@ -14,7 +14,7 @@
 				</span>
                 </router-link>
                 <a
-                        href="/api/holidays/excel-report"
+                        href="/api/departments/excel-reports"
                         class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
