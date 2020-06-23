@@ -84,7 +84,7 @@
                 departmentName: '',
                 page: 0,
                 totalPages: 0,
-                selectedDepartment:{}
+                selectedDepartment: {}
             }
         },
         computed: {
@@ -97,9 +97,15 @@
 
             },
             createDesignation() {
+                let vm = this;
                 this.designation.departmentId = this.selectedDepartment.id;
                 axios.post("/api/designations", this.designation).then(resp => {
-
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Designation  successfully created"
+                    })
+                    this.$emit("designationCreated")
                 }, error => {
 
                 })

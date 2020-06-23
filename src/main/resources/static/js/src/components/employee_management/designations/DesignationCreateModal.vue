@@ -1,7 +1,10 @@
 <template>
     <ModalTemplate overflow="visible" ref="modalTemplate" @modalClosed="$router.back()">
         <slot name="modal-content">
-            <DesignationCreateForm slot="modal-content"></DesignationCreateForm>
+            <DesignationCreateForm
+                    @designationCreated="onDesignationCreated"
+                    slot="modal-content">
+            </DesignationCreateForm>
         </slot>
     </ModalTemplate>
 </template>
@@ -15,7 +18,10 @@
             DesignationCreateForm
         },
         methods: {
-
+            onDesignationCreated() {
+                this.$emit("designationCreated");
+                this.$router.back();
+            }
         }
     }
 </script>
