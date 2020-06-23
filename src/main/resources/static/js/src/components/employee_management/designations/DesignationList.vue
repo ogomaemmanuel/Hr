@@ -13,7 +13,7 @@
 				</span>
             </router-link>
             <a
-                    href="/api/holidays/excel-report"
+                    href="/api/designations/excel-report"
                     class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
@@ -57,7 +57,7 @@
 					                       </span>
                                             </router-link>
                                             <button
-                                                    @click=""
+                                                    @click="confirmRemoveDesignation(designation)"
                                                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -86,7 +86,10 @@
                 </div>
             </div>
         </div>
-        <router-view>
+        <router-view
+                @designationCreated="onDesignationCreated"
+                @designationUpdated="onDesignationUpdated"
+        >
         </router-view>
     </div>
 </template>
@@ -111,9 +114,27 @@
             this.getDesignations();
         },
         methods: {
+            confirmRemoveDesignation(designation) {
+                this.$buefy.dialog.confirm({
+                    title: 'Remove Department',
+                    message: `Are you sure want to remove <b> ${designation.name}</b> from designations`,
+                    onConfirm: () => this.removeDesignation(designation)
+                })
+            },
+            removeDesignation(designation) {
+                axios.delete(`/api/designations/${designation.id}`).then(resp => {
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        message: "Designation successfully removed",
+                    })
+                    this.getDesignations();
+                })
+            },
+
             getDesignations() {
                 let vm = this;
-                axios.get("api/designations", {
+                axios.get("/api/designations", {
                     params: {
                         pageSize: vm.pageSize,
                         page: vm.page
@@ -138,6 +159,12 @@
             onPaginationChanged(pageSize) {
                 this.page = 0;
                 this.pageSize = pageSize;
+                this.getDesignations();
+            },
+            onDesignationUpdated() {
+                this.getDesignations();
+            },
+            onDesignationCreated() {
                 this.getDesignations();
             }
         }

@@ -6,25 +6,32 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entit
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeQuery;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
+import com.ogoma.vue_starter.vue_starter.controllers.AuthController;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
+import com.ogoma.vue_starter.vue_starter.utils.mail.EmailModel;
+import com.ogoma.vue_starter.vue_starter.utils.mail.MailSender;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.mail.MessagingException;
+import java.util.*;
 
 @Service
 public class EmployeesService {
     private final EmployeeRepository employeeRepository;
+    private final MailSender mailSender;
 
-    public EmployeesService(EmployeeRepository employeeRepository) {
-
+    public EmployeesService(EmployeeRepository employeeRepository, MailSender mailSender) {
+        this.mailSender = mailSender;
         this.employeeRepository = employeeRepository;
     }
 
@@ -51,6 +58,37 @@ public class EmployeesService {
         user.addStaff(employee);
         employee.setUser(user);
         this.employeeRepository.save(employee);
+        sendRegistrationEmail(employeeCreateModel, userPassword);
         return employee;
+    }
+
+
+    private void sendRegistrationEmail(EmployeeCreateModel employeeCreateModel, String password) {
+        Map<String, Object> emailTemplateVariables = new HashMap<>();
+        emailTemplateVariables.put("employeeDetail", employeeCreateModel);
+        emailTemplateVariables.put("password", password);
+        EmailModel emailModel = new EmailModel();
+        emailModel.setSubject("Employee Registration");
+        emailModel.setHtml(true);
+        emailModel.setTo(employeeCreateModel.getBasicInfo().getEmail());
+        emailModel.setTemplateVariable(emailTemplateVariables);
+        emailModel.setTemplatePath("/employee_registration_successful");
+        UriComponentsBuilder base = ServletUriComponentsBuilder.fromCurrentContextPath().path("/");
+        String url = base.build().toUriString();
+        emailTemplateVariables.put("link", url);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mailSender.sendMail(emailModel);
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void removeEmployee(Long employeeId) {
+        this.employeeRepository.deleteById(employeeId);
     }
 }

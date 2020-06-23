@@ -1,6 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
+import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -8,7 +10,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "departments")
-public class Department {
+@SQLDelete(sql = "update departments set deleted=true,deleted_at=now() where id=?")
+public class Department extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

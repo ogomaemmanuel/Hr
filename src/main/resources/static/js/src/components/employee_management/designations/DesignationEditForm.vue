@@ -113,9 +113,6 @@
             this.getAsyncData();
         },
         methods: {
-            setSelectedDepartment(options) {
-                this.selectedDepartment = options;
-            },
 
             fetchDepartments(name) {
                 axios.get("/api/departments", {
@@ -171,13 +168,23 @@
             getMoreAsyncData: _debounce(function () {
                 this.getAsyncData(this.departmentName)
             }, 250),
+            setSelectedDepartment(options) {
+                this.selectedDepartment = options;
+            },
             showAddDepartment() {
 
             },
             updateDesignation() {
                 this.designation.departmentId = this.selectedDepartment.id;
-                axios.put(`/api/designations/${this.designationId}`, this.designation).then(resp => {
-
+                axios.put(`/api/designations/${this.designationId}`,
+                    this.designation).then(resp => {
+                    let vm = this;
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Designation  updated successfully"
+                    })
+                    this.$emit("designationUpdated")
                 }, error => {
 
                 })

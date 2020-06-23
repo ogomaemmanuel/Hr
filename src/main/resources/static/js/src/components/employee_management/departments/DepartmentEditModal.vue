@@ -2,8 +2,10 @@
     <ModalTemplate ref="editModalTemplate"
                    @modalClosed="onModalClosed">
         <slot name="modal-content">
-            <DepartmentEditForm :department-id="this.$route.params.id"
-                                slot="modal-content">
+            <DepartmentEditForm
+                    @departmentUpdated="onDepartmentUpdated"
+                    :department-id="this.$route.params.id"
+                    slot="modal-content">
             </DepartmentEditForm>
         </slot>
     </ModalTemplate>
@@ -18,6 +20,10 @@
         },
         methods: {
             onModalClosed() {
+                this.$router.go(-1);
+            },
+            onDepartmentUpdated() {
+                this.$emit("departmentUpdated");
                 this.$router.go(-1);
             }
         }

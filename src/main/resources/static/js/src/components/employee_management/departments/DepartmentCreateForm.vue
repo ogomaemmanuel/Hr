@@ -50,6 +50,12 @@
                 axios.post("/api/departments",
                     this.department).then(resp => {
                     this.loading = false
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Department  successfully created"
+                    })
+                    this.$emit("departmentCreated")
                 }, error => {
                     this.loading = false;
                 })

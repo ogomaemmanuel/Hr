@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface UsersRepository extends JpaRepository<User,Long> {
     @Nullable
     User findByEmail(String email);
-    @Query(value = "SELECT u.* FROM users u left join staffs s on u.id=s.user_id where s.id=:id",nativeQuery = true)
+    @Query(value = "SELECT u.* FROM users u left join employees s on u.id=s.user_id where s.id=:id",nativeQuery = true)
     User findByStaffId(Long id);
 }

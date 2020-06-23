@@ -16,10 +16,15 @@ import java.util.Map;
 
 @Component
 public class PasswordResetEventHandler {
+    private final MailSender mailSender;
+
     @Autowired
-    private MailSender mailSender;
+    public PasswordResetEventHandler(MailSender mailSender) {
+        this.mailSender = mailSender;
+    }
+
     @EventListener
-    private void handleEvent(PasswordResetEvent passwordResetEvent){
+    private void handleEvent(PasswordResetEvent passwordResetEvent) {
         Map<String, Object> emailTemplateVariables = new HashMap<>();
         emailTemplateVariables.put("username", passwordResetEvent.getPasswordReset().getUser().getFirstName());
         EmailModel emailModel = new EmailModel();
@@ -29,9 +34,8 @@ public class PasswordResetEventHandler {
         emailModel.setTemplateVariable(emailTemplateVariables);
         emailModel.setTemplatePath("/password_reset");
         UriComponentsBuilder base = ServletUriComponentsBuilder.fromCurrentContextPath().path("/");
-
-        String url = MvcUriComponentsBuilder.relativeTo(base).fromMethodName(AuthController.class, "resetPassword", passwordResetEvent.getPasswordReset().getUser().getId(), passwordResetEvent.getPasswordReset().getToken(),new Object()).build().toString();
-        emailTemplateVariables.put("link",url);
+        String url = MvcUriComponentsBuilder.relativeTo(base).fromMethodName(AuthController.class, "resetPassword", passwordResetEvent.getPasswordReset().getUser().getId(), passwordResetEvent.getPasswordReset().getToken(), new Object()).build().toString();
+        emailTemplateVariables.put("link", url);
         try {
             this.mailSender.sendMail(emailModel);
         } catch (MessagingException e) {

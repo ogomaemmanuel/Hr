@@ -14,7 +14,7 @@
 				</span>
                 </router-link>
                 <a
-                        href="/api/holidays/excel-report"
+                        href="/api/departments/excel-reports"
                         class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
@@ -38,7 +38,7 @@
                                         </th>
                                         <th>
                                             <div class="float-right">
-<!--                                                Action-->
+                                                <!--                                                Action-->
                                             </div>
                                         </th>
                                     </tr>
@@ -56,7 +56,7 @@
 					                       </span>
                                                 </router-link>
                                                 <button
-                                                        @click=""
+                                                        @click="confirmRemoveDepartment(department)"
                                                         class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -85,7 +85,10 @@
                     </div>
                 </div>
             </div>
-            <router-view>
+            <router-view
+                    @departmentUpdated="onDepartmentUpdated"
+                    @departmentCreated="onDepartmentCreated"
+            >
             </router-view>
         </div>
     </div>
@@ -112,6 +115,26 @@
             }
         },
         methods: {
+            confirmRemoveDepartment(department) {
+                this.$buefy.dialog.confirm({
+                    title: 'Remove Department',
+                    message: `Are you sure want to remove <b> ${department.name}</b> from departments`,
+                    onConfirm: () => this.removeDepartment(department)
+                })
+            },
+            removeDepartment(department) {
+                axios.delete(`/api/departments/${department.id}`).then(resp => {
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        message: "Department successfully removed",
+                    })
+                    this.getDepartments();
+                })
+            },
+            onDepartmentCreated() {
+                this.getDepartments();
+            },
             getDepartments() {
                 let vm = this;
                 vm.loading = true;
@@ -139,6 +162,9 @@
             onPaginationChanged(pageSize) {
                 this.page = 0;
                 this.pageSize = pageSize;
+                this.getDepartments();
+            },
+            onDepartmentUpdated() {
                 this.getDepartments();
             }
         },

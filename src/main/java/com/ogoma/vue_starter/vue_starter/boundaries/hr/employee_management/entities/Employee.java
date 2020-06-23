@@ -1,8 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -13,7 +16,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "employees")
-public class Employee {
+@SQLDelete(sql = "update employees set deleted=true,deleted_at=now()  where id=?")
+public class Employee extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,6 +39,7 @@ public class Employee {
     @JoinColumn(name = "designation_id", insertable = false, updatable = false)
     private Designation designation;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST)
+    @JsonIgnoreProperties(value = "employee")
     private Set<EmployeeContactAddress> employeeContactAddresses = new HashSet<>();
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "supervisor_id", insertable = false, updatable = false)
@@ -203,7 +208,6 @@ public class Employee {
     public Long getDesignationId() {
         return designationId;
     }
-
     public void setDesignationId(Long designationId) {
         this.designationId = designationId;
     }

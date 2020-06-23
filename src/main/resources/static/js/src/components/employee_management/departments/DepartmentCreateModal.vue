@@ -1,7 +1,9 @@
 <template>
     <ModalTemplate ref="modalTemplate" @modalClosed="onModalClosed">
         <slot name="modal-content">
-            <DepartmentCreateForm slot="modal-content"></DepartmentCreateForm>
+            <DepartmentCreateForm
+                    @departmentCreated="onDepartmentCreated"
+                    slot="modal-content"></DepartmentCreateForm>
         </slot>
     </ModalTemplate>
 </template>
@@ -23,7 +25,11 @@
         methods:{
             onModalClosed() {
                 this.$router.go(-1);
-            }
+            },
+            onDepartmentCreated() {
+                this.$emit("departmentCreated");
+                this.$router.go(-1);
+            },
         }
     }
 </script>

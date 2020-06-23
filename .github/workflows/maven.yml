@@ -1,13 +1,12 @@
-name: Feature Branch
+name: Main Branch
 
 on:
   push:
-    branches-ignore:
-      - 'master'
-      - 'release*'
+    branches: [ master,eogoma ]
+  pull_request:
+    branches: [ master]
 
 jobs:
-
   test:
     name: Unit Test
     runs-on: ubuntu-18.04
@@ -22,3 +21,26 @@ jobs:
         run: mvn -B clean package -DskipTests
       - name: Maven Verify
         run: mvn -B clean verify
+#      - name: Set up Java for publishing to Maven Central Repository
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 1.11
+#      - name: Publish to GitHub Packages
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.DEPLOY }}
+#        run: mvn -B clean deploy -DskipTests
+  docker:
+    name: Publish - Docker Hub
+    runs-on: ubuntu-18.04
+    env:
+      REPO: ${{ secrets.DOCKER_REPO }}
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASS }}
+          repository: mudho/hr
+          tag_with_ref: true

@@ -58,9 +58,15 @@
                     })
             },
             updateDepartment() {
+                let vm = this;
                 axios.put(`/api/departments/${this.departmentId}`,
                     this.department).then(resp => {
-
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Department successfully updated"
+                    })
+                    this.$emit("departmentUpdated")
                 })
             }
         },
