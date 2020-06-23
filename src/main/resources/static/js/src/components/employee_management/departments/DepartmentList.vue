@@ -38,7 +38,7 @@
                                         </th>
                                         <th>
                                             <div class="float-right">
-<!--                                                Action-->
+                                                <!--                                                Action-->
                                             </div>
                                         </th>
                                     </tr>
@@ -85,7 +85,9 @@
                     </div>
                 </div>
             </div>
-            <router-view>
+            <router-view
+                    @departmentCreated="onDepartmentCreated"
+            >
             </router-view>
         </div>
     </div>
@@ -119,7 +121,7 @@
                     onConfirm: () => this.removeDepartment(department)
                 })
             },
-            removeDepartment(department)  {
+            removeDepartment(department) {
                 axios.delete(`/api/departments/${department.id}`).then(resp => {
                     this.$swal({
                         type: "success",
@@ -129,7 +131,9 @@
                     this.getDepartments();
                 })
             },
-
+            onDepartmentCreated() {
+                this.getDepartments();
+            },
             getDepartments() {
                 let vm = this;
                 vm.loading = true;

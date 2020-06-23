@@ -28,14 +28,11 @@ public class EmployeesController {
         Page<EmployeeQuery> employees = this.employeesService.getEmployees(pagedDataRequest);
         return ResponseEntity.ok(employees);
     }
-
     @RequestMapping(value = "api/employees", method = RequestMethod.POST)
     public ResponseEntity<?> createEmployee(@RequestBody EmployeeCreateModel employeeCreateModel) {
         Employee employee = this.employeesService.createEmployee(employeeCreateModel);
         return ResponseEntity.ok(employee);
     }
-
-
     @RequestMapping(value = "api/employees/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeEmployee(@PathVariable("id") Long id) {
         this.employeesService.removeEmployee(id);
