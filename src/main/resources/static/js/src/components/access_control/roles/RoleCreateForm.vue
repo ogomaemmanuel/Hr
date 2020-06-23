@@ -5,7 +5,7 @@
 				<h1 class="has-text-black"><b>Add Role</b></h1>
 			</div>
 			<div class="field">
-				<label class="label is-size-7">Name <span><sup>*</sup></span></label>
+				<label class="label">Name <span><sup>*</sup></span></label>
 				<div class="control">
 					<input
 							v-model="role.name"
@@ -17,12 +17,26 @@
 					</span>
 				</div>
 			</div>
+			<div class="field">
+				<label class="label">Description <span><sup>*</sup></span></label>
+				<div class="control">
+					<textarea
+							v-model="role.description"
+							@input="clearFieldError('description')"
+							class="textarea"
+							type="text">
+					</textarea>
+					<span class="mb-2 has-text-danger" v-if="errors['description']">
+						{{errors['description'][0]}}
+					</span>
+				</div>
+			</div>
 			<div class="flex justify-center m-3">
 				<button
 						:class="{'is-loading':isLoading}"
 						:disabled="disableSubmitButton"
 						@click.prevent.stop="createRole"
-						class="button is-small is-rounded"
+						class="button  is-rounded"
 						type="submit">Submit
 				</button>
 			</div>

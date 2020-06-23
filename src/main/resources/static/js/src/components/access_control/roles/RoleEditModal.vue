@@ -1,14 +1,17 @@
 <template>
-	<ModalTemplate ref="modalTemplate" @modalClosed="onModalClosed">
-		<slot name="modal-content">
-			<RoleEditForm @roleUpdateSuccessful="onRoleUpdateSuccessful"
-							slot="modal-content"></RoleEditForm>
-		</slot>
-	</ModalTemplate>
+    <ModalTemplate ref="modalTemplate" @modalClosed="onModalClosed">
+        <slot name="modal-content">
+            <RoleEditForm
+                    :role-id="$route.params.id"
+                    @roleUpdateSuccessful="onRoleUpdateSuccessful"
+                    slot="modal-content"></RoleEditForm>
+        </slot>
+    </ModalTemplate>
 </template>
 <script>
-import RoleEditForm from "./RoleEditForm";
+    import RoleEditForm from "./RoleEditForm";
     import ModalTemplate from "../../common/ModalTemplate"
+
     export default {
         components: {
             ModalTemplate,
@@ -23,5 +26,6 @@ import RoleEditForm from "./RoleEditForm";
                 this.$router.back();
             }
         }
+
     }
 </script>

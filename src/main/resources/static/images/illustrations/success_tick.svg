@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="469px" height="203px" viewBox="0 0 469 203" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="42.4862127%" y1="86.5156597%" x2="5.44340396%" y2="42.0751054%" id="linearGradient-1">
+            <stop stop-color="#00B0F4" offset="0%"></stop>
+            <stop stop-color="#25D8B3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="DESIGN-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-160.000000, -61.000000)">
+            <g id="Group" transform="translate(159.000000, 61.000000)">
+                <circle id="Oval-15" stroke="#25D8B3" stroke-width="2" cx="151.5" cy="94.5" r="16.5"></circle>
+                <circle id="Oval-15-Copy-2" stroke="#8954BA" cx="168.5" cy="190.5" r="11.5"></circle>
+                <circle id="Oval-15-Copy-3" stroke="#8954BA" cx="375.5" cy="151.5" r="11.5"></circle>
+                <circle id="Oval-15-Copy-6" stroke="#8954BA" stroke-width="2" cx="434" cy="64" r="7"></circle>
+                <circle id="Oval-15-Copy-5" stroke="#00B0F4" stroke-width="2" cx="325.5" cy="179.5" r="14.5"></circle>
+                <circle id="Oval-15-Copy-4" stroke="#FFFFFF" cx="348" cy="103" r="4"></circle>
+                <circle id="Oval-15-Copy" stroke="#FC41B6" stroke-width="2" cx="81" cy="146" r="6"></circle>
+                <path d="M1.02941176,123.970588 L33.58227,91.41773" id="Line-20" stroke="#EF2596" stroke-linecap="square"></path>
+                <path d="M446.041667,152.958333 L469.334041,129.665959" id="Line-21" stroke="#FC8E2F" stroke-linecap="square"></path>
+                <path d="M109,188.928571 L120.045361,177.094256" id="Line-22" stroke="#979797" stroke-linecap="square"></path>
+                <path d="M202,29 L231,0" id="Line-23" stroke="#C5C5C5" stroke-linecap="square"></path>
+                <path d="M216.020558,108.785714 L318.92511,108.785714 C320.02968,108.785714 320.92511,109.681145 320.92511,110.785714 L320.92511,134.404762 C320.92511,135.509331 320.02968,136.404762 318.92511,136.404762 L190.414097,136.404762 C189.861812,136.404762 189.361812,136.180904 188.999883,135.818975 C188.637955,135.457047 188.414097,134.957047 188.414097,134.404762 L188.414097,69.3571429 C188.414097,68.2525734 189.309527,67.3571429 190.414097,67.3571429 L214.020558,67.3571429 C215.125128,67.3571429 216.020558,68.2525734 216.020558,69.3571429 L216.020558,108.785714 Z" id="Combined-Shape" fill="url(#linearGradient-1)" transform="translate(254.669604, 101.880952) rotate(-45.000000) translate(-254.669604, -101.880952) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

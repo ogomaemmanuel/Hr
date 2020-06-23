@@ -6,6 +6,7 @@ import com.ogoma.vue_starter.vue_starter.events.auth.PasswordResetEvent;
 import com.ogoma.vue_starter.vue_starter.events.auth.UserRegistrationEvent;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
+import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.PasswordResetRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.PasswordResetRepository;
@@ -15,6 +16,8 @@ import com.ogoma.vue_starter.vue_starter.utils.reports.ReportGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,9 +44,9 @@ public class UsersServiceImp implements UserService {
                            ReportGenerator reportGenerator
     ) {
         this.usersRepository = usersRepository;
-        this.passwordEncoder = passwordEncoder;
         this.passwordResetRepository = passwordResetRepository;
-        this.reportGenerator=reportGenerator;
+        this.reportGenerator = reportGenerator;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -55,25 +58,25 @@ public class UsersServiceImp implements UserService {
     public User register(UserRegistrationModel userRegistrationModel) {
         User user = new User();
         BeanUtils.copyProperties(userRegistrationModel, user);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedDetails = this.usersRepository.save(user);
         String registrationToken = RandomStringGenerator.randomStringGenerator(32, false);
         PasswordReset passwordReset = new PasswordReset(
                 registrationToken,
                 savedDetails);
         passwordResetRepository.save(passwordReset);
-        Map<String,Object>  registrationData = new HashMap<>();
-        registrationData.put("user",savedDetails);
-        registrationData.put("token",passwordReset);
+        Map<String, Object> registrationData = new HashMap<>();
+        registrationData.put("user", savedDetails);
+        registrationData.put("token", passwordReset);
         UserRegistrationEvent userRegistrationEvent = new UserRegistrationEvent(this, registrationData);
         applicationEventPublisher.publishEvent(userRegistrationEvent);
         return savedDetails;
     }
 
     @Override
-    public List<User> getAll() {
-       List<User> users = this.usersRepository.findAll();
-       return users;
+    public Page<User> getAll(PagedDataRequest pagedDataRequest) {
+        PageRequest pageRequest= PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
+        Page<User> users = this.usersRepository.findAll(pageRequest);
+        return users;
     }
 
     @Override
@@ -119,6 +122,6 @@ public class UsersServiceImp implements UserService {
     @Override
     public ByteArrayOutputStream report() throws Exception {
         List<User> users = this.usersRepository.findAll();
-        return reportGenerator.generatePdfReport("reports/Blank_A4.jasper",null,users);
+        return reportGenerator.generatePdfReport("reports/Blank_A4.jasper", null, users);
     }
 }

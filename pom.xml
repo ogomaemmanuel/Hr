@@ -178,5 +178,11 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>NoticeBoard Simple CRUD application</name>
+			<url>https://maven.pkg.github.com/ogomaemmanuel/Hr_Artifacts</url>
+		</repository>
+	</distributionManagement>
 </project>

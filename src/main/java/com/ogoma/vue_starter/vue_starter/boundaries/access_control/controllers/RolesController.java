@@ -6,25 +6,35 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
 public class RolesController {
-    @Autowired
-    private RolesService rolesService;
+    private final RolesService rolesService;
+
+    public RolesController(RolesService rolesService) {
+        this.rolesService = rolesService;
+    }
 
     @GetMapping("api/roles")
     public ResponseEntity<?> index() {
         List<Role> roles = rolesService.getAllRoles();
         return ResponseEntity.ok(roles);
     }
-    @RequestMapping(value = "api/roles/paged",method = RequestMethod.GET)
+
+    @GetMapping("api/roles/{id}")
+    public ResponseEntity<?> getRoleById(@PathVariable Long id) {
+        Optional<Role> role = this.rolesService.findRoleById(id);
+        return ResponseEntity.of(role);
+    }
+
+    @RequestMapping(value = "api/roles-paged", method = RequestMethod.GET)
     public ResponseEntity<?> index(PagedDataRequest pagedDataRequest) {
         PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
         Page<Role> roles = rolesService.getAllRoles(pageRequest);

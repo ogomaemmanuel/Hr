@@ -9,7 +9,7 @@ public class SecurityUtils {
     public static CustomUserDetails getCurrentUserDetails() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
-        CustomUserDetails springSecurityUser = (CustomUserDetails) authentication.getPrincipal();
-        return springSecurityUser;
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        return customUserDetails;
     }
 }

@@ -4,17 +4,17 @@
 			<router-link
 					to="/role-create"
 					tag="button"
-					class="button mr-1 is-rounded is-small">
+					class="button mr-1 is-rounded">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
 				<span>
-					 Add New
+					 Add Role
 				</span>
 			</router-link>
 			<a
 					href="/api/holidays/excel-report"
-					class="button is-rounded is-small">
+					class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
 				</span>
@@ -23,12 +23,12 @@
 				</span>
 			</a>
 		</div>
-		<div class="columns is-size-7">
+		<div class="columns">
 			<div class="column is-12">
 				<div class="card" ref="leaveRequests">
 					<div class="card-content">
 						<div class="content b-table is-relative" :class="{'is-loading':loading}">
-							<h4>Holidays</h4>
+							<h4>Roles</h4>
 							<table class="table has-mobile-cards w-full is-hoverable">
 								<thead class="font-thin">
 								<tr>
@@ -50,7 +50,7 @@
 									<td data-label="Action">
 										<div class="action-controls d-flex justify-end">
 											<router-link
-													:to="`/holiday-edit/${role.id}`" tag="button"
+													:to="`/role-edit/${role.id}`" tag="button"
 													class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -126,7 +126,7 @@
             getRoles() {
                 let vm = this;
                 vm.loading = true;
-                axios.get("api/roles/paged", {
+                axios.get("api/roles-paged", {
                     params: {
                         pageSize: vm.pageSize,
                         page: vm.page

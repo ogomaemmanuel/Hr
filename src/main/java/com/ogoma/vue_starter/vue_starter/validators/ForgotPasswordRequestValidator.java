@@ -11,6 +11,7 @@ import org.springframework.validation.Validator;
 
 @Component
 public class ForgotPasswordRequestValidator implements Validator {
+
     @Autowired
     private UserService userService;
 

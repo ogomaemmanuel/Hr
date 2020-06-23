@@ -14,12 +14,32 @@ const Register = () =>
 
 //users,user permission and roles routes go here
 const Users = () =>
-    import ("../components/access_control/Users");
+    import ("../components/access_control/users/UsersPage");
 
 const Roles = () =>
     import ("../components/access_control/roles/RolesPage");
 const RoleCreate = () =>
     import ("../components/access_control/roles/RoleCreateModal");
+const RoleEdit = () =>
+    import ("../components/access_control/roles/RoleEditModal");
+
+
+const DepartmentsPage = () => import("../components/employee_management/departments/DepartmentsPage")
+const DepartmentList = () => import("../components/employee_management/departments/DepartmentList")
+const DepartmentCreate = () => import("../components/employee_management/departments/DepartmentCreateModal")
+const DepartmentEdit = () => import("../components/employee_management/departments/DepartmentEditModal")
+
+const DesignationsPage = () => import("../components/employee_management/designations/DesignationsPage")
+const DesignationList = () => import("../components/employee_management/designations/DesignationList")
+const DesignationsCreate = () => import("../components/employee_management/designations/DesignationCreateModal")
+const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
+
+
+const EmployeesPage = () => import("../components/employee_management/employees/EmployeePage")
+const EmployeeList = () => import("../components/employee_management/employees/EmployeeList")
+const EmployeeCreate = () => import("../components/employee_management/employees/create/EmployeeCreateForm")
+// const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
+
 
 const Documents = () => import("../components/file_management/Index")
 const PageNotFound = () => import("../components/errors/PageNotFound")
@@ -93,10 +113,7 @@ const routes = new Router({
             path: "/",
             name: "home",
             component: Home,
-            meta: {
-                breadcrumb: 'Home',
-                breadcrumbIcon: 'fa-home'
-            },
+            meta: {},
 
             children: [
                 {
@@ -104,7 +121,8 @@ const routes = new Router({
                     name: "users",
                     component: Users,
                     meta: {
-                        breadcrumb: 'Users',
+                        breadcrumb: true,
+                        title: "Users",
                     },
 
                 },
@@ -113,13 +131,19 @@ const routes = new Router({
                     name: "roles",
                     component: Roles,
                     meta: {
-                        breadcrumb: 'Roles',
+                        breadcrumb: true,
+                        title: "Roles",
                     },
                     children: [
                         {
                             path: "/role-create",
                             name: "role-create",
                             component: RoleCreate
+                        },
+                        {
+                            path: "/role-edit/:id",
+                            name: "role-edit",
+                            component: RoleEdit
                         }
                     ]
 
@@ -129,7 +153,8 @@ const routes = new Router({
                     name: "documents",
                     component: Documents,
                     meta: {
-                        breadcrumb: 'Documents',
+                        breadcrumb: true,
+                        title: "Documents"
                     },
 
 
@@ -139,14 +164,15 @@ const routes = new Router({
                     path: "/leave",
                     name: "leave",
                     component: LeavePage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Leave Requests",
+                    },
                     children: [
                         {
                             path: "/",
                             name: "leave-requests",
                             component: LeaveRequests,
-                            meta: {
-                                breadcrumb: 'Leave Requests',
-                            },
                             children: [
                                 {
                                     path: "/leave-request-edit/:id",
@@ -187,6 +213,109 @@ const routes = new Router({
                                 breadcrumb: 'Leave Details',
                             },
                         }
+                    ]
+                },
+                {
+                    path: "/departments",
+                    name: "departments-page",
+                    component: DepartmentsPage,
+                    meta: {
+                        breadcrumbs: true,
+                        redirect: true,
+                        title: 'Departments'
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            name: "department-list",
+                            component: DepartmentList,
+                            meta: {
+                                breadcrumb: 'Departments',
+                            },
+                            children: [
+                                {
+                                    path: "/departments-edit/:id",
+                                    component: DepartmentEdit,
+                                    name: "departments-edit"
+                                },
+                                {
+                                    path: "/departments-create",
+                                    component: DepartmentCreate,
+                                    name: "departments-create"
+                                }
+                            ]
+                        },
+                    ]
+                },
+                {
+                    path: "/employees",
+                    name: "employee-page",
+                    component: EmployeesPage,
+
+                    meta: {
+                        breadcrumb: 'Employees',
+                        title: 'Employees',
+                        redirect: true,
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            name: "employee-list",
+                            component: EmployeeList,
+                            meta: {
+                                // breadcrumb: 'Employees',
+                                // redirect: true
+                            },
+                            children: [
+                                // {
+                                //     path: "/employeees-edit/:id",
+                                //     component: DepartmentEdit,
+                                //     name: "departments-edit"
+                                // },
+
+                            ]
+                        },
+                        {
+                            path: "/employees-create",
+                            component: EmployeeCreate,
+                            name: "employees-create",
+
+                            meta: {
+                                breadcrumb: 'Employees Create',
+                                title: 'Employees Create',
+                                redirect: true,
+                            },
+                        }
+                    ]
+                },
+                {
+                    path: "/designations",
+                    name: "designations-page",
+                    component: DesignationsPage,
+                    meta: {
+                        title: "Designations"
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            name: "designation-list",
+                            component: DesignationList,
+                            meta: {
+                                breadcrumb: 'Designations',
+                            },
+                            children: [
+                                {
+                                    path: "/designations-edit/:id",
+                                    component: DesignationsEdit,
+                                    name: "designations-edit"
+                                },
+                                {
+                                    path: "/designations-create",
+                                    component: DesignationsCreate,
+                                    name: "designations-create"
+                                }
+                            ]
+                        },
                     ]
                 },
                 {
