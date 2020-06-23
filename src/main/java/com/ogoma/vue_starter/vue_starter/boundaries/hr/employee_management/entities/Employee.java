@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
@@ -38,6 +39,7 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "designation_id", insertable = false, updatable = false)
     private Designation designation;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST)
+    @JsonIgnoreProperties(value = "employee")
     private Set<EmployeeContactAddress> employeeContactAddresses = new HashSet<>();
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "supervisor_id", insertable = false, updatable = false)
