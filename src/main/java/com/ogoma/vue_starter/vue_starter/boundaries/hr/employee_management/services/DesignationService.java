@@ -24,7 +24,7 @@ public class DesignationService {
                 pagedDataRequest.getPage(),
                 pagedDataRequest.getPageSize()
         );
-        Page<Designation> designations = this.designationRepository.findAll(pageRequest);
+        Page<Designation> designations = this.designationRepository.findAllByDeletedFalse(pageRequest);
         return designations;
     }
 
@@ -48,5 +48,9 @@ public class DesignationService {
             this.designationRepository.save(des);
         });
         return designationDb;
+    }
+
+    public void removeDesignation(Long id) {
+        this.designationRepository.deleteById(id);
     }
 }

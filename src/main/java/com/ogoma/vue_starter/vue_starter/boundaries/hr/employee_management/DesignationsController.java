@@ -46,4 +46,10 @@ public class DesignationsController {
         Optional<Designation> designationUpdate = this.designationService.updateDesignation(id, designation);
         return ResponseEntity.of(designationUpdate);
     }
+
+    @RequestMapping(value = "api/designations/{id}",method = RequestMethod.DELETE)
+    public ResponseEntity<?> removeDesignation(@PathVariable("id") Long id){
+        this.designationService.removeDesignation(id);
+        return ResponseEntity.ok().build();
+    }
 }

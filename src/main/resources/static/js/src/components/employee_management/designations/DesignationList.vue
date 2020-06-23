@@ -57,7 +57,7 @@
 					                       </span>
                                             </router-link>
                                             <button
-                                                    @click=""
+                                                    @click="confirmRemoveDesignation(designation)"
                                                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -111,6 +111,24 @@
             this.getDesignations();
         },
         methods: {
+            confirmRemoveDesignation(designation) {
+                this.$buefy.dialog.confirm({
+                    title: 'Remove Department',
+                    message: `Are you sure want to remove <b> ${designation.name}</b> from designations`,
+                    onConfirm: () => this.removeDesignation(designation)
+                })
+            },
+            removeDesignation(designation)  {
+                axios.delete(`/api/designations/${designation.id}`).then(resp => {
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        message: "Designation successfully removed",
+                    })
+                    this.getDesignations();
+                })
+            },
+
             getDesignations() {
                 let vm = this;
                 axios.get("api/designations", {
