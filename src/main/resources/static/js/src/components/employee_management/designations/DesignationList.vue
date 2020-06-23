@@ -86,7 +86,10 @@
                 </div>
             </div>
         </div>
-        <router-view>
+        <router-view
+                @designationCreated="onDesignationCreated"
+                @designationUpdated="onDesignationUpdated"
+        >
         </router-view>
     </div>
 </template>
@@ -118,7 +121,7 @@
                     onConfirm: () => this.removeDesignation(designation)
                 })
             },
-            removeDesignation(designation)  {
+            removeDesignation(designation) {
                 axios.delete(`/api/designations/${designation.id}`).then(resp => {
                     this.$swal({
                         type: "success",
@@ -131,7 +134,7 @@
 
             getDesignations() {
                 let vm = this;
-                axios.get("api/designations", {
+                axios.get("/api/designations", {
                     params: {
                         pageSize: vm.pageSize,
                         page: vm.page
@@ -156,6 +159,12 @@
             onPaginationChanged(pageSize) {
                 this.page = 0;
                 this.pageSize = pageSize;
+                this.getDesignations();
+            },
+            onDesignationUpdated() {
+                this.getDesignations();
+            },
+            onDesignationCreated() {
                 this.getDesignations();
             }
         }

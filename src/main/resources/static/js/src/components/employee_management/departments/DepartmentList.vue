@@ -86,6 +86,7 @@
                 </div>
             </div>
             <router-view
+                    @departmentUpdated="onDepartmentUpdated"
                     @departmentCreated="onDepartmentCreated"
             >
             </router-view>
@@ -161,6 +162,9 @@
             onPaginationChanged(pageSize) {
                 this.page = 0;
                 this.pageSize = pageSize;
+                this.getDepartments();
+            },
+            onDepartmentUpdated() {
                 this.getDepartments();
             }
         },

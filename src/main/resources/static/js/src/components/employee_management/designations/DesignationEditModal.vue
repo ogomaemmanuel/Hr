@@ -1,7 +1,11 @@
 <template>
     <ModalTemplate overflow="visible" ref="modalTemplate" @modalClosed="$router.back()">
         <slot name="modal-content">
-            <DesignationEditForm :designation-id="$route.params.id" slot="modal-content"></DesignationEditForm>
+            <DesignationEditForm
+                    @designationUpdated="onDesignationUpdated"
+                    :designation-id="$route.params.id"
+                    slot="modal-content">
+            </DesignationEditForm>
         </slot>
     </ModalTemplate>
 </template>
@@ -17,7 +21,12 @@
         data() {
             return {}
         },
-        methods: {},
+        methods: {
+            onDesignationUpdated() {
+                this.$emit("designationUpdated");
+                this.$router.back();
+            }
+        },
         created() {
 
         }
