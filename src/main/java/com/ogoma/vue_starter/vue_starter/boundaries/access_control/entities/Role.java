@@ -1,6 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
+import org.hibernate.annotations.SQLDelete;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -10,7 +12,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "roles")
-public class Role {
+@SQLDelete(sql="update roles set deleted=true, deleted_at=now() where id=?")
+public class Role extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,13 +37,8 @@ public class Role {
         this.name = name;
         this.description = description;
     }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

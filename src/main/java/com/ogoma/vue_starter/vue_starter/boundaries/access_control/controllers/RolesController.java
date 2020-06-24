@@ -44,7 +44,12 @@ public class RolesController {
     @PostMapping("api/roles")
     public ResponseEntity<?> store(@RequestBody Role roleRequest) {
         Role role = rolesService.addRole(roleRequest);
-
         return ResponseEntity.ok(role);
+    }
+
+    @RequestMapping(value = "api/roles/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> removeRole(@PathVariable("id") Long id) {
+        this.rolesService.removeRole(id);
+        return ResponseEntity.ok().build();
     }
 }

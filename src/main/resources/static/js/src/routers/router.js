@@ -35,8 +35,8 @@ const DesignationsCreate = () => import("../components/employee_management/desig
 const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
 
 
-const EmployeesPage = () => import("../components/employee_management/employees/EmployeePage")
-const EmployeeList = () => import("../components/employee_management/employees/EmployeeList")
+const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
+const EmployeeList = () => import("../components/employee_management/employees/list/EmployeeList")
 const EmployeeCreate = () => import("../components/employee_management/employees/create/EmployeeCreateForm")
 // const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
 
