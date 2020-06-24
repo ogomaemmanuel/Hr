@@ -80,7 +80,7 @@
     import EmployeeListMixin from "./EmployeeListMixin";
 
     export default {
-        mixins: [EmployeeListMixin];
+        mixins: [EmployeeListMixin],
         components: {
             Paginator
         },

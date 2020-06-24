@@ -16,13 +16,25 @@
 
                             <div class="profile-action">
                                 <div class="dropdown">
-                                    <i class="fa fa-ellipsis-v"></i>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#" data-toggle="modal"
-                                           data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                        <a class="dropdown-item" href="#" data-toggle="modal"
-                                           data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                    </div>
+                                    <b-dropdown aria-role="list">
+                                        <i
+                                                class="fa fa-ellipsis-v text-muted"
+                                                slot="trigger"
+                                                role="button">
+                                        </i>
+                                        <b-dropdown-item :disabled="false"
+                                                         value="withdraw"
+                                                         @click="confirmRemoveEmployee(employee)"
+                                                         aria-role="listitem">
+                                            <span class="icon"><i class="fa fa-trash"></i></span>
+                                            Remove
+                                        </b-dropdown-item>
+                                        <b-dropdown-item
+                                                         :disabled="false" value="edit" aria-role="listitem">
+                                            <span class="icon"><i class="fa fa-pencil"></i></span>
+                                            Edit
+                                        </b-dropdown-item>
+                                    </b-dropdown>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +75,7 @@
     import EmployeeListMixin from "./EmployeeListMixin";
 
     export default {
-        mixins:[EmployeeListMixin];
+        mixins:[EmployeeListMixin],
         components: {
             Paginator
         },
