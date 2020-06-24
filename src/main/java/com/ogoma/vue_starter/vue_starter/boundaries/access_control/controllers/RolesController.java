@@ -47,6 +47,12 @@ public class RolesController {
         return ResponseEntity.ok(role);
     }
 
+    @RequestMapping(value = "api/roles/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateRole(@PathVariable("id")Long id ,@RequestBody Role role){
+      Optional<Role> optionalRole= this.rolesService.updateRole(id,role);
+      return ResponseEntity.of(optionalRole);
+    }
+
     @RequestMapping(value = "api/roles/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeRole(@PathVariable("id") Long id) {
         this.rolesService.removeRole(id);

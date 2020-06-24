@@ -40,4 +40,14 @@ public class RolesService {
     public void removeRole(Long roleId) {
         this.rolesRepository.deleteById(roleId);
     }
+
+    public Optional<Role> updateRole(Long id, Role role) {
+        Optional<Role> optionalRole = this.rolesRepository.findById(id);
+        optionalRole.ifPresent(r -> {
+            r.setName(role.getName());
+            r.setDescription(role.getDescription());
+            rolesRepository.save(r);
+        });
+        return optionalRole;
+    }
 }
