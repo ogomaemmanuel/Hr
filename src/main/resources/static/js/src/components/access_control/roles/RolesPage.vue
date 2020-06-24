@@ -140,7 +140,7 @@
             getRoles() {
                 let vm = this;
                 vm.loading = true;
-                axios.get("api/roles-paged", {
+                axios.get("/api/roles-paged", {
                     params: {
                         pageSize: vm.pageSize,
                         page: vm.page
