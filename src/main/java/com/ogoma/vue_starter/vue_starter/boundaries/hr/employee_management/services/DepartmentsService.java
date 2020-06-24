@@ -22,7 +22,6 @@ import java.util.Optional;
 @Service
 public class DepartmentsService {
     private final DepartmentsRepository departmentsRepository;
-
     public DepartmentsService(DepartmentsRepository departmentsRepository) {
         this.departmentsRepository = departmentsRepository;
     }
