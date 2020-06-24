@@ -72,8 +72,15 @@
             },
 
             updateRole() {
-                axios.put(`/api/roles/${this.roleId}`).then(resp => {
-                    // this.role = resp.data;
+                let vm = this;
+                axios.put(`/api/roles/${this.roleId}`,
+                    this.role).then(resp => {
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Role successfully updated"
+                    })
+                    this.$emit("roleUpdated")
                 }, error => {
                 })
             }

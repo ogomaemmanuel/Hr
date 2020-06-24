@@ -11,9 +11,9 @@ services:
     expose:
       - 49612:8080
 
-
   db:
     image: mariadb/server
+    restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ""
       MARIADB_DATABASE: "hr"
