@@ -87,6 +87,7 @@
             return {
                 isLoading: false,
                 users: [],
+                loading:false,
                 columns: [
                     {
                         field: 'id',

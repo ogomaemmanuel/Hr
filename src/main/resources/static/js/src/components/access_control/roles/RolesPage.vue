@@ -118,11 +118,18 @@
 				this.$buefy.dialog.confirm({
 					title: 'Remove Role',
 					message: `Are you sure want to remove <b> ${role.name}</b> from roles`,
-					onConfirm: () => this.removeDepartment(role)
+					onConfirm: () => this.removeRole(role)
 				})
             },
 			removeRole(role){
-
+				axios.delete(`/api/roles/${role.id}`).then(resp => {
+					this.$swal({
+						type: "success",
+						title: "Success",
+						message: "Department successfully removed",
+					})
+					this.getRoles();
+				})
 			},
             onRoleCreateSuccessful() {
 
