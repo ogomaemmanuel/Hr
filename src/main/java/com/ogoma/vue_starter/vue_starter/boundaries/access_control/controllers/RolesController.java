@@ -18,10 +18,10 @@ import java.util.Optional;
 public class RolesController {
     private final RolesService rolesService;
 
-    public RolesController(RolesService rolesService) {
+    public RolesController(RolesService rolesService)
+    {
         this.rolesService = rolesService;
     }
-
     @GetMapping("api/roles")
     public ResponseEntity<?> index() {
         List<Role> roles = rolesService.getAllRoles();
@@ -44,7 +44,8 @@ public class RolesController {
     @PostMapping("api/roles")
     public ResponseEntity<?> store(@RequestBody Role roleRequest) {
         Role role = rolesService.addRole(roleRequest);
-
         return ResponseEntity.ok(role);
     }
+
+
 }

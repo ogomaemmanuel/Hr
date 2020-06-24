@@ -36,4 +36,8 @@ public class RolesService {
     public Role addRole(Role roleRequest) {
         return rolesRepository.save(roleRequest);
     }
+
+    public void removeRole(Long roleId) {
+        this.rolesRepository.deleteById(roleId);
+    }
 }

@@ -114,9 +114,16 @@
             fetchRecords() {
                 return this.getRoles()
             },
-            confirmRemoveRole() {
-
+            confirmRemoveRole(role) {
+				this.$buefy.dialog.confirm({
+					title: 'Remove Role',
+					message: `Are you sure want to remove <b> ${role.name}</b> from roles`,
+					onConfirm: () => this.removeDepartment(role)
+				})
             },
+			removeRole(role){
+
+			},
             onRoleCreateSuccessful() {
 
             },
