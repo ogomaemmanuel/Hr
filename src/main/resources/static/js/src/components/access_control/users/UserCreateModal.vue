@@ -3,12 +3,10 @@
             width="960"
             ref="modalTemplate"
             @modalClosed="$router.back()">
-        <slot name="modal-content">
             <UserCreateForm
                     :role-id="$route.params.id"
                     @userCreated="onUserCreated"
                     slot="modal-content"></UserCreateForm>
-        </slot>
     </ModalTemplate>
 </template>
 <script>

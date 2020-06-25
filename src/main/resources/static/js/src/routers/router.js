@@ -17,6 +17,8 @@ const Users = () =>
     import ("../components/access_control/users/UsersPage");
 const UserCreate = () =>
     import ("../components/access_control/users/UserCreateModal");
+const UserEdit = () =>
+    import ("../components/access_control/users/UserEditModal");
 
 const Roles = () =>
     import ("../components/access_control/roles/RolesPage");
@@ -128,9 +130,14 @@ const routes = new Router({
                     },
                     children: [
                         {
-                            path:"/users-create",
-                            name:"user-create" ,
-                            component:UserCreate
+                            path: "/users-create",
+                            name: "user-create",
+                            component: UserCreate
+                        },
+                        {
+                            path: "/users-edit/:id",
+                            name: "users-edit",
+                            component: UserEdit
                         }
                     ]
 

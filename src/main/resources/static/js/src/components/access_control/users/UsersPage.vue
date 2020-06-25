@@ -47,7 +47,8 @@
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link
-                                                    :to="`/role-edit/${user.id}`" tag="button"
+                                                    :to="`/users-edit/${user.id}`"
+                                                    tag="button"
                                                     class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -98,26 +99,6 @@
                 isLoading: false,
                 users: [],
                 loading:false,
-                columns: [
-                    {
-                        field: 'id',
-                        label: 'ID',
-                        width: '40',
-                        numeric: true
-                    },
-                    {
-                        field: 'firstName',
-                        label: 'First Name',
-                    },
-                    {
-                        field: 'lastName',
-                        label: 'Last Name',
-                    },
-                    {
-                        field: 'email',
-                        label: 'Email',
-                    },
-                ]
             }
         },
         created() {

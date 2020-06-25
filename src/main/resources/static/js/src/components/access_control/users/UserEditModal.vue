@@ -1,12 +1,22 @@
 <template>
-    <div>
+    <ModalTemplate
+            width="960"
+            ref="modalTemplate"
+            @modalClosed="$router.back()">
+            <UserEditForm
+                    slot="modal-content"
+                    :user-id="$route.params.id">
+            </UserEditForm>
 
-    </div>
+    </ModalTemplate>
 </template>
 <script>
+    import ModalTemplate from "../../common/ModalTemplate";
+    import UserEditForm from "./UserEditForm";
     export default {
-        data(){
-
-        }
+        components: {
+            ModalTemplate,
+            UserEditForm
+        },
     }
 </script>
