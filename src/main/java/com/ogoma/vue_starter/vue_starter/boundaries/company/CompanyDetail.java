@@ -16,10 +16,13 @@ public class CompanyDetail {
     private String businessDescription;
     private String businessEntityType;
     private String stateOfIncorporation;
+    private String email;
+    private String logoUrl;
 
     public Long getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
@@ -74,5 +77,21 @@ public class CompanyDetail {
 
     public void setStateOfIncorporation(String stateOfIncorporation) {
         this.stateOfIncorporation = stateOfIncorporation;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 }
