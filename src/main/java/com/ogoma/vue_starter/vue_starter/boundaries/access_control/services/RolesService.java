@@ -29,7 +29,7 @@ public class RolesService {
     }
 
     public Page<Role> getAllRoles(Pageable pageable) {
-        Page<Role> roles = rolesRepository.findAll(pageable);
+        Page<Role> roles = rolesRepository.findAllByDeletedFalse(pageable);
         return roles;
     }
 
