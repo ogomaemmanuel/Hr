@@ -1,7 +1,16 @@
 <template>
-    <div class="container">
-        <div @click="exportReport" class="flex pb-2 justify-end">
-            <button class="button is-rounded">
+    <div class="">
+        <div  class="flex pb-2 justify-end">
+            <router-link tag="button"
+                         to="/users-create"
+                         class="button mr-1 is-rounded">
+				<span class="icon">
+					<i class="fa fa-plus-circle"></i>
+				</span>
+                <span> Add Users</span>
+            </router-link>
+            <button @click="exportReport"
+                    class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download"></i>
 				</span>
@@ -72,6 +81,7 @@
                 </div>
             </div>
         </div>
+        <router-view></router-view>
     </div>
 </template>
 <script>

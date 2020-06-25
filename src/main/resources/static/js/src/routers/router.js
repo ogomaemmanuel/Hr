@@ -15,6 +15,8 @@ const Register = () =>
 //users,user permission and roles routes go here
 const Users = () =>
     import ("../components/access_control/users/UsersPage");
+const UserCreate = () =>
+    import ("../components/access_control/users/UserCreateModal");
 
 const Roles = () =>
     import ("../components/access_control/roles/RolesPage");
@@ -124,6 +126,13 @@ const routes = new Router({
                         breadcrumb: true,
                         title: "Users",
                     },
+                    children: [
+                        {
+                            path:"/users-create",
+                            name:"user-create" ,
+                            component:UserCreate
+                        }
+                    ]
 
                 },
                 {

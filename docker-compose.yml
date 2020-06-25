@@ -9,7 +9,8 @@ services:
     depends_on:
       - db
     expose:
-      - 49612:8080
+#      outside world: docker container
+      - 8080:49612
 
   db:
     image: mariadb/server
