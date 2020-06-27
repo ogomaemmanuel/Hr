@@ -189,5 +189,7 @@
     }
 </script>
 <style lang="scss" scoped>
-
+    .datepicker {
+        min-width: 100%;
+    }
 </style>
