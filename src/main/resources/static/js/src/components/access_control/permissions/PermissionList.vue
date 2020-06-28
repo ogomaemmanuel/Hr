@@ -1,13 +1,13 @@
 <template>
     <div class="">
         <div  class="flex pb-2 justify-end">
-            <button @click="exportReport"
+            <a href="/api/permissions/excel-report"
                     class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download"></i>
 				</span>
                 <span>Export</span>
-            </button>
+            </a>
         </div>
         <div class="columns">
             <div class="column is-12">
@@ -22,7 +22,7 @@
                                        Name
                                     </th>
                                     <th>
-                                        Description
+<!--                                        Description-->
                                     </th>
                                 </tr>
                                 </thead>
