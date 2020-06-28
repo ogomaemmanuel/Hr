@@ -27,6 +27,9 @@ const RoleCreate = () =>
 const RoleEdit = () =>
     import ("../components/access_control/roles/RoleEditModal");
 
+const Permissions = () =>
+    import ("../components/access_control/permissions/PermissionList");
+
 
 const DepartmentsPage = () => import("../components/employee_management/departments/DepartmentsPage")
 const DepartmentList = () => import("../components/employee_management/departments/DepartmentList")
@@ -162,6 +165,17 @@ const routes = new Router({
                             component: RoleEdit
                         }
                     ]
+
+                },
+                {
+                    path: "/permissions",
+                    name: "permissions",
+                    component: Permissions,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Permissions",
+                    },
+
 
                 },
                 {
