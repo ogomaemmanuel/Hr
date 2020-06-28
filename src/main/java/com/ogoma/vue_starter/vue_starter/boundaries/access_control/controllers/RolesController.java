@@ -4,12 +4,17 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.RolesService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,9 +52,24 @@ public class RolesController {
         return ResponseEntity.ok(role);
     }
 
+    @RequestMapping(value = "api/roles/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateRole(@PathVariable("id") Long id, @RequestBody Role role) {
+        Optional<Role> optionalRole = this.rolesService.updateRole(id, role);
+        return ResponseEntity.of(optionalRole);
+    }
+
     @RequestMapping(value = "api/roles/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeRole(@PathVariable("id") Long id) {
         this.rolesService.removeRole(id);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping(value = "api/roles/excel-report")
+    public ResponseEntity<?> getExcelReport() throws IOException {
+        ByteArrayInputStream byteArrayInputStream = this.rolesService.generateReport();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=roles-report.xlsx");
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(byteArrayInputStream));
     }
 }

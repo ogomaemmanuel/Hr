@@ -3,7 +3,7 @@
         <slot name="modal-content">
             <RoleEditForm
                     :role-id="$route.params.id"
-                    @roleUpdateSuccessful="onRoleUpdateSuccessful"
+                    @roleUpdated="onRoleUpdated"
                     slot="modal-content"></RoleEditForm>
         </slot>
     </ModalTemplate>
@@ -18,8 +18,8 @@
             RoleEditForm
         },
         methods: {
-            onRoleUpdateSuccessful() {
-                this.$emit("roleUpdateSuccessful");
+            onRoleUpdated() {
+                this.$emit("roleUpdated");
                 this.$router.back();
             },
             onModalClosed() {

@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    expose:
+#      <hostPort>:<containerPort>
+      - 8080:49612
+
+  db:
+    image: mariadb/server
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: ""
+      MARIADB_DATABASE: "hr"
+      MARIADB_USER: "homestead"
+      MARIADB_PASSWORD : "secret"

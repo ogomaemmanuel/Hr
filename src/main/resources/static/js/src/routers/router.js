@@ -15,6 +15,10 @@ const Register = () =>
 //users,user permission and roles routes go here
 const Users = () =>
     import ("../components/access_control/users/UsersPage");
+const UserCreate = () =>
+    import ("../components/access_control/users/UserCreateModal");
+const UserEdit = () =>
+    import ("../components/access_control/users/UserEditModal");
 
 const Roles = () =>
     import ("../components/access_control/roles/RolesPage");
@@ -22,7 +26,8 @@ const RoleCreate = () =>
     import ("../components/access_control/roles/RoleCreateModal");
 const RoleEdit = () =>
     import ("../components/access_control/roles/RoleEditModal");
-
+const Permissions = () =>
+    import ("../components/access_control/permissions/PermissionList");
 
 const DepartmentsPage = () => import("../components/employee_management/departments/DepartmentsPage")
 const DepartmentList = () => import("../components/employee_management/departments/DepartmentList")
@@ -124,6 +129,18 @@ const routes = new Router({
                         breadcrumb: true,
                         title: "Users",
                     },
+                    children: [
+                        {
+                            path: "/users-create",
+                            name: "user-create",
+                            component: UserCreate
+                        },
+                        {
+                            path: "/users-edit/:id",
+                            name: "users-edit",
+                            component: UserEdit
+                        }
+                    ]
 
                 },
                 {
@@ -146,6 +163,17 @@ const routes = new Router({
                             component: RoleEdit
                         }
                     ]
+
+                },
+                {
+                    path: "/permissions",
+                    name: "permissions",
+                    component: Permissions,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Permissions",
+                    },
+
 
                 },
                 {
