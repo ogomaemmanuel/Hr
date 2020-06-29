@@ -97,20 +97,24 @@
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
             <version>6.13.0</version>
-            <!--			<exclusions>-->
-            <!--				<exclusion>-->
-            <!--					<groupId>org.apache.lucene</groupId>-->
-            <!--					<artifactId>lucene-core</artifactId>-->
-            <!--				</exclusion>-->
-            <!--				<exclusion>-->
-            <!--					<groupId>org.apache.lucene</groupId>-->
-            <!--					<artifactId>lucene-analyzers-common</artifactId>-->
-            <!--				</exclusion>-->
-            <!--				<exclusion>-->
-            <!--					<groupId>org.apache.lucene</groupId>-->
-            <!--					<artifactId>lucene-queryparser</artifactId>-->
-            <!--				</exclusion>-->
-            <!--			</exclusions>-->
+            			<exclusions>
+            				<exclusion>
+            					<groupId>org.apache.lucene</groupId>
+            					<artifactId>lucene-core</artifactId>
+            				</exclusion>
+            				<exclusion>
+            					<groupId>org.apache.lucene</groupId>
+            					<artifactId>lucene-analyzers-common</artifactId>
+            				</exclusion>
+            				<exclusion>
+            					<groupId>org.apache.lucene</groupId>
+            					<artifactId>lucene-queryparser</artifactId>
+            				</exclusion>
+                            <exclusion>
+                                <groupId>com.lowagie</groupId>
+                                <artifactId>itext</artifactId>
+                            </exclusion>
+            			</exclusions>
         </dependency>
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
