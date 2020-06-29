@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity(name = "marital_statuses")
 public class MaritalStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
