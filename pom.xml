@@ -250,4 +250,16 @@
             <url>https://maven.pkg.github.com/ogomaemmanuel/Hr_Artifacts</url>
         </repository>
     </distributionManagement>
+    <repositories>
+<!--        https://stackoverflow.com/questions/45920419/jasper-library-download-forbidden-when-running-maven-mvn-package-->
+        <repository>
+            <id>jasperreports</id>
+            <url>http://jasperreports.sourceforge.net/maven2</url>
+        </repository>
+<!--        https://stackoverflow.com/questions/45920419/jasper-library-download-forbidden-when-running-maven-mvn-package-->
+        <repository>
+            <id>jaspersoft-third-party</id>
+            <url>http://jaspersoft.artifactoryonline.com/jaspersoft/t‌​hird-party-ce-artifa‌​cts/</url>
+        </repository>
+    </repositories>
 </project>
