@@ -188,16 +188,20 @@
         </dependency>
     </dependencies>
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+<!--        <resources>-->
+<!--            <resource>-->
+<!--                <directory>src/main/resources</directory>-->
+<!--                <filtering>true</filtering>-->
+<!--                <excludes>-->
+<!--                    <exclude>**/*.jasper</exclude>-->
+<!--&lt;!&ndash;                    <exclude>**/*.jasper</exclude>&ndash;&gt;-->
+<!--                </excludes>-->
+<!--            </resource>-->
+<!--        </resources>-->
 
-        <filters>
-            <filter>src/main/resources/liquibase.properties</filter>
-        </filters>
+<!--        <filters>-->
+<!--            <filter>src/main/resources/liquibase.properties</filter>-->
+<!--        </filters>-->
 
         <plugins>
             <plugin>

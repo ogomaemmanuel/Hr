@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.events.auth.PasswordResetEvent;
 import com.ogoma.vue_starter.vue_starter.events.auth.UserRegistrationEvent;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
@@ -73,8 +74,16 @@ public class UsersServiceImp implements UserService {
     }
 
     @Override
+    public User create(EmployeeCreateModel.BasicInfo basicUserInfo) {
+        User user = new User();
+        BeanUtils.copyProperties(basicUserInfo, user);
+        this.usersRepository.save(user);
+        return user;
+    }
+
+    @Override
     public Page<User> getAll(PagedDataRequest pagedDataRequest) {
-        PageRequest pageRequest= PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
+        PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
         Page<User> users = this.usersRepository.findAll(pageRequest);
         return users;
     }
@@ -122,6 +131,6 @@ public class UsersServiceImp implements UserService {
     @Override
     public ByteArrayOutputStream report() throws Exception {
         List<User> users = this.usersRepository.findAll();
-        return reportGenerator.generatePdfReport("reports/Blank_A4.jasper", null, users);
+        return reportGenerator.generatePdfReport("reports/users.jasper", null, users);
     }
 }
