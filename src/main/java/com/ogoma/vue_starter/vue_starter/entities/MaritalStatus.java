@@ -7,10 +7,11 @@ import javax.persistence.Id;
 
 @Entity(name = "marital_statuses")
 public class MaritalStatus {
-    public static final String MARRIED = "M";
-    public static final String WIDOWED = "W";
-    public static final String SINGLE = "S";
-    public static final String SEPARATED = "SP";
+    public static final String MARRIED = "MA";
+    public static final String WIDOWED = "WI";
+    public static final String SINGLE = "SI";
+    public static final String SEPARATED = "SE";
+    public static final String DIVORCED = "DI";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

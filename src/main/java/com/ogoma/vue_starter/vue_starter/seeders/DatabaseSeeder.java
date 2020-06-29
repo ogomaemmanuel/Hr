@@ -75,6 +75,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             maritalStatuses.add(new MaritalStatus("Married", MaritalStatus.MARRIED));
             maritalStatuses.add(new MaritalStatus("Widowed", MaritalStatus.WIDOWED));
             maritalStatuses.add(new MaritalStatus("Separated", MaritalStatus.SEPARATED));
+            maritalStatuses.add(new MaritalStatus("Divorced", MaritalStatus.DIVORCED));
             this.maritalStatusRepository.saveAll(maritalStatuses);
         }
     }
