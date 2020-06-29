@@ -79,7 +79,7 @@ public class UsersServiceImp implements UserService {
     public User create(EmployeeCreateModel.BasicInfo basicUserInfo) {
         User user = new User();
         BeanUtils.copyProperties(basicUserInfo, user);
-        String password = RandomStringGenerator.randomStringGenerator(8, true)
+        String password = RandomStringGenerator.randomStringGenerator(8, true);
         user.setPassword(password);
         this.usersRepository.save(user);
         return user;
