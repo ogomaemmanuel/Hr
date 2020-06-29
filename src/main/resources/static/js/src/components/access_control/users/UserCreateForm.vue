@@ -159,7 +159,7 @@
             <div class="flex justify-center m-3">
                 <button
                         :class="{'is-loading':loading}"
-                        @click.prevent.stop=""
+                        @click.prevent.stop="createUser()"
                         class="button  is-rounded"
                         type="submit">Submit
                 </button>
@@ -179,7 +179,20 @@
         data() {
             return {
                 basicInfo: {},
-                loading:false,
+                loading: false,
+            }
+        },
+        methods: {
+            createUser() {
+                let vm = this;
+                axios.post("api/users", this.basicInfo).then(resp => {
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "User successfully  created "
+                    })
+                    this.$emit("userCreated");
+                })
             }
         }
     }
