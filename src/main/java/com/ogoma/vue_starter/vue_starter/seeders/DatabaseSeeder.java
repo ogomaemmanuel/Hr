@@ -1,7 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.seeders;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Permission;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.PermissionsRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.entities.FamilyRelationship;
 import com.ogoma.vue_starter.vue_starter.entities.MaritalStatus;
 import com.ogoma.vue_starter.vue_starter.repositories.FamilyRelationshipRepository;
@@ -10,7 +12,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -19,19 +24,50 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final MaritalStatusRepository maritalStatusRepository;
     private final FamilyRelationshipRepository familyRelationshipRepository;
     private final PermissionsRepository permissionsRepository;
+    private final UsersRepository usersRepository;
 
-    public DatabaseSeeder(MaritalStatusRepository maritalStatusRepository, FamilyRelationshipRepository familyRelationshipRepository, PermissionsRepository permissionsRepository) {
+    public DatabaseSeeder(MaritalStatusRepository maritalStatusRepository, FamilyRelationshipRepository familyRelationshipRepository, PermissionsRepository permissionsRepository, UsersRepository usersRepository) {
         this.maritalStatusRepository = maritalStatusRepository;
         this.familyRelationshipRepository = familyRelationshipRepository;
         this.permissionsRepository = permissionsRepository;
+        this.usersRepository = usersRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        seedUsers();
         seedMaritalStatus();
         seedFamilyRelationship();
         seedPermissions();
     }
+
+    public void seedUsers() {
+        if (this.usersRepository.count() == 0) {
+            User user = new User();
+            user.setFirstName("admin");
+            user.setLastName("test");
+            user.setEmail("testadmin@gmail.com");
+            user.setIdentityNo("5666565656");
+            user.setPhone("8888888888");
+            user.setDateOfBirth(Date.from(Instant.now()));
+            user.setIdentityNo("5666565656");
+            user.setPassword("test@123");
+            User user2 = new User();
+            user2.setFirstName("User");
+            user2.setLastName("user");
+            user2.setEmail("testuser@gmail.com");
+            user2.setIdentityNo("999999999");
+            user2.setPhone("90000000");
+            user2.setDateOfBirth(Date.from(Instant.now()));
+            user2.setIdentityNo("3435353535");
+            user2.setPassword("test@123");
+            List<User> arrayList = new ArrayList();
+            arrayList.add(user);
+            arrayList.add(user2);
+            this.usersRepository.saveAll(arrayList);
+        }
+    }
+
 
     public void seedMaritalStatus() {
         if (this.maritalStatusRepository.count() == 0) {
