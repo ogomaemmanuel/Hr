@@ -1,8 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
+import com.ogoma.vue_starter.vue_starter.enums.converters.GenderEnumConverter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Convert;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -223,6 +226,8 @@ public class EmployeeCreateModel {
         @NotBlank(message = "Nssf number is required")
         @JsonProperty("nssfNo")
         private String nssfNumber;
+        @Convert(converter = GenderEnumConverter.class)
+        private GenderEnum gender;
 
         public Long getDepartmentId() {
             return departmentId;
@@ -286,6 +291,22 @@ public class EmployeeCreateModel {
 
         public void setNssfNumber(String nssfNumber) {
             this.nssfNumber = nssfNumber;
+        }
+
+        public Long getShiftId() {
+            return shiftId;
+        }
+
+        public void setShiftId(Long shiftId) {
+            this.shiftId = shiftId;
+        }
+
+        public GenderEnum getGender() {
+            return gender;
+        }
+
+        public void setGender(GenderEnum gender) {
+            this.gender = gender;
         }
     }
 }

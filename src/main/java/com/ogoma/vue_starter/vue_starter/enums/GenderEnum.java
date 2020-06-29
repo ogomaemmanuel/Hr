@@ -1,7 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.enums;
 
 public enum GenderEnum {
-    MALE("M"), FEMALE("F");
+    M("M"), F("F");
 
     private String code;
 

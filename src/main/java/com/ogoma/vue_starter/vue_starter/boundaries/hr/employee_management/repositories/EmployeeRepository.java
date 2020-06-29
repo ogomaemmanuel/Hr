@@ -2,11 +2,14 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repo
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeQuery;
+import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
@@ -34,5 +37,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
                     "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
             nativeQuery = true)
     public Page<EmployeeQuery> getAllEmployees(Pageable pageable);
+
+    public List<Employee> findAllByGender(GenderEnum gender);
 
 }
