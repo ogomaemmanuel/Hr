@@ -85,6 +85,7 @@ public class UsersServiceImp implements UserService {
     @Override
     public Optional<User> getUserById(Long id) {
         Optional<User> user = this.usersRepository.findById(id);
+        return user;
     }
 
     @Override
