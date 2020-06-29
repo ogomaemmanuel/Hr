@@ -13,6 +13,7 @@ import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.PasswordResetRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
+import com.ogoma.vue_starter.vue_starter.utils.SecurityUtils;
 import com.ogoma.vue_starter.vue_starter.utils.reports.ReportGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,8 @@ public class UsersServiceImp implements UserService {
     public User create(EmployeeCreateModel.BasicInfo basicUserInfo) {
         User user = new User();
         BeanUtils.copyProperties(basicUserInfo, user);
+        String password = RandomStringGenerator.randomStringGenerator(8, true)
+        user.setPassword(password);
         this.usersRepository.save(user);
         return user;
     }
