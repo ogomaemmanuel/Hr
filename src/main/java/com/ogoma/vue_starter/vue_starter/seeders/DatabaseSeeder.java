@@ -68,14 +68,13 @@ public class DatabaseSeeder implements CommandLineRunner {
         }
     }
 
-
     public void seedMaritalStatus() {
         if (this.maritalStatusRepository.count() == 0) {
             List<MaritalStatus> maritalStatuses = new ArrayList<>();
-            maritalStatuses.add(new MaritalStatus("single", "S"));
-            maritalStatuses.add(new MaritalStatus("Married", "M"));
-            maritalStatuses.add(new MaritalStatus("Widowed", "W"));
-            maritalStatuses.add(new MaritalStatus("Separated", "SP"));
+            maritalStatuses.add(new MaritalStatus("single", MaritalStatus.SINGLE));
+            maritalStatuses.add(new MaritalStatus("Married", MaritalStatus.MARRIED));
+            maritalStatuses.add(new MaritalStatus("Widowed", MaritalStatus.WIDOWED));
+            maritalStatuses.add(new MaritalStatus("Separated", MaritalStatus.SEPARATED));
             this.maritalStatusRepository.saveAll(maritalStatuses);
         }
     }

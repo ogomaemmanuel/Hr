@@ -7,6 +7,10 @@ import javax.persistence.Id;
 
 @Entity(name = "marital_statuses")
 public class MaritalStatus {
+    public static final String MARRIED = "M";
+    public static final String WIDOWED = "W";
+    public static final String SINGLE = "S";
+    public static final String SEPARATED = "SP";
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
