@@ -26,6 +26,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 
@@ -79,6 +80,11 @@ public class UsersServiceImp implements UserService {
         BeanUtils.copyProperties(basicUserInfo, user);
         this.usersRepository.save(user);
         return user;
+    }
+
+    @Override
+    public Optional<User> getUserById(Long id) {
+        Optional<User> user = this.usersRepository.findById(id);
     }
 
     @Override

@@ -11,15 +11,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UsersController {
@@ -38,6 +36,18 @@ public class UsersController {
         return ResponseEntity.ok(userList);
     }
 
+    @RequestMapping(value = "api/users/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUserById(@PathVariable("id") Long id) {
+        Optional<User> user = this.userService.getUserById(id);
+        return ResponseEntity.of(user);
+    }
+
+    @RequestMapping(value = "api/users", method = RequestMethod.POST)
+    public ResponseEntity<?> createUser(@Valid @RequestBody EmployeeCreateModel.BasicInfo basicInfo) {
+        User user = this.userService.create(basicInfo);
+        return ResponseEntity.ok(user);
+    }
+
     @RequestMapping(value = "api/users/reports", method = RequestMethod.GET)
     public ResponseEntity<InputStreamResource> report() throws Exception {
         ByteArrayOutputStream byteArrayOutputStream = userService.report();
@@ -48,10 +58,5 @@ public class UsersController {
                 .body(new InputStreamResource(byteArrayInputStream));
     }
 
-    @RequestMapping(value = "api/user", method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@Valid @RequestBody EmployeeCreateModel.BasicInfo basicInfo) {
-        User user = this.userService.create(basicInfo);
-        return ResponseEntity.ok(user);
-    }
 
 }

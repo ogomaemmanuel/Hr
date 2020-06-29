@@ -11,15 +11,20 @@ import org.springframework.data.domain.Page;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
     User getUserByEmail(String email);
 
     User register(UserRegistrationModel userRegistrationModel);
+
     User create(EmployeeCreateModel.BasicInfo basicUserInfo);
 
+    Optional<User> getUserById(Long id);
+
     Page<User> getAll(PagedDataRequest pagedDataRequest);
+
 
     void handleForgotPasswordRequest(ForgotPasswordRequest forgotPasswordRequest);
 
