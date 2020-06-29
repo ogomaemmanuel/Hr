@@ -1,33 +1,26 @@
 package com.ogoma.vue_starter.vue_starter.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.ogoma.vue_starter.vue_starter.utils.StringUtils;
 
-@Entity(name = "marital_statuses")
-public class MaritalStatus {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "family_relationships")
+public class FamilyRelationship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    //    should be in small letters slug separated by _
     private String code;
 
-    public MaritalStatus() {
+    public FamilyRelationship() {
 
     }
 
-    public MaritalStatus(String name, String code) {
-        this.code = code;
-        this.name = name;
-    }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -41,8 +34,11 @@ public class MaritalStatus {
     public String getCode() {
         return code;
     }
-
     public void setCode(String code) {
         this.code = code;
+    }
+    @PrePersist
+    public void slugifyName() {
+        this.code = StringUtils.slugify(this.name);
     }
 }
