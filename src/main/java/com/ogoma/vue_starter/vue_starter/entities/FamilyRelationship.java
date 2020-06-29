@@ -18,6 +18,9 @@ public class FamilyRelationship {
 
     }
 
+    public FamilyRelationship(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -34,9 +37,11 @@ public class FamilyRelationship {
     public String getCode() {
         return code;
     }
+
     public void setCode(String code) {
         this.code = code;
     }
+
     @PrePersist
     public void slugifyName() {
         this.code = StringUtils.slugify(this.name);
