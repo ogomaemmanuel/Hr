@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ogoma.vue_starter.vue_starter.utils.StringUtils;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,9 +14,20 @@ public class Permission {
     private Long id;
     private String name;
     private String code;
+
+    public Permission() {
+
+    }
+
+    public Permission(String name) {
+        this.name = name;
+        this.code = code;
+    }
+
     @OneToMany(mappedBy = "role")
     @JsonIgnoreProperties("permission")
     private Set<RolePermission> rolePermissions;
+
     public Long getId() {
         return id;
     }
@@ -46,5 +58,10 @@ public class Permission {
 
     public void setRolePermissions(Set<RolePermission> rolePermissions) {
         this.rolePermissions = rolePermissions;
+    }
+
+    @PrePersist
+    public void slugifyCode() {
+        this.code = StringUtils.slugify(this.name);
     }
 }

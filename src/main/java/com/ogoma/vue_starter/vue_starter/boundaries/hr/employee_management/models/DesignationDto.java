@@ -4,9 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class DesignationDto {
-    @NotBlank
+    @NotBlank(message = "Name is required")
     private String name;
-    @NotNull
+    @NotNull(message = "Select department")
     private Long departmentId;
 
     public String getName() {

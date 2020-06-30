@@ -1,95 +1,95 @@
 <template>
-	<div>
-		<div class="pb-2 flex justify-end">
-			<router-link
-					to="/role-create"
-					tag="button"
-					class="button mr-1 is-rounded">
+    <div>
+        <div class="pb-2 flex justify-end">
+            <router-link
+                    to="/role-create"
+                    tag="button"
+                    class="button mr-1 is-rounded">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
-				<span>
+                <span>
 					 Add Role
 				</span>
-			</router-link>
-			<a
-					href="/api/holidays/excel-report"
-					class="button is-rounded">
+            </router-link>
+            <a
+                    href="/api/roles/excel-report"
+                    class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
 				</span>
-				<span>
+                <span>
 					 Export
 				</span>
-			</a>
-		</div>
-		<div class="columns">
-			<div class="column is-12">
-				<div class="card" ref="leaveRequests">
-					<div class="card-content">
-						<div class="content b-table is-relative" :class="{'is-loading':loading}">
-							<h4>Roles</h4>
-							<table class="table has-mobile-cards w-full is-hoverable">
-								<thead class="font-thin">
-								<tr>
-									<th>
-										Name
-									</th>
-									<th>
-										Description
-									</th>
-									<th>
-										Action
-									</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr v-for="role in roles">
-									<td data-label="Name">{{role.name}}</td>
-									<td data-label="Date">{{role.description}}</td>
-									<td data-label="Action">
-										<div class="action-controls d-flex justify-end">
-											<router-link
-													:to="`/role-edit/${role.id}`" tag="button"
-													class="button is-white is-small">
+            </a>
+        </div>
+        <div class="columns">
+            <div class="column is-12">
+                <div class="card" ref="leaveRequests">
+                    <div class="card-content">
+                        <div class="content b-table is-relative" :class="{'is-loading':loading}">
+                            <h4>Roles</h4>
+                            <table class="table has-mobile-cards w-full is-hoverable">
+                                <thead class="font-thin">
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr v-for="role in roles">
+                                    <td data-label="Name">{{role.name}}</td>
+                                    <td data-label="Date">{{role.description}}</td>
+                                    <td data-label="Action">
+                                        <div class="action-controls d-flex justify-end">
+                                            <router-link
+                                                    :to="`/role-edit/${role.id}`" tag="button"
+                                                    class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
-											</router-link>
-											<button
-													@click="confirmRemoveRole(role)"
-													class="button is-white is-small">
+                                            </router-link>
+                                            <button
+                                                    @click="confirmRemoveRole(role)"
+                                                    class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
 					                               </span>
-											</button>
-										</div>
-									</td>
-								</tr>
-								</tbody>
-								<tfoot>
-								<tr>
-									<td colspan="8">
-										<Paginator
-												@previousPage="goToPrevious"
-												@nextPage="goToNext"
-												@paginationChanged="onPaginationChanged"
-												:paginationData="pageable"
-										></Paginator>
-									</td>
-								</tr>
-								</tfoot>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<router-view
-				@roleCreateSuccessful="onRoleCreateSuccessful"
-				@roleUpdateSuccessful="onRoleUpdateSuccessful">
-		</router-view>
-	</div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="8">
+                                        <Paginator
+                                                @previousPage="goToPrevious"
+                                                @nextPage="goToNext"
+                                                @paginationChanged="onPaginationChanged"
+                                                :paginationData="pageable"
+                                        ></Paginator>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <router-view
+                @roleCreateSuccessful="onRoleCreateSuccessful"
+                @roleUpdated="onRoleUpdateSuccessful">
+        </router-view>
+    </div>
 </template>
 <script>
     import DataTableMixin from "../../../mixins/data_table_mixin"
@@ -114,19 +114,33 @@
             fetchRecords() {
                 return this.getRoles()
             },
-            confirmRemoveRole() {
-
+            confirmRemoveRole(role) {
+                this.$buefy.dialog.confirm({
+                    title: 'Remove Role',
+                    message: `Are you sure want to remove <b> ${role.name}</b> from roles`,
+                    onConfirm: () => this.removeRole(role)
+                })
+            },
+            removeRole(role) {
+                axios.delete(`/api/roles/${role.id}`).then(resp => {
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        message: "Department successfully removed",
+                    })
+                    this.getRoles();
+                })
             },
             onRoleCreateSuccessful() {
-
+                this.getRoles();
             },
             onRoleUpdateSuccessful() {
-
+                this.getRoles();
             },
             getRoles() {
                 let vm = this;
                 vm.loading = true;
-                axios.get("api/roles-paged", {
+                axios.get("/api/roles-paged", {
                     params: {
                         pageSize: vm.pageSize,
                         page: vm.page

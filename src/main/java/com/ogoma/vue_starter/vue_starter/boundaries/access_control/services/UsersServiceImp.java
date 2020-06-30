@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.events.auth.PasswordResetEvent;
 import com.ogoma.vue_starter.vue_starter.events.auth.UserRegistrationEvent;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
@@ -12,6 +13,7 @@ import com.ogoma.vue_starter.vue_starter.models.requests.UserRegistrationModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.PasswordResetRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.utils.RandomStringGenerator;
+import com.ogoma.vue_starter.vue_starter.utils.SecurityUtils;
 import com.ogoma.vue_starter.vue_starter.utils.reports.ReportGenerator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 
@@ -73,10 +76,36 @@ public class UsersServiceImp implements UserService {
     }
 
     @Override
+    public User create(EmployeeCreateModel.BasicInfo basicUserInfo) {
+        User user = new User();
+        BeanUtils.copyProperties(basicUserInfo, user);
+        String password = RandomStringGenerator.randomStringGenerator(8, true);
+        user.setPassword(password);
+        this.usersRepository.save(user);
+        return user;
+    }
+
+    @Override
+    public Optional<User> getUserById(Long id) {
+        Optional<User> user = this.usersRepository.findById(id);
+        return user;
+    }
+
+    @Override
     public Page<User> getAll(PagedDataRequest pagedDataRequest) {
-        PageRequest pageRequest= PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
+        PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
         Page<User> users = this.usersRepository.findAll(pageRequest);
         return users;
+    }
+
+    @Override
+    public Optional<User> updateUser(Long userId, EmployeeCreateModel.BasicInfo basicUserInfo) {
+        Optional<User> user = this.usersRepository.findById(userId);
+        user.ifPresent(u -> {
+            BeanUtils.copyProperties(basicUserInfo, u);
+            this.usersRepository.save(u);
+        });
+        return user;
     }
 
     @Override
@@ -122,6 +151,6 @@ public class UsersServiceImp implements UserService {
     @Override
     public ByteArrayOutputStream report() throws Exception {
         List<User> users = this.usersRepository.findAll();
-        return reportGenerator.generatePdfReport("reports/Blank_A4.jasper", null, users);
+        return reportGenerator.generatePdfReport("reports/users.jasper", null, users);
     }
 }

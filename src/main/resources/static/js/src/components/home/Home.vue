@@ -138,9 +138,9 @@
                                 </router-link>
                             </li>
                             <li>
-                                <a href="#">
+                                <router-link to="/permissions">
                                     <span>Permissions</span>
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </li>

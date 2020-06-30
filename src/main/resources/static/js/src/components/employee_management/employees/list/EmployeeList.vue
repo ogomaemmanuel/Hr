@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-full">
         <div class="pb-2 flex justify-end">
             <button>
                 <p class="buttons">
@@ -39,18 +39,17 @@
             </a>
             </portal>
         </div>
-        <div class="columns">
+        <div class="columns h-full">
             <div class="column is-12">
 
                         <EmployeeTableList v-if="showTableList"></EmployeeTableList>
                         <EmployeeCardList v-else></EmployeeCardList>
-
             </div>
         </div>
     </div>
 </template>
 <script>
-    import Paginator from "../../common/paginator/Paginator";
+    import Paginator from "../../../common/paginator/Paginator";
     import EmployeeTableList from "./EmployeeTableList";
     import EmployeeCardList from "./EmployeeCardList";
     export default {
@@ -65,23 +64,6 @@
             }
         },
         methods: {
-            confirmRemoveRemove(employee) {
-                this.$buefy.dialog.confirm({
-                    title: 'Delete Employee',
-                    message: `Are you sure want to delete <b> ${employee.fullName}</b> as an employee`,
-                    onConfirm: () => this.removeHoliday(employee)
-                })
-            },
-            removeHoliday(employee) {
-                axios.delete(`api/employees/${employee.id}`).then(resp => {
-                    this.$swal({
-                        type: "success",
-                        title: "Success",
-                        message: "Holiday successfully removed",
-                    })
-                    this.getHolidays();
-                })
-            },
         },
         created() {
         },

@@ -80,15 +80,22 @@
                             </div>
                             <div class="column">
                                 <div class="field">
-                                    <label class="label ">Shift<span><sup>*</sup></span></label>
+                                    <label class="label ">Gender<span><sup>*</sup></span></label>
                                     <div class="control">
-                                        <input
-                                                v-model="employementDetail.shiftId"
-                                                @input="clearFieldError('salaryAmount')"
-                                                class="input"
-                                                type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['salaryAmount']">
-						{{errors['salaryAmount'][0]}}
+<!--                                        <input-->
+<!--                                                v-model="employementDetail.gender"-->
+<!--                                                @input="clearFieldError('gender')"-->
+<!--                                                class="input"-->
+<!--                                                type="text">-->
+                                        <div class="select is-fullwidth">
+                                            <select v-model="employementDetail.gender">
+                                                <option value="">Select</option>
+                                                <option value="M">Male</option>
+                                                <option value="F">Female</option>
+                                            </select>
+                                        </div>
+                                        <span class="mb-2 has-text-danger" v-if="errors['gender']">
+						{{errors['gender'][0]}}
 					</span>
                                     </div>
                                 </div>

@@ -3,7 +3,7 @@ package com.ogoma.vue_starter.vue_starter.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "application-configuration")
+@Table(name = "application_configuration")
 public class AppConfig {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)

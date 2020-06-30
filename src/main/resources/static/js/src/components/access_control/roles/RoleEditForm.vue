@@ -45,9 +45,10 @@
 </template>
 <script>
     import FormMixin from "../../../mixins/common_mixin"
+    import common_mixin from "../../../mixins/common_mixin";
 
     export default {
-        mixins: [FormMixin],
+        mixins: [FormMixin, common_mixin],
         props: {
             roleId: {
                 required: true
@@ -72,9 +73,19 @@
             },
 
             updateRole() {
-                axios.put(`/api/roles/${this.roleId}`).then(resp => {
-                    // this.role = resp.data;
+                let vm = this;
+                axios.put(`/api/roles/${this.roleId}`,
+                    this.role).then(resp => {
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Role successfully updated"
+                    })
+                    this.$emit("roleUpdated")
                 }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
                 })
             }
         },

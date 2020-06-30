@@ -1,7 +1,16 @@
 <template>
-    <div class="container">
-        <div @click="exportReport" class="flex pb-2 justify-end">
-            <button class="button is-rounded">
+    <div class="h-full">
+        <div class="flex pb-2 justify-end">
+            <router-link tag="button"
+                         to="/users-create"
+                         class="button mr-1 is-rounded">
+				<span class="icon">
+					<i class="fa fa-plus-circle"></i>
+				</span>
+                <span> Add Users</span>
+            </router-link>
+            <button @click="exportReport"
+                    class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download"></i>
 				</span>
@@ -38,7 +47,8 @@
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link
-                                                    :to="`/role-edit/${user.id}`" tag="button"
+                                                    :to="`/users-edit/${user.id}`"
+                                                    tag="button"
                                                     class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -72,6 +82,10 @@
                 </div>
             </div>
         </div>
+        <router-view
+                @userUpdated="getUsers()"
+                @userUCreated="getUsers()"
+        ></router-view>
     </div>
 </template>
 <script>
@@ -87,26 +101,7 @@
             return {
                 isLoading: false,
                 users: [],
-                columns: [
-                    {
-                        field: 'id',
-                        label: 'ID',
-                        width: '40',
-                        numeric: true
-                    },
-                    {
-                        field: 'firstName',
-                        label: 'First Name',
-                    },
-                    {
-                        field: 'lastName',
-                        label: 'Last Name',
-                    },
-                    {
-                        field: 'email',
-                        label: 'Email',
-                    },
-                ]
+                loading: false,
             }
         },
         created() {
