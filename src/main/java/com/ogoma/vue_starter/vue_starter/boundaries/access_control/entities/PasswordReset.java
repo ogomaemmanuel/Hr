@@ -25,10 +25,10 @@ public class PasswordReset {
     private boolean used;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
-    private Date createdOn;
+    private Date createdAt;
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
-    private Date updatedOn;
+    private Date updatedAt;
     @Temporal(TemporalType.TIMESTAMP)
     private Date expiresOn;
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
@@ -79,20 +79,20 @@ public class PasswordReset {
         this.used = used;
     }
 
-    public Date getCreatedOn() {
-        return createdOn;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
+    public void setCreatedAt(Date createdOn) {
+        this.createdAt = createdOn;
     }
 
-    public Date getUpdatedOn() {
-        return updatedOn;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
     public void setUpdatedOn(Date updatedOn) {
-        this.updatedOn = updatedOn;
+        this.updatedAt = updatedOn;
     }
 
     public Date getExpiresOn() {
