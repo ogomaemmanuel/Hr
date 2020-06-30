@@ -153,7 +153,7 @@
             <div class="flex justify-center m-3">
                 <button
                         :class="{'is-loading':loading}"
-                        @click.prevent.stop=""
+                        @click.prevent.stop="updateUser()"
                         class="button  is-rounded"
                         type="submit">Submit
                 </button>
@@ -193,6 +193,22 @@
                     this.fetchingInfo = false;
                 }, error => {
                     this.fetchingInfo = false;
+                })
+            },
+            updateUser() {
+                let vm = this;
+                axios.put(`/api/users/${this.userId}`,
+                    this.basicInfo).then(resp => {
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "User successfully  updated "
+                    })
+                    this.$emit("userUpdated");
+                }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
                 })
             }
         }
