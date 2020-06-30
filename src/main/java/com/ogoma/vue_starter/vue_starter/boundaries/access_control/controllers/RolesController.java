@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
@@ -47,13 +48,13 @@ public class RolesController {
     }
 
     @PostMapping("api/roles")
-    public ResponseEntity<?> store(@RequestBody Role roleRequest) {
+    public ResponseEntity<?> store(@Valid @RequestBody Role roleRequest) {
         Role role = rolesService.addRole(roleRequest);
         return ResponseEntity.ok(role);
     }
 
     @RequestMapping(value = "api/roles/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateRole(@PathVariable("id") Long id, @RequestBody Role role) {
+    public ResponseEntity<?> updateRole(@PathVariable("id") Long id,@Valid @RequestBody Role role) {
         Optional<Role> optionalRole = this.rolesService.updateRole(id, role);
         return ResponseEntity.of(optionalRole);
     }
