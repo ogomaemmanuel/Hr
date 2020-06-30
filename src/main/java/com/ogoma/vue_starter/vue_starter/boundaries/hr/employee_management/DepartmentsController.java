@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Optional;
@@ -39,13 +40,13 @@ public class DepartmentsController {
     }
 
     @RequestMapping(value = "api/departments", method = RequestMethod.POST)
-    public ResponseEntity<?> createDepartment(@RequestBody Department department) {
+    public ResponseEntity<?> createDepartment(@Vali @RequestBody Department department) {
         department = this.departmentsService.createDepartment(department);
         return ResponseEntity.ok(department);
     }
 
     @RequestMapping(value = "api/departments/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateDepartment(@PathVariable Long id, @RequestBody Department department) {
+    public ResponseEntity<?> updateDepartment(@PathVariable Long id,@Valid @RequestBody Department department) {
         Optional<Department> updatedDepartment = this.departmentsService.updateDepartment(id, department);
         return ResponseEntity.of(updatedDepartment);
     }
