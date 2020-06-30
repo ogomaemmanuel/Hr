@@ -40,7 +40,7 @@ public class DepartmentsController {
     }
 
     @RequestMapping(value = "api/departments", method = RequestMethod.POST)
-    public ResponseEntity<?> createDepartment(@Vali @RequestBody Department department) {
+    public ResponseEntity<?> createDepartment(@Valid @RequestBody Department department) {
         department = this.departmentsService.createDepartment(department);
         return ResponseEntity.ok(department);
     }

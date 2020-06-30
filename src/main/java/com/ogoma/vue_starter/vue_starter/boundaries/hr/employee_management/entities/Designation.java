@@ -23,8 +23,10 @@ public class Designation extends BaseEntity {
     private Department department;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at")
     private Date createdOn;
     @UpdateTimestamp
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedOn;
 
