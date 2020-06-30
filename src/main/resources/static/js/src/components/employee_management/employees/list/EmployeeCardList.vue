@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="columns is-multiline">
+    <div class="h-full">
+        <div class="columns h-full is-multiline">
             <div v-for="employee in employees" class="column is-4">
 
                 <div class="card">
@@ -57,7 +57,7 @@
 
             </div>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center mb-5">
             <div>
                 <Paginator
                         @previousPage="goToPrevious"

@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="h-full">
         <div  class="flex pb-2 justify-end">
             <router-link tag="button"
                          to="/users-create"

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
+import com.ogoma.vue_starter.vue_starter.enums.converters.GenderEnumConverter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -30,7 +31,7 @@ public class Employee extends BaseEntity {
     private String nssfNumber;
     private String kraPinNumber;
     private String nhifNumber;
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = GenderEnumConverter.class)
     private GenderEnum gender;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
@@ -208,6 +209,7 @@ public class Employee extends BaseEntity {
     public Long getDesignationId() {
         return designationId;
     }
+
     public void setDesignationId(Long designationId) {
         this.designationId = designationId;
     }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-full">
         <div class="pb-2 flex justify-end">
             <button>
                 <p class="buttons">
@@ -39,12 +39,11 @@
             </a>
             </portal>
         </div>
-        <div class="columns">
+        <div class="columns h-full">
             <div class="column is-12">
 
                         <EmployeeTableList v-if="showTableList"></EmployeeTableList>
                         <EmployeeCardList v-else></EmployeeCardList>
-
             </div>
         </div>
     </div>

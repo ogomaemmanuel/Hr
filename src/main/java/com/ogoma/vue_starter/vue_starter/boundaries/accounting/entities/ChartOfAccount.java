@@ -8,19 +8,15 @@ import java.util.List;
 public class ChartOfAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String norminalCode;
     private String name;
     //Determines which module
     @ElementCollection
     private List<String> visibilityAreas;
 
-    public String getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNorminalCode() {
