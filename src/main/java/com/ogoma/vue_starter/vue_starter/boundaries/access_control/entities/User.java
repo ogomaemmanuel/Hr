@@ -26,8 +26,10 @@ public class User {
     private String lastName;
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String phone;
     private Date dateOfBirth;
+    @Column(unique = true)
     private String identityNo;
     private String city;
     private String postalAddress;
