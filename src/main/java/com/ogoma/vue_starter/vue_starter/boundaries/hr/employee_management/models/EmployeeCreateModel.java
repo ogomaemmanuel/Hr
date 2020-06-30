@@ -204,9 +204,9 @@ public class EmployeeCreateModel {
     }
 
     public static class EmployementDetail {
-        @NotBlank(message = "Select department")
+        @NotNull(message = "Select department")
         private Long departmentId;
-        @NotBlank(message = "Select designation")
+        @NotNull(message = "Select designation")
         private Long designationId;
         @NotNull(message = "Joining date is required")
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

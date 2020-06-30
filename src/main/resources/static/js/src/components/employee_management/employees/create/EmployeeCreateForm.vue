@@ -38,7 +38,7 @@
 
                 </div>
                 <keep-alive>
-                    <component :employeeDetails="employeeDetails"
+                    <component :errors="errors" :employeeDetails="employeeDetails"
                                @goToNext="goToNextStep" :is="currentForm">
                         <div slot-scope="{isLoading,canMoveNext,onNext}"
                              class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"
@@ -76,8 +76,10 @@
     import EmployeeInfoStep from "./EmployeeEmployementInfoStep";
     import EmployeeContactAddressesForm from "./EmployeeContactAddressesForm";
     import EmployeeCreateComplete from "./EmployeeCreateComplete";
+    import common_mixin from "../../../../mixins/common_mixin";
 
     export default {
+        mixins: [common_mixin],
         components: {
             EmployeeBasicInfoStep,
             EmployeeInfoStep,
@@ -123,8 +125,13 @@
                 this.visitedSteps.add(index);
             },
             createEmployee() {
-                axios.post("/api/employees", this.employeeDetails).then(resp => {
+                axios.post("/api/employees",
+                    this.employeeDetails).then(resp => {
                     this.step = 3
+                }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
                 })
             },
             goToNextStep(employeeDetails) {

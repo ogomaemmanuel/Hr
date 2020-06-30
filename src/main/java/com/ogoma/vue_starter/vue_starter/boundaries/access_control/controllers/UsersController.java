@@ -21,9 +21,7 @@ import java.util.Optional;
 
 @Controller
 public class UsersController {
-
     private UserService userService;
-
     @Autowired
     public UsersController(UserService userService) {
         this.userService = userService;
