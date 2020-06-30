@@ -99,6 +99,16 @@ public class UsersServiceImp implements UserService {
     }
 
     @Override
+    public Optional<User> updateUser(Long userId, EmployeeCreateModel.BasicInfo basicUserInfo) {
+        Optional<User> user = this.usersRepository.findById(userId);
+        user.ifPresent(u -> {
+            BeanUtils.copyProperties(basicUserInfo, u);
+            this.usersRepository.save(u);
+        });
+        return user;
+    }
+
+    @Override
     public void handleForgotPasswordRequest(ForgotPasswordRequest forgotPasswordRequest) {
         //ToDo handle null for non existing user
 

@@ -25,6 +25,8 @@ public interface UserService {
 
     Page<User> getAll(PagedDataRequest pagedDataRequest);
 
+    Optional<User> updateUser(Long userId, EmployeeCreateModel.BasicInfo basicUserInfo);
+
 
     void handleForgotPasswordRequest(ForgotPasswordRequest forgotPasswordRequest);
 

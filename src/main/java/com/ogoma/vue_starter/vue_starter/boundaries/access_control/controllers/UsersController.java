@@ -48,6 +48,12 @@ public class UsersController {
         return ResponseEntity.ok(user);
     }
 
+    @RequestMapping(value = "api/users/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@PathVariable("id") Long id, @Valid @RequestBody EmployeeCreateModel.BasicInfo basicInfo) {
+        Optional<User> user = this.userService.updateUser(id, basicInfo);
+        return ResponseEntity.of(user);
+    }
+
     @RequestMapping(value = "api/users/reports", method = RequestMethod.GET)
     public ResponseEntity<InputStreamResource> report() throws Exception {
         ByteArrayOutputStream byteArrayOutputStream = userService.report();

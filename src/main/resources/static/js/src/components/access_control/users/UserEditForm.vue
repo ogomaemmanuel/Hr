@@ -3,7 +3,7 @@
         <div class="steps-body pt-4 pb-4 pl-0 pr-0">
             <div class="steps-content">
                 <div class="has-text-centered m-3">
-                    <h1 class="has-text-black"><b>Add User</b></h1>
+                    <h1 class="has-text-black"><b>Update User</b></h1>
                 </div>
                 <div class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
                     <div class="columns">
@@ -60,11 +60,11 @@
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.email"
-                                            @input="clearFieldError('basicInfo.email')"
+                                            @input="clearFieldError('email')"
                                             class="input"
                                             type="email">
-                                    <span class="mb-2 has-text-danger" v-if="errors['basicInfo.email']">
-						{{errors['basicInfo.email'][0]}}
+                                    <span class="mb-2 has-text-danger" v-if="errors['email']">
+						{{errors['email'][0]}}
 					</span>
                                 </div>
                             </div>
@@ -76,17 +76,11 @@
                                     <DatePicker
                                             class="datepicker"
                                             v-model="basicInfo.dateOfBirth"
-                                            @input="clearFieldError('basicInfo.dateOfBirth')"
+                                            @input="clearFieldError('dateOfBirth')"
                                     >
-
                                     </DatePicker>
-                                    <!--                                    <input-->
-                                    <!--                                            v-model="basicInfo.dateOfBirth"-->
-                                    <!--                                            @input="clearFieldError('basicInfo.dateOfBirth')"-->
-                                    <!--                                            class="input"-->
-                                    <!--                                            type="text">-->
-                                    <span class="mb-2 has-text-danger" v-if="errors['basicInfo.dateOfBirth']">
-						{{errors['basicInfo.dateOfBirth'][0]}}
+                                    <span class="mb-2 has-text-danger" v-if="errors['dateOfBirth']">
+						{{errors['dateOfBirth'][0]}}
 					</span>
                                 </div>
                             </div>
@@ -97,11 +91,11 @@
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.identityNo"
-                                            @input="clearFieldError('basicInfo.identityNo')"
+                                            @input="clearFieldError('identityNo')"
                                             class="input"
                                             type="text">
-                                    <span class="mb-2 has-text-danger" v-if="errors['basicInfo.identityNo']">
-						{{errors['basicInfo.identityNo'][0]}}
+                                    <span class="mb-2 has-text-danger" v-if="errors['identityNo']">
+						{{errors['identityNo'][0]}}
 					</span>
                                 </div>
                             </div>
@@ -114,11 +108,11 @@
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.city"
-                                            @input="clearFieldError('basicInfo.city')"
+                                            @input="clearFieldError('city')"
                                             class="input"
                                             type="text">
-                                    <span class="mb-2 has-text-danger" v-if="errors['basicInfo.city']">
-						{{errors['basicInfo.city'][0]}}
+                                    <span class="mb-2 has-text-danger" v-if="errors['city']">
+						{{errors['city'][0]}}
 					</span>
                                 </div>
                             </div>
@@ -170,6 +164,7 @@
 <script>
     import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
+
     export default {
         components: {
             DatePicker
@@ -184,6 +179,21 @@
             return {
                 basicInfo: {},
                 loading: false,
+                fetchingInfo: false,
+            }
+        },
+        created() {
+            this.getUser();
+        },
+        methods: {
+            getUser() {
+                this.fetchingInfo = true;
+                axios.get(`/api/users/${this.userId}`).then(resp => {
+                    this.basicInfo = resp.data;
+                    this.fetchingInfo = false;
+                }, error => {
+                    this.fetchingInfo = false;
+                })
             }
         }
     }
