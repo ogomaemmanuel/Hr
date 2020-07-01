@@ -26,8 +26,11 @@ public class Employee extends BaseEntity {
     @Column(name = "designation_id")
     private Long designationId;
     private BigDecimal salaryAmount;
+    @Column(unique = true)
     private String nssfNumber;
+    @Column(unique = true)
     private String kraPinNumber;
+    @Column(unique = true)
     private String nhifNumber;
     @Convert(converter = GenderEnumConverter.class)
     private GenderEnum gender;
