@@ -23,7 +23,7 @@ public class EmployeeCreateModel {
     @Valid
     @NotNull
     @NotEmpty
-    private Set<ContactAddress> contactAddresses;
+    private List<ContactAddress> contactAddresses;
     @Valid
     @NotNull
     private EmployementDetail employementDetail;
@@ -36,11 +36,11 @@ public class EmployeeCreateModel {
         this.basicInfo = basicInfo;
     }
 
-    public Set<ContactAddress> getContactAddresses() {
+    public List<ContactAddress> getContactAddresses() {
         return contactAddresses;
     }
 
-    public void setContactAddresses(Set<ContactAddress> contactAddresses) {
+    public void setContactAddresses(List<ContactAddress> contactAddresses) {
         this.contactAddresses = contactAddresses;
     }
 
