@@ -197,8 +197,8 @@
         },
         computed: {
             canMoveNext() {
-                return true;
-                //  return this.validateBasicInfo();
+               // return true;
+                 return this.validateBasicInfo();
             },
         },
         methods: {

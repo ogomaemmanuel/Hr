@@ -59,7 +59,6 @@
                                         </div>
                                     </div>
                                     <i v-if="contactAddresses.length > 1"
-
                                        @click="removeRow(index)"
                                        class="fa fa-trash has-text-danger delete-contact is-hidden-mobile"></i>
                                 </div>
@@ -114,8 +113,8 @@
                 )
             },
             canMoveNext() {
-                return true;
-                // return this.contactAddressAreValid;
+               // return true;
+                return this.contactAddressAreValid;
             }
         },
 
