@@ -11,9 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "employees")
@@ -28,8 +26,11 @@ public class Employee extends BaseEntity {
     @Column(name = "designation_id")
     private Long designationId;
     private BigDecimal salaryAmount;
+    @Column(unique = true)
     private String nssfNumber;
+    @Column(unique = true)
     private String kraPinNumber;
+    @Column(unique = true)
     private String nhifNumber;
     @Convert(converter = GenderEnumConverter.class)
     private GenderEnum gender;
@@ -41,7 +42,7 @@ public class Employee extends BaseEntity {
     private Designation designation;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties(value = "employee")
-    private Set<EmployeeContactAddress> employeeContactAddresses = new HashSet<>();
+    private List<EmployeeContactAddress> employeeContactAddresses = new ArrayList<>();
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "supervisor_id", insertable = false, updatable = false)
     private Employee supervisor;
@@ -163,11 +164,11 @@ public class Employee extends BaseEntity {
         return this;
     }
 
-    public Set<EmployeeContactAddress> getEmployeeContactAddresses() {
+    public List<EmployeeContactAddress> getEmployeeContactAddresses() {
         return employeeContactAddresses;
     }
 
-    public void setEmployeeContactAddresses(Set<EmployeeContactAddress> employeeContactAddresses) {
+    public void setEmployeeContactAddresses(List<EmployeeContactAddress> employeeContactAddresses) {
         employeeContactAddresses.forEach(add -> {
             add.setEmployee(this);
         });

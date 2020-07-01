@@ -45,9 +45,10 @@
 </template>
 <script>
     import FormMixin from "../../../mixins/common_mixin"
+    import common_mixin from "../../../mixins/common_mixin";
 
     export default {
-        mixins: [FormMixin],
+        mixins: [FormMixin, common_mixin],
         props: {
             roleId: {
                 required: true
@@ -82,6 +83,9 @@
                     })
                     this.$emit("roleUpdated")
                 }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
                 })
             }
         },

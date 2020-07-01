@@ -21,9 +21,7 @@ import java.util.Optional;
 
 @Controller
 public class UsersController {
-
     private UserService userService;
-
     @Autowired
     public UsersController(UserService userService) {
         this.userService = userService;
@@ -46,6 +44,12 @@ public class UsersController {
     public ResponseEntity<?> createUser(@Valid @RequestBody EmployeeCreateModel.BasicInfo basicInfo) {
         User user = this.userService.create(basicInfo);
         return ResponseEntity.ok(user);
+    }
+
+    @RequestMapping(value = "api/users/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@PathVariable("id") Long id, @Valid @RequestBody EmployeeCreateModel.BasicInfo basicInfo) {
+        Optional<User> user = this.userService.updateUser(id, basicInfo);
+        return ResponseEntity.of(user);
     }
 
     @RequestMapping(value = "api/users/reports", method = RequestMethod.GET)

@@ -53,6 +53,9 @@
                     </template>
                 </b-autocomplete>
             </b-field>
+            <span slot="message" class="mb-2 has-text-danger" v-if="errors['departmentId']">
+						{{errors['departmentId'][0]}}
+					</span>
             <div class="flex justify-center m-3">
                 <button
 
@@ -107,6 +110,9 @@
                     })
                     this.$emit("designationCreated")
                 }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
 
                 })
             },

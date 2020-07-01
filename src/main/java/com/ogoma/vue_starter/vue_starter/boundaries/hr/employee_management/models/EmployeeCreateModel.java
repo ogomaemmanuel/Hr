@@ -23,7 +23,7 @@ public class EmployeeCreateModel {
     @Valid
     @NotNull
     @NotEmpty
-    private Set<ContactAddress> contactAddresses;
+    private List<ContactAddress> contactAddresses;
     @Valid
     @NotNull
     private EmployementDetail employementDetail;
@@ -36,11 +36,11 @@ public class EmployeeCreateModel {
         this.basicInfo = basicInfo;
     }
 
-    public Set<ContactAddress> getContactAddresses() {
+    public List<ContactAddress> getContactAddresses() {
         return contactAddresses;
     }
 
-    public void setContactAddresses(Set<ContactAddress> contactAddresses) {
+    public void setContactAddresses(List<ContactAddress> contactAddresses) {
         this.contactAddresses = contactAddresses;
     }
 
@@ -204,9 +204,9 @@ public class EmployeeCreateModel {
     }
 
     public static class EmployementDetail {
-        @NotBlank(message = "Select department")
+        @NotNull(message = "Select department")
         private Long departmentId;
-        @NotBlank(message = "Select designation")
+        @NotNull(message = "Select designation")
         private Long designationId;
         @NotNull(message = "Joining date is required")
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -226,6 +226,7 @@ public class EmployeeCreateModel {
         @NotBlank(message = "Nssf number is required")
         @JsonProperty("nssfNo")
         private String nssfNumber;
+        @NotNull(message = "Select gender")
         @Convert(converter = GenderEnumConverter.class)
         private GenderEnum gender;
 

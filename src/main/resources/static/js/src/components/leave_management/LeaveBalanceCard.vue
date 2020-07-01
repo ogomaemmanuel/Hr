@@ -2,7 +2,7 @@
 	<div>
 		<EmptyState v-if="showEmptyState"></EmptyState>
 		<div v-else class="bg-white">
-			<b-notification class="bg-white p-0" ref="leaveBalanceCard" :closable="false">
+			<b-notification v-if="loaded" class="bg-white p-0" ref="leaveBalanceCard" :closable="false">
 				<div class="card-content">
 					<div class="content">
 						<h4>My Leave Balances</h4>

@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="steps-body pt-4 pb-4 pl-0 pr-0">
-            <div  class="steps-content">
-                <div  class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
+            <div class="steps-content">
+                <div class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
                     <div class="columns">
                         <div class="column">
                             <div class="field">
@@ -10,11 +10,11 @@
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.firstName"
-                                            @input="clearFieldError('firstName')"
+                                            @input="clearFieldError('basicInfo.firstName')"
                                             class="input"
                                             type="text">
-                                    <span class="mb-2 has-text-danger" v-if="errors['firstName']">
-						{{errors['firstName'][0]}}
+                                    <span class="mb-2 has-text-danger" v-if="errors['basicInfo.firstName']">
+						{{errors['basicInfo.firstName'][0]}}
 					</span>
                                 </div>
                             </div>
@@ -25,11 +25,11 @@
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.lastName"
-                                            @input="clearFieldError('lastName')"
+                                            @input="clearFieldError('basicInfo.lastName')"
                                             class="input"
                                             type="text">
-                                    <span class="mb-2 has-text-danger" v-if="errors['lastName']">
-						{{errors['lastName'][0]}}
+                                    <span class="mb-2 has-text-danger" v-if="errors['basicInfo.lastName']">
+						{{errors['basicInfo.lastName'][0]}}
 					</span>
                                 </div>
                             </div>
@@ -126,11 +126,11 @@
                                 <div class="control">
                                     <input
                                             v-model="basicInfo.postalAddress"
-                                            @input="clearFieldError('postalAddress')"
+                                            @input="clearFieldError('basicInfo.postalAddress')"
                                             class="input"
                                             type="text">
-                                    <span class="mb-2 has-text-danger" v-if="errors['postalAddress']">
-						{{errors['postalAddress'][0]}}
+                                    <span class="mb-2 has-text-danger" v-if="errors['basicInfo.postalAddress']">
+						{{errors['basicInfo.postalAddress'][0]}}
 					</span>
                                 </div>
                             </div>
@@ -170,8 +170,8 @@
         props: {
             employeeDetails: {
                 required: true,
-
-            }
+            },
+            errorsData: {}
         },
         data() {
             return {
@@ -189,10 +189,15 @@
                 isLoading: false,
             }
         },
+        watch: {
+            errorsData:function(val) {
+                this.errors = val;
+            }
 
+        },
         computed: {
             canMoveNext() {
-                //return true;
+               // return true;
                  return this.validateBasicInfo();
             },
         },

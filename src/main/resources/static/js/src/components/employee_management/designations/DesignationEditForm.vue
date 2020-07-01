@@ -59,7 +59,11 @@
                                   class="has-text-grey"> Thats it! No more movies found. </span>
                         </template>
                     </b-autocomplete>
+
                 </b-field>
+                <span slot="message" class="mb-2 has-text-danger" v-if="errors['departmentId']">
+						{{errors['departmentId'][0]}}
+					</span>
             </template>
             <div class="flex justify-center m-3">
                 <button
@@ -113,7 +117,6 @@
             this.getAsyncData();
         },
         methods: {
-
             fetchDepartments(name) {
                 axios.get("/api/departments", {
                     params: {
@@ -175,7 +178,8 @@
 
             },
             updateDesignation() {
-                this.designation.departmentId = this.selectedDepartment.id;
+                let selectedDep = this.selectedDepartment || {};
+                this.designation.departmentId = selectedDep.id;
                 axios.put(`/api/designations/${this.designationId}`,
                     this.designation).then(resp => {
                     let vm = this;
@@ -186,7 +190,9 @@
                     })
                     this.$emit("designationUpdated")
                 }, error => {
-
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
                 })
             }
 

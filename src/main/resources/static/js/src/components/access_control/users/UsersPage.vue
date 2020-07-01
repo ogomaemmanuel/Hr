@@ -1,6 +1,6 @@
 <template>
     <div class="h-full">
-        <div  class="flex pb-2 justify-end">
+        <div class="flex pb-2 justify-end">
             <router-link tag="button"
                          to="/users-create"
                          class="button mr-1 is-rounded">
@@ -82,7 +82,10 @@
                 </div>
             </div>
         </div>
-        <router-view></router-view>
+        <router-view
+                @userUpdated="getUsers()"
+                @userUCreated="getUsers()"
+        ></router-view>
     </div>
 </template>
 <script>
@@ -98,7 +101,7 @@
             return {
                 isLoading: false,
                 users: [],
-                loading:false,
+                loading: false,
             }
         },
         created() {

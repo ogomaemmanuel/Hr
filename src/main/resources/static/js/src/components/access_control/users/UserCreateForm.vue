@@ -79,11 +79,6 @@
                                             @input="clearFieldError('dateOfBirth')">
 
                                     </DatePicker>
-                                    <!--                                    <input-->
-                                    <!--                                            v-model="basicInfo.dateOfBirth"-->
-                                    <!--                                            @input="clearFieldError('basicInfo.dateOfBirth')"-->
-                                    <!--                                            class="input"-->
-                                    <!--                                            type="text">-->
                                     <span class="mb-2 has-text-danger" v-if="errors['dateOfBirth']">
 						{{errors['dateOfBirth'][0]}}
 					</span>
@@ -184,7 +179,7 @@
         methods: {
             createUser() {
                 let vm = this;
-                axios.post("api/users", this.basicInfo).then(resp => {
+                axios.post("/api/users", this.basicInfo).then(resp => {
                     vm.$swal({
                         type: "success",
                         title: "Success",

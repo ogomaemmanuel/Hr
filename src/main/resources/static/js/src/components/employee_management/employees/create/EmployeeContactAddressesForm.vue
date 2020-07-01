@@ -17,11 +17,12 @@
                                         <div class="control">
                                             <input
                                                     v-model="contactAddress.name"
-                                                    @input="clearFieldError('name')"
+                                                    @input="clearFieldError(`contactAddresses[${index}].name`)"
                                                     class="input"
                                                     type="text">
-                                            <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                                            <span class="mb-2 has-text-danger"
+                                                  v-if="errors[`contactAddresses[${index}].name`]">
+						{{errors[`contactAddresses[${index}].name`][0]}}
 					</span>
                                         </div>
                                     </div>
@@ -33,12 +34,12 @@
                                         <div class="control">
                                             <input
                                                     v-model="contactAddress.phoneNumber"
-                                                    @input="clearFieldError('name')"
+                                                    @input="clearFieldError(`contactAddresses[${index}].phoneNumber`)"
                                                     class="input"
                                                     type="text">
-                                            <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
-					</span>
+                                            <span class="mb-2 has-text-danger" v-if="errors[`contactAddresses[${index}].phoneNumber`]">
+                                                {{errors[`contactAddresses[${index}].phoneNumber`][0]}}
+					                      </span>
                                         </div>
                                     </div>
                                 </div>
@@ -48,16 +49,16 @@
                                         <div class="control">
                                             <input
                                                     v-model="contactAddress.relationshipId"
-                                                    @input="clearFieldError('name')"
+                                                    @input="clearFieldError(`contactAddresses[${index}].relationshipId`)"
+
                                                     class="input"
                                                     type="text">
-                                            <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                                            <span class="mb-2 has-text-danger" v-if="errors[`contactAddresses[${index}].relationshipId`]">
+                                                {{errors[`contactAddresses[${index}].relationshipId`][0]}}
 					</span>
                                         </div>
                                     </div>
                                     <i v-if="contactAddresses.length > 1"
-
                                        @click="removeRow(index)"
                                        class="fa fa-trash has-text-danger delete-contact is-hidden-mobile"></i>
                                 </div>
@@ -87,7 +88,8 @@
         props: {
             employeeDetails: {
                 required: true,
-            }
+            },
+            errorsData: {}
         },
         data() {
             return {
@@ -99,6 +101,11 @@
             this.initialize();
 
         },
+        watch: {
+            errorsData: function (val) {
+                this.errors = val;
+            }
+        },
         computed: {
             contactAddressAreValid() {
                 return this.contactAddresses.every(value =>
@@ -106,6 +113,7 @@
                 )
             },
             canMoveNext() {
+               // return true;
                 return this.contactAddressAreValid;
             }
         },

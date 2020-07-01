@@ -44,7 +44,7 @@ public class EmployeesService {
     public Employee createEmployee(EmployeeCreateModel employeeCreateModel) {
         User user = new User();
         Employee employee = new Employee();
-        Set<EmployeeContactAddress> employeeContactAddresses = new HashSet<>();
+        List<EmployeeContactAddress> employeeContactAddresses = new ArrayList<>();
         employeeCreateModel.getContactAddresses().forEach(add -> {
             EmployeeContactAddress employeeContactAddress = new EmployeeContactAddress();
             BeanUtils.copyProperties(add, employeeContactAddress);

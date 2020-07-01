@@ -1,4 +1,5 @@
 package com.ogoma.vue_starter.vue_starter.exceptions;
+
 import com.ogoma.vue_starter.vue_starter.utils.ErrorConverter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -6,13 +7,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 @ControllerAdvice
-public class AppControllerAdvice   extends ResponseEntityExceptionHandler {
+public class AppControllerAdvice extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,
@@ -20,8 +27,21 @@ public class AppControllerAdvice   extends ResponseEntityExceptionHandler {
             HttpStatus status,
             WebRequest request) {
         BindingResult result = ex.getBindingResult();
-        Map<String, ArrayList<String>> errors= ErrorConverter.convert(result);
+        Map<String, ArrayList<String>> errors = ErrorConverter.convert(result);
         return new ResponseEntity(errors, headers, status);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public List<Map<String, String>> handleConstraintViolation(ConstraintViolationException ex, WebRequest request) {
+        List<Map<String, String>> errors = new ArrayList();
+        ex.getConstraintViolations().forEach(v -> {
+            Map<String, String> error = new HashMap<>();
+            error.put(v.getPropertyPath().toString(), v.getMessage());
+            errors.add(error);
+
+        });
+        return errors;
     }
 
 }

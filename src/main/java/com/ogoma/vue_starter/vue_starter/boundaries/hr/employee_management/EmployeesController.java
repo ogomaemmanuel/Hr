@@ -29,7 +29,7 @@ public class EmployeesController {
         return ResponseEntity.ok(employees);
     }
     @RequestMapping(value = "api/employees", method = RequestMethod.POST)
-    public ResponseEntity<?> createEmployee(@RequestBody EmployeeCreateModel employeeCreateModel) {
+    public ResponseEntity<?> createEmployee(@Valid @RequestBody EmployeeCreateModel employeeCreateModel) {
         Employee employee = this.employeesService.createEmployee(employeeCreateModel);
         return ResponseEntity.ok(employee);
     }
