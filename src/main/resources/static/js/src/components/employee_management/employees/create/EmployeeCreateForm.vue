@@ -38,7 +38,7 @@
 
                 </div>
                 <keep-alive>
-                    <component :errors="errors" :employeeDetails="employeeDetails"
+                    <component :errorsData="errors" :employeeDetails="employeeDetails"
                                @goToNext="goToNextStep" :is="currentForm">
                         <div slot-scope="{isLoading,canMoveNext,onNext}"
                              class="nav-wrapper step-content has-text-left is-active animated preFadeInUp fadeInUp"

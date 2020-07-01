@@ -69,7 +69,8 @@
                                         label="Supervisor"
                                         v-model="employementDetail.supervisorId"
                                         @input="clearFieldError('employementDetail.supervisorId')">
-                                     <span slot="errors" class="mb-2 has-text-danger" v-if="errors['employementDetail.supervisorId']">
+                                     <span slot="errors" class="mb-2 has-text-danger"
+                                           v-if="errors['employementDetail.supervisorId']">
 						{{errors['employementDetail.supervisorId'][0]}}
 					</span>
                                 </EmployeeSelectInput>
@@ -79,20 +80,15 @@
                                 <div class="field">
                                     <label class="label ">Gender<span><sup>*</sup></span></label>
                                     <div class="control">
-                                        <!--                                        <input-->
-                                        <!--                                                v-model="employementDetail.gender"-->
-                                        <!--                                                @input="clearFieldError('gender')"-->
-                                        <!--                                                class="input"-->
-                                        <!--                                                type="text">-->
                                         <div class="select is-fullwidth">
-                                            <select v-model="employementDetail.gender">
+                                            <select @input="clearFieldError('employementDetail.gender')" v-model="employementDetail.gender">
                                                 <option value="">Select</option>
                                                 <option value="M">Male</option>
                                                 <option value="F">Female</option>
                                             </select>
                                         </div>
-                                        <span class="mb-2 has-text-danger" v-if="errors['gender']">
-						{{errors['gender'][0]}}
+                                        <span class="mb-2 has-text-danger" v-if="errors['employementDetail.gender']">
+						{{errors['employementDetail.gender'][0]}}
 					</span>
                                     </div>
                                 </div>
@@ -161,8 +157,10 @@
     import DepartmentSelectInput from "../../../common/DepartmentSelectInput";
     import DesignationSelectInput from "../../../common/DesignationSelectInput";
     import EmployeeSelectInput from "../../../common/EmployeeSelectInput"
+    import common_mixin from "../../../../mixins/common_mixin";
 
     export default {
+        mixins: [common_mixin],
         components: {
             DatePicker,
             DepartmentSelectInput,
@@ -173,7 +171,7 @@
             employeeDetails: {
                 required: true,
             },
-            errors: {}
+            errorsData: {}
         },
         data() {
             return {
@@ -186,6 +184,13 @@
         created() {
             this.employeeDetails.employementDetail
                 = this.employementDetail;
+            this.errors = this.errorsData;
+        },
+        watch: {
+            errorsData:function(val) {
+                this.errors = val;
+            }
+
         },
         methods: {
             onNext() {
