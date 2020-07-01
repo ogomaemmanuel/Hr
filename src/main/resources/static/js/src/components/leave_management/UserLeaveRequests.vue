@@ -43,7 +43,7 @@
 				
 				</EmptyState>
 				<div v-else class="card" ref="leaveRequests">
-					<div class="card-content card-simple is-size-7">
+					<div v-if="loaded" class="card-content card-simple is-size-7">
 						<div class="content b-table">
 							<table class="table has-mobile-cards is-hoverable">
 								<thead class="font-thin">
