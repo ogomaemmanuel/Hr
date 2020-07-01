@@ -37,6 +37,10 @@
                     <span v-show="page > totalPages" class="has-text-grey"> Thats it! No more movies found. </span>
                 </template>
             </b-autocomplete>
+            <div slot="message">
+                <slot name="errors">
+                </slot>
+            </div>
         </b-field>
     </div>
 </template>

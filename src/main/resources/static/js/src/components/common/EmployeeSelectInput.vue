@@ -2,7 +2,7 @@
     <div>
         <b-field>
             <template slot="label">
-                {{label}} <span><sup>*</sup></span>
+                {{label}} <span v-if="required"><sup>*</sup></span>
             </template>
             <b-autocomplete
                     :data="employees"
@@ -37,6 +37,10 @@
                     <span v-show="page > totalPages" class="has-text-grey"> Thats it! No more movies found. </span>
                 </template>
             </b-autocomplete>
+            <div slot="message">
+                <slot name="errors">
+                </slot>
+            </div>
         </b-field>
     </div>
 </template>
@@ -47,6 +51,9 @@
         props: {
             label: {
                 default: "Employee"
+            },
+            required: {
+                default: true
             }
         },
         data() {

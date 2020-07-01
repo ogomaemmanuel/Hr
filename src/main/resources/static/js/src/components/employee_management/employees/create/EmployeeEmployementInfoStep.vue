@@ -6,32 +6,25 @@
                     <div class="step-content has-text-left is-active animated preFadeInUp fadeInUp">
                         <div class="columns">
                             <div class="column">
-                                <!--                                <div class="field">-->
-                                <!--                                    <label class="label is-size-7">Department<span><sup>*</sup></span></label>-->
-                                <!--                                    <div class="control">-->
-                                <!--                                        <input-->
-                                <!--                                                v-model="employementDetail.departmentId"-->
-                                <!--                                                @input="clearFieldError('departmentId')"-->
-                                <!--                                                class="input"-->
-                                <!--                                                type="text">-->
-                                <!--                                        <span class="mb-2 has-text-danger" v-if="errors['departmentId']">-->
-                                <!--						{{errors['name'][0]}}-->
-                                <!--					</span>-->
-                                <!--                                    </div>-->
-                                <!--                                </div>-->
                                 <DepartmentSelectInput
-                                        v-model="employementDetail.departmentId"
-                                ></DepartmentSelectInput>
+                                        @input="clearFieldError('employementDetail.departmentId')"
+                                        v-model="employementDetail.departmentId">
+                                       <span slot="errors" class="mb-2 has-text-danger"
+                                             v-if="errors['employementDetail.departmentId']">
+						{{errors['employementDetail.departmentId'][0]}}
+					</span>
+                                </DepartmentSelectInput>
                             </div>
                             <div class="column">
-
                                 <DesignationSelectInput
                                         v-model="employementDetail.designationId"
-                                        @input="clearFieldError('designationId')"
-                                ></DesignationSelectInput>
-                                <span class="mb-2 has-text-danger" v-if="errors['designationId']">
-						{{errors['name'][0]}}
+                                        @input="clearFieldError('employementDetail.designationId')">
+                                     <span slot="errors" class="mb-2 has-text-danger"
+                                           v-if="errors['employementDetail.designationId']">
+						{{errors['employementDetail.designationId'][0]}}
 					</span>
+                                </DesignationSelectInput>
+
                             </div>
                             <div class="column">
                                 <div class="field">
@@ -39,11 +32,12 @@
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.salaryAmount"
-                                                @input="clearFieldError('name')"
+                                                @input="clearFieldError('employementDetail.salaryAmount')"
                                                 class="input"
                                                 type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                                        <span class="mb-2 has-text-danger"
+                                              v-if="errors['employementDetail.salaryAmount']">
+						{{errors['employementDetail.salaryAmount'][0]}}
 					</span>
                                     </div>
                                 </div>
@@ -57,36 +51,39 @@
                                         <DatePicker
                                                 class="datepicker"
                                                 v-model="employementDetail.joiningDate"
-                                                @input="clearFieldError('joiningDate')"
+                                                @input="clearFieldError('employementDetail.joiningDate')"
                                         >
 
                                         </DatePicker>
 
-                                        <span class="mb-2 has-text-danger" v-if="errors['joiningDate']">
-						{{errors['joiningDate'][0]}}
+                                        <span class="mb-2 has-text-danger"
+                                              v-if="errors['employementDetail.joiningDate']">
+						{{errors['employementDetail.joiningDate'][0]}}
 					</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="column">
                                 <EmployeeSelectInput
+                                        :required="false"
                                         label="Supervisor"
                                         v-model="employementDetail.supervisorId"
-                                        @input="clearFieldError('supervisorId')"
-                                ></EmployeeSelectInput>
-                                <span class="mb-2 has-text-danger" v-if="errors['supervisorId']">
-						{{errors['supervisorId'][0]}}
+                                        @input="clearFieldError('employementDetail.supervisorId')">
+                                     <span slot="errors" class="mb-2 has-text-danger" v-if="errors['employementDetail.supervisorId']">
+						{{errors['employementDetail.supervisorId'][0]}}
 					</span>
+                                </EmployeeSelectInput>
+
                             </div>
                             <div class="column">
                                 <div class="field">
                                     <label class="label ">Gender<span><sup>*</sup></span></label>
                                     <div class="control">
-<!--                                        <input-->
-<!--                                                v-model="employementDetail.gender"-->
-<!--                                                @input="clearFieldError('gender')"-->
-<!--                                                class="input"-->
-<!--                                                type="text">-->
+                                        <!--                                        <input-->
+                                        <!--                                                v-model="employementDetail.gender"-->
+                                        <!--                                                @input="clearFieldError('gender')"-->
+                                        <!--                                                class="input"-->
+                                        <!--                                                type="text">-->
                                         <div class="select is-fullwidth">
                                             <select v-model="employementDetail.gender">
                                                 <option value="">Select</option>
@@ -108,11 +105,12 @@
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.nhifNo"
-                                                @input="clearFieldError('nhifNo')"
+                                                @input="clearFieldError('employementDetail.nhifNumber')"
                                                 class="input"
                                                 type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['nhifNo']">
-						{{errors['name'][0]}}
+                                        <span class="mb-2 has-text-danger"
+                                              v-if="errors['employementDetail.nhifNumber']">
+						{{errors['employementDetail.nhifNumber'][0]}}
 					</span>
                                     </div>
                                 </div>
@@ -123,11 +121,12 @@
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.nssfNo"
-                                                @input="clearFieldError('nssfNo')"
+                                                @input="clearFieldError('employementDetail.nssfNumber')"
                                                 class="input"
                                                 type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['nssfNo']">
-						{{errors['nssfNo'][0]}}
+                                        <span class="mb-2 has-text-danger"
+                                              v-if="errors['employementDetail.nssfNumber']">
+						{{errors['employementDetail.nssfNumber'][0]}}
 					</span>
                                     </div>
                                 </div>
@@ -138,11 +137,12 @@
                                     <div class="control">
                                         <input
                                                 v-model="employementDetail.kraPinNumber"
-                                                @input="clearFieldError('kraPinNumber')"
+                                                @input="clearFieldError('employementDetail.kraPinNumber')"
                                                 class="input"
                                                 type="text">
-                                        <span class="mb-2 has-text-danger" v-if="errors['kraPinNumber']">
-						{{errors['kraPinNumber'][0]}}
+                                        <span class="mb-2 has-text-danger"
+                                              v-if="errors['employementDetail.kraPinNumber']">
+						{{errors['employementDetail.kraPinNumber'][0]}}
 					</span>
                                     </div>
                                 </div>
@@ -157,7 +157,6 @@
     </div>
 </template>
 <script>
-    import CommonMixin from "../../../../mixins/common_mixin"
     import {DatePicker} from "element-ui"
     import DepartmentSelectInput from "../../../common/DepartmentSelectInput";
     import DesignationSelectInput from "../../../common/DesignationSelectInput";
@@ -170,11 +169,11 @@
             DesignationSelectInput,
             EmployeeSelectInput
         },
-        mixins: [CommonMixin],
         props: {
             employeeDetails: {
                 required: true,
-            }
+            },
+            errors: {}
         },
         data() {
             return {

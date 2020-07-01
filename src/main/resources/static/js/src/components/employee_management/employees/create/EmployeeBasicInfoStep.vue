@@ -159,14 +159,14 @@
     </div>
 </template>
 <script>
-    import CommonMixin from "../../../../mixins/common_mixin"
+    // import CommonMixin from "../../../../mixins/common_mixin"
     import {DatePicker} from "element-ui"
 
     export default {
         components: {
             DatePicker
         },
-        mixins: [CommonMixin],
+        mixins: [],
         props: {
             employeeDetails: {
                 required: true,

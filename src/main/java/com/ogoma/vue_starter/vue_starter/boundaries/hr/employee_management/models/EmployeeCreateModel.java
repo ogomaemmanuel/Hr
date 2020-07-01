@@ -226,6 +226,7 @@ public class EmployeeCreateModel {
         @NotBlank(message = "Nssf number is required")
         @JsonProperty("nssfNo")
         private String nssfNumber;
+        @NotNull(message = "Select gender")
         @Convert(converter = GenderEnumConverter.class)
         private GenderEnum gender;
 
