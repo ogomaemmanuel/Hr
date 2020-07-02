@@ -8,14 +8,14 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    expose:
-#      <hostPort>:<containerPort>
-      - 8080:49612
+    ports:
+      - 8060:49612
     environment:
       SPRING_PROFILES_ACTIVE: "production"
       SPRING_DATASOURCE_PASSWORD: ${DB_USER_SECRET}
       SPRING_DATASOURCE_USERNAME: ${DB_USER}
-      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/hr?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
+#    https://docs.docker.com/compose/compose-file/#variable-substitution
+      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/${HR_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
 
 
 
@@ -24,6 +24,6 @@ services:
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MARIADB_DATABASE: hr
+      MARIADB_DATABASE: ${HR_SCHEMA:-hr}
       MARIADB_USER: ${DB_USER}
       MARIADB_PASSWORD : ${DB_USER_SECRET}
