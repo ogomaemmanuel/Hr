@@ -97,7 +97,7 @@
                             <a class="navbar-item">
                                 Profile
                             </a>
-                            <a class="navbar-item">
+                            <a @click="showChangePassword=true" class="navbar-item">
                                 Change Password
                             </a>
                             <!--                            <hr class="navbar-divider">-->
@@ -286,10 +286,14 @@
                 </div>
             </div>
         </section>
+        <PasswordResetForm
+                @close="showChangePassword=false"
+                v-if="showChangePassword"></PasswordResetForm>
     </div>
 </template>
 <script>
     import LogoutForm from "../auth/LogoutForm.vue"
+    const PasswordResetForm = ()=>import("../user-profile/ChangePasswordModal")
     import NotificationDropDown from "../notifications/NotificationDropDown";
     import {mapActions, mapGetters} from "vuex"
    import TestBreadCrump from "../common/TestBreadCrump";
@@ -298,7 +302,8 @@
         components: {
             LogoutForm,
             NotificationDropDown,
-            TestBreadCrump
+            TestBreadCrump,
+            PasswordResetForm
         },
         props: {
             user: {}
@@ -307,6 +312,7 @@
             return {
                 showNotifications: false,
                 isFullPage: true,
+                showChangePassword:false,
             }
         },
         computed: {
