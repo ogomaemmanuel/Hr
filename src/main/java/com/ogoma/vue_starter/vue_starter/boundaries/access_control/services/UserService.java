@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
+import com.ogoma.vue_starter.vue_starter.boundaries.user_profile.models.PasswordUpdateRequest;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.ForgotPasswordRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -31,6 +32,8 @@ public interface UserService {
     void handleForgotPasswordRequest(ForgotPasswordRequest forgotPasswordRequest);
 
     ResponseModel resetUserPassword(PasswordResetRequest passwordResetRequest);
+
+    void updatePassword(PasswordUpdateRequest passwordUpdateRequest);
 
     ByteArrayOutputStream report() throws Exception;
 }
