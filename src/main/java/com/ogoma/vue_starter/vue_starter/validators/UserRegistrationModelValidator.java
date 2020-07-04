@@ -12,9 +12,11 @@ import org.springframework.validation.Validator;
 @Component
 public class UserRegistrationModelValidator implements Validator {
     private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
+    public UserRegistrationModelValidator(UserService userService) {
+        this.userService = userService;
+    }
 
     @Override
     public boolean supports(Class<?> clazz) {

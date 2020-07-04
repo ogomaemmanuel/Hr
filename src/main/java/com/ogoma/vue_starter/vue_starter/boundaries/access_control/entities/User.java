@@ -37,7 +37,7 @@ public class User {
     @Transient
     @JsonProperty
     private String fullName;
-    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnore
     private Employee employee;
     @JsonIgnore
@@ -215,10 +215,21 @@ public class User {
     }
 
     @PrePersist
-    public void encodePassword() {
+    public void beforePersist() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         if (this.getPassword() != null) {
-            this.password = bCryptPasswordEncoder.encode(this.password);
+            encodePassword(this.password);
+        }
+    }
+
+    public void updatePassword(String password) {
+        encodePassword(password);
+    }
+
+    private void encodePassword(String password) {
+        if (password != null) {
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            this.password = bCryptPasswordEncoder.encode(password);
         }
     }
 }

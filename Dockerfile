@@ -15,5 +15,5 @@ RUN mvn -B -f pom.xml clean package -DskipTests
 
 FROM openjdk:8-jre
 COPY --from=build /workspace/target/*.jar app.jar
-EXPOSE 8080
+EXPOSE 8080/tcp
 ENTRYPOINT ["java", "-jar", "app.jar"]

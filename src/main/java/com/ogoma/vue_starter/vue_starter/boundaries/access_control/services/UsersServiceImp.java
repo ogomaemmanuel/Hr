@@ -1,8 +1,10 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
+import com.ogoma.vue_starter.vue_starter.authentication.CustomUserDetails;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
+import com.ogoma.vue_starter.vue_starter.boundaries.user_profile.models.PasswordUpdateRequest;
 import com.ogoma.vue_starter.vue_starter.events.auth.PasswordResetEvent;
 import com.ogoma.vue_starter.vue_starter.events.auth.UserRegistrationEvent;
 import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,25 +35,25 @@ import java.util.Optional;
 @Service
 
 public class UsersServiceImp implements UserService {
-    @Autowired
-    ApplicationEventPublisher applicationEventPublisher;
-    private UsersRepository usersRepository;
-    private PasswordEncoder passwordEncoder;
-    private PasswordResetRepository passwordResetRepository;
-    private ReportGenerator reportGenerator;
+    private final ApplicationEventPublisher applicationEventPublisher;
+    private final UsersRepository usersRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final PasswordResetRepository passwordResetRepository;
+    private final ReportGenerator reportGenerator;
 
 
     @Autowired
     public UsersServiceImp(UsersRepository usersRepository,
                            PasswordEncoder passwordEncoder,
                            PasswordResetRepository passwordResetRepository,
-                           ReportGenerator reportGenerator
-    ) {
+                           ReportGenerator reportGenerator,
+                           ApplicationEventPublisher applicationEventPublisher) {
         this.usersRepository = usersRepository;
         this.passwordResetRepository = passwordResetRepository;
         this.reportGenerator = reportGenerator;
         this.passwordEncoder = passwordEncoder;
 
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
     public User getUserByEmail(String email) {
@@ -146,6 +149,14 @@ public class UsersServiceImp implements UserService {
         responseModel.setMessage("Invalid token");
         responseModel.setState("success");
         return responseModel;
+    }
+
+    @Override
+    public void updatePassword(PasswordUpdateRequest passwordUpdateRequest) {
+        CustomUserDetails customUserDetails = SecurityUtils.getCurrentUserDetails();
+        User user = this.usersRepository.findById(customUserDetails.getId()).orElse(null);
+        user.updatePassword(passwordUpdateRequest.getNewPassword());
+        this.usersRepository.save(user);
     }
 
     @Override
