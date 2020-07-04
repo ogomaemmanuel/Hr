@@ -114,130 +114,130 @@
 
             <aside class="column pt-12 is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile fixed inset-y-0 section is-hidden-mobile">
 
-               <div class="menu-wrapper">
-                <ul class="menu-list">
-                    <li>
-                        <a href="#" class="">
-                            <span class="icon"><i class="fa fa-home"></i></span> Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="">
-                            <span class="icon"><i class="fa fa-id-card"></i></span> Access Control
-                        </a>
+                <div class="menu-wrapper">
+                    <ul class="menu-list">
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-home"></i></span> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-id-card"></i></span> Access Control
+                            </a>
 
-                        <ul class="mr-0 pr-0 border-l-0">
-                            <li>
-                                <router-link to="/users">
-                                    <span>Users</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="roles">
-                                    <span>Roles</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/permissions">
-                                    <span>Permissions</span>
-                                </router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="">
-                            <span class="icon"><i class="fa fa-id-card"></i></span> Employee Management
-                        </a>
-                        <ul class="mr-0 pr-0 border-l-0">
-                            <li>
-                                <router-link to="/employees">
-                                    <span>All Employees</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/departments">
-                                    <span>Departments</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/designations">
-                                    <span>Designations</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Attendance(Admin)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Attendance(Employee)</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span>Overtime</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                            <ul class="mr-0 pr-0 border-l-0">
+                                <li>
+                                    <router-link to="/users">
+                                        <span>Users</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="roles">
+                                        <span>Roles</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/permissions">
+                                        <span>Permissions</span>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-id-card"></i></span> Employee Management
+                            </a>
+                            <ul class="mr-0 pr-0 border-l-0">
+                                <li>
+                                    <router-link to="/employees">
+                                        <span>All Employees</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/departments">
+                                        <span>Departments</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/designations">
+                                        <span>Designations</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>Attendance(Admin)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>Attendance(Employee)</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span>Overtime</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                    <li>
-                        <a href="#" class="">
-                            <span class="icon"><i class="fa fa-table"></i></span> Leave Management
-                        </a>
-                        <ul class="border-l-0">
-                            <li>
-                                <router-link to="/leave">
-                                    <span>My Leaves</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/documents">
-                                    <span>In Place</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/leave-approvals">
-                                    <span>Leave approvals</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/holidays">
-                                    <span>Holidays</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/leave-types">
-                                    <span>Leave Types</span>
-                                </router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="">
-                            <span class="icon"><i class="fa fa-folder-open"></i></span> File Management
-                        </a>
-                        <ul class="border-l-0">
-                            <li>
-                                <router-link to="/documents">
-                                    <span>Manage Files</span>
-                                </router-link>
-                            </li>
-                            <li>
-                                <router-link to="/documents">
-                                    <span>My Files</span>
-                                </router-link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" class="">
-                            <span class="icon"><i class="fa fa-info"></i></span> About
-                        </a>
-                    </li>
-                </ul>
-               </div>
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-table"></i></span> Leave Management
+                            </a>
+                            <ul class="border-l-0">
+                                <li>
+                                    <router-link to="/leave">
+                                        <span>My Leaves</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/documents">
+                                        <span>In Place</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/leave-approvals">
+                                        <span>Leave approvals</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/holidays">
+                                        <span>Holidays</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/leave-types">
+                                        <span>Leave Types</span>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-folder-open"></i></span> File Management
+                            </a>
+                            <ul class="border-l-0">
+                                <li>
+                                    <router-link to="/documents">
+                                        <span>Manage Files</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/documents">
+                                        <span>My Files</span>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-info"></i></span> About
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
 
                 <div class="side-bar-footer bg-gray-800 left-0  right-0 h-8 absolute bottom-0">
@@ -259,10 +259,10 @@
                         <div class="column">
 
                             <div class="flex align-center">
-                            <button type="button" class="is-hidden-desktop toggle-mobile-nav">
-                                <i class="fa fa-bars text-gray-600"></i>
-                            </button>
-                            <TestBreadCrump></TestBreadCrump>
+                                <button type="button" class="is-hidden-desktop toggle-mobile-nav">
+                                    <i class="fa fa-bars text-gray-600"></i>
+                                </button>
+                                <TestBreadCrump></TestBreadCrump>
                             </div>
                         </div>
                         <div class="column">
@@ -275,11 +275,10 @@
                                 </portal-target>
                             </div>
                         </div>
-                        </div>
+                    </div>
 
 
-
-<!--                    <breadcrumbs></breadcrumbs>-->
+                    <!--                    <breadcrumbs></breadcrumbs>-->
                 </div>
                 <div class="mt-5 h-full">
                     <router-view></router-view>
@@ -293,10 +292,12 @@
 </template>
 <script>
     import LogoutForm from "../auth/LogoutForm.vue"
-    const PasswordResetForm = ()=>import("../user-profile/ChangePasswordModal")
+
+    const PasswordResetForm = () => import("../user-profile/ChangePasswordModal")
     import NotificationDropDown from "../notifications/NotificationDropDown";
     import {mapActions, mapGetters} from "vuex"
-   import TestBreadCrump from "../common/TestBreadCrump";
+    import TestBreadCrump from "../common/TestBreadCrump";
+
     let handleOutsideClick;
     export default {
         components: {
@@ -312,8 +313,10 @@
             return {
                 showNotifications: false,
                 isFullPage: true,
-                showChangePassword:false,
+                showChangePassword: false,
+                loading: false,
             }
+
         },
         computed: {
             ...mapGetters(["authenticatedUser"])
@@ -402,9 +405,10 @@
         margin: 0 0 0 -15px;
         height: 46px;
     }
-.menu-wrapper{
-    overflow-y: scroll;
-    position: relative;
-    height: 100%;
-}
+
+    .menu-wrapper {
+        overflow-y: scroll;
+        position: relative;
+        height: 100%;
+    }
 </style>

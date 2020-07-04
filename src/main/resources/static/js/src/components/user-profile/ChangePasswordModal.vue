@@ -8,34 +8,52 @@
 
                 <div class="field">
                     <p class="control has-icons-left">
-                        <input class="input" type="password" placeholder="Old Password">
+                        <input class="input"
+                               v-model="passwordUpdate.oldPassword"
+                               type="password"
+                               placeholder="Old Password">
                         <span class="icon is-small is-left">
       <i class="fa fa-key"></i>
     </span>
                     </p>
+                    <span class="mb-2 has-text-danger" v-if="errors['oldPassword']">
+						{{errors['oldPassword'][0]}}
+					</span>
                 </div>
                 <div class="field">
                     <p class="control has-icons-left">
-                        <input class="input" type="password" placeholder="New Password">
+                        <input
+                                v-model="passwordUpdate.newPassword"
+                                class="input"
+                                type="password"
+                                placeholder="New Password">
                         <span class="icon is-small is-left">
       <i class="fa fa-key"></i>
     </span>
                     </p>
+                    <span class="mb-2 has-text-danger" v-if="errors['newPassword']">
+						{{errors['newPassword'][0]}}
+					</span>
                 </div>
                 <div class="field">
                     <p class="control has-icons-left">
-                        <input class="input" type="password" placeholder="Confirm New Password">
+                        <input
+                                v-model="passwordUpdate.confirmationPassword"
+                                class="input" type="password"
+                                placeholder="Confirm New Password">
                         <span class="icon is-small is-left">
       <i class="fa fa-key"></i>
     </span>
                     </p>
+                    <span class="mb-2 has-text-danger" v-if="errors['confirmationPassword']">
+						{{errors['confirmationPassword'][0]}}
+					</span>
                 </div>
                 <div class="flex justify-center m-3">
                     <button
 
                             :class="{'is-loading':loading}"
-                            :disabled="disableSubmitButton"
-                            @click.prevent.stop="createHoliday"
+                            @click.prevent.stop="changePassword"
                             class="button  is-rounded"
                             type="submit">Submit
                     </button>
@@ -53,24 +71,33 @@
         components: {ModalTemplate},
         data() {
             return {
-                passwordReset: {
+                passwordUpdate: {
                     oldPassword: "",
                     newPassword: "",
-                    confirmPassword: ""
-                }
+                    confirmationPassword: ""
+                },
+                loading: false
             }
         },
         methods: {
             changePassword() {
-                axios.post("api/profile/change-passwod",
-                    this.passwordReset).then(resp => {
-
+                let vm = this;
+                axios.post("/api/profile/update-password",
+                    this.passwordUpdate).then(resp => {
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Password  successfully updated"
+                    })
+                    vm.onModalClose()
                 }, error => {
-
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
                 })
             },
-            onModalClose(){
-               this.$emit("close")
+            onModalClose() {
+                this.$emit("close")
             }
         }
     }
