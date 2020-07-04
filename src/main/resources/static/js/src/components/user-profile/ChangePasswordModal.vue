@@ -8,7 +8,9 @@
 
                 <div class="field">
                     <p class="control has-icons-left">
-                        <input class="input"
+                        <input
+                                class="input"
+                                @input="clearFieldError('oldPassword')"
                                v-model="passwordUpdate.oldPassword"
                                type="password"
                                placeholder="Old Password">
@@ -24,6 +26,7 @@
                     <p class="control has-icons-left">
                         <input
                                 v-model="passwordUpdate.newPassword"
+                                @input="clearFieldError('newPassword')"
                                 class="input"
                                 type="password"
                                 placeholder="New Password">
@@ -38,6 +41,7 @@
                 <div class="field">
                     <p class="control has-icons-left">
                         <input
+                                @input="clearFieldError('confirmationPassword')"
                                 v-model="passwordUpdate.confirmationPassword"
                                 class="input" type="password"
                                 placeholder="Confirm New Password">

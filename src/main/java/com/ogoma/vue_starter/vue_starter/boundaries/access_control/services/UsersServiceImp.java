@@ -155,9 +155,10 @@ public class UsersServiceImp implements UserService {
     public void updatePassword(PasswordUpdateRequest passwordUpdateRequest) {
         CustomUserDetails customUserDetails = SecurityUtils.getCurrentUserDetails();
         User user = this.usersRepository.findById(customUserDetails.getId()).orElse(null);
-        user.setPassword(passwordUpdateRequest.getNewPassword());
+        user.updatePassword(passwordUpdateRequest.getNewPassword());
         this.usersRepository.save(user);
     }
+
     @Override
     public ByteArrayOutputStream report() throws Exception {
         List<User> users = this.usersRepository.findAll();

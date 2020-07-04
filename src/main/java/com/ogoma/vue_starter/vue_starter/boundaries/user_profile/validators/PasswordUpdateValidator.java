@@ -40,8 +40,9 @@ public class PasswordUpdateValidator implements Validator {
             }
         }
         if (null != passwordUpdateRequest.getNewPassword()) {
-            if (!passwordUpdateRequest.getNewPassword().equals(passwordUpdateRequest.getConfirmationPassword())) ;
-            errors.rejectValue("confirmationPassword", "password.mismatch", "Confirmation password does not match");
+            if (!passwordUpdateRequest.getNewPassword().equals(passwordUpdateRequest.getConfirmationPassword())) {
+                errors.rejectValue("confirmationPassword", "password.mismatch", "Confirmation password does not match");
+            }
         }
     }
 }
