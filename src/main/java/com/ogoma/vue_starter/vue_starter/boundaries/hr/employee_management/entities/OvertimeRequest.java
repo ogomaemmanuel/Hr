@@ -4,23 +4,31 @@ import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-@Table(name="overtime_requests")
+@Table(name = "overtime_requests")
 public class OvertimeRequest extends BaseEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Temporal(TemporalType.DATE)
+    @NotNull
     private Date overtimeDate;
+    @NotNull
+    @Min(1)
     private Long overtimeHours;
+    @NotBlank
     private String description;
     @Column(name = "employee_id")
+    @NotNull
     private Long employeeId;
     @ManyToOne
-    @JoinColumn(name = "employee_id",insertable = false,updatable = false)
+    @JoinColumn(name = "employee_id", insertable = false, updatable = false)
     private Employee employee;
 
     public Long getId() {
