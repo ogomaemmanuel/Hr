@@ -35,15 +35,25 @@
                                 v-model="overtimeRequest.overtimeHours"
                                 @input="clearFieldError('overtimeHours')"
                                 class="input"
-                                type="text">
+                                type="number">
                         <span class="mb-2 has-text-danger" v-if="errors['overtimeHours']">
 						{{errors['overtimeHours'][0]}}
 					</span>
                     </div>
                 </div>
-                <span slot="message" class="mb-2 has-text-danger" v-if="errors['departmentId']">
-						{{errors['departmentId'][0]}}
+                <div class="field">
+                    <label class="label ">Description <span><sup>*</sup></span></label>
+                    <div class="control">
+                        <textarea
+                                @input="clearFieldError('description')"
+                                class="textarea is-primary"
+                                v-model="overtimeRequest.description"
+                                placeholder="Primary textarea"></textarea>
+                        <span class="mb-2 has-text-danger" v-if="errors['description']">
+						{{errors['description'][0]}}
 					</span>
+                    </div>
+                </div>
                 <div class="flex justify-center m-3">
                     <button
 
@@ -64,9 +74,10 @@
     import EmployeeSelectInput from "../../common/EmployeeSelectInput";
     import {DatePicker} from "element-ui"
     import ModalTemplate from "../../common/ModalTemplate";
+
     export default {
         mixins: [CommonMixin],
-        components:{
+        components: {
             EmployeeSelectInput,
             ModalTemplate,
             DatePicker
@@ -78,7 +89,7 @@
                     employeeId: "",
                     overtimeHours: "",
                     description: "",
-                    overtimeDate:""
+                    overtimeDate: ""
                 },
                 loading: false,
             }
@@ -94,7 +105,8 @@
             },
             createOvertimeRequest() {
                 let vm = this;
-                axios.post("/api/overtime-requests", this.overtimeRequest).then(resp => {
+                axios.post("/api/overtime-requests",
+                    this.overtimeRequest).then(resp => {
                     vm.$swal({
                         type: "success",
                         title: "Success",
@@ -113,7 +125,7 @@
     }
 </script>
 <style scoped lang="scss">
-    .datepicker{
+    .datepicker {
         min-width: 100%;
     }
 </style>

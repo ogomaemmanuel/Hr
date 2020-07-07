@@ -1,6 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
 import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,19 +19,25 @@ public class OvertimeRequest extends BaseEntity {
     private Long id;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Temporal(TemporalType.DATE)
-    @NotNull
+    @NotNull(message = "Overtime date is required")
     private Date overtimeDate;
-    @NotNull
-    @Min(1)
+    @NotNull(message = "Overtime hours is required")
+    @Min(message = "Overtime hours must not be less than 1",value = 1)
     private Long overtimeHours;
-    @NotBlank
+    @NotBlank(message = "Description is required")
     private String description;
     @Column(name = "employee_id")
-    @NotNull
+    @NotNull(message = "Select an employee")
     private Long employeeId;
     @ManyToOne
     @JoinColumn(name = "employee_id", insertable = false, updatable = false)
     private Employee employee;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
 
     public Long getId() {
         return id;
@@ -77,5 +85,13 @@ public class OvertimeRequest extends BaseEntity {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 }
