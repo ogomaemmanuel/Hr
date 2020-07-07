@@ -175,9 +175,9 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <router-link to="/overtime-requests">
                                         <span>Overtime</span>
-                                    </a>
+                                    </router-link>
                                 </li>
                             </ul>
                         </li>

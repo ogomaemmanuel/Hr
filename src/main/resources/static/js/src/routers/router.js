@@ -43,7 +43,10 @@ const DesignationsEdit = () => import("../components/employee_management/designa
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
 const EmployeeList = () => import("../components/employee_management/employees/list/EmployeeList")
 const EmployeeCreate = () => import("../components/employee_management/employees/create/EmployeeCreateForm")
-// const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
+
+
+const OvertimeRequests = () => import("../components/employee_management/overtime_requests/OverTimeRquestPage")
+
 
 
 const Documents = () => import("../components/file_management/Index")
@@ -400,6 +403,38 @@ const routes = new Router({
                         },
 
                     ]
+                },
+                {
+                    path: "/overtime-requests",
+                    name: "overtime-requests",
+                    component: OvertimeRequests,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Overtime Requests",
+                    },
+                    // children: [
+                    //     {
+                    //         path: "/",
+                    //         name: "leave-types-list",
+                    //         component: LeaveTypeList,
+                    //         meta: {
+                    //             breadcrumb: 'Leave Types',
+                    //         },
+                    //         children: [
+                    //             {
+                    //                 path: "/leave-type-create",
+                    //                 name: "leave-type-create",
+                    //                 component: LeaveTypeCreateModal
+                    //             },
+                    //             {
+                    //                 path: "/leave-type-edit/:id",
+                    //                 name: "leave-type-edit",
+                    //                 component: LeaveTypeEditModal
+                    //             }
+                    //         ]
+                    //     },
+                    //
+                    // ]
                 },
             ]
         },
