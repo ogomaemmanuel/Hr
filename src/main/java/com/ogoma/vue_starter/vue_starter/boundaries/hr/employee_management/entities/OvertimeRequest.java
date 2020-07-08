@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enti
 
 import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "overtime_requests")
+@SQLDelete(sql = "update overtime_requests set deleted=true , deleted_at=now() where id=?")
 public class OvertimeRequest extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

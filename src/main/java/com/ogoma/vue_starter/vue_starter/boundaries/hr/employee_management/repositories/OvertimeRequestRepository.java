@@ -24,5 +24,5 @@ public interface OvertimeRequestRepository extends JpaRepository<OvertimeRequest
                     "from overtime_requests  ovr\n" +
                     "         left join employees e on ovr.employee_id = e.id\n" +
                     "         left join users u on e.user_id = u.id")
-    public Page<OvertimeRequestView> getAll(Pageable pageable);
+    public Page<OvertimeRequestView> getAllActive(Pageable pageable);
 }

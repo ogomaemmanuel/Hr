@@ -21,7 +21,7 @@ public class OvertimeRequestService {
     public Page<OvertimeRequestView> getOvertimeRequests(PagedDataRequest pagedDataRequest) {
         PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(),
                 pagedDataRequest.getPageSize());
-        Page<OvertimeRequestView> overtimeRequestViews = this.overtimeRequestRepository.getAll(pageRequest);
+        Page<OvertimeRequestView> overtimeRequestViews = this.overtimeRequestRepository.getAllActive(pageRequest);
         return overtimeRequestViews;
     }
 
