@@ -66,7 +66,7 @@ public class OvertimeRequestController {
     public ResponseEntity<?> getDepartmentsReport() throws IOException {
         ByteArrayInputStream byteArrayInputStream=  this.overtimeRequestService.generateReport();
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=departments-report.xlsx");
+        headers.add("Content-Disposition", "attachment; filename=overtime-requests-report.xlsx");
         return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(byteArrayInputStream));
     }

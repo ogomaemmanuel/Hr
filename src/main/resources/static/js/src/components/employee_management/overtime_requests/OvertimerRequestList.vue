@@ -123,7 +123,7 @@
 
             confirmRemove(request) {
                 this.$buefy.dialog.confirm({
-                    title: 'Remove Department',
+                    title: 'Remove Overtime Requests',
                     message: `Are you sure you want remove this record`,
                     onConfirm: () => this.removeOvertimeRequest(request)
                 })
