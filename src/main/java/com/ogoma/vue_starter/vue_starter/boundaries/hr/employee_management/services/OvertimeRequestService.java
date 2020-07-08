@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class OvertimeRequestService {
     private final OvertimeRequestRepository overtimeRequestRepository;
@@ -26,5 +28,27 @@ public class OvertimeRequestService {
     public OvertimeRequest createOvertimeRequest(OvertimeRequest overtimeRequest) {
         overtimeRequest = this.overtimeRequestRepository.save(overtimeRequest);
         return overtimeRequest;
+    }
+
+    public Optional<OvertimeRequest> getOvertimeById(Long id) {
+        Optional<OvertimeRequest> overtimeRequest =
+                this.overtimeRequestRepository.findById(id);
+        return overtimeRequest;
+    }
+
+    public Optional<OvertimeRequest> updateOvertimeRequest(Long id, OvertimeRequest overtimeRequest) {
+        Optional<OvertimeRequest> overtimeRequest1 =
+                this.overtimeRequestRepository.findById(id);
+        overtimeRequest1.ifPresent(ovr -> {
+            ovr.setDescription(overtimeRequest.getDescription());
+            ovr.setOvertimeHours(overtimeRequest.getOvertimeHours());
+            ovr.setOvertimeDate(overtimeRequest.getOvertimeDate());
+            this.overtimeRequestRepository.save(ovr);
+        });
+        return overtimeRequest1;
+    }
+
+    public void removeOvertimeRequest(Long id) {
+        this.overtimeRequestRepository.deleteById(id);
     }
 }

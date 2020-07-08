@@ -46,6 +46,8 @@ const EmployeeCreate = () => import("../components/employee_management/employees
 
 
 const OvertimeRequests = () => import("../components/employee_management/overtime_requests/OverTimeRquestPage")
+const OvertimeRequestList = () => import("../components/employee_management/overtime_requests/OvertimerRequestList")
+const OvertimeRequestEdit = () => import("../components/employee_management/overtime_requests/OvertimeRequestEditModal")
 
 
 
@@ -412,29 +414,22 @@ const routes = new Router({
                         breadcrumb: true,
                         title: "Overtime Requests",
                     },
-                    // children: [
-                    //     {
-                    //         path: "/",
-                    //         name: "leave-types-list",
-                    //         component: LeaveTypeList,
-                    //         meta: {
-                    //             breadcrumb: 'Leave Types',
-                    //         },
-                    //         children: [
-                    //             {
-                    //                 path: "/leave-type-create",
-                    //                 name: "leave-type-create",
-                    //                 component: LeaveTypeCreateModal
-                    //             },
-                    //             {
-                    //                 path: "/leave-type-edit/:id",
-                    //                 name: "leave-type-edit",
-                    //                 component: LeaveTypeEditModal
-                    //             }
-                    //         ]
-                    //     },
-                    //
-                    // ]
+                    children: [
+                        {
+                            path: "/",
+                            name: "overtime-requests-list",
+                            component: OvertimeRequestList,
+                           children: [
+                               {
+                                   path: "/overtime-requests-edit/:id",
+                                   name: "overtime-requests-edit",
+                                   component: OvertimeRequestEdit,
+                               },
+                           ]
+                        },
+
+
+                    ]
                 },
             ]
         },

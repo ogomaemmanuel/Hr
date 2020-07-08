@@ -10,10 +10,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OvertimeRequestRepository extends JpaRepository<OvertimeRequest, Long> {
-    @Query(value = "select id,\n" +
+    @Query(value = "select ovr.id,\n" +
             "       u.first_name       as employeeFirstName,\n" +
             "       u.last_name        as employeeLastName,\n" +
             "       ovr.overtime_date  as overtimeDate,\n" +
+            "       ovr.description  as description,\n" +
             "       ovr.overtime_hours as overtimeHours\n" +
             "from overtime_requests  ovr\n" +
             "         left join employees e on ovr.employee_id = e.id\n" +

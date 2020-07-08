@@ -1,5 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models;
 
+import java.util.Date;
+
 public interface OvertimeRequestView {
     public Long getId();
 
@@ -8,6 +10,8 @@ public interface OvertimeRequestView {
     public String getEmployeeLastName();
 
     public Long getOvertimeHours();
+
+    public Date getOvertimeDate();
 
     public String getDescription();
 
