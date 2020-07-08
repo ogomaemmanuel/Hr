@@ -43,7 +43,12 @@ const DesignationsEdit = () => import("../components/employee_management/designa
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
 const EmployeeList = () => import("../components/employee_management/employees/list/EmployeeList")
 const EmployeeCreate = () => import("../components/employee_management/employees/create/EmployeeCreateForm")
-// const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
+
+
+const OvertimeRequests = () => import("../components/employee_management/overtime_requests/OverTimeRquestPage")
+const OvertimeRequestList = () => import("../components/employee_management/overtime_requests/OvertimerRequestList")
+const OvertimeRequestEdit = () => import("../components/employee_management/overtime_requests/OvertimeRequestEditModal")
+
 
 
 const Documents = () => import("../components/file_management/Index")
@@ -398,6 +403,31 @@ const routes = new Router({
                                 }
                             ]
                         },
+
+                    ]
+                },
+                {
+                    path: "/overtime-requests",
+                    name: "overtime-requests",
+                    component: OvertimeRequests,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Overtime Requests",
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            name: "overtime-requests-list",
+                            component: OvertimeRequestList,
+                           children: [
+                               {
+                                   path: "/overtime-requests-edit/:id",
+                                   name: "overtime-requests-edit",
+                                   component: OvertimeRequestEdit,
+                               },
+                           ]
+                        },
+
 
                     ]
                 },

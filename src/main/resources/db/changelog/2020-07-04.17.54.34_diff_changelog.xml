@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="USER (generated)" id="1593885332442-1">
+        <createTable tableName="overtime_requests">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="overtime_requestsPK"/>
+            </column>
+            <column name="deleted" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="datetime(6)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="employee_id" type="BIGINT"/>
+            <column name="overtime_date" type="date"/>
+            <column name="overtime_hours" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+<!--    <changeSet author="USER (generated)" id="1593885332442-2">-->
+<!--        <addUniqueConstraint columnNames="kra_pin_number" constraintName="UC_EMPLOYEESKRA_PIN_NUMBER_COL" tableName="employees"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="USER (generated)" id="1593885332442-3">-->
+<!--        <addUniqueConstraint columnNames="nhif_number" constraintName="UC_EMPLOYEESNHIF_NUMBER_COL" tableName="employees"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="USER (generated)" id="1593885332442-4">-->
+<!--        <addUniqueConstraint columnNames="nssf_number" constraintName="UC_EMPLOYEESNSSF_NUMBER_COL" tableName="employees"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="USER (generated)" id="1593885332442-5">-->
+<!--        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="overtime_requests" constraintName="FKg5wygdf15wnj0dhc2mgquajh5" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>-->
+<!--    </changeSet>-->
+</databaseChangeLog>

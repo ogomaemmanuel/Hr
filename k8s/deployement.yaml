@@ -7,20 +7,21 @@ metadata:
   name: hr-app-deployment # Name of the kubernetes resource
   labels:
     app: hr-app # Labels that will be applied to this resource
-    tier: backend
+    tier: frontend
+    group: hr
 
 spec:
   replicas: 1 # No. of replicas/pods to run in this deployment
   selector:
     matchLabels:
-      app: hr-app # The deployment applies to any pods mayching the specified labels
+      app: hr-app-web # The deployment applies to any pods matching the specified labels
   template: # Template for creating the pods in this deployment
     metadata:
       labels:
-        app: hr-app # Labels that will be applied to each Pod in this deployment
+        app: hr-app-web # Labels that will be applied to each Pod in this deployment
     spec: # Spec for the containers that will be run in the Pods
       containers:
-      - name: hr-app
+      - name: hr-app-web
         image: mudho/hr
         imagePullPolicy: IfNotPresent
         ports:
@@ -42,17 +43,49 @@ spec:
 apiVersion: v1 # API version
 kind: Service  # Type of the kubernetes resource
 metadata:
-  name: hr-app # Name of the kubernetes resource
+  name: hr-app # Name of the kubernetes resource// This is also the DNS name for this
   labels:
     app: hr-app # Labels that will be applied to this resource
 spec:
   type: NodePort # The service will be exposed by opening a Port on each node and proxying it.
   selector:
-    app: hr-app # The service exposes Pods with label `app=hr-app
+    app: hr-app-web # The service exposes Pods with label `app=hr-app
   ports:
     - port: 8080
       name: htpp
       targetPort: 8080 # Forward incoming connections on port 8080 to the target port 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hr-app-database-deployment
+  labels:
+    app: hr-db
+    tier: backend
+    group: hr
+
+spec:
+  selector:
+    matchLabels:
+      app: hr-db
+  template:
+    metadata:
+      labels:
+        app: hr-db
+    spec:
+      containers:
+        - name: Mariadb database
+          image: mariadb/server
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3306
+              protocol: TCP
+              name: mysql
+
+
+
+
 
 
 
