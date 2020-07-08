@@ -14,7 +14,7 @@
 				</span>
             </button>
             <a
-                    href="/api/departments/excel-reports"
+                    href="/api/overtime-requests/excel-reports"
                     class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
