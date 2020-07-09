@@ -1,3 +1,6 @@
 [oracle_compute_one]
 158.101.165.5 ansible_user=ubuntu
 
+[myserver]
+158.111.165.5
+
