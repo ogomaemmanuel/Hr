@@ -2,7 +2,7 @@
     <div>
         <div class="pb-2 flex justify-end">
             <button
-                    @click=""
+                    @click="showResignationCreateForm=true"
                     to="/departments-create"
                     tag="button"
                     class="button mr-1 is-rounded">
@@ -24,15 +24,27 @@
 				</span>
             </a>
         </div>
-<!--        <OvertimeRequestCreateForm-->
-<!--                @modalClosed="showOvertimeRequestForm=false"-->
-<!--                v-if="showOvertimeRequestForm">-->
-<!--        </OvertimeRequestCreateForm>-->
+        <ResignationCreateForm
+                @resignationSaved="showResignationCreateForm=false"
+                @modalClosed="showResignationCreateForm=false"
+                v-if="showResignationCreateForm">
+        </ResignationCreateForm>
         <router-view></router-view>
     </div>
 </template>
 <script>
-    export default {}
+    import ResignationCreateForm from "./ResignationCreateForm";
+
+    export default {
+        components: {
+            ResignationCreateForm
+        },
+        data() {
+            return {
+                showResignationCreateForm: false,
+            }
+        }
+    }
 </script>
 <style lang="scss" scoped>
 

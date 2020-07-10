@@ -4,6 +4,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -12,10 +14,14 @@ public class EmployeeResignation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull(message = "Notice date is required")
     private Date noticeDate;
+    @NotNull(message = "Resignation date is required")
     private Date resignationDate;
+    @NotBlank(message = "Resignation is required")
     private String reason;
     @Column(name = "employee_id")
+    @NotNull(message = "Select an Employee")
     private Long employeeId;
     @OneToOne
     @JoinColumn(insertable = false, updatable = false)
