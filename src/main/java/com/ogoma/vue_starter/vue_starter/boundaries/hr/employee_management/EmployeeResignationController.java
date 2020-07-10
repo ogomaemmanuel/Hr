@@ -21,22 +21,18 @@ public class EmployeeResignationController {
     public EmployeeResignationController(EmployeeResignationService employeeResignationService) {
         this.employeeResignationService = employeeResignationService;
     }
-
     @RequestMapping(value = "api/employee-resignations", method = RequestMethod.GET)
     public ResponseEntity<?> getEmployeeResignations(PagedDataRequest pagedDataRequest) {
         Page<EmployeeResignationView> employeeResignationViews
                 = this.employeeResignationService.getEmployeeResignations(pagedDataRequest);
         return ResponseEntity.ok(employeeResignationViews);
     }
-
     @RequestMapping(value = "api/employee-resignations", method = RequestMethod.POST)
     public ResponseEntity<?> saveEmployeeResignation(@RequestBody @Valid EmployeeResignation employeeResignation) {
         employeeResignation =
                 this.employeeResignationService.createEmployeeResignation(employeeResignation);
         return ResponseEntity.ok(employeeResignation);
     }
-
-
     @RequestMapping(value = "api/employee-resignations", method = RequestMethod.PUT)
     public ResponseEntity<?> updateEmployeeResignation(
             Long id,

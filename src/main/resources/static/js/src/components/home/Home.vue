@@ -180,7 +180,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/overtime-requests">
+                                    <router-link to="/employee-resignations">
                                         <span>Resignation</span>
                                     </router-link>
                                 </li>
