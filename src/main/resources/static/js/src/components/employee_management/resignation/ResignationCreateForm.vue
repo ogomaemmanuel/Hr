@@ -13,7 +13,7 @@
                 </EmployeeSelectInput>
 
                 <div class="field">
-                    <label class="label ">Overtime Date<span><sup>*</sup></span></label>
+                    <label class="label ">Notice Date<span><sup>*</sup></span></label>
                     <div class="control">
                         <DatePicker
                                 class="datepicker"
@@ -51,7 +51,7 @@
                         <textarea
                                 @input="clearFieldError('reason')"
                                 class="textarea is-primary"
-                                v-model="employeeResignation.description"
+                                v-model="employeeResignation.reason"
                                 placeholder="Primary textarea"></textarea>
                         <span class="mb-2 has-text-danger" v-if="errors['reason']">
 						{{errors['reason'][0]}}
@@ -102,6 +102,10 @@
                         text: "Resignation successfully saved"
                     })
                     this.$emit("resignationSaved")
+                }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
                 })
 
             }

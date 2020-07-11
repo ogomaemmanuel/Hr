@@ -15,6 +15,8 @@ public interface EmployeeResignationView {
 
     public String getEmployeeLastName();
 
+    public String getEmployeeDepartment();
+
     public default String getEmployeeFullName() {
         String lastName = this.getEmployeeLastName();
         String firstName = this.getEmployeeFirstName();
