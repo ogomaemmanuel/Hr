@@ -4,52 +4,49 @@
             <div class="card" ref="leaveRequests">
                 <div class="card-content">
                     <div class="content b-table is-relative">
-                        <h4>Overtime Requests</h4>
+                        <h4>Resignations</h4>
                         <table class="table has-mobile-cards w-full is-hoverable">
                             <thead class="font-thin">
                             <tr>
                                 <th>
-                                    Name
+                                    Resigning Employee
                                 </th>
                                 <th>
-                                    OT Date
+                                    Department
                                 </th>
                                 <th>
-                                    OT Hours
+                                    Reason
                                 </th>
                                 <th>
-                                    Description
+                                    Notice Date
                                 </th>
                                 <th>
-                                    Status
+                                    Resignation Date
                                 </th>
-                                <th>
-                                    Approved By
-                                </th>
+
                                 <th>
                                     Action
                                 </th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="overtimeRequest in overtimeRequests">
-                                <td data-label="Name">{{overtimeRequest.employeeFullName}}</td>
-                                <td data-label="Description">{{overtimeRequest.overtimeDate}}</td>
-                                <td data-label="Description">{{overtimeRequest.overtimeHours}}</td>
-                                <td data-label="Description">{{overtimeRequest.description}}</td>
-                                <td data-label="Description"></td>
-                                <td data-label="Description"></td>
+                            <tr v-for="resignation in resignations">
+                                <td data-label="Name">{{resignation.employeeFullName}}</td>
+                                <td data-label="Description">{{resignation.employeeDepartment}}</td>
+                                <td data-label="Description">{{resignation.reason}}</td>
+                                <td data-label="Description">{{resignation.noticeDate}}</td>
+                                <td data-label="Description">{{resignation.resignationDate}}</td>
                                 <td data-label="Action">
                                     <div class="action-controls d-flex justify-end">
                                         <router-link
-                                                :to="`/overtime-requests-edit/${overtimeRequest.id}`" tag="button"
+                                                :to="`/overtime-requests-edit/${resignation.id}`" tag="button"
                                                 class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
                                         </router-link>
                                         <button
-                                                @click="confirmRemove(overtimeRequest)"
+                                                @click="confirmRemove(resignation)"
                                                 class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -78,7 +75,7 @@
             </div>
         </div>
         <router-view
-                @overtimeRequestUpdated="getOvertimeRequests()">
+                @overtimeRequestUpdated="getResignations()">
         </router-view>
     </div>
 </template>
@@ -95,43 +92,43 @@
             return {
                 loading: false,
                 pageable: false,
-                overtimeRequests: []
+                resignations: []
             }
         },
         created() {
-            this.getOvertimeRequests();
+            this.getResignations();
         },
         methods: {
             fetchRecords() {
-                this.getOvertimeRequests();
+                this.getResignations();
             },
-            getOvertimeRequests() {
+            getResignations() {
                 this.loading = true;
-                axios.get("/api/overtime-requests", {
+                axios.get("/api/employee-resignations", {
                     params: {
                         page: this.page,
                         pageSize: this.pageSize,
                     }
                 }).then(resp => {
                     this.loading = false;
-                    this.overtimeRequests = resp.data.content;
+                    this.resignations = resp.data.content;
                     this.pageable = resp.data;
                 }, error => {
                     this.loading = false;
                 })
             },
 
-            confirmRemove(request) {
+            confirmRemove(resignation) {
                 this.$buefy.dialog.confirm({
-                    title: 'Remove Overtime Requests',
+                    title: 'Remove Resignation',
                     message: `Are you sure you want remove this record`,
-                    onConfirm: () => this.removeOvertimeRequest(request)
+                    onConfirm: () => this.removeResignation(resignation)
                 })
             },
-            removeOvertimeRequest(request) {
-                axios.delete(`/api/overtime-requests/${request.id}`,
+            removeResignation(resignation) {
+                axios.delete(`/api/employee-resignations/${resignation.id}`,
                 ).then(resp => {
-                    this.getOvertimeRequests();
+                    this.getResignations();
                 })
             }
         }

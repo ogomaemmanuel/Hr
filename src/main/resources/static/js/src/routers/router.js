@@ -40,6 +40,11 @@ const DesignationsCreate = () => import("../components/employee_management/desig
 const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
 
 
+
+const ResignationPage = () => import("../components/employee_management/resignation/EmployeeResignationPage")
+const ResignationList = () => import("../components/employee_management/resignation/ResignationList")
+
+
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
 const EmployeeList = () => import("../components/employee_management/employees/list/EmployeeList")
 const EmployeeCreate = () => import("../components/employee_management/employees/create/EmployeeCreateForm")
@@ -426,6 +431,31 @@ const routes = new Router({
                                    component: OvertimeRequestEdit,
                                },
                            ]
+                        },
+
+
+                    ]
+                },
+                {
+                    path: "/employee-resignations",
+                    name: "employee-requests",
+                    component: ResignationPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Resignation",
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            name: "employee-resignation-list",
+                            component: ResignationList,
+                           // children: [
+                           //     {
+                           //         path: "/overtime-requests-edit/:id",
+                           //         name: "overtime-requests-edit",
+                           //         component: OvertimeRequestEdit,
+                           //     },
+                           // ]
                         },
 
 

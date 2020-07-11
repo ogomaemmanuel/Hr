@@ -179,6 +179,11 @@
                                         <span>Overtime</span>
                                     </router-link>
                                 </li>
+                                <li>
+                                    <router-link to="/employee-resignations">
+                                        <span>Resignation</span>
+                                    </router-link>
+                                </li>
                             </ul>
                         </li>
 
