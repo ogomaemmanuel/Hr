@@ -60,6 +60,12 @@
 						                            <i class="fa fa-trash-o has-text-danger"></i>
 					                               </span>
                                             </button>
+                                            <button
+                                                    class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-users has-text-primary"></i>
+					                               </span>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
