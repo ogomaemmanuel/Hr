@@ -41,9 +41,9 @@ public class EmployeeResignationController {
         return ResponseEntity.of(employeeResignation);
     }
 
-    @RequestMapping(value = "api/employee-resignations", method = RequestMethod.PUT)
+    @RequestMapping(value = "api/employee-resignations/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateEmployeeResignation(
-            Long id,
+            @PathVariable Long id,
             @RequestBody @Valid EmployeeResignation employeeResignation
     ) {
         Optional<EmployeeResignation> employeeResignation1 =
