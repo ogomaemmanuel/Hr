@@ -34,6 +34,13 @@ public class EmployeeResignationController {
                 this.employeeResignationService.createEmployeeResignation(employeeResignation);
         return ResponseEntity.ok(employeeResignation);
     }
+    @RequestMapping(value = "api/employee-resignations/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getEmployeeResignationById(@PathVariable Long id) {
+        Optional<EmployeeResignation> employeeResignation =
+                this.employeeResignationService.getEmployeeResignationById(id);
+        return ResponseEntity.of(employeeResignation);
+    }
+
     @RequestMapping(value = "api/employee-resignations", method = RequestMethod.PUT)
     public ResponseEntity<?> updateEmployeeResignation(
             Long id,

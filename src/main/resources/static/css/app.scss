@@ -54,3 +54,9 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
+.field{
+  .datepicker{
+    min-width: 100%;
+  }
+}

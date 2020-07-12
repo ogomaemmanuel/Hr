@@ -3,12 +3,12 @@
         <div class="has-text-centered m-3">
             <h1 class="has-text-black"><b>Update Resignation</b></h1>
         </div>
-        <EmployeeSelectInput
-                :required="false"
-                label="Employee"
-                v-model="employeeResignation.employeeId"
-                @input="clearFieldError('employeeId')">
-        </EmployeeSelectInput>
+        <!--        <EmployeeSelectInput-->
+        <!--                :required="false"-->
+        <!--                label="Employee"-->
+        <!--                v-model="employeeResignation.employeeId"-->
+        <!--                @input="clearFieldError('employeeId')">-->
+        <!--        </EmployeeSelectInput>-->
 
         <div class="field">
             <label class="label ">Notice Date<span><sup>*</sup></span></label>
@@ -60,7 +60,7 @@
             <button
 
                     :class="{'is-loading':loading}"
-                    @click.prevent.stop="saveResignation"
+                    @click.prevent.stop="updateDesignation"
                     class="button  is-rounded"
                     type="submit">Submit
             </button>
@@ -74,12 +74,17 @@
 
     export default {
         props: {
-
+            id: {
+                required: true
+            }
         },
         mixins: [CommonMixin],
         components: {
             DatePicker,
             EmployeeSelectInput
+        },
+        created() {
+            this.getDesignation();
         },
         data() {
             return {
@@ -88,8 +93,23 @@
             }
         },
         methods: {
-            getDesignations() {
-                axios.get("/api/employee-resignations")
+            getDesignation() {
+                let vm = this;
+                axios.get(`/api/employee-resignations/${this.id}`).then(resp => {
+                    this.employeeResignation = resp.data;
+                })
+            },
+            updateDesignation() {
+                let vm = this;
+                axios.put(`/api/employee-resignations/${this.id}`,
+                    this.employeeResignation).then(resp => {
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Resignation  update successful "
+                    })
+                    this.$emit("designationUpdated");
+                })
             }
         }
     }

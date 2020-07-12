@@ -39,7 +39,7 @@
                                 <td data-label="Action">
                                     <div class="action-controls d-flex justify-end">
                                         <router-link
-                                                :to="`/overtime-requests-edit/${resignation.id}`" tag="button"
+                                                :to="`/employee-resignation-edit/${resignation.id}`" tag="button"
                                                 class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -75,6 +75,7 @@
             </div>
         </div>
         <router-view
+                @designationUpdated="getResignations()"
                 @overtimeRequestUpdated="getResignations()">
         </router-view>
     </div>

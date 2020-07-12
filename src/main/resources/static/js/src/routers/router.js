@@ -43,6 +43,7 @@ const DesignationsEdit = () => import("../components/employee_management/designa
 
 const ResignationPage = () => import("../components/employee_management/resignation/EmployeeResignationPage")
 const ResignationList = () => import("../components/employee_management/resignation/ResignationList")
+const ResignationEdit= () => import("../components/employee_management/resignation/ResignationEditModal")
 
 
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
@@ -449,13 +450,13 @@ const routes = new Router({
                             path: "/",
                             name: "employee-resignation-list",
                             component: ResignationList,
-                           // children: [
-                           //     {
-                           //         path: "/overtime-requests-edit/:id",
-                           //         name: "overtime-requests-edit",
-                           //         component: OvertimeRequestEdit,
-                           //     },
-                           // ]
+                           children: [
+                               {
+                                   path: "/employee-resignation-edit/:id",
+                                   name: "employee-resignation-edit",
+                                   component: ResignationEdit,
+                               },
+                           ]
                         },
 
 
