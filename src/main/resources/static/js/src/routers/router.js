@@ -46,6 +46,9 @@ const ResignationList = () => import("../components/employee_management/resignat
 const ResignationEdit= () => import("../components/employee_management/resignation/ResignationEditModal")
 
 
+const EmployeeTerminationPage= () => import("../components/employee_management/termination/TerminationPage")
+
+
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
 const EmployeeList = () => import("../components/employee_management/employees/list/EmployeeList")
 const EmployeeCreate = () => import("../components/employee_management/employees/create/EmployeeCreateForm")
@@ -461,6 +464,31 @@ const routes = new Router({
 
 
                     ]
+                },
+                {
+                    path: "/employee-terminations",
+                    name: "employee-terminations",
+                    component: EmployeeTerminationPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Terminations",
+                    },
+                    // children: [
+                    //     {
+                    //         path: "/",
+                    //         name: "employee-resignation-list",
+                    //         component: ResignationList,
+                    //        children: [
+                    //            {
+                    //                path: "/employee-resignation-edit/:id",
+                    //                name: "employee-resignation-edit",
+                    //                component: ResignationEdit,
+                    //            },
+                    //        ]
+                    //     },
+                    //
+                    //
+                    // ]
                 },
             ]
         },

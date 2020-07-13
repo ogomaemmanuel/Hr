@@ -185,7 +185,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/employee-resignations">
+                                    <router-link to="/employee-terminations">
                                         <span>Termination</span>
                                     </router-link>
                                 </li>
