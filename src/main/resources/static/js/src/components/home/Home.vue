@@ -123,7 +123,7 @@
                         </li>
                         <li>
                             <a href="#" class="">
-                                <span class="icon"><i class="fa fa-id-card"></i></span> Access Control
+                                <span class="icon"><i class="fa fa-group"></i></span> Access Control
                             </a>
 
                             <ul class="mr-0 pr-0 border-l-0">
@@ -146,7 +146,7 @@
                         </li>
                         <li>
                             <a href="#" class="">
-                                <span class="icon"><i class="fa fa-id-card"></i></span> Employee Management
+                                <span class="icon"><i class="las la-key "></i></span> Employee Management
                             </a>
                             <ul class="mr-0 pr-0 border-l-0">
                                 <li>
