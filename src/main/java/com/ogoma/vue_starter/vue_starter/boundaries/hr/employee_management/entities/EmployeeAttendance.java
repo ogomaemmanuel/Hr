@@ -22,6 +22,11 @@ public class EmployeeAttendance {
     private Date createdAt;
     @UpdateTimestamp
     private Date updatedAt;
+    @Column(name = "employee_id")
+    private Long employeeId;
+    @ManyToOne
+    @JoinColumn(name="employee_id", updatable = false,insertable = false)
+    private Employee employee;
 
     public Long getId() {
         return id;
@@ -69,5 +74,21 @@ public class EmployeeAttendance {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
