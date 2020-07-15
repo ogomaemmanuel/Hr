@@ -34,12 +34,12 @@
                                 <td data-label="Name">{{resignation.employeeFullName}}</td>
                                 <td data-label="Description">{{resignation.employeeDepartment}}</td>
                                 <td data-label="Description">{{resignation.reason}}</td>
-                                <td data-label="Description">{{resignation.noticeDate}}</td>
-                                <td data-label="Description">{{resignation.resignationDate}}</td>
+                                <td data-label="Description">{{resignation.noticeDate|dateFormat}}</td>
+                                <td data-label="Description">{{resignation.resignationDate|dateFormat}}</td>
                                 <td data-label="Action">
                                     <div class="action-controls d-flex justify-end">
                                         <router-link
-                                                :to="`/overtime-requests-edit/${resignation.id}`" tag="button"
+                                                :to="`/employee-resignation-edit/${resignation.id}`" tag="button"
                                                 class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -75,6 +75,7 @@
             </div>
         </div>
         <router-view
+                @designationUpdated="getResignations()"
                 @overtimeRequestUpdated="getResignations()">
         </router-view>
     </div>
@@ -97,6 +98,11 @@
         },
         created() {
             this.getResignations();
+        },
+        filters: {
+            dateFormat(val) {
+                return moment(val).format("DD MMM YYYY ")
+            }
         },
         methods: {
             fetchRecords() {

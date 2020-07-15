@@ -43,6 +43,11 @@ const DesignationsEdit = () => import("../components/employee_management/designa
 
 const ResignationPage = () => import("../components/employee_management/resignation/EmployeeResignationPage")
 const ResignationList = () => import("../components/employee_management/resignation/ResignationList")
+const ResignationEdit= () => import("../components/employee_management/resignation/ResignationEditModal")
+
+
+const EmployeeTerminationPage= () => import("../components/employee_management/termination/TerminationPage")
+const EmployeeTerminationList= () => import("../components/employee_management/termination/TerminationList")
 
 
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
@@ -449,11 +454,36 @@ const routes = new Router({
                             path: "/",
                             name: "employee-resignation-list",
                             component: ResignationList,
+                           children: [
+                               {
+                                   path: "/employee-resignation-edit/:id",
+                                   name: "employee-resignation-edit",
+                                   component: ResignationEdit,
+                               },
+                           ]
+                        },
+
+
+                    ]
+                },
+                {
+                    path: "/employee-terminations",
+                    name: "employee-terminations",
+                    component: EmployeeTerminationPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Terminations",
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            name: "employee-termination-list",
+                            component: EmployeeTerminationList,
                            // children: [
                            //     {
-                           //         path: "/overtime-requests-edit/:id",
-                           //         name: "overtime-requests-edit",
-                           //         component: OvertimeRequestEdit,
+                           //         path: "/employee-resignation-edit/:id",
+                           //         name: "employee-resignation-edit",
+                           //         component: ResignationEdit,
                            //     },
                            // ]
                         },

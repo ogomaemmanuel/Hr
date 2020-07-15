@@ -49,6 +49,12 @@
                                     <td data-label="Date">{{role.description}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
+                                            <button
+                                                    class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-user-plus has-text-primary"></i>
+					                               </span>
+                                            </button>
                                             <router-link
                                                     :to="`/role-edit/${role.id}`" tag="button"
                                                     class="button is-white is-small">
@@ -56,6 +62,7 @@
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
                                             </router-link>
+
                                             <button
                                                     @click="confirmRemoveRole(role)"
                                                     class="button is-white is-small">
@@ -63,6 +70,7 @@
 						                            <i class="fa fa-trash-o has-text-danger"></i>
 					                               </span>
                                             </button>
+
                                         </div>
                                     </td>
                                 </tr>

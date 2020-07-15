@@ -26,7 +26,6 @@ public class DepartmentsController {
     public DepartmentsController(DepartmentsService departmentsService) {
         this.departmentsService = departmentsService;
     }
-
     @RequestMapping(value = "api/departments", method = RequestMethod.GET)
     public ResponseEntity<?> getDepartments(PagedDataRequest pagedDataRequest) {
         Page<Department> departments = this.departmentsService.getDepartments(pagedDataRequest);

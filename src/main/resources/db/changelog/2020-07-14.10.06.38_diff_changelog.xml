@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="USER (generated)" id="1594721312991-4">
+        <addColumn  tableName="employees_attendance">
+            <column name="employee_id" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1594721312991-5">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employees_attendance" constraintName="FK24140898csq0ad7y4x3v5ed6a" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1594721312991-1">
+        <addNotNullConstraint columnDataType="bigint" columnName="employee_id" tableName="employee_resignations" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
