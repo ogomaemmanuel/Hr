@@ -1,6 +1,6 @@
 <template>
     <div ref="modal" class="modal">
-        <div ref="modalBackground" class="modal-background"></div>
+<!--        <div ref="modalBackground" class="modal-background"></div>-->
         <div ref="modalContent" :style="{'max-width': width + 'px','overflow':overflow}" class="modal-content">
             <div class="box">
                 <slot name="modal-content">
@@ -49,8 +49,15 @@
 <style lang="scss" scoped>
     .modal{
         overflow-y: auto;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(10, 10, 10, 0.86);
         .modal-background{
-            position: fixed;
+
         }
         .modal-content{
             overflow: visible;

@@ -116,11 +116,13 @@
 <script>
     import TerminationCreateForm from "./TerminationCreateForm";
     import data_table_mixin from "../../../mixins/data_table_mixin";
+    import Paginator from "../../common/paginator/Paginator";
 
     export default {
         mixins: [data_table_mixin],
         components: {
-            TerminationCreateForm
+            TerminationCreateForm,
+            Paginator
         },
         data() {
             return {

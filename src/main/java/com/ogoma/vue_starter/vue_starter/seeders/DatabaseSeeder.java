@@ -113,7 +113,10 @@ public class DatabaseSeeder implements CommandLineRunner {
     }
 
     public void seedTerminationReasons() {
-        TerminationReason terminationReason = new TerminationReason("Misconduct");
-        this.terminationReasonsRepository.save(terminationReason);
+        Long count = this.terminationReasonsRepository.count();
+        if (count == 0) {
+            TerminationReason terminationReason = new TerminationReason("Misconduct");
+            this.terminationReasonsRepository.save(terminationReason);
+        }
     }
 }

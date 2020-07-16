@@ -1,5 +1,5 @@
 <template>
-    <ModalTemplate @modalClosed="$emit('modalClosed')">
+    <ModalTemplate width="900" @modalClosed="$emit('modalClosed')">
         <form slot="modal-content" action="">
             <div class="has-text-centered m-3">
                 <h1 class="has-text-black"><b>Add Termination</b></h1>
@@ -13,27 +13,21 @@
                 </EmployeeSelectInput>
             </div>
 
-
-            <div class="field is-grouped">
-                <div class="control is-expanded ">
-                    <label class="label">Termination Type <span><sup>*</sup></span></label>
-
-                    <input class="input" type="text">
-                </div>
-
-                <div class="control">
-                    <button type="button" class="button  is-primary mt-8">
-                                <span class="icon">
-                           <i class="fa fa-plus"></i>
-                     </span>
-                        <span> Add</span>
-                    </button>
-                </div>
-            </div>
-
-
-            <div class="field">
-                <label class="label ">Termination Date <span><sup>*</sup></span></label>
+            <!--            <div class="columns">-->
+            <!--                <div class="column is-10">-->
+            <b-field label="Termination Type">
+                <b-autocomplete
+                        :expanded="true"
+                        field="name"
+                        v-model="terminationReason"
+                        :data="filteredDataArray"
+                        clearable
+                        @select="option => selectedTerminationReason = option">
+                    <template slot="empty">No results found</template>
+                </b-autocomplete>
+            </b-field>
+            <div class="field ">
+                <label class="label  ">Termination Date <span><sup>*</sup></span></label>
                 <div class="control">
                     <input class="input" type="text">
                 </div>
@@ -76,13 +70,26 @@
         },
         data() {
             return {
+                selectedTerminationReason: null,
+                terminationReason: "",
                 loading: false,
-                employeeTermination: {}
+                employeeTermination: {},
+                terminationReasons: []
             }
         },
         methods: {
             saveTermination() {
 
+            }
+        },
+        computed: {
+            filteredDataArray() {
+                return this.terminationReasons.filter((option) => {
+                    return option
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.name.toLowerCase()) >= 0
+                })
             }
         }
     }
