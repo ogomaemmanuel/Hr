@@ -4,6 +4,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -18,6 +20,14 @@ public class TerminatedEmployee {
     private Employee employee;
     @Temporal(TemporalType.TIMESTAMP)
     private Date finalPayDate;
+    @Temporal(TemporalType.DATE)
+    @NotNull
+    private Date terminationDate;
+    @Temporal(TemporalType.DATE)
+    @NotNull
+    private Date noticeDate;
+    @NotBlank
+    private String reason;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
@@ -65,5 +75,37 @@ public class TerminatedEmployee {
 
     public void setUpdatedAte(Date updatedAte) {
         this.updatedAte = updatedAte;
+    }
+
+    public Date getTerminationDate() {
+        return terminationDate;
+    }
+
+    public void setTerminationDate(Date terminationDate) {
+        this.terminationDate = terminationDate;
+    }
+
+    public Date getNoticeDate() {
+        return noticeDate;
+    }
+
+    public void setNoticeDate(Date noticeDate) {
+        this.noticeDate = noticeDate;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public TerminationReason getTerminationReason() {
+        return terminationReason;
+    }
+
+    public void setTerminationReason(TerminationReason terminationReason) {
+        this.terminationReason = terminationReason;
     }
 }
