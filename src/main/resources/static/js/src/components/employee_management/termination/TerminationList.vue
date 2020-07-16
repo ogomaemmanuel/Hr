@@ -2,7 +2,7 @@
     <div>
         <div class="pb-2 flex justify-end">
             <button
-                    @click="showResignationCreateForm=true"
+                    @click="showTerminationCreateForm=true"
                     to="/departments-create"
                     tag="button"
                     class="button mr-1 is-rounded">
@@ -58,23 +58,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr v-for="resignation in terminations">
-                                    <td data-label="Name">{{terminations.employeeFullName}}</td>
-                                    <td data-label="Description">{{terminations.employeeDepartment}}</td>
-                                    <td data-label="Description">{{terminations.reason}}</td>
-                                    <td data-label="Description">{{terminations.noticeDate|dateFormat}}</td>
-                                    <td data-label="Description">{{terminations.resignationDate|dateFormat}}</td>
+                                <tr v-for="termination in terminations">
+                                    <td data-label="Name">{{termination.employeeFullName}}</td>
+                                    <td data-label="Description">{{termination.employeeDepartment}}</td>
+                                    <td data-label="Description">{{termination.reason}}</td>
+                                    <td data-label="Description">{{termination.noticeDate|dateFormat}}</td>
+                                    <td data-label="Description">{{termination.resignationDate|dateFormat}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link
-                                                    :to="`/employee-resignation-edit/${resignation.id}`" tag="button"
+                                                    :to="`/employee-resignation-edit/${termination.id}`" tag="button"
                                                     class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
                                             </router-link>
                                             <button
-                                                    @click="confirmRemove(resignation)"
+                                                    @click="confirmRemove(termination)"
                                                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -102,17 +102,21 @@
                     </div>
                 </div>
             </div>
-            <router-view
-                    @designationUpdated="getResignations()"
-                    @overtimeRequestUpdated="getResignations()">
-            </router-view>
+            <!--            <router-view-->
+            <!--                    @designationUpdated="getResignations()"-->
+            <!--                    @overtimeRequestUpdated="getResignations()">-->
+            <!--            </router-view>-->
         </div>
-        <TerminationCreateForm></TerminationCreateForm>
+        <TerminationCreateForm
+                v-if="showTerminationCreateForm"
+                @modalClosed="showTerminationCreateForm=false"
+        ></TerminationCreateForm>
     </div>
 </template>
 <script>
     import TerminationCreateForm from "./TerminationCreateForm";
     import data_table_mixin from "../../../mixins/data_table_mixin";
+
     export default {
         mixins: [data_table_mixin],
         components: {
@@ -120,8 +124,12 @@
         },
         data() {
             return {
+                showTerminationCreateForm: false,
                 terminations: []
             }
+        },
+        confirmRemove(termination) {
+
         }
     }
 </script>

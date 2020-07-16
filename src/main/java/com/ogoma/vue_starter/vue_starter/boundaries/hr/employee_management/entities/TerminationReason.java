@@ -1,5 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
+import com.ogoma.vue_starter.vue_starter.utils.StringUtils;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,5 +32,10 @@ public class TerminationReason {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @PrePersist
+    public void slugifyCode() {
+        this.code = StringUtils.slugify(this.name);
     }
 }

@@ -107,4 +107,8 @@ public class DatabaseSeeder implements CommandLineRunner {
             this.permissionsRepository.saveAll(permissionList);
         }
     }
+
+    public void seedTerminationReasons(){
+
+    }
 }

@@ -6,7 +6,7 @@ public class StringUtils {
 
     public static String slugify(String inputString) {
         Slugify slg = new Slugify();
-        String slug = slg.slugify(inputString);
+        String slug = slg.slugify(inputString.toLowerCase());
         return slug;
     }
 }

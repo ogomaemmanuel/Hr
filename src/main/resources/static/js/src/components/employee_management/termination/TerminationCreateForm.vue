@@ -1,5 +1,5 @@
 <template>
-    <ModalTemplate>
+    <ModalTemplate @modalClosed="$emit('modalClosed')">
         <form slot="modal-content" action="">
             <div class="has-text-centered m-3">
                 <h1 class="has-text-black"><b>Add Termination</b></h1>
@@ -14,24 +14,22 @@
             </div>
 
 
-                    <div class="field is-grouped">
-                        <div class="control is-expanded ">
-                            <label class="label">Termination Type <span><sup>*</sup></span></label>
+            <div class="field is-grouped">
+                <div class="control is-expanded ">
+                    <label class="label">Termination Type <span><sup>*</sup></span></label>
 
-                            <input class="input" type="text">
-                        </div>
+                    <input class="input" type="text">
+                </div>
 
-                        <div class="control">
-                            <button type="button" class="button mt-8">Add</button>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
+                <div class="control">
+                    <button type="button" class="button  is-primary mt-8">
+                                <span class="icon">
+                           <i class="fa fa-plus"></i>
+                     </span>
+                        <span> Add</span>
+                    </button>
+                </div>
+            </div>
 
 
             <div class="field">
