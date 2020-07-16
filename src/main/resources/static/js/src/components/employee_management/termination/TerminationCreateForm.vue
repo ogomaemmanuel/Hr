@@ -5,23 +5,39 @@
                 <h1 class="has-text-black"><b>Add Termination</b></h1>
             </div>
             <div class="field">
-            <EmployeeSelectInput
-                    :required="true"
-                    label="Terminated Employee "
-                    v-model="employeeTermination.employeeId"
-                    @input="clearFieldError('employeeId')">
-            </EmployeeSelectInput>
+                <EmployeeSelectInput
+                        :required="true"
+                        label="Terminated Employee "
+                        v-model="employeeTermination.employeeId"
+                        @input="clearFieldError('employeeId')">
+                </EmployeeSelectInput>
             </div>
-            <div class="field">
-                <label class="label ">Termination Type <span><sup>*</sup></span></label>
-                <div class="control">
-                    <input class="input" type="text">
-                </div>
-            </div>
+
+
+                    <div class="field is-grouped">
+                        <div class="control is-expanded ">
+                            <label class="label">Termination Type <span><sup>*</sup></span></label>
+
+                            <input class="input" type="text">
+                        </div>
+
+                        <div class="control">
+                            <button type="button" class="button mt-8">Add</button>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
             <div class="field">
                 <label class="label ">Termination Date <span><sup>*</sup></span></label>
                 <div class="control">
-                    <input class="input is-info" type="text">
+                    <input class="input" type="text">
                 </div>
             </div>
             <div class="field">
@@ -40,7 +56,7 @@
                 <button
 
                         :class="{'is-loading':loading}"
-                        @click.prevent.stop="saveResignation"
+                        @click.prevent.stop="saveTermination"
                         class="button  is-rounded"
                         type="submit">Submit
                 </button>
@@ -53,6 +69,7 @@
     import ModalTemplate from "../../common/ModalTemplate";
     import EmployeeSelectInput from "../../common/EmployeeSelectInput";
     import common_mixin from "../../../mixins/common_mixin";
+
     export default {
         mixins: [common_mixin],
         components: {
@@ -61,7 +78,13 @@
         },
         data() {
             return {
+                loading: false,
                 employeeTermination: {}
+            }
+        },
+        methods: {
+            saveTermination() {
+
             }
         }
     }

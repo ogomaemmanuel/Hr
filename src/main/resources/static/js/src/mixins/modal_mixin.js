@@ -10,6 +10,7 @@ export default {
         },
         openModal() {
             $(this.$refs.modal).toggleClass('is-active');
+            //document.body.style.overflowY="hidden"
         }
     }
 }

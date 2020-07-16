@@ -23,7 +23,7 @@
         props: {
             overflow: {
                 required: false,
-                default: 'auto'
+                default: 'initial'
             },
             width: {
                 required: false,
@@ -38,6 +38,22 @@
         },
         mounted() {
             this.openModal();
+            document.body.classList.add("modal-open")
+        },
+        beforeDestroy() {
+            document.body.classList.remove('modal-open')
         }
     }
 </script>
+<style lang="scss" scoped>
+    .modal{
+        overflow-y: auto;
+        .modal-background{
+            position: fixed;
+        }
+        .modal-content{
+            overflow: visible;
+        }
+    }
+
+</style>
