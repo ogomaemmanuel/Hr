@@ -38,7 +38,8 @@
         },
         mounted() {
             this.openModal();
-            document.body.classList.add("modal-open")
+            document.body.classList.add("modal-open");
+
         },
         beforeDestroy() {
             document.body.classList.remove('modal-open')

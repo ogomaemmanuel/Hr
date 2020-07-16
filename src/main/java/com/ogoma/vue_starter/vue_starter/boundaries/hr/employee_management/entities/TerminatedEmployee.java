@@ -24,6 +24,8 @@ public class TerminatedEmployee {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAte;
+    @OneToOne
+    private TerminationReason terminationReason;
 
     public Long getId() {
         return id;
