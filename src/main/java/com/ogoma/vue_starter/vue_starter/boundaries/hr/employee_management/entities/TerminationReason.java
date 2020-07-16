@@ -8,6 +8,15 @@ import javax.persistence.*;
 @Table(name = "termination_reasons")
 public class TerminationReason {
     //reasons for terminating an employee, will appear as drop down when terminating an employee
+
+    public TerminationReason() {
+
+    }
+
+    public TerminationReason(String name) {
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

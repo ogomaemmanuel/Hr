@@ -34,7 +34,10 @@ public class TerminatedEmployee {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAte;
+    @Column(name = "termination_reason_code")
+    public String terminationReasonCode;
     @OneToOne
+    @JoinColumn(name = "termination_reason_code", insertable = false, updatable = false, referencedColumnName = "code")
     private TerminationReason terminationReason;
 
     public Long getId() {
@@ -107,5 +110,13 @@ public class TerminatedEmployee {
 
     public void setTerminationReason(TerminationReason terminationReason) {
         this.terminationReason = terminationReason;
+    }
+
+    public String getTerminationReasonCode() {
+        return terminationReasonCode;
+    }
+
+    public void setTerminationReasonCode(String terminationReasonCode) {
+        this.terminationReasonCode = terminationReasonCode;
     }
 }

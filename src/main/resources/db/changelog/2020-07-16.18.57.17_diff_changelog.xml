@@ -1,0 +1,14 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="USER (generated)" id="1594925894497-5">
+        <addColumn tableName="terminated_employees">
+            <column name="termination_reason_code" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1594925894497-6">
+        <addUniqueConstraint columnNames="code" constraintName="UK_mtv7648n9m28afnqkgofavsr8" tableName="termination_reasons"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1594925894497-7">
+        <addForeignKeyConstraint baseColumnNames="termination_reason_code" baseTableName="terminated_employees" constraintName="FKbrcm72jvdd7cifxl73ml2lb45" deferrable="false" initiallyDeferred="false" referencedColumnNames="code" referencedTableName="termination_reasons" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

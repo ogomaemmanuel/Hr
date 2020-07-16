@@ -24,12 +24,4 @@
             </column>
         </addColumn>
     </changeSet>
-    <changeSet author="USER (generated)" id="1594916539781-5">
-        <addColumn tableName="terminated_employees">
-            <column name="termination_reason_id" type="bigint"/>
-        </addColumn>
-    </changeSet>
-    <changeSet author="USER (generated)" id="1594916539781-6">
-        <addForeignKeyConstraint baseColumnNames="termination_reason_id" baseTableName="terminated_employees" constraintName="FKip58yadf97c4qr51xu18f3wcx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="termination_reasons" validate="true"/>
-    </changeSet>
 </databaseChangeLog>
