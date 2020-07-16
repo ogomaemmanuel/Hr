@@ -23,4 +23,6 @@ public class TerminatedEmployeesController {
         terminatedEmployee = this.terminatedEmployeesService.createTermination(terminatedEmployee);
         return ResponseEntity.ok(terminatedEmployee);
     }
+
+
 }
