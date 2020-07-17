@@ -15,18 +15,29 @@
 					</span>
                 </EmployeeSelectInput>
             </div>
-            <b-field :message="errors['terminationDate']?errors['terminationDate'][0]:''" label="Termination Type">
-                <b-autocomplete
-
-                        :expanded="true"
-                        field="name"
-                        v-model="terminationReason"
-                        :data="filteredDataArray"
-                        clearable
-                        @select="option => selectedTerminationReason = option">
-                    <template slot="empty">No results found</template>
-                </b-autocomplete>
-            </b-field>
+            <div class="field">
+                <label class="label">Termination Date <span><sup>*</sup></span></label>
+                <div class="control is-expanded">
+                    <div class="select is-fullwidth is-empty">
+                        <select v-model="employeeTermination.terminationReasonCode">
+                            <option v-for="terminationReason in terminationReasons" :value="terminationReason.code">{{terminationReason.name}}</option>
+<!--                            <option>With options</option>-->
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!--            <b-field :message="errors['terminationDate']?errors['terminationDate'][0]:''" label="Termination Type">-->
+            <!--                <b-autocomplete-->
+            <!--                        :keep-first="true"-->
+            <!--                        :expanded="true"-->
+            <!--                        field="name"-->
+            <!--                        v-model="terminationReason"-->
+            <!--                        :data="filteredDataArray"-->
+            <!--                        clearable-->
+            <!--                        @select="option => selectedTerminationReason = option">-->
+            <!--                    <template slot="empty">No results found</template>-->
+            <!--                </b-autocomplete>-->
+            <!--            </b-field>-->
             <div class="field ">
                 <label class="label">Termination Date <span><sup>*</sup></span></label>
                 <DatePicker
@@ -93,7 +104,15 @@
                 terminationReasons: []
             }
         },
+        created() {
+            this.getTerminationReasons();
+        },
         methods: {
+            getTerminationReasons() {
+                axios.get("/api/employee-terminations-reasons").then(resp => {
+                    this.terminationReasons = resp.data;
+                })
+            },
             saveTermination() {
                 axios.post(`/api/employee-terminations`,
                     this.employeeTermination).then(resp => {
@@ -110,7 +129,7 @@
                     return option
                         .toString()
                         .toLowerCase()
-                        .indexOf(this.name.toLowerCase()) >= 0
+                        .indexOf(this.terminationReason.toLowerCase()) >= 0
                 })
             }
         }

@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.TerminatedEmployee;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.TerminationReason;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.services.TerminatedEmployeesService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class TerminatedEmployeesController {
@@ -24,5 +26,11 @@ public class TerminatedEmployeesController {
         return ResponseEntity.ok(terminatedEmployee);
     }
 
+    @RequestMapping(value = "api/employee-terminations-reasons")
+    public ResponseEntity<?> getEmployeeTerminationReasons() {
+        List<TerminationReason> terminationReasons =
+                this.terminatedEmployeesService.getTerminationReasons();
+        return ResponseEntity.ok(terminationReasons);
+    }
 
 }

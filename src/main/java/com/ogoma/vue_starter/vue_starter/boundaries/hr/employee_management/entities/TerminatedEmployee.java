@@ -15,8 +15,10 @@ public class TerminatedEmployee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "employee_id")
+    private Long employeeId;
     @OneToOne
-    @MapsId
+    @JoinColumn(name = "employee_id", insertable = false, updatable = false)
     private Employee employee;
     @Temporal(TemporalType.TIMESTAMP)
     private Date finalPayDate;
@@ -114,6 +116,14 @@ public class TerminatedEmployee {
 
     public String getTerminationReasonCode() {
         return terminationReasonCode;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public void setTerminationReasonCode(String terminationReasonCode) {
