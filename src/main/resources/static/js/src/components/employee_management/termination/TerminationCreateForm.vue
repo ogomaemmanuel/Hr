@@ -27,22 +27,30 @@
                 </b-autocomplete>
             </b-field>
             <div class="field ">
-                <label class="label  ">Termination Date <span><sup>*</sup></span></label>
-                <div class="control">
-                    <input class="input" type="text">
-                </div>
+                <label class="label">Termination Date <span><sup>*</sup></span></label>
+                <DatePicker
+                        v-model="employeeTermination.terminationDate"
+                        class="datepicker">
+                </DatePicker>
             </div>
             <div class="field">
                 <label class="label ">Reason <span><sup>*</sup></span></label>
                 <div class="control">
-                    <textarea class="textarea"></textarea>
+                    <textarea
+                            v-model="employeeTermination.reason"
+                            class="textarea">
+                    </textarea>
                 </div>
             </div>
             <div class="field">
                 <label class="label ">Notice Date <span><sup>*</sup></span></label>
-                <div class="control">
-                    <input class="input" type="text">
-                </div>
+                <DatePicker
+                        v-model="employeeTermination.noticeDate"
+                        class="datepicker"></DatePicker>
+
+<!--                <div class="control">-->
+<!--                    <input class="input" type="text">-->
+<!--                </div>-->
             </div>
             <div class="flex justify-center m-3">
                 <button
@@ -61,12 +69,13 @@
     import ModalTemplate from "../../common/ModalTemplate";
     import EmployeeSelectInput from "../../common/EmployeeSelectInput";
     import common_mixin from "../../../mixins/common_mixin";
-
+    import {DatePicker} from "element-ui"
     export default {
         mixins: [common_mixin],
         components: {
             ModalTemplate,
-            EmployeeSelectInput
+            EmployeeSelectInput,
+            DatePicker
         },
         data() {
             return {
