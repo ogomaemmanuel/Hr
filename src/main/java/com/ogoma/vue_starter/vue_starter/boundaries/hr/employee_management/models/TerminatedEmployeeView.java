@@ -15,5 +15,15 @@ public interface TerminatedEmployeeView {
 
     public String getReason();
 
-    public String getTerminationReason();
+    public String departmentName();
+
+    public String getTerminationType();
+    public default String getEmployeeFullName() {
+        String lastName = this.getEmployeeLastName();
+        String firstName = this.getEmployeeFirstName();
+        if (null != firstName) {
+            return firstName.concat(" ").concat(lastName);
+        }
+        return lastName;
+    }
 }

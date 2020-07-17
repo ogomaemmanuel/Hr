@@ -12,12 +12,15 @@ public interface TerminatedEmployeeRepository extends JpaRepository<TerminatedEm
             "       u.first_name        as emoloyeeFirstName,\n" +
             "       u.last_name         as employeeLastName,\n" +
             "       te.notice_date      as noticeDate,\n" +
-            "       te.reason as reason,\n" +
+            "       te.reason           as reason,\n" +
             "       te.termination_date as terminationDate,\n" +
-            "       tr.name as terminationType\n" +
+            "       tr.name             as terminationType,\n" +
+            "       d.name              as departmentName\n" +
             "from terminated_employees te\n" +
             "         left join employees e on te.employee_id = e.id\n" +
-            "         left join users u on e.user_id = u.id left join  termination_reasons tr on te.termination_reason_code = tr.code",
+            "         left join users u on e.user_id = u.id\n" +
+            "         left join termination_reasons tr on te.termination_reason_code = tr.code\n" +
+            "         left join departments d on e.department_id = d.id",
             nativeQuery = true,
             countQuery = "select count(*)\n" +
                     "from terminated_employees te\n" +
