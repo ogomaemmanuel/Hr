@@ -95,7 +95,13 @@
         },
         methods: {
             saveTermination() {
-
+                axios.post(`/api/employee-terminations`,
+                    this.employeeTermination).then(resp => {
+                }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
+                })
             }
         },
         computed: {
