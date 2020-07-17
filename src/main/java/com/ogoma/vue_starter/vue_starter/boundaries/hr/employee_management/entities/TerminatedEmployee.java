@@ -15,7 +15,7 @@ public class TerminatedEmployee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "employee_id")
+    @Column(name = "employee_id",unique = true)
     private Long employeeId;
     @OneToOne
     @JoinColumn(name = "employee_id", insertable = false, updatable = false)

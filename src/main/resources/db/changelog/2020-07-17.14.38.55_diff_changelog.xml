@@ -2,7 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
     <changeSet author="USER (generated)" id="1594996769026-4">
         <addColumn tableName="terminated_employees">
-            <column autoIncrement="true" name="id" type="bigint">
+            <column name="id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </addColumn>
@@ -13,7 +13,7 @@
         </createIndex>
     </changeSet>
     <changeSet author="USER (generated)" id="1594996769026-1">
-        <dropNotNullConstraint columnDataType="bigint" columnName="employee_id" tableName="terminated_employees"/>
+        <addUniqueConstraint  columnNames="employee_id" tableName="terminated_employees"/>
     </changeSet>
     <changeSet author="USER (generated)" id="1594996769026-2">
         <dropPrimaryKey tableName="terminated_employees"/>
