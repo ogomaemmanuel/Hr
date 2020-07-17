@@ -26,6 +26,8 @@ public class TerminatedEmployeesController {
         return ResponseEntity.ok(terminatedEmployee);
     }
 
+
+
     @RequestMapping(value = "api/employee-terminations-reasons")
     public ResponseEntity<?> getEmployeeTerminationReasons() {
         List<TerminationReason> terminationReasons =
