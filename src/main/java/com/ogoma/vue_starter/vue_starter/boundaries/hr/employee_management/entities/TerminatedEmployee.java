@@ -16,6 +16,7 @@ public class TerminatedEmployee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "employee_id",unique = true)
+    @NotNull(message = "Select employee to terminate")
     private Long employeeId;
     @OneToOne
     @JoinColumn(name = "employee_id", insertable = false, updatable = false)
@@ -23,12 +24,12 @@ public class TerminatedEmployee {
     @Temporal(TemporalType.TIMESTAMP)
     private Date finalPayDate;
     @Temporal(TemporalType.DATE)
-    @NotNull
+    @NotNull(message = "Termination date is required")
     private Date terminationDate;
     @Temporal(TemporalType.DATE)
-    @NotNull
+    @NotNull(message = "Notice date is required")
     private Date noticeDate;
-    @NotBlank
+    @NotBlank(message = "Reason is required")
     private String reason;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -125,7 +126,6 @@ public class TerminatedEmployee {
     public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
-
     public void setTerminationReasonCode(String terminationReasonCode) {
         this.terminationReasonCode = terminationReasonCode;
     }
