@@ -10,13 +10,14 @@
                         label="Terminated Employee "
                         v-model="employeeTermination.employeeId"
                         @input="clearFieldError('employeeId')">
+                     <span slot="errors" class="mb-2 has-text-danger" v-if="errors['employeeId']">
+						{{errors['employeeId'][0]}}
+					</span>
                 </EmployeeSelectInput>
             </div>
-
-            <!--            <div class="columns">-->
-            <!--                <div class="column is-10">-->
-            <b-field label="Termination Type">
+            <b-field :message="errors['terminationDate']?errors['terminationDate'][0]:''" label="Termination Type">
                 <b-autocomplete
+
                         :expanded="true"
                         field="name"
                         v-model="terminationReason"
@@ -32,6 +33,9 @@
                         v-model="employeeTermination.terminationDate"
                         class="datepicker">
                 </DatePicker>
+                <span class="mb-2 has-text-danger" v-if="errors['terminationDate']">
+						{{errors['terminationDate'][0]}}
+					</span>
             </div>
             <div class="field">
                 <label class="label ">Reason <span><sup>*</sup></span></label>
@@ -40,6 +44,9 @@
                             v-model="employeeTermination.reason"
                             class="textarea">
                     </textarea>
+                    <span class="mb-2 has-text-danger" v-if="errors['reason']">
+						{{errors['reason'][0]}}
+					</span>
                 </div>
             </div>
             <div class="field">
@@ -47,10 +54,9 @@
                 <DatePicker
                         v-model="employeeTermination.noticeDate"
                         class="datepicker"></DatePicker>
-
-<!--                <div class="control">-->
-<!--                    <input class="input" type="text">-->
-<!--                </div>-->
+                <span class="mb-2 has-text-danger" v-if="errors['noticeDate']">
+						{{errors['noticeDate'][0]}}
+					</span>
             </div>
             <div class="flex justify-center m-3">
                 <button
@@ -70,6 +76,7 @@
     import EmployeeSelectInput from "../../common/EmployeeSelectInput";
     import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
+
     export default {
         mixins: [common_mixin],
         components: {
