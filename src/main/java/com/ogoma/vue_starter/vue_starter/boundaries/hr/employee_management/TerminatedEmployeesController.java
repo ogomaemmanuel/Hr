@@ -8,6 +8,7 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,12 +24,19 @@ public class TerminatedEmployeesController {
         this.terminatedEmployeesService = terminatedEmployeesService;
     }
 
-    @RequestMapping(value = "api/employee-terminations",method = RequestMethod.GET)
+    @RequestMapping(value = "api/employee-terminations", method = RequestMethod.GET)
     public ResponseEntity<?> getAll(PagedDataRequest pagedDataRequest) {
         Page<TerminatedEmployeeView> terminatedEmployeeViews =
                 this.terminatedEmployeesService.getAll(pagedDataRequest);
         return ResponseEntity.ok(terminatedEmployeeViews);
     }
+
+    @RequestMapping(value = "api/employee-terminations/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> removeTerminatedEmployee(@PathVariable("id") Long id) {
+        this.terminatedEmployeesService.removeTerminatedEmployee(id);
+        return ResponseEntity.ok("Terminated employee successfully removed");
+    }
+
 
     @RequestMapping(value = "api/employee-terminations", method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody @Valid TerminatedEmployee terminatedEmployee) {
@@ -36,7 +44,7 @@ public class TerminatedEmployeesController {
         return ResponseEntity.ok(terminatedEmployee);
     }
 
-    @RequestMapping(value = "api/employee-terminations-reasons",method = RequestMethod.GET)
+    @RequestMapping(value = "api/employee-terminations-reasons", method = RequestMethod.GET)
     public ResponseEntity<?> getEmployeeTerminationReasons() {
         List<TerminationReason> terminationReasons =
                 this.terminatedEmployeesService.getTerminationReasons();

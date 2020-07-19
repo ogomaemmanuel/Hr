@@ -39,4 +39,9 @@ public class TerminatedEmployeesService {
     public List<TerminationReason> getTerminationReasons() {
         return this.terminationReasonsRepository.findAll();
     }
+
+    public void removeTerminatedEmployee(Long id) {
+        this.terminatedEmployeeRepository.deleteById(id);
+        return;
+    }
 }

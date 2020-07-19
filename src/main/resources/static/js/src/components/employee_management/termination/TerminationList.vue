@@ -109,6 +109,7 @@
             <!--            </router-view>-->
         </div>
         <TerminationCreateForm
+                @terminationSaved="onTerminationSaved"
                 v-if="showTerminationCreateForm"
                 @modalClosed="showTerminationCreateForm=false"
         ></TerminationCreateForm>
@@ -136,6 +137,13 @@
             this.getTerminations();
         },
         methods: {
+            fetchRecords() {
+                this.getTerminations();
+            },
+            onTerminationSaved() {
+                this.showTerminationCreateForm = false;
+                this.getTerminations();
+            },
             getTerminations() {
                 this.loading = true;
                 axios.get("/api/employee-terminations", {
@@ -150,7 +158,6 @@
                 }, error => {
                     this.loading = false
                 })
-
             },
             confirmRemove(termination) {
 

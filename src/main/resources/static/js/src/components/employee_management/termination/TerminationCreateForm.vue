@@ -1,6 +1,6 @@
 <template>
     <ModalTemplate width="900" @modalClosed="$emit('modalClosed')">
-        <form slot="modal-content" action="">
+        <form ref="terminationForm" slot="modal-content" action="">
             <div class="has-text-centered m-3">
                 <h1 class="has-text-black"><b>Add Termination</b></h1>
             </div>
@@ -20,24 +20,14 @@
                 <div class="control is-expanded">
                     <div class="select is-fullwidth is-empty">
                         <select v-model="employeeTermination.terminationReasonCode">
-                            <option v-for="terminationReason in terminationReasons" :value="terminationReason.code">{{terminationReason.name}}</option>
-<!--                            <option>With options</option>-->
+                            <option v-for="terminationReason in terminationReasons" :value="terminationReason.code">
+                                {{terminationReason.name}}
+                            </option>
+                            <!--                            <option>With options</option>-->
                         </select>
                     </div>
                 </div>
             </div>
-            <!--            <b-field :message="errors['terminationDate']?errors['terminationDate'][0]:''" label="Termination Type">-->
-            <!--                <b-autocomplete-->
-            <!--                        :keep-first="true"-->
-            <!--                        :expanded="true"-->
-            <!--                        field="name"-->
-            <!--                        v-model="terminationReason"-->
-            <!--                        :data="filteredDataArray"-->
-            <!--                        clearable-->
-            <!--                        @select="option => selectedTerminationReason = option">-->
-            <!--                    <template slot="empty">No results found</template>-->
-            <!--                </b-autocomplete>-->
-            <!--            </b-field>-->
             <div class="field ">
                 <label class="label">Termination Date <span><sup>*</sup></span></label>
                 <DatePicker
@@ -52,6 +42,7 @@
                 <label class="label ">Reason <span><sup>*</sup></span></label>
                 <div class="control">
                     <textarea
+                            required
                             v-model="employeeTermination.reason"
                             class="textarea">
                     </textarea>
@@ -114,13 +105,24 @@
                 })
             },
             saveTermination() {
-                axios.post(`/api/employee-terminations`,
-                    this.employeeTermination).then(resp => {
-                }, error => {
-                    if (error.response.status == 400) {
-                        this.errors = error.response.data;
-                    }
-                })
+                let vm = this;
+                if (this.$refs.terminationForm.checkValidity()) {
+                    axios.post(`/api/employee-terminations`,
+                        this.employeeTermination).then(resp => {
+                        vm.$swal({
+                            type: "success",
+                            title: "Success",
+                            text: "Resignation successfully saved"
+                        })
+                        this.$emit("terminationSaved")
+                    }, error => {
+                        if (error.response.status == 400) {
+                            this.errors = error.response.data;
+                        }
+                    })
+                } else {
+                    return false;
+                }
             }
         },
         computed: {
