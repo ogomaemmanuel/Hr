@@ -39,7 +39,7 @@ public class TerminatedEmployee {
     private Date updatedAte;
     @Column(name = "termination_reason_code")
     public String terminationReasonCode;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "termination_reason_code", insertable = false, updatable = false, referencedColumnName = "code")
     private TerminationReason terminationReason;
 

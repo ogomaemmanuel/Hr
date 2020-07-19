@@ -160,7 +160,17 @@
                 })
             },
             confirmRemove(termination) {
-
+                this.$buefy.dialog.confirm({
+                    title: 'Remove Resignation',
+                    message: `Are you sure you want remove this record`,
+                    onConfirm: () => this.removeTermination(termination)
+                })
+            },
+            removeTermination(termination) {
+                axios.delete(`/api/employee-terminations/${termination.id}`)
+                    .then(resp => {
+                        this.getTerminations();
+                    })
             }
         },
 

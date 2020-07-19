@@ -3,10 +3,11 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enti
 import com.ogoma.vue_starter.vue_starter.utils.StringUtils;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "termination_reasons")
-public class TerminationReason {
+public class TerminationReason implements Serializable {
     //reasons for terminating an employee, will appear as drop down when terminating an employee
 
     public TerminationReason() {
