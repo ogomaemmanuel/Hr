@@ -31,7 +31,7 @@ public class TerminatedEmployeesController {
         return ResponseEntity.ok(terminatedEmployeeViews);
     }
 
-    @RequestMapping(value = "api/employee-terminations/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "api/employee-terminations/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeTerminatedEmployee(@PathVariable("id") Long id) {
         this.terminatedEmployeesService.removeTerminatedEmployee(id);
         return ResponseEntity.ok("Terminated employee successfully removed");
