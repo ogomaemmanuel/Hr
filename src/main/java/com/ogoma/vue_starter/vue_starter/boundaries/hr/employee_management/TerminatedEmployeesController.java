@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TerminatedEmployeesController {
@@ -42,6 +43,13 @@ public class TerminatedEmployeesController {
     public ResponseEntity<?> save(@RequestBody @Valid TerminatedEmployee terminatedEmployee) {
         terminatedEmployee = this.terminatedEmployeesService.createTermination(terminatedEmployee);
         return ResponseEntity.ok(terminatedEmployee);
+    }
+
+    @RequestMapping(value = "api/employee-terminations/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@PathVariable("id") Long id, @Valid @RequestBody TerminatedEmployee terminatedEmployee) {
+        Optional<TerminatedEmployee> terminatedEmployeeOptional =
+                this.terminatedEmployeesService.updateTermination(id, terminatedEmployee);
+        return ResponseEntity.of(terminatedEmployeeOptional);
     }
 
     @RequestMapping(value = "api/employee-terminations-reasons", method = RequestMethod.GET)

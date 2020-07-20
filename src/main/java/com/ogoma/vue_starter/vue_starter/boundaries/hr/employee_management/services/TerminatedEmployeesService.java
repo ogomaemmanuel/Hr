@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TerminatedEmployeesService {
@@ -42,6 +43,18 @@ public class TerminatedEmployeesService {
 
     public void removeTerminatedEmployee(Long id) {
         this.terminatedEmployeeRepository.deleteById(id);
-        return;
+    }
+
+    public Optional<TerminatedEmployee> updateTermination(Long id, TerminatedEmployee terminatedEmployee) {
+        Optional<TerminatedEmployee> terminatedEmployee1 =
+                this.terminatedEmployeeRepository.findById(id);
+        terminatedEmployee1.ifPresent(te -> {
+            te.setNoticeDate(terminatedEmployee.getNoticeDate());
+            te.setReason(terminatedEmployee.getReason());
+            te.setTerminationDate(terminatedEmployee.getTerminationDate());
+            te.setTerminationReasonCode(terminatedEmployee.getTerminationReasonCode());
+            this.terminatedEmployeeRepository.save(te);
+        });
+        return terminatedEmployee1;
     }
 }

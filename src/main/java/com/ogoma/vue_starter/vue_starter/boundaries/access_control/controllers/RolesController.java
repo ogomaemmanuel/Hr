@@ -54,7 +54,7 @@ public class RolesController {
     }
 
     @RequestMapping(value = "api/roles/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateRole(@PathVariable("id") Long id,@Valid @RequestBody Role role) {
+    public ResponseEntity<?> updateRole(@PathVariable("id") Long id, @Valid @RequestBody Role role) {
         Optional<Role> optionalRole = this.rolesService.updateRole(id, role);
         return ResponseEntity.of(optionalRole);
     }
