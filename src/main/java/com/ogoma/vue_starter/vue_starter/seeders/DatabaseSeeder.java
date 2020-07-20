@@ -4,6 +4,8 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Perm
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.PermissionsRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.TerminationReason;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.TerminationReasonsRepository;
 import com.ogoma.vue_starter.vue_starter.entities.FamilyRelationship;
 import com.ogoma.vue_starter.vue_starter.entities.MaritalStatus;
 import com.ogoma.vue_starter.vue_starter.repositories.FamilyRelationshipRepository;
@@ -13,7 +15,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,12 +26,14 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final FamilyRelationshipRepository familyRelationshipRepository;
     private final PermissionsRepository permissionsRepository;
     private final UsersRepository usersRepository;
+    private final TerminationReasonsRepository terminationReasonsRepository;
 
-    public DatabaseSeeder(MaritalStatusRepository maritalStatusRepository, FamilyRelationshipRepository familyRelationshipRepository, PermissionsRepository permissionsRepository, UsersRepository usersRepository) {
+    public DatabaseSeeder(MaritalStatusRepository maritalStatusRepository, FamilyRelationshipRepository familyRelationshipRepository, PermissionsRepository permissionsRepository, UsersRepository usersRepository, TerminationReasonsRepository terminationReasonsRepository) {
         this.maritalStatusRepository = maritalStatusRepository;
         this.familyRelationshipRepository = familyRelationshipRepository;
         this.permissionsRepository = permissionsRepository;
         this.usersRepository = usersRepository;
+        this.terminationReasonsRepository = terminationReasonsRepository;
     }
 
     @Override
@@ -39,6 +42,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         seedMaritalStatus();
         seedFamilyRelationship();
         seedPermissions();
+        seedTerminationReasons();
     }
 
     public void seedUsers() {
@@ -105,6 +109,14 @@ public class DatabaseSeeder implements CommandLineRunner {
             permissionList.add(new Permission("View User"));
             permissionList.add(new Permission("Export User Report"));
             this.permissionsRepository.saveAll(permissionList);
+        }
+    }
+
+    public void seedTerminationReasons() {
+        Long count = this.terminationReasonsRepository.count();
+        if (count == 0) {
+            TerminationReason terminationReason = new TerminationReason("Misconduct");
+            this.terminationReasonsRepository.save(terminationReason);
         }
     }
 }

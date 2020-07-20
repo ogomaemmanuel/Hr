@@ -4,6 +4,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -13,17 +15,33 @@ public class TerminatedEmployee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "employee_id",unique = true)
+    @NotNull(message = "Select employee to terminate")
+    private Long employeeId;
     @OneToOne
-    @MapsId
+    @JoinColumn(name = "employee_id", insertable = false, updatable = false)
     private Employee employee;
     @Temporal(TemporalType.TIMESTAMP)
     private Date finalPayDate;
+    @Temporal(TemporalType.DATE)
+    @NotNull(message = "Termination date is required")
+    private Date terminationDate;
+    @Temporal(TemporalType.DATE)
+    @NotNull(message = "Notice date is required")
+    private Date noticeDate;
+    @NotBlank(message = "Reason is required")
+    private String reason;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAte;
+    @Column(name = "termination_reason_code")
+    public String terminationReasonCode;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "termination_reason_code", insertable = false, updatable = false, referencedColumnName = "code")
+    private TerminationReason terminationReason;
 
     public Long getId() {
         return id;
@@ -63,5 +81,52 @@ public class TerminatedEmployee {
 
     public void setUpdatedAte(Date updatedAte) {
         this.updatedAte = updatedAte;
+    }
+
+    public Date getTerminationDate() {
+        return terminationDate;
+    }
+
+    public void setTerminationDate(Date terminationDate) {
+        this.terminationDate = terminationDate;
+    }
+
+    public Date getNoticeDate() {
+        return noticeDate;
+    }
+
+    public void setNoticeDate(Date noticeDate) {
+        this.noticeDate = noticeDate;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public TerminationReason getTerminationReason() {
+        return terminationReason;
+    }
+
+    public void setTerminationReason(TerminationReason terminationReason) {
+        this.terminationReason = terminationReason;
+    }
+
+    public String getTerminationReasonCode() {
+        return terminationReasonCode;
+    }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+    public void setTerminationReasonCode(String terminationReasonCode) {
+        this.terminationReasonCode = terminationReasonCode;
     }
 }

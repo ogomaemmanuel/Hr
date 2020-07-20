@@ -1,5 +1,6 @@
 html{
   background-color: #f2f2f2;
+  overflow-y: auto;
 }
 body {
   background-color: #f2f2f2;
@@ -59,4 +60,13 @@ body {
   .datepicker{
     min-width: 100%;
   }
+}
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

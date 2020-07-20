@@ -1,0 +1,27 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="USER (generated)" id="1594916539781-1">
+        <addColumn tableName="termination_reasons">
+            <column name="code" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1594916539781-2">
+        <addColumn tableName="terminated_employees">
+            <column name="notice_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1594916539781-3">
+        <addColumn tableName="terminated_employees">
+            <column name="reason" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1594916539781-4">
+        <addColumn tableName="terminated_employees">
+            <column name="termination_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>
