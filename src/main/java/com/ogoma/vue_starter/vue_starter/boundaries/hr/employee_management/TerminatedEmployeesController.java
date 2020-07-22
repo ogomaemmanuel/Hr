@@ -24,21 +24,17 @@ public class TerminatedEmployeesController {
     public TerminatedEmployeesController(TerminatedEmployeesService terminatedEmployeesService) {
         this.terminatedEmployeesService = terminatedEmployeesService;
     }
-
     @RequestMapping(value = "api/employee-terminations", method = RequestMethod.GET)
     public ResponseEntity<?> getAll(PagedDataRequest pagedDataRequest) {
         Page<TerminatedEmployeeView> terminatedEmployeeViews =
                 this.terminatedEmployeesService.getAll(pagedDataRequest);
         return ResponseEntity.ok(terminatedEmployeeViews);
     }
-
     @RequestMapping(value = "api/employee-terminations/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeTerminatedEmployee(@PathVariable("id") Long id) {
         this.terminatedEmployeesService.removeTerminatedEmployee(id);
         return ResponseEntity.ok("Terminated employee successfully removed");
     }
-
-
     @RequestMapping(value = "api/employee-terminations", method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody @Valid TerminatedEmployee terminatedEmployee) {
         terminatedEmployee = this.terminatedEmployeesService.createTermination(terminatedEmployee);
@@ -58,5 +54,4 @@ public class TerminatedEmployeesController {
                 this.terminatedEmployeesService.getTerminationReasons();
         return ResponseEntity.ok(terminationReasons);
     }
-
 }
