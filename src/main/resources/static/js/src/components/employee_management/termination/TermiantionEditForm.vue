@@ -4,17 +4,17 @@
             <div class="has-text-centered m-3">
                 <h1 class="has-text-black"><b>Add Termination</b></h1>
             </div>
-<!--            <div class="field">-->
-<!--                <EmployeeSelectInput-->
-<!--                        :required="true"-->
-<!--                        label="Terminated Employee "-->
-<!--                        v-model="employeeTermination.employeeId"-->
-<!--                        @input="clearFieldError('employeeId')">-->
-<!--                     <span slot="errors" class="mb-2 has-text-danger" v-if="errors['employeeId']">-->
-<!--						{{errors['employeeId'][0]}}-->
-<!--					</span>-->
-<!--                </EmployeeSelectInput>-->
-<!--            </div>-->
+            <!--            <div class="field">-->
+            <!--                <EmployeeSelectInput-->
+            <!--                        :required="true"-->
+            <!--                        label="Terminated Employee "-->
+            <!--                        v-model="employeeTermination.employeeId"-->
+            <!--                        @input="clearFieldError('employeeId')">-->
+            <!--                     <span slot="errors" class="mb-2 has-text-danger" v-if="errors['employeeId']">-->
+            <!--						{{errors['employeeId'][0]}}-->
+            <!--					</span>-->
+            <!--                </EmployeeSelectInput>-->
+            <!--            </div>-->
             <div class="field">
                 <label class="label">Termination Date <span><sup>*</sup></span></label>
                 <div class="control is-expanded">
@@ -78,13 +78,17 @@
     import EmployeeSelectInput from "../../common/EmployeeSelectInput";
     import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
-
     export default {
-        mixins: [common_mixin],
         components: {
             ModalTemplate,
             EmployeeSelectInput,
             DatePicker
+        },
+        mixins: [common_mixin],
+        props: {
+            id: {
+                required: true
+            }
         },
         data() {
             return {
@@ -93,6 +97,16 @@
                 loading: false,
                 employeeTermination: {},
                 terminationReasons: []
+            }
+        },
+        computed: {
+            filteredDataArray() {
+                return this.terminationReasons.filter((option) => {
+                    return option
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(this.terminationReason.toLowerCase()) >= 0
+                })
             }
         },
         created() {
@@ -106,33 +120,20 @@
             },
             saveTermination() {
                 let vm = this;
-                if (this.$refs.terminationForm.checkValidity()) {
-                    axios.post(`/api/employee-terminations`,
-                        this.employeeTermination).then(resp => {
-                        vm.$swal({
-                            type: "success",
-                            title: "Success",
-                            text: "Resignation successfully saved"
-                        })
-                        this.$emit("terminationSaved")
-                    }, error => {
-                        if (error.response.status == 400) {
-                            this.errors = error.response.data;
-                        }
+                axios.put(`/api/employee-terminations`,
+                    this.employeeTermination).then(resp => {
+                    vm.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Resignation successfully saved"
                     })
-                } else {
-                    return false;
-                }
-            }
-        },
-        computed: {
-            filteredDataArray() {
-                return this.terminationReasons.filter((option) => {
-                    return option
-                        .toString()
-                        .toLowerCase()
-                        .indexOf(this.terminationReason.toLowerCase()) >= 0
+                    this.$emit("terminationSaved")
+                }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
                 })
+
             }
         }
     }
