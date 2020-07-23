@@ -63,7 +63,7 @@
             <button
 
                     :class="{'is-loading':loading}"
-                    @click.prevent.stop="saveTermination"
+                    @click.prevent.stop="updateTermination"
                     class="button  is-rounded"
                     type="submit">Submit
             </button>
@@ -106,7 +106,7 @@
             }
         },
         created() {
-            this.intialize();
+            this.initialize();
         },
         methods: {
             getTerminationReasons() {
@@ -116,10 +116,10 @@
                 // })
             },
             getTerminationById() {
-                return axios.get(`/api/employee-terminations`);
+                return axios.get(`/api/employee-terminations/${this.id}`);
             },
 
-            intialize() {
+            initialize() {
                 axios.all([this.getTerminationReasons(), this.getTerminationById()])
                     .then(axios.spread((...responses) => {
                         this.terminationReasons = responses[0].data;
@@ -129,9 +129,9 @@
                     });
             },
 
-            saveTermination() {
+            updateTermination() {
                 let vm = this;
-                axios.put(`/api/employee-terminations`,
+                axios.put(`/api/employee-terminations/${this.id}`,
                     this.employeeTermination).then(resp => {
                     vm.$swal({
                         type: "success",

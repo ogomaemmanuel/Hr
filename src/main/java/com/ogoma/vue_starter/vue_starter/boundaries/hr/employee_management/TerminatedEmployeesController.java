@@ -51,7 +51,7 @@ public class TerminatedEmployeesController {
         return ResponseEntity.of(terminatedEmployeeOptional);
     }
 
-    @RequestMapping(value = "/api/employee-terminations/{id}")
+    @RequestMapping(value = "/api/employee-terminations/{id}",method = RequestMethod.GET)
     public ResponseEntity<?> getById(@PathVariable("id") Long id) {
         Optional<TerminatedEmployee> terminatedEmployee =
                 this.terminatedEmployeesService.getTerminationById(id);
