@@ -1,8 +1,7 @@
 <template>
-    <ModalTemplate width="900" @modalClosed="$emit('modalClosed')">
         <form ref="terminationForm" slot="modal-content" action="">
             <div class="has-text-centered m-3">
-                <h1 class="has-text-black"><b>Add Termination</b></h1>
+                <h1 class="has-text-black"><b>Update Termination</b></h1>
             </div>
             <!--            <div class="field">-->
             <!--                <EmployeeSelectInput-->
@@ -70,17 +69,13 @@
                 </button>
             </div>
         </form>
-    </ModalTemplate>
-
 </template>
 <script>
-    import ModalTemplate from "../../common/ModalTemplate";
     import EmployeeSelectInput from "../../common/EmployeeSelectInput";
     import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
     export default {
         components: {
-            ModalTemplate,
             EmployeeSelectInput,
             DatePicker
         },

@@ -68,7 +68,7 @@
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link
-                                                    :to="`/employee-resignation-edit/${termination.id}`" tag="button"
+                                                    :to="`/employee-termination-edit/${termination.id}`" tag="button"
                                                     class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -103,10 +103,10 @@
                     </div>
                 </div>
             </div>
-            <!--            <router-view-->
-            <!--                    @designationUpdated="getResignations()"-->
-            <!--                    @overtimeRequestUpdated="getResignations()">-->
-            <!--            </router-view>-->
+                        <router-view
+                                @designationUpdated="getResignations()"
+                                @overtimeRequestUpdated="getResignations()">
+                        </router-view>
         </div>
         <TerminationCreateForm
                 @terminationSaved="onTerminationSaved"
