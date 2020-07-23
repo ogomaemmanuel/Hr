@@ -57,4 +57,9 @@ public class TerminatedEmployeesService {
         });
         return terminatedEmployee1;
     }
+    public Optional<TerminatedEmployee> getTerminationById(Long id) {
+        Optional<TerminatedEmployee> terminatedEmployee =
+                this.terminatedEmployeeRepository.findById(id);
+        return terminatedEmployee;
+    }
 }

@@ -24,17 +24,20 @@ public class TerminatedEmployeesController {
     public TerminatedEmployeesController(TerminatedEmployeesService terminatedEmployeesService) {
         this.terminatedEmployeesService = terminatedEmployeesService;
     }
+
     @RequestMapping(value = "api/employee-terminations", method = RequestMethod.GET)
     public ResponseEntity<?> getAll(PagedDataRequest pagedDataRequest) {
         Page<TerminatedEmployeeView> terminatedEmployeeViews =
                 this.terminatedEmployeesService.getAll(pagedDataRequest);
         return ResponseEntity.ok(terminatedEmployeeViews);
     }
+
     @RequestMapping(value = "api/employee-terminations/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeTerminatedEmployee(@PathVariable("id") Long id) {
         this.terminatedEmployeesService.removeTerminatedEmployee(id);
         return ResponseEntity.ok("Terminated employee successfully removed");
     }
+
     @RequestMapping(value = "api/employee-terminations", method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody @Valid TerminatedEmployee terminatedEmployee) {
         terminatedEmployee = this.terminatedEmployeesService.createTermination(terminatedEmployee);
@@ -46,6 +49,13 @@ public class TerminatedEmployeesController {
         Optional<TerminatedEmployee> terminatedEmployeeOptional =
                 this.terminatedEmployeesService.updateTermination(id, terminatedEmployee);
         return ResponseEntity.of(terminatedEmployeeOptional);
+    }
+
+    @RequestMapping(value = "/api/employee-terminations/{id}")
+    public ResponseEntity<?> getById(@PathVariable("id") Long id) {
+        Optional<TerminatedEmployee> terminatedEmployee =
+                this.terminatedEmployeesService.getTerminationById(id);
+        return ResponseEntity.of(terminatedEmployee);
     }
 
     @RequestMapping(value = "api/employee-terminations-reasons", method = RequestMethod.GET)
