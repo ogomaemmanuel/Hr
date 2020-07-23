@@ -103,10 +103,9 @@
                     </div>
                 </div>
             </div>
-                        <router-view
-                                @designationUpdated="getResignations()"
-                                @overtimeRequestUpdated="getResignations()">
-                        </router-view>
+            <router-view
+                    @terminationUpdated="getTerminations()">
+            </router-view>
         </div>
         <TerminationCreateForm
                 @terminationSaved="onTerminationSaved"

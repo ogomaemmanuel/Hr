@@ -138,7 +138,7 @@
                         title: "Success",
                         text: "Resignation successfully saved"
                     })
-                    this.$emit("terminationSaved")
+                    this.$emit("terminationUpdated")
                 }, error => {
                     if (error.response.status == 400) {
                         this.errors = error.response.data;

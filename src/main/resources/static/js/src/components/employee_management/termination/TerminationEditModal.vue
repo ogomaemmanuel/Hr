@@ -1,6 +1,7 @@
 <template>
     <ModalTemplate width="900" @modalClosed="$router.back()">
         <TerminationEditForm
+                @terminationUpdated="onTerminationUpdated"
                 :id="$route.params.id"
                 slot="modal-content">
         </TerminationEditForm>
@@ -9,6 +10,7 @@
 <script>
     import ModalTemplate from "../../common/ModalTemplate";
     import TerminationEditForm from "./TerminationEditForm";
+
     export default {
         components: {
             ModalTemplate,
@@ -16,6 +18,12 @@
         },
         data() {
             return {}
+        },
+        methods: {
+            onTerminationUpdated() {
+                this.$emit("terminationUpdated");
+                this.$router.back();
+            }
         }
     }
 </script>
