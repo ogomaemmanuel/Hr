@@ -39,7 +39,9 @@ public class PayrollAdditionsService {
         return payrollAddition1;
     }
 
-
+    public void removePayrollAddition(Long id) {
+        this.payrollAdditionRepository.deleteById(id);
+    }
 
 
 }
