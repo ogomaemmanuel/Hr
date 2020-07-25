@@ -1,4 +1,6 @@
-package com.ogoma.vue_starter.vue_starter.boundaries.payroll;
+package com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities;
+
+import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollFormula;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
