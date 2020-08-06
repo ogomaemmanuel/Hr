@@ -36,10 +36,14 @@ public class TerminatedEmployee {
     private Date createdAt;
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
-    private Date updatedAte;
+    private Date updatedAt;
     @Column(name = "termination_reason_code")
     public String terminationReasonCode;
     @OneToOne(cascade = CascadeType.PERSIST)
+    //Note that when using referencedColumnName to a non primary key column,
+    // the associated class has to be Serializable. Also note
+    // that the referencedColumnName to a non primary key column has
+    // to be mapped to a property having a single column (other cases might not work
     @JoinColumn(name = "termination_reason_code", insertable = false, updatable = false, referencedColumnName = "code")
     private TerminationReason terminationReason;
 
@@ -75,12 +79,12 @@ public class TerminatedEmployee {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAte() {
-        return updatedAte;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdatedAte(Date updatedAte) {
-        this.updatedAte = updatedAte;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public Date getTerminationDate() {
