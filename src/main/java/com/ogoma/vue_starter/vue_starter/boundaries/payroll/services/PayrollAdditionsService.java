@@ -3,6 +3,9 @@ package com.ogoma.vue_starter.vue_starter.boundaries.payroll.services;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollAddition;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.PayrollAdditionRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.PayrollDeductionRepository;
+import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,6 +19,14 @@ public class PayrollAdditionsService {
                                    PayrollDeductionRepository payrollDeductionRepository) {
         this.payrollAdditionRepository = payrollAdditionRepository;
         this.payrollDeductionRepository = payrollDeductionRepository;
+    }
+
+    public Page<PayrollAddition> getPayrollAdditions(PagedDataRequest pagedDataRequest) {
+        PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(),
+                pagedDataRequest.getPageSize());
+        Page<PayrollAddition> payrollAdditions =
+                this.payrollAdditionRepository.findAll(pageRequest);
+        return payrollAdditions;
     }
 
     public PayrollAddition createPayrollAddition(PayrollAddition payrollAddition) {
