@@ -7,10 +7,16 @@
                 <li><a>Deductions</a></li>
             </ul>
         </div>
+        <AdditionsList></AdditionsList>
     </div>
 </template>
 <script>
+    import AdditionsList from "./additions/AdditionsList";
+
     export default {
+        components: {
+            AdditionsList
+        }
 
     }
 </script>
