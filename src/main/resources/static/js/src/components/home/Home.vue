@@ -191,6 +191,28 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-money"></i></span> Payroll
+                            </a>
+                            <ul class="mr-0 pr-0 border-l-0">
+                                <li>
+                                    <router-link to="/employees">
+                                        <span>Employee Salary</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/departments">
+                                        <span>Payslip</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/payroll-items">
+                                        <span>Payroll Items</span>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li>
                             <a href="#" class="">
