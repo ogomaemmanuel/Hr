@@ -7,7 +7,6 @@
                 <li @click="activeForm=1" :class="{'is-active':activeForm==1}"><a>Deductions</a></li>
             </ul>
         </div>
-
         <AdditionsList v-if="activeForm==0"></AdditionsList>
         <DeductionList v-if="activeForm==1"></DeductionList>
     </div>
