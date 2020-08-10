@@ -10,7 +10,7 @@
                         <label class="label"> Name <span><sup>*</sup></span></label>
                         <div class="control">
                             <input
-                                    v-model="designation.name"
+                                    v-model="deduction.name"
                                     @input="clearFieldError('name')"
                                     class="input"
                                     type="text">
@@ -19,46 +19,37 @@
 					</span>
                         </div>
                     </div>
+                    <div class="field">
+                        <label class="label">Calculation <span><sup>*</sup></span></label>
+                        <div class="control">
+                            <div class="block">
+                                <b-radio v-model="deduction.percentage"
+                                         name="name"
+                                         native-value="Jack">
+                                    Percentage
+                                </b-radio>
+                                <b-radio v-model="deduction.flatRate"
+                                         name="name"
+                                         native-value="Vane">
+                                    Flat Rate
+                                </b-radio>
+                            </div>
 
-                    <b-field label="Department">
-                        <b-autocomplete
-                                :data="departments"
-                                placeholder="Department name"
-                                field="name"
-                                :loading="isFetching"
-                                :check-infinite-scroll="true"
-                                @typing="getAsyncData"
-                                @select="option => selectedDepartment = option"
-                                @infinite-scroll="getMoreAsyncData">
-                            <template slot="header">
-                                <a @click="showAddDepartment">
-                                    <span class="has-text-link"> Add new... </span>
-                                </a>
-                            </template>
-                            <template slot-scope="props">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <!--                                <img width="32" :src="`https://image.tmdb.org/t/p/w500/${props.option.poster_path}`">-->
-                                    </div>
-                                    <div class="media-content">
-                                        {{ props.option.name }}
-                                        <br>
-                                        <small>
-                                            <!--                                    Released at {{ props.option.release_date }},-->
-                                            <!--                                    rated <b>{{ props.option.vote_average }}</b>-->
-                                        </small>
-                                    </div>
-                                </div>
-                            </template>
-                            <template slot="footer">
-                                <span v-show="page > totalPages"
-                                      class="has-text-grey"> Thats it! No more movies found. </span>
-                            </template>
-                        </b-autocomplete>
-                    </b-field>
-                    <span slot="message" class="mb-2 has-text-danger" v-if="errors['departmentId']">
-						{{errors['departmentId'][0]}}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label"> Amount <span><sup>*</sup></span></label>
+                        <div class="control">
+                            <input
+                                    v-model="deduction.amount"
+                                    @input="clearFieldError('amount')"
+                                    class="input"
+                                    type="text">
+                            <span class="mb-2 has-text-danger" v-if="errors['amount']">
+						{{errors['amount'][0]}}
 					</span>
+                        </div>
+                    </div>
                     <div class="flex justify-center m-3">
                         <button
 
@@ -79,15 +70,16 @@
     import common_mixin from "../../../../mixins/common_mixin";
 
     export default {
-        mixins: {
+        mixins: [
             common_mixin
-        },
+        ],
         components: {
             ModalTemplate
         },
         data() {
             return {
-
+                deduction: {},
+                loading:false,
             }
         }
     }

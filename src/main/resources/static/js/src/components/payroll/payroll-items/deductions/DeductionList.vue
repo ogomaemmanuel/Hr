@@ -2,8 +2,7 @@
     <div>
         <div class="pb-2 flex justify-end">
             <button
-                    to="/designations-create"
-                    tag="button"
+                    @click="showCreateForm=true"
                     class="button mr-1 is-rounded">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
@@ -78,10 +77,21 @@
                 </div>
             </div>
         </div>
+        <DeductionCreateForm v-if="showCreateForm"></DeductionCreateForm>
     </div>
 </template>
 <script>
+    import DeductionCreateForm from "./DeductionCreateForm";
+
     export default {
+        components: {
+            DeductionCreateForm
+        },
+        data() {
+            return {
+                showCreateForm:false
+            }
+        }
 
     }
 </script>
