@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "payroll-formula-items")
+@Table(name = "payroll_formula_items")
 public class PayrollFormulaItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
