@@ -84,7 +84,9 @@
         <!--                @designationUpdated="onDesignationUpdated"-->
         <!--        >-->
         <!--        </router-view>-->
-        <AdditionCreateForm v-if="showCreateForm"></AdditionCreateForm>
+        <AdditionCreateForm
+                @payrollAdditionCreated="showCreateForm=false"
+                v-if="showCreateForm"></AdditionCreateForm>
     </div>
 </template>
 <script>

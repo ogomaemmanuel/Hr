@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="USER (generated)" id="1597176682290-1">
+        <createTable tableName="payroll-deductions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="payroll-deductionsPK"/>
+            </column>
+            <column name="amount" type="DECIMAL(19, 2)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597176682290-2">
+        <createTable tableName="payroll-formula-items">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="payroll-formula-itemsPK"/>
+            </column>
+            <column name="from" type="DECIMAL(19, 2)"/>
+            <column name="to" type="DECIMAL(19, 2)"/>
+            <column name="payroll_formula_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597176682290-3">
+        <createTable tableName="payroll-formulas">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="payroll-formulasPK"/>
+            </column>
+            <column name="effective_end_date" type="datetime(6)"/>
+            <column name="effective_start_date" type="datetime(6)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597176682290-4">
+        <createTable tableName="payroll-items">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="payroll-itemsPK"/>
+            </column>
+            <column name="amount" type="DECIMAL(19, 2)"/>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime(6)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597176682290-5">
+        <addForeignKeyConstraint baseColumnNames="payroll_formula_id" baseTableName="payroll-formula-items" constraintName="FKkxc0munax594o7qbee7op8aso" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="payroll-formulas" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

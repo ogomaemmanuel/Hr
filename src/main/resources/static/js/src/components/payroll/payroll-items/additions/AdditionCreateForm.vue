@@ -52,10 +52,9 @@
                     </div>
                     <div class="flex justify-center m-3">
                         <button
-
                                 :class="{'is-loading':loading}"
                                 :disabled="false"
-                                @click.prevent.stop=""
+                                @click.prevent.stop="createAddition()"
                                 class="button  is-rounded"
                                 type="submit">Submit
                         </button>
@@ -79,7 +78,19 @@
         data() {
             return {
                 addition: {},
-                loading:false,
+                loading: false,
+            }
+        },
+        methods: {
+            createAddition() {
+                axios.post(`/api/payroll-additions`,
+                    this.addition).then(resp => {
+                    this.$emit("payrollAdditionCreated");
+                }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
+                })
             }
         }
     }
