@@ -35,10 +35,18 @@ public class PayrollAdditionController {
                 this.payrollAdditionsService.getPayrollAdditions(pagedDataRequest);
         return ResponseEntity.ok(payrollAdditions);
     }
+
     @RequestMapping(value = "api/payroll-additions/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updatePayrollAddition(@PathVariable("id") Long id, @Valid @RequestBody PayrollAddition payrollAddition) {
         Optional<PayrollAddition> payrollAddition1 =
                 this.payrollAdditionsService.upPayrollAddition(id, payrollAddition);
         return ResponseEntity.of(payrollAddition1);
+    }
+
+    @RequestMapping(value = "api/payroll-additions/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getPayrollAddition(@PathVariable("id") Long id) {
+        Optional<PayrollAddition> payrollAddition =
+                this.payrollAdditionsService.getPayrollAdditionById(id);
+        return ResponseEntity.of(payrollAddition);
     }
 }
