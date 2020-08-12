@@ -6,11 +6,13 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class PayrollAdditionController {
@@ -32,5 +34,11 @@ public class PayrollAdditionController {
         Page<PayrollAddition> payrollAdditions =
                 this.payrollAdditionsService.getPayrollAdditions(pagedDataRequest);
         return ResponseEntity.ok(payrollAdditions);
+    }
+    @RequestMapping(value = "api/payroll-additions/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updatePayrollAddition(@PathVariable("id") Long id, @Valid @RequestBody PayrollAddition payrollAddition) {
+        Optional<PayrollAddition> payrollAddition1 =
+                this.payrollAdditionsService.upPayrollAddition(id, payrollAddition);
+        return ResponseEntity.of(payrollAddition1);
     }
 }
