@@ -25,9 +25,9 @@
                                     <th>
                                         Name
                                     </th>
-<!--                                    <th>-->
-<!--                                        Category-->
-<!--                                    </th>-->
+                                    <!--                                    <th>-->
+                                    <!--                                        Category-->
+                                    <!--                                    </th>-->
                                     <th>
                                         Default/Unit Amount
                                     </th>
@@ -63,12 +63,12 @@
                                 <tfoot>
                                 <tr>
                                     <td colspan="3">
-                                                                                <Paginator
-                                                                                        @previousPage="goToPrevious"
-                                                                                        @nextPage="goToNext"
-                                                                                        @paginationChanged="onPaginationChanged"
-                                                                                        :paginationData="pageable"
-                                                                                ></Paginator>
+                                        <Paginator
+                                                @previousPage="goToPrevious"
+                                                @nextPage="goToNext"
+                                                @paginationChanged="onPaginationChanged"
+                                                :paginationData="pageable"
+                                        ></Paginator>
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -85,7 +85,7 @@
         <!--        >-->
         <!--        </router-view>-->
         <AdditionCreateForm
-                @payrollAdditionCreated="showCreateForm=false"
+                @payrollAdditionCreated="onPayrollAdditionCreated()"
                 v-if="showCreateForm"></AdditionCreateForm>
     </div>
 </template>
@@ -111,6 +111,10 @@
         },
         methods: {
             fetchRecords() {
+                this.getAdditions();
+            },
+            onPayrollAdditionCreated() {
+                this.showCreateForm = false;
                 this.getAdditions();
             },
             getAdditions() {
