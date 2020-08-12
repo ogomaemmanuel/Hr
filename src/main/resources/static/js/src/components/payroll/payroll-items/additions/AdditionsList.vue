@@ -91,14 +91,30 @@
 </template>
 <script>
     import AdditionCreateForm from "./AdditionCreateForm";
+    import data_table_mixin from "../../../../mixins/data_table_mixin";
 
     export default {
+        mixins: [data_table_mixin],
         components: {
             AdditionCreateForm
         },
         data() {
             return {
-                showCreateForm: false
+                showCreateForm: false,
+                additions: []
+            }
+        },
+        methods: {
+            getAdditions() {
+                axios.get("/api/payroll-additions", {
+                    params: {
+                        page: this.page,
+                        pageSize: this.pageSize,
+                    }
+                }).then(resp => {
+                    this.additions = resp.data.content;
+                    this.pageable = resp.data;
+                })
             }
         }
     }
