@@ -25,9 +25,9 @@
                                     <th>
                                         Name
                                     </th>
-                                    <th>
-                                        Category
-                                    </th>
+<!--                                    <th>-->
+<!--                                        Category-->
+<!--                                    </th>-->
                                     <th>
                                         Default/Unit Amount
                                     </th>
@@ -37,28 +37,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!--                                <tr v-for="designation in designations">-->
-                                <!--                                    <td data-label="Name">{{designation.name}}</td>-->
-                                <!--                                    <td data-label="Description">{{designation.department.name}}</td>-->
-                                <!--                                    <td data-label="Action">-->
-                                <!--                                        <div class="action-controls d-flex justify-end">-->
-                                <!--                                            <router-link-->
-                                <!--                                                    :to="`/designations-edit/${designation.id}`" tag="button"-->
-                                <!--                                                    class="button is-white is-small">-->
-                                <!--												<span class="icon">-->
-                                <!--					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>-->
-                                <!--					                       </span>-->
-                                <!--                                            </router-link>-->
-                                <!--                                            <button-->
-                                <!--                                                    @click=""-->
-                                <!--                                                    class="button is-white is-small">-->
-                                <!--										           <span class="icon">-->
-                                <!--						                            <i class="fa fa-trash-o has-text-danger"></i>-->
-                                <!--					                               </span>-->
-                                <!--                                            </button>-->
-                                <!--                                        </div>-->
-                                <!--                                    </td>-->
-                                <!--                                </tr>-->
+                                <tr v-for="addition in additions">
+                                    <td data-label="Name">{{addition.name}}</td>
+                                    <td data-label="Description">{{addition.amount}}</td>
+                                    <td data-label="Action">
+                                        <div class="action-controls d-flex justify-end">
+                                            <router-link
+                                                    :to="`/designations-edit/${addition.id}`" tag="button"
+                                                    class="button is-white is-small">
+                                												<span class="icon">
+                                					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
+                                					                       </span>
+                                            </router-link>
+                                            <button
+                                                    @click=""
+                                                    class="button is-white is-small">
+                                										           <span class="icon">
+                                						                            <i class="fa fa-trash-o has-text-danger"></i>
+                                					                               </span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -92,11 +92,13 @@
 <script>
     import AdditionCreateForm from "./AdditionCreateForm";
     import data_table_mixin from "../../../../mixins/data_table_mixin";
+    import Paginator from "../../../common/paginator/Paginator";
 
     export default {
         mixins: [data_table_mixin],
         components: {
-            AdditionCreateForm
+            AdditionCreateForm,
+            Paginator
         },
         data() {
             return {
@@ -104,7 +106,13 @@
                 additions: []
             }
         },
+        created() {
+            this.getAdditions();
+        },
         methods: {
+            fetchRecords() {
+                this.getAdditions();
+            },
             getAdditions() {
                 axios.get("/api/payroll-additions", {
                     params: {
