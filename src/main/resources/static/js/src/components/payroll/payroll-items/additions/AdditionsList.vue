@@ -62,13 +62,13 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="8">
-                                        <!--                                        <Paginator-->
-                                        <!--                                                @previousPage="goToPrevious"-->
-                                        <!--                                                @nextPage="goToNext"-->
-                                        <!--                                                @paginationChanged="onPaginationChanged"-->
-                                        <!--                                                :paginationData="pageable"-->
-                                        <!--                                        ></Paginator>-->
+                                    <td colspan="3">
+                                                                                <Paginator
+                                                                                        @previousPage="goToPrevious"
+                                                                                        @nextPage="goToNext"
+                                                                                        @paginationChanged="onPaginationChanged"
+                                                                                        :paginationData="pageable"
+                                                                                ></Paginator>
                                     </td>
                                 </tr>
                                 </tfoot>
