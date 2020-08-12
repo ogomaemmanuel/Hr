@@ -13,9 +13,7 @@ public class PayrollAddition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private BigDecimal amount;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
