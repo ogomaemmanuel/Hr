@@ -67,6 +67,7 @@
 <script>
     import ModalTemplate from "../../../common/ModalTemplate";
     import common_mixin from "../../../../mixins/common_mixin";
+
     export default {
         components: {
             ModalTemplate
@@ -87,7 +88,7 @@
             }
         },
         created() {
-           this.getAdditionById();
+            this.getAdditionById();
         },
         methods: {
             getAdditionById() {
@@ -96,10 +97,13 @@
                 })
             },
             updateAddition() {
+                this.loading = true
                 axios.put(`/api/payroll-additions/${this.id}`,
                     this.addition).then(resp => {
+                    this.loading = false
                     this.$emit("payrollAdditionUpdated");
                 }, error => {
+                    this.loading = false
                     if (error.response.status == 400) {
                         this.errors = error.response.data;
                     }

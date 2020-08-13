@@ -83,10 +83,13 @@
         },
         methods: {
             createAddition() {
+                this.loading = true;
                 axios.post(`/api/payroll-additions`,
                     this.addition).then(resp => {
+                    this.loading = false;
                     this.$emit("payrollAdditionCreated");
                 }, error => {
+                    this.loading = false
                     if (error.response.status == 400) {
                         this.errors = error.response.data;
                     }

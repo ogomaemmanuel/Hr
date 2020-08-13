@@ -13,12 +13,9 @@ import java.util.Optional;
 @Service
 public class PayrollAdditionsService {
     private final PayrollAdditionRepository payrollAdditionRepository;
-    private final PayrollDeductionRepository payrollDeductionRepository;
 
-    public PayrollAdditionsService(PayrollAdditionRepository payrollAdditionRepository,
-                                   PayrollDeductionRepository payrollDeductionRepository) {
+    public PayrollAdditionsService(PayrollAdditionRepository payrollAdditionRepository) {
         this.payrollAdditionRepository = payrollAdditionRepository;
-        this.payrollDeductionRepository = payrollDeductionRepository;
     }
 
     public Page<PayrollAddition> getPayrollAdditions(PagedDataRequest pagedDataRequest) {
