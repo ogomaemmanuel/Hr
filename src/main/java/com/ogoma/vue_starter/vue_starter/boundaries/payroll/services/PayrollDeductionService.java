@@ -16,14 +16,16 @@ public class PayrollDeductionService {
     public PayrollDeductionService(PayrollDeductionRepository payrollDeductionRepository) {
         this.payrollDeductionRepository = payrollDeductionRepository;
     }
-
     public Page<PayrollDeduction> getPayrollDeductions(PagedDataRequest pagedDataRequest) {
-        Sort sort;
         Pageable pageable = PageRequest.of(pagedDataRequest.getPage(),
                 pagedDataRequest.getPageSize());
         Page<PayrollDeduction> payrollDeductions =
                 this.payrollDeductionRepository.findAll(pageable);
         return payrollDeductions;
+    }
+    public PayrollDeduction createPayrollDeduction(PayrollDeduction payrollDeduction) {
+        payrollDeduction = this.payrollDeductionRepository.save(payrollDeduction);
+        return payrollDeduction;
     }
 
 }
