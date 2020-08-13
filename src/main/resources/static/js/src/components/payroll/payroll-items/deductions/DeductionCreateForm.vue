@@ -55,7 +55,7 @@
 
                                 :class="{'is-loading':loading}"
                                 :disabled="false"
-                                @click.prevent.stop=""
+                                @click.prevent.stop="createPayrollDeduction"
                                 class="button  is-rounded"
                                 type="submit">Submit
                         </button>
@@ -79,7 +79,22 @@
         data() {
             return {
                 deduction: {},
-                loading:false,
+                loading: false,
+            }
+        },
+        methods: {
+            createPayrollDeduction() {
+                this.loading = true
+                axios.post("/api/payroll-deductions",
+                    this.deduction).then(resp => {
+                    this.loading = false
+
+                }, error => {
+                    this.loading = false;
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
+                })
             }
         }
     }
