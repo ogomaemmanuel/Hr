@@ -8,14 +8,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "payroll-items")
+@Table(name = "payroll_items")
 public class PayrollAddition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     private BigDecimal amount;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp

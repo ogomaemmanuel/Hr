@@ -61,6 +61,9 @@ const OvertimeRequestList = () => import("../components/employee_management/over
 const OvertimeRequestEdit = () => import("../components/employee_management/overtime_requests/OvertimeRequestEditModal")
 
 
+const PayrollItemsPage = () => import("../components/payroll/payroll-items/PayrollItemPage")
+
+
 
 const Documents = () => import("../components/file_management/Index")
 const PageNotFound = () => import("../components/errors/PageNotFound")
@@ -491,6 +494,31 @@ const routes = new Router({
 
 
                     ]
+                },
+                {
+                    path: "/payroll-items",
+                    name: "payroll-terminations",
+                    component: PayrollItemsPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Payroll Items",
+                    },
+                    // children: [
+                    //     {
+                    //         path: "/",
+                    //         name: "employee-termination-list",
+                    //         component: EmployeeTerminationList,
+                    //        children: [
+                    //            {
+                    //                path: "/employee-termination-edit/:id",
+                    //                name: "employee-termination-edit",
+                    //                component: EmployeeTerminationEdit,
+                    //            },
+                    //        ]
+                    //     },
+                    //
+                    //
+                    // ]
                 },
             ]
         },
