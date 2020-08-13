@@ -42,13 +42,13 @@
                                     <td data-label="Description">{{addition.amount}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
-                                            <router-link
-                                                    :to="`/designations-edit/${addition.id}`" tag="button"
+                                            <button
+                                                    @click="setUpdateId(addition.id)" tag="button"
                                                     class="button is-white is-small">
                                 												<span class="icon">
                                 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
                                 					                       </span>
-                                            </router-link>
+                                            </button>
                                             <button
                                                     @click=""
                                                     class="button is-white is-small">
@@ -87,22 +87,31 @@
         <AdditionCreateForm
                 @payrollAdditionCreated="onPayrollAdditionCreated()"
                 v-if="showCreateForm"></AdditionCreateForm>
+        <AdditionEditForm
+                @payrollAdditionUpdated="onPayrollAdditionUpdated"
+                :id="updateId"
+                v-if="showEditForm">
+        </AdditionEditForm>
     </div>
 </template>
 <script>
     import AdditionCreateForm from "./AdditionCreateForm";
     import data_table_mixin from "../../../../mixins/data_table_mixin";
     import Paginator from "../../../common/paginator/Paginator";
+    import AdditionEditForm from "./AdditionEditForm";
 
     export default {
         mixins: [data_table_mixin],
         components: {
             AdditionCreateForm,
-            Paginator
+            Paginator,
+            AdditionEditForm
         },
         data() {
             return {
                 showCreateForm: false,
+                showEditForm: false,
+                updateId: false,
                 additions: []
             }
         },
@@ -113,9 +122,17 @@
             fetchRecords() {
                 this.getAdditions();
             },
+            onPayrollAdditionUpdated() {
+                this.showEditForm = false;
+                this.getAdditions();
+            },
             onPayrollAdditionCreated() {
                 this.showCreateForm = false;
                 this.getAdditions();
+            },
+            setUpdateId(id) {
+                this.updateId = id;
+                this.showEditForm = true;
             },
             getAdditions() {
                 axios.get("/api/payroll-additions", {

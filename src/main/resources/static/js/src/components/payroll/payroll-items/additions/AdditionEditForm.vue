@@ -7,7 +7,7 @@
                         <h1 class="has-text-black"><b>Update Addition</b></h1>
                     </div>
                     <div class="field">
-                        <label class="label"> Name <span><sup>*</sup></span></label>
+                        <label class="label">Name<span><sup>*</sup></span></label>
                         <div class="control">
                             <input
                                     v-model="addition.name"
@@ -91,14 +91,14 @@
         },
         methods: {
             getAdditionById() {
-                axios.get(`/api/payrool-additions/${this.id}`).then(resp => {
+                axios.get(`/api/payroll-additions/${this.id}`).then(resp => {
                     this.addition = resp.data;
                 })
             },
             updateAddition() {
-                axios.put(`/api/payroll-additions`,
+                axios.put(`/api/payroll-additions/${this.id}`,
                     this.addition).then(resp => {
-                    this.$emit("payrollAdditionCreated");
+                    this.$emit("payrollAdditionUpdated");
                 }, error => {
                     if (error.response.status == 400) {
                         this.errors = error.response.data;
