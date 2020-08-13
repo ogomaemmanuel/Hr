@@ -67,29 +67,36 @@
 <script>
     import ModalTemplate from "../../../common/ModalTemplate";
     import common_mixin from "../../../../mixins/common_mixin";
-
     export default {
+        components: {
+            ModalTemplate
+        },
+        mixins: [
+            common_mixin
+        ],
         props:
             {
                 id: {
                     required: true
                 }
             },
-        mixins: [
-            common_mixin
-        ],
-        components: {
-            ModalTemplate
-        },
         data() {
             return {
                 addition: {},
                 loading: false,
             }
         },
+        created() {
+           this.getAdditionById();
+        },
         methods: {
+            getAdditionById() {
+                axios.get(`/api/payrool-additions/${this.id}`).then(resp => {
+                    this.addition = resp.data;
+                })
+            },
             updateAddition() {
-                axios.post(`/api/payroll-additions`,
+                axios.put(`/api/payroll-additions`,
                     this.addition).then(resp => {
                     this.$emit("payrollAdditionCreated");
                 }, error => {
