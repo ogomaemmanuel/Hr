@@ -23,9 +23,9 @@
                                     <th>
                                         Name
                                     </th>
-                                    <th>
-                                        Category
-                                    </th>
+                                    <!--                                    <th>-->
+                                    <!--                                        Category-->
+                                    <!--                                    </th>-->
                                     <th>
                                         Default/Unit Amount
                                     </th>
@@ -35,43 +35,42 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!--                                <tr v-for="designation in designations">-->
-                                <!--                                    <td data-label="Name">{{designation.name}}</td>-->
-                                <!--                                    <td data-label="Description">{{designation.department.name}}</td>-->
-                                <!--                                    <td data-label="Action">-->
-                                <!--                                        <div class="action-controls d-flex justify-end">-->
-                                <!--                                            <router-link-->
-                                <!--                                                    :to="`/designations-edit/${designation.id}`" tag="button"-->
-                                <!--                                                    class="button is-white is-small">-->
-                                <!--												<span class="icon">-->
-                                <!--					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>-->
-                                <!--					                       </span>-->
-                                <!--                                            </router-link>-->
-                                <!--                                            <button-->
-                                <!--                                                    @click=""-->
-                                <!--                                                    class="button is-white is-small">-->
-                                <!--										           <span class="icon">-->
-                                <!--						                            <i class="fa fa-trash-o has-text-danger"></i>-->
-                                <!--					                               </span>-->
-                                <!--                                            </button>-->
-                                <!--                                        </div>-->
-                                <!--                                    </td>-->
-                                <!--                                </tr>-->
+                                <tr v-for="deduction in deductions">
+                                    <td data-label="Name">{{deduction.name}}</td>
+                                    <td data-label="Description">{{deduction.amount}}</td>
+                                    <td data-label="Action">
+                                        <div class="action-controls d-flex justify-end">
+                                            <button
+                                                    @click="setUpdateId(deduction.id)" tag="button"
+                                                    class="button is-white is-small">
+                                												<span class="icon">
+                                					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
+                                					                       </span>
+                                            </button>
+                                            <button
+                                                    @click=""
+                                                    class="button is-white is-small">
+                                										           <span class="icon">
+                                						                            <i class="fa fa-trash-o has-text-danger"></i>
+                                					                               </span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="8">
-                                        <!--                                        <Paginator-->
-                                        <!--                                                @previousPage="goToPrevious"-->
-                                        <!--                                                @nextPage="goToNext"-->
-                                        <!--                                                @paginationChanged="onPaginationChanged"-->
-                                        <!--                                                :paginationData="pageable"-->
-                                        <!--                                        ></Paginator>-->
+                                    <td colspan="3">
+                                        <Paginator
+                                                @previousPage="goToPrevious"
+                                                @nextPage="goToNext"
+                                                @paginationChanged="onPaginationChanged"
+                                                :paginationData="pageable">
+                                        </Paginator>
                                     </td>
                                 </tr>
                                 </tfoot>
                             </table>
-                            <!--                            <b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>-->
                         </div>
                     </div>
                 </div>
@@ -82,14 +81,43 @@
 </template>
 <script>
     import DeductionCreateForm from "./DeductionCreateForm";
+    import common_mixin from "../../../../mixins/common_mixin";
+    import Paginator from "../../../common/paginator/Paginator";
+    import data_table_mixin from "../../../../mixins/data_table_mixin";
 
     export default {
+        mixins: [data_table_mixin],
         components: {
-            DeductionCreateForm
+            DeductionCreateForm,
+            Paginator
         },
         data() {
             return {
-                showCreateForm:false
+                showCreateForm: false,
+                deductions: [],
+                updateId: false,
+            }
+        },
+        created() {
+            this.getDeductions();
+        },
+        methods: {
+            setUpdateId(id) {
+                this.updateId = id;
+                this.showEditForm = true;
+            },
+            getDeductions() {
+                axios.get("/api/payroll-deductions", {
+                    params: {
+                        page: this.page,
+                        pageSize: this.pageSize,
+                    }
+                }).then(resp => {
+                    this.deductions = resp.data.content;
+                    this.pageable = resp.data;
+                }, error => {
+
+                })
             }
         }
 

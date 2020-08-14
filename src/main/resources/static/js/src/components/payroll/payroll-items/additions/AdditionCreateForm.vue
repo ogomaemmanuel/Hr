@@ -1,5 +1,5 @@
 <template>
-    <ModalTemplate>
+    <ModalTemplate @modalClosed="$emit('modalClosed')">
         <div slot="modal-content">
             <div>
                 <form>

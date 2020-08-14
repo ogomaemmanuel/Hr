@@ -1,13 +1,10 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.payroll.services;
-
-import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollAddition;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollDeduction;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.PayrollDeductionRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -43,7 +40,7 @@ public class PayrollDeductionService {
         Optional<PayrollDeduction> payrollDeduction1 = this.payrollDeductionRepository.findById(id);
         payrollDeduction1.ifPresent(pd -> {
             pd.setAmount(payrollDeduction.getAmount());
-            pa.setName(payrollDeduction.getName());
+            pd.setName(payrollDeduction.getName());
             this.payrollDeductionRepository.save(pd);
         });
         return payrollDeduction1;
