@@ -2,9 +2,7 @@
     <div>
         <div class="pb-2 flex justify-end">
             <button
-                    to="/designations-create"
                     @click="showCreateForm=true"
-                    tag="button"
                     class="button mr-1 is-rounded">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
