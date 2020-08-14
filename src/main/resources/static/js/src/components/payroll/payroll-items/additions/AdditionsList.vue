@@ -79,15 +79,12 @@
                 </div>
             </div>
         </div>
-        <!--        <router-view-->
-        <!--                @designationCreated="onDesignationCreated"-->
-        <!--                @designationUpdated="onDesignationUpdated"-->
-        <!--        >-->
-        <!--        </router-view>-->
         <AdditionCreateForm
+                @modalClosed="showCreateForm=false"
                 @payrollAdditionCreated="onPayrollAdditionCreated()"
                 v-if="showCreateForm"></AdditionCreateForm>
         <AdditionEditForm
+                @modalClosed="showEditForm=false"
                 @payrollAdditionUpdated="onPayrollAdditionUpdated"
                 :id="updateId"
                 v-if="showEditForm">

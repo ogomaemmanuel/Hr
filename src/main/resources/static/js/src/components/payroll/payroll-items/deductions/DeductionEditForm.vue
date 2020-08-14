@@ -1,16 +1,16 @@
 <template>
-    <ModalTemplate @modalClosed="$emit('modalClosed')">
+    <ModalTemplate>
         <div slot="modal-content">
             <div>
                 <form>
                     <div class="has-text-centered m-3">
-                        <h1 class="has-text-black"><b>Update Addition</b></h1>
+                        <h1 class="has-text-black"><b>Update Deduction</b></h1>
                     </div>
                     <div class="field">
                         <label class="label">Name<span><sup>*</sup></span></label>
                         <div class="control">
                             <input
-                                    v-model="addition.name"
+                                    v-model="deduction.name"
                                     @input="clearFieldError('name')"
                                     class="input"
                                     type="text">
@@ -23,12 +23,12 @@
                         <label class="label">Calculation <span><sup>*</sup></span></label>
                         <div class="control">
                             <div class="block">
-                                <b-radio v-model="addition.percentage"
+                                <b-radio v-model="deduction.percentage"
                                          name="name"
                                          native-value="Jack">
                                     Percentage
                                 </b-radio>
-                                <b-radio v-model="addition.flatRate"
+                                <b-radio v-model="deduction.flatRate"
                                          name="name"
                                          native-value="Vane">
                                     Flat Rate
@@ -41,7 +41,7 @@
                         <label class="label"> Amount <span><sup>*</sup></span></label>
                         <div class="control">
                             <input
-                                    v-model="addition.amount"
+                                    v-model="deduction.amount"
                                     @input="clearFieldError('amount')"
                                     class="input"
                                     type="text">
@@ -54,7 +54,7 @@
                         <button
                                 :class="{'is-loading':loading}"
                                 :disabled="false"
-                                @click.prevent.stop="updateAddition()"
+                                @click.prevent.stop="updateDeduction()"
                                 class="button  is-rounded"
                                 type="submit">Submit
                         </button>
@@ -83,7 +83,7 @@
             },
         data() {
             return {
-                addition: {},
+                deduction: {},
                 loading: false,
             }
         },
@@ -92,16 +92,16 @@
         },
         methods: {
             getAdditionById() {
-                axios.get(`/api/payroll-additions/${this.id}`).then(resp => {
+                axios.get(`/api/payroll-deductions/${this.id}`).then(resp => {
                     this.addition = resp.data;
                 })
             },
-            updateAddition() {
+            updateDeduction() {
                 this.loading = true
-                axios.put(`/api/payroll-additions/${this.id}`,
+                axios.put(`/api/payroll-deductions/${this.id}`,
                     this.addition).then(resp => {
                     this.loading = false
-                    this.$emit("payrollAdditionUpdated");
+                    this.$emit("payrollDeductionUpdated");
                 }, error => {
                     this.loading = false
                     if (error.response.status == 400) {
