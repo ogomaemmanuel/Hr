@@ -2,10 +2,10 @@ name: Main Branch
 
 on:
   push:
-#    branches: [ master,eogoma ]
-    branches: [ release ]
-  pull_request:
     branches: [ master]
+#    branches: [ release ]
+  pull_request:
+#    branches: [ master]
 #    branches: [ release]
 
 jobs:
