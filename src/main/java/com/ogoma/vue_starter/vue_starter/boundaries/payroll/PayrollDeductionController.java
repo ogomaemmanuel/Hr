@@ -41,4 +41,12 @@ public class PayrollDeductionController {
                 = this.payrollDeductionService.getPayrollDeductionById(id);
         return ResponseEntity.of(payrollDeduction);
     }
+
+    @RequestMapping(value = "api/payroll-deductions/{id}",method = RequestMethod.PUT)
+    public ResponseEntity<?> updatePayrollDeduction(@PathVariable("id") Long id,
+                                                    @Valid @RequestBody PayrollDeduction payrollDeduction){
+        Optional<PayrollDeduction> payrollDeduction1=
+                this.payrollDeductionService.updatePayrollDeduction(id,payrollDeduction);
+        return ResponseEntity.of(payrollDeduction1);
+    }
 }
