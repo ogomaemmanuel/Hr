@@ -81,7 +81,10 @@
                 @payrollDeductionCreated="onPayrollDeductionCreated"
                 v-if="showCreateForm">
         </DeductionCreateForm>
-        <DeductionEditForm v-if="showEditForm"></DeductionEditForm>
+        <DeductionEditForm
+                @modalClosed="showEditForm=false"
+                :id="updateId"
+                v-if="showEditForm"></DeductionEditForm>
     </div>
 </template>
 <script>
@@ -111,6 +114,9 @@
             this.getDeductions();
         },
         methods: {
+            fetchRecords() {
+                this.getDeductions();
+            },
             setUpdateId(id) {
                 this.updateId = id;
                 this.showEditForm = true;
