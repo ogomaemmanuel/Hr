@@ -99,7 +99,7 @@
             updateDeduction() {
                 this.loading = true
                 axios.put(`/api/payroll-deductions/${this.id}`,
-                    this.addition).then(resp => {
+                    this.deduction).then(resp => {
                     this.loading = false
                     this.$swal({
                         type: "success",

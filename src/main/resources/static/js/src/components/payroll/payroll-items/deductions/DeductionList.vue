@@ -82,9 +82,11 @@
                 v-if="showCreateForm">
         </DeductionCreateForm>
         <DeductionEditForm
+                @payrollDeductionUpdated="onPayrollDeductionUpdated"
                 @modalClosed="showEditForm=false"
                 :id="updateId"
-                v-if="showEditForm"></DeductionEditForm>
+                v-if="showEditForm">
+        </DeductionEditForm>
     </div>
 </template>
 <script>
@@ -120,6 +122,10 @@
             setUpdateId(id) {
                 this.updateId = id;
                 this.showEditForm = true;
+            },
+            onPayrollDeductionUpdated() {
+                this.showEditForm = false;
+                this.getDeductions();
             },
             onPayrollDeductionCreated() {
                 this.showCreateForm = false;
