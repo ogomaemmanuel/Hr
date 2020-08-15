@@ -7,8 +7,10 @@ services:
     depends_on:
       - db
     ports:
-      - 8060:8080
+      - "8060:8080"
+    restart: on-failure
     environment:
+      SERVER_PORT: 8080
       SPRING_PROFILES_ACTIVE: "production"
       SPRING_DATASOURCE_PASSWORD: ${DB_USER_SECRET}
       SPRING_DATASOURCE_USERNAME: ${DB_USER}
@@ -17,7 +19,7 @@ services:
 
   db:
     image: mariadb/server
-    restart: always
+#    restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MARIADB_DATABASE: ${HR_SCHEMA:-hr}
