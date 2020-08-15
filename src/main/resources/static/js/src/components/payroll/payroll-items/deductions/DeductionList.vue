@@ -76,7 +76,10 @@
                 </div>
             </div>
         </div>
-        <DeductionCreateForm v-if="showCreateForm"></DeductionCreateForm>
+        <DeductionCreateForm
+                @modalClosed="showCreateForm=false"
+                @payrollDeductionCreated="onPayrollDeductionCreated"
+                v-if="showCreateForm"></DeductionCreateForm>
     </div>
 </template>
 <script>
@@ -105,6 +108,10 @@
             setUpdateId(id) {
                 this.updateId = id;
                 this.showEditForm = true;
+            },
+            onPayrollDeductionCreated() {
+                this.showCreateForm = false;
+                this.getDeductions();
             },
             getDeductions() {
                 axios.get("/api/payroll-deductions", {
