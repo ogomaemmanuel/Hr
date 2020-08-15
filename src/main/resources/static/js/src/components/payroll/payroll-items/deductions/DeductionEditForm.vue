@@ -101,6 +101,11 @@
                 axios.put(`/api/payroll-deductions/${this.id}`,
                     this.addition).then(resp => {
                     this.loading = false
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Payroll deduction successfully updated"
+                    })
                     this.$emit("payrollDeductionUpdated");
                 }, error => {
                     this.loading = false
