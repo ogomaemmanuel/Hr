@@ -35,7 +35,7 @@ public class PayrollDeductionController {
                 this.payrollDeductionService.getPayrollDeductions(pagedDataRequest);
         return ResponseEntity.ok(payrollDeductions);
     }
-     @RequestMapping(value = "api/payroll-deductions/{id}")
+     @RequestMapping(value = "api/payroll-deductions/{id}",method = RequestMethod.GET)
     public ResponseEntity<?> getPayrollDeductionById(@PathVariable("id") Long id) {
         Optional<PayrollDeduction> payrollDeduction
                 = this.payrollDeductionService.getPayrollDeductionById(id);
