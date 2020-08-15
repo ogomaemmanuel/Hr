@@ -76,7 +76,12 @@
                 </div>
             </div>
         </div>
-        <DeductionCreateForm v-if="showCreateForm"></DeductionCreateForm>
+        <DeductionCreateForm
+                @modalClosed="showCreateForm=false"
+                @payrollDeductionCreated="onPayrollDeductionCreated"
+                v-if="showCreateForm">
+        </DeductionCreateForm>
+        <DeductionEditForm v-if="showEditForm"></DeductionEditForm>
     </div>
 </template>
 <script>
@@ -84,18 +89,22 @@
     import common_mixin from "../../../../mixins/common_mixin";
     import Paginator from "../../../common/paginator/Paginator";
     import data_table_mixin from "../../../../mixins/data_table_mixin";
+    import DeductionEditForm from "./DeductionEditForm";
 
     export default {
         mixins: [data_table_mixin],
         components: {
             DeductionCreateForm,
-            Paginator
+            Paginator,
+            DeductionEditForm
+
         },
         data() {
             return {
                 showCreateForm: false,
                 deductions: [],
                 updateId: false,
+                showEditForm: false,
             }
         },
         created() {
@@ -105,6 +114,10 @@
             setUpdateId(id) {
                 this.updateId = id;
                 this.showEditForm = true;
+            },
+            onPayrollDeductionCreated() {
+                this.showCreateForm = false;
+                this.getDeductions();
             },
             getDeductions() {
                 axios.get("/api/payroll-deductions", {

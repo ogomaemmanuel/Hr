@@ -5,7 +5,7 @@ on:
 #    branches: [ master,eogoma ]
     branches: [ release ]
   pull_request:
-#    branches: [ master]
+   branches: [ master]
     branches: [ release]
 
 jobs:

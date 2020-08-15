@@ -87,6 +87,11 @@
                 axios.post(`/api/payroll-additions`,
                     this.addition).then(resp => {
                     this.loading = false;
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Payroll addition successfully saved"
+                    })
                     this.$emit("payrollAdditionCreated");
                 }, error => {
                     this.loading = false

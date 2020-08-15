@@ -1,5 +1,5 @@
 <template>
-    <ModalTemplate>
+    <ModalTemplate @modalClosed="$emit('modalClosed')">
         <div slot="modal-content">
             <div>
                 <form>
@@ -88,7 +88,12 @@
                 axios.post("/api/payroll-deductions",
                     this.deduction).then(resp => {
                     this.loading = false
-
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Payroll deduction successfully saved"
+                    })
+                    this.$emit("payrollDeductionCreated");
                 }, error => {
                     this.loading = false;
                     if (error.response.status == 400) {
