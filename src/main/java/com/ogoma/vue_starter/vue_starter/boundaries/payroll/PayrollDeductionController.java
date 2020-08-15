@@ -39,6 +39,6 @@ public class PayrollDeductionController {
     public ResponseEntity<?> getPayrollDeductionById(@PathVariable("id") Long id) {
         Optional<PayrollDeduction> payrollDeduction
                 = this.payrollDeductionService.getPayrollDeductionById(id);
-        return ResponseEntity.ok(payrollDeduction);
+        return ResponseEntity.of(payrollDeduction);
     }
 }

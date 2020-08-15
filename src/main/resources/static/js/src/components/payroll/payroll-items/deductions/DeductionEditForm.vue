@@ -88,12 +88,12 @@
             }
         },
         created() {
-            this.getAdditionById();
+            this.getDeductionById();
         },
         methods: {
-            getAdditionById() {
+            getDeductionById() {
                 axios.get(`/api/payroll-deductions/${this.id}`).then(resp => {
-                    this.addition = resp.data;
+                    this.deduction = resp.data;
                 })
             },
             updateDeduction() {
