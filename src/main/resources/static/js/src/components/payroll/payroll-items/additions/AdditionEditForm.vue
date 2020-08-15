@@ -100,7 +100,12 @@
                 this.loading = true
                 axios.put(`/api/payroll-additions/${this.id}`,
                     this.addition).then(resp => {
-                    this.loading = false
+                    this.loading = false;
+                    this.$swal({
+                        type: "success",
+                        title: "Success",
+                        text: "Payroll addition successfully updated"
+                    })
                     this.$emit("payrollAdditionUpdated");
                 }, error => {
                     this.loading = false
