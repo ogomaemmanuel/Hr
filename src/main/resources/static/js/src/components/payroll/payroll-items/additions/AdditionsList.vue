@@ -48,7 +48,7 @@
                                 					                       </span>
                                             </button>
                                             <button
-                                                    @click=""
+                                                    @click="confirmRemoveAddition(addition)"
                                                     class="button is-white is-small">
                                 										           <span class="icon">
                                 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -128,6 +128,19 @@
             setUpdateId(id) {
                 this.updateId = id;
                 this.showEditForm = true;
+            },
+            confirmRemoveAddition(addition) {
+                this.$buefy.dialog.confirm({
+                    title: 'Remove Payroll Addition',
+                    message: `Are you sure you want remove this record`,
+                    onConfirm: () => this.removeAddition(addition)
+                })
+            },
+            removeAddition(addition) {
+                axios.delete(`/api/payroll-additions/${addition.id}`,
+                ).then(resp => {
+                    this.getAdditions();
+                })
             },
             getAdditions() {
                 axios.get("/api/payroll-additions", {

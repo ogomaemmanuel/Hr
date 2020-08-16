@@ -43,10 +43,16 @@ public class PayrollAdditionController {
         return ResponseEntity.of(payrollAddition1);
     }
 
-    @RequestMapping(value = "api/payroll-additions/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "api/payroll-additions/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getPayrollAddition(@PathVariable("id") Long id) {
         Optional<PayrollAddition> payrollAddition =
                 this.payrollAdditionsService.getPayrollAdditionById(id);
         return ResponseEntity.of(payrollAddition);
+    }
+
+    @RequestMapping(value = "api/payroll-additions/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> removePayrollAddition(@PathVariable Long id) {
+        this.payrollAdditionsService.removePayrollAddition(id);
+        return ResponseEntity.ok().build();
     }
 }
