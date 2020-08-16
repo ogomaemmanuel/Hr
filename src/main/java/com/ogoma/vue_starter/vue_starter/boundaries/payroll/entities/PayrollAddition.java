@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.payroll.enums.PayrollCalculation;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -15,6 +16,8 @@ public class PayrollAddition {
     private Long id;
     private String name;
     private BigDecimal amount;
+    @Enumerated(EnumType.STRING)
+    private PayrollCalculation calculation;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
@@ -46,15 +49,26 @@ public class PayrollAddition {
         this.amount = amount;
     }
 
+    public PayrollCalculation getCalculation() {
+        return calculation;
+    }
+
+    public void setCalculation(PayrollCalculation payrollCalculation) {
+        this.calculation = payrollCalculation;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
+
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
     public Date getUpdatedAt() {
         return updatedAt;
     }
+
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
