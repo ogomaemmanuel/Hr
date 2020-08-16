@@ -48,7 +48,7 @@
                                 					                       </span>
                                             </button>
                                             <button
-                                                    @click=""
+                                                    @click="confirmRemoveDeduction(deduction)"
                                                     class="button is-white is-small">
                                 										           <span class="icon">
                                 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -81,7 +81,12 @@
                 @payrollDeductionCreated="onPayrollDeductionCreated"
                 v-if="showCreateForm">
         </DeductionCreateForm>
-        <DeductionEditForm v-if="showEditForm"></DeductionEditForm>
+        <DeductionEditForm
+                @payrollDeductionUpdated="onPayrollDeductionUpdated"
+                @modalClosed="showEditForm=false"
+                :id="updateId"
+                v-if="showEditForm">
+        </DeductionEditForm>
     </div>
 </template>
 <script>
@@ -111,13 +116,33 @@
             this.getDeductions();
         },
         methods: {
+            fetchRecords() {
+                this.getDeductions();
+            },
             setUpdateId(id) {
                 this.updateId = id;
                 this.showEditForm = true;
             },
+            onPayrollDeductionUpdated() {
+                this.showEditForm = false;
+                this.getDeductions();
+            },
             onPayrollDeductionCreated() {
                 this.showCreateForm = false;
                 this.getDeductions();
+            },
+            confirmRemoveDeduction(deduction) {
+                this.$buefy.dialog.confirm({
+                    title: 'Remove Payroll Deduction',
+                    message: `Are you sure you want remove this record`,
+                    onConfirm: () => this.removeDeduction(deduction)
+                })
+            },
+            removeDeduction(deduction) {
+                axios.delete(`/api/payroll-deductions/${deduction.id}`,
+                ).then(resp => {
+                    this.getDeductions();
+                })
             },
             getDeductions() {
                 axios.get("/api/payroll-deductions", {

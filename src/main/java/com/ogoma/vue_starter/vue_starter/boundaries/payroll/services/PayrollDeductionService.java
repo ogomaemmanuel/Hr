@@ -1,4 +1,5 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.payroll.services;
+
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollDeduction;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.PayrollDeductionRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -44,5 +45,9 @@ public class PayrollDeductionService {
             this.payrollDeductionRepository.save(pd);
         });
         return payrollDeduction1;
+    }
+
+    public void removePayrollDeduction(Long id) {
+        this.payrollDeductionRepository.deleteById(id);
     }
 }

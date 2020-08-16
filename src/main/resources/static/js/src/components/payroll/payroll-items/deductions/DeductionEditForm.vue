@@ -1,5 +1,5 @@
 <template>
-    <ModalTemplate>
+    <ModalTemplate @modalClosed="$emit('modalClosed')">
         <div slot="modal-content">
             <div>
                 <form>
@@ -88,18 +88,18 @@
             }
         },
         created() {
-            this.getAdditionById();
+            this.getDeductionById();
         },
         methods: {
-            getAdditionById() {
+            getDeductionById() {
                 axios.get(`/api/payroll-deductions/${this.id}`).then(resp => {
-                    this.addition = resp.data;
+                    this.deduction = resp.data;
                 })
             },
             updateDeduction() {
                 this.loading = true
                 axios.put(`/api/payroll-deductions/${this.id}`,
-                    this.addition).then(resp => {
+                    this.deduction).then(resp => {
                     this.loading = false
                     this.$swal({
                         type: "success",
