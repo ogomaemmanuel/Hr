@@ -1,0 +1,744 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="USER (generated)" id="1597591005287-1">
+        <createTable tableName="account_categories">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-2">
+        <createTable tableName="application_configuration">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="key" type="VARCHAR(255)"/>
+            <column name="value" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-3">
+        <createTable tableName="buckets">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_on" type="datetime"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_on" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-4">
+        <createTable tableName="chart_of_account_visibility_areas">
+            <column name="chart_of_account_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="visibility_areas" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-5">
+        <createTable tableName="chart_of_accounts">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="norminal_code" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-6">
+        <createTable tableName="company_details">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="business_description" type="VARCHAR(255)"/>
+            <column name="business_entity_type" type="VARCHAR(255)"/>
+            <column name="date_established" type="datetime"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="logo_url" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="registration_no" type="VARCHAR(255)"/>
+            <column name="state_of_incorporation" type="VARCHAR(255)"/>
+            <column name="website_url" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-7">
+        <createTable tableName="departments">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="deleted" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="datetime"/>
+            <column name="created_at" type="datetime"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-8">
+        <createTable tableName="designations">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="deleted" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="datetime"/>
+            <column name="created_at" type="datetime"/>
+            <column name="department_id" type="BIGINT"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-9">
+        <createTable tableName="documents">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_on" type="datetime"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="size" type="BIGINT"/>
+            <column name="updated_on" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-10">
+        <createTable tableName="employee_contact_addresses">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="relationship_id" type="BIGINT"/>
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-11">
+        <createTable tableName="employee_educational_info">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-12">
+        <createTable tableName="employee_resignations">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notice_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reason" type="VARCHAR(255)"/>
+            <column name="resignation_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-13">
+        <createTable tableName="employee_statutory_document_number">
+            <column name="statutory_document_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-14">
+        <createTable tableName="employees">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="deleted" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="datetime"/>
+            <column name="status" type="BIT(1)"/>
+            <column name="created_on" type="datetime"/>
+            <column name="department_id" type="BIGINT"/>
+            <column name="designation_id" type="BIGINT"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="joining_date" type="datetime"/>
+            <column name="kra_pin_number" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="nhif_number" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="nssf_number" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="salary_amount" type="DECIMAL(19, 2)"/>
+            <column name="supervisor_id" type="BIGINT"/>
+            <column name="updated_on" type="datetime"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-15">
+        <createTable tableName="employees_attendance">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="date" type="date"/>
+            <column name="punch_in_time" type="time"/>
+            <column name="punch_out_time" type="time"/>
+            <column name="updated_at" type="datetime"/>
+            <column name="employee_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-16">
+        <createTable tableName="employees_past_experience">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="company_name" type="VARCHAR(255)"/>
+            <column name="role" type="VARCHAR(255)"/>
+            <column name="role_description" type="VARCHAR(255)"/>
+            <column name="working_period" type="VARCHAR(255)"/>
+            <column name="employee_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-17">
+        <createTable tableName="events">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="start_date" type="datetime"/>
+            <column name="start_time" type="time"/>
+            <column name="venue" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-18">
+        <createTable tableName="family_relationships">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-19">
+        <createTable tableName="holidays">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="deleted" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="datetime"/>
+            <column name="created_at" type="datetime"/>
+            <column name="date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-20">
+        <createTable tableName="leave_requests">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="applicant_user_id" type="BIGINT"/>
+            <column name="created_at" type="datetime"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="end_date" type="date"/>
+            <column name="in_place" type="BIGINT"/>
+            <column name="leave_statuses" type="VARCHAR(255)"/>
+            <column name="leave_type_id" type="BIGINT"/>
+            <column name="number_of_days" type="INT"/>
+            <column name="start_date" type="date"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-21">
+        <createTable tableName="leave_requests_history">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="leave_statuses" type="VARCHAR(255)"/>
+            <column name="performed_by" type="BIGINT"/>
+            <column name="updated_at" type="datetime"/>
+            <column name="leave_request_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-22">
+        <createTable tableName="leave_types">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="deleted" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="datetime"/>
+            <column name="created_at" type="datetime"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="number_of_days" type="INT"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-23">
+        <createTable tableName="marital_statuses">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="code" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-24">
+        <createTable tableName="notifications">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="is_read" type="BIT(1)"/>
+            <column name="message" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-25">
+        <createTable tableName="overtime_requests">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="deleted" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="datetime"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="overtime_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="overtime_hours" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-26">
+        <createTable tableName="password_resets">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="expires_on" type="datetime"/>
+            <column name="purpose" type="VARCHAR(255)"/>
+            <column name="token" type="VARCHAR(255)"/>
+            <column name="used" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-27">
+        <createTable tableName="payroll_deductions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="amount" type="DECIMAL(19, 2)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-28">
+        <createTable tableName="payroll_formula_items">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="from" type="DECIMAL(19, 2)"/>
+            <column name="to" type="DECIMAL(19, 2)"/>
+            <column name="payroll_formula_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-29">
+        <createTable tableName="payroll_formulas">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="effective_end_date" type="datetime"/>
+            <column name="effective_start_date" type="datetime"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-30">
+        <createTable tableName="payroll_items">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="amount" type="DECIMAL(19, 2)"/>
+            <column name="created_at" type="datetime"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-31">
+        <createTable tableName="permissions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-32">
+        <createTable tableName="role_permission">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="permission_id" type="BIGINT"/>
+            <column name="role_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-33">
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="deleted" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_at" type="datetime"/>
+            <column name="created_at" type="datetime"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-34">
+        <createTable tableName="shifts">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_on" type="datetime"/>
+            <column name="end_time" type="time"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="start_time" type="time"/>
+            <column name="statuses" type="VARCHAR(255)"/>
+            <column name="updated_on" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-35">
+        <createTable tableName="statutory_documents">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-36">
+        <createTable tableName="terminated_employees">
+            <column name="created_at" type="datetime"/>
+            <column name="final_pay_date" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="notice_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reason" type="VARCHAR(255)"/>
+            <column name="termination_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="termination_reason_code" type="VARCHAR(255)"/>
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-37">
+        <createTable tableName="termination_reasons">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="code" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-38">
+        <createTable tableName="transactions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-39">
+        <createTable tableName="user_role">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role_id" type="BIGINT"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-40">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="created_on" type="datetime"/>
+            <column name="date_of_birth" type="datetime"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="identity_no" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="marital_status_id" type="BIGINT"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="postal_address" type="VARCHAR(255)"/>
+            <column name="updated_on" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-41">
+        <createTable tableName="verification_tokens">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="created_on" type="datetime"/>
+            <column name="expires_on" type="datetime"/>
+            <column name="purpose" type="VARCHAR(255)"/>
+            <column name="token" type="VARCHAR(255)"/>
+            <column name="updated_on" type="datetime"/>
+            <column name="used" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-42">
+        <createIndex indexName="FK1tlxdprrlnjtqa61y0n7kfqn9" tableName="chart_of_account_visibility_areas">
+            <column name="chart_of_account_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-43">
+        <createIndex indexName="FK24140898csq0ad7y4x3v5ed6a" tableName="employees_attendance">
+            <column name="employee_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-44">
+        <createIndex indexName="FK26il0qrl79p6etqwn0ae6l43b" tableName="leave_requests">
+            <column name="leave_type_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-45">
+        <createIndex indexName="FK2q9drrvhye5m5ivk5h6re2b4i" tableName="employees">
+            <column name="supervisor_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-46">
+        <createIndex indexName="FK2xn8qv4vw30i04xdxrpvn3bdi" tableName="role_permission">
+            <column name="permission_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-47">
+        <createIndex indexName="FK54y8mqsnq1rtyf581sfmrbp4f" tableName="verification_tokens">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-48">
+        <createIndex indexName="FK5kgb0o61xcwqr3scbtopsca3p" tableName="designations">
+            <column name="department_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-49">
+        <createIndex indexName="FK5lhhy2x6n802yxtqelsinuykc" tableName="employee_contact_addresses">
+            <column name="employee_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-50">
+        <createIndex indexName="FK69x3vjuy1t5p18a5llb8h2fjx" tableName="employees">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-51">
+        <createIndex indexName="FK9y21adhxn0ayjhfocscqox7bh" tableName="notifications">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-52">
+        <createIndex indexName="FKbrcm72jvdd7cifxl73ml2lb45" tableName="terminated_employees">
+            <column name="termination_reason_code"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-53">
+        <createIndex indexName="FKd3njvd5dglpsas315axh0iq5t" tableName="leave_requests_history">
+            <column name="leave_request_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-54">
+        <createIndex indexName="FKe4i9i8vu1j96m71g4v98kqirb" tableName="employees">
+            <column name="designation_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-55">
+        <createIndex indexName="FKfy4ulhbvy3yguwnqqvts2iqqx" tableName="password_resets">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-56">
+        <createIndex indexName="FKg5wygdf15wnj0dhc2mgquajh5" tableName="overtime_requests">
+            <column name="employee_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-57">
+        <createIndex indexName="FKgy4qe3dnqrm3ktd76sxp7n4c2" tableName="employees">
+            <column name="department_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-58">
+        <createIndex indexName="FKiycu8rt01imfpub8d63q61i0j" tableName="employees_past_experience">
+            <column name="employee_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-59">
+        <createIndex indexName="FKj345gk1bovqvfame88rcx7yyx" tableName="user_role">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-60">
+        <createIndex indexName="FKjaqllu27j2qai1g6s2v4pvyb8" tableName="employee_resignations">
+            <column name="employee_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-61">
+        <createIndex indexName="FKpet85nrn5aant1uith47kof4w" tableName="leave_requests">
+            <column name="applicant_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-62">
+        <createIndex indexName="FKqew91eo4x5qtoa00mngjtn3go" tableName="payroll_formula_items">
+            <column name="payroll_formula_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-63">
+        <createIndex indexName="FKr4jv8pgbshwb894n5e1gxbnjr" tableName="leave_requests">
+            <column name="in_place"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-64">
+        <createIndex indexName="FKsiym94te0ogmfcf5dqr2y8lie" tableName="leave_requests_history">
+            <column name="performed_by"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-65">
+        <createIndex indexName="FKt7e7djp752sqn6w22i6ocqy6q" tableName="user_role">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-66">
+        <createIndex indexName="FKtfgq8q9blrp0pt1pvggyli3v9" tableName="role_permission">
+            <column name="role_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-67">
+        <addForeignKeyConstraint baseColumnNames="chart_of_account_id" baseTableName="chart_of_account_visibility_areas" constraintName="FK1tlxdprrlnjtqa61y0n7kfqn9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="chart_of_accounts" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-68">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employees_attendance" constraintName="FK24140898csq0ad7y4x3v5ed6a" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-69">
+        <addForeignKeyConstraint baseColumnNames="leave_type_id" baseTableName="leave_requests" constraintName="FK26il0qrl79p6etqwn0ae6l43b" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="leave_types" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-70">
+        <addForeignKeyConstraint baseColumnNames="supervisor_id" baseTableName="employees" constraintName="FK2q9drrvhye5m5ivk5h6re2b4i" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-71">
+        <addForeignKeyConstraint baseColumnNames="permission_id" baseTableName="role_permission" constraintName="FK2xn8qv4vw30i04xdxrpvn3bdi" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="permissions" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-72">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="verification_tokens" constraintName="FK54y8mqsnq1rtyf581sfmrbp4f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-73">
+        <addForeignKeyConstraint baseColumnNames="department_id" baseTableName="designations" constraintName="FK5kgb0o61xcwqr3scbtopsca3p" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="departments" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-74">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employee_contact_addresses" constraintName="FK5lhhy2x6n802yxtqelsinuykc" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-75">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="employees" constraintName="FK69x3vjuy1t5p18a5llb8h2fjx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-76">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="notifications" constraintName="FK9y21adhxn0ayjhfocscqox7bh" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-77">
+        <addForeignKeyConstraint baseColumnNames="termination_reason_code" baseTableName="terminated_employees" constraintName="FKbrcm72jvdd7cifxl73ml2lb45" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="code" referencedTableName="termination_reasons" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-78">
+        <addForeignKeyConstraint baseColumnNames="leave_request_id" baseTableName="leave_requests_history" constraintName="FKd3njvd5dglpsas315axh0iq5t" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="leave_requests" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-79">
+        <addForeignKeyConstraint baseColumnNames="designation_id" baseTableName="employees" constraintName="FKe4i9i8vu1j96m71g4v98kqirb" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="designations" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-80">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="password_resets" constraintName="FKfy4ulhbvy3yguwnqqvts2iqqx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-81">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="overtime_requests" constraintName="FKg5wygdf15wnj0dhc2mgquajh5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-82">
+        <addForeignKeyConstraint baseColumnNames="department_id" baseTableName="employees" constraintName="FKgy4qe3dnqrm3ktd76sxp7n4c2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="departments" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-83">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="terminated_employees" constraintName="FKhq9wbj8p1wb4vbu85cedgmsuk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-84">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employees_past_experience" constraintName="FKiycu8rt01imfpub8d63q61i0j" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-85">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="FKj345gk1bovqvfame88rcx7yyx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-86">
+        <addForeignKeyConstraint baseColumnNames="statutory_document_id" baseTableName="employee_statutory_document_number" constraintName="FKj74a4iot6q4g87d520qxrpqd6" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="statutory_documents" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-87">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employee_resignations" constraintName="FKjaqllu27j2qai1g6s2v4pvyb8" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-88">
+        <addForeignKeyConstraint baseColumnNames="applicant_user_id" baseTableName="leave_requests" constraintName="FKpet85nrn5aant1uith47kof4w" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-89">
+        <addForeignKeyConstraint baseColumnNames="payroll_formula_id" baseTableName="payroll_formula_items" constraintName="FKqew91eo4x5qtoa00mngjtn3go" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="payroll_formulas" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-90">
+        <addForeignKeyConstraint baseColumnNames="in_place" baseTableName="leave_requests" constraintName="FKr4jv8pgbshwb894n5e1gxbnjr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-91">
+        <addForeignKeyConstraint baseColumnNames="performed_by" baseTableName="leave_requests_history" constraintName="FKsiym94te0ogmfcf5dqr2y8lie" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-92">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role" constraintName="FKt7e7djp752sqn6w22i6ocqy6q" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="roles" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1597591005287-93">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="role_permission" constraintName="FKtfgq8q9blrp0pt1pvggyli3v9" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="roles" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
