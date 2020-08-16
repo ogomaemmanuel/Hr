@@ -42,6 +42,7 @@ public class PayrollDeductionService {
         payrollDeduction1.ifPresent(pd -> {
             pd.setAmount(payrollDeduction.getAmount());
             pd.setName(payrollDeduction.getName());
+            pd.setCalculation(payrollDeduction.getCalculation());
             this.payrollDeductionRepository.save(pd);
         });
         return payrollDeduction1;
