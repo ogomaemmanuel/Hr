@@ -48,6 +48,7 @@ public class PayrollAdditionsService {
     }
 
     public void removePayrollAddition(Long id) {
+
         this.payrollAdditionRepository.deleteById(id);
     }
 
