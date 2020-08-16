@@ -35,18 +35,25 @@ public class PayrollDeductionController {
                 this.payrollDeductionService.getPayrollDeductions(pagedDataRequest);
         return ResponseEntity.ok(payrollDeductions);
     }
-     @RequestMapping(value = "api/payroll-deductions/{id}",method = RequestMethod.GET)
+
+    @RequestMapping(value = "api/payroll-deductions/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getPayrollDeductionById(@PathVariable("id") Long id) {
         Optional<PayrollDeduction> payrollDeduction
                 = this.payrollDeductionService.getPayrollDeductionById(id);
         return ResponseEntity.of(payrollDeduction);
     }
 
-    @RequestMapping(value = "api/payroll-deductions/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "api/payroll-deductions/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updatePayrollDeduction(@PathVariable("id") Long id,
-                                                    @Valid @RequestBody PayrollDeduction payrollDeduction){
-        Optional<PayrollDeduction> payrollDeduction1=
-                this.payrollDeductionService.updatePayrollDeduction(id,payrollDeduction);
+                                                    @Valid @RequestBody PayrollDeduction payrollDeduction) {
+        Optional<PayrollDeduction> payrollDeduction1 =
+                this.payrollDeductionService.updatePayrollDeduction(id, payrollDeduction);
         return ResponseEntity.of(payrollDeduction1);
+    }
+
+    @RequestMapping(value = "api/payroll-deductions/{id}")
+    public ResponseEntity<?> removePayrollDeduction(@PathVariable("id") Long id) {
+        this.payrollDeductionService.removePayrollDeduction(id);
+        return ResponseEntity.ok().build();
     }
 }
