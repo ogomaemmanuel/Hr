@@ -42,9 +42,10 @@
                         <div class="control">
                             <input
                                     v-model="addition.amount"
+
                                     @input="clearFieldError('amount')"
                                     class="input"
-                                    type="text">
+                                    type="number">
                             <span class="mb-2 has-text-danger" v-if="errors['amount']">
 						{{errors['amount'][0]}}
 					</span>

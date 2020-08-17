@@ -62,6 +62,7 @@ const OvertimeRequestEdit = () => import("../components/employee_management/over
 
 
 const PayrollItemsPage = () => import("../components/payroll/payroll-items/PayrollItemPage")
+const SalaryView = () => import("../components/payroll/employee-salary/PaySlip")
 
 
 
@@ -503,22 +504,15 @@ const routes = new Router({
                         breadcrumb: true,
                         title: "Payroll Items",
                     },
-                    // children: [
-                    //     {
-                    //         path: "/",
-                    //         name: "employee-termination-list",
-                    //         component: EmployeeTerminationList,
-                    //        children: [
-                    //            {
-                    //                path: "/employee-termination-edit/:id",
-                    //                name: "employee-termination-edit",
-                    //                component: EmployeeTerminationEdit,
-                    //            },
-                    //        ]
-                    //     },
-                    //
-                    //
-                    // ]
+                },
+                {
+                    path: "/salary-view",
+                    name: "salary-view",
+                    component: SalaryView,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Payslip",
+                    },
                 },
             ]
         },
