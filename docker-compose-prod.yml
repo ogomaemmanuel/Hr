@@ -19,7 +19,7 @@ services:
 
   db:
     image: mariadb/server
-#    restart: always
+    restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${MYSQL_PASSWORD}
       MARIADB_DATABASE: ${HR_SCHEMA:-hr}

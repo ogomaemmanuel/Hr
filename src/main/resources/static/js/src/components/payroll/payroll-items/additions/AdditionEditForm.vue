@@ -23,14 +23,14 @@
                         <label class="label">Calculation <span><sup>*</sup></span></label>
                         <div class="control">
                             <div class="block">
-                                <b-radio v-model="addition.percentage"
+                                <b-radio v-model="addition.calculation"
                                          name="name"
-                                         native-value="Jack">
+                                         native-value="PERCENTAGE">
                                     Percentage
                                 </b-radio>
-                                <b-radio v-model="addition.flatRate"
+                                <b-radio v-model="addition.calculation"
                                          name="name"
-                                         native-value="Vane">
+                                         native-value="FLAT_RATE">
                                     Flat Rate
                                 </b-radio>
                             </div>
@@ -42,9 +42,10 @@
                         <div class="control">
                             <input
                                     v-model="addition.amount"
+
                                     @input="clearFieldError('amount')"
                                     class="input"
-                                    type="text">
+                                    type="number">
                             <span class="mb-2 has-text-danger" v-if="errors['amount']">
 						{{errors['amount'][0]}}
 					</span>

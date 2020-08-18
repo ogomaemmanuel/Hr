@@ -37,19 +37,34 @@
 
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label"> Amount <span><sup>*</sup></span></label>
-                        <div class="control">
-                            <input
-                                    v-model="addition.amount"
-                                    @input="clearFieldError('amount')"
-                                    class="input"
-                                    type="text">
-                            <span class="mb-2 has-text-danger" v-if="errors['amount']">
-						{{errors['amount'][0]}}
-					</span>
-                        </div>
-                    </div>
+<!--                    <b-field label="Amount">-->
+<!--                        <b-numberinput-->
+<!--                                :controls="false"-->
+<!--                                expanded-->
+<!--                                v-model="addition.amount"-->
+<!--                                @input="clearFieldError('amount')"-->
+<!--                                controls-position="compact"-->
+<!--                                controls-rounded>-->
+<!--                        </b-numberinput>-->
+<!--                    </b-field>-->
+                                        <div class="field">
+                                            <label class="label"> Amount <span><sup>*</sup></span></label>
+                                            <div class="control">
+                                                <InputNumber
+                                                        class="min-w-full"
+                                                        v-model="addition.amount"
+                                                        :controls="false"
+                                                        :max="maxAmount"
+                                                        :min="0"
+                                                        @input="clearFieldError('amount')"
+                                                        type="number">
+                                                </InputNumber>
+                                                <span class="mb-2 has-text-danger" v-if="errors['amount']">
+
+                    						{{errors['amount'][0]}}
+                    					</span>
+                                            </div>
+                                        </div>
                     <div class="flex justify-center m-3">
                         <button
                                 :class="{'is-loading':loading}"
@@ -67,18 +82,29 @@
 <script>
     import ModalTemplate from "../../../common/ModalTemplate";
     import common_mixin from "../../../../mixins/common_mixin";
+    import {InputNumber} from "element-ui"
 
     export default {
         mixins: [
             common_mixin
         ],
         components: {
-            ModalTemplate
+            ModalTemplate,
+            InputNumber
         },
         data() {
             return {
                 addition: {},
                 loading: false,
+            }
+        },
+        computed:{
+            maxAmount(){
+                if(this.addition.calculation=="PERCENTAGE"){
+                    return 100;
+                }else {
+                    return Infinity
+                }
             }
         },
         methods: {

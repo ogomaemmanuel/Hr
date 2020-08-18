@@ -42,6 +42,7 @@ public class PayrollAdditionsService {
         payrollAddition1.ifPresent(pa -> {
             pa.setAmount(payrollAddition.getAmount());
             pa.setName(payrollAddition.getName());
+            pa.setCalculation(payrollAddition.getCalculation());
             this.payrollAdditionRepository.save(pa);
         });
         return payrollAddition1;

@@ -202,7 +202,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/departments">
+                                    <router-link to="/salary-view">
                                         <span>Payslip</span>
                                     </router-link>
                                 </li>
