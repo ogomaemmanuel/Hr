@@ -25,10 +25,10 @@
         <div class="columns">
             <div class="column m-b-20">
                 <ul class="list-unstyled">
-                    <li><h5 class="mb-0"><strong>John Doe</strong></h5></li>
-                    <li><span>Web Designer</span></li>
+                    <li><h5 class="mb-0"><strong th:text="${payslip.employee.user.fullName}">John Doe</strong></h5></li>
+                    <li><span>Designation: </span><span th:text="${payslip.employee.designation.name}">Web Designer</span></li>
                     <li>Employee ID: FT-0009</li>
-                    <li>Joining Date: 1 Jan 2013</li>
+                    <li>Joining Date: <span th:text="${#dates.format(payslip.employee.joiningDate,'dd MMM yyyy')}">1 Jan 2013</span> </li>
                 </ul>
             </div>
         </div>
@@ -39,7 +39,7 @@
                     <table class="table min-w-full is-bordered">
                         <tbody>
                         <tr>
-                            <td><strong>Basic Salary</strong> <span class="float-right">$6500</span></td>
+                            <td><strong>Basic Salary</strong> <span class="float-right" th:text="${payslip.employee.salaryAmount}">$6500</span></td>
                         </tr>
                         <tr>
                             <td><strong>House Rent Allowance (H.R.A.)</strong> <span
@@ -54,7 +54,7 @@
                         </tr>
                         <tr>
                             <td><strong>Total Earnings</strong> <span
-                                    class="float-right"><strong>$55</strong></span></td>
+                                    class="float-right"><strong th:text="${payslip.totalEarnings}">$55</strong></span></td>
                         </tr>
                         </tbody>
                     </table>
@@ -65,23 +65,12 @@
                     <h4 class="mb-4"><strong>Deductions</strong></h4>
                     <table class="table min-w-full is-bordered">
                         <tbody>
-                        <tr>
-                            <td><strong>Tax Deducted at Source (T.D.S.)</strong> <span
-                                    class="float-right">$0</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Provident Fund</strong> <span class="float-right">$0</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>ESI</strong> <span class="float-right">$0</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Loan</strong> <span class="float-right">$300</span></td>
+                        <tr th:each="deduction : ${payslip.payrollDeductions}">
+                            <td><strong th:text="${deduction.name}">Provident Fund</strong> <span class="float-right">$0</span></td>
                         </tr>
                         <tr>
                             <td><strong>Total Deductions</strong> <span
-                                    class="float-right"><strong>$59698</strong></span>
+                                    class="float-right"><strong th:text="${payslip.totalDeduction}">$59698</strong></span>
                             </td>
                         </tr>
                         </tbody>
@@ -92,7 +81,7 @@
         </div>
         <div class="columns">
             <div class="column is-12">
-                <p><strong>Net Salary: $59698</strong> (Fifty nine thousand six hundred and ninety eight only.)
+                <p><strong>Net Salary: <span th:text="${payslip.netSalary}">$59698</span> </strong> <span>(<span th:text="${payslip.netSalaryToWords()}">Fifty nine thousand six hundred and ninety eight only</span>.)</span>
                 </p>
             </div>
         </div>
