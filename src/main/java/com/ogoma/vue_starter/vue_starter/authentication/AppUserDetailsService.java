@@ -26,32 +26,8 @@ public class AppUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User does not exist");
         }
-        return new CustomUserDetails(
-                user.getEmail(),
-                user.getPassword(),
-                true,
-                true,
-                true,
-                true,
-                getGrantedAuthorityList(user),
-                user.getId(),
-                user.getFullName(),
-                user.getPhone()
-        );
+        return new CustomUserDetails(user);
 
 
     }
-
-    private List<GrantedAuthority> getGrantedAuthorityList(User user) {
-
-        // user.getUserRoles().stream().findFirst().orElse(new Role());
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        //  for (String privilege : privileges) {
-        authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        // }
-        //return new ArrayList<GrantedAuthority>();
-        return authorities;
-    }
-
-
 }

@@ -4,9 +4,14 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entit
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollAddition;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollDeduction;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.enums.PayrollCalculation;
+import com.ogoma.vue_starter.vue_starter.utils.numbers.EnglishNumberToWordsConverter;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Locale;
+
+import static humanize.ICUHumanize.spellNumber;
+
 
 public class PayslipViewModel {
     private final Employee employee;
@@ -24,6 +29,9 @@ public class PayslipViewModel {
         this.payrollDeductions = payrollDeductions;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
 
     public BigDecimal getTotalDeduction() {
         BigDecimal totalDeductions = this.payrollDeductions.stream().map((x) -> {
@@ -34,6 +42,14 @@ public class PayslipViewModel {
             return x.getAmount();
         }).reduce(BigDecimal.ZERO, BigDecimal::add);
         return totalDeductions;
+    }
+
+    public List<PayrollAddition> getPayrollAdditions() {
+        return payrollAdditions;
+    }
+
+    public List<PayrollDeduction> getPayrollDeductions() {
+        return payrollDeductions;
     }
 
     public BigDecimal getTotalEarnings() {
@@ -48,6 +64,14 @@ public class PayslipViewModel {
     }
 
     public BigDecimal getNetSalary() {
+        if (this.netSalary != null) {
+            return netSalary;
+        }
         return this.getTotalEarnings().subtract(this.getTotalDeduction());
+    }
+
+    public String netSalaryToWords() {
+        EnglishNumberToWordsConverter englishNumberToWordsConverter = new EnglishNumberToWordsConverter();
+        return englishNumberToWordsConverter.Convert(this.getNetSalary().longValue());
     }
 }
