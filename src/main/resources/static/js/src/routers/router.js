@@ -62,7 +62,7 @@ const OvertimeRequestEdit = () => import("../components/employee_management/over
 
 
 const PayrollItemsPage = () => import("../components/payroll/payroll-items/PayrollItemPage")
-const SalaryView = () => import("../components/payroll/employee-salary/PaySlip")
+const SalaryView = () => import("../components/payroll/employee_salary/PaySlip")
 
 
 
