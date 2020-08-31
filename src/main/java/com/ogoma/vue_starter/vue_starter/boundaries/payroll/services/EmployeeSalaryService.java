@@ -32,7 +32,8 @@ public class EmployeeSalaryService {
         List<PayrollAddition> payrollAdditions=
                 this.payrollAdditionRepository.findAll();
         List<PayrollDeduction> payrollDeductions= this.payrollDeductionRepository.findAll();
-        PayslipViewModel payslipViewModel = new PayslipViewModel(employee,payrollAdditions,payrollDeductions);
+        PayslipViewModel payslipViewModel =
+                new PayslipViewModel(employee,payrollAdditions,payrollDeductions);
         return payslipViewModel;
     }
 }
