@@ -325,7 +325,7 @@
 <script>
     import LogoutForm from "../auth/LogoutForm.vue"
 
-    const PasswordResetForm = () => import("../user-profile/ChangePasswordModal")
+    const PasswordResetForm = () => import("../user_profile/ChangePasswordModal")
     import NotificationDropDown from "../notifications/NotificationDropDown";
     import {mapActions, mapGetters} from "vuex"
     import TestBreadCrump from "../common/TestBreadCrump";
