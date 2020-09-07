@@ -197,7 +197,7 @@
                             </a>
                             <ul class="mr-0 pr-0 border-l-0">
                                 <li>
-                                    <router-link to="/employees">
+                                    <router-link to="/salary">
                                         <span>Employee Salary</span>
                                     </router-link>
                                 </li>

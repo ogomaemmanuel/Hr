@@ -1,20 +1,6 @@
 <template>
     <div class="h-full">
         <div class="pb-2 flex justify-end">
-            <button>
-                <p class="buttons">
-                    <button class="button" @click="showTableList=true">
-    <span class="icon is-small">
-      <i class="fa fa-th"></i>
-    </span>
-                    </button>
-                    <button @click="showTableList=false" class="button">
-    <span class="icon is-small">
-      <i class="fa fa-bars"></i>
-    </span>
-                    </button>
-                </p>
-            </button>
             <portal to="page-controls">
                 <router-link
                         to="/employees-create"

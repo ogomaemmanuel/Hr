@@ -5,7 +5,7 @@ import io.swagger.models.auth.In;
 public class PagedDataRequest {
     private Integer page;
     private Integer pageSize;
-    private String searchTearm;
+    private String searchTerm;
 
     public Integer getPage() {
         return page;
@@ -25,12 +25,12 @@ public class PagedDataRequest {
         return this;
     }
 
-    public String getSearchTearm() {
-        return searchTearm;
+    public String getSearchTerm() {
+        return searchTerm;
     }
 
-    public PagedDataRequest setSearchTearm(String searchTearm) {
-        this.searchTearm = searchTearm;
+    public PagedDataRequest setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
         return this;
     }
 }
