@@ -55,6 +55,9 @@
                                         Designation
                                     </th>
                                     <th>
+                                        Salary
+                                    </th>
+                                    <th>
 
                                     </th>
                                 </tr>
@@ -67,6 +70,7 @@
                                     <td data-label="Description">{{employee.phone}}</td>
                                     <td data-label="Description">{{employee.joiningDate|formatDate}}</td>
                                     <td data-label="Description">{{employee.designation}}</td>
+                                    <td data-label="Description">{{employee.salaryAmount}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
                                             <router-link
@@ -81,6 +85,13 @@
                                                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
+					                               </span>
+                                            </button>
+                                            <button
+                                                    @click="confirmRemoveEmployee(employee)"
+                                                    class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-money has-text-link"></i>
 					                               </span>
                                             </button>
                                         </div>

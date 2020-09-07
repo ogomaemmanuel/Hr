@@ -6,7 +6,7 @@ import java.util.Date;
 public interface EmployeeSalaryViewModel {
     public Long getId();
     public String getEmail();
-    public Date joiningDate();
+    public Date getJoiningDate();
     public BigDecimal getSalaryAmount();
     public String getDesignation();
     public String getRoleId();
