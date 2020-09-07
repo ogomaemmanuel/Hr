@@ -7,7 +7,21 @@ public interface EmployeeSalaryViewModel {
     public Long getId();
     public String getEmail();
     public Date joiningDate();
-    public BigDecimal salaryAmount();
-    public String getRole();
+    public BigDecimal getSalaryAmount();
+    public String getDesignation();
     public String getRoleId();
+    public String getFirstName();
+
+    public String getLastName();
+
+    default String getFullName() {
+        String lastName = null;
+        if (null != getLastName()) {
+            lastName = getLastName();
+        }
+        if (null != getFirstName()) {
+            return getFirstName().concat(" ").concat(lastName);
+        }
+        return "";
+    }
 }

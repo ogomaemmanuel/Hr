@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repo
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeQuery;
+import com.ogoma.vue_starter.vue_starter.boundaries.payroll.models.EmployeeSalaryViewModel;
 import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,5 +40,30 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     public Page<EmployeeQuery> getAllEmployees(Pageable pageable);
 
     public List<Employee> findAllByGender(GenderEnum gender);
+
+
+    @Query(value = "SELECT \n" +
+            "    e.id,\n" +
+            "    e.joining_date AS joiningDate,\n" +
+            "    u.first_name AS firstName,\n" +
+            "    u.last_name AS lastName,\n" +
+            "    u.email as email,\n" +
+            "    e.salary_amount as salaryAmount,\n" +
+            "    u.phone,\n" +
+            "    u.date_of_birth as dateOfBirth,\n" +
+            "    dsg.name as designation\n" +
+            "    \n" +
+            "FROM\n" +
+            "    employees e\n" +
+            "        LEFT JOIN\n" +
+            "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
+            countQuery = "SELECT \n" +
+                    "   count(e.id)\n" +
+                    "FROM\n" +
+                    "    employees e\n" +
+                    "        LEFT JOIN\n" +
+                    "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
+            nativeQuery = true)
+    public Page<EmployeeSalaryViewModel> getEmployeesSalary(Pageable pageable);
 
 }

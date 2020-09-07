@@ -10,6 +10,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.Payroll
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.PayrollDeductionRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,8 +40,11 @@ public class EmployeeSalaryService {
                 new PayslipViewModel(employee, payrollAdditions, payrollDeductions);
         return payslipViewModel;
     }
-
     public Page<EmployeeSalaryViewModel> getEmployeesSalary(PagedDataRequest pagedDataRequest) {
-        return null;
+        PageRequest pageRequest =
+                PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
+        Page<EmployeeSalaryViewModel> employeesSalary =
+                this.employeeRepository.getEmployeesSalary(pageRequest);
+        return employeesSalary;
     }
 }

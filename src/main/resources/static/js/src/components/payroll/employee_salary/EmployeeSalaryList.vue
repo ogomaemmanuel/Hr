@@ -128,7 +128,7 @@
             getEmployees() {
                 let vm = this;
                 vm.loading = true;
-                axios.get("/api/employees", {
+                axios.get("/api/employee-salary", {
                     params: {
                         pageSize: vm.pageSize,
                         page: vm.page
