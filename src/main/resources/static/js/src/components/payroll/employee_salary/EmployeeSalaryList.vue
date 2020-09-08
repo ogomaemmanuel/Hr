@@ -73,22 +73,8 @@
                                     <td data-label="Description">{{employee.salaryAmount}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
-                                            <router-link
-                                                    :to="`/designations-edit/${employee.id}`" tag="button"
-                                                    class="button is-white is-small">
-												<span class="icon">
-					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
-					                       </span>
-                                            </router-link>
                                             <button
-                                                    @click="confirmRemoveEmployee(employee)"
-                                                    class="button is-white is-small">
-										           <span class="icon">
-						                            <i class="fa fa-trash-o has-text-danger"></i>
-					                               </span>
-                                            </button>
-                                            <button
-                                                    @click="confirmRemoveEmployee(employee)"
+                                                    @click=""
                                                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-money has-text-link"></i>
@@ -150,24 +136,6 @@
                     this.pageable = resp.data;
                 }, error => {
                     vm.loading = false;
-                })
-            },
-
-            confirmRemoveEmployee(employee) {
-                this.$buefy.dialog.confirm({
-                    title: 'Delete Employee',
-                    message: `Are you sure want to delete <b> ${employee.fullName}</b> as an employee`,
-                    onConfirm: () => this.removeEmployee(employee)
-                })
-            },
-            removeEmployee(employee) {
-                axios.delete(`/api/employees/${employee.id}`).then(resp => {
-                    this.$swal({
-                        type: "success",
-                        title: "Success",
-                        message: "Holiday successfully removed",
-                    })
-                    this.getEmployees();
                 })
             },
             goToPrevious() {

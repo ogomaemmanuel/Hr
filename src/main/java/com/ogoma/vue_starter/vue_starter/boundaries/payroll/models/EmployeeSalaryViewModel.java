@@ -7,6 +7,7 @@ public interface EmployeeSalaryViewModel {
     public Long getId();
     public String getEmail();
     public Date getJoiningDate();
+    public String getPhone();
     public BigDecimal getSalaryAmount();
     public String getDesignation();
     public String getRoleId();
