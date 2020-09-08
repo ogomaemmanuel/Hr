@@ -73,13 +73,14 @@
                                     <td data-label="Description">{{employee.salaryAmount}}</td>
                                     <td data-label="Action">
                                         <div class="action-controls d-flex justify-end">
-                                            <button
-                                                    @click=""
+                                            <router-link
+                                                    tag="button"
+                                                    :to="`/salary-view/${employee.id}`"
                                                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-money has-text-link"></i>
 					                               </span>
-                                            </button>
+                                            </router-link>
                                         </div>
                                     </td>
                                 </tr>

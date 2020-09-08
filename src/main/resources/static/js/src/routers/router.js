@@ -63,6 +63,7 @@ const OvertimeRequestEdit = () => import("../components/employee_management/over
 
 const PayrollItemsPage = () => import("../components/payroll/payroll_items/PayrollItemPage")
 const SalaryView = () => import("../components/payroll/employee_salary/PaySlip")
+const EmployeeSalaryView = () => import("../components/payroll/employee_salary/EmployeePayslip")
 const EmployeesSalaryPage = () => import("../components/payroll/employee_salary/EmployeeSalaryPage")
 const EmployeeSalaryList = () => import("../components/payroll/employee_salary/EmployeeSalaryList")
 
@@ -517,18 +518,28 @@ const routes = new Router({
                         title: "Payslip",
                     },
                 },
+
                 {
                     path: "/salary",
                     name: "salary",
                     component: EmployeesSalaryPage,
                     meta: {
                         breadcrumb: true,
-                        title: "Salary",
+                        title: "Employees Salary",
                     },
                     children: [
                         {
                             path: "/",
                             component: EmployeeSalaryList
+                        },
+                        {
+                            path: "/salary-view/:id",
+                            name: "employee-salary-view",
+                            component: EmployeeSalaryView,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Payslip",
+                            },
                         },
                     ]
                 },

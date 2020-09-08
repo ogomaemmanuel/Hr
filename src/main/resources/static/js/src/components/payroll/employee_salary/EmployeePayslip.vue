@@ -1,18 +1,20 @@
 <template>
-    <div>
-
-    </div>
+    <PaySlip :employeeId="id"></PaySlip>
 </template>
 <script>
     import PaySlip from "./PaySlip";
+
     export default {
-        components:{
+        components: {
             PaySlip
         },
-        data(){
-            return{
-
+        data() {
+            return {
+                id: null
             }
+        },
+        created() {
+            this.id = this.$route.params.id;
         }
     }
 </script>

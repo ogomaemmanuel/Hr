@@ -10,6 +10,7 @@ import com.ogoma.vue_starter.vue_starter.utils.SecurityUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,6 +39,13 @@ public class EmployeeSalaryController {
               this.employeeSalaryService.getEmployeesSalary(pagedDataRequest);
       return ResponseEntity.ok(employeeSalaries);
     }
-
+    @RequestMapping(value = "/api/payslip/{id}", method = RequestMethod.GET)
+    public ModelAndView getPayslipByEmployeeId(@PathVariable("id") Long employeeId) {
+        PayslipViewModel payslipViewModel = employeeSalaryService.getPayslipViewModelByEmployeeId(employeeId);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("payroll/payslip");
+        modelAndView.addObject("payslip",payslipViewModel);
+        return modelAndView;
+    }
 
 }

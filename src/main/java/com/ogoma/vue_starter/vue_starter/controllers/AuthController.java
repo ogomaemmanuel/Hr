@@ -33,18 +33,21 @@ import java.util.Map;
 public class AuthController {
 
 
-    Logger logger= LoggerFactory.getLogger(this.getClass());
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private UserRegistrationModelValidator userRegistrationModelValidator;
+    private final UserService userService;
+    private final UserRegistrationModelValidator userRegistrationModelValidator;
 
-    @Autowired
-    private ForgotPasswordRequestValidator forgotPasswordRequestValidator;
+    private final ForgotPasswordRequestValidator forgotPasswordRequestValidator;
 
-    @Autowired
-    private PasswordResetRequestValidator passwordResetRequestValidator;
+    private final PasswordResetRequestValidator passwordResetRequestValidator;
+
+    public AuthController(UserService userService, UserRegistrationModelValidator userRegistrationModelValidator, ForgotPasswordRequestValidator forgotPasswordRequestValidator, PasswordResetRequestValidator passwordResetRequestValidator) {
+        this.userService = userService;
+        this.userRegistrationModelValidator = userRegistrationModelValidator;
+        this.forgotPasswordRequestValidator = forgotPasswordRequestValidator;
+        this.passwordResetRequestValidator = passwordResetRequestValidator;
+    }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login() {
@@ -58,7 +61,7 @@ public class AuthController {
         userRegistrationModelValidator.validate(userRegistrationModel, bindingResult);
         if (!bindingResult.hasErrors()) {
             User user = this.userService.register(userRegistrationModel);
-            logger.debug("user successfully registered,user id %s",user.getId());
+            logger.debug("user successfully registered,user id %s", user.getId());
             return ResponseEntity.ok("Registration successful,a verification email has been sent to your email, please verify to complete registration");
         }
         Map<String, ArrayList<String>> errors = ErrorConverter.convert(bindingResult);
@@ -71,9 +74,9 @@ public class AuthController {
             @PathVariable("token") String token,
             ModelMap model
     ) {
-        model.addAttribute("msg","Account verification successful");
-        model.addAttribute("state","success");
-       return new ModelAndView("redirect:/login",model);
+        model.addAttribute("msg", "Account verification successful");
+        model.addAttribute("state", "success");
+        return new ModelAndView("redirect:/login", model);
     }
 
     @RequestMapping(value = "forgot-password", method = RequestMethod.POST)
