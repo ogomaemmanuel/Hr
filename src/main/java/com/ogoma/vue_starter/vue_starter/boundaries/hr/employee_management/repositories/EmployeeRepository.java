@@ -66,4 +66,20 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             nativeQuery = true)
     public Page<EmployeeSalaryViewModel> getEmployeesSalary(Pageable pageable);
 
+    @Query(value = "SELECT \n" +
+            "    e.id,\n" +
+            "    e.joining_date AS joiningDate,\n" +
+            "    u.first_name AS firstName,\n" +
+            "    u.last_name AS lastName,\n" +
+            "    u.email as email,\n" +
+            "    e.salary_amount as salaryAmount,\n" +
+            "    u.phone,\n" +
+            "    u.date_of_birth as dateOfBirth,\n" +
+            "    dsg.name as designation\n" +
+            "    \n" +
+            "FROM\n" +
+            "    employees e\n" +
+            "        LEFT JOIN\n" +
+            "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0 and e.id=:employeeId",nativeQuery=true)
+    public EmployeeSalaryViewModel getEmployeeSalaryByEmployeeId(Long employeeId);
 }

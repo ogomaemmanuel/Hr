@@ -66,6 +66,7 @@ const SalaryView = () => import("../components/payroll/employee_salary/PaySlip")
 const EmployeeSalaryView = () => import("../components/payroll/employee_salary/EmployeePayslip")
 const EmployeesSalaryPage = () => import("../components/payroll/employee_salary/EmployeeSalaryPage")
 const EmployeeSalaryList = () => import("../components/payroll/employee_salary/EmployeeSalaryList")
+const EmployeeSalaryDetails = () => import("../components/payroll/employee_salary/EmployeeSalaryDetails")
 
 
 
@@ -531,6 +532,15 @@ const routes = new Router({
                         {
                             path: "/",
                             component: EmployeeSalaryList
+                        },
+                        {
+                            path: "/salary/:id",
+                            name: "employee-details",
+                            component: EmployeeSalaryDetails,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Salary Details",
+                            },
                         },
                         {
                             path: "/salary-view/:id",

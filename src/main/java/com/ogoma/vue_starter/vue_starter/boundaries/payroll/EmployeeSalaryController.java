@@ -39,6 +39,12 @@ public class EmployeeSalaryController {
               this.employeeSalaryService.getEmployeesSalary(pagedDataRequest);
       return ResponseEntity.ok(employeeSalaries);
     }
+    @RequestMapping(value = "api/employee-salary/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> getEmployeesSalaryByEmployeeId(@PathVariable("id") Long employeeId){
+      EmployeeSalaryViewModel employeeSalaries=
+              this.employeeSalaryService.getEmployeesSalaryByEmployeeId(employeeId);
+      return ResponseEntity.ok(employeeSalaries);
+    }
     @RequestMapping(value = "/api/payslip/{id}", method = RequestMethod.GET)
     public ModelAndView getPayslipByEmployeeId(@PathVariable("id") Long employeeId) {
         PayslipViewModel payslipViewModel = employeeSalaryService.getPayslipViewModelByEmployeeId(employeeId);

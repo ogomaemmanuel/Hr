@@ -40,11 +40,18 @@ public class EmployeeSalaryService {
                 new PayslipViewModel(employee, payrollAdditions, payrollDeductions);
         return payslipViewModel;
     }
+
     public Page<EmployeeSalaryViewModel> getEmployeesSalary(PagedDataRequest pagedDataRequest) {
         PageRequest pageRequest =
                 PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
         Page<EmployeeSalaryViewModel> employeesSalary =
                 this.employeeRepository.getEmployeesSalary(pageRequest);
         return employeesSalary;
+    }
+
+    public EmployeeSalaryViewModel getEmployeesSalaryByEmployeeId(Long employeeId) {
+        EmployeeSalaryViewModel employeeSalaryViewModel =
+                this.employeeRepository.getEmployeeSalaryByEmployeeId(employeeId);
+        return employeeSalaryViewModel;
     }
 }

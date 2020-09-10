@@ -81,6 +81,14 @@
 						                            <i class="fa fa-money has-text-link"></i>
 					                               </span>
                                             </router-link>
+                                            <router-link
+                                                    tag="button"
+                                                    :to="`/salary/${employee.id}`"
+                                                    class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-eye has-text-success"></i>
+					                               </span>
+                                            </router-link>
                                         </div>
                                     </td>
                                 </tr>
@@ -110,8 +118,11 @@
 <script>
     import Paginator from "../../common/paginator/Paginator";
 
+
     export default {
-        components: {Paginator},
+        components: {
+            Paginator
+        },
         data() {
             return {
                 employees: [],
