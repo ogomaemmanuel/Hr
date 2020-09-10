@@ -13,26 +13,26 @@
                         </div>
                         <div class="column is-10 pl-5">
                             <div class="pt-5">
-                                <h2 class="font-semibold">Employee Name</h2>
+                                <h2 class="font-semibold">{{employeeSalaryInfo.fullName}}</h2>
                             </div>
                             <div class="flex ">
                                 <div class="mr-1">
                                     <span>
                                     <i class="fa fa-money"></i>
                                 </span>
-                                    <span>30000</span>
+                                    <span>{{employeeSalaryInfo.salaryAmount}}</span>
                                 </div>
                                 <div class="mr-1">
                                      <span>
                                     <i class="fa fa-building"></i>
                                 </span>
-                                    <span>IT Department</span>
+                                    <span>{{employeeSalaryInfo.departmentName}}</span>
                                 </div>
                                 <div>
                                      <span>
                                     <i class="fa fa-phone"></i>
                                 </span>
-                                    <span>0711472504</span>
+                                    <span>{{employeeSalaryInfo.phone}}</span>
                                 </div>
                             </div>
 
@@ -66,7 +66,23 @@
             EmployeeSalaryAdditions
         },
         data() {
-            return {}
+            return {
+                employeeId: null,
+                employeeSalaryInfo: {}
+
+            }
+        },
+        created() {
+            this.employeeId = this.$route.params.id;
+            this.getEmployeeSalaryInfo();
+
+        },
+        methods: {
+            getEmployeeSalaryInfo() {
+                axios.get(`/api/employee-salary/${this.employeeId}`).then(resp => {
+                    this.employeeSalaryInfo = resp.data;
+                })
+            }
         }
     }
 </script>

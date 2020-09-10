@@ -12,6 +12,7 @@ public interface EmployeeSalaryViewModel {
     public String getDesignation();
     public String getRoleId();
     public String getFirstName();
+    public String getDepartmentName();
 
     public String getLastName();
 

@@ -75,11 +75,15 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             "    e.salary_amount as salaryAmount,\n" +
             "    u.phone,\n" +
             "    u.date_of_birth as dateOfBirth,\n" +
+            "    d.name as departmentName,\n" +
             "    dsg.name as designation\n" +
             "    \n" +
             "FROM\n" +
             "    employees e\n" +
             "        LEFT JOIN\n" +
-            "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0 and e.id=:employeeId",nativeQuery=true)
+            "    users u ON e.user_id = u.id left join" +
+            " designations dsg on e.designation_id=dsg.id" +
+            " left join departments d on e.department_id = d.id" +
+            " where e.deleted=0 and e.id=:employeeId",nativeQuery=true)
     public EmployeeSalaryViewModel getEmployeeSalaryByEmployeeId(Long employeeId);
 }
