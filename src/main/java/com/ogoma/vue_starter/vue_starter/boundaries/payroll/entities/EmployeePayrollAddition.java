@@ -50,4 +50,20 @@ public class EmployeePayrollAddition {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
+
+    public Long getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 }

@@ -12,6 +12,7 @@
             </button>
         </div>
         <EmployeeSalaryAdditionCreateForm
+                :employee-id="employeeId"
                 @modalClosed="showSalaryAdditionForm=false"
                 v-if="showSalaryAdditionForm">
         </EmployeeSalaryAdditionCreateForm>

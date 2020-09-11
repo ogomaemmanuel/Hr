@@ -23,6 +23,7 @@
                     <label class="label ">Amount <span><sup>*</sup></span></label>
                     <div class="control">
                         <input
+                                type="number"
                                 @input="clearFieldError('amount')"
                                 class="input is-primary"
                                 v-model="salaryAddition.amount"
@@ -31,6 +32,15 @@
 						{{errors['amount'][0]}}
 					</span>
                     </div>
+                </div>
+                <div class="flex justify-center m-3">
+                    <button
+
+                            :class="{'is-loading':loading}"
+                            @click.prevent.stop="createSalaryAddition"
+                            class="button  is-rounded"
+                            type="submit">Submit
+                    </button>
                 </div>
             </form>
         </div>
@@ -41,6 +51,11 @@
     import common_mixin from "../../../mixins/common_mixin";
 
     export default {
+        props: {
+            employeeId: {
+                required: true
+            }
+        },
         mixins: [
             common_mixin
         ],
@@ -49,7 +64,20 @@
         },
         data() {
             return {
-                salaryAddition: {}
+                salaryAddition: {},
+                loading: false,
+            }
+        },
+        methods: {
+            createSalaryAddition() {
+                this.loading = true
+                this.salaryAddition.employeeId = this.employeeId;
+                axios.post("/api/employee-payroll-addition",
+                    this.salaryAddition).then(resp => {
+                    this.loading = false
+                }, error => {
+                    this.loading = false;
+                })
             }
         }
     }
