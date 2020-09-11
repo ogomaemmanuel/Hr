@@ -1,7 +1,8 @@
 <template>
     <div>
         <div class="flex justify-end">
-            <button class="button mr-1 is-rounded">
+            <button @click.stop="showSalaryAdditionForm=true"
+                    class="button mr-1 is-rounded">
                 <span class="icon">
                     <i class="fa fa-plus-circle mr-1"></i>
                 </span>
@@ -10,8 +11,27 @@
 				</span>
             </button>
         </div>
+        <EmployeeSalaryAdditionCreateForm
+                @modalClosed="showSalaryAdditionForm=false"
+                v-if="showSalaryAdditionForm">
+        </EmployeeSalaryAdditionCreateForm>
     </div>
 </template>
 <script>
-    export default {}
+    import EmployeeSalaryAdditionCreateForm from "./EmployeeSalaryAdditionCreateForm";
+    export default {
+        components: {
+            EmployeeSalaryAdditionCreateForm
+        },
+        data() {
+            return {
+                showSalaryAdditionForm: false
+            }
+        },
+        props: {
+            employeeId: {
+                required: true
+            }
+        }
+    }
 </script>

@@ -53,7 +53,7 @@
                     <!--                    </div>-->
                 </div>
 
-                <EmployeeSalaryAdditions></EmployeeSalaryAdditions>
+                <EmployeeSalaryAdditions :employee-id="employeeId"></EmployeeSalaryAdditions>
             </div>
         </div>
     </div>
