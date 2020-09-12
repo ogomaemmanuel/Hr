@@ -8,6 +8,11 @@
     import PayslipSkeleton from "./PayslipSkeleton";
 
     export default {
+        props: {
+            employeeId: {
+                required: false
+            }
+        },
         components: {PayslipSkeleton},
         data() {
             return {
@@ -22,7 +27,8 @@
         methods: {
             getPayslip() {
                 this.loading = true;
-                axios.get("/api/payslip/me").then(resp => {
+                let endPoint = this.employeeId ? `/api/payslip/${this.employeeId }`:`/api/payslip/me`;
+                axios.get(endPoint).then(resp => {
                     this.loading = false;
                     this.loaded = true;
                     this.payslip = resp.data;

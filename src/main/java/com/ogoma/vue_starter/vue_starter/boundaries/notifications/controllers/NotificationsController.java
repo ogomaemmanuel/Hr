@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class NotificationsController {
-    @Autowired
+
     private final NotificationsService notificationsService;
 
     public NotificationsController(NotificationsService notificationsService) {
         this.notificationsService = notificationsService;
     }
+
     @RequestMapping("api/user-notifications")
     public ResponseEntity<?> getUserNotification(PagedDataRequest pagedDataRequest) {
         CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder

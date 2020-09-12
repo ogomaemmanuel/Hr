@@ -197,7 +197,7 @@
                             </a>
                             <ul class="mr-0 pr-0 border-l-0">
                                 <li>
-                                    <router-link to="/employees">
+                                    <router-link to="/salary">
                                         <span>Employee Salary</span>
                                     </router-link>
                                 </li>
@@ -325,7 +325,7 @@
 <script>
     import LogoutForm from "../auth/LogoutForm.vue"
 
-    const PasswordResetForm = () => import("../user-profile/ChangePasswordModal")
+    const PasswordResetForm = () => import("../user_profile/ChangePasswordModal")
     import NotificationDropDown from "../notifications/NotificationDropDown";
     import {mapActions, mapGetters} from "vuex"
     import TestBreadCrump from "../common/TestBreadCrump";

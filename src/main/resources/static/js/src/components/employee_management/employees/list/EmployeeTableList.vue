@@ -1,5 +1,5 @@
 <template>
-    <div class="card" ref="leaveRequests">
+    <div class="card">
         <div class="card-content">
             <div class="content b-table is-relative">
                 <h4>Employees</h4>
