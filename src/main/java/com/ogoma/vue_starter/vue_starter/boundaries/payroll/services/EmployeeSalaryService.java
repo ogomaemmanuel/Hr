@@ -63,4 +63,10 @@ public class EmployeeSalaryService {
         this.employeePayrollAdditionRepository.save(employeePayrollAddition);
         return employeePayrollAddition;
     }
+
+    public List<EmployeePayrollAddition> getPayrollAdditionsByEmployeeId(Long employeeId) {
+        List<EmployeePayrollAddition> employeePayrollAdditions =
+                this.employeePayrollAdditionRepository.findAllByEmployeeId(employeeId);
+        return employeePayrollAdditions;
+    }
 }

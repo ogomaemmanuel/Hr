@@ -16,22 +16,46 @@
                 @modalClosed="showSalaryAdditionForm=false"
                 v-if="showSalaryAdditionForm">
         </EmployeeSalaryAdditionCreateForm>
+        <div class="mt-3">
+            <div  class="flex  mb-2 pt-5 hover:shadow-lg pb-5 pl-5 pr-5 border-gray-100  border hover:border-width"
+                  v-for="allowance in allowances">
+                <div class="flex-1">
+                    {{allowance.name}}
+                </div>
+                <div>
+                  Kes  {{allowance.amount}}
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
     import EmployeeSalaryAdditionCreateForm from "./EmployeeSalaryAdditionCreateForm";
+
     export default {
         components: {
             EmployeeSalaryAdditionCreateForm
         },
-        data() {
-            return {
-                showSalaryAdditionForm: false
-            }
-        },
         props: {
             employeeId: {
                 required: true
+            }
+        },
+        created() {
+            this.getEmployeeSalaryAdditions();
+        },
+        data() {
+            return {
+                showSalaryAdditionForm: false,
+                allowances: []
+            }
+        },
+        methods: {
+            getEmployeeSalaryAdditions() {
+                axios.get(`/api/employee-payroll-addition/${this.employeeId}`)
+                    .then(resp => {
+                        this.allowances = resp.data;
+                    })
             }
         }
     }

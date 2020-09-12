@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class EmployeeSalaryController {
@@ -64,6 +66,12 @@ public class EmployeeSalaryController {
             @Valid @RequestBody EmployeePayrollAddition employeePayrollAddition) {
         this.employeeSalaryService.createPayrollAddition(employeePayrollAddition);
         return ResponseEntity.ok(employeePayrollAddition);
+    }
+    @RequestMapping(value = "/api/employee-payroll-addition/{employeeId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getEmployeePayrollAllowancesByEmployeeId(@PathVariable("employeeId") Long employeeId) {
+      List<EmployeePayrollAddition>  employeePayrollAdditions
+        =this.employeeSalaryService.getPayrollAdditionsByEmployeeId(employeeId);
+        return ResponseEntity.ok(employeePayrollAdditions);
     }
 
 }

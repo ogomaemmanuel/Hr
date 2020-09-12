@@ -3,7 +3,7 @@
         <div slot="modal-content">
             <form>
                 <div class="has-text-centered m-3">
-                    <h1 class="has-text-black"><b>Add Salary Allowance</b></h1>
+                    <h1 class="has-text-black"><b>Add Salary Deduction</b></h1>
                 </div>
 
                 <div class="field">
@@ -12,7 +12,7 @@
                         <input
                                 @input="clearFieldError('name')"
                                 class="input is-primary"
-                                v-model="salaryAddition.name"
+                                v-model="salaryDeduction.name"
                                 placeholder="Primary textarea"></input>
                         <span class="mb-2 has-text-danger" v-if="errors['name']">
 						{{errors['name'][0]}}
@@ -26,7 +26,7 @@
                                 type="number"
                                 @input="clearFieldError('amount')"
                                 class="input is-primary"
-                                v-model="salaryAddition.amount"
+                                v-model="salaryDeduction.amount"
                                 placeholder="Primary textarea"></input>
                         <span class="mb-2 has-text-danger" v-if="errors['amount']">
 						{{errors['amount'][0]}}
@@ -37,7 +37,7 @@
                     <button
 
                             :class="{'is-loading':loading}"
-                            @click.prevent.stop="createSalaryAddition"
+                            @click.prevent.stop="createSalaryDeduction"
                             class="button  is-rounded"
                             type="submit">Submit
                     </button>
@@ -64,16 +64,16 @@
         },
         data() {
             return {
-                salaryAddition: {},
+                salaryDeduction: {},
                 loading: false,
             }
         },
         methods: {
-            createSalaryAddition() {
+            createSalaryDeduction() {
                 this.loading = true
-                this.salaryAddition.employeeId = this.employeeId;
-                axios.post("/api/employee-payroll-addition",
-                    this.salaryAddition).then(resp => {
+                this.salaryDeduction.employeeId = this.employeeId;
+                axios.post("/api/employee-payroll-deductions",
+                    this.salaryDeduction).then(resp => {
                     this.loading = false
                 }, error => {
                     this.loading = false;
