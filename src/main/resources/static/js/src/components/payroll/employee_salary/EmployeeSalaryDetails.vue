@@ -44,30 +44,37 @@
         </div>
         <div class="card h-full mt-1">
             <div class="card-content">
-                <!--                <div class="content">-->
                 <div class="tabs">
                     <ul>
-                        <li class="is-active"><a>Additions</a></li>
-                        <li><a>Deductions</a></li>
+                        <li @click="showAdditions=true" :class="{'is-active':showAdditions}"><a>Additions</a></li>
+                        <li @click="showAdditions=false" :class="{'is-active':!showAdditions}"><a>Deductions</a></li>
                     </ul>
-                    <!--                    </div>-->
                 </div>
-
-                <EmployeeSalaryAdditions :employee-id="employeeId"></EmployeeSalaryAdditions>
+                <EmployeeSalaryAdditions
+                        v-if="showAdditions"
+                        :employee-id="employeeId">
+                </EmployeeSalaryAdditions>
+                <EmployeeSalaryDeductions v-else
+                        :employee-id="employeeId"
+                >
+                </EmployeeSalaryDeductions>
             </div>
         </div>
     </div>
 </template>
 <script>
     import EmployeeSalaryAdditions from "./EmployeeSalaryAdditions";
+    import EmployeeSalaryDeductions from "./EmployeeSalaryDeductions";
 
     export default {
         components: {
-            EmployeeSalaryAdditions
+            EmployeeSalaryAdditions,
+            EmployeeSalaryDeductions
         },
         data() {
             return {
                 employeeId: null,
+                showAdditions: true,
                 employeeSalaryInfo: {}
 
             }
