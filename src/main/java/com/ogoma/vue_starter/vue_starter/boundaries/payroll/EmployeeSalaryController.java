@@ -3,6 +3,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.payroll;
 import com.ogoma.vue_starter.vue_starter.authentication.CustomUserDetails;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.EmployeePayrollAddition;
+import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.EmployeePayrollDeduction;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.models.EmployeeSalaryViewModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.models.PayslipViewModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.services.EmployeeSalaryService;
@@ -61,17 +62,33 @@ public class EmployeeSalaryController {
         modelAndView.addObject("payslip", payslipViewModel);
         return modelAndView;
     }
+
     @RequestMapping(value = "/api/employee-payroll-addition", method = RequestMethod.POST)
     public ResponseEntity<?> createEmployeePayrollAllowance(
             @Valid @RequestBody EmployeePayrollAddition employeePayrollAddition) {
         this.employeeSalaryService.createPayrollAddition(employeePayrollAddition);
         return ResponseEntity.ok(employeePayrollAddition);
     }
+
     @RequestMapping(value = "/api/employee-payroll-addition/{employeeId}", method = RequestMethod.GET)
     public ResponseEntity<?> getEmployeePayrollAllowancesByEmployeeId(@PathVariable("employeeId") Long employeeId) {
-      List<EmployeePayrollAddition>  employeePayrollAdditions
-        =this.employeeSalaryService.getPayrollAdditionsByEmployeeId(employeeId);
+        List<EmployeePayrollAddition> employeePayrollAdditions
+                = this.employeeSalaryService.getPayrollAdditionsByEmployeeId(employeeId);
         return ResponseEntity.ok(employeePayrollAdditions);
+    }
+
+    @RequestMapping(value = "/api/employee-payroll-deductions", method = RequestMethod.POST)
+    public ResponseEntity<?> createEmployeePayrollDeduction(
+            @Valid @RequestBody EmployeePayrollDeduction employeePayrollDeduction) {
+        this.employeeSalaryService.createPayrollDeduction(employeePayrollDeduction);
+        return ResponseEntity.ok(employeePayrollDeduction);
+    }
+
+    @RequestMapping(value = "/api/employee-payroll-deductions/{employeeId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getEmployeePayrollDeductionByEmployeeId(@PathVariable("employeeId") Long employeeId) {
+        List<EmployeePayrollDeduction> employeePayrollDeductions
+                = this.employeeSalaryService.getPayrollDeductionsByEmployeeId(employeeId);
+        return ResponseEntity.ok(employeePayrollDeductions);
     }
 
 }

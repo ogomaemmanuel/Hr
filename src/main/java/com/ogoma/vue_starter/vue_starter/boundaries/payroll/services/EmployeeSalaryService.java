@@ -3,11 +3,13 @@ package com.ogoma.vue_starter.vue_starter.boundaries.payroll.services;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.EmployeePayrollAddition;
+import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.EmployeePayrollDeduction;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollAddition;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.PayrollDeduction;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.models.EmployeeSalaryViewModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.models.PayslipViewModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.EmployeePayrollAdditionRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.EmployeePayrollDeductionRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.PayrollAdditionRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.repositories.PayrollDeductionRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -22,15 +24,18 @@ public class EmployeeSalaryService {
     private final PayrollAdditionRepository payrollAdditionRepository;
     private final PayrollDeductionRepository payrollDeductionRepository;
     private final EmployeePayrollAdditionRepository employeePayrollAdditionRepository;
+    private  final EmployeePayrollDeductionRepository employeePayrollDeductionRepository;
     private final EmployeeRepository employeeRepository;
 
     public EmployeeSalaryService(PayrollAdditionRepository payrollAdditionRepository,
                                  PayrollDeductionRepository payrollDeductionRepository,
                                  EmployeePayrollAdditionRepository employeePayrollAdditionRepository,
+                                 EmployeePayrollDeductionRepository employeePayrollDeductionRepository,
                                  EmployeeRepository employeeRepository) {
         this.payrollAdditionRepository = payrollAdditionRepository;
         this.payrollDeductionRepository = payrollDeductionRepository;
         this.employeePayrollAdditionRepository = employeePayrollAdditionRepository;
+        this.employeePayrollDeductionRepository = employeePayrollDeductionRepository;
         this.employeeRepository = employeeRepository;
     }
 
@@ -68,5 +73,16 @@ public class EmployeeSalaryService {
         List<EmployeePayrollAddition> employeePayrollAdditions =
                 this.employeePayrollAdditionRepository.findAllByEmployeeId(employeeId);
         return employeePayrollAdditions;
+    }
+
+    public EmployeePayrollDeduction createPayrollDeduction(EmployeePayrollDeduction employeePayrollDeduction) {
+        this.employeePayrollDeductionRepository.save(employeePayrollDeduction);
+        return employeePayrollDeduction;
+    }
+
+    public List<EmployeePayrollDeduction> getPayrollDeductionsByEmployeeId(Long employeeId) {
+        List<EmployeePayrollDeduction> employeePayrollDeductions =
+                this.employeePayrollDeductionRepository.findAllByEmployeeId(employeeId);
+        return employeePayrollDeductions;
     }
 }
