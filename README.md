@@ -3,6 +3,19 @@
 This application is an Hr application written with spring boot framework and java programming language in the backend
 The front-end is written with VueJs. 
 
+## Features
+A quick list of Hr application capabilities are
+* Employee Management
+* Access Control
+* Project Management
+* Real time chat between employee
+* Payroll processing 
+* Attendance Management
+* Leave application and processing
+* File Management
+^ Performance tracking 
+* Reports
+
 ## Running the application
 ### Using Docker Compose
 Make sure you have docker and docker-compose installed on your computer
