@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<div class="pb-2 flex justify-end">
-			<p class="buttons ">
+			<p class="buttons">
 				<router-link
 						to="leave-create"
 						tag="button"
-						class="button  is-rounded is-small">
+						class="button  is-rounded">
 				<span class="icon">
  
 				<i class="fa fa-plus-circle"></i>
@@ -14,7 +14,7 @@
 				</router-link>
 			</p>
 		</div>
-		<div class="tabs is-boxed is-small">
+		<div class="tabs is-boxed">
 			<ul>
 				<li @click="showLeaveBalances=false" :class="{'is-active':showLeaveBalances==false}"><a>My Leave
 					Requests</a></li>
@@ -31,7 +31,7 @@
 							<router-link
 									to="leave-create"
 									tag="button"
-									class="button  is-rounded is-small">
+									class="button  is-rounded">
 				<span class="icon">
  
 				<i class="fa fa-plus-circle"></i>
@@ -43,7 +43,7 @@
 				
 				</EmptyState>
 				<div v-else class="card" ref="leaveRequests">
-					<div v-if="loaded" class="card-content card-simple is-size-7">
+					<div v-if="loaded" class="card-content card-simple">
 						<div class="content b-table">
 							<table class="table has-mobile-cards is-hoverable">
 								<thead class="font-thin">
@@ -93,7 +93,7 @@
 					</div>
 				</div>
 			</div>
-			<div v-else class="column is-12 is-size-7">
+			<div v-else class="column is-12">
 				<LeaveBalanceCard></LeaveBalanceCard>
 			</div>
 		</div>

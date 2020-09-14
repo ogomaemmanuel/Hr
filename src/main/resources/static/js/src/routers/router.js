@@ -96,6 +96,12 @@ const HolidayCreateModal = () => import("../components/holidays/HolidayCreateMod
 const HolidayEditModal = () => import("../components/holidays/HolidayEditModal")
 
 
+
+const ClientsPage = () => import("../components/project_management/clients/ClientsPage")
+const ClientList = () => import("../components/project_management/clients/ClientList")
+const ClientCreate = () => import("../components/project_management/clients/ClientCreateModal")
+
+
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
@@ -551,6 +557,39 @@ const routes = new Router({
                                 title: "Payslip",
                             },
                         },
+                    ]
+                },
+                {
+                    path: "/clients",
+                    name: "clients",
+                    component: ClientsPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Clients",
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            component: ClientList
+                        },
+                        {
+                            path: "/client-create",
+                            name: "client-create",
+                            component: ClientCreate,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Client Create",
+                            },
+                        },
+                        // {
+                        //     path: "/salary-view/:id",
+                        //     name: "employee-salary-view",
+                        //     component: EmployeeSalaryView,
+                        //     meta: {
+                        //         breadcrumb: true,
+                        //         title: "Payslip",
+                        //     },
+                        // },
                     ]
                 },
 

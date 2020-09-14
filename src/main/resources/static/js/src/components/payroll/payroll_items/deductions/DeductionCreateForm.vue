@@ -26,12 +26,12 @@
                                 <b-radio v-model="deduction.calculation"
                                          name="name"
                                          native-value="PERCENTAGE">
-                                    Percentage
+                                    Percentage of Basic Salary
                                 </b-radio>
                                 <b-radio v-model="deduction.calculation"
                                          name="name"
                                          native-value="FLAT_RATE">
-                                    Flat Rate
+                                    Fixed Amount
                                 </b-radio>
                             </div>
 

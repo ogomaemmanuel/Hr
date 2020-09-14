@@ -4,7 +4,7 @@
 			<h1 class="has-text-black"><b>Request Leave</b></h1>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Leave Types <span><sup class="has-text-danger">*</sup></span></label>
+			<label class="label">Leave Types <span><sup class="has-text-danger">*</sup></span></label>
 			<div class="control w-full">
 				<div class="select w-full">
 					<select @input="clearFieldError('leaveTypeId')"
@@ -26,7 +26,7 @@
 		<div class="columns">
 			<div class="column">
 				<div class="field">
-					<label class="label is-size-7">From <span><sup class="has-text-danger">*</sup></span></label>
+					<label class="label">From <span><sup class="has-text-danger">*</sup></span></label>
 					<div class="control">
 						<DatePicker
 								format="dd-MM-yyyy"
@@ -46,7 +46,7 @@
 			</div>
 			<div class="column">
 				<div class="field">
-					<label class="label is-size-7">To <span><sup class="has-text-danger">*</sup></span></label>
+					<label class="label">To <span><sup class="has-text-danger">*</sup></span></label>
 					<div class="control">
 						<DatePicker
 								format="dd-MM-yyyy"
@@ -68,7 +68,7 @@
 		
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Employee In Place</label>
+			<label class="label">Employee In Place</label>
 			<div class="control w-full">
 				<div class="select w-full">
 					<select
@@ -89,7 +89,7 @@
 			</div>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Number of Days<span><sup>*</sup></span></label>
+			<label class="label">Number of Days<span><sup>*</sup></span></label>
 			<div class="control">
 				<input
 						@change="clearFieldError('numberOfDays')"
@@ -105,7 +105,7 @@
 			</div>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Remaining Leaves Days<span><sup>*</sup></span></label>
+			<label class="label">Remaining Leaves Days<span><sup>*</sup></span></label>
 			<div class="control">
 				<input
 						disabled
@@ -115,7 +115,7 @@
 			</div>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Reason<span><sup>*</sup></span></label>
+			<label class="label">Reason<span><sup>*</sup></span></label>
 			<div class="control">
 					<textarea
 							@input="clearFieldError('reason')"
@@ -133,7 +133,7 @@
 			<button
 					:class="{'is-loading':loading}"
 					@click.prevent="makeLeaveRequest"
-					class="button is-small is-rounded"
+					class="button is-rounded"
 					type="submit">Submit
 			</button>
 		</div>

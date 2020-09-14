@@ -213,6 +213,33 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-money"></i></span> Project Management
+                            </a>
+                            <ul class="mr-0 pr-0 border-l-0">
+                                <li>
+                                    <router-link to="/clients">
+                                        <span>Clients</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/salary-view">
+                                        <span>Projects</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/payroll-items">
+                                        <span>Tasks</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/payroll-items">
+                                        <span>Task Board</span>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li>
                             <a href="#" class="">
