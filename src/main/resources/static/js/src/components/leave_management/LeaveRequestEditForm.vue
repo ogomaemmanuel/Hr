@@ -4,7 +4,7 @@
 			<h1 class="has-text-black"><b>Edit Leave</b></h1>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Leave Types <span><sup class="has-text-danger">*</sup></span></label>
+			<label class="label">Leave Types <span><sup class="has-text-danger">*</sup></span></label>
 			<div class="control w-full">
 				<div class="select w-full">
 					<select
@@ -27,7 +27,7 @@
 		<div class="columns">
 			<div class="column">
 				<div class="field">
-					<label class="label is-size-7">From <span><sup class="has-text-danger">*</sup></span></label>
+					<label class="label">From <span><sup class="has-text-danger">*</sup></span></label>
 					<div class="control">
 						<DatePicker
 								@input="clearFieldError('startDate')"
@@ -44,7 +44,7 @@
 			</div>
 			<div class="column">
 				<div class="field">
-					<label class="label is-size-7">To <span><sup class="has-text-danger">*</sup></span></label>
+					<label class="label">To <span><sup class="has-text-danger">*</sup></span></label>
 					<div class="control">
 						<DatePicker
 								@input="clearFieldError('endDate')"
@@ -83,7 +83,7 @@
 			</div>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Number of Days<span><sup>*</sup></span></label>
+			<label class="label">Number of Days<span><sup>*</sup></span></label>
 			<div class="control">
 				<input
 						:value="numberOfDays"
@@ -98,7 +98,7 @@
 			</div>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Remaining Leaves Days<span><sup>*</sup></span></label>
+			<label class="label">Remaining Leaves Days<span><sup>*</sup></span></label>
 			<div class="control">
 				<input
 						:value="remainingLeaveDays"
@@ -108,7 +108,7 @@
 			</div>
 		</div>
 		<div class="field">
-			<label class="label is-size-7">Reason<span><sup>*</sup></span></label>
+			<label class="label">Reason<span><sup>*</sup></span></label>
 			<div class="control">
 				<textarea class="textarea"></textarea>
 			</div>
@@ -116,7 +116,7 @@
 		<div class="flex justify-center m-3">
 			<button
 					@click.prevent.stop="updateLeaveRequest"
-					class="button is-small is-rounded"
+					class="button is-rounded"
 					type="submit">Submit
 			</button>
 		</div>

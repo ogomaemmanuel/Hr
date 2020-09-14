@@ -164,7 +164,6 @@
 <script>
     import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
-
     export default {
         components: {
             DatePicker

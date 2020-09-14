@@ -5,7 +5,7 @@
 			<b-notification v-if="loaded" class="bg-white p-0" ref="leaveBalanceCard" :closable="false">
 				<div class="card-content">
 					<div class="content">
-						<h4>My Leave Balances</h4>
+<!--						<h4>My Leave Balances</h4>-->
 						<table class="table w-full is-hoverable">
 							<thead class="font-thin">
 							<tr>
