@@ -37,7 +37,7 @@
             height: {
                 type: String,
                 required: false,
-                default: '300px'
+                default: '400px'
             },
             language: {
                 type: String,

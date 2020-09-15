@@ -13,7 +13,7 @@ A quick list of Hr application capabilities are
 * Attendance Management
 * Leave application and processing
 * File Management
-^ Performance tracking 
+* Performance tracking 
 * Reports
 
 ## Running the application
