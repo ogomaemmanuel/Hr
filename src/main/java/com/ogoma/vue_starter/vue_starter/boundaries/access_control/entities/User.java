@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.Set;
 
@@ -22,11 +23,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "First name is required")
     private String firstName;
+    @NotBlank(message = "Last name is required")
     private String lastName;
     @Column(unique = true)
+    @NotBlank(message = "Email name is required")
     private String email;
     @Column(unique = true)
+    @NotBlank(message = "Phone is required")
     private String phone;
     private Date dateOfBirth;
     @Column(unique = true)

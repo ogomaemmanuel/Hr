@@ -10,12 +10,13 @@
                         <label class="label">First Name <span><sup>*</sup></span></label>
                         <div class="control">
                             <input
-                                    v-model="client.name"
-                                    @input="clearFieldError('name')"
+                                    v-model="client.user.firstName"
+
+                                    @input="clearFieldError('user.firstName')"
                                     class="input"
                                     type="text">
-                            <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                            <span class="mb-2 has-text-danger" v-if="errors['user.firstName']">
+						{{errors['user.firstName'][0]}}
 					</span>
                         </div>
                     </div>
@@ -25,12 +26,12 @@
                         <label class="label">Last Name <span><sup>*</sup></span></label>
                         <div class="control">
                             <input
-                                    v-model="client.name"
-                                    @input="clearFieldError('name')"
+                                    v-model="client.user.lastName"
+                                    @input="clearFieldError('user.lastName')"
                                     class="input"
                                     type="text">
-                            <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                            <span class="mb-2 has-text-danger" v-if="errors['user.lastName']">
+						{{errors['user.lastName'][0]}}
 					</span>
                         </div>
                     </div>
@@ -43,12 +44,12 @@
                         <label class="label">Email<span><sup>*</sup></span></label>
                         <div class="control">
                             <input
-                                    v-model="client.name"
-                                    @input="clearFieldError('name')"
+                                    v-model="client.user.email"
+                                    @input="clearFieldError('user.email')"
                                     class="input"
                                     type="text">
-                            <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                            <span class="mb-2 has-text-danger" v-if="errors['user.email']">
+						{{errors['user.email'][0]}}
 					</span>
                         </div>
                     </div>
@@ -58,12 +59,12 @@
                         <label class="label">Phone<span><sup>*</sup></span></label>
                         <div class="control">
                             <input
-                                    v-model="client.name"
-                                    @input="clearFieldError('name')"
+                                    v-model="client.user.phone"
+                                    @input="clearFieldError('user.phone')"
                                     class="input"
                                     type="text">
-                            <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                            <span class="mb-2 has-text-danger" v-if="errors['user.phone']">
+						{{errors['user.phone'][0]}}
 					</span>
                         </div>
                     </div>
@@ -74,12 +75,12 @@
                 <label class="label">Company Name<span><sup>*</sup></span></label>
                 <div class="control">
                     <input
-                            v-model="client.name"
-                            @input="clearFieldError('name')"
+                            v-model="client.companyName"
+                            @input="clearFieldError('companyName')"
                             class="input"
                             type="text">
-                    <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
+                    <span class="mb-2 has-text-danger" v-if="errors['companyName']">
+						{{errors['companyName'][0]}}
 					</span>
                 </div>
             </div>
@@ -120,13 +121,23 @@
         mixins: [common_mixin],
         data() {
             return {
-                client: {},
+                client: {
+                    user: {}
+                },
                 isLoading: false
             }
         },
         methods: {
             createClient() {
+                this.isLoading = true
+                axios.post("/api/clients", this.client).then(resp => {
+                    this.isLoading = false;
 
+                }, error => {
+                    if (error.response.status == 400) {
+                        this.errors = error.response.data;
+                    }
+                })
             }
         }
     }

@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "clients")
@@ -12,6 +13,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String companyName;
+    private String description;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     @Valid
@@ -29,6 +31,14 @@ public class Client {
         this.companyName = companyName;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public User getUser() {
         return user;
     }
@@ -36,4 +46,5 @@ public class Client {
     public void setUser(User user) {
         this.user = user;
     }
+
 }
