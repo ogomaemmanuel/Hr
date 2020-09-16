@@ -6,6 +6,7 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,5 +33,11 @@ public class ClientsController {
     public ResponseEntity<?> saveClient(@RequestBody @Valid Client client) {
         client = this.clientService.createClient(client);
         return ResponseEntity.ok(client);
+    }
+
+    @RequestMapping(value = "api/clients/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> removeClient(@PathVariable("id") Long clientId) {
+        this.clientService.removeClient(clientId);
+        return ResponseEntity.ok("Client successfully removed");
     }
 }
