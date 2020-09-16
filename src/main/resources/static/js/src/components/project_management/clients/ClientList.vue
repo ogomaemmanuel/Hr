@@ -42,7 +42,7 @@
         <div class="columns h-full">
             <div class="column is-12">
                 <ClientTableList v-if="showTableList"></ClientTableList>
-                <ClientTableList v-else></ClientTableList>
+                <ClientCardList v-else></ClientCardList>
             </div>
         </div>
     </div>

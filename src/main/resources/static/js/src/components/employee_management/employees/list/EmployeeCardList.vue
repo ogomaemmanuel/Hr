@@ -1,22 +1,22 @@
 <template>
     <div class="h-full">
         <div class="columns h-full is-multiline">
-            <div v-for="employee in employees" class="column is-4">
+            <div v-for="employee in employees" class="column is-3-desktop is-4-tablet">
 
                 <div class="card">
                     <div class="pt-2">
                         <div class="card-image is-relative">
                             <div class="flex justify-center">
                                 <figure class="image is-128x128">
-                                    <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png"
+                                    <img class="is-rounded" src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-02.jpg"
                                          alt="Placeholder image">
                                 </figure>
                             </div>
 
 
                             <div class="profile-action">
-                                <div class="dropdown">
-                                    <b-dropdown aria-role="list">
+
+                                    <b-dropdown class="text-left" aria-role="list">
                                         <i
                                                 class="fa fa-ellipsis-v text-muted"
                                                 slot="trigger"
@@ -35,7 +35,6 @@
                                             Edit
                                         </b-dropdown-item>
                                     </b-dropdown>
-                                </div>
                             </div>
                         </div>
 
