@@ -51,8 +51,10 @@
                             </b-dropdown-item>
                             <b-dropdown-item
                                     :disabled="false" value="edit" aria-role="listitem">
-                                <span class="icon"><i class="fa fa-pencil"></i></span>
-                                Edit
+                                <router-link :to="`/client-edit/${client.id}`">
+                                    <span class="icon"><i class="fa fa-pencil"></i></span>
+                                    Edit
+                                </router-link>
                             </b-dropdown-item>
                         </b-dropdown>
                     </div>
@@ -104,7 +106,8 @@
         top: 0px;
         right: 5px;
     }
-    .text-truncate{
+
+    .text-truncate {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

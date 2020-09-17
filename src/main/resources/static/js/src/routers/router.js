@@ -40,15 +40,14 @@ const DesignationsCreate = () => import("../components/employee_management/desig
 const DesignationsEdit = () => import("../components/employee_management/designations/DesignationEditModal")
 
 
-
 const ResignationPage = () => import("../components/employee_management/resignation/EmployeeResignationPage")
 const ResignationList = () => import("../components/employee_management/resignation/ResignationList")
-const ResignationEdit= () => import("../components/employee_management/resignation/ResignationEditModal")
+const ResignationEdit = () => import("../components/employee_management/resignation/ResignationEditModal")
 
 
-const EmployeeTerminationPage= () => import("../components/employee_management/termination/TerminationPage")
-const EmployeeTerminationList= () => import("../components/employee_management/termination/TerminationList")
-const EmployeeTerminationEdit= () => import("../components/employee_management/termination/TerminationEditModal")
+const EmployeeTerminationPage = () => import("../components/employee_management/termination/TerminationPage")
+const EmployeeTerminationList = () => import("../components/employee_management/termination/TerminationList")
+const EmployeeTerminationEdit = () => import("../components/employee_management/termination/TerminationEditModal")
 
 
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
@@ -67,8 +66,6 @@ const EmployeeSalaryView = () => import("../components/payroll/employee_salary/E
 const EmployeesSalaryPage = () => import("../components/payroll/employee_salary/EmployeeSalaryPage")
 const EmployeeSalaryList = () => import("../components/payroll/employee_salary/EmployeeSalaryList")
 const EmployeeSalaryDetails = () => import("../components/payroll/employee_salary/EmployeeSalaryDetails")
-
-
 
 
 const Documents = () => import("../components/file_management/Index")
@@ -96,10 +93,10 @@ const HolidayCreateModal = () => import("../components/holidays/HolidayCreateMod
 const HolidayEditModal = () => import("../components/holidays/HolidayEditModal")
 
 
-
 const ClientsPage = () => import("../components/project_management/clients/ClientsPage")
 const ClientList = () => import("../components/project_management/clients/ClientList")
 const ClientCreate = () => import("../components/project_management/clients/ClientCreateModal")
+const ClientEdit = ()  => import("../components/project_management/clients/ClientEditModal")
 
 
 Vue.use(Router);
@@ -445,13 +442,13 @@ const routes = new Router({
                             path: "/",
                             name: "overtime-requests-list",
                             component: OvertimeRequestList,
-                           children: [
-                               {
-                                   path: "/overtime-requests-edit/:id",
-                                   name: "overtime-requests-edit",
-                                   component: OvertimeRequestEdit,
-                               },
-                           ]
+                            children: [
+                                {
+                                    path: "/overtime-requests-edit/:id",
+                                    name: "overtime-requests-edit",
+                                    component: OvertimeRequestEdit,
+                                },
+                            ]
                         },
 
 
@@ -470,13 +467,13 @@ const routes = new Router({
                             path: "/",
                             name: "employee-resignation-list",
                             component: ResignationList,
-                           children: [
-                               {
-                                   path: "/employee-resignation-edit/:id",
-                                   name: "employee-resignation-edit",
-                                   component: ResignationEdit,
-                               },
-                           ]
+                            children: [
+                                {
+                                    path: "/employee-resignation-edit/:id",
+                                    name: "employee-resignation-edit",
+                                    component: ResignationEdit,
+                                },
+                            ]
                         },
 
 
@@ -495,13 +492,13 @@ const routes = new Router({
                             path: "/",
                             name: "employee-termination-list",
                             component: EmployeeTerminationList,
-                           children: [
-                               {
-                                   path: "/employee-termination-edit/:id",
-                                   name: "employee-termination-edit",
-                                   component: EmployeeTerminationEdit,
-                               },
-                           ]
+                            children: [
+                                {
+                                    path: "/employee-termination-edit/:id",
+                                    name: "employee-termination-edit",
+                                    component: EmployeeTerminationEdit,
+                                },
+                            ]
                         },
 
 
@@ -581,15 +578,15 @@ const routes = new Router({
                                 title: "Client Create",
                             },
                         },
-                        // {
-                        //     path: "/salary-view/:id",
-                        //     name: "employee-salary-view",
-                        //     component: EmployeeSalaryView,
-                        //     meta: {
-                        //         breadcrumb: true,
-                        //         title: "Payslip",
-                        //     },
-                        // },
+                        {
+                            path: "/client-edit/:id",
+                            name: "client-edit",
+                            component: ClientEdit,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Client Edit",
+                            },
+                        },
                     ]
                 },
 
