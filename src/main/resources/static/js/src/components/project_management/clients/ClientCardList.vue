@@ -13,14 +13,15 @@
                                          alt="Placeholder image">
                                 </figure>
                             </div>
-                            <div class="text-center">
-                                <a href="">Company Name</a>
+                            <div class="text-center text-truncate">
+                                <a href="">{{client.companyName}}</a>
                             </div>
-                            <div class="text-center">
-                                <a href="">Client Name</a>
+                            <div class="text-center text-truncate">
+                                <a href="">{{client.fullName}}</a>
                             </div>
-                            <div class="text-center">
-                                <a href="">Title</a>
+                            <div class="text-center text-truncate">
+                                <!--                                <a href="">Title</a>-->
+                                <a href="">{{client.phone}}</a>
                             </div>
                             <div class="flex justify-center">
                                 <div class="">
@@ -102,5 +103,10 @@
         top: 10px;
         top: 0px;
         right: 5px;
+    }
+    .text-truncate{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>

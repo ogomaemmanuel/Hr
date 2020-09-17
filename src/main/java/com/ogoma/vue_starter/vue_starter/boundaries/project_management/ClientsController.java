@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ClientViewModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.services.ClientService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 import java.awt.print.Pageable;
+import java.util.Optional;
 
 @Controller
 public class ClientsController {
@@ -24,9 +26,16 @@ public class ClientsController {
 
     @RequestMapping(value = "api/clients", method = RequestMethod.GET)
     public ResponseEntity<?> getClients(PagedDataRequest pagedDataRequest) {
-        Page<Client> clients =
+        Page<ClientViewModel> clients =
                 this.clientService.getClients(pagedDataRequest);
         return ResponseEntity.ok(clients);
+    }
+
+    @RequestMapping(value = "api/clients/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getClientsById(@PathVariable("id") Long clientId) {
+        Optional<Client> client =
+                this.clientService.getClientById(clientId);
+        return ResponseEntity.of(client);
     }
 
     @RequestMapping(value = "api/clients", method = RequestMethod.POST)

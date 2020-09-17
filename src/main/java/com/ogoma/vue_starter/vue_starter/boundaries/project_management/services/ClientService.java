@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ClientViewModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ClientsRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import nl.martijndwars.webpush.cli.Cli;
@@ -23,11 +24,11 @@ public class ClientService {
         return client;
     }
 
-    public Page<Client> getClients(PagedDataRequest pagedDataRequest) {
+    public Page<ClientViewModel> getClients(PagedDataRequest pagedDataRequest) {
         PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(),
                 pagedDataRequest.getPageSize());
-        Page<Client> clients =
-                this.clientsRepository.findAll(pageRequest);
+        Page<ClientViewModel> clients =
+                this.clientsRepository.findAllClients(pageRequest);
         return clients;
 
     }
