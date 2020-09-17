@@ -96,7 +96,7 @@ const HolidayEditModal = () => import("../components/holidays/HolidayEditModal")
 const ClientsPage = () => import("../components/project_management/clients/ClientsPage")
 const ClientList = () => import("../components/project_management/clients/ClientList")
 const ClientCreate = () => import("../components/project_management/clients/ClientCreateModal")
-const ClientEdit = ()  => import("../components/project_management/clients/ClientEditModal")
+const ClientEdit = () => import("../components/project_management/clients/ClientEditModal")
 
 
 Vue.use(Router);
@@ -567,26 +567,29 @@ const routes = new Router({
                     children: [
                         {
                             path: "/",
-                            component: ClientList
+                            component: ClientList,
+                            children: [
+                                {
+                                    path: "/client-create",
+                                    name: "client-create",
+                                    component: ClientCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Client Create",
+                                    },
+                                },
+                                {
+                                    path: "/clients-edit/:id",
+                                    name: "clients-edit",
+                                    component: ClientEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Client Edit",
+                                    },
+                                },
+                            ]
                         },
-                        {
-                            path: "/client-create",
-                            name: "client-create",
-                            component: ClientCreate,
-                            meta: {
-                                breadcrumb: true,
-                                title: "Client Create",
-                            },
-                        },
-                        {
-                            path: "/clients-edit/:id",
-                            name: "clients-edit",
-                            component: ClientEdit,
-                            meta: {
-                                breadcrumb: true,
-                                title: "Client Edit",
-                            },
-                        },
+
                     ]
                 },
 
