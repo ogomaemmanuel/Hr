@@ -579,8 +579,8 @@ const routes = new Router({
                             },
                         },
                         {
-                            path: "/client-edit/:id",
-                            name: "client-edit",
+                            path: "/clients-edit/:id",
+                            name: "clients-edit",
                             component: ClientEdit,
                             meta: {
                                 breadcrumb: true,

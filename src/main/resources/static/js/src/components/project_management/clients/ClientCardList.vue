@@ -51,7 +51,7 @@
                             </b-dropdown-item>
                             <b-dropdown-item
                                     :disabled="false" value="edit" aria-role="listitem">
-                                <router-link :to="`/client-edit/${client.id}`">
+                                <router-link :to="`/clients-edit/${client.id}`">
                                     <span class="icon"><i class="fa fa-pencil"></i></span>
                                     Edit
                                 </router-link>
@@ -80,7 +80,6 @@
             this.getClients();
         },
         methods: {
-
             getClients() {
                 let vm = this;
                 axios.get(`/api/clients`, {
