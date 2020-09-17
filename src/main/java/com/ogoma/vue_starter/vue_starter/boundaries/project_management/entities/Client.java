@@ -14,6 +14,7 @@ public class Client {
     private Long id;
     private String companyName;
     private String description;
+    private String address;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     @Valid
@@ -47,4 +48,11 @@ public class Client {
         this.user = user;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
