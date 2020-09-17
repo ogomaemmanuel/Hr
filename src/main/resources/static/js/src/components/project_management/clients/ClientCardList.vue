@@ -83,7 +83,7 @@
 
             getClients() {
                 let vm = this;
-                axios.get(`api/clients`, {
+                axios.get(`/api/clients`, {
                     params: {
                         page: this.page,
                         pageSize: this.pageSize,

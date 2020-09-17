@@ -1,6 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.services;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ClientProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ClientViewModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ClientsRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -34,8 +36,8 @@ public class ClientService {
     }
 
 
-    public Optional<Client> getClientById(Long clientId) {
-        Optional<Client> client = this.clientsRepository.findById(clientId);
+    public Optional<ClientProjection> getClientById(Long clientId) {
+        Optional<ClientProjection> client = this.clientsRepository.findClientById(clientId);
         return client;
     }
 
@@ -48,7 +50,12 @@ public class ClientService {
                 this.clientsRepository.findById(clientId);
         optionalClient.ifPresent(c -> {
             c.setCompanyName(client.getCompanyName());
-            c.setUser(client.getUser());
+            c.setDescription(client.getDescription());
+            User user = c.getUser();
+            user.setEmail(client.getUser().getEmail());
+            user.setFirstName(client.getUser().getFirstName());
+            user.setLastName(client.getUser().getLastName());
+            user.setPhone(client.getUser().getPhone());
             this.clientsRepository.save(c);
         });
         return optionalClient;

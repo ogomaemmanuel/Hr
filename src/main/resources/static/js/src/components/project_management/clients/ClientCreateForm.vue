@@ -134,6 +134,7 @@
                     this.isLoading = false;
 
                 }, error => {
+                    this.isLoading = false;
                     if (error.response.status == 400) {
                         this.errors = error.response.data;
                     }

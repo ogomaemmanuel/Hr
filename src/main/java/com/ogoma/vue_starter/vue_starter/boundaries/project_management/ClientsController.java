@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ClientProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ClientViewModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.services.ClientService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -33,7 +34,7 @@ public class ClientsController {
 
     @RequestMapping(value = "api/clients/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getClientsById(@PathVariable("id") Long clientId) {
-        Optional<Client> client =
+        Optional<ClientProjection> client =
                 this.clientService.getClientById(clientId);
         return ResponseEntity.of(client);
     }
@@ -42,6 +43,11 @@ public class ClientsController {
     public ResponseEntity<?> saveClient(@RequestBody @Valid Client client) {
         client = this.clientService.createClient(client);
         return ResponseEntity.ok(client);
+    } 
+    @RequestMapping(value = "api/clients/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateClient(@PathVariable()Long id,@RequestBody @Valid Client client) {
+        Optional<Client> updatedClient = this.clientService.updateClient(id,client);
+        return ResponseEntity.of(updatedClient);
     }
 
     @RequestMapping(value = "api/clients/{id}", method = RequestMethod.DELETE)
