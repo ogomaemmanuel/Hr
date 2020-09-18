@@ -224,7 +224,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/salary-view">
+                                    <router-link to="/projects">
                                         <span>Projects</span>
                                     </router-link>
                                 </li>

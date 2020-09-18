@@ -16,7 +16,7 @@ import java.util.Optional;
 public interface ClientsRepository extends JpaRepository<Client, Long> {
     @Query(value = "select c.id as id ,c.companyName as companyName ,c.description,c.user.firstName as firstName," +
             "c.user.lastName as lastName,c.user.phone as phone,c.user.email as email" +
-            " from Client  c  where c.user.id=c.user.id")
+            " from Client  c ")
     public Page<ClientViewModel> findAllClients(Pageable pageable);
 
    // @Query(value = "select c from Client c where c.id=:id")
