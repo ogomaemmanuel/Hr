@@ -32,6 +32,7 @@ module.exports = env => {
                     {
                         test: /\.vue$/,
                         loader: "vue-loader",
+                        // for loading css files in  vue components
                         options: {
                             loaders: {
                                 // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
@@ -66,7 +67,7 @@ module.exports = env => {
                             'sass-loader'
                         ]
                     },
-
+// for loading css not in vue files
                     {
                         test: /\.css$/,
                         use: isDevBuild

@@ -102,7 +102,7 @@
                 <button
                         :class="{'is-loading':isLoading}"
                         :disabled="isLoading"
-                        @click.prevent.stop="createClient"
+                        @click.prevent.stop="updateClient"
                         class="button  is-rounded"
                         type="submit">Submit
                 </button>
@@ -119,6 +119,11 @@
             MarkdownEditor
         },
         mixins: [common_mixin],
+        props: {
+            clientId: {
+                required: true,
+            }
+        },
         data() {
             return {
                 client: {
@@ -127,10 +132,19 @@
                 isLoading: false
             }
         },
+        created() {
+            this.getClient();
+        },
         methods: {
-            createClient() {
+            getClient() {
+                axios.get(`/api/clients/${this.clientId}`).then(resp => {
+                    this.client = resp.data;
+                })
+            },
+            updateClient() {
                 this.isLoading = true
-                axios.post("/api/clients", this.client).then(resp => {
+                axios.put(`/api/clients/${this.clientId}`,
+                    this.client).then(resp => {
                     this.isLoading = false;
 
                 }, error => {
