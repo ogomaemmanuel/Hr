@@ -5,6 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -16,12 +18,17 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Name is required")
     private String name;
+    @NotNull(message = "Start date is required")
     @Temporal(TemporalType.DATE)
     private Date startDate;
+    @NotNull(message = "End date is required")
     @Temporal(TemporalType.DATE)
     private Date endDate;
+    @NotNull(message = "Rate is required")
     private BigDecimal rate;
+    @NotBlank(message = "Description is required")
     private String description;
     @OneToOne
     private Client client;
