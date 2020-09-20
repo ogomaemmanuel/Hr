@@ -100,6 +100,7 @@ const ClientEdit = () => import("../components/project_management/clients/Client
 
 const ProjectsPage = () => import("../components/project_management/projects/ProjectsPage")
 const ProjectList = () => import("../components/project_management/projects/ProjectList")
+const ProjectCreate = () => import("../components/project_management/projects/ProjectCreateModal")
 
 
 Vue.use(Router);
@@ -607,26 +608,26 @@ const routes = new Router({
                         {
                             path: "/",
                             component: ProjectList,
-                            // children: [
-                            //     {
-                            //         path: "/client-create",
-                            //         name: "client-create",
-                            //         component: ClientCreate,
-                            //         meta: {
-                            //             breadcrumb: true,
-                            //             title: "Client Create",
-                            //         },
-                            //     },
-                            //     {
-                            //         path: "/clients-edit/:id",
-                            //         name: "clients-edit",
-                            //         component: ClientEdit,
-                            //         meta: {
-                            //             breadcrumb: true,
-                            //             title: "Client Edit",
-                            //         },
-                            //     },
-                            // ]
+                            children: [
+                                {
+                                    path: "/projects-create",
+                                    name: "projects-create",
+                                    component: ProjectCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Project Create",
+                                    },
+                                },
+                                // {
+                                //     path: "/clients-edit/:id",
+                                //     name: "clients-edit",
+                                //     component: ClientEdit,
+                                //     meta: {
+                                //         breadcrumb: true,
+                                //         title: "Client Edit",
+                                //     },
+                                // },
+                            ]
                         },
 
                     ]
