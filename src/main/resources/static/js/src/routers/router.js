@@ -98,6 +98,9 @@ const ClientList = () => import("../components/project_management/clients/Client
 const ClientCreate = () => import("../components/project_management/clients/ClientCreateModal")
 const ClientEdit = () => import("../components/project_management/clients/ClientEditModal")
 
+const ProjectsPage = () => import("../components/project_management/projects/ProjectsPage")
+const ProjectList = () => import("../components/project_management/projects/ProjectList")
+
 
 Vue.use(Router);
 const routes = new Router({
@@ -588,6 +591,42 @@ const routes = new Router({
                                     },
                                 },
                             ]
+                        },
+
+                    ]
+                },
+                {
+                    path: "/projects",
+                    name: "projects",
+                    component: ProjectsPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Projects",
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            component: ProjectList,
+                            // children: [
+                            //     {
+                            //         path: "/client-create",
+                            //         name: "client-create",
+                            //         component: ClientCreate,
+                            //         meta: {
+                            //             breadcrumb: true,
+                            //             title: "Client Create",
+                            //         },
+                            //     },
+                            //     {
+                            //         path: "/clients-edit/:id",
+                            //         name: "clients-edit",
+                            //         component: ClientEdit,
+                            //         meta: {
+                            //             breadcrumb: true,
+                            //             title: "Client Edit",
+                            //         },
+                            //     },
+                            // ]
                         },
 
                     ]

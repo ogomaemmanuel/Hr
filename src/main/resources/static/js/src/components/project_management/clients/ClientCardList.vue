@@ -1,7 +1,7 @@
 <template>
     <div class="h-full">
         <div class="columns h-full is-multiline">
-            <div v-for="client in clients" class="column  is-3-desktop is-4-tablet">
+            <div v-for="client in clients" class="column  is-12-mobile is-6-tablet  is-3-desktop">
                 <div class="card min-h-48">
                     <div class="card-content">
 
@@ -13,22 +13,22 @@
                                          alt="Placeholder image">
                                 </figure>
                             </div>
-                            <div class="text-center text-truncate">
-                                <a href="">{{client.companyName}}</a>
+                            <div class="text-center mt-1 text-truncate">
+                              <h4><a href="" class="text-black font-medium text-lg font-semibold">{{client.companyName}}</a></h4>
                             </div>
                             <div class="text-center text-truncate">
-                                <a href="">{{client.fullName}}</a>
+                              <h5><a href="" class="text-black text-sm font-semibold">{{client.fullName}}</a></h5>
                             </div>
                             <div class="text-center text-truncate">
                                 <!--                                <a href="">Title</a>-->
-                                <a href="">{{client.phone}}</a>
+                             <h5 class="text-sm font-semibold"><a href="">{{client.phone}}</a></h5>
                             </div>
                             <div class="flex justify-center">
                                 <div class="">
-                                    <button class="button is-size-7 mr-1">Message</button>
+                                    <button class="button is-size-7 mr-1 text-black text-sm font-semibold">Message</button>
                                 </div>
                                 <div class="">
-                                    <button class="button is-size-7 ml-1">View Profile</button>
+                                    <button class="button is-size-7 ml-1 text-black text-sm font-semibold">View Profile</button>
                                 </div>
                             </div>
 
