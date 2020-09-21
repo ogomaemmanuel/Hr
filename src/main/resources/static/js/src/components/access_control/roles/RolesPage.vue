@@ -127,7 +127,11 @@
                 this.$buefy.dialog.confirm({
                     title: 'Remove Role',
                     message: `Are you sure want to remove <b> ${role.name}</b> from roles`,
-                    onConfirm: () => this.removeRole(role)
+                }).then((result) => {
+                    console.log(result);
+                    if(result==true) {
+                        this.removeRole(role)
+                    }
                 })
             },
             removeRole(role) {
