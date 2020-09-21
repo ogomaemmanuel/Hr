@@ -33,9 +33,10 @@
             </div>
             <div class="flex justify-center m-3">
                 <button
+                        ref="createButton"
                         :class="{'is-loading':isLoading}"
                         :disabled="disableSubmitButton"
-                        @click.prevent.stop="createRole"
+                        @click.prevent.stop="createRole()"
                         class="button  is-rounded"
                         type="submit">Submit
                 </button>
@@ -61,6 +62,7 @@
             createRole() {
                 let vm = this;
                 axios.post("/api/roles", this.role).then(resp => {
+
                     vm.$swal({
                         type: "success",
                         title: "Success",

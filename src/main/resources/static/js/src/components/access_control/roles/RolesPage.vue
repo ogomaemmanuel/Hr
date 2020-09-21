@@ -65,6 +65,7 @@
 
                                             <button
                                                     @click="confirmRemoveRole(role)"
+                                                    ref="deleteButton"
                                                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
