@@ -11,10 +11,6 @@ axios.post.mockResolvedValue({
 Object.defineProperty(window, 'axios', {value: axios})
 describe('Role Create Form', () => {
     it("clicking create button should send data to the backend", async () => {
-        localVue.swal({
-            title:""
-
-        })
         const wrapper = mount(RoleCreateForm, {
             localVue,
             data: function () {

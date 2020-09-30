@@ -1,12 +1,21 @@
 import {shallowMount, createLocalVue} from '@vue/test-utils';
 import sinon from "sinon";
-import RolesPage from "../RolesPage";
+import RolesPage from "../RolesPage.vue";
 import Buefy from "buefy"
+ import VueSweetalert2 from "../../../../utils/vue_sweet_alert";
 import axios from "axios";
 
 let localVue = createLocalVue();
-localVue.use(Buefy);
+localVue.use(Buefy, {
+    defaultProgrammaticPromise: true
+});
+ localVue.use(VueSweetalert2);
 jest.mock('axios');
+axios.delete.mockResolvedValue({
+    data: {
+        content: [{}, {}]
+    }
+});
 axios.get.mockResolvedValue({
     data: {
         content: [{}, {}]
@@ -27,13 +36,14 @@ describe('Roles Page', () => {
         });
         const spyConfirmRemoveRole = sinon.spy(wrapper.vm, 'confirmRemoveRole');
         const spyRemoveRole = sinon.spy(wrapper.vm, 'removeRole');
-        const spyDialog = sinon.spy(wrapper.vm.$buefy.dialog, 'confirm');
-        spyDialog.
+        const spyDialog = sinon.stub(wrapper.vm.$buefy.dialog, 'confirm');
+        spyDialog.resolves(true)
+
         let deleteButtons = await wrapper.findAllComponents({ref: "deleteButton"});
-        console.log(deleteButtons.at(0).html());
         await deleteButtons.at(0).trigger('click');
         expect(spyConfirmRemoveRole.calledOnce).toBe(true);
         expect(spyDialog.calledOnce).toBe(true);
+        // wrapper.findComponent("O")
         expect(spyRemoveRole.calledOnce).toBe(true);
     })
 

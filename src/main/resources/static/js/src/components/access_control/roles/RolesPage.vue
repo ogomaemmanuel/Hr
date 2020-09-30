@@ -128,10 +128,11 @@
                     title: 'Remove Role',
                     message: `Are you sure want to remove <b> ${role.name}</b> from roles`,
                 }).then((result) => {
-                    console.log(result);
                     if(result==true) {
                         this.removeRole(role)
                     }
+                },error=>{
+                    console.error("some error occurred")
                 })
             },
             removeRole(role) {
@@ -139,7 +140,6 @@
                     this.$swal({
                         type: "success",
                         title: "Success",
-                        message: "Department successfully removed",
                     })
                     this.getRoles();
                 })

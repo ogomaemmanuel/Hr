@@ -139,12 +139,12 @@
       "json"
     ],
     "transform": {
-      ".+\\.tsx?$": "ts-jest",
+      ".+\\.tsx?$": "babel-jest",
       ".*\\.(vue)$": "vue-jest",
       ".+\\.jsx?$": "babel-jest"
     },
     "transformIgnorePatterns": [
-      "/node_modules/(?!sweetalert2).+\\.js$"
+      "/node_modules/(?!vue-sweetalert2).+\\.js$"
     ]
   }
 }

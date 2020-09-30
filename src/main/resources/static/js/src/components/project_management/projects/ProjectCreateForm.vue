@@ -236,7 +236,8 @@
         methods: {
             createProject() {
                 this.isLoading = true
-                axios.post("/api/projects", this.project).then(resp => {
+                axios.post("/api/projects",
+                    this.project).then(resp => {
                     this.isLoading = false;
                     this.$emit("createSuccessful");
                 }, error => {
