@@ -6,7 +6,7 @@
             </template>
             <b-autocomplete
                     :data="clients"
-                    placeholder="Select Employee"
+                    placeholder="Select Client"
                     field="fullName"
                     :loading="isFetching"
                     :check-infinite-scroll="true"
