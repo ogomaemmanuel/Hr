@@ -22,20 +22,29 @@
                     </div>
                 </div>
                 <div class="column">
-<!--                    <div class="field">-->
-<!--                        <label class="label">Client<span><sup>*</sup></span></label>-->
-<!--                        <div class="control">-->
-<!--                            <input-->
-<!--                                    v-model="project.clientId"-->
-<!--                                    @input="clearFieldError('clientId')"-->
-<!--                                    class="input"-->
-<!--                                    type="text">-->
-<!--                            <span class="mb-2 has-text-danger" v-if="errors['clientId']">-->
-<!--						{{errors['clientId'][0]}}-->
-<!--					</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    <ClientSelectInput label="Client"></ClientSelectInput>
+                    <!--                    <div class="field">-->
+                    <!--                        <label class="label">Client<span><sup>*</sup></span></label>-->
+                    <!--                        <div class="control">-->
+                    <!--                            <input-->
+                    <!--                                    v-model="project.clientId"-->
+                    <!--                                    @input="clearFieldError('clientId')"-->
+                    <!--                                    class="input"-->
+                    <!--                                    type="text">-->
+                    <!--                            <span class="mb-2 has-text-danger" v-if="errors['clientId']">-->
+                    <!--						{{errors['clientId'][0]}}-->
+                    <!--					</span>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <ClientSelectInput
+                            v-model="project.clientId"
+                            @input="clearFieldError('clientId')"
+                            label="Client">
+                        <span slot="errors"
+                              class="mb-2 has-text-danger"
+                              v-if="errors['clientId']">
+                            {{errors['clientId'][0]}}
+                        </span>
+                    </ClientSelectInput>
                 </div>
             </div>
             <div class="columns">
@@ -49,8 +58,8 @@
                                     class="input"
                                     type="text">
                             <span class="mb-2 has-text-danger" v-if="errors['startDate']">
-						{{errors['startDate'][0]}}
-					</span>
+                                                    {{errors['startDate'][0]}}
+                                                </span>
                         </div>
                     </div>
                 </div>
@@ -64,8 +73,8 @@
                                     class="input"
                                     type="text">
                             <span class="mb-2 has-text-danger" v-if="errors['endDate']">
-						{{errors['endDate'][0]}}
-					</span>
+                                                    {{errors['endDate'][0]}}
+                                                </span>
                         </div>
                     </div>
                 </div>
@@ -83,8 +92,8 @@
                                             class="input"
                                             type="text">
                                     <span class="mb-2 has-text-danger" v-if="errors['rate']">
-						{{errors['rate'][0]}}
-					</span>
+                                                    {{errors['rate'][0]}}
+                                                </span>
                                 </div>
                             </div>
                         </div>
@@ -96,8 +105,8 @@
                                         class="input"
                                         type="text">
                                 <span class="mb-2 has-text-danger" v-if="errors['startDate']">
-						{{errors['startDate'][0]}}
-					</span>
+                                                    {{errors['startDate'][0]}}
+                                                </span>
                             </div>
                         </div>
                     </div>
@@ -112,8 +121,8 @@
                                     class="input"
                                     type="text">
                             <span class="mb-2 has-text-danger" v-if="errors['priority']">
-						{{errors['priority'][0]}}
-					</span>
+                                                    {{errors['priority'][0]}}
+                                                </span>
                         </div>
                     </div>
                 </div>
@@ -132,8 +141,8 @@
                                     class="input"
                                     type="text">
                             <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{errors['name'][0]}}
-					</span>
+                                                    {{errors['name'][0]}}
+                                                </span>
                         </div>
                     </div>
                 </div>

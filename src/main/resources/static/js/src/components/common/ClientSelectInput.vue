@@ -49,7 +49,7 @@
     export default {
         props: {
             label: {
-                default: "Employee"
+                default: "Client"
             },
             required: {
                 default: true
@@ -115,7 +115,9 @@
         },
         watch: {
             selectedClient: function (val) {
-                this.$emit('input', val.id);
+                if(val) {
+                    this.$emit('input', val.id);
+                }
             }
         }
     }
