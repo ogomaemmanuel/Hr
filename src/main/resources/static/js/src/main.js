@@ -39,6 +39,7 @@ Vue.use(PasswordInput);
 
 Vue.use(Buefy, {
     defaultIconPack: 'fa',
+    defaultProgrammaticPromise:true
 });
 const app = new Vue({
     router,

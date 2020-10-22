@@ -65,6 +65,7 @@
 
                                             <button
                                                     @click="confirmRemoveRole(role)"
+                                                    ref="deleteButton"
                                                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -126,7 +127,12 @@
                 this.$buefy.dialog.confirm({
                     title: 'Remove Role',
                     message: `Are you sure want to remove <b> ${role.name}</b> from roles`,
-                    onConfirm: () => this.removeRole(role)
+                }).then((result) => {
+                    if(result==true) {
+                        this.removeRole(role)
+                    }
+                },error=>{
+                    console.error("some error occurred")
                 })
             },
             removeRole(role) {
@@ -134,7 +140,6 @@
                     this.$swal({
                         type: "success",
                         title: "Success",
-                        message: "Department successfully removed",
                     })
                     this.getRoles();
                 })

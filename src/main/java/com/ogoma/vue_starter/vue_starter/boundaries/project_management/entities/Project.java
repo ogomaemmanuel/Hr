@@ -1,6 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.enums.Priority;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.enums.RateType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -28,6 +30,8 @@ public class Project {
     private Date endDate;
     @NotNull(message = "Rate is required")
     private BigDecimal rate;
+    @NotNull(message = "Type is required")
+    private RateType rateType;
     @NotBlank(message = "Description is required")
     private String description;
     @OneToOne
@@ -36,12 +40,15 @@ public class Project {
     private Employee teamLeader;
     @OneToMany
     private Set<Employee> projectMembers;
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     public Date createdAt;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     public Date updatedAt;
+
 
     public Long getId() {
         return id;
@@ -73,6 +80,14 @@ public class Project {
 
     public BigDecimal getRate() {
         return rate;
+    }
+
+    public RateType getRateType() {
+        return rateType;
+    }
+
+    public void setRateType(RateType rateType) {
+        this.rateType = rateType;
     }
 
     public void setRate(BigDecimal rate) {
@@ -109,6 +124,14 @@ public class Project {
 
     public void setProjectMembers(Set<Employee> projectMembers) {
         this.projectMembers = projectMembers;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public Date getCreatedAt() {

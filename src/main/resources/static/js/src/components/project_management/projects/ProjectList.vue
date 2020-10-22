@@ -17,7 +17,7 @@
                         </button>
 
                         <router-link
-                                to="/client-create"
+                                to="/projects-create"
                                 tag="button"
                                 class="button mr-1 is-rounded">
 				<span class="icon">
@@ -32,6 +32,7 @@
             </portal>
         </div>
         <ProjectsCardList></ProjectsCardList>
+        <router-view></router-view>
     </div>
 </template>
 <script>

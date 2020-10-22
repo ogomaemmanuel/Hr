@@ -2,6 +2,10 @@
     <div class="card">
         <div class="card-content">
             <h4 class="text-black font-medium text-lg font-semibold"><a href="">Office Management</a></h4>
+            <div class="text-xs font-normal">
+                <span class="font-bold">2</span> <span>open tasks</span> <span class="font-bold">5</span> <span>tasks completed</span>
+            </div>
+
             <div>
                 <p>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -18,18 +22,24 @@
                 <h4 class="text-black font-medium text-lg font-semibold">
                     Project Leader:</h4>
                 <div>
-                    <Avatar  size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
+                    <Avatar size="small"
+                            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
                 </div>
             </div>
             <div class="mt-2">
                 <h4 class="text-black font-medium text-lg font-semibold">
                     Team:</h4>
                 <div>
-                    <Avatar  size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
-                    <Avatar  size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
-                    <Avatar  size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
-                    <Avatar  size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
-                    <Avatar  size="small" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
+                    <Avatar size="small"
+                            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
+                    <Avatar size="small"
+                            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
+                    <Avatar size="small"
+                            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
+                    <Avatar size="small"
+                            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
+                    <Avatar size="small"
+                            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"></Avatar>
                 </div>
             </div>
             <div class="mt-2">

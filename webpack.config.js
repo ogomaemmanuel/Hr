@@ -107,7 +107,13 @@ module.exports = env => {
                 port:9080,
                 disableHostCheck: true,
                 proxy: {
-                    '/**': {
+                    '/web-chat/*': {
+                        target: 'ws://localhost:49612',
+                        secure: false,
+                        ws:true,
+                        // <a href="https://github.com/nodejitsu/node-http-proxy">node-http-proxy</a> option - don't add /localhost:8080/ to proxied request paths
+                        prependPath: false
+                    }, '/**': {
                         target: 'http://localhost:49612',
                         secure: false,
                         // <a href="https://github.com/nodejitsu/node-http-proxy">node-http-proxy</a> option - don't add /localhost:8080/ to proxied request paths
