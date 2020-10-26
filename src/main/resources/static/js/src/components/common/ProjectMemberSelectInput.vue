@@ -5,13 +5,13 @@
                 {{label}} <span v-if="required"><sup>*</sup></span>
             </template>
             <b-autocomplete
-                    :data="clients"
-                    placeholder="Select Client"
+                    :data="employees"
+                    placeholder="Select Employee"
                     field="fullName"
                     :loading="isFetching"
                     :check-infinite-scroll="true"
                     @typing="getAsyncData"
-                    @select="option => selectedClient = option"
+                    @select="option => selectedEmployee = option"
                     @infinite-scroll="getMoreAsyncData">
                 <template slot="header">
                     <a @click="showAddEmployee">
@@ -50,7 +50,7 @@
     export default {
         props: {
             label: {
-                default: "Client"
+                default: "Employee"
             },
             required: {
                 default: true
@@ -58,28 +58,28 @@
         },
         data() {
             return {
-                clients: [],
+                employees: [],
                 loading: false,
                 isFetching: false,
-                clientName: '',
+                employeeName: '',
                 page: 0,
                 totalPages: 0,
-                selectedClient: {}
+                selectedEmployee: {}
             }
         },
         methods: {
             showAddEmployee() {
 
             },
-            fetchClients(name) {
-                axios.get("/api/clients", {
+            fetchEmployees(name) {
+                axios.get("/api/employees", {
                     params: {
                         page: this.page,
                         pageSize: 10
                     }
                 })
                     .then(({data}) => {
-                        data.content.forEach((item) => this.clients.push(item))
+                        data.content.forEach((item) => this.employees.push(item))
                         this.page++
                         this.totalPages = data.totalPages
                         this.isFetching = false
@@ -89,15 +89,15 @@
             },
             getAsyncData: _debounce(function (name) {
                 // String update
-                if (this.clientName !== name) {
-                    this.clientName = name
-                    this.clients = []
+                if (this.employeeName !== name) {
+                    this.employeeName = name
+                    this.employees = []
                     this.page = 0
                     this.totalPages = 0
                 }
                 // String cleared
                 if (!name.length) {
-                    this.clients = []
+                    this.employees = []
                     this.page = 0
                     this.totalPages = 0
                     return
@@ -107,19 +107,19 @@
                     return
                 }
                 this.isFetching = true
-                //call fetchclients
-                this.fetchClients(name)
+                //call fetchemployees
+                this.fetchEmployees(name)
             }, 500),
             getMoreAsyncData: _debounce(function () {
-                this.getAsyncData(this.clientName)
+                this.getAsyncData(this.employeeName)
             }, 250)
         },
         watch: {
-            selectedClient: function (val) {
+            selectedEmployee: function (val) {
                 if (val) {
-                    this.$emit('input', val.id);
+                    this.$emit('input', val);
                 } else {
-                    this.$emit('input', "");
+                    this.$emit('input', "")
                 }
             }
         }
