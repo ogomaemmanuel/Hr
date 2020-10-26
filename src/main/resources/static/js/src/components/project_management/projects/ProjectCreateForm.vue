@@ -22,19 +22,6 @@
                     </div>
                 </div>
                 <div class="column">
-                    <!--                    <div class="field">-->
-                    <!--                        <label class="label">Client<span><sup>*</sup></span></label>-->
-                    <!--                        <div class="control">-->
-                    <!--                            <input-->
-                    <!--                                    v-model="project.clientId"-->
-                    <!--                                    @input="clearFieldError('clientId')"-->
-                    <!--                                    class="input"-->
-                    <!--                                    type="text">-->
-                    <!--                            <span class="mb-2 has-text-danger" v-if="errors['clientId']">-->
-                    <!--						{{errors['clientId'][0]}}-->
-                    <!--					</span>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
                     <ClientSelectInput
                             v-model="project.clientId"
                             @input="clearFieldError('clientId')"
@@ -52,11 +39,6 @@
                     <div class="field">
                         <label class="label">Start Date<span><sup>*</sup></span></label>
                         <div class="control">
-                            <!--                            <input-->
-                            <!--                                    v-model="project.startDate"-->
-                            <!--                                    @input="clearFieldError('startDate')"-->
-                            <!--                                    class="input"-->
-                            <!--                                    type="text">-->
                             <DatePicker class="datepicker"
                                         @input="clearFieldError('startDate')"
                                         v-model="project.startDate">
@@ -151,6 +133,9 @@
                 <div class="column">
                     <div class="field">
                         <label class="label">Team Leader<span><sup>*</sup></span></label>
+                        <figure class="image is-32x32">
+                            <img class="is-rounded" src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-16.jpg" alt="">
+                        </figure>
                     </div>
                 </div>
             </div>
@@ -161,20 +146,6 @@
                             @input="clearFieldError('projectMembers')"
                             v-model="project.projectMembers">
                     </ProjectMemberSelectInput>
-<!--                    <div class="field">-->
-<!--                        <label class="label">Add Team <span><sup>*</sup></span></label>-->
-<!--                        <div class="control">-->
-<!--                            <input-->
-<!--                                    v-model="project.projectMembers"-->
-
-<!--                                    @input="clearFieldError('projectMembers')"-->
-<!--                                    class="input"-->
-<!--                                    type="text">-->
-<!--                            <span class="mb-2 has-text-danger" v-if="errors['projectMembers']">-->
-<!--						{{errors['projectMembers'][0]}}-->
-<!--					</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
                 <div class="column">
                     <div class="field">
