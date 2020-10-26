@@ -9,6 +9,7 @@
                     placeholder="Select Employee"
                     field="fullName"
                     :loading="isFetching"
+                    :clear-on-select="clearOnSelect"
                     :check-infinite-scroll="true"
                     @typing="getAsyncData"
                     @select="option => selectedEmployee = option"
@@ -48,13 +49,18 @@
     import _debounce from "lodash.debounce";
 
     export default {
+
         props: {
+            clearOnSelect: {
+                default: false
+            },
             label: {
                 default: "Employee"
             },
             required: {
                 default: true
-            }
+            },
+            value: {},
         },
         data() {
             return {
@@ -119,9 +125,12 @@
                 if (val) {
                     this.$emit('input', val);
                 } else {
-                    this.$emit('input', "")
+                    this.$emit('input', val)
                 }
-            }
+            },
+            value(value) {
+                this.selectedEmployee = value
+            },
         }
     }
 </script>

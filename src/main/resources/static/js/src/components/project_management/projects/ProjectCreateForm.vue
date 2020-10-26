@@ -134,7 +134,8 @@
                     <div class="field">
                         <label class="label">Team Leader<span><sup>*</sup></span></label>
                         <figure class="image is-32x32">
-                            <img class="is-rounded" src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-16.jpg" alt="">
+                            <img class="is-rounded"
+                                 src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-16.jpg" alt="">
                         </figure>
                     </div>
                 </div>
@@ -143,13 +144,26 @@
                 <div class="column">
                     <ProjectMemberSelectInput
                             label="Add Team"
-                            @input="clearFieldError('projectMembers')"
-                            v-model="project.projectMembers">
+                            :clear-on-select="true"
+                            v-model="projectMember"
+                            @input="addProjectMember">
                     </ProjectMemberSelectInput>
                 </div>
                 <div class="column">
                     <div class="field">
                         <label class="label">Team Members<span><sup>*</sup></span></label>
+                        <div class="flex">
+                            <template v-for="(projectMember,index) in project.projectMembers">
+                                <figure v-if="index<5" class="image is-32x32">
+                                    <img class="is-rounded"
+                                         src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-16.jpg"
+                                         alt="">
+                                </figure>
+                            </template>
+                            <div v-if="project.projectMembers.length>=5">
+                                +{{project.projectMembers.length-4}}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -168,7 +182,7 @@
                             <input class="file-input" type="file" name="resume">
                             <span class="file-cta">
       <span class="file-icon">
-        <i class="fas fa-upload"></i>
+        <i class="fa fa-upload"></i>
       </span>
       <span class="file-label">
         Browse…
@@ -212,12 +226,24 @@
         data() {
             return {
                 project: {
-                    user: {}
+                    user: {},
+                    projectMembers: []
                 },
+                projectMember: "",
                 isLoading: false
             }
         },
         methods: {
+            addProjectMember(member) {
+                if (member) {
+                    this.project.projectMembers.push(member);
+                    this.clearFieldError("projectMembers");
+                    this.$nextTick(function () {
+                        this.projectMember = null
+                    });
+
+                }
+            },
             createProject() {
                 this.isLoading = true
                 axios.post("/api/projects",
