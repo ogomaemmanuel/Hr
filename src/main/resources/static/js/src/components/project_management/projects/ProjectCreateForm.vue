@@ -236,11 +236,11 @@
         methods: {
             addProjectMember(member) {
                 if (member) {
-                    this.project.projectMembers.push(member);
-                    this.clearFieldError("projectMembers");
-                    this.$nextTick(function () {
-                        this.projectMember = null
-                    });
+                    let memberExists = this.project.projectMembers.find(x => x.id == member.id);
+                    if (!memberExists) {
+                        this.project.projectMembers.push(member);
+                        this.clearFieldError("projectMembers");
+                    }
 
                 }
             },
