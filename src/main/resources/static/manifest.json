@@ -1,0 +1,26 @@
+{
+  "name": "Swat Human Resource Management System",
+  "short_name": "SWAT",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/images/logos/ganji-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logos/ganji-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logos/ganji-green-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#4e8ef7",
+  "theme_color": "#4e8ef7",
+  "gcm_sender_id": "103953800507"
+}
