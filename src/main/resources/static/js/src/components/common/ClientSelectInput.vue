@@ -46,6 +46,7 @@
 </template>
 <script>
     import _debounce from "lodash.debounce";
+
     export default {
         props: {
             label: {
@@ -115,8 +116,10 @@
         },
         watch: {
             selectedClient: function (val) {
-                if(val) {
+                if (val) {
                     this.$emit('input', val.id);
+                } else {
+                    this.$emit('input', "");
                 }
             }
         }

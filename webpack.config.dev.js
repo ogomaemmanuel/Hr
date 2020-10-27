@@ -7,15 +7,30 @@ const bundleOutputDir = "./target/classes/static/js/dist"
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 let commonConfig=
     {
         optimization: {
-            // minimizer: [new UglifyJsPlugin()],
-            nodeEnv: 'production',
+            runtimeChunk: 'single',
+            splitChunks: {
+                cacheGroups: {
+                    vendor: {
+                        test: /[\\/]node_modules[\\/]/,
+                        name: 'vendors',
+                        chunks: 'all',
+                    }
+                }
+            },
+            nodeEnv: process.env.NODE_ENV,
             minimize: true,
+
+            // splitChunks: {
+            //     // include all types of chunks
+            //     chunks: 'all'
+            // }
         },
+
         watchOptions: {
             ignored: /node_modules/
         },
@@ -127,7 +142,13 @@ let commonConfig=
                 jQuery : "jquery",
                 moment : "moment",
                 croppie:"croppie"
+            }),
+            new WorkboxPlugin.InjectManifest({
+                swSrc: "./sw-src.js",
+                swDest: path.join(__dirname,"./src/main/resources/static/sw.js")
+                // swDest: "./src/main/resources/static/sw.js"
             })
+
         ]
     }
 
