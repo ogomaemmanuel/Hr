@@ -1,4 +1,4 @@
-importScripts("/js/dist/precache-manifest.e514947365d101928d3cdb3b742be836.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/js/dist/precache-manifest.469e1991dc4f1266c76f95d8fc0a7bde.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts('https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/7.12.0/firebase-messaging.js');
@@ -38,3 +38,4 @@ workbox.routing.registerRoute(
         cacheName: 'static-resources',
     })
 );
+
