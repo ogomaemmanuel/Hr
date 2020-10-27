@@ -15,6 +15,7 @@ A quick list of Hr application capabilities are
 * File Management
 * Performance tracking 
 * Reports
+* PWA 
 
 ## Running the application
 ### Using Docker Compose
@@ -33,3 +34,13 @@ The above command will build and run a docker image
 
 To run image from docker-hub, run
 > docker-compose -f docker-compose.prod.yml
+
+
+## Road Map
+After doing basic Hr features, these will be the features we would like to add
+* Oauth2 authentication
+* Multi-tenancy
+* Bulk sms 
+* Bulk sending money/credit to employees
+* Two factor authentication
+* Desktop and Mobile versions
