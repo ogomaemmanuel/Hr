@@ -351,12 +351,12 @@
 </template>
 <script>
     import LogoutForm from "../auth/LogoutForm.vue"
-
     const PasswordResetForm = () => import("../user_profile/ChangePasswordModal")
     import NotificationDropDown from "../notifications/NotificationDropDown";
     import {mapActions, mapGetters} from "vuex"
     import TestBreadCrump from "../common/TestBreadCrump";
-
+    import firebaseUtil from "../../firebase/ firebaseConfig"
+    import  utils from "../../utils/utils"
     let handleOutsideClick;
     export default {
         components: {
@@ -382,6 +382,20 @@
         },
         created() {
             // this.open();
+            let vm = this;
+            //if (PRODUCTION) {
+                utils.registerServiceWorker();
+                firebaseUtil.askForPermissionToReceiveNotifications().then(token => {
+                    console.log("Firebase subscription token is dashboard", token);
+                    if (token) {
+                        firebaseUtil.subscribeToFirebaseMessages(token);
+                       // vm.subscribeToFirebaseMessages(token);
+                    }
+                });
+           // } else {
+             //   utils.unregisterServiceWorker();
+           // }
+
             this.setUser(JSON.parse(this.user));
 
         },
@@ -447,13 +461,16 @@
                         let messageBody = JSON.parse(message.body);
                         if (messageBody.type == "chat") {
                             if (messageBody.data.senderId != (JSON.parse(vm.user).id)) {
-                                vm.showNewMessageAlert(messageBody.data);
+                                //ToDO uncomment line below
+                                //vm.showNewMessageAlert(messageBody.data);
                             } else {
                                 // we automatically open a chat-box if the logged in user is the sender
                                 //This we may remove if not desired
-                                messageBody.data.name = message.groupName
-                                vm.addChatBox(messageBody.data);
+                                //TODO uncomment 2 lines below
+                               // messageBody.data.name = message.groupName
+                                //vm.addChatBox(messageBody.data);
                             }
+                            // ToDO uncomment the line that follows
                             vm.addChatMessage(messageBody.data);
                         }
                     });
@@ -474,12 +491,12 @@
             },
 
 
-            subscribeToFirebaseMessages(token) {
-                axios.post("/notification/firebase/subscribe",
-                    {token: token}).then(resp => {
-                    console.log("subscriptions successful")
-                });
-            },
+            // subscribeToFirebaseMessages(token) {
+            //     axios.post("/notification/firebase/subscribe",
+            //         {token: token}).then(resp => {
+            //         console.log("subscriptions successful")
+            //     });
+            // },
             open() {
                 const loadingComponent = this.$buefy.loading.open({
                     container: this.isFullPage ? null : this.$refs.element.$el
