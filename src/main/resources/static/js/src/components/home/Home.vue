@@ -439,6 +439,47 @@
                 this.showNotifications = false
             },
 
+            handleSockJsSubscriptions(connection) {
+                let vm = this;
+                connection.connect({}, function (frame) {
+                    //subscribe to any notifications meant to me from anybody
+                    connection.subscribe("/user/queue/notifications", function (message) {
+                        let messageBody = JSON.parse(message.body);
+                        if (messageBody.type == "chat") {
+                            if (messageBody.data.senderId != (JSON.parse(vm.user).id)) {
+                                vm.showNewMessageAlert(messageBody.data);
+                            } else {
+                                // we automatically open a chat-box if the logged in user is the sender
+                                //This we may remove if not desired
+                                messageBody.data.name = message.groupName
+                                vm.addChatBox(messageBody.data);
+                            }
+                            vm.addChatMessage(messageBody.data);
+                        }
+                    });
+                    //subscribe to all broadcast notifications- message sent to anyone-note keyword topic
+                    connection.subscribe("/user/topic/notifications", function (message) {
+                        Message.info(message.body);
+                    });
+                    //subcribe to notifications on login, invoke by me
+                    connection.subscribe("/web-chat/user-notifications-me", function (message) {
+                        //  Message.info(message.body);
+                    });
+                }, function () {
+                    window.setTimeout(function () {
+                        let connection = utils.sockJsConnection();
+                        vm.handleSockJsSubscriptions(connection);
+                    }, 2000)
+                });
+            },
+
+
+            subscribeToFirebaseMessages(token) {
+                axios.post("/notification/firebase/subscribe",
+                    {token: token}).then(resp => {
+                    console.log("subscriptions successful")
+                });
+            },
             open() {
                 const loadingComponent = this.$buefy.loading.open({
                     container: this.isFullPage ? null : this.$refs.element.$el
