@@ -12,6 +12,7 @@
     <meta th:name="_csrf" th:content="${_csrf.token}"/>
     <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Vue Starter|Home</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/dist/vendors.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/js/dist/main.css}">
 </head>
 <body>
@@ -25,6 +26,8 @@
         </router-view>
     </div>
 </div>
+<script type="application/javascript" th:src="@{/js/dist/runtime.js}"></script>
+<script type="application/javascript" th:src="@{/js/dist/vendors.bundle.js}"></script>
 <script type="application/javascript" th:src="@{/js/dist/main.js}"></script>
 </body>
 </html>
