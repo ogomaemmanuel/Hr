@@ -12,29 +12,30 @@
                             </figure>
                         </div>
                         <div class="column is-10 pl-5">
-                            <div class="pt-5">
-                                <h2 class="font-semibold">{{employeeSalaryInfo.fullName}}</h2>
-                            </div>
-                            <div class="flex ">
-                                <div class="mr-1">
-                                    <span>
-                                    <i class="fa fa-money"></i>
-                                </span>
-                                    <span>{{employeeSalaryInfo.salaryAmount}}</span>
-                                </div>
-                                <div class="mr-1">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="pt-5">
+                                        <h2 class="font-semibold">{{authenticatedUser.fullName}}</h2>
+                                    </div>
+                                    <div class="flex ">
+                                        <div class="mr-1">
                                      <span>
                                     <i class="fa fa-building"></i>
                                 </span>
-                                    <span>{{employeeSalaryInfo.departmentName}}</span>
-                                </div>
-                                <div>
+                                            <span>{{authenticatedUser.departmentName}}</span>
+                                        </div>
+                                        <div>
                                      <span>
                                     <i class="fa fa-phone"></i>
                                 </span>
-                                    <span>{{employeeSalaryInfo.phone}}</span>
+                                            <span>{{authenticatedUser.phone}}</span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="column"></div>
                             </div>
+
+
 
                         </div>
                     </div>
@@ -42,34 +43,55 @@
                 </div>
             </div>
         </div>
-        <div class="card h-full mt-1">
-            <div class="card-content">
-                <div class="tabs">
-                    <ul>
-                        <li @click="showAdditions=true" :class="{'is-active':showAdditions}"><a>Profile</a></li>
-                        <li @click="showAdditions=false" :class="{'is-active':!showAdditions}"><a>Projects</a></li>
-                        <li @click="showAdditions=false" :class="{'is-active':!showAdditions}"><a>Bank & Statutory</a></li>
-                    </ul>
-                </div>
-<!--                <EmployeeSalaryAdditions-->
-<!--                        v-if="showAdditions"-->
-<!--                        :employee-id="employeeId">-->
-<!--                </EmployeeSalaryAdditions>-->
-<!--                <EmployeeSalaryDeductions v-else-->
-<!--                                          :employee-id="employeeId"-->
-<!--                >-->
-<!--                </EmployeeSalaryDeductions>-->
+        <div class="card mt-1">
+            <div class="tabs">
+                <ul>
+                    <li @click="showAdditions=true" :class="{'is-active':showAdditions}"><a>Profile</a></li>
+                    <li @click="showAdditions=false" :class="{'is-active':!showAdditions}"><a>Projects</a></li>
+                    <li @click="showAdditions=false" :class="{'is-active':!showAdditions}"><a>Bank & Statutory</a>
+                    </li>
+                </ul>
             </div>
         </div>
+        <div class="columns mt-4">
+            <div class="column">
+                <div class="card h-full">
+                    <div class="card-content">
+                     <div class="flex">
+                         <h1 class="flex-1">Personal Informations </h1>
+                         <div>
+                             <button>
+                                 <i class="fa fa-edit"></i>
+                             </button>
+                         </div>
+                     </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card h-full">
+                    <div class="card-content">
+
+                        <!--                <EmployeeSalaryAdditions-->
+                        <!--                        v-if="showAdditions"-->
+                        <!--                        :employee-id="employeeId">-->
+                        <!--                </EmployeeSalaryAdditions>-->
+                        <!--                <EmployeeSalaryDeductions v-else-->
+                        <!--                                          :employee-id="employeeId"-->
+                        <!--                >-->
+                        <!--                </EmployeeSalaryDeductions>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 <script>
-    //import EmployeeSalaryAdditions from "./EmployeeSalaryAdditions";
-   // import EmployeeSalaryDeductions from "./EmployeeSalaryDeductions";
+    import {mapGetters} from "vuex"
 
     export default {
-        components: {
-        },
+        components: {},
         data() {
             return {
                 employeeId: null,
@@ -77,6 +99,9 @@
                 employeeSalaryInfo: {}
 
             }
+        },
+        computed: {
+            ...mapGetters(["authenticatedUser"])
         },
         created() {
 
