@@ -94,9 +94,9 @@
                                     </div>
                                 </article>
                             </a>
-                            <a class="navbar-item">
+                            <router-link to="/profile" class="navbar-item">
                                 Profile
-                            </a>
+                            </router-link>
                             <a @click="showChangePassword=true" class="navbar-item">
                                 Change Password
                             </a>

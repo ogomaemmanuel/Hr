@@ -19,6 +19,7 @@ const UserCreate = () =>
     import ("../components/access_control/users/UserCreateModal");
 const UserEdit = () =>
     import ("../components/access_control/users/UserEditModal");
+const UserProfile = () => import("../components/user_profile/UserProfile")
 
 const Roles = () =>
     import ("../components/access_control/roles/RolesPage");
@@ -172,6 +173,19 @@ const routes = new Router({
                             name: "users-edit",
                             component: UserEdit
                         }
+                    ]
+
+                },
+                {
+                    path: "/profile",
+                    name: "users-profile",
+                    component: UserProfile,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Profile",
+                    },
+                    children: [
+
                     ]
 
                 },
