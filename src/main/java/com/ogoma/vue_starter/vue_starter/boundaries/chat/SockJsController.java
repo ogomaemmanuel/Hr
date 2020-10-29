@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.chat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ogoma.vue_starter.vue_starter.boundaries.chat.models.WebSocketMessage;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
