@@ -53,7 +53,7 @@
                 </ul>
             </div>
         </div>
-        <div class="columns mt-4">
+        <div class="columns mt-2">
             <div class="column">
                 <div class="card h-full">
                     <div class="card-content">
@@ -70,18 +70,47 @@
             </div>
             <div class="column">
                 <div class="card h-full">
-                    <div class="card-content">
-
-                        <!--                <EmployeeSalaryAdditions-->
-                        <!--                        v-if="showAdditions"-->
-                        <!--                        :employee-id="employeeId">-->
-                        <!--                </EmployeeSalaryAdditions>-->
-                        <!--                <EmployeeSalaryDeductions v-else-->
-                        <!--                                          :employee-id="employeeId"-->
-                        <!--                >-->
-                        <!--                </EmployeeSalaryDeductions>-->
+                <div class="card-content">
+                    <div class="flex">
+                        <h1 class="flex-1">Emergency Contact</h1>
+                        <div>
+                            <button>
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
+            </div>
+            </div>
+        </div>
+        <div class="columns mt-2">
+            <div class="column">
+                <div class="card h-full">
+                    <div class="card-content">
+                     <div class="flex">
+                         <h1 class="flex-1">Bank information </h1>
+                         <div>
+                             <button>
+                                 <i class="fa fa-edit"></i>
+                             </button>
+                         </div>
+                     </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="card h-full">
+                <div class="card-content">
+                    <div class="flex">
+                        <h1 class="flex-1">Family Informations</h1>
+                        <div>
+                            <button>
+                                <i class="fa fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
 
