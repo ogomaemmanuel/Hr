@@ -10,7 +10,7 @@ import java.security.Principal;
 @Controller
 public class SockJsController {
     @SubscribeMapping("/user-notifications-me")
-    public String processMessageFromClient(
+    public String sendNotificationToUserOnSuccessLogin(
             Principal principal
     ) throws Exception {
         WebSocketMessage webSocketMessage = new WebSocketMessage();

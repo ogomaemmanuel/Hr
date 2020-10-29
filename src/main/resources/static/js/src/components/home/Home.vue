@@ -351,12 +351,16 @@
 </template>
 <script>
     import LogoutForm from "../auth/LogoutForm.vue"
+
     const PasswordResetForm = () => import("../user_profile/ChangePasswordModal")
     import NotificationDropDown from "../notifications/NotificationDropDown";
     import {mapActions, mapGetters} from "vuex"
-    import TestBreadCrump from "../common/TestBreadCrump";
+    //import TestBreadCrump from "../common/TestBreadCrump"
+    import TestBreadCrump from "../common/TestBreadCrump"
     import firebaseUtil from "../../firebase/ firebaseConfig"
-    import  utils from "../../utils/utils"
+    import {Message} from "element-ui"
+    import utils from "../../utils/utils"
+
     let handleOutsideClick;
     export default {
         components: {
@@ -384,17 +388,23 @@
             // this.open();
             let vm = this;
             //if (PRODUCTION) {
-                utils.registerServiceWorker();
-                firebaseUtil.askForPermissionToReceiveNotifications().then(token => {
-                    console.log("Firebase subscription token is dashboard", token);
-                    if (token) {
-                        firebaseUtil.subscribeToFirebaseMessages(token);
-                       // vm.subscribeToFirebaseMessages(token);
-                    }
-                });
-           // } else {
-             //   utils.unregisterServiceWorker();
-           // }
+            utils.registerServiceWorker();
+            firebaseUtil.askForPermissionToReceiveNotifications().then(token => {
+                console.log("Firebase subscription token is dashboard", token);
+                if (token) {
+                    firebaseUtil.subscribeToFirebaseMessages(token);
+                }
+            });
+            // } else {
+            //   utils.unregisterServiceWorker();
+            // }
+
+            try {
+                let connection = utils.sockJsConnection();
+                vm.handleSockJsSubscriptions(connection);
+            } catch (e) {
+
+            }
 
             this.setUser(JSON.parse(this.user));
 
@@ -467,11 +477,11 @@
                                 // we automatically open a chat-box if the logged in user is the sender
                                 //This we may remove if not desired
                                 //TODO uncomment 2 lines below
-                               // messageBody.data.name = message.groupName
+                                // messageBody.data.name = message.groupName
                                 //vm.addChatBox(messageBody.data);
                             }
                             // ToDO uncomment the line that follows
-                            vm.addChatMessage(messageBody.data);
+                            // vm.addChatMessage(messageBody.data);
                         }
                     });
                     //subscribe to all broadcast notifications- message sent to anyone-note keyword topic
@@ -479,8 +489,8 @@
                         Message.info(message.body);
                     });
                     //subcribe to notifications on login, invoke by me
-                    connection.subscribe("/web-chat/user-notifications-me", function (message) {
-                        //  Message.info(message.body);
+                    connection.subscribe("/swat-chat/user-notifications-me", function (message) {
+                        Message.info(message.body);
                     });
                 }, function () {
                     window.setTimeout(function () {
@@ -489,14 +499,6 @@
                     }, 2000)
                 });
             },
-
-
-            // subscribeToFirebaseMessages(token) {
-            //     axios.post("/notification/firebase/subscribe",
-            //         {token: token}).then(resp => {
-            //         console.log("subscriptions successful")
-            //     });
-            // },
             open() {
                 const loadingComponent = this.$buefy.loading.open({
                     container: this.isFullPage ? null : this.$refs.element.$el
