@@ -36,6 +36,16 @@ To run image from docker-hub, run
 > docker-compose -f docker-compose.prod.yml
 
 
+##Current Backlog
+* assign roles to users
+* assign permissions to roles
+* Edit employees
+* Chat features
+* Employee Performance evaluation
+* Side Menu Access depending on role
+* File Management
+
+
 ## Road Map
 After doing basic Hr features, these will be the features we would like to add
 * Oauth2 authentication

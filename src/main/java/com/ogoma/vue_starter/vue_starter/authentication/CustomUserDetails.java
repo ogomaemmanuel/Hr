@@ -12,16 +12,18 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 public class CustomUserDetails implements UserDetails {
     private Long id;
     private String fullName;
     private String phone;
+    private Date joiningDate;
     private User user;
 
-    public CustomUserDetails(User user){
-        this.user=user;
+    public CustomUserDetails(User user) {
+        this.user = user;
     }
 
     public Long getId() {
@@ -30,7 +32,11 @@ public class CustomUserDetails implements UserDetails {
 
 
     public String getFullName() {
-       return this.user.getFullName();
+        return this.user.getFullName();
+    }
+
+    public Date getJoiningDate() {
+        return this.user.getCreatedOn();
     }
 
     public String getPhone() {
@@ -55,6 +61,7 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return this.user.getPassword();
     }
@@ -65,26 +72,31 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
+
     @JsonIgnore
-    public Employee getEmployee(){
+    public Employee getEmployee() {
         return this.user.getEmployee();
     }
 }
