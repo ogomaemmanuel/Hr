@@ -27,12 +27,18 @@ public class UserProfileController {
     @RequestMapping(value = "api/profile/update-password", method = RequestMethod.POST)
     public ResponseEntity<?> updatePassword(@RequestBody PasswordUpdateRequest passwordUpdateRequest,
                                             BindingResult bindingResult) {
-        this.passwordUpdateValidator.validate(passwordUpdateRequest,bindingResult);
-        if(!bindingResult.hasErrors()) {
+        this.passwordUpdateValidator.validate(passwordUpdateRequest, bindingResult);
+        if (!bindingResult.hasErrors()) {
             this.userService.updatePassword(passwordUpdateRequest);
             return ResponseEntity.ok("Password successfully updated");
         }
         Map<String, ArrayList<String>> errors = ErrorConverter.convert(bindingResult);
         return ResponseEntity.badRequest().body(errors);
+    }
+
+    @RequestMapping(value = "api/profile/update-profile-photo", method = RequestMethod.POST)
+    public ResponseEntity<?> updateProfilePhoto() {
+
+        return ResponseEntity.ok().build();
     }
 }
