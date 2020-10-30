@@ -387,25 +387,23 @@
         created() {
             // this.open();
             let vm = this;
-            //if (PRODUCTION) {
-            utils.registerServiceWorker();
-            firebaseUtil.askForPermissionToReceiveNotifications().then(token => {
-                console.log("Firebase subscription token is dashboard", token);
-                if (token) {
-                    firebaseUtil.subscribeToFirebaseMessages(token);
-                }
-            });
-            // } else {
-            //   utils.unregisterServiceWorker();
-            // }
-
+            if (PRODUCTION) {
+                utils.registerServiceWorker();
+                firebaseUtil.askForPermissionToReceiveNotifications().then(token => {
+                    console.log("Firebase subscription token is dashboard", token);
+                    if (token) {
+                        firebaseUtil.subscribeToFirebaseMessages(token);
+                    }
+                });
+            } else {
+                utils.unregisterServiceWorker();
+            }
             try {
                 let connection = utils.sockJsConnection();
                 vm.handleSockJsSubscriptions(connection);
             } catch (e) {
 
             }
-
             this.setUser(JSON.parse(this.user));
 
         },
