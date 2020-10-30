@@ -103,6 +103,7 @@ const ProjectsPage = () => import("../components/project_management/projects/Pro
 const ProjectList = () => import("../components/project_management/projects/ProjectList")
 const ProjectCreate = () => import("../components/project_management/projects/ProjectCreateModal")
 
+ const SettingsPage=()=> import("../components/settings/Settings")
 
 Vue.use(Router);
 const routes = new Router({
@@ -643,6 +644,42 @@ const routes = new Router({
                                 // },
                             ]
                         },
+
+                    ]
+                },
+                {
+                    path: "/settings",
+                    name: "settings",
+                    component: SettingsPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Settings",
+                    },
+                    children: [
+                        // {
+                        //     path: "/",
+                        //     component: ProjectList,
+                        //     children: [
+                        //         {
+                        //             path: "/projects-create",
+                        //             name: "projects-create",
+                        //             component: ProjectCreate,
+                        //             meta: {
+                        //                 breadcrumb: true,
+                        //                 title: "Project Create",
+                        //             },
+                        //         },
+                        //         // {
+                        //         //     path: "/clients-edit/:id",
+                        //         //     name: "clients-edit",
+                        //         //     component: ClientEdit,
+                        //         //     meta: {
+                        //         //         breadcrumb: true,
+                        //         //         title: "Client Edit",
+                        //         //     },
+                        //         // },
+                        //     ]
+                        // },
 
                     ]
                 },

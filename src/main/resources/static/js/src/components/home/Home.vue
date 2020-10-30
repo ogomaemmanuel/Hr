@@ -97,6 +97,9 @@
                             <router-link to="/profile" class="navbar-item">
                                 Profile
                             </router-link>
+                            <router-link to="/settings" class="navbar-item">
+                                Settings
+                            </router-link>
                             <a @click="showChangePassword=true" class="navbar-item">
                                 Change Password
                             </a>
@@ -115,6 +118,7 @@
             <aside class="column pt-12 is-2 bg-gray-900 text-white pr-0 pl-3 pt-5 is-narrow-mobile fixed inset-y-0 section is-hidden-mobile">
 
                 <div class="menu-wrapper">
+                    <portal-target class="side-menu-portal-target" name="side-menu">
                     <ul class="menu-list">
                         <li>
                             <a href="#" class="">
@@ -296,9 +300,8 @@
                             </a>
                         </li>
                     </ul>
+                    </portal-target>
                 </div>
-
-
                 <div class="side-bar-footer bg-gray-800 left-0  right-0 h-8 absolute bottom-0">
                     <div class="flex justify-end mr-4">
                         <i><span class="fa fa-angle-left"></span></i>
@@ -306,8 +309,6 @@
                     <!--						<div class="relative mt-5 h-full">-->
                     <!--					</div>-->
                 </div>
-
-
             </aside>
 
 
@@ -527,5 +528,9 @@
         overflow-y: scroll;
         position: relative;
         height: 100%;
+        margin-top: 2rem;
+    }
+    .side-menu-portal-target{
+        display: revert;
     }
 </style>
