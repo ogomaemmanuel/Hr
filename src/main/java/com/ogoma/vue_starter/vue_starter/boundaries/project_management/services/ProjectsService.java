@@ -1,8 +1,10 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ProjectsRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +30,9 @@ public class ProjectsService {
         return projects;
     }
 
-    public Project createProject(Project project) {
+    public Project createProject(ProjectDto projectDto) {
+        Project project = new Project();
+        BeanUtils.copyProperties(projectDto, project);
         project = this.projectsRepository.save(project);
         return project;
     }

@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.services.ProjectsService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "api/projects", method = RequestMethod.POST)
-    public ResponseEntity<?> createProject(@RequestBody @Valid Project project) {
+    public ResponseEntity<?> createProject(@RequestBody @Valid ProjectDto project) {
         project = this.projectsService.createProject(project);
         return ResponseEntity.ok(project);
     }
