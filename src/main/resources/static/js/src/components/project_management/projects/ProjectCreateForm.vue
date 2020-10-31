@@ -179,7 +179,9 @@
                     <label class="label">Upload File<span><sup>*</sup></span></label>
                     <div class="file has-name is-fullwidth">
                         <label class="file-label">
-                            <input class="file-input" type="file" name="resume">
+                            <input
+                                    @change="onFileChange"
+                                    class="file-input" type="file" name="resume">
                             <span class="file-cta">
       <span class="file-icon">
         <i class="fa fa-upload"></i>
@@ -189,7 +191,7 @@
       </span>
     </span>
                             <span class="file-name">
-      Screen Shot 2017-07-29 at 15.54.25.png
+      {{fileName}}
     </span>
                         </label>
                     </div>
@@ -229,6 +231,7 @@
                     user: {},
                     projectMembers: []
                 },
+                fileName: "",
                 projectMember: "",
                 isLoading: false
             }
@@ -243,6 +246,11 @@
                     }
 
                 }
+            },
+            onFileChange(e) {
+                const file = e.target.files[0];
+                this.project.attachment = file;
+                this.fileName = file.name;
             },
             createProject() {
                 this.isLoading = true
