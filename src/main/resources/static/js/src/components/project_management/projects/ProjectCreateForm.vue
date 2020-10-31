@@ -254,8 +254,10 @@
             },
             createProject() {
                 this.isLoading = true
+                this.project.teamLeaderId=
+                let request = this.createFormData(this.project);
                 axios.post("/api/projects",
-                    this.project).then(resp => {
+                    this.request).then(resp => {
                     this.isLoading = false;
                     this.$emit("createSuccessful");
                 }, error => {
