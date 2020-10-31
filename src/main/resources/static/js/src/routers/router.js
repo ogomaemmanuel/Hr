@@ -403,7 +403,7 @@ const routes = new Router({
                             name: "leave-requests",
                             component: HolidayList,
                             meta: {
-                                breadcrumb: 'Holidays',
+                                title: 'Holidays',
                             },
                             children: [
                                 {
@@ -431,6 +431,7 @@ const routes = new Router({
                             component: LeaveTypeList,
                             meta: {
                                 breadcrumb: 'Leave Types',
+                                title: "Leave Types"
                             },
                             children: [
                                 {
