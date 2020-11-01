@@ -28,7 +28,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "api/projects", method = RequestMethod.POST)
-    public ResponseEntity<?> createProject(@RequestBody @Valid ProjectDto projectDto) {
+    public ResponseEntity<?> createProject(@Valid ProjectDto projectDto) {
         Project project = this.projectsService.createProject(projectDto);
         return ResponseEntity.ok(project);
     }

@@ -127,7 +127,7 @@
                     <ProjectMemberSelectInput
                             label="Add Project Leader"
                             @input="clearFieldError('teamLeaderId')"
-                            v-model="project.teamLeaderId">
+                            v-model="project.teamLeader">
                     </ProjectMemberSelectInput>
                 </div>
                 <div class="column">
@@ -170,7 +170,7 @@
             <div>
                 <div class="field">
                     <label class="label">Description<span><sup>*</sup></span></label>
-                    <MarkdownEditor></MarkdownEditor>
+                    <MarkdownEditor v-model="project.description"></MarkdownEditor>
                 </div>
             </div>
 
@@ -202,7 +202,7 @@
                 <button
                         :class="{'is-loading':isLoading}"
                         :disabled="isLoading"
-                        @click.prevent.stop="createProject"
+                        @click.prevent.stop="createProject()"
                         class="button  is-rounded"
                         type="submit">Submit
                 </button>
@@ -211,29 +211,32 @@
     </div>
 </template>
 <script>
-    import common_mixin from "../../../mixins/common_mixin";
     import MarkdownEditor from "../../common/MarkdownEditor/index"
     import ClientSelectInput from "../../common/ClientSelectInput";
     import ProjectMemberSelectInput from "../../common/ProjectMemberSelectInput";
+    import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
-
     export default {
+        mixins:[
+            common_mixin
+        ],
         components: {
             MarkdownEditor,
             ClientSelectInput,
             DatePicker,
             ProjectMemberSelectInput
         },
-        mixins: [common_mixin],
         data() {
             return {
                 project: {
                     user: {},
+                    teamLeader:{},
                     projectMembers: []
                 },
                 fileName: "",
                 projectMember: "",
-                isLoading: false
+                isLoading: false,
+                errors: {}
             }
         },
         methods: {
@@ -254,10 +257,12 @@
             },
             createProject() {
                 this.isLoading = true
-                this.project.teamLeaderId=
+                this.project.teamLeaderId =
+                    this.project.teamLeader.id;
+                this.project.projectMembersIds = this.project.projectMembers.map(x => x.id);
+                console.log(this.project);
                 let request = this.createFormData(this.project);
-                axios.post("/api/projects",
-                    this.request).then(resp => {
+                axios.post("/api/projects", request).then(resp => {
                     this.isLoading = false;
                     this.$emit("createSuccessful");
                 }, error => {
@@ -266,7 +271,8 @@
                         this.errors = error.response.data;
                     }
                 })
-            }
+            },
+
         }
     }
 </script>

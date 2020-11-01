@@ -6,6 +6,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.project_management.enums.Pri
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.enums.RateType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,18 +14,22 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ProjectDto {
     @NotBlank(message = "Name is required")
     private String name;
     @NotNull(message = "Start date is required")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date startDate;
     @NotNull(message = "End date is required")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date endDate;
     @NotNull(message = "Rate is required")
     private BigDecimal rate;
     @NotNull(message = "Type is required")
+    @Enumerated(EnumType.STRING)
     private RateType rateType;
     @NotBlank(message = "Description is required")
     private String description;
@@ -34,6 +39,7 @@ public class ProjectDto {
     private Long teamLeaderId;
     @Enumerated(EnumType.STRING)
     private Priority priority;
+    private List<Long> projectMembersIds;
 
     public String getName() {
         return name;
@@ -91,4 +97,27 @@ public class ProjectDto {
         this.priority = priority;
     }
 
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
+
+    public Long getTeamLeaderId() {
+        return teamLeaderId;
+    }
+
+    public void setTeamLeaderId(Long teamLeaderId) {
+        this.teamLeaderId = teamLeaderId;
+    }
+
+    public List<Long> getProjectMembersIds() {
+        return projectMembersIds;
+    }
+
+    public void setProjectMembersIds(List<Long> projectMembersIds) {
+        this.projectMembersIds = projectMembersIds;
+    }
 }

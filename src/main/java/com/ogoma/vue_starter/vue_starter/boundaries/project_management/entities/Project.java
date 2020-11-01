@@ -10,10 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "projects")
@@ -32,6 +29,7 @@ public class Project {
     @NotNull(message = "Rate is required")
     private BigDecimal rate;
     @NotNull(message = "Type is required")
+    @Enumerated(EnumType.STRING)
     private RateType rateType;
     @NotBlank(message = "Description is required")
     private String description;
@@ -46,7 +44,9 @@ public class Project {
     @JoinColumn(name = "team_leader_id", updatable = false, insertable = false)
     private Employee teamLeader;
     @OneToMany
-    private Set<Employee> projectMembers = new HashSet<>();
+    @JoinTable(name = "project_members",joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id") )
+    private List<Employee> projectMembers = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private Priority priority;
     @CreationTimestamp
@@ -141,11 +141,11 @@ public class Project {
         this.teamLeader = teamLeader;
     }
 
-    public Set<Employee> getProjectMembers() {
+    public List<Employee> getProjectMembers() {
         return projectMembers;
     }
 
-    public void setProjectMembers(Set<Employee> projectMembers) {
+    public void setProjectMembers(List<Employee> projectMembers) {
         this.projectMembers = projectMembers;
     }
 

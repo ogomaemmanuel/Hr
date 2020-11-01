@@ -1,5 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.services;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ProjectsRepository;
@@ -8,18 +10,19 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProjectsService {
     private final ProjectsRepository projectsRepository;
+    private final EmployeeRepository employeeRepository;
 
-    public ProjectsService(ProjectsRepository projectsRepository) {
+    public ProjectsService(ProjectsRepository projectsRepository, EmployeeRepository employeeRepository) {
         this.projectsRepository = projectsRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     public Page<Project> getProjects(PagedDataRequest pagedDataRequest) {
@@ -33,6 +36,9 @@ public class ProjectsService {
     public Project createProject(ProjectDto projectDto) {
         Project project = new Project();
         BeanUtils.copyProperties(projectDto, project);
+        List<Employee> teamMembers =
+                this.employeeRepository.findAllById(projectDto.getProjectMembersIds());
+        project.setProjectMembers(teamMembers);
         project = this.projectsRepository.save(project);
         return project;
     }
