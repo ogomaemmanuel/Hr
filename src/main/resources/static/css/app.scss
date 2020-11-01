@@ -56,11 +56,7 @@ body {
   justify-content: flex-end;
 }
 
-.field{
-  .datepicker{
-    min-width: 100%;
-  }
-}
+
 
 body.modal-open {
   overflow: hidden;
@@ -71,3 +67,4 @@ body.modal-open {
   bottom: 0;
 }
 @import "components/MarkdownEditor";
+@import "components/Forms";

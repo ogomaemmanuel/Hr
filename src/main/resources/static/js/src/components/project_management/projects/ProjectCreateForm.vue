@@ -94,7 +94,7 @@
                                         <option value="FIXED">Fixed</option>
                                     </select>
                                 </div>
-                                <span class="mb-2 has-text-danger" v-if="errors['rateType']">
+                                <span class="mb-2 has-text-danger help" v-if="errors['rateType']">
                                     {{errors['rateType'][0]}}
                                 </span>
                             </div>
@@ -128,6 +128,11 @@
                             label="Add Project Leader"
                             @input="clearFieldError('teamLeaderId')"
                             v-model="project.teamLeader">
+                         <span slot="errors"
+                               class="mb-2 has-text-danger"
+                               v-if="errors['teamLeaderId']">
+                            {{errors['teamLeaderId'][0]}}
+                        </span>
                     </ProjectMemberSelectInput>
                 </div>
                 <div class="column">
@@ -147,6 +152,11 @@
                             :clear-on-select="true"
                             v-model="projectMember"
                             @input="addProjectMember">
+                          <span slot="errors"
+                                class="mb-2 has-text-danger"
+                                v-if="errors['projectMembersIds']">
+                            {{errors['projectMembersIds'][0]}}
+                        </span>
                     </ProjectMemberSelectInput>
                 </div>
                 <div class="column">
@@ -171,6 +181,9 @@
                 <div class="field">
                     <label class="label">Description<span><sup>*</sup></span></label>
                     <MarkdownEditor v-model="project.description"></MarkdownEditor>
+                    <span class="mb-2 has-text-danger" v-if="errors['description']">
+                        {{errors['description'][0]}}
+                    </span>
                 </div>
             </div>
 
@@ -245,7 +258,7 @@
                     let memberExists = this.project.projectMembers.find(x => x.id == member.id);
                     if (!memberExists) {
                         this.project.projectMembers.push(member);
-                        this.clearFieldError("projectMembers");
+                        this.clearFieldError("projectMembersIds");
                     }
 
                 }

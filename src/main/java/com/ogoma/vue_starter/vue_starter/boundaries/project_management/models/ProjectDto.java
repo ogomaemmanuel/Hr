@@ -9,8 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
@@ -38,7 +37,10 @@ public class ProjectDto {
     @NotNull(message = "Select a team leader")
     private Long teamLeaderId;
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "Assign priority")
     private Priority priority;
+    @Size(min = 1)
+    @NotEmpty(message = "Select at least one team member")
     private List<Long> projectMembersIds;
 
     public String getName() {
