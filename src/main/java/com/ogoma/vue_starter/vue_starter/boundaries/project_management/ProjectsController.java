@@ -18,7 +18,8 @@ import javax.validation.Valid;
 public class ProjectsController {
     private final ProjectsService projectsService;
 
-    public ProjectsController(ProjectsService projectsService) {
+    public ProjectsController(ProjectsService projectsService)
+    {
         this.projectsService = projectsService;
     }
 
