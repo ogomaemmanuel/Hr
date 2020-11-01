@@ -94,7 +94,7 @@
                                         <option value="FIXED">Fixed</option>
                                     </select>
                                 </div>
-                                <span class="mb-2 has-text-danger" v-if="errors['rateType']">
+                                <span class="mb-2 has-text-danger help" v-if="errors['rateType']">
                                     {{errors['rateType'][0]}}
                                 </span>
                             </div>
@@ -127,7 +127,12 @@
                     <ProjectMemberSelectInput
                             label="Add Project Leader"
                             @input="clearFieldError('teamLeaderId')"
-                            v-model="project.teamLeaderId">
+                            v-model="project.teamLeader">
+                         <span slot="errors"
+                               class="mb-2 has-text-danger"
+                               v-if="errors['teamLeaderId']">
+                            {{errors['teamLeaderId'][0]}}
+                        </span>
                     </ProjectMemberSelectInput>
                 </div>
                 <div class="column">
@@ -147,6 +152,11 @@
                             :clear-on-select="true"
                             v-model="projectMember"
                             @input="addProjectMember">
+                          <span slot="errors"
+                                class="mb-2 has-text-danger"
+                                v-if="errors['projectMembersIds']">
+                            {{errors['projectMembersIds'][0]}}
+                        </span>
                     </ProjectMemberSelectInput>
                 </div>
                 <div class="column">
@@ -170,7 +180,10 @@
             <div>
                 <div class="field">
                     <label class="label">Description<span><sup>*</sup></span></label>
-                    <MarkdownEditor></MarkdownEditor>
+                    <MarkdownEditor v-model="project.description"></MarkdownEditor>
+                    <span class="mb-2 has-text-danger" v-if="errors['description']">
+                        {{errors['description'][0]}}
+                    </span>
                 </div>
             </div>
 
@@ -179,7 +192,9 @@
                     <label class="label">Upload File<span><sup>*</sup></span></label>
                     <div class="file has-name is-fullwidth">
                         <label class="file-label">
-                            <input class="file-input" type="file" name="resume">
+                            <input
+                                    @change="onFileChange"
+                                    class="file-input" type="file" name="resume">
                             <span class="file-cta">
       <span class="file-icon">
         <i class="fa fa-upload"></i>
@@ -189,7 +204,7 @@
       </span>
     </span>
                             <span class="file-name">
-      Screen Shot 2017-07-29 at 15.54.25.png
+      {{fileName}}
     </span>
                         </label>
                     </div>
@@ -200,7 +215,7 @@
                 <button
                         :class="{'is-loading':isLoading}"
                         :disabled="isLoading"
-                        @click.prevent.stop="createProject"
+                        @click.prevent.stop="createProject()"
                         class="button  is-rounded"
                         type="submit">Submit
                 </button>
@@ -209,28 +224,32 @@
     </div>
 </template>
 <script>
-    import common_mixin from "../../../mixins/common_mixin";
     import MarkdownEditor from "../../common/MarkdownEditor/index"
     import ClientSelectInput from "../../common/ClientSelectInput";
     import ProjectMemberSelectInput from "../../common/ProjectMemberSelectInput";
+    import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
-
     export default {
+        mixins:[
+            common_mixin
+        ],
         components: {
             MarkdownEditor,
             ClientSelectInput,
             DatePicker,
             ProjectMemberSelectInput
         },
-        mixins: [common_mixin],
         data() {
             return {
                 project: {
                     user: {},
+                    teamLeader:{},
                     projectMembers: []
                 },
+                fileName: "",
                 projectMember: "",
-                isLoading: false
+                isLoading: false,
+                errors: {}
             }
         },
         methods: {
@@ -239,15 +258,24 @@
                     let memberExists = this.project.projectMembers.find(x => x.id == member.id);
                     if (!memberExists) {
                         this.project.projectMembers.push(member);
-                        this.clearFieldError("projectMembers");
+                        this.clearFieldError("projectMembersIds");
                     }
 
                 }
             },
+            onFileChange(e) {
+                const file = e.target.files[0];
+                this.project.attachment = file;
+                this.fileName = file.name;
+            },
             createProject() {
                 this.isLoading = true
-                axios.post("/api/projects",
-                    this.project).then(resp => {
+                this.project.teamLeaderId =
+                    this.project.teamLeader.id;
+                this.project.projectMembersIds = this.project.projectMembers.map(x => x.id);
+                console.log(this.project);
+                let request = this.createFormData(this.project);
+                axios.post("/api/projects", request).then(resp => {
                     this.isLoading = false;
                     this.$emit("createSuccessful");
                 }, error => {
@@ -256,7 +284,8 @@
                         this.errors = error.response.data;
                     }
                 })
-            }
+            },
+
         }
     }
 </script>

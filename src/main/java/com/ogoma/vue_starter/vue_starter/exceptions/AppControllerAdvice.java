@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.utils.ErrorConverter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -42,6 +43,12 @@ public class AppControllerAdvice extends ResponseEntityExceptionHandler {
 
         });
         return errors;
+    }
+    @Override
+    protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+       //TODO add handling non ajax requests by calling super when request is not ajax, currently handles ajax only handle both ajax requests and not ajax requests,
+        Map<String, ArrayList<String>> stringStringMap = ErrorConverter.convert(ex.getBindingResult());
+        return new ResponseEntity(stringStringMap, headers, status);
     }
 
 }

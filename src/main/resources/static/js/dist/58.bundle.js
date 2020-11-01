@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[58],{517:function(e,t,n){"use strict";n.r(t);var s={},i=n(6),l=Object(i.a)(s,(function(){var e=this.$createElement,t=this._self._c||e;return t("div",{staticClass:"is-clipped"},[t("router-view")],1)}),[],!1,null,null,null);t.default=l.exports}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[58],{598:function(e,n,t){"use strict";t.r(n);var r={},u=t(21),i=Object(u.a)(r,(function(){var e=this.$createElement,n=this._self._c||e;return n("div",[n("router-view")],1)}),[],!1,null,null,null);n.default=i.exports}}]);

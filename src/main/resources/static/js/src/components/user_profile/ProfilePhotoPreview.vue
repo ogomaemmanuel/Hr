@@ -42,15 +42,13 @@
                 let image = this.croppie.result("blob").then(function (result) {
                     let formData = new FormData();
                     formData.append('image', result, "profilePhoto.png");
-                    axios.post("/update-picture", formData).then(resp => {
+                    axios.post("/api/profile/update-profile-photo", formData).then(resp => {
                         $(vm.$refs.imagePreview).toggleClass('is-active');
                         vm.imageUrl = ""
                         vm.setUserAvatar(resp.data);
                         vm.$emit("closepreview", true);
                     })
                 })
-
-
             }
         },
         created() {

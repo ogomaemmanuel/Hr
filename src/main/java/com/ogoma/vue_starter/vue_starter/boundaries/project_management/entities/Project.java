@@ -10,9 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "projects")
@@ -31,15 +29,24 @@ public class Project {
     @NotNull(message = "Rate is required")
     private BigDecimal rate;
     @NotNull(message = "Type is required")
+    @Enumerated(EnumType.STRING)
     private RateType rateType;
     @NotBlank(message = "Description is required")
     private String description;
+    @Column(name = "client_id")
+    private Long clientId;
     @OneToOne
+    @JoinColumn(name = "client_id", insertable = false, updatable = false)
     private Client client;
+    @Column(name = "team_leader_id")
+    private Long teamLeaderId;
     @ManyToOne
+    @JoinColumn(name = "team_leader_id", updatable = false, insertable = false)
     private Employee teamLeader;
-    @OneToMany
-    private Set<Employee> projectMembers;
+    @ManyToMany
+    @JoinTable(name = "project_members",joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id") )
+    private List<Employee> projectMembers = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     private Priority priority;
     @CreationTimestamp
@@ -82,6 +89,22 @@ public class Project {
         return rate;
     }
 
+    public Long getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
+
+    public Long getTeamLeaderId() {
+        return teamLeaderId;
+    }
+
+    public void setTeamLeaderId(Long teamLeaderId) {
+        this.teamLeaderId = teamLeaderId;
+    }
+
     public RateType getRateType() {
         return rateType;
     }
@@ -118,11 +141,11 @@ public class Project {
         this.teamLeader = teamLeader;
     }
 
-    public Set<Employee> getProjectMembers() {
+    public List<Employee> getProjectMembers() {
         return projectMembers;
     }
 
-    public void setProjectMembers(Set<Employee> projectMembers) {
+    public void setProjectMembers(List<Employee> projectMembers) {
         this.projectMembers = projectMembers;
     }
 
