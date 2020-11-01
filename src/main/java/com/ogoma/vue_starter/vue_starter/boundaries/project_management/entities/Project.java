@@ -43,7 +43,7 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "team_leader_id", updatable = false, insertable = false)
     private Employee teamLeader;
-    @OneToMany
+    @ManyToMany
     @JoinTable(name = "project_members",joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id") )
     private List<Employee> projectMembers = new ArrayList<>();
