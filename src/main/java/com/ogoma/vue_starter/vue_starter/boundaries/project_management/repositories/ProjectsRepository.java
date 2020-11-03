@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectsRepository extends JpaRepository<Project, Long> {
-    @Query(value = "select id, name,start_date,end_date,description from projects",
+    @Query(value = "select id, name,start_date as startDate,end_date as endDate,description from projects",
             nativeQuery = true,
             countQuery = "select count(*) from projects")
     public Page<ProjectProjection> getProjects(Pageable pageable);
