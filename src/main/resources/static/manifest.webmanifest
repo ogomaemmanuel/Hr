@@ -1,6 +1,6 @@
 {
-  "name": "Swat Human Resource Management System",
   "short_name": "Bettle",
+  "name": "Swat Human Resource Management System",
   "start_url": "/",
   "display": "standalone",
   "icons": [
