@@ -2,11 +2,33 @@
     <div class="card min-h-full">
         <div class="card-content">
             <div class="flex flex-col">
-                <div>
+                <div class="relative">
                     <h4 class="text-black font-medium text-lg font-semibold"><a href="">{{project.name}}</a></h4>
 
                     <div class="text-xs font-normal">
                         <span class="font-bold">2</span> <span>open tasks</span> <span class="font-bold">5</span> <span>tasks completed</span>
+                    </div>
+                    <div class="profile-action">
+
+                        <b-dropdown class="text-left" aria-role="list">
+                            <i
+                                    class="fa fa-ellipsis-v text-muted"
+                                    slot="trigger"
+                                    role="button">
+                            </i>
+                            <b-dropdown-item :disabled="false"
+                                             value="withdraw"
+                                             @click="confirmRemoveEmployee(employee)"
+                                             aria-role="listitem">
+                                <span class="icon"><i class="fa fa-trash"></i></span>
+                                Remove
+                            </b-dropdown-item>
+                            <b-dropdown-item
+                                    :disabled="false" value="edit" aria-role="listitem">
+                                <span class="icon"><i class="fa fa-pencil"></i></span>
+                                Edit
+                            </b-dropdown-item>
+                        </b-dropdown>
                     </div>
                 </div>
                 <div>
@@ -74,3 +96,13 @@
         }
     }
 </script>
+<style scoped lang="scss">
+    .profile-action {
+        position: absolute;
+        right: 5px;
+        text-align: right;
+        top: 10px;
+        top: 0px;
+        right: 5px;
+    }
+</style>
