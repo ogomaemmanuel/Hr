@@ -80,6 +80,7 @@
   "dependencies": {
     "@aspnet/signalr": "^1.1.4",
     "@chenfengyuan/datepicker": "^1.0.7",
+    "@toast-ui/editor": "^2.5.0",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.1",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.3",
@@ -105,6 +106,8 @@
     "popper.js": "^1.15.0",
     "portal-vue": "^2.1.7",
     "sinon": "^9.0.3",
+    "sockjs-client": "^1.4.0",
+    "stompjs": "^2.3.3",
     "sw-precache-webpack-plugin": "^0.11.5",
     "tailwindcss": "^1.8.5",
     "tooltip.js": "^1.3.2",
@@ -117,9 +120,7 @@
     "vue-js-modal": "^1.3.31",
     "vue-popperjs": "^2.0.4",
     "vue-virtualscroll": "^1.0.0",
-    "vuetify": "^1.5.14",
-    "sockjs-client": "^1.4.0",
-    "stompjs": "^2.3.3"
+    "vuetify": "^1.5.14"
   },
   "main": "webpack.config.js",
   "description": "",

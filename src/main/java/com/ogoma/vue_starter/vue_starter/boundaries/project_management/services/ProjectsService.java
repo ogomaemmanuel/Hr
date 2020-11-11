@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entit
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ProjectsRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.beans.BeanUtils;
@@ -25,11 +26,11 @@ public class ProjectsService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Page<Project> getProjects(PagedDataRequest pagedDataRequest) {
+    public Page<ProjectProjection> getProjects(PagedDataRequest pagedDataRequest) {
         Pageable pageable = PageRequest.of(pagedDataRequest.getPage(),
                 pagedDataRequest.getPageSize());
-        Page<Project> projects =
-                this.projectsRepository.findAll(pageable);
+        Page<ProjectProjection> projects =
+                this.projectsRepository.getProjects(pageable);
         return projects;
     }
 
@@ -53,7 +54,7 @@ public class ProjectsService {
         this.projectsRepository.deleteById(id);
     }
 
-    public Optional<Project> updateProject(Long id, Project project) {
+    public Optional<Project> updateProject(Long id, ProjectDto project) {
         Optional<Project> optionalProject =
                 this.projectsRepository.findById(id);
         optionalProject.ifPresent(pr -> {

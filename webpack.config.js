@@ -19,6 +19,26 @@ module.exports = env => {
             },
             stats: {modules: false},
             context: __dirname,
+            optimization: {
+                runtimeChunk: 'single',
+                splitChunks: {
+                    cacheGroups: {
+                        vendor: {
+                            test: /[\\/]node_modules[\\/]/,
+                            name: 'vendors',
+                            chunks: 'all',
+                        }
+                    }
+                },
+                nodeEnv: process.env.NODE_ENV,
+                minimize: true,
+
+                // splitChunks: {
+                //     // include all types of chunks
+                //     chunks: 'all'
+                // }
+            },
+
             resolve: {
                 extensions: [".js", ".vue", ".css", ".scss", ".sass"],
                 alias: {

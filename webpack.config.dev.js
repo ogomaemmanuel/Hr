@@ -4,6 +4,7 @@ const path = require("path")
 const webpack = require("webpack")
 const HtmlWebpacktPlugin = require("html-webpack-plugin")
 const bundleOutputDir = "./target/classes/static/js/dist"
+const cssOutputDirectory = "./target/classes/static/css/dist"
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
@@ -114,8 +115,13 @@ let commonConfig=
             new CleanWebpackPlugin([bundleOutputDir]),
             new VueLoaderPlugin(),
             new MiniCssExtractPlugin({
-                filename: 'main.css',
-                chunkFilename: "[id].[hash].css"
+                // filename: 'main.css',
+                // chunkFilename: "[id].[hash].css",
+
+                filename: '../../css/dist/main.css',
+                chunkFilename: "../../css/dist/[name].css",
+
+                // publicPath:  path.join(__dirname,cssOutputDirectory)
             }),
             new webpack.DefinePlugin({
                 'PRODUCTION': JSON.stringify(true),
@@ -171,7 +177,7 @@ let prodConfig=Object.assign({}, commonConfig,{
 });
 
 module.exports = [
-    prodConfig, devConfig,
+    prodConfig
 ];
 
 
