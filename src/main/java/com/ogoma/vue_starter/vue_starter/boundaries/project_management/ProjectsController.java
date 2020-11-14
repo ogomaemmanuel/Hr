@@ -8,10 +8,7 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -33,5 +30,11 @@ public class ProjectsController {
     public ResponseEntity<?> createProject(@Valid ProjectDto projectDto) {
         Project project = this.projectsService.createProject(projectDto);
         return ResponseEntity.ok(project);
+    }
+
+    @RequestMapping(value = "api/projects/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteProjectById(@PathVariable("id") Long projectId) {
+        projectsService.removeProjectByID(projectId);
+        return ResponseEntity.ok("Project successfully Removed");
     }
 }
