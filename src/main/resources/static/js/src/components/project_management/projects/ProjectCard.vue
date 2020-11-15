@@ -18,7 +18,7 @@
                             </i>
                             <b-dropdown-item :disabled="false"
                                              value="withdraw"
-                                             @click="confirmRemoveEmployee(employee)"
+                                             @click="confirmRemoveProject(project)"
                                              aria-role="listitem">
                                 <span class="icon"><i class="fa fa-trash"></i></span>
                                 Remove
@@ -75,6 +75,7 @@
 <script>
     import {Avatar} from "element-ui"
     import Viewer from "@toast-ui/editor/dist/toastui-editor-viewer"
+
     export default {
         components: {
             Avatar
@@ -86,13 +87,28 @@
         },
         mounted() {
             let vm = this;
-
             const viewer = new Viewer({
                 el: vm.$refs.projectDescription,
                 height: '600px',
                 initialValue: vm.project.description
             });
 
+        },
+        methods: {
+            confirmRemoveProject(project) {
+                this.$buefy.dialog.confirm({
+                    title: 'Delete Project',
+                    message: `Are you sure want to delete <b> ${project.name}</b>`,
+                    onConfirm: () => this.removeProject(project)
+                })
+            },
+            removeProject(project) {
+                axios.delete(`/api/projects/${project.id}`)
+                    .then(resp => {
+                        this.$emit("deleteSuccessful", project);
+                    }, error => {
+                    })
+            }
         }
     }
 </script>
