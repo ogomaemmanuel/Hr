@@ -1,7 +1,7 @@
 <template>
     <div class="grid auto-rows-auto  gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 projects-wrapper">
         <div class="min-h-full" v-for="project in projects">
-            <ProjectCard :project="project">
+            <ProjectCard @deleteSuccessful="getProjects" :project="project">
             </ProjectCard>
         </div>
     </div>
