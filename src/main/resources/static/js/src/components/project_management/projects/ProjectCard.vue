@@ -75,6 +75,7 @@
 <script>
     import {Avatar} from "element-ui"
     import Viewer from "@toast-ui/editor/dist/toastui-editor-viewer"
+    import {Message} from "element-ui"
 
     export default {
         components: {
@@ -105,6 +106,7 @@
             removeProject(project) {
                 axios.delete(`/api/projects/${project.id}`)
                     .then(resp => {
+                        Message.success("Project Successfully removed")
                         this.$emit("deleteSuccessful", project);
                     }, error => {
                     })
