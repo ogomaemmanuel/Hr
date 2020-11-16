@@ -20,10 +20,10 @@ public class ProjectDto {
     @NotBlank(message = "Name is required")
     private String name;
     @NotNull(message = "Start date is required")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date startDate;
     @NotNull(message = "End date is required")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date endDate;
     @NotNull(message = "Rate is required")
     private BigDecimal rate;
