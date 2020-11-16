@@ -217,7 +217,7 @@
                     <button
                             :class="{'is-loading':isLoading}"
                             :disabled="isLoading"
-                            @click.prevent.stop="createProject()"
+                            @click.prevent.stop="updateProject()"
                             class="button  is-rounded"
                             type="submit">Submit
                     </button>
@@ -292,7 +292,7 @@
                 this.project.attachment = file;
                 this.fileName = file.name;
             },
-            createProject() {
+            updateProject() {
                 this.isLoading = true
                 this.project.teamLeaderId =
                     this.project.teamLeader.id;
