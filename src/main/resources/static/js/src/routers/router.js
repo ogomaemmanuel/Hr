@@ -102,6 +102,7 @@ const ClientEdit = () => import("../components/project_management/clients/Client
 const ProjectsPage = () => import("../components/project_management/projects/ProjectsPage")
 const ProjectList = () => import("../components/project_management/projects/ProjectList")
 const ProjectCreate = () => import("../components/project_management/projects/ProjectCreateModal")
+const ProjectEdit = () => import("../components/project_management/projects/ProjectEditModal")
 
  const SettingsPage=()=> import("../components/settings/Settings")
 
@@ -634,15 +635,15 @@ const routes = new Router({
                                         title: "Project Create",
                                     },
                                 },
-                                // {
-                                //     path: "/clients-edit/:id",
-                                //     name: "clients-edit",
-                                //     component: ClientEdit,
-                                //     meta: {
-                                //         breadcrumb: true,
-                                //         title: "Client Edit",
-                                //     },
-                                // },
+                                {
+                                    path: "/project-edit/:id",
+                                    name: "project-edit",
+                                    component: ProjectEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Project Edit",
+                                    },
+                                },
                             ]
                         },
 

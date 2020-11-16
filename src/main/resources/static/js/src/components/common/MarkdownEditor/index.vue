@@ -15,7 +15,7 @@
         props: {
             value: {
                 type: String,
-                default: ''
+                default: ""
             },
             id: {
                 type: String,
@@ -62,8 +62,8 @@
         },
         watch: {
             value(newValue, preValue) {
-                if (newValue !== preValue && newValue !== this.editor.getValue()) {
-                    this.editor.setValue(newValue)
+                if (newValue !== preValue && newValue !== this.editor.getMarkdown()) {
+                    this.invoke("setMarkdown",newValue)
                 }
             },
             language(val) {
@@ -84,17 +84,30 @@
             this.destroyEditor()
         },
         methods: {
+            invoke(methodName, ...args) {
+                let result = null;
+                if (this.editor[methodName]) {
+                    result = this.editor[methodName](...args);
+                }
+
+                return result;
+            },
+
             initEditor() {
                 let vm = this;
                 this.editor = new Editor({
-                    el: vm.$refs.editorRef, //document.getElementById(this.id),
+                    el: vm.$refs.editorRef,
+                    //initialValue: vm.value,
+                    //document.getElementById(this.id),
                     ...this.editorOptions
                 })
                 if (this.value) {
-                    this.editor.setValue(this.value)
+                    console.log("editor value is ", this.value);
+                    this.invoke("setMarkdown",this.value)
+                   // this.editor.setValue(this.value)
                 }
                 this.editor.on('change', () => {
-                    this.$emit('input', this.editor.getValue())
+                    this.$emit('input', this.editor.getMarkdown())
                 })
             },
             destroyEditor() {
@@ -103,10 +116,11 @@
                 this.editor.remove()
             },
             setValue(value) {
-                this.editor.setValue(value)
+                this.invoke("setMarkdown",value)
+                //this.editor.setValue(value)
             },
             getValue() {
-                return this.editor.getValue()
+                return this.editor.getMarkdown()
             },
             setHtml(value) {
                 this.editor.setHtml(value)

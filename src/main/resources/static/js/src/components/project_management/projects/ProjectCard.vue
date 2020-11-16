@@ -25,8 +25,10 @@
                             </b-dropdown-item>
                             <b-dropdown-item
                                     :disabled="false" value="edit" aria-role="listitem">
-                                <span class="icon"><i class="fa fa-pencil"></i></span>
-                                Edit
+                                <router-link :to="`/project-edit/${project.id}`">
+                                    <span class="icon"><i class="fa fa-pencil"></i></span>
+                                    Edit
+                                </router-link>
                             </b-dropdown-item>
                         </b-dropdown>
                     </div>

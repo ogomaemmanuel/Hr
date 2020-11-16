@@ -1,201 +1,203 @@
 <template>
     <div>
-        <form>
-            <div class="has-text-centered m-3">
-                <h1 class="has-text-black"><b>Edit Project</b></h1>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="field">
-                        <label class="label">Project Name <span><sup>*</sup></span></label>
-                        <div class="control">
-                            <input
-                                    v-model="project.name"
+        <template>
+            <form>
+                <div class="has-text-centered m-3">
+                    <h1 class="has-text-black"><b>Edit Project</b></h1>
+                </div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Project Name <span><sup>*</sup></span></label>
+                            <div class="control">
+                                <input
+                                        v-model="project.name"
 
-                                    @input="clearFieldError('name')"
-                                    class="input"
-                                    type="text">
-                            <span class="mb-2 has-text-danger" v-if="errors['name']">
+                                        @input="clearFieldError('name')"
+                                        class="input"
+                                        type="text">
+                                <span class="mb-2 has-text-danger" v-if="errors['name']">
 						{{errors['name'][0]}}
 					</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <ClientSelectInput
-                            v-model="project.clientId"
-                            @input="clearFieldError('clientId')"
-                            label="Client">
+                    <div class="column">
+                        <ClientSelectInput
+                                v-model="project.clientId"
+                                @input="clearFieldError('clientId')"
+                                label="Client">
                         <span slot="errors"
                               class="mb-2 has-text-danger"
                               v-if="errors['clientId']">
                             {{errors['clientId'][0]}}
                         </span>
-                    </ClientSelectInput>
+                        </ClientSelectInput>
+                    </div>
                 </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="field">
-                        <label class="label">Start Date<span><sup>*</sup></span></label>
-                        <div class="control">
-                            <DatePicker class="datepicker"
-                                        @input="clearFieldError('startDate')"
-                                        v-model="project.startDate">
-                            </DatePicker>
-                            <span class="mb-2 has-text-danger" v-if="errors['startDate']">
+                <div class="columns">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Start Date<span><sup>*</sup></span></label>
+                            <div class="control">
+                                <DatePicker class="datepicker"
+                                            @input="clearFieldError('startDate')"
+                                            v-model="project.startDate">
+                                </DatePicker>
+                                <span class="mb-2 has-text-danger" v-if="errors['startDate']">
                                                     {{errors['startDate'][0]}}
                                                 </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="field">
-                        <label class="label">End Date<span><sup>*</sup></span></label>
-                        <div class="control">
-                            <DatePicker
-                                    v-model="project.endDate"
-                                    @input="clearFieldError('endDate')"
-                                    class="datepicker">
-                            </DatePicker>
-                            <span class="mb-2 has-text-danger" v-if="errors['endDate']">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">End Date<span><sup>*</sup></span></label>
+                            <div class="control">
+                                <DatePicker
+                                        v-model="project.endDate"
+                                        @input="clearFieldError('endDate')"
+                                        class="datepicker">
+                                </DatePicker>
+                                <span class="mb-2 has-text-danger" v-if="errors['endDate']">
                                                     {{errors['endDate'][0]}}
                                                 </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <div class="columns flex">
-                        <div class="column is-6-mobile">
-                            <div class="field">
-                                <label class="label">Rate<span><sup>*</sup></span></label>
-                                <div class="control">
-                                    <input
-                                            v-model="project.rate"
-                                            @input="clearFieldError('rate')"
-                                            class="input"
-                                            type="text">
-                                    <span class="mb-2 has-text-danger" v-if="errors['rate']">
+                <div class="columns">
+                    <div class="column">
+                        <div class="columns flex">
+                            <div class="column is-6-mobile">
+                                <div class="field">
+                                    <label class="label">Rate<span><sup>*</sup></span></label>
+                                    <div class="control">
+                                        <input
+                                                v-model="project.rate"
+                                                @input="clearFieldError('rate')"
+                                                class="input"
+                                                type="text">
+                                        <span class="mb-2 has-text-danger" v-if="errors['rate']">
                                                     {{errors['rate'][0]}}
                                                 </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="column mt-8 is-6-mobile">
-                            <div class="control">
-                                <div class="select is-fullwidth">
-                                    <select
-                                            @input="clearFieldError('rateType')"
-                                            v-model="project.rateType">
-                                        <option>Select</option>
-                                        <option value="HOURLY">Hourly</option>
-                                        <option value="FIXED">Fixed</option>
-                                    </select>
-                                </div>
-                                <span class="mb-2 has-text-danger help" v-if="errors['rateType']">
+                            <div class="column mt-8 is-6-mobile">
+                                <div class="control">
+                                    <div class="select is-fullwidth">
+                                        <select
+                                                @input="clearFieldError('rateType')"
+                                                v-model="project.rateType">
+                                            <option>Select</option>
+                                            <option value="HOURLY">Hourly</option>
+                                            <option value="FIXED">Fixed</option>
+                                        </select>
+                                    </div>
+                                    <span class="mb-2 has-text-danger help" v-if="errors['rateType']">
                                     {{errors['rateType'][0]}}
                                 </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="field">
-                        <label class="label">Priority<span><sup>*</sup></span></label>
-                        <div class="select is-fullwidth">
-                            <select
-                                    @input="clearFieldError('priority')"
-                                    v-model="project.priority">
-                                <option>Select</option>
-                                <option value="HIGH">High</option>
-                                <option value="MEDIUM">Medium</option>
-                                <option value="LOW">Low</option>
-                            </select>
-                        </div>
-                        <span class="mb-2 has-text-danger" v-if="errors['priority']">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Priority<span><sup>*</sup></span></label>
+                            <div class="select is-fullwidth">
+                                <select
+                                        @input="clearFieldError('priority')"
+                                        v-model="project.priority">
+                                    <option>Select</option>
+                                    <option value="HIGH">High</option>
+                                    <option value="MEDIUM">Medium</option>
+                                    <option value="LOW">Low</option>
+                                </select>
+                            </div>
+                            <span class="mb-2 has-text-danger" v-if="errors['priority']">
                             {{errors['priority'][0]}}
                         </span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="columns">
-                <div class="column">
-                    <ProjectMemberSelectInput
-                            label="Add Project Leader"
-                            @input="clearFieldError('teamLeaderId')"
-                            v-model="project.teamLeader">
+                <div class="columns">
+                    <div class="column">
+                        <ProjectMemberSelectInput
+                                label="Add Project Leader"
+                                @input="clearFieldError('teamLeaderId')"
+                                v-model="project.teamLeader">
                          <span slot="errors"
                                class="mb-2 has-text-danger"
                                v-if="errors['teamLeaderId']">
                             {{errors['teamLeaderId'][0]}}
                         </span>
-                    </ProjectMemberSelectInput>
-                </div>
-                <div class="column">
-                    <div class="field">
-                        <label class="label">Team Leader<span><sup>*</sup></span></label>
-                        <figure class="image is-32x32">
-                            <img class="is-rounded"
-                                 src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-16.jpg" alt="">
-                        </figure>
+                        </ProjectMemberSelectInput>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Team Leader<span><sup>*</sup></span></label>
+                            <figure class="image is-32x32">
+                                <img class="is-rounded"
+                                     src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-16.jpg"
+                                     alt="">
+                            </figure>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="columns">
-                <div class="column">
-                    <ProjectMemberSelectInput
-                            label="Add Team"
-                            :clear-on-select="true"
-                            v-model="projectMember"
-                            @input="addProjectMember">
+                <div class="columns">
+                    <div class="column">
+                        <ProjectMemberSelectInput
+                                label="Add Team"
+                                :clear-on-select="true"
+                                v-model="projectMember"
+                                @input="addProjectMember">
                           <span slot="errors"
                                 class="mb-2 has-text-danger"
                                 v-if="errors['projectMembersIds']">
                             {{errors['projectMembersIds'][0]}}
                         </span>
-                    </ProjectMemberSelectInput>
-                </div>
-                <div class="column">
-                    <div class="field">
-                        <label class="label">Team Members<span><sup>*</sup></span></label>
-                        <div class="flex">
-                            <template v-for="(projectMember,index) in project.projectMembers">
-                                <figure v-if="index<5" class="image is-32x32">
-                                    <img class="is-rounded"
-                                         src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-16.jpg"
-                                         alt="">
-                                </figure>
-                            </template>
-                            <div v-if="project.projectMembers.length>=5">
-                                +{{project.projectMembers.length-4}}
+                        </ProjectMemberSelectInput>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">Team Members<span><sup>*</sup></span></label>
+                            <div class="flex">
+                                <template v-for="(projectMember,index) in project.projectMembers">
+                                    <figure v-if="index<5" class="image is-32x32">
+                                        <img class="is-rounded"
+                                             src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-16.jpg"
+                                             alt="">
+                                    </figure>
+                                </template>
+                                <div v-if="project.projectMembers.length>=5">
+                                    +{{project.projectMembers.length-4}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <div class="field">
-                    <label class="label">Description<span><sup>*</sup></span></label>
-                    <MarkdownEditor v-model="project.description"></MarkdownEditor>
-                    <span class="mb-2 has-text-danger" v-if="errors['description']">
+                <div>
+                    <div class="field">
+                        <label class="label">Description<span><sup>*</sup></span></label>
+                        <MarkdownEditor v-model="project.description"></MarkdownEditor>
+                        <span class="mb-2 has-text-danger" v-if="errors['description']">
                         {{errors['description'][0]}}
                     </span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="field">
-                <div class="control">
-                    <label class="label">Upload File<span><sup>*</sup></span></label>
-                    <div class="file has-name is-fullwidth">
-                        <label class="file-label">
-                            <input
-                                    @change="onFileChange"
-                                    class="file-input" type="file" name="resume">
-                            <span class="file-cta">
+                <div class="field">
+                    <div class="control">
+                        <label class="label">Upload File<span><sup>*</sup></span></label>
+                        <div class="file has-name is-fullwidth">
+                            <label class="file-label">
+                                <input
+                                        @change="onFileChange"
+                                        class="file-input" type="file" name="resume">
+                                <span class="file-cta">
       <span class="file-icon">
         <i class="fa fa-upload"></i>
       </span>
@@ -203,24 +205,25 @@
         Browse…
       </span>
     </span>
-                            <span class="file-name">
+                                <span class="file-name">
       {{fileName}}
     </span>
-                        </label>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="flex justify-center m-3">
-                <button
-                        :class="{'is-loading':isLoading}"
-                        :disabled="isLoading"
-                        @click.prevent.stop="createProject()"
-                        class="button  is-rounded"
-                        type="submit">Submit
-                </button>
-            </div>
-        </form>
+                <div class="flex justify-center m-3">
+                    <button
+                            :class="{'is-loading':isLoading}"
+                            :disabled="isLoading"
+                            @click.prevent.stop="createProject()"
+                            class="button  is-rounded"
+                            type="submit">Submit
+                    </button>
+                </div>
+            </form>
+        </template>
     </div>
 </template>
 <script>
@@ -229,8 +232,14 @@
     import ProjectMemberSelectInput from "../../common/ProjectMemberSelectInput";
     import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
+
     export default {
-        mixins:[
+        props: {
+            projectId: {
+                required: true
+            }
+        },
+        mixins: [
             common_mixin
         ],
         components: {
@@ -243,16 +252,31 @@
             return {
                 project: {
                     user: {},
-                    teamLeader:{},
+                    teamLeader: {},
                     projectMembers: []
                 },
                 fileName: "",
                 projectMember: "",
                 isLoading: false,
+                loaded: false,
                 errors: {}
             }
         },
+        created() {
+            this.getProjectDetails();
+        },
         methods: {
+            getProjectDetails() {
+                this.isLoading = true;
+                axios.get(`/api/projects/${this.projectId}`).then(resp => {
+                    this.project = resp.data;
+                    this.isLoading = false;
+                    this.loaded = true;
+                }, error => {
+                    this.isLoading = false;
+                    this.loaded = true;
+                })
+            },
             addProjectMember(member) {
                 if (member) {
                     let memberExists = this.project.projectMembers.find(x => x.id == member.id);
@@ -275,7 +299,7 @@
                 this.project.projectMembersIds = this.project.projectMembers.map(x => x.id);
                 console.log(this.project);
                 let request = this.createFormData(this.project);
-                axios.post("/api/projects", request).then(resp => {
+                axios.put("/api/projects", request).then(resp => {
                     this.isLoading = false;
                     this.$emit("createSuccessful");
                 }, error => {
