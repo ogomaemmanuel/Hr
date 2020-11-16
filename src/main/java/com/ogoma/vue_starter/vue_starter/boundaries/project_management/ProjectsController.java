@@ -26,15 +26,23 @@ public class ProjectsController {
         Page<ProjectProjection> projects = this.projectsService.getProjects(pagedDataRequest);
         return ResponseEntity.ok(projects);
     }
+
     @RequestMapping(value = "api/projects/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getProjectById(@PathVariable("id") Long projectId) {
         Optional<Project> project = this.projectsService.getProjectByID(projectId);
         return ResponseEntity.of(project);
     }
+
     @RequestMapping(value = "api/projects", method = RequestMethod.POST)
     public ResponseEntity<?> createProject(@Valid ProjectDto projectDto) {
         Project project = this.projectsService.createProject(projectDto);
         return ResponseEntity.ok(project);
+    }
+
+    @RequestMapping(value = "api/projects/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateProjectById(@PathVariable("id") Long projectId, @Valid ProjectDto projectDto) {
+        Optional<Project> project = this.projectsService.updateProject(projectId, projectDto);
+        return ResponseEntity.of(project);
     }
 
     @RequestMapping(value = "api/projects/{id}", method = RequestMethod.DELETE)

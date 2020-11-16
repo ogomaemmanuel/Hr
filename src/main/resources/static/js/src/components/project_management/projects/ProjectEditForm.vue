@@ -299,9 +299,9 @@
                 this.project.projectMembersIds = this.project.projectMembers.map(x => x.id);
                 console.log(this.project);
                 let request = this.createFormData(this.project);
-                axios.put("/api/projects", request).then(resp => {
+                axios.put(`/api/projects/${this.project.id}`, request).then(resp => {
                     this.isLoading = false;
-                    this.$emit("createSuccessful");
+                    this.$emit("updateSuccessful");
                 }, error => {
                     this.isLoading = false;
                     if (error.response.status == 400) {

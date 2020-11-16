@@ -1,6 +1,7 @@
 <template>
     <ModalTemplate width="900" @modalClosed="onModalClosed">
         <ProjectEditForm
+                @updateSuccessful="$router.back()"
                 :project-id="id" slot="modal-content">
         </ProjectEditForm>
     </ModalTemplate>
