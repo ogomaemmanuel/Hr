@@ -45,7 +45,7 @@
     }
 </script>
 <style scoped lang="scss">
-    .projects-wrapper{
+    .projects-wrapper {
         grid-auto-rows: 1fr;
     }
 </style>

@@ -103,8 +103,9 @@ const ProjectsPage = () => import("../components/project_management/projects/Pro
 const ProjectList = () => import("../components/project_management/projects/ProjectList")
 const ProjectCreate = () => import("../components/project_management/projects/ProjectCreateModal")
 const ProjectEdit = () => import("../components/project_management/projects/ProjectEditModal")
+const ProjectDetails = () => import("../components/project_management/projects/ProjectDetails")
 
- const SettingsPage=()=> import("../components/settings/Settings")
+const SettingsPage = () => import("../components/settings/Settings")
 
 Vue.use(Router);
 const routes = new Router({
@@ -186,9 +187,7 @@ const routes = new Router({
                         breadcrumb: true,
                         title: "Profile",
                     },
-                    children: [
-
-                    ]
+                    children: []
 
                 },
                 {
@@ -646,6 +645,15 @@ const routes = new Router({
                                 },
                             ]
                         },
+                        {
+                            path: "/project-details/:id",
+                            name: "project-details",
+                            component: ProjectDetails,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Project Details",
+                            }
+                        }
 
                     ]
                 },

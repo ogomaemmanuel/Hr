@@ -3,7 +3,7 @@
         <div class="card-content">
             <div class="flex flex-col">
                 <div class="relative">
-                    <h4 class="text-black font-medium text-lg font-semibold"><a href="">{{project.name}}</a></h4>
+                    <h4 class="text-black font-medium text-lg font-semibold"><router-link :to="`/project-details/${project.id}`">{{project.name}}</router-link></h4>
 
                     <div class="text-xs font-normal">
                         <span class="font-bold">2</span> <span>open tasks</span> <span class="font-bold">5</span> <span>tasks completed</span>
