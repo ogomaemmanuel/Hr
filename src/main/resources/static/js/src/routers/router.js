@@ -102,8 +102,10 @@ const ClientEdit = () => import("../components/project_management/clients/Client
 const ProjectsPage = () => import("../components/project_management/projects/ProjectsPage")
 const ProjectList = () => import("../components/project_management/projects/ProjectList")
 const ProjectCreate = () => import("../components/project_management/projects/ProjectCreateModal")
+const ProjectEdit = () => import("../components/project_management/projects/ProjectEditModal")
+const ProjectDetails = () => import("../components/project_management/projects/ProjectDetails")
 
- const SettingsPage=()=> import("../components/settings/Settings")
+const SettingsPage = () => import("../components/settings/Settings")
 
 Vue.use(Router);
 const routes = new Router({
@@ -185,9 +187,7 @@ const routes = new Router({
                         breadcrumb: true,
                         title: "Profile",
                     },
-                    children: [
-
-                    ]
+                    children: []
 
                 },
                 {
@@ -634,17 +634,26 @@ const routes = new Router({
                                         title: "Project Create",
                                     },
                                 },
-                                // {
-                                //     path: "/clients-edit/:id",
-                                //     name: "clients-edit",
-                                //     component: ClientEdit,
-                                //     meta: {
-                                //         breadcrumb: true,
-                                //         title: "Client Edit",
-                                //     },
-                                // },
+                                {
+                                    path: "/project-edit/:id",
+                                    name: "project-edit",
+                                    component: ProjectEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Project Edit",
+                                    },
+                                },
                             ]
                         },
+                        {
+                            path: "/project-details/:id",
+                            name: "project-details",
+                            component: ProjectDetails,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Project Details",
+                            }
+                        }
 
                     ]
                 },

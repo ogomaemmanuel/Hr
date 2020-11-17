@@ -8,12 +8,10 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 public class ProjectsController {
@@ -29,9 +27,27 @@ public class ProjectsController {
         return ResponseEntity.ok(projects);
     }
 
+    @RequestMapping(value = "api/projects/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getProjectById(@PathVariable("id") Long projectId) {
+        Optional<Project> project = this.projectsService.getProjectByID(projectId);
+        return ResponseEntity.of(project);
+    }
+
     @RequestMapping(value = "api/projects", method = RequestMethod.POST)
     public ResponseEntity<?> createProject(@Valid ProjectDto projectDto) {
         Project project = this.projectsService.createProject(projectDto);
         return ResponseEntity.ok(project);
+    }
+
+    @RequestMapping(value = "api/projects/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateProjectById(@PathVariable("id") Long projectId, @Valid ProjectDto projectDto) {
+        Optional<Project> project = this.projectsService.updateProject(projectId, projectDto);
+        return ResponseEntity.of(project);
+    }
+
+    @RequestMapping(value = "api/projects/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteProjectById(@PathVariable("id") Long projectId) {
+        projectsService.removeProjectByID(projectId);
+        return ResponseEntity.ok("Project successfully Removed");
     }
 }

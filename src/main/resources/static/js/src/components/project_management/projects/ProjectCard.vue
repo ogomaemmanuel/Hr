@@ -3,7 +3,7 @@
         <div class="card-content">
             <div class="flex flex-col">
                 <div class="relative">
-                    <h4 class="text-black font-medium text-lg font-semibold"><a href="">{{project.name}}</a></h4>
+                    <h4 class="text-black font-medium text-lg font-semibold"><router-link :to="`/project-details/${project.id}`">{{project.name}}</router-link></h4>
 
                     <div class="text-xs font-normal">
                         <span class="font-bold">2</span> <span>open tasks</span> <span class="font-bold">5</span> <span>tasks completed</span>
@@ -18,15 +18,17 @@
                             </i>
                             <b-dropdown-item :disabled="false"
                                              value="withdraw"
-                                             @click="confirmRemoveEmployee(employee)"
+                                             @click="confirmRemoveProject(project)"
                                              aria-role="listitem">
                                 <span class="icon"><i class="fa fa-trash"></i></span>
                                 Remove
                             </b-dropdown-item>
                             <b-dropdown-item
                                     :disabled="false" value="edit" aria-role="listitem">
-                                <span class="icon"><i class="fa fa-pencil"></i></span>
-                                Edit
+                                <router-link :to="`/project-edit/${project.id}`">
+                                    <span class="icon"><i class="fa fa-pencil"></i></span>
+                                    Edit
+                                </router-link>
                             </b-dropdown-item>
                         </b-dropdown>
                     </div>
@@ -75,6 +77,8 @@
 <script>
     import {Avatar} from "element-ui"
     import Viewer from "@toast-ui/editor/dist/toastui-editor-viewer"
+    import {Message} from "element-ui"
+
     export default {
         components: {
             Avatar
@@ -86,13 +90,29 @@
         },
         mounted() {
             let vm = this;
-
             const viewer = new Viewer({
                 el: vm.$refs.projectDescription,
                 height: '600px',
                 initialValue: vm.project.description
             });
 
+        },
+        methods: {
+            confirmRemoveProject(project) {
+                this.$buefy.dialog.confirm({
+                    title: 'Delete Project',
+                    message: `Are you sure want to delete <b> ${project.name}</b>`,
+                    onConfirm: () => this.removeProject(project)
+                })
+            },
+            removeProject(project) {
+                axios.delete(`/api/projects/${project.id}`)
+                    .then(resp => {
+                        Message.success("Project Successfully removed")
+                        this.$emit("deleteSuccessful", project);
+                    }, error => {
+                    })
+            }
         }
     }
 </script>
