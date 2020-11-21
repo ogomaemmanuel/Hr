@@ -34,15 +34,83 @@
 
                 <div class="card mt-4">
                     <div class="card-content">
-                        <h4 class="font-bold">Uploaded image files</h4>
-                    </div>
-                    <div class="columns">
-                        <div class="columns">
+                        <h4 class="title is-4">Uploaded image files</h4>
 
+                        <div class="columns">
+                            <div v-for="n in 4" class="column">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <figure class="image m-1 is-4by3">
+                                            <img src="https://bulma.io/images/placeholders/1280x960.png"
+                                                 alt="Placeholder image">
+                                        </figure>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="media">
+                                            <div class="media-content">
+                                                <p class="title is-6">demo.png</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="columns"></div>
-                        <div class="columns"></div>
-                        <div class="columns"></div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-content">
+                        <h4 class="title is-4">Uploaded files</h4>
+                        <article v-for="n in 2" class="media">
+                            <figure class="media-left">
+                                <p class="image is-64x64">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                                        <br>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna
+                                        eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam
+                                        finibus odio quis feugiat facilisis.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-right">
+                                <button class="delete"></button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="tabs is-fullwidth mt-3">
+                    <ul>
+                        <li class="is-active"><a>All Tasks</a></li>
+                        <li><a>Pending Tasks</a></li>
+                        <li><a>Completed Tasks</a></li>
+                    </ul>
+                </div>
+
+                <div class="mt-3">
+                    <div v-for="n in 6" class="card">
+                        <div class="card-content pt-2 pb-2">
+
+                            <article class="media">
+                                <div class="media-left">
+                                    <i class="fa fa-check-circle"></i>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        Patient appointment booking
+                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <i class="fa fa-user-plus"></i>
+                                    <i class="fa fa-trash"></i>
+                                </div>
+                            </article>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -148,9 +216,16 @@
                 </div>
                 <div class="card mt-4">
                     <div class="card-content">
-                        <h4 class="font-black">
-                            Assigned users
-                        </h4>
+                        <div class="flex">
+                            <h4 class="font-black flex-1">
+                                Assigned users
+                            </h4>
+                            <div>
+                                <button class="button is-small is-primary">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
                         <div class="mt-3">
                             <div class="flex content-center">
                                 <div class="flex items-center">
