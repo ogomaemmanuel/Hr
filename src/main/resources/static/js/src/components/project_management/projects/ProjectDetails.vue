@@ -221,7 +221,8 @@
                                 Assigned users
                             </h4>
                             <div>
-                                <button class="button is-small is-primary">
+                                <button @click="showAddMemberModal=true"
+                                        class="button is-small is-primary">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
@@ -268,14 +269,23 @@
                 </div>
             </div>
         </div>
-
+        <ProjectAddMemberModal
+                @modalClosed="showAddMemberModal=false"
+                v-if="showAddMemberModal">
+        </ProjectAddMemberModal>
     </div>
 </template>
 <script>
+    import ProjectAddMemberModal from "./ProjectAddMemberModal";
+
     export default {
+        components: {
+            ProjectAddMemberModal
+        },
         data() {
             return {
-                project: {}
+                project: {},
+                showAddMemberModal: false,
             }
         }
     }

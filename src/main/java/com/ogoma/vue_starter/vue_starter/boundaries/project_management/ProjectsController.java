@@ -50,4 +50,11 @@ public class ProjectsController {
         projectsService.removeProjectByID(projectId);
         return ResponseEntity.ok("Project successfully Removed");
     }
+
+    @RequestMapping(value = "api/projects/details/{id}")
+    public ResponseEntity<?> getProjectDetails(@PathVariable("id") Long projectId) {
+        Optional<ProjectProjection> projectProjection =
+                this.projectsService.getProjectDescription(projectId);
+        return ResponseEntity.of(projectProjection);
+    }
 }
