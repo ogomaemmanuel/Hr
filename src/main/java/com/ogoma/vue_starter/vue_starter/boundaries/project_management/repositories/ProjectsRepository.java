@@ -17,7 +17,8 @@ public interface ProjectsRepository extends JpaRepository<Project, Long> {
             countQuery = "select count(*) from projects")
     public Page<ProjectProjection> getProjects(Pageable pageable);
 
-    @Query(value = "select id, name,start_date as startDate,end_date as endDate,description from projects",
+    @Query(value = "select id, name,start_date as startDate,end_date as endDate," +
+            "created_at as createdAt,description from projects where id=:projectId",
             nativeQuery = true)
     public Optional<ProjectProjection> getProjectsDetails(Long projectId);
 }

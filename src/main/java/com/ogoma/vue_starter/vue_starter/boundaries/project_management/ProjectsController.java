@@ -51,7 +51,7 @@ public class ProjectsController {
         return ResponseEntity.ok("Project successfully Removed");
     }
 
-    @RequestMapping(value = "api/projects/details/{id}")
+    @RequestMapping(value = "api/projects/details/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getProjectDetails(@PathVariable("id") Long projectId) {
         Optional<ProjectProjection> projectProjection =
                 this.projectsService.getProjectDescription(projectId);

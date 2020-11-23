@@ -4,31 +4,11 @@
             <div class="column is-9">
                 <div class="card">
                     <div class="card-content">
-                        <h4 class="font-black">Hospital Administration</h4>
-                        <p> 2 open tasks, 5 tasks completed</p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque. Class aptent
-                            taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum
-                            sollicitudin libero vitae est consectetur, a molestie tortor consectetur. Aenean tincidunt
-                            interdum ipsum, id pellentesque diam suscipit ut. Vivamus massa mi, fermentum eget neque
-                            eget, imperdiet tristique lectus. Proin at purus ut sem pellentesque tempor sit amet ut
-                            lectus. Sed orci augue, placerat et pretium ac, hendrerit in felis. Integer scelerisque
-                            libero non metus commodo, et hendrerit diam aliquet. Proin tincidunt porttitor ligula, a
-                            tincidunt orci pellentesque nec. Ut ultricies maximus nulla id consequat. Fusce eu consequat
-                            mi, eu euismod ligula. Aliquam porttitor neque id massa porttitor, a pretium velit vehicula.
-                            Morbi volutpat tincidunt urna, vel ullamcorper ligula fermentum at.
-
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque. Class aptent
-                            taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum
-                            sollicitudin libero vitae est consectetur, a molestie tortor consectetur. Aenean tincidunt
-                            interdum ipsum, id pellentesque diam suscipit ut. Vivamus massa mi, fermentum eget neque
-                            eget, imperdiet tristique lectus. Proin at purus ut sem pellentesque tempor sit amet ut
-                            lectus. Sed orci augue, placerat et pretium ac, hendrerit in felis. Integer scelerisque
-                            libero non metus commodo, et hendrerit diam aliquet. Proin tincidunt porttitor ligula, a
-                            tincidunt orci pellentesque nec. Ut ultricies maximus nulla id consequat. Fusce eu consequat
-                            mi, eu euismod ligula. Aliquam porttitor neque id massa porttitor, a pretium velit vehicula.
-                            Morbi volutpat tincidunt urna, vel ullamcorper ligula fermentum at.
-                        </p>
+                        <h4 class="font-black">{{project.name}}</h4>
+                        <p> {{project.openTasks||0}} open tasks, {{project.completedTasks||0}} tasks completed</p>
+                        <div ref="projectDescription">
+                            <!--                            {{project.description}}-->
+                        </div>
                     </div>
                 </div>
 
@@ -133,7 +113,7 @@
                                     Total Hours:
                                 </td>
                                 <td>
-                                    100 Hours
+                                    {{project.totalHours}} Hours
                                 </td>
                             </tr>
                             <tr>
@@ -141,7 +121,7 @@
                                     Created:
                                 </td>
                                 <td>
-                                    25 Feb, 2019
+                                    {{project.createdAt|formatDate}}
                                 </td>
                             </tr>
                             <tr>
@@ -149,7 +129,7 @@
                                     Deadline:
                                 </td>
                                 <td>
-                                    12 Jun, 2019
+                                    {{project.endDate|formatDate}}
                                 </td>
                             </tr>
                             <tr>
@@ -277,6 +257,7 @@
 </template>
 <script>
     import ProjectAddMemberModal from "./ProjectAddMemberModal";
+    import Viewer from "@toast-ui/editor/dist/toastui-editor-viewer"
 
     export default {
         components: {
@@ -286,6 +267,33 @@
             return {
                 project: {},
                 showAddMemberModal: false,
+            }
+        },
+        mounted() {
+            let vm = this;
+            this.getProjectDetails();
+        },
+        methods: {
+            getProjectDetails() {
+                let vm = this;
+                let projectId = this.$route.params.id;
+                axios.get(`/api/projects/details/${projectId}`).then(resp => {
+                    this.project = resp.data;
+                    const viewer = new Viewer({
+                        el: vm.$refs.projectDescription,
+                        height: '600px',
+                        initialValue: vm.project.description
+                    });
+                }, error => {
+
+                })
+            }
+        },
+        filters: {
+            formatDate(val) {
+                if (val) {
+                  return  moment(val).format("DD MMM YYYY")
+                }
             }
         }
     }
