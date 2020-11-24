@@ -39,9 +39,11 @@
                     <div class="field">
                         <label class="label">Start Date<span><sup>*</sup></span></label>
                         <div class="control">
-                            <DatePicker class="datepicker"
-                                        @input="clearFieldError('startDate')"
-                                        v-model="project.startDate">
+                            <DatePicker
+                                    value-format="yyyy-MM-dd"
+                                    class="datepicker"
+                                    @input="clearFieldError('startDate')"
+                                    v-model="project.startDate">
                             </DatePicker>
                             <span class="mb-2 has-text-danger" v-if="errors['startDate']">
                                                     {{errors['startDate'][0]}}
@@ -54,6 +56,7 @@
                         <label class="label">End Date<span><sup>*</sup></span></label>
                         <div class="control">
                             <DatePicker
+                                    value-format="yyyy-MM-dd"
                                     v-model="project.endDate"
                                     @input="clearFieldError('endDate')"
                                     class="datepicker">
@@ -229,8 +232,9 @@
     import ProjectMemberSelectInput from "../../common/ProjectMemberSelectInput";
     import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
+
     export default {
-        mixins:[
+        mixins: [
             common_mixin
         ],
         components: {
@@ -243,7 +247,7 @@
             return {
                 project: {
                     user: {},
-                    teamLeader:{},
+                    teamLeader: {},
                     projectMembers: []
                 },
                 fileName: "",

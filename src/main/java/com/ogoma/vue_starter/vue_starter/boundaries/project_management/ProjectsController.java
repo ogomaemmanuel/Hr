@@ -2,15 +2,18 @@ package com.ogoma.vue_starter.vue_starter.boundaries.project_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectMemberUpdateDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.services.ProjectsService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -56,5 +59,13 @@ public class ProjectsController {
         Optional<ProjectProjection> projectProjection =
                 this.projectsService.getProjectDescription(projectId);
         return ResponseEntity.of(projectProjection);
+    }
+
+    @RequestMapping(value = "api/projects/team-members/{projectId}", method = RequestMethod.POST)
+    @Validated
+    public ResponseEntity<?> updateProjectTeamMembers(@PathVariable Long projectId,
+                                                      @RequestBody ProjectMemberUpdateDto memberUpdateDto) {
+        this.projectsService.updateProjectTeamMembers(projectId, memberUpdateDto);
+        return ResponseEntity.ok("Project team members successfully updated");
     }
 }
