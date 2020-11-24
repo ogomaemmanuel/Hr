@@ -247,9 +247,42 @@
                         </div>
                     </div>
                 </div>
+                <div class="card mt-4">
+                    <div class="card-content">
+                        <div class="flex">
+                            <h4 class="font-black flex-1">
+                                About  Client
+                            </h4>
+                        </div>
+
+                        <div class="flex mt-3 justify-center">
+                            <figure class="image is-128x128">
+                                <img class="is-rounded" src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-02.jpg"
+                                     alt="Placeholder image">
+                            </figure>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <h4 class="title is-4">{{project.clientFullName}}</h4>
+                        </div>
+                        <div class="flex justify-center">
+                            <h4 class="subtitle is-7">Washington, d.c.</h4>
+                        </div>
+
+                        <div class="flex mt-2 justify-center">
+                            <div class="">
+                                <button class="button is-size-7 mr-1 text-black text-sm font-semibold">Message</button>
+                            </div>
+                            <div class="">
+                                <button class="button is-size-7 ml-1 text-black text-sm font-semibold">View Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <ProjectAddMemberModal
+                :project-id="project.id"
                 @modalClosed="showAddMemberModal=false"
                 v-if="showAddMemberModal">
         </ProjectAddMemberModal>

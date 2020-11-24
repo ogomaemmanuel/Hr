@@ -52,8 +52,14 @@
 <script>
     import ModalTemplate from "../../common/ModalTemplate";
     import ProjectMemberSelectInput from "../../common/ProjectMemberSelectInput";
+    import {Message} from "element-ui"
 
     export default {
+        props: {
+            projectId: {
+                required: true
+            }
+        },
         components: {
             ModalTemplate,
             ProjectMemberSelectInput
@@ -76,7 +82,12 @@
                 }
             },
             submitMembers() {
-
+                let teamMembers = this.projectMembers.map(x=>x.id);
+                axios.post(`/api/projects/team-members/${this.projectId}`, {
+                    teamMembers: teamMembers
+                }).then(resp => {
+                    Message.success(resp.data);
+                })
             }
         }
     }

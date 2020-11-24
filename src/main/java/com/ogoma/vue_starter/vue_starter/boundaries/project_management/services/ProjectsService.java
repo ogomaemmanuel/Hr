@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entit
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectMemberUpdateDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ProjectsRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
@@ -72,5 +73,16 @@ public class ProjectsService {
         Optional<ProjectProjection> projectProjection
                 = this.projectsRepository.getProjectsDetails(projectId);
         return projectProjection;
+    }
+
+    public void updateProjectTeamMembers(Long projectId, ProjectMemberUpdateDto memberUpdateDto) {
+        Optional<Project> project =
+                this.projectsRepository.findById(projectId);
+        List<Long> projectMembersId = memberUpdateDto.getTeamMembers();
+        List<Employee> newTeam = this.employeeRepository.findAllById(projectMembersId);
+        project.ifPresent(p -> {
+            p.setProjectMembers(newTeam);
+            this.projectsRepository.save(p);
+        });
     }
 }

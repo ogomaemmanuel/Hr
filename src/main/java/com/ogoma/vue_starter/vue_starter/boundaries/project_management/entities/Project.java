@@ -44,9 +44,9 @@ public class Project {
     @JoinColumn(name = "team_leader_id", updatable = false, insertable = false)
     private Employee teamLeader;
     @ManyToMany
-    @JoinTable(name = "project_members",joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "employee_id") )
-    private List<Employee> projectMembers = new ArrayList<>();
+    @JoinTable(name = "project_members", joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    private Set<Employee> projectMembers = new HashSet<>();
     @Enumerated(EnumType.STRING)
     private Priority priority;
     @CreationTimestamp
@@ -141,12 +141,12 @@ public class Project {
         this.teamLeader = teamLeader;
     }
 
-    public List<Employee> getProjectMembers() {
+    public Set<Employee> getProjectMembers() {
         return projectMembers;
     }
 
-    public void setProjectMembers(List<Employee> projectMembers) {
-        this.projectMembers = projectMembers;
+    public void setProjectMembers(Collection<Employee> projectMembers) {
+        this.getProjectMembers().addAll(projectMembers);
     }
 
     public Priority getPriority() {
