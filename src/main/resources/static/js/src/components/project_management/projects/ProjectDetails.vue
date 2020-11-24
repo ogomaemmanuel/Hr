@@ -282,6 +282,7 @@
             </div>
         </div>
         <ProjectAddMemberModal
+                :project-id="project.id"
                 @modalClosed="showAddMemberModal=false"
                 v-if="showAddMemberModal">
         </ProjectAddMemberModal>

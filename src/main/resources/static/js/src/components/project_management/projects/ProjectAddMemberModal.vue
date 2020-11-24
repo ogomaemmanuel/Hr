@@ -82,9 +82,9 @@
                 }
             },
             submitMembers() {
-                let teamMembers = this.projectMembers.map(x->x.id);
-                axios.post(`/api/projects/team-members`, {
-                    teamMembers: teamMembers;
+                let teamMembers = this.projectMembers.map(x=>x.id);
+                axios.post(`/api/projects/team-members/${this.projectId}`, {
+                    teamMembers: teamMembers
                 }).then(resp => {
                     Message.success(resp.data);
                 })
