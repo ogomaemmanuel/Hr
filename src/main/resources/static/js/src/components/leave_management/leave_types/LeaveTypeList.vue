@@ -6,7 +6,7 @@
 					<!--					<input class="input  is-rounded is-small mr-1" type="text" placeholder="Search ...">-->
 					
 					
-					<router-link to="/leave-type-create" class="button mr-1 is-small is-rounded">
+					<router-link to="/leave-type-create" class="button mr-1  is-rounded">
 				          <span class="icon">
 					         <i class="fa fa-plus-circle"></i>
 				           </span>
@@ -14,7 +14,7 @@
 								Add New
 							</span>
 					</router-link>
-					<a href="/api/leave-types/excel-report" class="button is-small is-rounded">
+					<a href="/api/leave-types/excel-report" class="button  is-rounded">
 				          <span class="icon">
 					         <i class="fa fa-download"></i>
 				           </span>
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		
-		<div class="mt-5 b-table bg-white p-5 is-size-7 is-full">
+		<div class="mt-5 b-table bg-white p-5  is-full">
 			
 			<table class="table has-mobile-cards is-hoverable  w-full">
 				<thead>
