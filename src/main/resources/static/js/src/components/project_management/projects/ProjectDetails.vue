@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="pl-1">
                                     <div class="font-semibold">
-                                        John Doe
+                                        {{project.leadFullName}}
                                     </div>
                                     <div class="font-medium">
                                         Web Developer

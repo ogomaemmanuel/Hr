@@ -12,11 +12,11 @@ public interface ProjectProjection {
 
     public String getName();
 
-    public Long getTeamLeaderId();
+    public Long getLeadEmployeeId();
 
-    public String getTeamLeaderFirstName();
+    public String getLeadFirstName();
 
-    public String getTeamLeaderLastName();
+    public String getLeadLastName();
 
     public Date getStartDate();
 
@@ -47,5 +47,23 @@ public interface ProjectProjection {
                 Math.abs(this.getEndDate().getTime() - this.getStartDate().getTime());
         long totalHours = TimeUnit.HOURS.convert(millisecondsDiff, TimeUnit.MILLISECONDS);
         return totalHours;
+    }
+
+    public default String getClientFullName() {
+        String lastName = this.getClientLastName();
+        String firstName = this.getClientFirstName();
+        if (null != firstName) {
+            return firstName.concat(" ").concat(lastName);
+        }
+        return lastName;
+    }
+
+    public default String getLeadFullName() {
+        String lastName = this.getLeadLastName();
+        String firstName = this.getLeadFirstName();
+        if (null != firstName) {
+            return firstName.concat(" ").concat(lastName);
+        }
+        return lastName;
     }
 }
