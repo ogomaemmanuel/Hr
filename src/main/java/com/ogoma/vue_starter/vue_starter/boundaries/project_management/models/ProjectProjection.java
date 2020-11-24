@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.models;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public interface ProjectProjection {
     public Long getId();
@@ -11,11 +12,11 @@ public interface ProjectProjection {
 
     public String getName();
 
-    public Long getTeamLeaderId();
+    public Long getLeadEmployeeId();
 
-    public String getTeamLeaderFirstName();
+    public String getLeadFirstName();
 
-    public String getTeamLeaderLastName();
+    public String getLeadLastName();
 
     public Date getStartDate();
 
@@ -32,4 +33,37 @@ public interface ProjectProjection {
     public Integer getOpenTasks();
 
     public Integer getMemberCount();
+
+    public String getClientFirstName();
+
+    public Long getClientId();
+
+    public String getClientLastName();
+
+    public Date getCreatedAt();
+
+    public default long getTotalHours() {
+        long millisecondsDiff =
+                Math.abs(this.getEndDate().getTime() - this.getStartDate().getTime());
+        long totalHours = TimeUnit.HOURS.convert(millisecondsDiff, TimeUnit.MILLISECONDS);
+        return totalHours;
+    }
+
+    public default String getClientFullName() {
+        String lastName = this.getClientLastName();
+        String firstName = this.getClientFirstName();
+        if (null != firstName) {
+            return firstName.concat(" ").concat(lastName);
+        }
+        return lastName;
+    }
+
+    public default String getLeadFullName() {
+        String lastName = this.getLeadLastName();
+        String firstName = this.getLeadFirstName();
+        if (null != firstName) {
+            return firstName.concat(" ").concat(lastName);
+        }
+        return lastName;
+    }
 }

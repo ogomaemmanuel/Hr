@@ -67,4 +67,10 @@ public class ProjectsService {
         });
         return optionalProject;
     }
+
+    public Optional<ProjectProjection> getProjectDescription(Long projectId) {
+        Optional<ProjectProjection> projectProjection
+                = this.projectsRepository.getProjectsDetails(projectId);
+        return projectProjection;
+    }
 }

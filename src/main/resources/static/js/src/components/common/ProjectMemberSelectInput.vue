@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-field>
-            <template slot="label">
+            <template v-if="showLabel" slot="label">
                 {{label}} <span v-if="required"><sup>*</sup></span>
             </template>
             <b-autocomplete
@@ -58,6 +58,9 @@
                 default: "Employee"
             },
             required: {
+                default: true
+            },
+            showLabel: {
                 default: true
             },
             value: {},

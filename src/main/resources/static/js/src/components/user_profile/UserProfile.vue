@@ -65,7 +65,7 @@
                 <div class="card h-full">
                     <div class="card-content">
                         <div class="flex">
-                            <h1 class="flex-1">Personal Informations </h1>
+                            <h1 class="flex-1 title is-5">Personal Informations </h1>
                             <div>
                                 <button>
                                     <i class="fa fa-edit"></i>
@@ -79,7 +79,7 @@
                 <div class="card h-full">
                     <div class="card-content">
                         <div class="flex">
-                            <h1 class="flex-1">Emergency Contact</h1>
+                            <h1 class="flex-1 title is-5">Emergency Contact</h1>
                             <div>
                                 <button>
                                     <i class="fa fa-edit"></i>
@@ -95,7 +95,7 @@
                 <div class="card h-full">
                     <div class="card-content">
                         <div class="flex">
-                            <h1 class="flex-1">Bank information </h1>
+                            <h1 class="flex-1 title is-5">Bank information </h1>
                             <div>
                                 <button>
                                     <i class="fa fa-edit"></i>
@@ -109,7 +109,7 @@
                 <div class="card h-full">
                     <div class="card-content">
                         <div class="flex">
-                            <h1 class="flex-1">Family Informations</h1>
+                            <h1 class="flex-1 title is-5">Family Informations</h1>
                             <div>
                                 <button>
                                     <i class="fa fa-edit"></i>

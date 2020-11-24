@@ -4,45 +4,93 @@
             <div class="column is-9">
                 <div class="card">
                     <div class="card-content">
-                        <h4 class="font-black">Hospital Administration</h4>
-                        <p> 2 open tasks, 5 tasks completed</p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque. Class aptent
-                            taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum
-                            sollicitudin libero vitae est consectetur, a molestie tortor consectetur. Aenean tincidunt
-                            interdum ipsum, id pellentesque diam suscipit ut. Vivamus massa mi, fermentum eget neque
-                            eget, imperdiet tristique lectus. Proin at purus ut sem pellentesque tempor sit amet ut
-                            lectus. Sed orci augue, placerat et pretium ac, hendrerit in felis. Integer scelerisque
-                            libero non metus commodo, et hendrerit diam aliquet. Proin tincidunt porttitor ligula, a
-                            tincidunt orci pellentesque nec. Ut ultricies maximus nulla id consequat. Fusce eu consequat
-                            mi, eu euismod ligula. Aliquam porttitor neque id massa porttitor, a pretium velit vehicula.
-                            Morbi volutpat tincidunt urna, vel ullamcorper ligula fermentum at.
-
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel elit neque. Class aptent
-                            taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum
-                            sollicitudin libero vitae est consectetur, a molestie tortor consectetur. Aenean tincidunt
-                            interdum ipsum, id pellentesque diam suscipit ut. Vivamus massa mi, fermentum eget neque
-                            eget, imperdiet tristique lectus. Proin at purus ut sem pellentesque tempor sit amet ut
-                            lectus. Sed orci augue, placerat et pretium ac, hendrerit in felis. Integer scelerisque
-                            libero non metus commodo, et hendrerit diam aliquet. Proin tincidunt porttitor ligula, a
-                            tincidunt orci pellentesque nec. Ut ultricies maximus nulla id consequat. Fusce eu consequat
-                            mi, eu euismod ligula. Aliquam porttitor neque id massa porttitor, a pretium velit vehicula.
-                            Morbi volutpat tincidunt urna, vel ullamcorper ligula fermentum at.
-                        </p>
+                        <h4 class="font-black">{{project.name}}</h4>
+                        <p> {{project.openTasks||0}} open tasks, {{project.completedTasks||0}} tasks completed</p>
+                        <div ref="projectDescription">
+                            <!--                            {{project.description}}-->
+                        </div>
                     </div>
                 </div>
 
                 <div class="card mt-4">
                     <div class="card-content">
-                        <h4 class="font-bold">Uploaded image files</h4>
-                    </div>
-                    <div class="columns">
-                        <div class="columns">
+                        <h4 class="title is-4">Uploaded image files</h4>
 
+                        <div class="columns">
+                            <div v-for="n in 4" class="column">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <figure class="image m-1 is-4by3">
+                                            <img src="https://bulma.io/images/placeholders/1280x960.png"
+                                                 alt="Placeholder image">
+                                        </figure>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="media">
+                                            <div class="media-content">
+                                                <p class="title is-6">demo.png</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="columns"></div>
-                        <div class="columns"></div>
-                        <div class="columns"></div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <div class="card-content">
+                        <h4 class="title is-4">Uploaded files</h4>
+                        <article v-for="n in 2" class="media">
+                            <figure class="media-left">
+                                <p class="image is-64x64">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png">
+                                </p>
+                            </figure>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                                        <br>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna
+                                        eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam
+                                        finibus odio quis feugiat facilisis.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media-right">
+                                <button class="delete"></button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="tabs is-fullwidth mt-3">
+                    <ul>
+                        <li class="is-active"><a>All Tasks</a></li>
+                        <li><a>Pending Tasks</a></li>
+                        <li><a>Completed Tasks</a></li>
+                    </ul>
+                </div>
+
+                <div class="mt-3">
+                    <div v-for="n in 6" class="card">
+                        <div class="card-content pt-2 pb-2">
+
+                            <article class="media">
+                                <div class="media-left">
+                                    <i class="fa fa-check-circle"></i>
+                                </div>
+                                <div class="media-content">
+                                    <div class="content">
+                                        Patient appointment booking
+                                    </div>
+                                </div>
+                                <div class="media-right">
+                                    <i class="fa fa-user-plus"></i>
+                                    <i class="fa fa-trash"></i>
+                                </div>
+                            </article>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,7 +113,7 @@
                                     Total Hours:
                                 </td>
                                 <td>
-                                    100 Hours
+                                    {{project.totalHours}} Hours
                                 </td>
                             </tr>
                             <tr>
@@ -73,7 +121,7 @@
                                     Created:
                                 </td>
                                 <td>
-                                    25 Feb, 2019
+                                    {{project.createdAt|formatDate}}
                                 </td>
                             </tr>
                             <tr>
@@ -81,7 +129,7 @@
                                     Deadline:
                                 </td>
                                 <td>
-                                    12 Jun, 2019
+                                    {{project.endDate|formatDate}}
                                 </td>
                             </tr>
                             <tr>
@@ -136,7 +184,7 @@
                                 </div>
                                 <div class="pl-1">
                                     <div class="font-semibold">
-                                        John Doe
+                                        {{project.leadFullName}}
                                     </div>
                                     <div class="font-medium">
                                         Web Developer
@@ -148,9 +196,17 @@
                 </div>
                 <div class="card mt-4">
                     <div class="card-content">
-                        <h4 class="font-black">
-                            Assigned users
-                        </h4>
+                        <div class="flex">
+                            <h4 class="font-black flex-1">
+                                Assigned users
+                            </h4>
+                            <div>
+                                <button @click="showAddMemberModal=true"
+                                        class="button is-small is-primary">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
                         <div class="mt-3">
                             <div class="flex content-center">
                                 <div class="flex items-center">
@@ -193,14 +249,51 @@
                 </div>
             </div>
         </div>
-
+        <ProjectAddMemberModal
+                @modalClosed="showAddMemberModal=false"
+                v-if="showAddMemberModal">
+        </ProjectAddMemberModal>
     </div>
 </template>
 <script>
+    import ProjectAddMemberModal from "./ProjectAddMemberModal";
+    import Viewer from "@toast-ui/editor/dist/toastui-editor-viewer"
+
     export default {
+        components: {
+            ProjectAddMemberModal
+        },
         data() {
             return {
-                project: {}
+                project: {},
+                showAddMemberModal: false,
+            }
+        },
+        mounted() {
+            let vm = this;
+            this.getProjectDetails();
+        },
+        methods: {
+            getProjectDetails() {
+                let vm = this;
+                let projectId = this.$route.params.id;
+                axios.get(`/api/projects/details/${projectId}`).then(resp => {
+                    this.project = resp.data;
+                    const viewer = new Viewer({
+                        el: vm.$refs.projectDescription,
+                        height: '600px',
+                        initialValue: vm.project.description
+                    });
+                }, error => {
+
+                })
+            }
+        },
+        filters: {
+            formatDate(val) {
+                if (val) {
+                  return  moment(val).format("DD MMM YYYY")
+                }
             }
         }
     }
