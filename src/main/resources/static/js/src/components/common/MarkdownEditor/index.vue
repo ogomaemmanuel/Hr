@@ -9,7 +9,7 @@
     import 'tui-editor/dist/tui-editor-contents.css' // editor content
     import Editor from '@toast-ui/editor'
     import defaultOptions from './default-options'
-
+    import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
     export default {
         name: 'MarkdownEditor',
         props: {
@@ -99,7 +99,8 @@
                     el: vm.$refs.editorRef,
                     //initialValue: vm.value,
                     //document.getElementById(this.id),
-                    ...this.editorOptions
+                    ...this.editorOptions,
+                    plugins:[colorSyntax]
                 })
                 if (this.value) {
                     console.log("editor value is ", this.value);

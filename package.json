@@ -81,6 +81,7 @@
     "@aspnet/signalr": "^1.1.4",
     "@chenfengyuan/datepicker": "^1.0.7",
     "@toast-ui/editor": "^2.5.0",
+    "@toast-ui/editor-plugin-color-syntax": "^1.0.1",
     "@types/jest": "^26.0.14",
     "@types/node": "^14.11.1",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.3",
