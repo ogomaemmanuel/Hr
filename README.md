@@ -38,12 +38,12 @@ To run image from docker-hub, run
 
 ## Current Backlog
 * [x] assign roles to users
-* [] assign permissions to roles
-* [] Edit employees
-* [] Chat features
-* [] Employee Performance evaluation
-* [] Side Menu Access depending on role
-* [] File Management
+* [ ] assign permissions to roles
+* [ ] Edit employees
+* [ ] Chat features
+* [ ] Employee Performance evaluation
+* [ ] Side Menu Access depending on role
+* [ ] File Management
 
 
 ## Road Map
