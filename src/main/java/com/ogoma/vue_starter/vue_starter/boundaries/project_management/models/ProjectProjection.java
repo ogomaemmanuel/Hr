@@ -18,6 +18,8 @@ public interface ProjectProjection {
 
     public String getLeadLastName();
 
+    public String getLeadDesignation();
+
     public Date getStartDate();
 
     public Date getEndDate();

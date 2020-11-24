@@ -187,7 +187,7 @@
                                         {{project.leadFullName}}
                                     </div>
                                     <div class="font-medium">
-                                        Web Developer
+                                        {{project.leadDesignation}}
                                     </div>
                                 </div>
                             </div>
@@ -292,7 +292,7 @@
         filters: {
             formatDate(val) {
                 if (val) {
-                  return  moment(val).format("DD MMM YYYY")
+                    return moment(val).format("DD MMM YYYY")
                 }
             }
         }
