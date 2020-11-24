@@ -2,10 +2,10 @@
 	<div>
 		<form>
 			<div class="has-text-centered m-3">
-				<h1 class="has-text-black"><b>Edit Leave Type</b></h1>
+				<h4 class="title is-6"><b>Edit Leave Type</b></h4>
 			</div>
 			<div class="field">
-				<label class="label is-size-7">Name <span><sup>*</sup></span></label>
+				<label class="label">Name <span><sup>*</sup></span></label>
 				<div class="control">
 					<input
 							v-model="leaveType.name"
@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<div class="field">
-				<label class="label is-size-7">Number of Days<span><sup>*</sup></span></label>
+				<label class="label">Number of Days<span><sup>*</sup></span></label>
 				<div class="control">
 					<input
 							@input="clearFieldError('numberOfDays')"
@@ -37,7 +37,7 @@
 						:class="{'is-loading':loading}"
 						:disabled="disableSubmitButton"
 						@click.prevent.stop="updateLeaveType"
-						class="button is-small is-rounded"
+						class="button  is-rounded"
 						type="submit">Submit
 				</button>
 			</div>

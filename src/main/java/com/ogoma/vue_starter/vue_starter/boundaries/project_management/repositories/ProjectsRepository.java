@@ -19,8 +19,9 @@ public interface ProjectsRepository extends JpaRepository<Project, Long> {
 
     @Query(value = "select p.id, p.name,p.start_date as startDate,p.end_date as endDate," +
             "p.created_at as createdAt,p.description, le.id as leadEmployeeId, leu.first_name as leadFirstName, " +
-            "leu.last_name as leadLastName from projects p left " +
-            "join employees le  on p.team_leader_id = le.id left join  users leu  on le.user_id = leu.id where p.id=:projectId ",
+            "leu.last_name as leadLastName,led.name as leadDesignation from projects p left " +
+            "join employees le  on p.team_leader_id = le.id left join  users leu  on le.user_id = leu.id left join " +
+            "designations led on le.designation_id = led.id where p.id=:projectId ",
             nativeQuery = true)
     public Optional<ProjectProjection> getProjectsDetails(Long projectId);
 }
