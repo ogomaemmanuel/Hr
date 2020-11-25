@@ -233,7 +233,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/payroll-items">
+                                    <router-link to="/tasks">
                                         <span>Tasks</span>
                                     </router-link>
                                 </li>
