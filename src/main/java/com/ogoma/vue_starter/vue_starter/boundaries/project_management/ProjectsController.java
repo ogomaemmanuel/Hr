@@ -71,8 +71,7 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "api/projects/team-members/{projectId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getProjectTeamMembers(@PathVariable Long projectId,
-                                                   @RequestBody PagedDataRequest pagedDataRequest) {
+    public ResponseEntity<?> getProjectTeamMembers(@PathVariable Long projectId,PagedDataRequest pagedDataRequest) {
         Page<TeamMemberProjection> teamMembers =
                 this.projectsService.getProjectTeamMembers(projectId, pagedDataRequest);
         return ResponseEntity.ok(teamMembers);

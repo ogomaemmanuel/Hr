@@ -29,8 +29,9 @@ public interface ProjectsRepository extends JpaRepository<Project, Long> {
             nativeQuery = true)
     public Optional<ProjectProjection> getProjectsDetails(Long projectId);
 
-    @Query(value = "select pm.project_id as projectId,pm.employee_id as employeeId,u.last_name as lastName, u.first_name as firstName " +
-            " from project_members pm left join employees e on pm.employee_id = e.id left join users u on e.user_id = u.id where pm.project_id=:projectId",
+    @Query(value = "select pm.project_id as projectId,pm.employee_id as employeeId,u.last_name as lastName, u.first_name as firstName, d.name as designation " +
+            " from project_members pm left join employees e on pm.employee_id = e.id left join users u on e.user_id = u.id " +
+            "left join designations d on e.designation_id = d.id where pm.project_id=:projectId",
             nativeQuery = true, countQuery = "select count(*) from project_members where project_id=:projectId")
-    Page<TeamMemberProjection> getProjectTeamMembers(Long projectId, PageRequest pageRequest);
+    Page<TeamMemberProjection> getProjectTeamMembers(Long projectId, Pageable pageable);
 }

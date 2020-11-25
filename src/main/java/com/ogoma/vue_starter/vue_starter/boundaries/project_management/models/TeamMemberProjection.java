@@ -3,15 +3,26 @@ package com.ogoma.vue_starter.vue_starter.boundaries.project_management.models;
 public interface TeamMemberProjection {
     public Long getId();
 
-    public Long getFirstName();
+    public String getFirstName();
 
-    public Long getLastName();
+    public String getLastName();
 
-    public Long getDesignation();
+    public String getDesignation();
 
     public Long getEmployeeId();
 
     public Long getProjectId();
 
-    public Long getProjectName();
+    public String getProjectName();
+
+    public default String getFullName() {
+        String lastName = null;
+        if (null != getLastName()) {
+            lastName = getLastName();
+        }
+        if (null != getFirstName()) {
+            return getFirstName().concat(" ").concat(lastName);
+        }
+        return lastName;
+    }
 }
