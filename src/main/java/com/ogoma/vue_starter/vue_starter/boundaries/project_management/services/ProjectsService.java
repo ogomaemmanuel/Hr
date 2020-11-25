@@ -6,6 +6,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectMemberUpdateDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectProjection;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.TeamMemberProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ProjectsRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.beans.BeanUtils;
@@ -84,5 +85,12 @@ public class ProjectsService {
             p.setProjectMembers(newTeam);
             this.projectsRepository.save(p);
         });
+    }
+
+    public Page<TeamMemberProjection> getProjectTeamMembers(Long projectId, PagedDataRequest pagedDataRequest) {
+        PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
+        Page<TeamMemberProjection> teamMembers =
+                this.projectsRepository.getProjectTeamMembers(projectId, pageRequest);
+        return teamMembers;
     }
 }

@@ -2,7 +2,9 @@ package com.ogoma.vue_starter.vue_starter.boundaries.project_management.reposito
 
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectProjection;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.TeamMemberProjection;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -26,4 +28,9 @@ public interface ProjectsRepository extends JpaRepository<Project, Long> {
             "users cu on c.user_id=cu.id  where p.id=:projectId",
             nativeQuery = true)
     public Optional<ProjectProjection> getProjectsDetails(Long projectId);
+
+    @Query(value = "select pm.project_id as projectId,pm.employee_id as employeeId,u.last_name as lastName, u.first_name as firstName " +
+            " from project_members pm left join employees e on pm.employee_id = e.id left join users u on e.user_id = u.id where pm.project_id=:projectId",
+            nativeQuery = true, countQuery = "select count(*) from project_members where project_id=:projectId")
+    Page<TeamMemberProjection> getProjectTeamMembers(Long projectId, PageRequest pageRequest);
 }
