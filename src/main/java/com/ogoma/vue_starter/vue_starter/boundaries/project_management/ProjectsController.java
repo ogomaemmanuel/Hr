@@ -1,9 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectMemberUpdateDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectProjection;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.TeamMemberProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.services.ProjectsService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
@@ -62,10 +64,16 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "api/projects/team-members/{projectId}", method = RequestMethod.POST)
-    @Validated
     public ResponseEntity<?> updateProjectTeamMembers(@PathVariable Long projectId,
-                                                      @RequestBody ProjectMemberUpdateDto memberUpdateDto) {
+                                                      @RequestBody @Valid ProjectMemberUpdateDto memberUpdateDto) {
         this.projectsService.updateProjectTeamMembers(projectId, memberUpdateDto);
         return ResponseEntity.ok("Project team members successfully updated");
+    }
+
+    @RequestMapping(value = "api/projects/team-members/{projectId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getProjectTeamMembers(@PathVariable Long projectId,PagedDataRequest pagedDataRequest) {
+        Page<TeamMemberProjection> teamMembers =
+                this.projectsService.getProjectTeamMembers(projectId, pagedDataRequest);
+        return ResponseEntity.ok(teamMembers);
     }
 }

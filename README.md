@@ -36,14 +36,14 @@ To run image from docker-hub, run
 > docker-compose -f docker-compose.prod.yml
 
 
-##Current Backlog
-* assign roles to users
-* assign permissions to roles
-* Edit employees
-* Chat features
-* Employee Performance evaluation
-* Side Menu Access depending on role
-* File Management
+## Current Backlog
+* [x] assign roles to users
+* [ ] assign permissions to roles
+* [ ] Edit employees
+* [ ] Chat features
+* [ ] Employee Performance evaluation
+* [ ] Side Menu Access depending on role
+* [ ] File Management
 
 
 ## Road Map

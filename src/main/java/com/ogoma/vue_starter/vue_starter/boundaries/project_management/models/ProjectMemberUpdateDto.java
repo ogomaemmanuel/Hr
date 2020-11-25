@@ -1,8 +1,10 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.models;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class ProjectMemberUpdateDto {
+    @NotEmpty(message = "Select project team members")
     private List<Long> teamMembers;
 
     public List<Long> getTeamMembers() {
