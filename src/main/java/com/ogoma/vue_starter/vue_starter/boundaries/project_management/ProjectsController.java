@@ -62,9 +62,8 @@ public class ProjectsController {
     }
 
     @RequestMapping(value = "api/projects/team-members/{projectId}", method = RequestMethod.POST)
-    @Validated
     public ResponseEntity<?> updateProjectTeamMembers(@PathVariable Long projectId,
-                                                      @RequestBody ProjectMemberUpdateDto memberUpdateDto) {
+                                                      @RequestBody @Valid ProjectMemberUpdateDto memberUpdateDto) {
         this.projectsService.updateProjectTeamMembers(projectId, memberUpdateDto);
         return ResponseEntity.ok("Project team members successfully updated");
     }
