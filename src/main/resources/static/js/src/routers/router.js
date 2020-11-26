@@ -105,6 +105,8 @@ const ProjectCreate = () => import("../components/project_management/projects/Pr
 const ProjectEdit = () => import("../components/project_management/projects/ProjectEditModal")
 const ProjectDetails = () => import("../components/project_management/projects/ProjectDetails")
 
+const TasksPage = () => import("../components/project_management/tasks/TasksPage")
+
 const SettingsPage = () => import("../components/settings/Settings")
 
 Vue.use(Router);
@@ -656,6 +658,50 @@ const routes = new Router({
                         }
 
                     ]
+                },
+                {
+                    path: "/tasks",
+                    component: TasksPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "tasks",
+                    },
+                    // children: [
+                    //     {
+                    //         path: "/",
+                    //         component: ProjectList,
+                    //         children: [
+                    //             {
+                    //                 path: "/projects-create",
+                    //                 name: "projects-create",
+                    //                 component: ProjectCreate,
+                    //                 meta: {
+                    //                     breadcrumb: true,
+                    //                     title: "Project Create",
+                    //                 },
+                    //             },
+                    //             {
+                    //                 path: "/project-edit/:id",
+                    //                 name: "project-edit",
+                    //                 component: ProjectEdit,
+                    //                 meta: {
+                    //                     breadcrumb: true,
+                    //                     title: "Project Edit",
+                    //                 },
+                    //             },
+                    //         ]
+                    //     },
+                    //     {
+                    //         path: "/project-details/:id",
+                    //         name: "project-details",
+                    //         component: ProjectDetails,
+                    //         meta: {
+                    //             breadcrumb: true,
+                    //             title: "Project Details",
+                    //         }
+                    //     }
+                    //
+                    // ]
                 },
                 {
                     path: "/settings",
