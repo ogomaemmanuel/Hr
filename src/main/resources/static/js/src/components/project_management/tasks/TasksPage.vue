@@ -1,7 +1,15 @@
 <template>
-    <div>
-        <div>
-            <router-view></router-view>
+    <div class="h-full">
+        <div class="h-full">
+<!--            <router-view></router-view>-->
+            <div class="columns h-full">
+                <div class="column">
+                    <div class="bg-white h-12 w-full">
+
+                    </div>
+                </div>
+                <div class="column h-full bg-white"></div>
+            </div>
         </div>
         <portal to="side-menu">
             <ul class="menu-list">
@@ -11,7 +19,7 @@
                     </router-link>
                 </li>
                 <li @wheel="fetchMoreProjects">
-                    <div href="#" class="flex project-menu-head">
+                    <div  class="flex project-menu-head">
                         <span class="icon"><i class="fa fa-group"></i></span>
                         <div class="flex w-full">
                             <div class="flex-1 menu-header-text">Projects</div>
@@ -25,36 +33,6 @@
                                 <span>{{project.name}}</span>
                             </router-link>
                         </li>
-<!--                        <li>-->
-<!--                            <router-link to="roles">-->
-<!--                                <span>Localisation</span>-->
-<!--                            </router-link>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <router-link to="/permissions">-->
-<!--                                <span>Theme Settings</span>-->
-<!--                            </router-link>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <router-link to="/permissions">-->
-<!--                                <span>Email Settings</span>-->
-<!--                            </router-link>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <router-link to="/permissions">-->
-<!--                                <span>Invoice Settings</span>-->
-<!--                            </router-link>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <router-link to="/permissions">-->
-<!--                                <span>Salary Settings</span>-->
-<!--                            </router-link>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--                            <router-link to="/permissions">-->
-<!--                                <span>Notifications</span>-->
-<!--                            </router-link>-->
-<!--                        </li>-->
                     </ul>
                 </li>
             </ul>

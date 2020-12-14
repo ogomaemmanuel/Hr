@@ -12,7 +12,6 @@
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
                     <a class="navbar-item">
@@ -277,6 +276,44 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="#" class="">
+                                <span class="icon"><i class="fa fa-table"></i></span> Accounts
+                            </a>
+                            <ul class="border-l-0">
+                                <li>
+                                    <router-link to="/leave">
+                                        <span>Estimates</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/documents">
+                                        <span>Invoices</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/leave-approvals">
+                                        <span>Payments</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/holidays">
+                                        <span>Expenses</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/leave-types">
+                                        <span>Provided Fund</span>
+                                    </router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/leave-types">
+                                        <span>Taxes</span>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li>
                             <a href="#" class="">
                                 <span class="icon"><i class="fa fa-folder-open"></i></span> File Management
