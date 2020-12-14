@@ -14,6 +14,7 @@ public class EstimateItem {
     private BigDecimal unitCost;
     private Integer quantity;
     @ManyToOne
+    @JoinColumn(name = "estimate_id")
     private Estimate estimate;
 
     public Long getId() {

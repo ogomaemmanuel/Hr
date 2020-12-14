@@ -26,7 +26,8 @@ public class Estimate {
     private BigDecimal amount;
     private String otherInformation;
     private double percentageDiscount;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST,
+            mappedBy = "estimate")
     private Set<EstimateItem> items = new HashSet<>();
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
@@ -38,7 +39,6 @@ public class Estimate {
     public Long getId() {
         return id;
     }
-
 
 
     public Client getClient() {
