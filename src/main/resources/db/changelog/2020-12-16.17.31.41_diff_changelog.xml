@@ -1,6 +1,6 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
-    <changeSet author="USER (generated)" id="1608139053735-1">
+    <changeSet author="USER (generated)" id="1608139940987-1">
         <createTable tableName="expense_attachments">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="expense_attachmentsPK"/>
@@ -9,7 +9,7 @@
             <column name="expense_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="USER (generated)" id="1608139053735-2">
+    <changeSet author="USER (generated)" id="1608139940987-2">
         <createTable tableName="expenses">
             <column autoIncrement="true" name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="expensesPK"/>
@@ -24,7 +24,20 @@
             <column name="purchased_by_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="USER (generated)" id="1608139053735-3">
+    <changeSet author="USER (generated)" id="1608139940987-3">
+        <createTable tableName="policies">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="policiesPK"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="document_url" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="department_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1608139940987-4">
         <createTable tableName="taxes">
             <column name="id" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="taxesPK"/>
@@ -35,10 +48,13 @@
             <column name="updated_at" type="datetime(6)"/>
         </createTable>
     </changeSet>
-    <changeSet author="USER (generated)" id="1608139053735-4">
+    <changeSet author="USER (generated)" id="1608139940987-5">
+        <addForeignKeyConstraint baseColumnNames="department_id" baseTableName="policies" constraintName="FK36uqllt0frvedkg3yu2syytrj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="departments" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1608139940987-6">
         <addForeignKeyConstraint baseColumnNames="purchased_by_id" baseTableName="expenses" constraintName="FK5hy2tedlacuq0rmp3od57vxdx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
     </changeSet>
-    <changeSet author="USER (generated)" id="1608139053735-5">
+    <changeSet author="USER (generated)" id="1608139940987-7">
         <addForeignKeyConstraint baseColumnNames="expense_id" baseTableName="expense_attachments" constraintName="FKb5kychy9fwosy91buig9fj2bt" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="expenses" validate="true"/>
     </changeSet>
 </databaseChangeLog>
