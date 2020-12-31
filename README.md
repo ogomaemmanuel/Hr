@@ -54,3 +54,13 @@ After doing basic Hr features, these will be the features we would like to add
 * Bulk sending money/credit to employees
 * Two factor authentication
 * Desktop and Mobile versions
+
+## UI template references
+* [Smart hr by dreamguys](https://dreamguys.co.in/smarthr/orange/)
+* [Lucid](http://www.wrraptheme.com/templates/lucid/hr/html/light/)
+* [Epic Hr](https://preview.themeforest.net/item/epice-laravel-admin-template-for-hr-project-management/full_screen_preview/24466729?_ga=2.267228430.1032879915.1592443235-532036504.1591740750)
+* [Hrsale](https://hrsale.com)
+* [NewHrm by bdtask ltd](https://newhrm.bdtask.com/hrmv3_demo/login)
+* [Hrm saas](https://hrm-saas.froid.works/panel/dashboard)
+* [Mambu](https://support.mambu.com/docs/linking-products-to-accounting)
+
