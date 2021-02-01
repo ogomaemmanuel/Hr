@@ -307,7 +307,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/leave-types">
+                                    <router-link to="/taxes">
                                         <span>Taxes</span>
                                     </router-link>
                                 </li>
