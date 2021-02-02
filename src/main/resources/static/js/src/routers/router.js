@@ -112,6 +112,7 @@ const SettingsPage = () => import("../components/settings/Settings")
 
 const TaxPage =()=> import("../components/accounting/taxes/TaxPage")
 const TaxList =()=> import("../components/accounting/taxes/TaxList")
+const TaxCreateModal =()=> import("../components/accounting/taxes/TaxCreateModal")
 
 
 
@@ -723,26 +724,26 @@ const routes = new Router({
                         {
                             path: "/",
                             component: TaxList,
-                            // children: [
-                            //     {
-                            //         path: "/projects-create",
-                            //         name: "projects-create",
-                            //         component: ProjectCreate,
-                            //         meta: {
-                            //             breadcrumb: true,
-                            //             title: "Project Create",
-                            //         },
-                            //     },
-                            //     {
-                            //         path: "/project-edit/:id",
-                            //         name: "project-edit",
-                            //         component: ProjectEdit,
-                            //         meta: {
-                            //             breadcrumb: true,
-                            //             title: "Project Edit",
-                            //         },
-                            //     },
-                            // ]
+                            children: [
+                                {
+                                    path: "/tax-create",
+                                    name: "tax-create",
+                                    component: TaxCreateModal,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Tax Create",
+                                    },
+                                },
+                                // {
+                                //     path: "/project-edit/:id",
+                                //     name: "project-edit",
+                                //     component: ProjectEdit,
+                                //     meta: {
+                                //         breadcrumb: true,
+                                //         title: "Project Edit",
+                                //     },
+                                // },
+                            ]
                         },
                         // {
                         //     path: "/project-details/:id",

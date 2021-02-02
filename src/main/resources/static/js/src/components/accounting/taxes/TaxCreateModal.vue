@@ -1,9 +1,7 @@
 <template>
   <div>
     <ModalTemplate @modalClosed="onModalClosed">
-      <slot name="modal-content">
-        <TaxCreateForm></TaxCreateForm>
-      </slot>
+        <TaxCreateForm slot="modal-content"></TaxCreateForm>
     </ModalTemplate>
   </div>
 </template>

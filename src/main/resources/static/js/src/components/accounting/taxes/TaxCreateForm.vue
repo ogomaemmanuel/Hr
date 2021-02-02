@@ -36,7 +36,7 @@
             :class="{'is-loading':loading}"
             :disabled="disableSubmitButton"
             @click.prevent.stop="createTax"
-            class="button is-small is-rounded"
+            class="button  is-rounded"
             type="submit">Submit
         </button>
       </div>
