@@ -6,3 +6,5 @@ jenkins
 target
 k8s
 ansible
+package-lock.json
+.env
