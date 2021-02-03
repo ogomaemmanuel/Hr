@@ -4,6 +4,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -11,8 +14,12 @@ import java.util.Date;
 @Table(name = "taxes")
 public class Tax {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Name is required")
     private String name;
+    @Max(value = 100, message = "Enter valid tax value")
+    @Min(value = 0, message = "Enter a valid tax value")
     private BigDecimal percentageAmount;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
