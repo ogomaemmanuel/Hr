@@ -1,4 +1,4 @@
-FROM node:12 as nodejs
+FROM node:12.20.1-alpine3.10 as nodejs
 WORKDIR /app
 COPY . .
 RUN npm install
