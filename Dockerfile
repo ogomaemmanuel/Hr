@@ -13,7 +13,7 @@ COPY --from=nodejs /app/src/main/resources/static/js/dist /workspace/src/main/re
 RUN mvn -B -f pom.xml clean package -DskipTests
 
 
-FROM openjdk:8-jre
+FROM openjdk:8-jre-alpine
 COPY --from=build /workspace/target/*.jar app.jar
 EXPOSE 8080/tcp
 ENTRYPOINT ["java", "-jar", "app.jar"]
