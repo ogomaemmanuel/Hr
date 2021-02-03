@@ -21,12 +21,12 @@
         <label class="label is-size-7">Tax Percentage<span><sup>*</sup></span></label>
         <div class="control">
           <input
-              v-model="tax.percentage"
-              @input="clearFieldError('percentage')"
+              v-model="tax.percentageAmount"
+              @input="clearFieldError('percentageAmount')"
               class="input"
               type="text">
-          <span class="mb-2 has-text-danger" v-if="errors['percentage']">
-						{{ errors['percentage'][0] }}
+          <span class="mb-2 has-text-danger" v-if="errors['percentageAmount']">
+						{{ errors['percentageAmount'][0] }}
 					</span>
         </div>
       </div>
@@ -45,6 +45,7 @@
 </template>
 <script>
 import common_mixin from "../../../mixins/common_mixin";
+import {Message} from "element-ui"
 
 export default {
   mixins: [common_mixin],
@@ -56,12 +57,22 @@ export default {
   },
   methods: {
     createTax() {
-
+      this.loading = true
+      axios.post(`api/taxes`,
+          this.tax).then(resp => {
+        this.loading = false;
+        Message.success("Tax successfully created")
+      }, error => {
+        this.loading = false;
+        if (error.response.status = 400) {
+          this.errors = error.response.data;
+        }
+      })
     }
   },
   computed: {
     disableSubmitButton() {
-      return false
+      return this.loading;
     }
   }
 }

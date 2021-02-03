@@ -12,8 +12,8 @@ public class TaxService {
     }
     public Tax createTax(Tax tax) {
         Tax newTax = new Tax();
-        tax.setName(tax.getName());
-        tax.setPercentageAmount(tax.getPercentageAmount());
+        newTax.setName(tax.getName());
+        newTax.setPercentageAmount(tax.getPercentageAmount());
         this.taxRepository.save(newTax);
         return newTax;
     }
