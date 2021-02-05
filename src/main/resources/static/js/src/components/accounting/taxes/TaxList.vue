@@ -50,8 +50,8 @@
                 <tbody>
                 <tr v-for="tax in taxes">
                   <td data-label="Name">{{ tax.name }}</td>
-                  <td data-label="Date">{{ tax.status| }}</td>
-                  <td data-label="Description">{{ holiday.name }}</td>
+                  <td data-label="Date">{{ tax.percentageAmount }}</td>
+                  <td data-label="Description">{{ tax.name }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <router-link
@@ -105,12 +105,35 @@ export default {
   },
   data() {
     return {
+      loading:false,
       taxes: []
     }
-  }
-  , methods: {
+  },
+  created() {
+    this.getTaxes();
+  },
+  methods: {
     confirmRemoveTax(tax) {
 
+    },
+    fetchRecords() {
+      this.getTaxes();
+    },
+
+    getTaxes() {
+      axios.get("api/taxes", {
+        params: {
+          page: this.page,
+          pageSize: this.pageSize
+        }
+      }).then(resp => {
+        this.loading = false;
+        this.taxes = resp.data.content;
+        this.pageable = resp.data;
+      }, error => {
+        this.loading = false
+
+      })
     }
   }
 }
