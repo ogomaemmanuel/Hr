@@ -48,8 +48,8 @@ import common_mixin from "../../../mixins/common_mixin";
 import {Message} from "element-ui"
 
 export default {
-  mixins: [common_mixin],
   components: {},
+  mixins: [common_mixin],
   props: {
     id: {
       required: true
@@ -61,23 +61,15 @@ export default {
       loading: false
     }
   },
+  computed: {
+    disableSubmitButton() {
+      return this.loading;
+    }
+  },
   created() {
     this.getTaxById();
   },
   methods: {
-    updateTax() {
-      this.loading = true
-      axios.put(`/api/taxes/${this.id}`,
-          this.tax).then(resp => {
-        this.loading = false
-        Message.success("Tax successfully updated")
-      }, error => {
-        this.loading = false;
-        if (error.response.status == 400) {
-          this.errors = error.response.data;
-        }
-      })
-    },
     getTaxById() {
       axios.get(`/api/taxes/${this.id}`)
           .then(resp => {
@@ -85,11 +77,20 @@ export default {
           }, error => {
             console.error("There was an error fetching tax")
           })
-    }
-  },
-  computed: {
-    disableSubmitButton() {
-      return this.loading;
+    },
+    updateTax() {
+      this.loading = true
+      axios.put(`/api/taxes/${this.id}`,
+          this.tax).then(resp => {
+        this.loading = false
+        Message.success("Tax successfully updated");
+        this.$emit("updateSuccessful")
+      }, error => {
+        this.loading = false;
+        if (error.response.status == 400) {
+          this.errors = error.response.data;
+        }
+      })
     }
   }
 }

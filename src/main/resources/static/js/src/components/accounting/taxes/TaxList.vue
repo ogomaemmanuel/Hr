@@ -91,8 +91,9 @@
         </div>
       </div>
     </div>
-    <router-view>
-
+    <router-view
+        @updateSuccessful="onUpdateSuccessful"
+        @createSuccessful="onCreateSuccessful">
     </router-view>
   </div>
 </template>
@@ -102,10 +103,10 @@ import data_table_mixin from "../../../mixins/data_table_mixin";
 import {Message} from "element-ui"
 
 export default {
-  mixins: [data_table_mixin],
   components: {
     Paginator
   },
+  mixins: [data_table_mixin],
   data() {
     return {
       loading: false,
@@ -121,12 +122,6 @@ export default {
         title: 'Remove Tax',
         message: `Are you sure want to remove <b> ${tax.name}</b>`,
         onConfirm: () => this.removeTax(tax)
-      })
-    },
-    removeTax(tax) {
-      axios.delete(`api/taxes/${tax.id}`).then(resp => {
-        Message.success("Tax successfully removed");
-        this.getTaxes();
       })
     },
     fetchRecords() {
@@ -145,7 +140,18 @@ export default {
         this.pageable = resp.data;
       }, error => {
         this.loading = false
-
+      })
+    },
+    onCreateSuccessful() {
+      this.getTaxes();
+    },
+    onUpdateSuccessful() {
+      this.getTaxes();
+    },
+    removeTax(tax) {
+      axios.delete(`api/taxes/${tax.id}`).then(resp => {
+        Message.success("Tax successfully removed");
+        this.getTaxes();
       })
     }
   }

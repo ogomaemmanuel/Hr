@@ -1,7 +1,9 @@
 <template>
   <div>
     <ModalTemplate @modalClosed="onModalClosed">
-        <TaxCreateForm slot="modal-content"></TaxCreateForm>
+        <TaxCreateForm
+            @createSuccessful="$emit('createSuccessful')"
+            slot="modal-content"></TaxCreateForm>
     </ModalTemplate>
   </div>
 </template>

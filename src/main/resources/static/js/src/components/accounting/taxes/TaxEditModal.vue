@@ -1,7 +1,10 @@
 <template>
   <div>
     <ModalTemplate @modalClosed="onModalClosed">
-      <TaxEditForm :id="$route.params.id" slot="modal-content"></TaxEditForm>
+      <TaxEditForm
+          @updateSuccessful="$emit(`updateSuccessful`)"
+          :id="$route.params.id"
+          slot="modal-content"></TaxEditForm>
     </ModalTemplate>
   </div>
 </template>
