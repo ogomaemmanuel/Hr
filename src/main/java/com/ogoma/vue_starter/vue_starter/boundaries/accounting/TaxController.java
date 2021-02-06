@@ -6,11 +6,13 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class TaxController {
@@ -20,11 +22,16 @@ public class TaxController {
         this.taxService = taxService;
     }
 
-
     @RequestMapping(value = "api/taxes", method = RequestMethod.GET)
     public ResponseEntity<?> getTaxes(PagedDataRequest pagedDataRequest) {
         Page<Tax> taxes = this.taxService.getTaxes(pagedDataRequest);
         return ResponseEntity.ok(taxes);
+    }
+
+    @RequestMapping(value = "api/taxes/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getTaxById(@PathVariable Long id) {
+        Optional<Tax> tax = this.taxService.getTaxeById(id);
+        return ResponseEntity.of(tax);
     }
 
     @RequestMapping(value = "api/taxes", method = RequestMethod.POST)
