@@ -38,6 +38,7 @@ public class TaxService {
                 this.taxRepository.findById(id);
         return tax;
     }
+
     public Optional<Tax> updateTax(Long id, Tax taxUpdateRequest) {
         Optional<Tax> tax =
                 this.taxRepository.findById(id);
@@ -47,6 +48,10 @@ public class TaxService {
             this.taxRepository.save(x);
         });
         return tax;
+    }
+
+    public void removeTax(Long id) {
+        this.taxRepository.deleteById(id);
     }
 }
 

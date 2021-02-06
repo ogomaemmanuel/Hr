@@ -39,9 +39,16 @@ public class TaxController {
         tax = this.taxService.createTax(tax);
         return ResponseEntity.ok(tax);
     }
+
     @RequestMapping(value = "api/taxes/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateTax(@PathVariable Long id, @Valid @RequestBody Tax taxUpdateRequest) {
-      Optional<Tax>  tax = this.taxService.updateTax(id,taxUpdateRequest);
+        Optional<Tax> tax = this.taxService.updateTax(id, taxUpdateRequest);
         return ResponseEntity.of(tax);
+    }
+
+    @RequestMapping(value = "api/taxes/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<?> removeTax(@PathVariable Long id) {
+        this.taxService.removeTax(id);
+        return ResponseEntity.ok("tax successfully removed");
     }
 }
