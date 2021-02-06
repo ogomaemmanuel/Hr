@@ -32,9 +32,20 @@ public class TaxService {
         Page<Tax> taxes = this.taxRepository.findAll(pageable);
         return taxes;
     }
+
     public Optional<Tax> getTaxeById(Long id) {
         Optional<Tax> tax =
                 this.taxRepository.findById(id);
+        return tax;
+    }
+    public Optional<Tax> updateTax(Long id, Tax taxUpdateRequest) {
+        Optional<Tax> tax =
+                this.taxRepository.findById(id);
+        tax.ifPresent(x -> {
+            x.setPercentageAmount(taxUpdateRequest.getPercentageAmount());
+            x.setName(taxUpdateRequest.getName());
+            this.taxRepository.save(x);
+        });
         return tax;
     }
 }

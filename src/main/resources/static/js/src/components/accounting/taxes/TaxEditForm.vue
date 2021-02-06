@@ -61,6 +61,9 @@ export default {
       loading: false
     }
   },
+  created() {
+    this.getTaxById();
+  },
   methods: {
     updateTax() {
       this.loading = true
@@ -74,6 +77,14 @@ export default {
           this.errors = error.response.data;
         }
       })
+    },
+    getTaxById() {
+      axios.get(`/api/taxes/${this.id}`)
+          .then(resp => {
+            this.tax = resp.data;
+          }, error => {
+            console.error("There was an error fetching tax")
+          })
     }
   },
   computed: {
