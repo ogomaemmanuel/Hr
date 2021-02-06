@@ -50,12 +50,12 @@
                 <tbody>
                 <tr v-for="tax in taxes">
                   <td data-label="Name">{{ tax.name }}</td>
-                  <td data-label="Date">{{ tax.status| }}</td>
-                  <td data-label="Description">{{ holiday.name }}</td>
+                  <td data-label="Date">{{ tax.percentageAmount }}</td>
+                  <td data-label="Description">{{ tax.name }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <router-link
-                          :to="`/holiday-edit/${tax.id}`" tag="button"
+                          :to="`/tax-edit/${tax.id}`" tag="button"
                           @click="" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -91,7 +91,9 @@
         </div>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view>
+
+    </router-view>
   </div>
 </template>
 <script>
@@ -105,12 +107,35 @@ export default {
   },
   data() {
     return {
+      loading:false,
       taxes: []
     }
-  }
-  , methods: {
+  },
+  created() {
+    this.getTaxes();
+  },
+  methods: {
     confirmRemoveTax(tax) {
 
+    },
+    fetchRecords() {
+      this.getTaxes();
+    },
+
+    getTaxes() {
+      axios.get("api/taxes", {
+        params: {
+          page: this.page,
+          pageSize: this.pageSize
+        }
+      }).then(resp => {
+        this.loading = false;
+        this.taxes = resp.data.content;
+        this.pageable = resp.data;
+      }, error => {
+        this.loading = false
+
+      })
     }
   }
 }

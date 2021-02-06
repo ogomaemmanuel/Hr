@@ -113,6 +113,7 @@ const SettingsPage = () => import("../components/settings/Settings")
 const TaxPage =()=> import("../components/accounting/taxes/TaxPage")
 const TaxList =()=> import("../components/accounting/taxes/TaxList")
 const TaxCreateModal =()=> import("../components/accounting/taxes/TaxCreateModal")
+const TaxEditModal =()=> import("../components/accounting/taxes/TaxEditModal")
 
 
 
@@ -734,15 +735,15 @@ const routes = new Router({
                                         title: "Tax Create",
                                     },
                                 },
-                                // {
-                                //     path: "/project-edit/:id",
-                                //     name: "project-edit",
-                                //     component: ProjectEdit,
-                                //     meta: {
-                                //         breadcrumb: true,
-                                //         title: "Project Edit",
-                                //     },
-                                // },
+                                {
+                                    path: "/tax-edit/:id",
+                                    name: "tax-edit",
+                                    component: TaxEditModal,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Tax Edit",
+                                    },
+                                },
                             ]
                         },
                         // {
