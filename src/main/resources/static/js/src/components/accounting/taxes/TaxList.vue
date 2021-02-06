@@ -48,7 +48,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="tax in taxes">
+                <tr v-for="tax in taxes" :key="tax.id">
                   <td data-label="Name">{{ tax.name }}</td>
                   <td data-label="Date">{{ tax.percentageAmount }}</td>
                   <td data-label="Description">{{ tax.name }}</td>
@@ -129,7 +129,7 @@ export default {
     },
 
     getTaxes() {
-      axios.get("api/taxes", {
+      axios.get("/api/taxes", {
         params: {
           page: this.page,
           pageSize: this.pageSize
@@ -146,10 +146,11 @@ export default {
       this.getTaxes();
     },
     onUpdateSuccessful() {
+      console.log("onUpdateSuccessful getTaxes");
       this.getTaxes();
     },
     removeTax(tax) {
-      axios.delete(`api/taxes/${tax.id}`).then(resp => {
+      axios.delete(`/api/taxes/${tax.id}`).then(resp => {
         Message.success("Tax successfully removed");
         this.getTaxes();
       })

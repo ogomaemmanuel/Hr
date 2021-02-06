@@ -63,7 +63,7 @@ export default {
   methods: {
     createTax() {
       this.loading = true
-      axios.post(`api/taxes`,
+      axios.post(`/api/taxes`,
           this.tax).then(resp => {
         this.loading = false;
         Message.success("Tax successfully created")
