@@ -99,6 +99,7 @@
 <script>
 import Paginator from "../../common/paginator/Paginator";
 import data_table_mixin from "../../../mixins/data_table_mixin";
+import {Message} from "element-ui"
 
 export default {
   mixins: [data_table_mixin],
@@ -107,7 +108,7 @@ export default {
   },
   data() {
     return {
-      loading:false,
+      loading: false,
       taxes: []
     }
   },
@@ -116,7 +117,17 @@ export default {
   },
   methods: {
     confirmRemoveTax(tax) {
-
+      this.$buefy.dialog.confirm({
+        title: 'Remove Tax',
+        message: `Are you sure want to remove <b> ${tax.name}</b>`,
+        onConfirm: () => this.removeTax(tax)
+      })
+    },
+    removeTax(tax) {
+      axios.delete(`api/taxes/${tax.id}`).then(resp => {
+        Message.success("Tax successfully removed");
+        this.getTaxes();
+      })
     },
     fetchRecords() {
       this.getTaxes();

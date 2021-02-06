@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TaxService {
     private final TaxRepository taxRepository;
@@ -23,11 +25,33 @@ public class TaxService {
         this.taxRepository.save(newTax);
         return newTax;
     }
+
     public Page<Tax> getTaxes(PagedDataRequest pagedDataRequest) {
         Pageable pageable = PageRequest.of(pagedDataRequest.getPage(),
                 pagedDataRequest.getPageSize());
         Page<Tax> taxes = this.taxRepository.findAll(pageable);
         return taxes;
+    }
+
+    public Optional<Tax> getTaxeById(Long id) {
+        Optional<Tax> tax =
+                this.taxRepository.findById(id);
+        return tax;
+    }
+
+    public Optional<Tax> updateTax(Long id, Tax taxUpdateRequest) {
+        Optional<Tax> tax =
+                this.taxRepository.findById(id);
+        tax.ifPresent(x -> {
+            x.setPercentageAmount(taxUpdateRequest.getPercentageAmount());
+            x.setName(taxUpdateRequest.getName());
+            this.taxRepository.save(x);
+        });
+        return tax;
+    }
+
+    public void removeTax(Long id) {
+        this.taxRepository.deleteById(id);
     }
 }
 
