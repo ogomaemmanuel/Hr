@@ -55,24 +55,25 @@ export default {
       tax: {}
     }
   },
+  computed: {
+    disableSubmitButton() {
+      return this.loading;
+    }
+  },
   methods: {
     createTax() {
       this.loading = true
-      axios.post(`api/taxes`,
+      axios.post(`/api/taxes`,
           this.tax).then(resp => {
         this.loading = false;
         Message.success("Tax successfully created")
+        this.$emit("createSuccessful")
       }, error => {
         this.loading = false;
         if (error.response.status = 400) {
           this.errors = error.response.data;
         }
       })
-    }
-  },
-  computed: {
-    disableSubmitButton() {
-      return this.loading;
     }
   }
 }

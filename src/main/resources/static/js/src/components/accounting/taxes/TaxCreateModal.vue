@@ -1,7 +1,9 @@
 <template>
   <div>
     <ModalTemplate @modalClosed="onModalClosed">
-        <TaxCreateForm slot="modal-content"></TaxCreateForm>
+      <TaxCreateForm
+          @createSuccessful="onCreateSuccessful"
+          slot="modal-content"></TaxCreateForm>
     </ModalTemplate>
   </div>
 </template>
@@ -19,6 +21,10 @@ export default {
   },
   methods: {
     onModalClosed() {
+      this.$router.go(-1);
+    },
+    onCreateSuccessful() {
+      this.$emit('createSuccessful')
       this.$router.go(-1);
     }
   }

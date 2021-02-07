@@ -1,7 +1,10 @@
 <template>
   <div>
     <ModalTemplate @modalClosed="onModalClosed">
-      <TaxEditForm :id="$route.params.id" slot="modal-content"></TaxEditForm>
+      <TaxEditForm
+          @updateSuccessful="onUpdateSuccessful"
+          :id="$route.params.id"
+          slot="modal-content"></TaxEditForm>
     </ModalTemplate>
   </div>
 </template>
@@ -25,6 +28,10 @@ export default {
   methods: {
     onModalClosed() {
       this.$router.go(-1);
+    },
+    onUpdateSuccessful(){
+      this.$emit(`updateSuccessful`);
+      this.$router.go(-1)
     }
   }
 }

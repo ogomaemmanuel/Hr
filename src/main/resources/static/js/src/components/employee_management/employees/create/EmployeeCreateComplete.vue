@@ -10,9 +10,9 @@
                         </div>
                         <h1 class="title is-5 mt-2">Employee Successfully created!</h1>
                         <div class="">
-                            <button type="button" class="button is-success">
+                            <router-link tag="button" to="/employees-create" type="button" class="button is-success">
                                 Add Another Employee
-                            </button>
+                            </router-link>
                             <router-link to="/employees" tag="button" type="button"  class="button is-clear">
                                 Back to employees
                             </router-link>

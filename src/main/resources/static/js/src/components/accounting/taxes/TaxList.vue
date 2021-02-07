@@ -48,7 +48,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="tax in taxes">
+                <tr v-for="tax in taxes" :key="tax.id">
                   <td data-label="Name">{{ tax.name }}</td>
                   <td data-label="Date">{{ tax.percentageAmount }}</td>
                   <td data-label="Description">{{ tax.name }}</td>
@@ -91,8 +91,9 @@
         </div>
       </div>
     </div>
-    <router-view>
-
+    <router-view
+        @updateSuccessful="onUpdateSuccessful"
+        @createSuccessful="onCreateSuccessful">
     </router-view>
   </div>
 </template>
@@ -102,10 +103,10 @@ import data_table_mixin from "../../../mixins/data_table_mixin";
 import {Message} from "element-ui"
 
 export default {
-  mixins: [data_table_mixin],
   components: {
     Paginator
   },
+  mixins: [data_table_mixin],
   data() {
     return {
       loading: false,
@@ -123,18 +124,12 @@ export default {
         onConfirm: () => this.removeTax(tax)
       })
     },
-    removeTax(tax) {
-      axios.delete(`api/taxes/${tax.id}`).then(resp => {
-        Message.success("Tax successfully removed");
-        this.getTaxes();
-      })
-    },
     fetchRecords() {
       this.getTaxes();
     },
 
     getTaxes() {
-      axios.get("api/taxes", {
+      axios.get("/api/taxes", {
         params: {
           page: this.page,
           pageSize: this.pageSize
@@ -145,7 +140,19 @@ export default {
         this.pageable = resp.data;
       }, error => {
         this.loading = false
-
+      })
+    },
+    onCreateSuccessful() {
+      this.getTaxes();
+    },
+    onUpdateSuccessful() {
+      console.log("onUpdateSuccessful getTaxes");
+      this.getTaxes();
+    },
+    removeTax(tax) {
+      axios.delete(`/api/taxes/${tax.id}`).then(resp => {
+        Message.success("Tax successfully removed");
+        this.getTaxes();
       })
     }
   }
