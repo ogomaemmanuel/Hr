@@ -18,7 +18,15 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users"
+        ,indexes = {
+        @Index(name = "identity_no_index",columnList = "identityNo",unique = true),
+        @Index(name = "email_index",columnList = "email",unique = true),
+        @Index(name = "last_name_index",columnList = "lastName"),
+        @Index(name = "first_name_index",columnList = "firstName"),
+        @Index(name = "phone_index",columnList = "phone",unique = true)
+}
+)
 @EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable {
     @Id
@@ -28,14 +36,11 @@ public class User implements Serializable {
     private String firstName;
     @NotBlank(message = "Last name is required")
     private String lastName;
-    @Column(unique = true)
     @NotBlank(message = "Email name is required")
     private String email;
-    @Column(unique = true)
     @NotBlank(message = "Phone is required")
     private String phone;
     private Date dateOfBirth;
-    @Column(unique = true)
     private String identityNo;
     private String city;
     private String postalAddress;
