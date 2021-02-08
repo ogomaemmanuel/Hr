@@ -70,9 +70,9 @@
 
       </div>
     </form>
-    <div class="card mt-3">
+    <div class="card mt-3 pr-0 pl-0">
       <div class="card-content">
-        <table class="table is-fullwidth">
+        <table class="table is-hoverable is-fullwidth">
           <thead>
           <tr>
             <th>#</th>
@@ -84,9 +84,9 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
+          <tr v-for="(estimateItem ,index) in estimateItems" :key="index">
             <td>
-              1
+              {{index+1}}
             </td>
             <td>
               <div class="field">
@@ -124,7 +124,7 @@
           </tbody>
         </table>
         <div class="flex justify-end">
-          <button class="button">
+          <button @click="addEstimateItemRow" class="button">
 				<span class="icon">
           <i class="fa fa-plus-circle mr-1"></i>
 				</span>
@@ -139,13 +139,20 @@ export default {
   data() {
     return {
       estimate: {
-        estimateItems: []
+        estimateItems: [
+          {}
+        ]
       }
     }
   },
   methods: {
     addEstimateItemRow() {
-
+      this.estimate.estimateItems.push({})
+    }
+  },
+  computed: {
+    estimateItems() {
+      return this.estimate.estimateItems;
     }
   }
 
