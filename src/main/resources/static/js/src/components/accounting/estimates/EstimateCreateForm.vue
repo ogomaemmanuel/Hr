@@ -55,7 +55,9 @@
           <div class="field">
             <label class="label">Estimate Date</label>
             <div class="control">
-              <input class="input" type="text" placeholder="e.g Alex Smith">
+              <DatePicker
+                  v-model="estimate.estimateDate">
+              </DatePicker>
             </div>
           </div>
         </div>
@@ -63,7 +65,9 @@
           <div class="field">
             <label class="label">Expiry Date</label>
             <div class="control">
-              <input class="input" type="text" placeholder="e.g Alex Smith">
+              <DatePicker
+                  v-model="estimate.expiryDate">
+              </DatePicker>
             </div>
           </div>
         </div>
@@ -86,36 +90,56 @@
           <tbody>
           <tr v-for="(estimateItem ,index) in estimateItems" :key="index">
             <td>
-              {{index+1}}
+              {{ index + 1 }}
             </td>
             <td>
               <div class="field">
                 <div class="control">
-                  <input class="input" placeholder="Textarea"></input></div>
+                  <input
+                      class="input"
+                      v-model="estimateItem.name"
+                      placeholder="Textarea">
+
+                  </input></div>
               </div>
             </td>
             <td>
               <div class="field">
                 <div class="control">
-                  <input class="input" placeholder="Textarea"></input></div>
+                  <input
+                      class="input"
+                      v-model="estimateItem.description"
+                      placeholder="Textarea">
+                  </input>
+                </div>
               </div>
             </td>
             <td>
               <div class="field">
                 <div class="control">
-                  <input class="input" placeholder="Textarea"></input></div>
+                  <InputNumber
+                      :controls="false"
+                      v-model="estimateItem.unitCost">
+                  </InputNumber>
+                </div>
               </div>
             </td>
             <td>
               <div class="field">
                 <div class="control">
-                  <input class="input" placeholder="Textarea"></input></div>
+                  <InputNumber
+                      min="1"
+                      v-model="estimateItem.qty">
+                  </InputNumber>
+                </div>
               </div>
             </td>
             <td>
               <div class="field">
                 <div class="control">
-                  <input class="input" placeholder="Textarea"></input></div>
+                  <input
+                      class="input"
+                      placeholder="Textarea"></input></div>
               </div>
             </td>
 
@@ -132,10 +156,31 @@
         </div>
       </div>
     </div>
+    <div class="card mt-3 p-8">
+    </div>
+    <div class="mt-3">
+      <div class="field">
+        <div class="control">
+          <label class="label">Other Information</label>
+          <textarea
+              class="textarea"
+              placeholder="Textarea">
+          </textarea>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import {Message, DatePicker, InputNumber} from "element-ui"
+import common_mixin from "../../../mixins/common_mixin";
+
 export default {
+  components: {
+    DatePicker,
+    InputNumber
+  },
+  mixins: [common_mixin],
   data() {
     return {
       estimate: {
@@ -145,14 +190,25 @@ export default {
       }
     }
   },
-  methods: {
-    addEstimateItemRow() {
-      this.estimate.estimateItems.push({})
-    }
-  },
   computed: {
     estimateItems() {
       return this.estimate.estimateItems;
+    }
+  },
+  methods: {
+    addEstimateItemRow() {
+      this.estimate.estimateItems.push({})
+    },
+    createEstimate() {
+      axios.post("/api/estimates",
+          this.estimate).then(resp => {
+        Message.success("Estimate successfully created")
+      }, error => {
+        Message.error("There was problem estimate");
+        if (error.response.status == 400) {
+          this.errors = error.response.data;
+        }
+      })
     }
   }
 
