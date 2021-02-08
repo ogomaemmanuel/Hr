@@ -115,6 +115,9 @@ const TaxList =()=> import("../components/accounting/taxes/TaxList")
 const TaxCreateModal =()=> import("../components/accounting/taxes/TaxCreateModal")
 const TaxEditModal =()=> import("../components/accounting/taxes/TaxEditModal")
 
+const EstimatesPage =()=> import("../components/accounting/estimates/EstimatesPage")
+const EstimateList =()=> import("../components/accounting/estimates/EstimateList")
+const EstimateCreate =()=> import("../components/accounting/estimates/EstimateCreateForm")
 
 
 
@@ -755,6 +758,50 @@ const routes = new Router({
                         //         title: "Project Details",
                         //     }
                         // }
+
+                    ]
+                },
+                {
+                    path: "/estimates",
+                    component: EstimatesPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Estimates",
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            component: EstimateList,
+                            // children: [
+                            //     {
+                            //         path: "/tax-create",
+                            //         name: "tax-create",
+                            //         component: TaxCreateModal,
+                            //         meta: {
+                            //             breadcrumb: true,
+                            //             title: "Tax Create",
+                            //         },
+                            //     },
+                            //     {
+                            //         path: "/tax-edit/:id",
+                            //         name: "tax-edit",
+                            //         component: TaxEditModal,
+                            //         meta: {
+                            //             breadcrumb: true,
+                            //             title: "Tax Edit",
+                            //         },
+                            //     },
+                            // ]
+                        },
+                        {
+                            path: "/estimate-create",
+                            name: "estimate-create",
+                            component: EstimateCreate,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Estimate Create",
+                            }
+                        }
 
                     ]
                 },
