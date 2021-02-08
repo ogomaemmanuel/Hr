@@ -135,5 +135,19 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      estimate: {
+        estimateItems: []
+      }
+    }
+  },
+  methods: {
+    addEstimateItemRow() {
+
+    }
+  }
+
+}
 </script>
