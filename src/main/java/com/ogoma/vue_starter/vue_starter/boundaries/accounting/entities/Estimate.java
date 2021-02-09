@@ -12,7 +12,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "estimates")
+@Table(name = "estimates",indexes = {
+        @Index(name = "estimate_date_index",columnList = "estimateDate"),
+        @Index(name = "expiry_date_index",columnList = "expiryDate")
+})
 public class Estimate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

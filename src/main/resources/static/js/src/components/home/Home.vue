@@ -282,7 +282,7 @@
                             </a>
                             <ul class="border-l-0">
                                 <li>
-                                    <router-link to="/leave">
+                                    <router-link to="/estimates">
                                         <span>Estimates</span>
                                     </router-link>
                                 </li>
