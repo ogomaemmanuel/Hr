@@ -139,7 +139,12 @@
                 <div class="control">
                   <input
                       class="input"
-                      placeholder="Textarea"></input></div>
+                      placeholder="Textarea">
+                  </input>
+                  <div class="estimate-remove-btn has-text-danger">
+                    <i class="fa fa-trash"></i>
+                  </div>
+                </div>
               </div>
             </td>
 
@@ -222,3 +227,10 @@ export default {
 
 }
 </script>
+<style scoped lang="scss">
+.estimate-remove-btn {
+  position: absolute;
+  right: -1rem;
+  top: 0.5rem;
+}
+</style>
