@@ -169,6 +169,14 @@
         </div>
       </div>
     </div>
+    <div class="mt-3 pb-5 flex justify-center">
+      <div class="mr-2">
+        <button class="button is-rounded">Save and Send</button>
+      </div>
+      <div class="ml-2">
+        <button class="button is-rounded">Save</button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
