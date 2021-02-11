@@ -32,7 +32,7 @@
             <div class="select">
               <select v-model="estimate.taxId">
                 <option selected>Select Tax</option>
-                <option v-for="tax in taxes">{{tax.name}}</option>
+                <option v-for="tax in taxes">{{ tax.name }}</option>
                 <option>No tax</option>
               </select>
             </div>
@@ -145,7 +145,9 @@
                       class="input"
                       placeholder="Textarea">
                   </input>
-                  <div class="estimate-remove-btn has-text-danger">
+                  <div
+                      @click="removeEstimateItem(index)"
+                      class="estimate-remove-btn has-text-danger">
                     <i class="fa fa-trash"></i>
                   </div>
                 </div>
@@ -230,6 +232,11 @@ export default {
           this.errors = error.response.data;
         }
       })
+    },
+    removeEstimateItem(index) {
+      if (this.estimateItems.length > 1) {
+        this.estimateItems.splice(index, 1);
+      }
     },
     getTaxes() {
       axios.get("/api/taxes/all").then(resp => {
