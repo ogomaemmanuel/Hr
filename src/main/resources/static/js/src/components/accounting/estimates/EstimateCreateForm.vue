@@ -29,8 +29,12 @@
         <div class="column">
           <div class="field">
             <label class="label">Tax</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="e.g Alex Smith">
+            <div class="select">
+              <select v-model="estimate.taxId">
+                <option selected>Select Tax</option>
+                <option v-for="tax in taxes">{{tax.name}}</option>
+                <option>No tax</option>
+              </select>
             </div>
           </div>
         </div>
@@ -128,7 +132,7 @@
               <div class="field">
                 <div class="control">
                   <InputNumber
-                      min="1"
+                      :min="1"
                       v-model="estimateItem.qty">
                   </InputNumber>
                 </div>
@@ -196,6 +200,7 @@ export default {
   mixins: [common_mixin],
   data() {
     return {
+      taxes: [],
       estimate: {
         estimateItems: [
           {}
@@ -207,6 +212,9 @@ export default {
     estimateItems() {
       return this.estimate.estimateItems;
     }
+  },
+  created() {
+    this.getTaxes();
   },
   methods: {
     addEstimateItemRow() {
@@ -221,6 +229,13 @@ export default {
         if (error.response.status == 400) {
           this.errors = error.response.data;
         }
+      })
+    },
+    getTaxes() {
+      axios.get("/api/taxes/all").then(resp => {
+        this.taxes = resp.data;
+      }, error => {
+        console.log("Error fetching taxes  data in EstimateCreateForm")
       })
     }
   }

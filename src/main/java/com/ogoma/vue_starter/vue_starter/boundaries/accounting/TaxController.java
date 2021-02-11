@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +26,11 @@ public class TaxController {
     @RequestMapping(value = "api/taxes", method = RequestMethod.GET)
     public ResponseEntity<?> getTaxes(PagedDataRequest pagedDataRequest) {
         Page<Tax> taxes = this.taxService.getTaxes(pagedDataRequest);
+        return ResponseEntity.ok(taxes);
+    }
+    @RequestMapping(value = "api/taxes/all", method = RequestMethod.GET)
+    public ResponseEntity<?> getTaxes() {
+        List<Tax> taxes = this.taxService.getAllTaxes();
         return ResponseEntity.ok(taxes);
     }
 
