@@ -27,10 +27,7 @@ public class ClientService {
     }
 
     public Page<ClientViewModel> getClients(PagedDataRequest pagedDataRequest) {
-        PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(),
-                pagedDataRequest.getPageSize());
-        Page<ClientViewModel> clients =
-                this.clientsRepository.findAllClients(pageRequest);
+        Page<ClientViewModel> clients = this.clientsRepository.findAllClients(pagedDataRequest.toPageable());
         return clients;
 
     }

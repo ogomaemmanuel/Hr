@@ -15,8 +15,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "estimates",indexes = {
-        @Index(name = "estimate_date_index",columnList = "estimateDate"),
-        @Index(name = "expiry_date_index",columnList = "expiryDate")
+        @Index(name = "estimate_date_index",
+                columnList = Estimate_.ESTIMATE_DATE),
+        @Index(name = "expiry_date_index",columnList = Estimate_.ESTIMATE_DATE)
 })
 public class Estimate {
     @Id
@@ -32,7 +33,7 @@ public class Estimate {
     private String otherInformation;
     private double percentageDiscount;
     @OneToMany(cascade = CascadeType.PERSIST,
-            mappedBy = "estimate")
+            mappedBy = EstimateItem_.ESTIMATE)
     private Set<EstimateItem> items = new HashSet<>();
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp

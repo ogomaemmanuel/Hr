@@ -3,8 +3,14 @@
     <form action="">
       <div class="columns">
         <div class="column">
+          <ClientSelectInput
+              :emit-all-fields="true"
+              v-model="selectClient">
+          </ClientSelectInput>
+        </div>
+        <div class="column">
           <div class="field">
-            <label class="label">Client</label>
+            <label class="label">Project</label>
             <div class="control">
               <input
                   class="input"
@@ -14,19 +20,12 @@
         </div>
         <div class="column">
           <div class="field">
-            <label class="label">Project</label>
-            <div class="control">
-              <input class="input"
-                     type="text">
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="field">
             <label class="label">Email</label>
             <div class="control">
-              <input class="input"
-                     type="text">
+              <input
+                  v-model="selectClient.email"
+                  class="input"
+                  type="text">
             </div>
           </div>
         </div>
@@ -242,17 +241,19 @@
 <script>
 import {Message, DatePicker, InputNumber} from "element-ui"
 import common_mixin from "../../../mixins/common_mixin";
-
+import ClientSelectInput from "../../common/ClientSelectInput";
 
 export default {
   components: {
     DatePicker,
-    InputNumber
+    InputNumber,
+    ClientSelectInput
   },
   mixins: [common_mixin],
   data() {
     return {
       taxes: [],
+      selectClient: {},
       estimate: {
         taxId: "",
         estimateItems: [

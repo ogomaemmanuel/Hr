@@ -8,6 +8,7 @@ public interface ClientViewModel {
     //contact person
     public String getLastName();
     public String getPhone();
+    public String getEmail();
     default String getFullName() {
         String lastName = null;
         if (null != getLastName()) {

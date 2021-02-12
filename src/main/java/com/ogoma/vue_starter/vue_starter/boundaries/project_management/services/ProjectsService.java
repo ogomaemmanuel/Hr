@@ -29,10 +29,8 @@ public class ProjectsService {
     }
 
     public Page<ProjectProjection> getProjects(PagedDataRequest pagedDataRequest) {
-        Pageable pageable = PageRequest.of(pagedDataRequest.getPage(),
-                pagedDataRequest.getPageSize());
         Page<ProjectProjection> projects =
-                this.projectsRepository.getProjects(pageable);
+                this.projectsRepository.getProjects(pagedDataRequest.toPageable());
         return projects;
     }
 
