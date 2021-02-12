@@ -1,6 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.models.requests;
 
 import io.swagger.models.auth.In;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 public class PagedDataRequest {
     private Integer page;
@@ -32,5 +34,10 @@ public class PagedDataRequest {
     public PagedDataRequest setSearchTerm(String searchTerm) {
         this.searchTerm = searchTerm;
         return this;
+    }
+
+    public Pageable toPageable() {
+        PageRequest pageRequest = PageRequest.of(this.getPage(), this.getPageSize());
+        return pageRequest;
     }
 }

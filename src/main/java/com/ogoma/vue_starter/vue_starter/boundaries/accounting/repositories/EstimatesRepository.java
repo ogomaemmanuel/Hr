@@ -5,11 +5,12 @@ import com.ogoma.vue_starter.vue_starter.boundaries.accounting.projections.Estim
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EstimatesRepository extends JpaRepository<Estimate, Long> {
+public interface EstimatesRepository extends JpaRepository<Estimate, Long>, JpaSpecificationExecutor<Estimate> {
     @Query(value = "select amount,client_id as clientId,expiry_date as expiryDate,estimate_date as estimateDate," +
             "percentage_discount as percentageDiscount," +
             "c.company_name as clientCompany,u.first_name as clientFirstName" +

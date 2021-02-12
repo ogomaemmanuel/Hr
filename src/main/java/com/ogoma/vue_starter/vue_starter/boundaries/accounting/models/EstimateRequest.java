@@ -5,8 +5,11 @@ import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
@@ -15,10 +18,15 @@ import java.util.Set;
 public class EstimateRequest {
     private Long clientId;
     private Long projectId;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date estimateDate;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date expiryDate;
+    @Min(value = 0l)
     private BigDecimal amount;
     private String otherInformation;
+    @Min(message = "Enter a valid percentage amount",value = 0)
+    @Max(message = "Enter a valid percentage amount",value = 100)
     private double percentageDiscount;
     private Set<EstimateItem> items = new HashSet<>();
     public Long getClientId() {

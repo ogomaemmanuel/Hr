@@ -6,7 +6,9 @@
           <div class="field">
             <label class="label">Client</label>
             <div class="control">
-              <input class="input" type="text" placeholder="e.g Alex Smith">
+              <input
+                  class="input"
+                  type="text">
             </div>
           </div>
         </div>
@@ -14,7 +16,8 @@
           <div class="field">
             <label class="label">Project</label>
             <div class="control">
-              <input class="input" type="text" placeholder="e.g Alex Smith">
+              <input class="input"
+                     type="text">
             </div>
           </div>
         </div>
@@ -22,7 +25,8 @@
           <div class="field">
             <label class="label">Email</label>
             <div class="control">
-              <input class="input" type="text" placeholder="e.g Alex Smith">
+              <input class="input"
+                     type="text">
             </div>
           </div>
         </div>
@@ -31,8 +35,10 @@
             <label class="label">Tax</label>
             <div class="select">
               <select v-model="estimate.taxId">
-                <option selected>Select Tax</option>
-                <option v-for="tax in taxes">{{ tax.name }}</option>
+                <option value="" selected>Select Tax</option>
+                <option :value="tax.id"
+                        v-for="tax in taxes">{{ tax.name }}
+                </option>
                 <option>No tax</option>
               </select>
             </div>
@@ -45,7 +51,7 @@
           <div class="field">
             <label class="label">Client Address</label>
             <div class="control">
-              <textarea class="textarea" placeholder="Textarea"></textarea></div>
+              <textarea class="textarea"></textarea></div>
           </div>
         </div>
         <div class="column">
@@ -168,12 +174,55 @@
       </div>
     </div>
     <div class="card mt-3 p-8">
+      <table class="table is-fullwidth">
+        <tbody>
+        <tr>
+          <td class="has-text-right">
+            Total
+          </td>
+          <td class="has-text-right">
+            0
+          </td>
+        </tr>
+        <tr>
+          <td class="has-text-right">
+            Tax
+          </td>
+          <td class="has-text-right w-48">
+            <input
+                disabled="true"
+                class="input"
+                type="text">
+          </td>
+        </tr>
+        <tr>
+          <td class="has-text-right">
+            Discount %
+          </td>
+          <td w class="has-text-right w-48">
+            <input
+                v-model="estimate.percentageDiscount"
+                class="input"
+                type="text">
+          </td>
+        </tr>
+        <tr>
+          <td class="has-text-right">
+            Grand Total
+          </td>
+          <td w class="has-text-right w-48">
+            $0.00
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div class="mt-3">
       <div class="field">
         <div class="control">
           <label class="label">Other Information</label>
           <textarea
+              v-model="estimate.otherInformation"
               class="textarea"
               placeholder="Textarea">
           </textarea>
@@ -194,6 +243,7 @@
 import {Message, DatePicker, InputNumber} from "element-ui"
 import common_mixin from "../../../mixins/common_mixin";
 
+
 export default {
   components: {
     DatePicker,
@@ -204,6 +254,7 @@ export default {
     return {
       taxes: [],
       estimate: {
+        taxId: "",
         estimateItems: [
           {}
         ]

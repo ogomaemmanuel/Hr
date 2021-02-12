@@ -13,12 +13,12 @@ public class UserRole {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties("userRoles")
+    @JsonIgnoreProperties(Role_.USER_ROLES)
     User user;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
-    @JsonIgnoreProperties("userRoles")
+    @JsonIgnoreProperties(Role_.USER_ROLES)
     Role role;
 
     public Long getId() {

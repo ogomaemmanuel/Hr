@@ -28,9 +28,8 @@ public class TaxService {
     }
 
     public Page<Tax> getTaxes(PagedDataRequest pagedDataRequest) {
-        Pageable pageable = PageRequest.of(pagedDataRequest.getPage(),
-                pagedDataRequest.getPageSize());
-        Page<Tax> taxes = this.taxRepository.findAll(pageable);
+        Page<Tax> taxes =
+                this.taxRepository.findAll(pagedDataRequest.toPageable());
         return taxes;
     }
 

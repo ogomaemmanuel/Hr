@@ -2,10 +2,13 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee_;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,15 +22,15 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users"
-        ,indexes = {
-        @Index(name = "identity_no_index",columnList = "identityNo",unique = true),
-        @Index(name = "email_index",columnList = "email",unique = true),
-        @Index(name = "last_name_index",columnList = "lastName"),
-        @Index(name = "first_name_index",columnList = "firstName"),
-        @Index(name = "phone_index",columnList = "phone",unique = true)
+        , indexes = {
+        @Index(name = "identity_no_index", columnList = User_.IDENTITY_NO, unique = true),
+        @Index(name = "email_index", columnList = User_.EMAIL, unique = true),
+        @Index(name = "last_name_index", columnList = User_.LAST_NAME),
+        @Index(name = "first_name_index", columnList = User_.FIRST_NAME),
+        @Index(name = "phone_index", columnList = User_.PHONE, unique = true)
 }
 )
-@EntityListeners(AuditingEntityListener.class)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +51,7 @@ public class User implements Serializable {
     @Transient
     @JsonProperty
     private String fullName;
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = Employee_.USER, fetch = FetchType.LAZY)
     @JsonIgnore
     private Employee employee;
     @JsonIgnore
@@ -60,11 +63,11 @@ public class User implements Serializable {
     @LastModifiedDate
     private Date updatedOn;
 
-    @OneToMany(mappedBy = "user")
-    @JsonIgnoreProperties("user")
+    @OneToMany(mappedBy = UserRole_.USER)
+    @JsonIgnoreProperties(UserRole_.USER)
     private Set<UserRole> userRoles;
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("user")
+    @OneToMany(mappedBy = PasswordReset_.USER, fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(PasswordReset_.USER)
     @JsonIgnore
     private Set<PasswordReset> passwordResetList;
 

@@ -1,9 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -38,6 +40,9 @@ public class Estimate {
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
+    @CreatedBy
+    @ManyToOne
+    User createdBy;
 
     public Long getId() {
         return id;
@@ -122,5 +127,9 @@ public class Estimate {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
