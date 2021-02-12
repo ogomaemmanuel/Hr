@@ -24,8 +24,8 @@ public class Role extends BaseEntity {
     private String description;
     @OneToMany(mappedBy = "permission")
     private Set<RolePermission> rolePermissions;
-    @OneToMany(mappedBy = "user")
-    @JsonIgnoreProperties("role")
+    @OneToMany(mappedBy = UserRole_.USER)
+    @JsonIgnoreProperties(UserRole_.ROLE)
     private Set<UserRole> userRoles;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate

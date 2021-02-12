@@ -6,6 +6,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ import java.util.Set;
                 columnList = Estimate_.ESTIMATE_DATE),
         @Index(name = "expiry_date_index",columnList = Estimate_.ESTIMATE_DATE)
 })
+@EntityListeners(AuditingEntityListener.class)
 public class Estimate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -132,5 +134,13 @@ public class Estimate {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 }

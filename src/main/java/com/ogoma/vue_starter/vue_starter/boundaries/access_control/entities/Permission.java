@@ -24,8 +24,8 @@ public class Permission {
         this.code = code;
     }
 
-    @OneToMany(mappedBy = "role")
-    @JsonIgnoreProperties("permission")
+    @OneToMany(mappedBy =  RolePermission_.ROLE)
+    @JsonIgnoreProperties(RolePermission_.PERMISSION)
     private Set<RolePermission> rolePermissions;
 
     public Long getId() {

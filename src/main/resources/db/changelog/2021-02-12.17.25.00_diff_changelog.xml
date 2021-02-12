@@ -1,0 +1,75 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="user (generated)" id="1613150717524-1">
+        <addColumn tableName="account_categories">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-2">
+        <addColumn tableName="departments">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-3">
+        <addColumn tableName="designations">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-4">
+        <addColumn tableName="employees">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-5">
+        <addColumn tableName="holidays">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-6">
+        <addColumn tableName="leave_types">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-7">
+        <addColumn tableName="overtime_requests">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-8">
+        <addColumn tableName="roles">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-9">
+        <addColumn tableName="tickets">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-10">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="holidays" constraintName="FK5r93mtsaly3lk1pn9r2k5wc38" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-11">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="designations" constraintName="FK64lp9bv2d14migs5ymomgcs9j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-12">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="departments" constraintName="FKath0r2w9xsa2d6rl3ccl39bex" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-13">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="roles" constraintName="FKdmkr4ngbb21kad02beprkxghs" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-14">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="leave_types" constraintName="FKerfvasbypi8dmb91xqh5w98xu" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-15">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="account_categories" constraintName="FKiqx3f24ghhhkh405c4539s9ht" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-16">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="employees" constraintName="FKkydi9j2kh9ptniv57jfe0op7r" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-17">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="tickets" constraintName="FKmyfs6v8v389r3g1rq49cutsda" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613150717524-18">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="overtime_requests" constraintName="FKqudx6qvfdsbf5g61aus05y9tr" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

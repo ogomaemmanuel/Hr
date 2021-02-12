@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "departments")
 @SQLDelete(sql = "update departments set deleted=true,deleted_at=now() where id=?")
+@EntityListeners(AuditingEntityListener.class)
 public class Department extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

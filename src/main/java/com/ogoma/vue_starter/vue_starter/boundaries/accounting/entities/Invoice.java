@@ -27,7 +27,8 @@ public class Invoice {
     private BigDecimal percentageDiscount;
     private BigDecimal taxAmount;
     private BigDecimal grandTotal;
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "invoice")
+    @OneToMany(cascade = CascadeType.PERSIST,
+            mappedBy = InvoiceItem_.INVOICE)
     private Set<InvoiceItem> items = new HashSet<>();
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
