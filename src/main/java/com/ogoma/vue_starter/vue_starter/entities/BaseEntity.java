@@ -1,6 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User_;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -22,6 +25,8 @@ public abstract class BaseEntity {
     }
 
     @ManyToOne
+    @CreatedBy
+    @JsonIgnoreProperties(User_.USER_ROLES)
     private User createdBy;
 
     public boolean isDeleted() {
