@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role_;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.RolesRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Department;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -11,8 +12,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -37,7 +40,18 @@ public class RolesService {
     }
 
     public Page<Role> getAllRoles(Pageable pageable) {
-        Page<Role> roles = rolesRepository.findAllByDeletedFalse(pageable);
+        Page<Role> roles = rolesRepository.findAll(
+                new Specification<Role>() {
+                    @Override
+                    public Predicate toPredicate(Root<Role> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                        if(Long.class!=criteriaQuery.getResultType()){
+                             root.fetch(Role_.createdBy, JoinType.LEFT);
+                             criteriaBuilder.equal(root.get(Role_.DELETED),true);
+                        }
+                        return criteriaBuilder.conjunction();
+                    }
+                },
+                pageable);
         return roles;
     }
 

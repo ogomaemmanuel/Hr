@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import org.hibernate.annotations.SQLDelete;
@@ -13,7 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "roles")
-@SQLDelete(sql="update roles set deleted=true, deleted_at=now() where id=?")
+@SQLDelete(sql = "update roles set deleted=true, deleted_at=now() where id=?")
 public class Role extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +26,6 @@ public class Role extends BaseEntity {
     @OneToMany(mappedBy = "permission")
     private Set<RolePermission> rolePermissions;
     @OneToMany(mappedBy = UserRole_.USER)
-    @JsonIgnoreProperties(UserRole_.ROLE)
     private Set<UserRole> userRoles;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -34,12 +34,14 @@ public class Role extends BaseEntity {
     @LastModifiedDate
     private Date updatedAt;
 
-    private Role() {}
+    public Role() {
+    }
 
     public Role(String name, String description) {
         this.name = name;
         this.description = description;
     }
+
     public Long getId() {
         return id;
     }
@@ -60,6 +62,7 @@ public class Role extends BaseEntity {
         this.description = description;
     }
 
+
     public Set<RolePermission> getRolePermissions() {
         return rolePermissions;
     }
@@ -67,6 +70,7 @@ public class Role extends BaseEntity {
     public void setRolePermissions(Set<RolePermission> rolePermissions) {
         this.rolePermissions = rolePermissions;
     }
+
 
     public Set<UserRole> getUserRoles() {
         return userRoles;

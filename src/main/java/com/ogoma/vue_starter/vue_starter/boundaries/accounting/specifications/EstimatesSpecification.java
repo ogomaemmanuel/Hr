@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.specifications;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User_;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Estimate;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Estimate_;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.models.EstimatePagedDataRequest;
@@ -37,16 +38,18 @@ public class EstimatesSpecification {
                             estimatePagedDataRequest.getEndDate(),
                             estimatePagedDataRequest.getEndDate()));
                 }
-                if (Long.TYPE != criteriaQuery.getResultType()) {
-                    root.fetch(Estimate_.client, JoinType.LEFT);
+                if (Long.class != criteriaQuery.getResultType()) {
+                    root.fetch(Estimate_.client, JoinType.LEFT)
+                            .fetch(Client_.USER, JoinType.LEFT).fetch(User_.EMPLOYEE, JoinType.LEFT);
+
                     if (estimatePagedDataRequest.getClientId() != null) {
                         predicates.add(criteriaBuilder.equal(root.get
                                 (Estimate_.client), estimatePagedDataRequest.getClientId()));
                     }
                 } else {
-                    root.join(Estimate_.client, JoinType.LEFT);
-                    predicates.add(criteriaBuilder.equal(root.get
-                            (Estimate_.CLIENT), estimatePagedDataRequest.getClientId()));
+                   // root.join(Estimate_.client, JoinType.LEFT);
+//                    predicates.add(criteriaBuilder.equal(root.get
+//                            (Estimate_.CLIENT), estimatePagedDataRequest.getClientId()));
                 }
 
                 return criteriaBuilder.and(predicates.toArray(new Predicate[0]));

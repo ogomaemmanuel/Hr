@@ -30,9 +30,31 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+            <version>2.4.1</version>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.hateoas</groupId>-->
+<!--                    <artifactId>spring-hateoas</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.hateoas</groupId>-->
+<!--            <artifactId>spring-hateoas</artifactId>-->
+<!--            <version>1.2.3</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate5</artifactId>
+            <version>2.12.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -112,28 +134,28 @@
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
             <version>6.13.0</version>
-            			<exclusions>
-            				<exclusion>
-            					<groupId>org.apache.lucene</groupId>
-            					<artifactId>lucene-core</artifactId>
-            				</exclusion>
-            				<exclusion>
-            					<groupId>org.apache.lucene</groupId>
-            					<artifactId>lucene-analyzers-common</artifactId>
-            				</exclusion>
-            				<exclusion>
-            					<groupId>org.apache.lucene</groupId>
-            					<artifactId>lucene-queryparser</artifactId>
-            				</exclusion>
-                            <exclusion>
-                                <groupId>com.lowagie</groupId>
-                                <artifactId>itext</artifactId>
-                            </exclusion>
-                            <exclusion>
-                                <groupId>org.apache.poi</groupId>
-                                <artifactId>poi</artifactId>
-                            </exclusion>
-            			</exclusions>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.lucene</groupId>
+                    <artifactId>lucene-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.lucene</groupId>
+                    <artifactId>lucene-analyzers-common</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.lucene</groupId>
+                    <artifactId>lucene-queryparser</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.lowagie</groupId>
+                    <artifactId>itext</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
@@ -211,20 +233,20 @@
         </dependency>
     </dependencies>
     <build>
-<!--        <resources>-->
-<!--            <resource>-->
-<!--                <directory>src/main/resources</directory>-->
-<!--                <filtering>true</filtering>-->
-<!--                <excludes>-->
-<!--                    <exclude>**/*.jasper</exclude>-->
-<!--&lt;!&ndash;                    <exclude>**/*.jasper</exclude>&ndash;&gt;-->
-<!--                </excludes>-->
-<!--            </resource>-->
-<!--        </resources>-->
+        <!--        <resources>-->
+        <!--            <resource>-->
+        <!--                <directory>src/main/resources</directory>-->
+        <!--                <filtering>true</filtering>-->
+        <!--                <excludes>-->
+        <!--                    <exclude>**/*.jasper</exclude>-->
+        <!--&lt;!&ndash;                    <exclude>**/*.jasper</exclude>&ndash;&gt;-->
+        <!--                </excludes>-->
+        <!--            </resource>-->
+        <!--        </resources>-->
 
-<!--        <filters>-->
-<!--            <filter>src/main/resources/liquibase.properties</filter>-->
-<!--        </filters>-->
+        <!--        <filters>-->
+        <!--            <filter>src/main/resources/liquibase.properties</filter>-->
+        <!--        </filters>-->
 
         <plugins>
             <plugin>
@@ -239,8 +261,10 @@
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                     <changeLogFile>src/main/resources/db/db.changelog-master.xml</changeLogFile>
-                    <diffChangeLogFile>src/main/resources/db/changelog/${timestamp}_diff_changelog.xml</diffChangeLogFile>
-                    <outputChangeLogFile>src/main/resources/db/changelog/${timestamp}_changelog.xml</outputChangeLogFile>
+                    <diffChangeLogFile>src/main/resources/db/changelog/${timestamp}_diff_changelog.xml
+                    </diffChangeLogFile>
+                    <outputChangeLogFile>src/main/resources/db/changelog/${timestamp}_changelog.xml
+                    </outputChangeLogFile>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -293,8 +317,22 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.hibernate.orm.tooling</groupId>
+                <artifactId>hibernate-enhance-maven-plugin</artifactId>
+                <version>5.4.2.Final</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <enableLazyInitialization>true</enableLazyInitialization>
+                        </configuration>
+                        <goals>
+                            <goal>enhance</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
-
     </build>
     <distributionManagement>
         <repository>

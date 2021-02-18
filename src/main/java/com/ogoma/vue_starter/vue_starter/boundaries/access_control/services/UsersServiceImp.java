@@ -3,6 +3,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 import com.ogoma.vue_starter.vue_starter.authentication.CustomUserDetails;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User_;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.user_profile.models.PasswordUpdateRequest;
 import com.ogoma.vue_starter.vue_starter.events.auth.PasswordResetEvent;
@@ -22,10 +23,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.*;
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +43,6 @@ public class UsersServiceImp implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final PasswordResetRepository passwordResetRepository;
     private final ReportGenerator reportGenerator;
-
 
     @Autowired
     public UsersServiceImp(UsersRepository usersRepository,
@@ -96,8 +98,17 @@ public class UsersServiceImp implements UserService {
 
     @Override
     public Page<User> getAll(PagedDataRequest pagedDataRequest) {
-        PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
-        Page<User> users = this.usersRepository.findAll(pageRequest);
+        Page<User> users = this.usersRepository.findAll(
+                new Specification<User>() {
+                    @Override
+                    public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                        if(Long.class!=criteriaQuery.getResultType()){
+                            root.fetch(User_.employee, JoinType.LEFT);
+                        }
+                        return criteriaBuilder.conjunction();
+                    }
+                },
+                pagedDataRequest.toPageable());
         return users;
     }
 

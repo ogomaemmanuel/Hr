@@ -84,8 +84,21 @@
             </thead>
             <tbody>
             <tr v-for="estimate in estimates">
-
-
+              <td>
+                {{ estimate.id }}
+              </td>
+              <td>
+                {{ estimate.id }}
+              </td>
+              <td>
+                {{ estimate.estimateDate }}
+              </td>
+              <td>
+                {{ estimate.expiryDate }}
+              </td>
+              <td>
+                {{ estimate.amount }}
+              </td>
             </tr>
             </tbody>
             <tfoot>
@@ -133,7 +146,7 @@ export default {
         params: {
           page: this.page,
           pageSize: this.pageSize,
-          clientId:1
+          clientId: 1
         }
       }).then(resp => {
         this.loading = false;

@@ -47,9 +47,7 @@ public class EstimatesService {
 
     public Estimate createEstimate(EstimateRequest estimateRequest) {
         Estimate estimate = new Estimate();
-        Client client = this.clientsRepository.findById(estimateRequest.getClientId()).orElseThrow(() -> {
-            return new RuntimeException();
-        });
+        Client client = this.clientsRepository.getOne(estimateRequest.getClientId());
         //Project project =
         estimate.setItems(estimate.getItems());
         estimate.setEstimateDate(estimateRequest.getEstimateDate());

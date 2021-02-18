@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Designation;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Designation_;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.DesignationDto;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.DesignationRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.holidays.entities.Holiday;
@@ -13,8 +14,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -30,11 +33,16 @@ public class DesignationService {
     }
 
     public Page<Designation> getDesignations(PagedDataRequest pagedDataRequest) {
-        PageRequest pageRequest = PageRequest.of(
-                pagedDataRequest.getPage(),
-                pagedDataRequest.getPageSize()
-        );
-        Page<Designation> designations = this.designationRepository.findAllByDeletedFalse(pageRequest);
+
+        Page<Designation> designations = this.designationRepository.findAll(
+                (Specification<Designation>) (root, criteriaQuery, criteriaBuilder) -> {
+                    if(Long.class!= criteriaQuery.getResultType())
+                    {
+                       root.fetch(Designation_.DEPARTMENT, JoinType.LEFT);
+                    }
+                    return criteriaBuilder.conjunction();
+                },
+                pagedDataRequest.toPageable());
         return designations;
     }
 

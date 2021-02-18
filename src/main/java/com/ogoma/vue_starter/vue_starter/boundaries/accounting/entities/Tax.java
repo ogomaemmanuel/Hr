@@ -34,12 +34,13 @@ public class Tax {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationAt;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @CreatedBy
-    @JsonIgnoreProperties(value =
-            {User_.USER_ROLES,
-                    User_.EMPLOYEE,
-                    User_.PASSWORD_RESET_LIST})
+//    @JsonIgnoreProperties(value =
+//            {User_.USER_ROLES,
+//                    User_.EMPLOYEE,
+//                    User_.PASSWORD_RESET_LIST})
+   // @JsonIgnore
     User createdBy;
 
     public Long getId() {

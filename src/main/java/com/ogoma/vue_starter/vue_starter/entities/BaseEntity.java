@@ -24,7 +24,7 @@ public abstract class BaseEntity {
         this.deletedAt = Date.from(Instant.now());
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @CreatedBy
     @JsonIgnoreProperties(User_.USER_ROLES)
     private User createdBy;

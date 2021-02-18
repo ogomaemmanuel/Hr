@@ -25,8 +25,7 @@ public class PermissionsService {
         this.permissionsRepository = permissionsRepository;
     }
     public Page<Permission> getAllPermissions(PagedDataRequest pagedDataRequest) {
-        PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
-        Page<Permission> permissions = this.permissionsRepository.findAll(pageRequest);
+        Page<Permission> permissions = this.permissionsRepository.findAll(pagedDataRequest.toPageable());
         return permissions;
     }
     public ByteArrayInputStream generateReport() throws IOException {

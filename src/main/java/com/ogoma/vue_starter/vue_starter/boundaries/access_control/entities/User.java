@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee_;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -52,7 +54,7 @@ public class User implements Serializable {
     @JsonProperty
     private String fullName;
     @OneToOne(mappedBy = Employee_.USER, fetch = FetchType.LAZY)
-    @JsonIgnore
+    @LazyToOne(LazyToOneOption.NO_PROXY)
     private Employee employee;
     @JsonIgnore
     private String password;
@@ -62,13 +64,11 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedOn;
-
-    @OneToMany(mappedBy = UserRole_.USER)
-    @JsonIgnoreProperties(UserRole_.USER)
+    @JsonIgnore
+    @OneToMany(mappedBy = UserRole_.USER, fetch = FetchType.LAZY)
     private Set<UserRole> userRoles;
     @OneToMany(mappedBy = PasswordReset_.USER, fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(PasswordReset_.USER)
-    @JsonIgnore
+    //@JsonIgnoreProperties(PasswordReset_.USER)
     private Set<PasswordReset> passwordResetList;
 
     public Long getId() {
@@ -151,6 +151,7 @@ public class User implements Serializable {
         this.fullName = fullName;
     }
 
+    @JsonIgnore
     public Employee getEmployee() {
         return employee;
     }
@@ -174,6 +175,7 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
     public Set<UserRole> getUserRoles() {
         return userRoles;
@@ -199,6 +201,7 @@ public class User implements Serializable {
         this.updatedOn = updatedOn;
     }
 
+    @JsonIgnore
     public Set<PasswordReset> getPasswordResetList() {
         return passwordResetList;
     }

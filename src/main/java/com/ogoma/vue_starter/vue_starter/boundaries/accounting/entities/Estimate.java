@@ -1,5 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
@@ -15,10 +17,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "estimates",indexes = {
+@Table(name = "estimates", indexes = {
         @Index(name = "estimate_date_index",
                 columnList = Estimate_.ESTIMATE_DATE),
-        @Index(name = "expiry_date_index",columnList = Estimate_.ESTIMATE_DATE)
+        @Index(name = "expiry_date_index", columnList = Estimate_.ESTIMATE_DATE)
 })
 @EntityListeners(AuditingEntityListener.class)
 public class Estimate {
@@ -26,6 +28,7 @@ public class Estimate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JsonIgnoreProperties()
     private Client client;
     @OneToOne
     private Project project;
@@ -36,6 +39,7 @@ public class Estimate {
     private double percentageDiscount;
     @OneToMany(cascade = CascadeType.PERSIST,
             mappedBy = EstimateItem_.ESTIMATE)
+    @JsonIgnore
     private Set<EstimateItem> items = new HashSet<>();
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
@@ -44,7 +48,8 @@ public class Estimate {
     @CreationTimestamp
     private Date createdAt;
     @CreatedBy
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     User createdBy;
 
     public Long getId() {

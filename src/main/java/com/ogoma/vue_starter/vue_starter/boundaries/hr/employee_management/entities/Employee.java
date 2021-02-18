@@ -5,11 +5,12 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User
 import com.ogoma.vue_starter.vue_starter.entities.BaseEntity;
 import com.ogoma.vue_starter.vue_starter.enums.GenderEnum;
 import com.ogoma.vue_starter.vue_starter.enums.converters.GenderEnumConverter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -35,16 +36,19 @@ public class Employee extends BaseEntity {
     @Convert(converter = GenderEnumConverter.class)
     private GenderEnum gender;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinColumn(name = "designation_id", insertable = false, updatable = false)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
     private Designation designation;
     @OneToMany(mappedBy = "employee", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties(value = "employee")
     private List<EmployeeContactAddress> employeeContactAddresses = new ArrayList<>();
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "supervisor_id", insertable = false, updatable = false)
+    @LazyToOne(LazyToOneOption.NO_PROXY)
     private Employee supervisor;
     @Column(name = "status")
     private Boolean active;
@@ -54,7 +58,7 @@ public class Employee extends BaseEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedOn;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", updatable = false, insertable = false)
     private Department department;
     @Column(name = "department_id")

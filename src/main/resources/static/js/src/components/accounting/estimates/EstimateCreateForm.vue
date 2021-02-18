@@ -230,7 +230,7 @@
     </div>
     <div class="mt-3 pb-5 flex justify-center">
       <div class="mr-2">
-        <button class="button is-primary is-rounded">Save and Send</button>
+        <button @click="createEstimate" class="button is-primary is-rounded">Save and Send</button>
       </div>
       <div class="ml-2">
         <button class="button is-primary is-rounded">Save</button>
@@ -275,6 +275,7 @@ export default {
       this.estimate.estimateItems.push({})
     },
     createEstimate() {
+      this.estimate.clientId = this.selectClient.id;
       axios.post("/api/estimates",
           this.estimate).then(resp => {
         Message.success("Estimate successfully created")
