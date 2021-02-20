@@ -14,7 +14,8 @@ public class PolicyService {
     private final PolicyRepository policyRepository;
     private final DepartmentsRepository departmentsRepository;
 
-    public PolicyService(PolicyRepository policyRepository, DepartmentsRepository departmentsRepository) {
+    public PolicyService(PolicyRepository policyRepository,
+                         DepartmentsRepository departmentsRepository) {
         this.policyRepository = policyRepository;
         this.departmentsRepository = departmentsRepository;
     }
@@ -24,9 +25,7 @@ public class PolicyService {
         return policies;
     }
 
-
     public Policy createPolicy(PolicyRequest policyRequest) {
-
         Department department=
                 this.departmentsRepository.getOne(policyRequest.getDepartmentId());
         Policy policy = new Policy();

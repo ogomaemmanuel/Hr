@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class Policy {
     private String description;
     @OneToMany
     @JoinTable(name = "department_policies")
-    private List<Department> departments;
+    private List<Department> departments = new ArrayList<>();
     private String documentUrl;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -35,6 +36,9 @@ public class Policy {
         this.id = id;
     }
 
+    public String getName() {
+        return this.name;
+    }
     public void setName(String name) {
         this.name = name;
     }

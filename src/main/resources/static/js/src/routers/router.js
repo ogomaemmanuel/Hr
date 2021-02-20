@@ -110,21 +110,19 @@ const TasksPage = () => import("../components/project_management/tasks/TasksPage
 const SettingsPage = () => import("../components/settings/Settings")
 
 
-const TaxPage =()=> import("../components/accounting/taxes/TaxPage")
-const TaxList =()=> import("../components/accounting/taxes/TaxList")
-const TaxCreateModal =()=> import("../components/accounting/taxes/TaxCreateModal")
-const TaxEditModal =()=> import("../components/accounting/taxes/TaxEditModal")
+const TaxPage = () => import("../components/accounting/taxes/TaxPage")
+const TaxList = () => import("../components/accounting/taxes/TaxList")
+const TaxCreateModal = () => import("../components/accounting/taxes/TaxCreateModal")
+const TaxEditModal = () => import("../components/accounting/taxes/TaxEditModal")
 
-const EstimatesPage =()=> import("../components/accounting/estimates/EstimatesPage")
-const EstimateList =()=> import("../components/accounting/estimates/EstimateList")
-const EstimateCreate =()=> import("../components/accounting/estimates/EstimateCreateForm")
-
-
-const PolicyPage =()=> import("../components/employee_management/policy/PolicyPage")
-const PolicyList =()=> import("../components/employee_management/policy/PolicyList")
+const EstimatesPage = () => import("../components/accounting/estimates/EstimatesPage")
+const EstimateList = () => import("../components/accounting/estimates/EstimateList")
+const EstimateCreate = () => import("../components/accounting/estimates/EstimateCreateForm")
 
 
-
+const PolicyPage = () => import("../components/employee_management/policy/PolicyPage")
+const PolicyList = () => import("../components/employee_management/policy/PolicyList")
+const PolicyCreate = () => import("../components/employee_management/policy/PolicyCreateModal")
 
 
 Vue.use(Router);
@@ -372,18 +370,22 @@ const routes = new Router({
                         },
                         {
                             name: "Policy",
-                            component:PolicyPage,
+                            component: PolicyPage,
                             path: "/policies",
                             children: [
                                 {
-                                    path:"/",
-                                    component:PolicyList,
-                                    meta:{
+                                    path: "/",
+                                    component: PolicyList,
+                                    meta: {
                                         breadcrumb: 'Policies',
                                         title: 'Policies',
                                         redirect: true,
                                     }
                                 },
+                                {
+                                    path: "/policy-create",
+                                    component: PolicyCreate
+                                }
 
                             ]
                         },

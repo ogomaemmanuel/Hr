@@ -21,7 +21,6 @@ import java.io.IOException;
 public class PermissionsController {
     private final PermissionsService permissionsService;
     public PermissionsController(PermissionsService permissionsService) {
-
         this.permissionsService = permissionsService;
     }
     @RequestMapping(value = "api/permissions", method = RequestMethod.GET)
@@ -30,7 +29,6 @@ public class PermissionsController {
                 this.permissionsService.getAllPermissions(pagedDataRequest);
         return ResponseEntity.ok(permissions);
     }
-
     @RequestMapping(value = "api/permissions/excel-report")
     public ResponseEntity<?> getExcelReport() throws IOException {
         ByteArrayInputStream byteArrayInputStream = this.permissionsService.generateReport();

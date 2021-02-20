@@ -3,7 +3,7 @@
 
     <div class="pb-2 flex justify-end">
       <router-link
-          to="/holiday-create"
+          to="/policy-create"
           tag="button"
           class="button mr-1 is-rounded is-small">
 				<span class="icon">
