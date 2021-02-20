@@ -5,16 +5,16 @@
         {{ label }} <span v-if="required"><sup>*</sup></span>
       </template>
       <b-autocomplete
-          :data="employees"
-          placeholder="Select Employee"
+          :data="projects"
+          placeholder="Select Project"
           field="fullName"
           :loading="isFetching"
           :check-infinite-scroll="true"
           @typing="getAsyncData"
-          @select="option => selectedEmployee = option"
+          @select="option => selectedProject = option"
           @infinite-scroll="getMoreAsyncData">
         <template slot="header">
-          <a @click="showAddEmployee">
+          <a @click="showAddProject">
             <span class="has-text-link"> Add new... </span>
           </a>
         </template>
@@ -55,38 +55,36 @@ export default {
     required: {
       default: true
     },
-    clientId: {
-
-    }
+    clientId: {}
   },
   data() {
     return {
-      employees: [],
+      projects: [],
       loading: false,
       isFetching: false,
-      employeeName: '',
+      projectName: '',
       page: 0,
       totalPages: 0,
-      selectedEmployee: {}
+      selectedProject: {}
     }
   },
   methods: {
-    showAddEmployee() {
+    showAddProject() {
 
     },
-    fetchEmployees(name) {
-      let request={
+    fetchProjects(name) {
+      let request = {
         page: this.page,
         pageSize: 10
       }
-      if(this.clientId){
-        request.clientId=this.clientId;
-        }
+      if (this.clientId) {
+        request.clientId = this.clientId;
+      }
       axios.get("/api/projects", {
         params: request
       })
           .then(({data}) => {
-            data.content.forEach((item) => this.employees.push(item))
+            data.content.forEach((item) => this.projects.push(item))
             this.page++
             this.totalPages = data.totalPages
             this.isFetching = false
@@ -96,15 +94,15 @@ export default {
     },
     getAsyncData: _debounce(function (name) {
       // String update
-      if (this.employeeName !== name) {
-        this.employeeName = name
-        this.employees = []
+      if (this.projectName !== name) {
+        this.projectName = name
+        this.projects = []
         this.page = 0
         this.totalPages = 0
       }
       // String cleared
       if (!name.length) {
-        this.employees = []
+        this.projects = []
         this.page = 0
         this.totalPages = 0
         return
@@ -115,14 +113,14 @@ export default {
       }
       this.isFetching = true
       //call fetchemployees
-      this.fetchEmployees(name)
+      this.fetchProjects(name)
     }, 500),
     getMoreAsyncData: _debounce(function () {
-      this.getAsyncData(this.employeeName)
+      this.getAsyncData(this.projectName)
     }, 250)
   },
   watch: {
-    selectedEmployee: function (val) {
+    selectedProject: function (val) {
       this.$emit('input', val.id);
     }
   }

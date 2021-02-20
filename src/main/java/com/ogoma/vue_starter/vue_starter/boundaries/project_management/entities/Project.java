@@ -35,12 +35,12 @@ public class Project {
     private String description;
     @Column(name = "client_id")
     private Long clientId;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", insertable = false, updatable = false)
     private Client client;
     @Column(name = "team_leader_id")
     private Long teamLeaderId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_leader_id", updatable = false, insertable = false)
     private Employee teamLeader;
     @ManyToMany
