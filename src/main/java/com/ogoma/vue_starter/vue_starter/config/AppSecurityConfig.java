@@ -67,7 +67,6 @@ public class AppSecurityConfig extends  WebSecurityConfigurerAdapter {
                         "/resend-registration-token**",
                         "/password-reset/**", "/_error/**", "/resources/static/**").permitAll()
                 .antMatchers("/resetpassword/*",
-                        "api/policies",
                         "/first-time/**", "/activate/**").permitAll()
                 .antMatchers("/setup-account/**").permitAll()
                 .anyRequest().authenticated()

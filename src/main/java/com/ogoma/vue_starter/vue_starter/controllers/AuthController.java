@@ -31,8 +31,6 @@ import java.util.Map;
 
 @Controller
 public class AuthController {
-
-
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final UserService userService;
@@ -48,12 +46,10 @@ public class AuthController {
         this.forgotPasswordRequestValidator = forgotPasswordRequestValidator;
         this.passwordResetRequestValidator = passwordResetRequestValidator;
     }
-
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login() {
         return "forward:/";
     }
-
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@RequestBody UserRegistrationModel userRegistrationModel,

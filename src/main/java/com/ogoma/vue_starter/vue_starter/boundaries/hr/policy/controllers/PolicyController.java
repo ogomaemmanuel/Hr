@@ -36,7 +36,7 @@ public class PolicyController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createPolicy(@RequestBody @Valid PolicyRequest policyRequest){
+    public ResponseEntity<?> createPolicy(@Valid PolicyRequest policyRequest){
         Policy policy=   this.policyService.createPolicy(policyRequest);
         return ResponseEntity.ok(policy);
     }
