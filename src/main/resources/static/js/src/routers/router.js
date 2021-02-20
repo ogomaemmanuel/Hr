@@ -380,12 +380,15 @@ const routes = new Router({
                                         breadcrumb: 'Policies',
                                         title: 'Policies',
                                         redirect: true,
-                                    }
+                                    },
+                                    children:[
+                                        {
+                                            path: "/policy-create",
+                                            component: PolicyCreate
+                                        }
+                                    ]
                                 },
-                                {
-                                    path: "/policy-create",
-                                    component: PolicyCreate
-                                }
+
 
                             ]
                         },
