@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter;
 
 
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import io.minio.MinioClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -52,4 +53,10 @@ public class VueStarterApplication {
         executor.initialize();
         return executor;
     }
+
+    //this makes json serialization not to include lazy loaded objects
+//    @Bean
+//    public Hibernate5Module hibernate5Module() {
+//        return new Hibernate5Module();
+//    }
 }

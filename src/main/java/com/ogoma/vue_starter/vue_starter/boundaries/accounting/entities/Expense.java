@@ -20,12 +20,14 @@ public class Expense {
     private BigDecimal amount;
     @OneToOne
     private User purchasedBy;
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "expense")
+    @OneToMany(cascade = CascadeType.PERSIST,
+            mappedBy = ExpenseAttachment_.EXPENSE)
     private Set<ExpenseAttachment> attachments;
     private Date updatedAt;
     private Date createdAt;
     @Enumerated(EnumType.STRING)
     private ExpenseStatus status;
+
     public Long getId() {
         return id;
     }

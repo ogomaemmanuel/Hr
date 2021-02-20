@@ -1,9 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Estimate;
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.models.EstimatePagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.models.EstimateRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.projections.EstimateProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.repositories.EstimatesRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.specifications.EstimatesSpecification;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ClientsRepository;
@@ -31,10 +33,9 @@ public class EstimatesService {
         this.projectsRepository = projectsRepository;
     }
 
-    public Page<EstimateProjection> getEstimates(PagedDataRequest pagedDataRequest) {
-        PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
-        Page<EstimateProjection> estimates =
-                this.estimatesRepository.getEstimates(pageRequest);
+    public Page<Estimate> getEstimates(EstimatePagedDataRequest pagedDataRequest) {
+        Page<Estimate> estimates =
+                this.estimatesRepository.findAll(pagedDataRequest.getSpecification(), pagedDataRequest.toPageable());
         return estimates;
     }
 
@@ -46,9 +47,7 @@ public class EstimatesService {
 
     public Estimate createEstimate(EstimateRequest estimateRequest) {
         Estimate estimate = new Estimate();
-        Client client = this.clientsRepository.findById(estimateRequest.getClientId()).orElseThrow(() -> {
-            return new RuntimeException();
-        });
+        Client client = this.clientsRepository.getOne(estimateRequest.getClientId());
         //Project project =
         estimate.setItems(estimate.getItems());
         estimate.setEstimateDate(estimateRequest.getEstimateDate());

@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
@@ -13,12 +14,12 @@ public class UserRole {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties("userRoles")
+    @JsonIgnore
     User user;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
-    @JsonIgnoreProperties("userRoles")
+    @JsonIgnore
     Role role;
 
     public Long getId() {

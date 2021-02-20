@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "policies")
@@ -15,15 +16,16 @@ public class Policy {
     private Long id;
     private String name;
     private String description;
-    @OneToOne
-    private Department department;
+    @OneToMany
+    @JoinTable(name = "department_policies")
+    private List<Department> departments;
     private String documentUrl;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
-    private  Date updatedAt;
+    private Date updatedAt;
 
     public Long getId() {
         return id;
@@ -32,6 +34,7 @@ public class Policy {
     public void setId(Long id) {
         this.id = id;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -44,12 +47,12 @@ public class Policy {
         this.description = description;
     }
 
-    public Department getDepartment() {
-        return department;
+    public List<Department> getDepartment() {
+        return departments;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDepartments(List<Department> department) {
+        this.departments = department;
     }
 
     public String getDocumentUrl() {
@@ -74,5 +77,9 @@ public class Policy {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public void addDepartment(Department department) {
+        this.departments.add(department);
     }
 }

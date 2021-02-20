@@ -1,0 +1,28 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="user (generated)" id="1613824826066-1">
+        <createTable tableName="department_policies">
+            <column name="policy_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departments_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613824826066-2">
+        <addUniqueConstraint columnNames="departments_id" constraintName="UK_20fiaifsxlg4m5eq5h18c7cod" tableName="department_policies"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613824826066-3">
+        <addForeignKeyConstraint baseColumnNames="policy_id" baseTableName="department_policies" constraintName="FK5omk7x16ipwdil0nvwgykhtct" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="policies" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613824826066-4">
+        <addForeignKeyConstraint baseColumnNames="departments_id" baseTableName="department_policies" constraintName="FKr32h8gvws3vhpm22pn11quqlx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="departments" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613824826066-5">
+        <dropForeignKeyConstraint baseTableName="policies" constraintName="FK36uqllt0frvedkg3yu2syytrj"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1613824826066-6">
+        <dropColumn columnName="department_id" tableName="policies"/>
+    </changeSet>
+</databaseChangeLog>

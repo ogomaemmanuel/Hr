@@ -1,13 +1,17 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "account_categories")
+@EntityListeners(AuditingEntityListener.class)
 public class AccountCategory {
     //accounts can be in these categories Assets,Equity,Liabilities,Revenues,Expenses
     @Id
@@ -20,6 +24,9 @@ public class AccountCategory {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
+    @ManyToOne
+    @CreatedBy
+    private User createdBy;
 
     public Long getId() {
         return id;
@@ -51,5 +58,13 @@ public class AccountCategory {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 }

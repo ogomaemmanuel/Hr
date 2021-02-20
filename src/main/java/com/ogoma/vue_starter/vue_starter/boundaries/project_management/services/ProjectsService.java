@@ -3,10 +3,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.project_management.services
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
-import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectDto;
-import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectMemberUpdateDto;
-import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.ProjectProjection;
-import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.TeamMemberProjection;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.models.*;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.repositories.ProjectsRepository;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.beans.BeanUtils;
@@ -28,11 +25,9 @@ public class ProjectsService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Page<ProjectProjection> getProjects(PagedDataRequest pagedDataRequest) {
-        Pageable pageable = PageRequest.of(pagedDataRequest.getPage(),
-                pagedDataRequest.getPageSize());
+    public Page<ProjectProjection> getProjects(ProjectPagedDataRequest pagedDataRequest) {
         Page<ProjectProjection> projects =
-                this.projectsRepository.getProjects(pageable);
+                this.projectsRepository.findAll(pagedDataRequest.toPageable()).map(ProjectProjection::new);
         return projects;
     }
 

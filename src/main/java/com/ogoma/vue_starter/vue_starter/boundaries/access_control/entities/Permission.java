@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.utils.StringUtils;
 
@@ -24,8 +25,9 @@ public class Permission {
         this.code = code;
     }
 
-    @OneToMany(mappedBy = "role")
-    @JsonIgnoreProperties("permission")
+    @OneToMany(mappedBy =  RolePermission_.ROLE)
+    //@JsonIgnoreProperties(RolePermission_.PERMISSION)
+    @JsonIgnore
     private Set<RolePermission> rolePermissions;
 
     public Long getId() {

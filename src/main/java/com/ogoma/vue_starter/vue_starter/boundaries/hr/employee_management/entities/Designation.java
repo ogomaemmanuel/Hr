@@ -24,11 +24,11 @@ public class Designation extends BaseEntity {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at")
-    private Date createdOn;
+    private Date createdAt;
     @UpdateTimestamp
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedOn;
+    private Date updatedAt;
 
     public Long getId() {
         return id;
@@ -64,21 +64,21 @@ public class Designation extends BaseEntity {
         this.department = department;
     }
 
-    public Date getCreatedOn() {
-        return createdOn;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public Designation setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
+    public Designation setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
         return this;
     }
 
-    public Date getUpdatedOn() {
-        return updatedOn;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public Designation setUpdatedOn(Date updatedOn) {
-        this.updatedOn = updatedOn;
+    public Designation setUpdatedOn(Date updatedAt) {
+        this.updatedAt = updatedAt;
         return this;
     }
 }

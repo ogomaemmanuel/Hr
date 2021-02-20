@@ -99,4 +99,9 @@ public class CustomUserDetails implements UserDetails {
     public Employee getEmployee() {
         return this.user.getEmployee();
     }
+
+    @JsonIgnore
+    public User getUser(){
+        return this.user;
+    }
 }

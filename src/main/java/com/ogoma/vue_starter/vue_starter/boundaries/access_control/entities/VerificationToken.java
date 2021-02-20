@@ -29,7 +29,7 @@ public class VerificationToken {
     private Date expiresOn;
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "user_id")
-    @JsonIgnoreProperties("passwordResetList")
+    @JsonIgnoreProperties(User_.PASSWORD_RESET_LIST)
     private User user;
     private String purpose;
 

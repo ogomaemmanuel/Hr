@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Estimate;
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.models.EstimatePagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.models.EstimateRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.projections.EstimateProjection;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.services.EstimatesService;
@@ -25,8 +26,8 @@ public class EstimatesController {
     }
 
     @RequestMapping(value = "api/estimates", method = RequestMethod.GET)
-    public ResponseEntity<?> getEstimate(PagedDataRequest pagedDataRequest) {
-        Page<EstimateProjection> estimates =
+    public ResponseEntity<?> getEstimate(EstimatePagedDataRequest pagedDataRequest) {
+        Page<Estimate> estimates =
                 this.estimatesService.getEstimates(pagedDataRequest);
         return ResponseEntity.ok(estimates);
     }

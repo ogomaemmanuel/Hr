@@ -192,6 +192,11 @@
                                         <span>Termination</span>
                                     </router-link>
                                 </li>
+                              <li>
+                                    <router-link to="/policies">
+                                        <span>Policy</span>
+                                    </router-link>
+                                </li>
                             </ul>
                         </li>
                         <li>

@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,9 +28,8 @@ public class TaxService {
     }
 
     public Page<Tax> getTaxes(PagedDataRequest pagedDataRequest) {
-        Pageable pageable = PageRequest.of(pagedDataRequest.getPage(),
-                pagedDataRequest.getPageSize());
-        Page<Tax> taxes = this.taxRepository.findAll(pageable);
+        Page<Tax> taxes =
+                this.taxRepository.findAll(pagedDataRequest.toPageable());
         return taxes;
     }
 
@@ -52,6 +52,10 @@ public class TaxService {
 
     public void removeTax(Long id) {
         this.taxRepository.deleteById(id);
+    }
+
+    public List<Tax> getAllTaxes() {
+        return this.taxRepository.findAll();
     }
 }
 

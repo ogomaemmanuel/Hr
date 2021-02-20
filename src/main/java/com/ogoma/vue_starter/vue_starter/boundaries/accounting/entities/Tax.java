@@ -1,7 +1,13 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User_;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -12,6 +18,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "taxes")
+@EntityListeners(AuditingEntityListener.class)
 public class Tax {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +34,14 @@ public class Tax {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @CreatedBy
+//    @JsonIgnoreProperties(value =
+//            {User_.USER_ROLES,
+//                    User_.EMPLOYEE,
+//                    User_.PASSWORD_RESET_LIST})
+   // @JsonIgnore
+    User createdBy;
 
     public Long getId() {
         return id;
@@ -62,5 +77,17 @@ public class Tax {
 
     public void setCreationAt(Date creationAt) {
         this.creationAt = creationAt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 }

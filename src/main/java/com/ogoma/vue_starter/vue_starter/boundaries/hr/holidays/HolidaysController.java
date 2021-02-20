@@ -30,25 +30,28 @@ public class HolidaysController {
 
     @RequestMapping(value = "api/holidays", method = RequestMethod.GET)
     public ResponseEntity<?> getAllHolidays(PagedDataRequest pagedDataRequest) {
-        Pageable pageable = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
-        Page<Holiday> holidays = this.holidaysService.getAllHolidays(pageable);
+        Page<Holiday> holidays = this.holidaysService.getAllHolidays(pagedDataRequest.toPageable());
         return ResponseEntity.ok(holidays);
     }
+
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getAllHoliday(@PathVariable Long id) {
         Holiday holiday = this.holidaysService.getAllHolidayById(id);
         return ResponseEntity.ok(holiday);
     }
+
     @RequestMapping(value = "api/holidays", method = RequestMethod.POST)
     public ResponseEntity<?> createHoliday(@RequestBody @Valid Holiday holiday) {
         holiday = this.holidaysService.createHoliday(holiday);
         return ResponseEntity.ok(holiday);
     }
+
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateHoliday(@PathVariable Long id, @RequestBody @Valid Holiday holiday) {
         holiday = this.holidaysService.updateHoliday(id, holiday);
         return ResponseEntity.ok(holiday);
     }
+
     @RequestMapping(value = "api/holidays/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> removeHoliday(@PathVariable Long id) {
         this.holidaysService.deleteHoliday(id);

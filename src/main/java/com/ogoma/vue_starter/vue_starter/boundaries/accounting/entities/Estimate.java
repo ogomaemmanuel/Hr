@@ -1,9 +1,14 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,15 +17,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "estimates",indexes = {
-        @Index(name = "estimate_date_index",columnList = "estimateDate"),
-        @Index(name = "expiry_date_index",columnList = "expiryDate")
+@Table(name = "estimates", indexes = {
+        @Index(name = "estimate_date_index",
+                columnList = Estimate_.ESTIMATE_DATE),
+        @Index(name = "expiry_date_index", columnList = Estimate_.ESTIMATE_DATE)
 })
+@EntityListeners(AuditingEntityListener.class)
 public class Estimate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JsonIgnoreProperties()
     private Client client;
     @OneToOne
     private Project project;
@@ -30,7 +38,8 @@ public class Estimate {
     private String otherInformation;
     private double percentageDiscount;
     @OneToMany(cascade = CascadeType.PERSIST,
-            mappedBy = "estimate")
+            mappedBy = EstimateItem_.ESTIMATE)
+    @JsonIgnore
     private Set<EstimateItem> items = new HashSet<>();
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
@@ -38,6 +47,10 @@ public class Estimate {
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
+    @CreatedBy
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    User createdBy;
 
     public Long getId() {
         return id;
@@ -122,5 +135,17 @@ public class Estimate {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 }
