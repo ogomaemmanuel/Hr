@@ -24,7 +24,7 @@
 				</span>
       </a>
     </div>
-    <div class="columns is-size-7">
+    <div class="columns">
       <div class="column is-12">
         <div class="card" ref="leaveRequests">
           <div class="card-content">
