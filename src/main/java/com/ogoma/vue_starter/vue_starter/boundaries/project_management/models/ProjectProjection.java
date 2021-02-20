@@ -1,7 +1,10 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.models;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.enums.Priority;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.enums.RateType;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +17,9 @@ public class ProjectProjection {
     private Date startDate;
     private Date endDate;
     private Date createdAt;
+    private RateType rateType;
+    private BigDecimal rate;
+    private Priority priority;
 
     public ProjectProjection(Project project) {
 //        this.clientName =
@@ -23,8 +29,10 @@ public class ProjectProjection {
         this.leadEmployeeId = project.getTeamLeaderId();
         this.startDate = project.getStartDate();
         this.endDate = project.getEndDate();
-        this.createdAt=project.getCreatedAt();
-
+        this.createdAt = project.getCreatedAt();
+        this.rateType = project.getRateType();
+        this.rate = project.getRate();
+        this.priority = project.getPriority();
 
 
     }
@@ -93,10 +101,30 @@ public class ProjectProjection {
         this.createdAt = createdAt;
     }
 
+    public RateType getRateType() {
+        return rateType;
+    }
 
+    public void setRateType(RateType rateType) {
+        this.rateType = rateType;
+    }
+
+    public BigDecimal getRate() {
+        return rate;
+    }
+
+    public void setRate(BigDecimal rate) {
+        this.rate = rate;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
 //    public String getClientName();
-//
-//    public String getName();
 //
 //    public Long getLeadEmployeeId();
 //
@@ -106,13 +134,6 @@ public class ProjectProjection {
 //
 //    public String getLeadDesignation();
 
-//
-//    public String getPriority();
-//
-//    public String getRate();
-//
-//    public String getRateType();
-//
 //    public Integer getCompleteTasks();
 //
 //    public Integer getOpenTasks();
@@ -124,9 +145,6 @@ public class ProjectProjection {
 //    public Long getClientId();
 //
 //    public String getClientLastName();
-//
-//    public Date getCreatedAt();
-//
 //    public default long getTotalHours() {
 //        long millisecondsDiff =
 //                Math.abs(this.getEndDate().getTime() - this.getStartDate().getTime());

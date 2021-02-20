@@ -120,6 +120,10 @@ const EstimateList =()=> import("../components/accounting/estimates/EstimateList
 const EstimateCreate =()=> import("../components/accounting/estimates/EstimateCreateForm")
 
 
+const PolicyPage =()=> import("../components/employee_management/policy/PolicyPage")
+const PolicyList =()=> import("../components/employee_management/policy/PolicyList")
+
+
 
 
 
@@ -363,6 +367,23 @@ const routes = new Router({
                                 //     component: DepartmentEdit,
                                 //     name: "departments-edit"
                                 // },
+
+                            ]
+                        },
+                        {
+                            name: "Policy",
+                            component:PolicyPage,
+                            path: "/policies",
+                            children: [
+                                {
+                                    path:"/",
+                                    component:PolicyList,
+                                    meta:{
+                                        breadcrumb: 'Policies',
+                                        title: 'Policies',
+                                        redirect: true,
+                                    }
+                                },
 
                             ]
                         },

@@ -54,7 +54,6 @@ public class User implements Serializable {
     @JsonProperty
     private String fullName;
     @OneToOne(mappedBy = Employee_.USER, fetch = FetchType.LAZY)
-    @LazyToOne(LazyToOneOption.NO_PROXY)
     private Employee employee;
     @JsonIgnore
     private String password;

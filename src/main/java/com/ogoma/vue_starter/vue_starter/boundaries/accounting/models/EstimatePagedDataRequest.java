@@ -5,6 +5,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.accounting.specifications.Es
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class EstimatePagedDataRequest extends PagedDataRequest {
@@ -13,6 +14,7 @@ public class EstimatePagedDataRequest extends PagedDataRequest {
     private Date estimateDate;
     private Date endDate;
     private String status;
+    private BigDecimal amount;
 
     public Long getClientId() {
         return clientId;
