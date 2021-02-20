@@ -5,7 +5,7 @@ COPY . .
 RUN npm install
 RUN npm run prod
 
-FROM maven:3.5.3-jdk-8-alpine AS build
+FROM maven:3.6.3-ibmjava-8-alpine AS build
 RUN mkdir -p /workspace
 WORKDIR /workspace
 COPY pom.xml /workspace
