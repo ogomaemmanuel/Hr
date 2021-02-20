@@ -5,7 +5,7 @@
       <router-link
           to="/policy-create"
           tag="button"
-          class="button mr-1 is-rounded is-small">
+          class="button mr-1 is-rounded">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
@@ -15,7 +15,7 @@
       </router-link>
       <a
           href="/api/holidays/excel-report"
-          class="button is-rounded is-small">
+          class="button is-rounded">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
 				</span>
@@ -29,44 +29,30 @@
         <div class="card" ref="leaveRequests">
           <div class="card-content">
             <div class="content b-table is-relative">
-              <h4>Holidays</h4>
+              <h4>Policies</h4>
               <table class="table has-mobile-cards w-full is-hoverable">
                 <thead class="font-thin">
                 <tr>
                   <th>
                     Name
                   </th>
-
                   <th>
                     Description
                   </th>
-<!--                  <th>-->
-<!--                    Action-->
-<!--                  </th>-->
+                  <th>
+                    Department
+                  </th>
+                  <th>
+                    Created
+                  </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="policy in policies">
-                  <td data-label="Name">{{policy.name}}</td>
-                  <td data-label="Description">{{policy.description}}</td>
-<!--                  <td data-label="Action">-->
-<!--                    <div class="action-controls d-flex justify-end">-->
-<!--                      <router-link-->
-<!--                          :to="`/holiday-edit/${policy.id}`" tag="button"-->
-<!--                          @click="setHolidayToEdit(holiday)" class="button is-white is-small">-->
-<!--												<span class="icon">-->
-<!--					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>-->
-<!--					                       </span>-->
-<!--                      </router-link>-->
-<!--                      <button-->
-<!--                          @click="confirmRemoveHoliday(holiday)"-->
-<!--                          class="button is-white is-small">-->
-<!--										           <span class="icon">-->
-<!--						                            <i class="fa fa-trash-o has-text-danger"></i>-->
-<!--					                               </span>-->
-<!--                      </button>-->
-<!--                    </div>-->
-<!--                  </td>-->
+                  <td data-label="Name">{{ policy.name }}</td>
+                  <td data-label="Description">{{ policy.description }}</td>
+                  <td data-label="Description">{{ policy.department[0].name }}</td>
+                  <td data-label="Description">{{ policy.createdAt }}</td>
                 </tr>
                 </tbody>
                 <tfoot>
@@ -96,7 +82,7 @@ import data_table_mixin from "../../../mixins/data_table_mixin";
 import Paginator from "../../common/paginator/Paginator";
 
 export default {
-  components:{
+  components: {
     Paginator
   },
   mixins: [data_table_mixin],
