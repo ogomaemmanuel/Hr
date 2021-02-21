@@ -732,3 +732,5 @@ java.lang.NullPointerException: null
 2021-02-21 12:33:41.630  INFO 8392 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Started VueStarterApplication in 6.508 seconds (JVM running for 49018.527)
 2021-02-21 12:33:41.666  INFO 8392 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
 2021-02-21 12:33:42.893  INFO 8392 --- [http-nio-49612-exec-1] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-21 12:33:42.896  INFO 8392 --- [http-nio-49612-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-02-21 12:33:42.905  INFO 8392 --- [http-nio-49612-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
