@@ -48,7 +48,7 @@ public class PolicyController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> removePolicy(@PathVariable Long id) {
         this.policyService.removePolicy(id);
-        ResponseEntity.ok("policy successfully removed");
+       return ResponseEntity.ok("policy successfully removed");
     }
 
 
