@@ -96,8 +96,9 @@ export default {
   },
   methods: {
     updatePolicy() {
+      let request = this.createFormData(this.policy);
       axios.put(`/api/policies/${this.id}`,
-          this.policy).then(resp => {
+          request).then(resp => {
         Message.success("Policy successfully updated")
         this.$emit("updateSuccessful");
       }, error => {
