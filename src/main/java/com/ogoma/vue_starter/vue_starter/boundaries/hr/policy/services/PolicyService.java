@@ -68,7 +68,7 @@ public class PolicyService {
 
     public Optional<Policy> getPolicyById(Long id) {
         Optional<Policy> policy =
-                this.policyRepository.findById(id);
+                this.policyRepository.getById(id);
         return policy;
     }
 }
