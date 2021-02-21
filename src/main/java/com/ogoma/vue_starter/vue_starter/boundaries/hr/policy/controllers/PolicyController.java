@@ -39,6 +39,12 @@ public class PolicyController {
         return ResponseEntity.ok(policy);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getPolicyById(@PathVariable Long id) {
+        Optional<Policy> policy = this.policyService.getPolicyById(id);
+        return ResponseEntity.of(policy);
+    }
+
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> updatePolicy(@PathVariable("id") Long id, @Valid PolicyRequest policyRequest) {
         Optional<Policy> policy = this.policyService.updatePolicy(id, policyRequest);
@@ -48,7 +54,7 @@ public class PolicyController {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> removePolicy(@PathVariable Long id) {
         this.policyService.removePolicy(id);
-       return ResponseEntity.ok("policy successfully removed");
+        return ResponseEntity.ok("policy successfully removed");
     }
 
 

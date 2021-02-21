@@ -62,8 +62,13 @@ public class PolicyService {
         });
         return policy;
     }
-
     public void removePolicy(Long id) {
         this.policyRepository.deleteById(id);
+    }
+
+    public Optional<Policy> getPolicyById(Long id) {
+        Optional<Policy> policy =
+                this.policyRepository.findById(id);
+        return policy;
     }
 }

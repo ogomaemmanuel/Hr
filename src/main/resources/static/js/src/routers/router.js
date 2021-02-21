@@ -123,6 +123,7 @@ const EstimateCreate = () => import("../components/accounting/estimates/Estimate
 const PolicyPage = () => import("../components/employee_management/policy/PolicyPage")
 const PolicyList = () => import("../components/employee_management/policy/PolicyList")
 const PolicyCreate = () => import("../components/employee_management/policy/PolicyCreateModal")
+const PolicyEdit= () => import("../components/employee_management/policy/PolicyEditModal")
 
 
 Vue.use(Router);
@@ -385,7 +386,11 @@ const routes = new Router({
                                         {
                                             path: "/policy-create",
                                             component: PolicyCreate
-                                        }
+                                        },
+                                        {
+                                            path: "/policy-edit/:id",
+                                            component: PolicyEdit
+                                        },
                                     ]
                                 },
 

@@ -2,7 +2,7 @@
   <div>
     <form>
       <div class="has-text-centered m-3">
-        <h1 class="has-text-black"><b>Add Policy</b></h1>
+        <h1 class="has-text-black"><b>Update Policy</b></h1>
       </div>
       <div class="field">
         <label class="label"> Name <span><sup>*</sup></span></label>
@@ -66,7 +66,7 @@
 
             :class="{'is-loading':loading}"
             :disabled="disableSubmitButton"
-            @click.prevent.stop="createPolicy"
+            @click.prevent.stop="updatePolicy"
             class="button  is-rounded"
             type="submit">Submit
         </button>
@@ -76,9 +76,13 @@
 </template>
 <script>
 import common_mixin from "../../../mixins/common_mixin";
+import DepartmentSelectInput from "../../common/DepartmentSelectInput";
 import {Message} from "element-ui"
 
 export default {
+  components:{
+    DepartmentSelectInput
+  },
   mixins: [common_mixin],
   props: {
     id: {
@@ -88,13 +92,24 @@ export default {
   data() {
     return {
       policy: {},
-      loading: false
+      loading: false,
+      fileName:""
     }
   },
   created() {
     this.getPolicy();
   },
+  computed: {
+    disableSubmitButton() {
+      return this.loading;
+    }
+  },
   methods: {
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.policy.attachment = file;
+      this.fileName = file.name;
+    },
     updatePolicy() {
       let request = this.createFormData(this.policy);
       axios.put(`/api/policies/${this.id}`,
