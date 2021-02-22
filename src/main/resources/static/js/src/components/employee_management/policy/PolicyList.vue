@@ -88,13 +88,16 @@
                 </tr>
                 </tfoot>
               </table>
-<!--              <b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>-->
+              <!--              <b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>-->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view
+
+        @createSuccessful="onCreateSuccessful">
+    </router-view>
   </div>
 </template>
 <script>
@@ -119,7 +122,11 @@ export default {
     fetchRecords() {
       this.getPolicies()
     },
-    confirmRemovePolicy(policy){},
+    confirmRemovePolicy(policy) {
+    },
+    onCreateSuccessful() {
+      this.getPolicies();
+    },
     getPolicies() {
       let request = {
         page: this.page,

@@ -1,6 +1,7 @@
 <template>
   <ModalTemplate @modalClosed="$router.go(-1)">
     <PolicyEditForm
+        @updateSuccessful="onUpdateSuccessful"
         :id="$route.params.id"
         slot="modal-content">
     </PolicyEditForm>
@@ -16,13 +17,16 @@ export default {
     ModalTemplate
   },
   data() {
-    return {
-
-    }
+    return {}
   },
   created() {
 
   },
-  methods: {}
+  methods: {
+    onUpdateSuccessful() {
+      this.$emit("updateSuccessful");
+      this.$router.go(-1)
+    }
+  }
 }
 </script>

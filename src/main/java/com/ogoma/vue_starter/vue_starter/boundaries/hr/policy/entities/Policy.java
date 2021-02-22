@@ -17,7 +17,7 @@ public class Policy {
     private Long id;
     private String name;
     private String description;
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "department_policies")
     private List<Department> departments = new ArrayList<>();
     private String documentUrl;

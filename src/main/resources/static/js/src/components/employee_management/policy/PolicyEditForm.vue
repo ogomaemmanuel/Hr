@@ -122,7 +122,6 @@ export default {
         } else {
           Message.error("There was an error updating policy")
         }
-
       })
 
     },
