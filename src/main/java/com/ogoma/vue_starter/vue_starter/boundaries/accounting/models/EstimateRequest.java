@@ -1,21 +1,14 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.models;
 
-import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.EstimateItem;
-import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
-import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
+import java.util.List;
 public class EstimateRequest {
+    @NotNull(message = "Select a client")
     private Long clientId;
     private Long projectId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -25,10 +18,12 @@ public class EstimateRequest {
     @Min(value = 0l)
     private BigDecimal amount;
     private String otherInformation;
-    @Min(message = "Enter a valid percentage amount",value = 0)
-    @Max(message = "Enter a valid percentage amount",value = 100)
+    @Min(message = "Enter a valid percentage amount", value = 0)
+    @Max(message = "Enter a valid percentage amount", value = 100)
     private double percentageDiscount;
-    private Set<EstimateItem> items = new HashSet<>();
+    @Valid
+    private List<EstimateItem> items;
+
     public Long getClientId() {
         return clientId;
     }
@@ -61,6 +56,14 @@ public class EstimateRequest {
         this.expiryDate = expiryDate;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
     public String getOtherInformation() {
         return otherInformation;
     }
@@ -77,11 +80,55 @@ public class EstimateRequest {
         this.percentageDiscount = percentageDiscount;
     }
 
-    public Set<EstimateItem> getItems() {
+    public List<EstimateItem> getItems() {
         return items;
     }
 
-    public void setItems(Set<EstimateItem> items) {
+    public void setItems(List<EstimateItem> items) {
         this.items = items;
+    }
+
+    public static class EstimateItem {
+        @NotNull(message = "Name is required")
+        private String name;
+        @NotBlank(message = "Description is required")
+        private String description;
+        @NotNull(message = "Unit cost is required")
+        private BigDecimal unitCost;
+        @NotNull(message = "Quantity is required")
+        @Min(value = 1, message = "Enter a right figure for quantity")
+        private Integer quantity;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
+        public BigDecimal getUnitCost() {
+            return unitCost;
+        }
+
+        public void setUnitCost(BigDecimal unitCost) {
+            this.unitCost = unitCost;
+        }
+
+        public Integer getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(Integer quantity) {
+            this.quantity = quantity;
+        }
     }
 }
