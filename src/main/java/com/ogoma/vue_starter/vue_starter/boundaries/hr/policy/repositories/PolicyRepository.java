@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface PolicyRepository extends JpaRepository<Policy, Long>, JpaSpecificationExecutor<Policy> {
-    @Query(value = "select p from Policy p left join fetch p.departments")
+    @Query(value = "select p from Policy p left join fetch p.departments where p.id=:id")
     Optional<Policy> getById(Long id);
 }
