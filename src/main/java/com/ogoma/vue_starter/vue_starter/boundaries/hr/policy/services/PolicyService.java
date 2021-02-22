@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.JoinType;
+import java.util.Optional;
 
 @Service
 public class PolicyService {
@@ -36,6 +37,8 @@ public class PolicyService {
     }
 
     public Policy createPolicy(PolicyRequest policyRequest) {
+
+        //TODO upload  policyRequest attachment to s3 bucket and update url for policy
         Department department =
                 this.departmentsRepository.getOne(policyRequest.getDepartmentId());
         Policy policy = new Policy();
@@ -43,6 +46,29 @@ public class PolicyService {
         policy.setName(policyRequest.getName());
         policy.addDepartment(department);
         this.policyRepository.save(policy);
+        return policy;
+    }
+
+    public Optional<Policy> updatePolicy(Long id, PolicyRequest policyRequest) {
+        //TODO upload  policyRequest attachment to s3 bucket and update url for policy
+        Department department = this.departmentsRepository.getOne(policyRequest.getDepartmentId());
+        Optional<Policy> policy =
+                this.policyRepository.findById(id);
+        policy.ifPresent(p -> {
+            p.setName(policyRequest.getName());
+            p.setDescription(policyRequest.getDescription());
+            p.addDepartment(department);
+            this.policyRepository.save(p);
+        });
+        return policy;
+    }
+    public void removePolicy(Long id) {
+        this.policyRepository.deleteById(id);
+    }
+
+    public Optional<Policy> getPolicyById(Long id) {
+        Optional<Policy> policy =
+                this.policyRepository.getById(id);
         return policy;
     }
 }

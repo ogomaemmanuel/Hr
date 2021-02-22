@@ -24,7 +24,7 @@
 				</span>
       </a>
     </div>
-    <div class="columns is-size-7">
+    <div class="columns">
       <div class="column is-12">
         <div class="card" ref="leaveRequests">
           <div class="card-content">
@@ -45,6 +45,7 @@
                   <th>
                     Created
                   </th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,11 +54,30 @@
                   <td data-label="Description">{{ policy.description }}</td>
                   <td data-label="Description">{{ policy.department[0].name }}</td>
                   <td data-label="Description">{{ policy.createdAt }}</td>
+                  <td data-label="Action">
+                    <div class="action-controls d-flex justify-end">
+                      <router-link
+                          :to="`/policy-edit/${policy.id}`" tag="button"
+                          class="button is-white is-small">
+												<span class="icon">
+					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
+					                       </span>
+                      </router-link>
+                      <button
+                          @click="confirmRemovePolicy(policy)"
+                          class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-trash-o has-text-danger"></i>
+					                               </span>
+                      </button>
+                    </div>
+                  </td>
+
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
-                  <td colspan="4">
+                  <td colspan="5">
                     <Paginator
                         @previousPage="goToPrevious"
                         @nextPage="goToNext"
@@ -68,13 +88,16 @@
                 </tr>
                 </tfoot>
               </table>
-              <b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>
+              <!--              <b-loading :is-full-page="false" :active.sync="loading" :can-cancel="true"></b-loading>-->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view
+
+        @createSuccessful="onCreateSuccessful">
+    </router-view>
   </div>
 </template>
 <script>
@@ -98,6 +121,11 @@ export default {
   methods: {
     fetchRecords() {
       this.getPolicies()
+    },
+    confirmRemovePolicy(policy) {
+    },
+    onCreateSuccessful() {
+      this.getPolicies();
     },
     getPolicies() {
       let request = {

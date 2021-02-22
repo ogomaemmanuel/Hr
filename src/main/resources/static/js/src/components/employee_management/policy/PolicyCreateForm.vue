@@ -89,6 +89,7 @@ export default {
     return {
       policy: {},
       loading: false,
+      fileName: ""
     }
   },
   methods: {
@@ -99,10 +100,11 @@ export default {
     },
     createPolicy() {
       this.loading = true;
-      let request=this.createFormData(this.policy);
+      let request = this.createFormData(this.policy);
       axios.post("/api/policies", request).then(resp => {
         this.loading = false;
         Message.success("Policy successfully created");
+        this.$emit("createSuccessful")
       }, error => {
         this.loading = false;
         if (error.response.status == 400) {

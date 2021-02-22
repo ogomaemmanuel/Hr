@@ -1,6 +1,9 @@
 <template>
   <ModalTemplate>
-    <PolicyCreateForm slot="modal-content"></PolicyCreateForm>
+    <PolicyCreateForm
+        @createSuccessful="onCreateSuccessful"
+        slot="modal-content">
+    </PolicyCreateForm>
   </ModalTemplate>
 </template>
 <script>
@@ -11,6 +14,12 @@ export default {
   components: {
     ModalTemplate,
     PolicyCreateForm
+  },
+  methods: {
+    onCreateSuccessful() {
+      this.$emit("createSuccessful");
+      this.$router.go(-1);
+    }
   }
 
 }
