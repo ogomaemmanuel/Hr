@@ -27,8 +27,7 @@ public class Estimate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JsonIgnoreProperties()
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
     @OneToOne
     private Project project;

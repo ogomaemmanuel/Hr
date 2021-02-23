@@ -70,6 +70,12 @@
 						                            <i class="fa fa-trash-o has-text-danger"></i>
 					                               </span>
                       </button>
+                      <button
+                          class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-download"></i>
+                               </span>
+                      </button>
                     </div>
                   </td>
 
@@ -103,6 +109,7 @@
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
 import Paginator from "../../common/paginator/Paginator";
+import {Message} from "element-ui"
 
 export default {
   components: {
@@ -123,6 +130,19 @@ export default {
       this.getPolicies()
     },
     confirmRemovePolicy(policy) {
+      this.$buefy.dialog.confirm({
+        title: 'Delete Policy',
+        message: `Are you sure want to delete <b> ${policy.name}</b> policy`,
+        onConfirm: () => this.removePolicy(policy)
+      })
+    },
+    removePolicy(policy) {
+      axios.delete(`/api/policies/${policy.id}`).then(resp => {
+        Message.success(`Policy ${policy.name} successfuly removed`);
+        this.getPolicies();
+      }, error => {
+        Message.error(`Error deleting policy ${policy.name}`)
+      })
     },
     onCreateSuccessful() {
       this.getPolicies();
