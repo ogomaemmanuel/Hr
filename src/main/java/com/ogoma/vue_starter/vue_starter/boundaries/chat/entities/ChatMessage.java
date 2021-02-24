@@ -8,15 +8,20 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "chat_messages")
+@Table(name = "chat_messages",
+        indexes = {
+                @Index(name = "created_at_idx", columnList = ChatMessage_.CREATED_AT),
+                @Index(name = "updated_at_idx", columnList = ChatMessage_.CREATED_AT)
+        }
+)
 public class ChatMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User sender;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User recipient;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp

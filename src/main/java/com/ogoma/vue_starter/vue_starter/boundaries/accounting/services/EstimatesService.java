@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Estimate;
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.EstimateItem;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.models.EstimatePagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.models.EstimateRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.projections.EstimateProjection;
@@ -16,7 +17,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EstimatesService {
@@ -48,11 +51,20 @@ public class EstimatesService {
     public Estimate createEstimate(EstimateRequest estimateRequest) {
         Estimate estimate = new Estimate();
         Client client = this.clientsRepository.getOne(estimateRequest.getClientId());
+        List<EstimateItem> estimateItem=
+                estimateRequest.getItems().stream().map(x->{
+                  EstimateItem item=  new EstimateItem();
+                  item.setName(x.getName());
+                  item.setDescription(x.getDescription());
+                  item.setQuantity(x.getQuantity());
+                  item.setUnitCost(x.getUnitCost());
+                  return item;
+                }).collect(Collectors.toList());
         //Project project =
-        estimate.setItems(estimate.getItems());
+        estimate.setItems(estimateItem);
         estimate.setEstimateDate(estimateRequest.getEstimateDate());
         estimate.setClient(client);
-        //estimate.setAmount(estimateRequest.get());
+        estimate.setAmount(estimateRequest.getAmount());
         estimate.setExpiryDate(estimateRequest.getExpiryDate());
         estimate.setOtherInformation(estimateRequest.getOtherInformation());
         this.estimatesRepository.save(estimate);
