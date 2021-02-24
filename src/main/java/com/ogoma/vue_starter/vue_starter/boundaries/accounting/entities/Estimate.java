@@ -12,9 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "estimates", indexes = {
@@ -39,7 +37,7 @@ public class Estimate {
     @OneToMany(cascade = CascadeType.PERSIST,
             mappedBy = EstimateItem_.ESTIMATE)
     @JsonIgnore
-    private Set<EstimateItem> items = new HashSet<>();
+    private List<EstimateItem> items ;
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
@@ -112,11 +110,11 @@ public class Estimate {
         this.percentageDiscount = percentageDiscount;
     }
 
-    public Set<EstimateItem> getItems() {
+    public List<EstimateItem> getItems() {
         return items;
     }
 
-    public void setItems(Set<EstimateItem> items) {
+    public void setItems(List<EstimateItem> items) {
         this.items = items;
     }
 

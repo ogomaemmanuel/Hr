@@ -14,7 +14,7 @@ public class EstimateItem {
     private String description;
     private BigDecimal unitCost;
     private Integer quantity;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estimate_id")
     private Estimate estimate;
 

@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
@@ -22,6 +23,8 @@ public class EstimateRequest {
     @Max(message = "Enter a valid percentage amount", value = 100)
     private double percentageDiscount;
     @Valid
+    @NotEmpty(message = "No estimate item added")
+    @JsonProperty("estimateItems")
     private List<EstimateItem> items;
 
     public Long getClientId() {
@@ -97,6 +100,7 @@ public class EstimateRequest {
         private BigDecimal unitCost;
         @NotNull(message = "Quantity is required")
         @Min(value = 1, message = "Enter a right figure for quantity")
+        @JsonProperty("qty")
         private Integer quantity;
 
         public String getName() {
