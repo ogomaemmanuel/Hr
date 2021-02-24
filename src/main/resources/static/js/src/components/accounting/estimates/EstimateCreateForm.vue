@@ -4,8 +4,12 @@
       <div class="columns">
         <div class="column">
           <ClientSelectInput
+              @input="clearFieldError('clientId')"
               :emit-all-fields="true"
               v-model="selectClient">
+            <span slot="errors" class="mb-2 has-text-danger" v-if="errors['clientId']">
+						        {{ errors['clientId'][0] }}
+            </span>
           </ClientSelectInput>
         </div>
         <div class="column">
@@ -65,8 +69,12 @@
             <label class="label">Estimate Date</label>
             <div class="control">
               <DatePicker
+                  @input="clearFieldError('estimateDate')"
                   v-model="estimate.estimateDate">
               </DatePicker>
+              <span class="mb-2 has-text-danger" v-if="errors['estimateDate']">
+						        {{ errors['estimateDate'][0] }}
+					    </span>
             </div>
           </div>
         </div>
@@ -75,8 +83,12 @@
             <label class="label">Expiry Date</label>
             <div class="control">
               <DatePicker
+                  @input="clearFieldError('expiryDate')"
                   v-model="estimate.expiryDate">
               </DatePicker>
+              <span class="mb-2 has-text-danger" v-if="errors['expiryDate']">
+						        {{ errors['expiryDate'][0] }}
+					    </span>
             </div>
           </div>
         </div>

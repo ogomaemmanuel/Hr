@@ -68,6 +68,9 @@ public class EstimatesService {
         estimate.setExpiryDate(estimateRequest.getExpiryDate());
         estimate.setOtherInformation(estimateRequest.getOtherInformation());
         this.estimatesRepository.save(estimate);
+        if(estimateRequest.isSaveAndSend()){
+            //TODO send email to client asynchronously
+        }
         return estimate;
     }
 
