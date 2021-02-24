@@ -13,7 +13,9 @@ public class EstimateRequest {
     private Long clientId;
     private Long projectId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull(message = "Estimate date is required")
     private Date estimateDate;
+    @NotNull(message = "Estimate expiry date is required")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date expiryDate;
     @Min(value = 0l)
@@ -26,6 +28,8 @@ public class EstimateRequest {
     @NotEmpty(message = "No estimate item added")
     @JsonProperty("estimateItems")
     private List<EstimateItem> items;
+
+    private boolean saveAndSend;
 
     public Long getClientId() {
         return clientId;
@@ -89,6 +93,14 @@ public class EstimateRequest {
 
     public void setItems(List<EstimateItem> items) {
         this.items = items;
+    }
+
+    public boolean isSaveAndSend() {
+        return saveAndSend;
+    }
+
+    public void setSaveAndSend(boolean saveAndSend) {
+        this.saveAndSend = saveAndSend;
     }
 
     public static class EstimateItem {
