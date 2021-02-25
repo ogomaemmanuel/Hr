@@ -110,6 +110,7 @@
           </thead>
           <tbody>
           <tr is="EstimateItemCreate"
+              @removedItem="removeEstimateItem"
               :errorMessages="errors"
               v-for="(estimateItem ,index) in estimateItems"
               :estimateItem="estimateItem" :index="index">
