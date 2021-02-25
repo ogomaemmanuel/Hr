@@ -7,6 +7,7 @@
       <div class="field">
         <div class="control">
           <input
+              @input="clearFieldError(`items[${index}].name`)"
               class="input"
               v-model="estimateItem.name">
           </input>
@@ -21,6 +22,7 @@
       <div class="field">
         <div class="control">
           <input
+              @input="clearFieldError(`items[${index}].description`)"
               class="input"
               v-model="estimateItem.description"
               placeholder="Textarea">
@@ -37,6 +39,7 @@
       <div class="field">
         <div class="control">
           <InputNumber
+              @input="clearFieldError(  `items[${index}].unitCost`)"
               :controls="false"
               v-model="estimateItem.unitCost">
 
@@ -52,6 +55,7 @@
       <div class="field">
         <div class="control">
           <InputNumber
+              @input="clearFieldError(`items[${index}].quantity`)"
               :min="1"
               v-model="estimateItem.qty">
           </InputNumber>
@@ -77,20 +81,17 @@
         </div>
       </div>
     </td>
-
-
   </tr>
 </template>
 <script>
 import common_mixin from "../../../mixins/common_mixin";
 import ClientSelectInput from "../../common/ClientSelectInput";
-import {Message, DatePicker, InputNumber} from "element-ui"
-
+import {InputNumber} from "element-ui"
 export default {
   components: {
     ClientSelectInput,
     InputNumber,
-    DatePicker
+
   },
   mixins: [common_mixin],
   props: {

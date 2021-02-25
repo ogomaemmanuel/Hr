@@ -141,6 +141,9 @@ export default {
     this.getEstimates();
   },
   methods: {
+    fetchRecords() {
+      this.getEstimates()
+    },
     getEstimates() {
       axios.get("/api/estimates", {
         params: {
