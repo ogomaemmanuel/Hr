@@ -80,6 +80,8 @@
               <th>
                 Amount
               </th>
+              <th>
+              </th>
             </tr>
             </thead>
             <tbody>
@@ -91,13 +93,31 @@
                 {{ estimate.id }}
               </td>
               <td>
-                {{ estimate.estimateDate }}
+                {{ estimate.estimateDate |formatDate }}
               </td>
               <td>
-                {{ estimate.expiryDate }}
+                {{ estimate.expiryDate|formatDate }}
               </td>
               <td>
                 {{ estimate.amount }}
+              </td>
+              <td data-label="Action">
+                <div class="action-controls d-flex justify-end">
+                  <router-link
+                      :to="`/tax-edit/${estimate.id}`" tag="button"
+                      @click="" class="button is-white is-small">
+												<span class="icon">
+					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
+					                       </span>
+                  </router-link>
+                  <button
+                      @click="confirmRemoveEstimate(estimate)"
+                      class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-trash-o has-text-danger"></i>
+					                               </span>
+                  </button>
+                </div>
               </td>
             </tr>
             </tbody>
@@ -140,10 +160,19 @@ export default {
   created() {
     this.getEstimates();
   },
+
+  filters: {
+    formatDate(val) {
+      if(val) {
+        return moment(val).format("DD-MMMM-YYYY")
+      }
+    }
+  },
   methods: {
     fetchRecords() {
       this.getEstimates()
     },
+    confirmRemoveEstimate(estimate){},
     getEstimates() {
       axios.get("/api/estimates", {
         params: {

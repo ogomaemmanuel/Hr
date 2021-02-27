@@ -2,7 +2,7 @@
     <ModalTemplate width="900" ref="modalTemplate" @modalClosed="onModalClosed">
         <slot name="modal-content">
             <ClientCreateForm
-                    @roleCreateSuccessful="onClientCreateSuccessful"
+                    @createSuccessful="onClientCreateSuccessful"
                     slot="modal-content">
             </ClientCreateForm>
         </slot>
