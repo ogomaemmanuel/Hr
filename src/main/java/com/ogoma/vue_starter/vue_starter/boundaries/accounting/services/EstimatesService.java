@@ -44,7 +44,7 @@ public class EstimatesService {
 
     public Optional<Estimate> getEstimateById(Long id) {
         Optional<Estimate> estimate =
-                this.estimatesRepository.findById(id);
+                this.estimatesRepository.fetchEstimateById(id);
         return estimate;
     }
 

@@ -1,6 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyToOne;
+import org.hibernate.annotations.LazyToOneOption;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -12,27 +14,33 @@ import java.util.Date;
 @Table(name = "employee_resignations")
 public class EmployeeResignation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull(message = "Notice date is required")
+    @Temporal(TemporalType.DATE)
     private Date noticeDate;
     @NotNull(message = "Resignation date is required")
+    @Temporal(TemporalType.DATE)
     private Date resignationDate;
     @NotBlank(message = "Resignation is required")
     private String reason;
-    @Column(name = "employee_id")
-    @NotNull(message = "Select an Employee")
-    private Long employeeId;
-    @OneToOne
-    @JoinColumn(insertable = false, updatable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @JoinColumn(name = "id")
+    ///@LazyToOne(value = LazyToOneOption.NO_PROXY)
     private Employee employee;
     @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getNoticeDate() {
@@ -59,20 +67,14 @@ public class EmployeeResignation {
         this.reason = reason;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
-    }
-
     public Employee getEmployee() {
         return employee;
     }
 
     public void setEmployee(Employee employee) {
+        employee.setEmployeeResignation(this);
         this.employee = employee;
+
     }
 
     public Date getCreatedAt() {

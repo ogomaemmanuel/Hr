@@ -41,13 +41,17 @@
     </div>
     <div class="columns h-full">
       <div class="column is-12">
-        <ClientTableList v-if="showTableList"></ClientTableList>
+        <ClientTableList
+            :refresh-data="refreshData"
+            v-if="showTableList">
+        </ClientTableList>
         <ClientCardList
             :refresh-data="refreshData"
             v-else></ClientCardList>
       </div>
     </div>
     <router-view
+        @updateSuccessful="onCreateSuccessful"
         @createSuccessful="onCreateSuccessful"
     ></router-view>
   </div>

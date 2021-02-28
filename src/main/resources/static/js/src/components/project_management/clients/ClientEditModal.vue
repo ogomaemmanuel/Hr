@@ -2,7 +2,7 @@
     <ModalTemplate width="900" overflow="visible"  @modalClosed="$router.back()">
         <slot name="modal-content">
             <ClientEditForm
-                    @updated="onUpdated"
+                    @updateSuccessful="onUpdated"
                     :client-id="$route.params.id"
                     slot="modal-content">
             </ClientEditForm>
@@ -19,7 +19,7 @@
         },
         methods: {
             onUpdated() {
-                this.$emit("updated");
+                this.$emit("updateSuccessful");
                 this.$router.back();
             }
         },

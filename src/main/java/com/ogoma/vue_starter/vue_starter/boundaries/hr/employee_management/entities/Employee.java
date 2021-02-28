@@ -19,7 +19,7 @@ import java.util.*;
 @SQLDelete(sql = "update employees set deleted=true,deleted_at=now()  where id=?")
 public class Employee extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date joiningDate;
     @Column(name = "supervisor_id")
@@ -37,9 +37,10 @@ public class Employee extends BaseEntity {
     private GenderEnum gender;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @LazyToOne(LazyToOneOption.NO_PROXY)
-    @JoinColumn(name = "user_id")
+    @MapsId
+    @JoinColumn(name = "id")
     private User user;
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "designation_id", insertable = false, updatable = false)
     @LazyToOne(LazyToOneOption.NO_PROXY)
     private Designation designation;
@@ -63,7 +64,8 @@ public class Employee extends BaseEntity {
     private Department department;
     @Column(name = "department_id")
     private Long departmentId;
-
+    @OneToOne(mappedBy = EmployeeResignation_.EMPLOYEE,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private EmployeeResignation employeeResignation;
 
     public Long getId() {
         return id;
@@ -213,6 +215,14 @@ public class Employee extends BaseEntity {
 
     public Long getDesignationId() {
         return designationId;
+    }
+
+    public EmployeeResignation getEmployeeResignation() {
+        return employeeResignation;
+    }
+
+    public void setEmployeeResignation(EmployeeResignation employeeResignation) {
+        this.employeeResignation = employeeResignation;
     }
 
     public void setDesignationId(Long designationId) {

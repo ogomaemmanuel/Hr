@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface EstimatesRepository extends JpaRepository<Estimate, Long>, JpaSpecificationExecutor<Estimate> {
     @Query(value = "select amount,client_id as clientId,expiry_date as expiryDate,estimate_date as estimateDate," +
@@ -19,4 +21,7 @@ public interface EstimatesRepository extends JpaRepository<Estimate, Long>, JpaS
             countQuery = "select count(*) from estimates",
             nativeQuery = true)
     public Page<EstimateProjection> getEstimates(Pageable pageable);
+    @Query(value = "select e from Estimate e left join fetch e.project" +
+            " left join fetch e.client left join fetch e.items  where e.id=:id")
+    public Optional<Estimate> fetchEstimateById(Long id);
 }

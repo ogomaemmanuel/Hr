@@ -104,7 +104,7 @@
               <td data-label="Action">
                 <div class="action-controls d-flex justify-end">
                   <router-link
-                      :to="`/tax-edit/${estimate.id}`" tag="button"
+                      :to="`/estimate-edit/${estimate.id}`" tag="button"
                       @click="" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>

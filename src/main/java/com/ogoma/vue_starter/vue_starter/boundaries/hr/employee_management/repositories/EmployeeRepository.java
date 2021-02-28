@@ -29,13 +29,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             "FROM\n" +
             "    employees e\n" +
             "        LEFT JOIN\n" +
-            "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
+            "    users u ON e.id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
             countQuery = "SELECT \n" +
                     "   count(e.id)\n" +
                     "FROM\n" +
                     "    employees e\n" +
                     "        LEFT JOIN\n" +
-                    "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
+                    "    users u ON e.id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
             nativeQuery = true)
     public Page<EmployeeQuery> getAllEmployees(Pageable pageable);
 
@@ -56,13 +56,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             "FROM\n" +
             "    employees e\n" +
             "        LEFT JOIN\n" +
-            "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
+            "    users u ON e.id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
             countQuery = "SELECT \n" +
                     "   count(e.id)\n" +
                     "FROM\n" +
                     "    employees e\n" +
                     "        LEFT JOIN\n" +
-                    "    users u ON e.user_id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
+                    "    users u ON e.id = u.id left join designations dsg on e.designation_id=dsg.id where e.deleted=0",
             nativeQuery = true)
     public Page<EmployeeSalaryViewModel> getEmployeesSalary(Pageable pageable);
 
@@ -81,7 +81,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
             "FROM\n" +
             "    employees e\n" +
             "        LEFT JOIN\n" +
-            "    users u ON e.user_id = u.id left join" +
+            "    users u ON e.id = u.id left join" +
             " designations dsg on e.designation_id=dsg.id" +
             " left join departments d on e.department_id = d.id" +
             " where e.deleted=0 and e.id=:employeeId",nativeQuery=true)

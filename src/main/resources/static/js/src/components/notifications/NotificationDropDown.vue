@@ -16,7 +16,7 @@
 					<div class="content">
 						<NotificationItem
 								v-for="notification in notifications"
-								:notification="notification">
+								:notification="notification" :key="notification.id">
 						</NotificationItem>
 					</div>
 				</div>

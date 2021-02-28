@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
@@ -37,7 +38,8 @@ public class Estimate {
     private double percentageDiscount;
     @OneToMany(cascade = CascadeType.PERSIST,
             mappedBy = EstimateItem_.ESTIMATE)
-    @JsonIgnore
+    @JsonIgnoreProperties(EstimateItem_.ESTIMATE)
+    @JsonProperty("estimateItems")
     private List<EstimateItem> items ;
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp

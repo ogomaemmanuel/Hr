@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.EmployeeResignation;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeResignationView;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.requests.ResignationRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.services.EmployeeResignationService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
@@ -29,9 +30,9 @@ public class EmployeeResignationController {
         return ResponseEntity.ok(employeeResignationViews);
     }
     @RequestMapping(value = "api/employee-resignations", method = RequestMethod.POST)
-    public ResponseEntity<?> saveEmployeeResignation(@RequestBody @Valid EmployeeResignation employeeResignation) {
-        employeeResignation =
-                this.employeeResignationService.createEmployeeResignation(employeeResignation);
+    public ResponseEntity<?> saveEmployeeResignation(@RequestBody @Valid ResignationRequest resignationRequest) {
+     EmployeeResignation   employeeResignation =
+                this.employeeResignationService.createEmployeeResignation(resignationRequest);
         return ResponseEntity.ok(employeeResignation);
     }
     @RequestMapping(value = "api/employee-resignations/{id}", method = RequestMethod.GET)
@@ -44,7 +45,7 @@ public class EmployeeResignationController {
     @RequestMapping(value = "api/employee-resignations/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateEmployeeResignation(
             @PathVariable Long id,
-            @RequestBody @Valid EmployeeResignation employeeResignation
+            @RequestBody @Valid ResignationRequest employeeResignation
     ) {
         Optional<EmployeeResignation> employeeResignation1 =
                 this.employeeResignationService.updateEmployeeResignation(id, employeeResignation);
