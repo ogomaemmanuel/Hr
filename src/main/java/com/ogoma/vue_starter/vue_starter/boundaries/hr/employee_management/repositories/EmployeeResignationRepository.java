@@ -20,13 +20,13 @@ public interface EmployeeResignationRepository extends JpaRepository<EmployeeRes
             "       er.reason as reason,\n" +
             "       er.resignation_date as resignationDate\n" +
             "from employee_resignations er\n" +
-            "         left join employees e on er.employee_id = e.id\n" +
+            "         left join employees e on er.id = e.id\n" +
             "         left join departments d on e.department_id = d.id\n" +
             "         left join users u on e.id = u.id",
             nativeQuery = true,
             countQuery = "select count(*)\n" +
                     "from employee_resignations er\n" +
-                    "         left join employees e on er.employee_id = e.id\n" +
+                    "         left join employees e on er.id = e.id\n" +
                     "         left join users u on e.id = u.id"
     )
     public Page<EmployeeResignationView> getAll(Pageable pageable);

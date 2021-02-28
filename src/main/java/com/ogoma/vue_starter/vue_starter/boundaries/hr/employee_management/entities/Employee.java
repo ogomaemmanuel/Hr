@@ -64,7 +64,8 @@ public class Employee extends BaseEntity {
     private Department department;
     @Column(name = "department_id")
     private Long departmentId;
-
+    @OneToOne(mappedBy = EmployeeResignation_.EMPLOYEE,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private EmployeeResignation employeeResignation;
 
     public Long getId() {
         return id;
@@ -214,6 +215,14 @@ public class Employee extends BaseEntity {
 
     public Long getDesignationId() {
         return designationId;
+    }
+
+    public EmployeeResignation getEmployeeResignation() {
+        return employeeResignation;
+    }
+
+    public void setEmployeeResignation(EmployeeResignation employeeResignation) {
+        this.employeeResignation = employeeResignation;
     }
 
     public void setDesignationId(Long designationId) {

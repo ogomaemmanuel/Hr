@@ -30,9 +30,9 @@ public class EmployeeResignationController {
         return ResponseEntity.ok(employeeResignationViews);
     }
     @RequestMapping(value = "api/employee-resignations", method = RequestMethod.POST)
-    public ResponseEntity<?> saveEmployeeResignation(@RequestBody @Valid EmployeeResignation employeeResignation) {
-        employeeResignation =
-                this.employeeResignationService.createEmployeeResignation(employeeResignation);
+    public ResponseEntity<?> saveEmployeeResignation(@RequestBody @Valid ResignationRequest resignationRequest) {
+     EmployeeResignation   employeeResignation =
+                this.employeeResignationService.createEmployeeResignation(resignationRequest);
         return ResponseEntity.ok(employeeResignation);
     }
     @RequestMapping(value = "api/employee-resignations/{id}", method = RequestMethod.GET)
