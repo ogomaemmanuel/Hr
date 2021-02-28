@@ -9,11 +9,11 @@ import javax.persistence.*;
 public class RolePermission {
     @Id
     private Long id;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     @JsonIgnoreProperties("rolePermissions")
     private Role role;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "permission_id")
     @JsonIgnoreProperties("rolePermissions")
     private Permission permission;

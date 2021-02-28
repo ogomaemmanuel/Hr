@@ -7,6 +7,7 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -31,9 +32,10 @@ public class EmployeeResignationService {
         return employeeResignationViews;
     }
 
+    @Transactional
     public Optional<EmployeeResignation> getEmployeeResignationById(Long id) {
         Optional<EmployeeResignation> employeeResignation =
-                this.employeeResignationRepository.findById(id);
+                this.employeeResignationRepository.getResignationById(id);
         return employeeResignation;
     }
 

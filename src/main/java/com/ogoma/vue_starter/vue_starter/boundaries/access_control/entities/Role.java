@@ -23,9 +23,9 @@ public class Role extends BaseEntity {
     private String name;
     @NotBlank(message = "Description is required")
     private String description;
-    @OneToMany(mappedBy = "permission")
+    @OneToMany(mappedBy = "permission",fetch = FetchType.LAZY)
     private Set<RolePermission> rolePermissions;
-    @OneToMany(mappedBy = UserRole_.USER)
+    @OneToMany(mappedBy = UserRole_.USER,fetch = FetchType.LAZY)
     private Set<UserRole> userRoles;
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate

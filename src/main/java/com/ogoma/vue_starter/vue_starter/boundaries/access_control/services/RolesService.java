@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role_;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User_;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.RolesRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Department;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -45,7 +46,8 @@ public class RolesService {
                     @Override
                     public Predicate toPredicate(Root<Role> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                         if(Long.class!=criteriaQuery.getResultType()){
-                             root.fetch(Role_.createdBy, JoinType.LEFT);
+                             root.fetch(Role_.createdBy, JoinType.LEFT)
+                                     .fetch(User_.employee,JoinType.LEFT);
                              criteriaBuilder.equal(root.get(Role_.DELETED),true);
                         }
                         return criteriaBuilder.conjunction();
