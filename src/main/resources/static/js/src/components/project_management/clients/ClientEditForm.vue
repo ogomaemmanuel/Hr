@@ -113,7 +113,7 @@
 <script>
     import common_mixin from "../../../mixins/common_mixin";
     import MarkdownEditor from "../../common/MarkdownEditor/index"
-
+    import {Message} from "element-ui"
     export default {
         components: {
             MarkdownEditor
@@ -146,6 +146,7 @@
                 axios.put(`/api/clients/${this.clientId}`,
                     this.client).then(resp => {
                     this.isLoading = false;
+
 
                 }, error => {
                     this.isLoading = false;
