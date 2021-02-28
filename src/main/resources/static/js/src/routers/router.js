@@ -118,6 +118,7 @@ const TaxEditModal = () => import("../components/accounting/taxes/TaxEditModal")
 const EstimatesPage = () => import("../components/accounting/estimates/EstimatesPage")
 const EstimateList = () => import("../components/accounting/estimates/EstimateList")
 const EstimateCreate = () => import("../components/accounting/estimates/EstimateCreateForm")
+const EstimateEdit = () => import("../components/accounting/estimates/EstimatesEditForm")
 
 
 const PolicyPage = () => import("../components/employee_management/policy/PolicyPage")
@@ -831,6 +832,15 @@ const routes = new Router({
                             meta: {
                                 breadcrumb: true,
                                 title: "Estimate Create",
+                            }
+                        },
+                        {
+                            path: "/estimate-edit/:id",
+                            name: "estimate-edit",
+                            component: EstimateEdit,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Estimate Edit",
                             }
                         }
 

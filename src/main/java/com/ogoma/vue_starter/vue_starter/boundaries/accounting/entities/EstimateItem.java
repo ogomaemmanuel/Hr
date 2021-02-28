@@ -1,5 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -13,9 +16,11 @@ public class EstimateItem {
     private String name;
     private String description;
     private BigDecimal unitCost;
+    @JsonProperty("qty")
     private Integer quantity;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "estimate_id")
+    @JsonIgnoreProperties(Estimate_.ITEMS)
     private Estimate estimate;
 
     public Long getId() {
