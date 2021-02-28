@@ -51,7 +51,7 @@ public class EstimatesService {
     public Estimate createEstimate(EstimateRequest estimateRequest) {
         Estimate estimate = new Estimate();
         Client client = this.clientsRepository.getOne(estimateRequest.getClientId());
-        List<EstimateItem> estimateItem=
+        List<EstimateItem> estimateItems=
                 estimateRequest.getItems().stream().map(x->{
                   EstimateItem item=  new EstimateItem();
                   item.setName(x.getName());
@@ -61,7 +61,7 @@ public class EstimatesService {
                   return item;
                 }).collect(Collectors.toList());
         //Project project =
-        estimate.setItems(estimateItem);
+        estimate.setItems(estimateItems);
         estimate.setEstimateDate(estimateRequest.getEstimateDate());
         estimate.setClient(client);
         estimate.setAmount(estimateRequest.getAmount());

@@ -40,7 +40,7 @@ public class Estimate {
             mappedBy = EstimateItem_.ESTIMATE)
     @JsonIgnoreProperties(EstimateItem_.ESTIMATE)
     @JsonProperty("estimateItems")
-    private List<EstimateItem> items ;
+    private List<EstimateItem> items;
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
@@ -118,6 +118,9 @@ public class Estimate {
     }
 
     public void setItems(List<EstimateItem> items) {
+        if(items!=null) {
+            items.forEach(i -> i.setEstimate(this));
+        }
         this.items = items;
     }
 
