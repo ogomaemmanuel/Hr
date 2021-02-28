@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.EmployeeResignation;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeResignationView;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.requests.ResignationRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.services.EmployeeResignationService;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
@@ -44,7 +45,7 @@ public class EmployeeResignationController {
     @RequestMapping(value = "api/employee-resignations/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateEmployeeResignation(
             @PathVariable Long id,
-            @RequestBody @Valid EmployeeResignation employeeResignation
+            @RequestBody @Valid ResignationRequest employeeResignation
     ) {
         Optional<EmployeeResignation> employeeResignation1 =
                 this.employeeResignationService.updateEmployeeResignation(id, employeeResignation);

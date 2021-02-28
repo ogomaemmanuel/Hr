@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.LazyToOne;
 import org.hibernate.annotations.LazyToOneOption;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,8 +14,10 @@ import java.util.Date;
 
 public class ResignationRequest {
     @NotNull(message = "Notice date is required")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date noticeDate;
     @NotNull(message = "Resignation date is required")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date resignationDate;
     @NotBlank(message = "Resignation reason is required")
     private String reason;
