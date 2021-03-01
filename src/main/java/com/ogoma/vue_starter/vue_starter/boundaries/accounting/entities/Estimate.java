@@ -20,7 +20,7 @@ import java.util.*;
 @Table(name = "estimates", indexes = {
         @Index(name = "estimate_date_index",
                 columnList = Estimate_.ESTIMATE_DATE),
-        @Index(name = "expiry_date_index", columnList = Estimate_.ESTIMATE_DATE)
+        @Index(name = "expiry_date_index", columnList = Estimate_.EXPIRY_DATE)
 })
 @EntityListeners(AuditingEntityListener.class)
 public class Estimate {
