@@ -178,7 +178,6 @@ export default {
         params: {
           page: this.page,
           pageSize: this.pageSize,
-          clientId: 1
         }
       }).then(resp => {
         this.loading = false;
