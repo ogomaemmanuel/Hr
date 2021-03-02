@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 
 import javax.persistence.*;
@@ -15,6 +16,9 @@ public class Client {
     private String companyName;
     private String description;
     private String address;
+    @Transient
+    @JsonProperty
+    private String fullName;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
     @Valid
@@ -54,5 +58,12 @@ public class Client {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getFullName() {
+        if (this.user != null) {
+            return this.user.getFullName();
+        }
+        return "";
     }
 }

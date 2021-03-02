@@ -77,7 +77,11 @@ public class EstimatesService {
     public Optional<Estimate> updateEstimate(Long id, EstimateRequest estimateRequest) {
         Optional<Estimate> estimate = this.estimatesRepository.findById(id);
         estimate.ifPresent(e -> {
-
+            e.setAmount(estimateRequest.getAmount());
+            e.setEstimateDate(e.getEstimateDate());
+            e.setExpiryDate(estimateRequest.getExpiryDate());
+            this.estimatesRepository.save(e);
+            //ToDO add estimate items
         });
         return estimate;
     }

@@ -4,7 +4,6 @@
         <div ref="modalContent" :style="{'max-width': width + 'px','overflow':overflow}" class="modal-content">
             <div class="box">
                 <slot name="modal-content">
-
                 </slot>
             </div>
         </div>
