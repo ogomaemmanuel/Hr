@@ -7,7 +7,7 @@
       <b-autocomplete
           :data="projects"
           placeholder="Select Project"
-          field="fullName"
+          field="name"
           :loading="isFetching"
           :check-infinite-scroll="true"
           @typing="getAsyncData"
@@ -24,7 +24,7 @@
               <!--                                <img width="32" :src="`https://image.tmdb.org/t/p/w500/${props.option.poster_path}`">-->
             </div>
             <div class="media-content">
-              {{ props.option.fullName }}
+              {{ props.option.name }}
               <br>
               <small>
                 <!--                                    Released at {{ props.option.release_date }},-->

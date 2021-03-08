@@ -20,7 +20,7 @@ import java.util.*;
 @Table(name = "estimates", indexes = {
         @Index(name = "estimate_date_index",
                 columnList = Estimate_.ESTIMATE_DATE),
-        @Index(name = "expiry_date_index", columnList = Estimate_.ESTIMATE_DATE)
+        @Index(name = "expiry_date_index", columnList = Estimate_.EXPIRY_DATE)
 })
 @EntityListeners(AuditingEntityListener.class)
 public class Estimate {
@@ -40,7 +40,7 @@ public class Estimate {
             mappedBy = EstimateItem_.ESTIMATE)
     @JsonIgnoreProperties(EstimateItem_.ESTIMATE)
     @JsonProperty("estimateItems")
-    private List<EstimateItem> items ;
+    private List<EstimateItem> items;
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
@@ -118,6 +118,9 @@ public class Estimate {
     }
 
     public void setItems(List<EstimateItem> items) {
+        if(items!=null) {
+            items.forEach(i -> i.setEstimate(this));
+        }
         this.items = items;
     }
 

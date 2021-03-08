@@ -302,7 +302,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/holidays">
+                                    <router-link to="/expenses">
                                         <span>Expenses</span>
                                     </router-link>
                                 </li>

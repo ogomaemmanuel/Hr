@@ -18,7 +18,7 @@ public interface TerminatedEmployeeRepository extends JpaRepository<TerminatedEm
             "       d.name              as departmentName\n" +
             "from terminated_employees te\n" +
             "         left join employees e on te.employee_id = e.id\n" +
-            "         left join users u on e.user_id = u.id\n" +
+            "         left join users u on e.id = u.id\n" +
             "         left join termination_reasons tr on te.termination_reason_code = tr.code\n" +
             "         left join departments d on e.department_id = d.id",
             nativeQuery = true,

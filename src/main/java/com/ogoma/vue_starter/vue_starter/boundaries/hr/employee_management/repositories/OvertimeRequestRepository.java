@@ -20,12 +20,12 @@ public interface OvertimeRequestRepository extends JpaRepository<OvertimeRequest
             "       ovr.overtime_hours as overtimeHours\n" +
             "from overtime_requests  ovr\n" +
             "         left join employees e on ovr.employee_id = e.id\n" +
-            "         left join users u on e.user_id = u.id",
+            "         left join users u on e.id = u.id",
             nativeQuery = true,
             countQuery = "select count(ovr.id)\n" +
                     "from overtime_requests  ovr\n" +
                     "         left join employees e on ovr.employee_id = e.id\n" +
-                    "         left join users u on e.user_id = u.id")
+                    "         left join users u on e.id = u.id")
     public Page<OvertimeRequestView> getAllActive(Pageable pageable);
      @Query(value = "select ovr.id,\n" +
             "       u.first_name       as employeeFirstName,\n" +
@@ -35,6 +35,6 @@ public interface OvertimeRequestRepository extends JpaRepository<OvertimeRequest
             "       ovr.overtime_hours as overtimeHours\n" +
             "from overtime_requests  ovr\n" +
             "         left join employees e on ovr.employee_id = e.id\n" +
-            "         left join users u on e.user_id = u.id",nativeQuery=true)
+            "         left join users u on e.id = u.id",nativeQuery=true)
     public List<OvertimeRequestView> getAllActive();
 }

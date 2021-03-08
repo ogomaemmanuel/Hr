@@ -6,6 +6,7 @@
       </template>
       <b-autocomplete
           :data="clients"
+          ref="autocomplete"
           placeholder="Select Client"
           field="fullName"
           :loading="isFetching"
@@ -57,6 +58,9 @@ export default {
     },
     emitAllFields: {
       default: false,
+    },
+    value:{
+
     }
   },
   data() {
@@ -68,6 +72,11 @@ export default {
       page: 0,
       totalPages: 0,
       selectedClient: {}
+    }
+  },
+  mounted() {
+    if(this.value){
+      this.$refs.autocomplete.setSelected(this.value)
     }
   },
   methods: {

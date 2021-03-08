@@ -13,14 +13,13 @@
           </ClientSelectInput>
         </div>
         <div class="column">
-          <div class="field">
-            <label class="label">Project</label>
-            <div class="control">
-              <input
-                  class="input"
-                  type="text">
-            </div>
-          </div>
+          <ProjectSelectInput
+              v-model="estimate.projectId"
+              @input="clearFieldError('projectId')">
+             <span slot="errors" class="mb-2 has-text-danger" v-if="errors['projectId']">
+						        {{ errors['projectId'][0] }}
+            </span>
+          </ProjectSelectInput>
         </div>
         <div class="column">
           <div class="field">
@@ -36,7 +35,7 @@
         <div class="column">
           <div class="field">
             <label class="label">Tax</label>
-            <div class="select">
+            <div class="select is-fullwidth">
               <select v-model="estimate.taxId">
                 <option value="" selected>Select Tax</option>
                 <option :value="tax.id"
@@ -197,13 +196,15 @@ import {Message, DatePicker, InputNumber} from "element-ui"
 import common_mixin from "../../../mixins/common_mixin";
 import ClientSelectInput from "../../common/ClientSelectInput";
 import EstimateItemCreate from "./EstimateItemCreate";
+import ProjectSelectInput from "../../common/ProjectSelectInput";
 
 export default {
   components: {
     DatePicker,
     InputNumber,
     ClientSelectInput,
-    EstimateItemCreate
+    EstimateItemCreate,
+    ProjectSelectInput
   },
   mixins: [common_mixin],
   data() {
