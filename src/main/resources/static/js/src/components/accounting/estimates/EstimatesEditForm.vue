@@ -261,6 +261,7 @@ export default {
       axios.get(`/api/estimates/${this.estimateId}`).then(resp => {
         this.estimate = resp.data;
         this.selectClient = this.estimate.client;
+        this.selectClient.email = this.estimate.client.user.email;
         this.estimateLoaded = true;
       }, error => {
       })

@@ -120,6 +120,9 @@ const EstimateList = () => import("../components/accounting/estimates/EstimateLi
 const EstimateCreate = () => import("../components/accounting/estimates/EstimateCreateForm")
 const EstimateEdit = () => import("../components/accounting/estimates/EstimatesEditForm")
 
+const ExpensePage = () => import("../components/accounting/expenses/ExpensePage")
+const ExpenseList = () => import("../components/accounting/expenses/ExpenseList")
+
 
 const PolicyPage = () => import("../components/employee_management/policy/PolicyPage")
 const PolicyList = () => import("../components/employee_management/policy/PolicyList")
@@ -781,16 +784,6 @@ const routes = new Router({
                                 },
                             ]
                         },
-                        // {
-                        //     path: "/project-details/:id",
-                        //     name: "project-details",
-                        //     component: ProjectDetails,
-                        //     meta: {
-                        //         breadcrumb: true,
-                        //         title: "Project Details",
-                        //     }
-                        // }
-
                     ]
                 },
                 {
@@ -804,26 +797,39 @@ const routes = new Router({
                         {
                             path: "/",
                             component: EstimateList,
-                            // children: [
-                            //     {
-                            //         path: "/tax-create",
-                            //         name: "tax-create",
-                            //         component: TaxCreateModal,
-                            //         meta: {
-                            //             breadcrumb: true,
-                            //             title: "Tax Create",
-                            //         },
-                            //     },
-                            //     {
-                            //         path: "/tax-edit/:id",
-                            //         name: "tax-edit",
-                            //         component: TaxEditModal,
-                            //         meta: {
-                            //             breadcrumb: true,
-                            //             title: "Tax Edit",
-                            //         },
-                            //     },
-                            // ]
+                        },
+                        {
+                            path: "/estimate-create",
+                            name: "estimate-create",
+                            component: EstimateCreate,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Estimate Create",
+                            }
+                        },
+                        {
+                            path: "/estimate-edit/:id",
+                            name: "estimate-edit",
+                            component: EstimateEdit,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Estimate Edit",
+                            }
+                        }
+
+                    ]
+                },
+                {
+                    path: "/expenses",
+                    component: ExpensePage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Expenses",
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            component: ExpenseList,
                         },
                         {
                             path: "/estimate-create",
@@ -855,31 +861,6 @@ const routes = new Router({
                         title: "Settings",
                     },
                     children: [
-                        // {
-                        //     path: "/",
-                        //     component: ProjectList,
-                        //     children: [
-                        //         {
-                        //             path: "/projects-create",
-                        //             name: "projects-create",
-                        //             component: ProjectCreate,
-                        //             meta: {
-                        //                 breadcrumb: true,
-                        //                 title: "Project Create",
-                        //             },
-                        //         },
-                        //         // {
-                        //         //     path: "/clients-edit/:id",
-                        //         //     name: "clients-edit",
-                        //         //     component: ClientEdit,
-                        //         //     meta: {
-                        //         //         breadcrumb: true,
-                        //         //         title: "Client Edit",
-                        //         //     },
-                        //         // },
-                        //     ]
-                        // },
-
                     ]
                 },
 

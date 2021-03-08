@@ -1,4 +1,5 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.project_management.models;
+
 public interface ClientProjection {
     public Long getId();
 
@@ -8,6 +9,10 @@ public interface ClientProjection {
 
     public UserInfo getUser();
 
+    default String getEmail() {
+        return this.getUser().getEmail();
+    }
+
     interface UserInfo {
         Long getId();
 
@@ -15,9 +20,9 @@ public interface ClientProjection {
 
         public String getLastName();
 
-        public String getPhone();
-
         public String getEmail();
+
+        public String getPhone();
 
         default String getFullName() {
             String lastName = null;
