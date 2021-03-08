@@ -23,12 +23,80 @@
 				</span>
       </a>
     </div>
+    <div>
+      <div class="columns mt-4">
+        <div class="column">
+          <div class="field">
+            <div class="control">
+              <input
+                  placeholder="Item Name"
+                  class="input">
+              </input>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+         <EmployeeSelectInput
+             placeholder="Purchased By"
+             :show-label="false">
+         </EmployeeSelectInput>
+        </div>
+        <div class="column">
+          <div class="field">
+            <div class="control">
+              <DatePicker
+                  class="datepicker"
+                  v-model="filterParams.startDate"
+                  placeholder="From"
+              ></DatePicker>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <div class="control">
+              <DatePicker
+                  class="datepicker"
+                  v-model="filterParams.startDate"
+                  placeholder="From"
+              ></DatePicker>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="field">
+            <div class="control">
+              <DatePicker
+                  class="datepicker"
+                  v-model="filterParams.endDate"
+                  placeholder="To">
+              </DatePicker>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="button is-fullwidth is-primary">
+            Search
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import {DatePicker} from "element-ui"
+import EmployeeSelectInput from "../../common/EmployeeSelectInput"
+
 export default {
+  components:{
+    EmployeeSelectInput,
+    DatePicker
+  },
   data() {
-    return {}
+    return {
+      filterParams: {},
+    }
   }
 }
 </script>
