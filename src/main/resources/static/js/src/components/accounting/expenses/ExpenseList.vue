@@ -36,10 +36,10 @@
           </div>
         </div>
         <div class="column">
-         <EmployeeSelectInput
-             placeholder="Purchased By"
-             :show-label="false">
-         </EmployeeSelectInput>
+          <EmployeeSelectInput
+              placeholder="Purchased By"
+              :show-label="false">
+          </EmployeeSelectInput>
         </div>
         <div class="column">
           <div class="field">
@@ -82,20 +82,112 @@
         </div>
       </div>
     </div>
+
+    <div class="card">
+      <div class="card-content">
+        <table class="table is-fullwidth">
+          <thead>
+          <tr>
+            <th>
+              Item
+            </th>
+            <th>
+              Purchase From
+            </th>
+            <th>
+              Purchase Date
+            </th>
+            <th>
+              Purchased By
+            </th>
+            <th>
+              Amount
+            </th>
+            <th>
+              Paid By
+            </th>
+            <th>
+              Status
+            </th>
+            <th>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="estimate in expenses">
+            <td>
+              {{ estimate.id }}
+            </td>
+            <td>
+              {{ estimate.id }}
+            </td>
+            <td>
+              {{ estimate.estimateDate |formatDate }}
+            </td>
+            <td>
+              {{ estimate.expiryDate|formatDate }}
+            </td>
+            <td>
+              {{ estimate.amount }}
+            </td>
+            <td data-label="Action">
+              <div class="action-controls d-flex justify-end">
+                <router-link
+                    :to="`/estimate-edit/${estimate.id}`" tag="button"
+                    @click="" class="button is-white is-small">
+												<span class="icon">
+					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
+					                       </span>
+                </router-link>
+                <button
+                    @click="confirmRemoveExpense(estimate)"
+                    class="button is-white is-small">
+										           <span class="icon">
+						                            <i class="fa fa-trash-o has-text-danger"></i>
+					                               </span>
+                </button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="8">
+              <Paginator
+                  @previousPage="goToPrevious"
+                  @nextPage="goToNext"
+                  @paginationChanged="onPaginationChanged"
+                  :paginationData="pageable"
+              ></Paginator>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+
+    </div>
   </div>
 </template>
 <script>
 import {DatePicker} from "element-ui"
 import EmployeeSelectInput from "../../common/EmployeeSelectInput"
+import data_table_mixin from "../../../mixins/data_table_mixin";
 
 export default {
-  components:{
+  mixins: [data_table_mixin],
+  components: {
     EmployeeSelectInput,
     DatePicker
   },
   data() {
     return {
       filterParams: {},
+      expenses: []
+    }
+  },
+  methods: {
+    confirmRemoveExpense(expense) {
+
     }
   }
 }
