@@ -163,8 +163,9 @@ export default {
   },
   methods: {
     createExpense() {
+      let request = this.createFormData(this.expense);
       axios.post("/api/expenses",
-          this.expense).then(resp => {
+          request).then(resp => {
 
       })
     }

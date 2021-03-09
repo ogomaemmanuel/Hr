@@ -16,7 +16,6 @@ public class ExpenseController {
     public ExpenseController(ExpenseService expenseService) {
         this.expenseService = expenseService;
     }
-
     @GetMapping
     public ResponseEntity<?> getExpenses(ExpensePagedDataRequest expensePagedDataRequest) {
         Page<Expense> expenses =
