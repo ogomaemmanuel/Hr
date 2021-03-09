@@ -20,27 +20,9 @@
             </div>
           </div>
         </div>
-       <div class="column">
-           <div class="field">
-             <label class="label">Purchase From<span><sup>*</sup></span></label>
-             <div class="control">
-               <input
-                   v-model="expense.name"
-                   @input="clearFieldError('name')"
-                   class="input"
-                   type="text">
-               <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{ errors['name'][0] }}
-					</span>
-             </div>
-           </div>
-
-       </div>
-      </div>
-      <div class="columns">
         <div class="column">
           <div class="field">
-            <label class="label">Purchase Date<span><sup>*</sup></span></label>
+            <label class="label">Purchase From<span><sup>*</sup></span></label>
             <div class="control">
               <input
                   v-model="expense.name"
@@ -52,23 +34,37 @@
 					</span>
             </div>
           </div>
+
         </div>
-       <div class="column">
-           <div class="field">
-             <label class="label">Purchased By<span><sup>*</sup></span></label>
-             <div class="control">
-               <input
-                   v-model="expense.name"
-                   @input="clearFieldError('name')"
-                   class="input"
-                   type="text">
-               <span class="mb-2 has-text-danger" v-if="errors['name']">
+      </div>
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label">Purchase Date<span><sup>*</sup></span></label>
+            <div class="control">
+              <DatePicker
+                  class="datepicker"
+                  v-model="expense.purchaseDate"
+                  @input="clearFieldError('name')">
+              </DatePicker>
+              <span class="mb-2 has-text-danger" v-if="errors['name']">
 						{{ errors['name'][0] }}
 					</span>
-             </div>
-           </div>
-
-       </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <EmployeeSelectInput
+              label="Purchased By"
+              @input="clearFieldError('purchasedBy')"
+              v-model="expense.purchasedBy">
+              <span slot="errors"
+                    class="mb-2 has-text-danger"
+                    v-if="errors['name']">
+						{{ errors['name'][0] }}
+					</span>
+          </EmployeeSelectInput>
+        </div>
       </div>
       <div class="columns">
         <div class="column">
@@ -86,22 +82,22 @@
             </div>
           </div>
         </div>
-       <div class="column">
-           <div class="field">
-             <label class="label">Paid By<span><sup>*</sup></span></label>
-             <div class="control">
-               <input
-                   v-model="expense.name"
-                   @input="clearFieldError('name')"
-                   class="input"
-                   type="text">
-               <span class="mb-2 has-text-danger" v-if="errors['name']">
+        <div class="column">
+          <div class="field">
+            <label class="label">Paid By<span><sup>*</sup></span></label>
+            <div class="control">
+              <input
+                  v-model="expense.name"
+                  @input="clearFieldError('name')"
+                  class="input"
+                  type="text">
+              <span class="mb-2 has-text-danger" v-if="errors['name']">
 						{{ errors['name'][0] }}
 					</span>
-             </div>
-           </div>
+            </div>
+          </div>
 
-       </div>
+        </div>
       </div>
       <div class="columns">
         <div class="column">
@@ -119,22 +115,22 @@
             </div>
           </div>
         </div>
-       <div class="column">
-           <div class="field">
-             <label class="label">Attachments<span><sup>*</sup></span></label>
-             <div class="control">
-               <input
-                   v-model="expense.name"
-                   @input="clearFieldError('name')"
-                   class="input"
-                   type="text">
-               <span class="mb-2 has-text-danger" v-if="errors['name']">
+        <div class="column">
+          <div class="field">
+            <label class="label">Attachments<span><sup>*</sup></span></label>
+            <div class="control">
+              <input
+                  v-model="expense.name"
+                  @input="clearFieldError('name')"
+                  class="input"
+                  type="text">
+              <span class="mb-2 has-text-danger" v-if="errors['name']">
 						{{ errors['name'][0] }}
 					</span>
-             </div>
-           </div>
+            </div>
+          </div>
 
-       </div>
+        </div>
       </div>
       <div class="flex justify-center m-3">
         <button
@@ -151,8 +147,15 @@
 </template>
 <script>
 import common_mixin from "../../../mixins/common_mixin";
+import {DatePicker} from "element-ui"
+import EmployeeSelectInput from "../../common/EmployeeSelectInput";
+
 export default {
-  mixins:[common_mixin],
+  mixins: [common_mixin],
+  components: {
+    DatePicker,
+    EmployeeSelectInput
+  },
   data() {
     return {
       expense: {}
