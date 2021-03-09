@@ -122,6 +122,7 @@ const EstimateEdit = () => import("../components/accounting/estimates/EstimatesE
 
 const ExpensePage = () => import("../components/accounting/expenses/ExpensePage")
 const ExpenseList = () => import("../components/accounting/expenses/ExpenseList")
+const ExpenseCreate = () => import("../components/accounting/expenses/ExpenseCreateModal")
 
 
 const PolicyPage = () => import("../components/employee_management/policy/PolicyPage")
@@ -832,12 +833,12 @@ const routes = new Router({
                             component: ExpenseList,
                         },
                         {
-                            path: "/estimate-create",
-                            name: "estimate-create",
-                            component: EstimateCreate,
+                            path: "/expense-create",
+                            name: "expense-create",
+                            component: ExpenseCreate,
                             meta: {
                                 breadcrumb: true,
-                                title: "Estimate Create",
+                                title: "Expense Create",
                             }
                         },
                         {

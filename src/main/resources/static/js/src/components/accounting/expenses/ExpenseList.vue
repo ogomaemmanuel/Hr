@@ -2,7 +2,7 @@
   <div>
     <div class="pb-2 flex justify-end">
       <router-link
-          to="/estimate-create"
+          to="/expense-create"
           tag="button"
           class="button mr-1 is-rounded">
 				<span class="icon">
@@ -114,33 +114,36 @@
           </tr>
           </thead>
           <tbody>
-          <tr v-for="estimate in expenses">
+          <tr v-for="expense in expenses">
             <td>
-              {{ estimate.id }}
+              {{ expense.id }}
             </td>
             <td>
-              {{ estimate.id }}
+              {{ expense.purchaseFrom }}
             </td>
             <td>
-              {{ estimate.estimateDate |formatDate }}
+              {{ expense.purchaseDate |formatDate }}
             </td>
             <td>
-              {{ estimate.expiryDate|formatDate }}
+              {{ expense.purchasedBy }}
             </td>
             <td>
-              {{ estimate.amount }}
+              {{ expense.amount }}
+            </td>
+            <td>
+              {{ paidBy.amount }}
             </td>
             <td data-label="Action">
               <div class="action-controls d-flex justify-end">
                 <router-link
-                    :to="`/estimate-edit/${estimate.id}`" tag="button"
+                    :to="`/estimate-edit/${expense.id}`" tag="button"
                     @click="" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
                 </router-link>
                 <button
-                    @click="confirmRemoveExpense(estimate)"
+                    @click="confirmRemoveExpense(expense)"
                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -172,23 +175,52 @@
 import {DatePicker} from "element-ui"
 import EmployeeSelectInput from "../../common/EmployeeSelectInput"
 import data_table_mixin from "../../../mixins/data_table_mixin";
+import Paginator from "../../common/paginator/Paginator";
 
 export default {
   mixins: [data_table_mixin],
   components: {
     EmployeeSelectInput,
-    DatePicker
+    DatePicker,
+    Paginator
   },
   data() {
     return {
+      loading: false,
       filterParams: {},
       expenses: []
     }
   },
+  created() {
+    this.getExpenses();
+  },
   methods: {
     confirmRemoveExpense(expense) {
 
+    },
+    fetchRecords() {
+      this.getExpenses()
+    },
+
+    getExpenses() {
+      axios.get("/api/expenses", {
+        params: {
+          page: this.page,
+          pageSize: this.pageSize
+        }
+      }).then(resp => {
+        this.loading = false;
+        this.expenses = resp.data.content;
+        this.pageable = resp.data;
+      })
     }
-  }
+  },
+  filters: {
+    formatDate(val) {
+      if (val) {
+        return moment(val).format("DD-MMMM-YYYY")
+      }
+    }
+  },
 }
 </script>
