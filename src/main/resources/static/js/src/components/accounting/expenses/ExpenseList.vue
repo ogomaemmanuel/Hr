@@ -131,7 +131,7 @@
               {{ expense.amount }}
             </td>
             <td>
-              {{ paidBy.amount }}
+              {{ expense.paidBy }}
             </td>
             <td data-label="Action">
               <div class="action-controls d-flex justify-end">
