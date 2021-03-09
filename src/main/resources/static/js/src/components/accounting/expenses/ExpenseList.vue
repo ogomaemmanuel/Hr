@@ -2,7 +2,7 @@
   <div>
     <div class="pb-2 flex justify-end">
       <router-link
-          to="/estimate-create"
+          to="/expense-create"
           tag="button"
           class="button mr-1 is-rounded">
 				<span class="icon">
@@ -175,12 +175,14 @@
 import {DatePicker} from "element-ui"
 import EmployeeSelectInput from "../../common/EmployeeSelectInput"
 import data_table_mixin from "../../../mixins/data_table_mixin";
+import Paginator from "../../common/paginator/Paginator";
 
 export default {
   mixins: [data_table_mixin],
   components: {
     EmployeeSelectInput,
-    DatePicker
+    DatePicker,
+    Paginator
   },
   data() {
     return {
