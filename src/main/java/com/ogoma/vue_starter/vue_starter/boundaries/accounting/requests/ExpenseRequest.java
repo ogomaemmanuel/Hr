@@ -1,5 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.requests;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.enums.ExpenseStatus;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +16,7 @@ public class ExpenseRequest {
     @NotBlank(message = "Purchase From is required")
     private String purchaseFrom;
     @NotNull(message = "Purchase date is required")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date purchaseDate;
     @NotNull(message = "Expense amount is required")
     private BigDecimal amount;
