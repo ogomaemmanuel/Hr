@@ -30,7 +30,7 @@ First create a .env file in the root directory of the application and add the fo
 Run 
 > docker-compose up
 >
-The above command will build and run a docker image 
+The above command will build and run a docker image, to rebuild the image, add __--build__ option
 
 To run image from docker-hub, run
 > docker-compose -f docker-compose.prod.yml
