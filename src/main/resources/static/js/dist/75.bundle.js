@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[75],{369:function(e,t,n){"use strict";n.r(t);var o={components:{},data:()=>({showResignationCreateForm:!1})},a=n(20),r=Object(a.a)(o,(function(){var e=this.$createElement,t=this._self._c||e;return t("div",[t("router-view")],1)}),[],!1,null,"ce91f37a",null);t.default=r.exports}}]);
