@@ -7,6 +7,8 @@ import com.ogoma.vue_starter.vue_starter.boundaries.accounting.requests.ExpenseR
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ExpenseService {
     private final ExpenseRepository expenseRepository;
@@ -29,5 +31,11 @@ public class ExpenseService {
         // TODO add attachment url after uploading attachment to s3
         this.expenseRepository.save(expense);
         return expense;
+    }
+
+    public Optional<Expense> getExpenseById(Long id) {
+       Optional<Expense> expense=
+               this.expenseRepository.findById(id);
+       return expense;
     }
 }
