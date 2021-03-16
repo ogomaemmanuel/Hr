@@ -170,6 +170,7 @@ export default {
           request).then(resp => {
         this.isLoading = false
         Message.success("Expense successfully created")
+        this.$emit("createSuccessful")
       }, error => {
         this.isLoading = false
         if (error.response.status == 400) {
