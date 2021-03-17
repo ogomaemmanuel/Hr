@@ -125,7 +125,7 @@
               {{ expense.purchaseDate |formatDate }}
             </td>
             <td>
-              {{ expense.purchasedBy }}
+              {{ getEmployeeFullName(expense)}}
             </td>
             <td>
               {{ expense.amount }}
@@ -204,7 +204,12 @@ export default {
     fetchRecords() {
       this.getExpenses()
     },
-
+    getEmployeeFullName(expense) {
+      if (expense.purchasedBy) {
+        return expense.purchasedBy.fullName;
+      }
+      return ""
+    },
     getExpenses() {
       axios.get("/api/expenses", {
         params: {
