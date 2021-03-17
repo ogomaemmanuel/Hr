@@ -147,8 +147,9 @@
 </template>
 <script>
 import common_mixin from "../../../mixins/common_mixin";
-import {DatePicker} from "element-ui"
+import {DatePicker, Message} from "element-ui"
 import EmployeeSelectInput from "../../common/EmployeeSelectInput";
+
 export default {
   components: {
     DatePicker,
@@ -171,18 +172,31 @@ export default {
   },
   methods: {
     updateExpense() {
-
+      this.isLoading = true
+      let request = this.createFormData(this.expense);
+      axios.put(`/api/expenses/${this.id}`,
+          request).then(resp => {
+        this.isLoading = false;
+        Message.success("Expense successfully updated")
+      }, error => {
+        this.isLoading = false;
+        if (error.response.status == 400) {
+          this.errors = error.response.data;
+        }
+      })
     },
     getExpenseById() {
-      this.isLoading = true;
+      //this.isLoading = true;
       axios.get(`/api/expenses/${this.id}`).then(resp => {
         this.expense = resp.data;
+      }, error => {
+        // this.isLoading = false;
       })
     }
   },
   computed: {
     disableSubmitButton() {
-
+      return this.isLoading;
     }
   }
 

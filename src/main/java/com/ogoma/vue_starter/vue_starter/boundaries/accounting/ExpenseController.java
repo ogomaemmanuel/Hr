@@ -7,10 +7,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.accounting.services.ExpenseS
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -42,5 +39,12 @@ public class ExpenseController {
     public ResponseEntity<?> createExpense(@Valid ExpenseRequest expenseRequest) {
         Expense expense = this.expenseService.createExpense(expenseRequest);
         return ResponseEntity.ok(expense);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> updateExpense(@PathVariable Long id,@Valid ExpenseRequest expenseRequest){
+        Optional<Expense> expense=
+                this.expenseService.updateExpense(id,expenseRequest);
+        return ResponseEntity.of(expense);
     }
 }

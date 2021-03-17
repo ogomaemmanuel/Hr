@@ -16,11 +16,13 @@ public class ExpenseService {
     public ExpenseService(ExpenseRepository expenseRepository) {
         this.expenseRepository = expenseRepository;
     }
+
     public Page<Expense> getExpenses(ExpensePagedDataRequest expensePagedDataRequest) {
         Page<Expense> expenses =
                 this.expenseRepository.findAll(expensePagedDataRequest.toPageable());
         return expenses;
     }
+
     public Expense createExpense(ExpenseRequest expenseRequest) {
         Expense expense = new Expense();
         expense.setAmount(expenseRequest.getAmount());
@@ -34,8 +36,21 @@ public class ExpenseService {
     }
 
     public Optional<Expense> getExpenseById(Long id) {
-       Optional<Expense> expense=
-               this.expenseRepository.findById(id);
-       return expense;
+        Optional<Expense> expense =
+                this.expenseRepository.findById(id);
+        return expense;
+    }
+
+    public Optional<Expense> updateExpense(Long id, ExpenseRequest expenseRequest) {
+        Optional<Expense> expense =
+                this.expenseRepository.findById(id);
+        expense.ifPresent(e -> {
+            e.setStatus(expenseRequest.getStatus());
+            e.setPurchaseDate(expenseRequest.getPurchaseDate());
+            e.setPurchaseFrom(expenseRequest.getPurchaseFrom());
+            e.setItemName(expenseRequest.getItemName());
+            this.expenseRepository.save(e);
+        });
+        return expense;
     }
 }
