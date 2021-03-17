@@ -1,6 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.models;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Expense;
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.specifications.ExpenseSpecification;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Date;
 
@@ -41,4 +44,8 @@ public class ExpensePagedDataRequest extends PagedDataRequest {
     public void setPurchaseEndDate(Date purchaseEndDate) {
         this.purchaseEndDate = purchaseEndDate;
     }
+    public Specification<Expense> getExpenseSpecification(){
+        return ExpenseSpecification.getExpenseSpecification(this);
+    }
 }
+

@@ -1,7 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User_;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.enums.ExpenseStatus;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -18,12 +22,20 @@ public class Expense {
     private String purchaseFrom;
     private Date purchaseDate;
     private BigDecimal amount;
-    @OneToOne
+    @ManyToOne
+    @JsonIgnoreProperties(value = {
+            User_.EMPLOYEE,
+            User_.USER_ROLES
+    })
     private User purchasedBy;
     @OneToMany(cascade = CascadeType.PERSIST,
             mappedBy = ExpenseAttachment_.EXPENSE)
     private Set<ExpenseAttachment> attachments;
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date updatedAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
     @Enumerated(EnumType.STRING)
     private ExpenseStatus status;
