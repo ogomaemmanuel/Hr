@@ -147,8 +147,13 @@
 </template>
 <script>
 import common_mixin from "../../../mixins/common_mixin";
-
+import {DatePicker} from "element-ui"
+import EmployeeSelectInput from "../../common/EmployeeSelectInput";
 export default {
+  components: {
+    DatePicker,
+    EmployeeSelectInput
+  },
   mixins: [common_mixin],
   props: {
     id: {

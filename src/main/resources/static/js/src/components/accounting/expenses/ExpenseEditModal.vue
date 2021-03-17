@@ -1,6 +1,7 @@
 <template>
   <ModalTemplate @modalClosed="onModalClosed">
     <ExpenseEditForm
+        :id="id"
         @updateSuccessfull="onUpdateSuccessful"
         slot="modal-content">
 
@@ -15,6 +16,14 @@ export default {
   components: {
     ExpenseEditForm,
     ModalTemplate
+  },
+  data() {
+    return {
+      id: ""
+    }
+  },
+  created() {
+    this.id = this.$route.params.id;
   },
   methods: {
     onModalClosed() {

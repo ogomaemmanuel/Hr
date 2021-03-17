@@ -136,7 +136,7 @@
             <td data-label="Action">
               <div class="action-controls d-flex justify-end">
                 <router-link
-                    :to="`/estimate-edit/${expense.id}`" tag="button"
+                    :to="`/expense-edit/${expense.id}`" tag="button"
                     @click="" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
@@ -169,6 +169,9 @@
       </div>
 
     </div>
+    <router-view>
+
+    </router-view>
   </div>
 </template>
 <script>
