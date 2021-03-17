@@ -147,20 +147,32 @@
 </template>
 <script>
 import common_mixin from "../../../mixins/common_mixin";
+
 export default {
-  mixins:[common_mixin],
+  mixins: [common_mixin],
+  props: {
+    id: {
+      required: true
+    }
+  },
   data() {
     return {
       expense: {},
-      isLoading:false
+      isLoading: false
     }
+  },
+  created() {
+    this.getExpenseById();
   },
   methods: {
     updateExpense() {
 
     },
-    getExpenseById(){
-
+    getExpenseById() {
+      this.isLoading = true;
+      axios.get(`/api/expenses/${this.id}`).then(resp => {
+        this.expense = resp.data;
+      })
     }
   },
   computed: {
