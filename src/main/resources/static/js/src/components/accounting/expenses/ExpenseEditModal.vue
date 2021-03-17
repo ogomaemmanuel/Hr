@@ -29,9 +29,9 @@ export default {
     onModalClosed() {
       this.$router.go(-1);
     },
-    onUpdateSuccessful(){
-
-
+    onUpdateSuccessful() {
+      this.$emit("updateSuccessful");
+      this.$router.go(-1);
     }
   }
 

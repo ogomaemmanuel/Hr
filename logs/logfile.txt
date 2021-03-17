@@ -1466,3 +1466,117 @@ java.sql.SQLSyntaxErrorException: Unknown column 's.user_id' in 'where clause'
 2021-03-17 17:57:10.074  INFO 16452 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 3, active threads = 1, queued tasks = 1, completed tasks = 1]
 2021-03-17 18:34:38.748  WARN 16452 --- [HikariPool-5 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=34m32s628ms50µs100ns).
 2021-03-17 18:35:02.635  INFO 16452 --- [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 7, active threads = 2, queued tasks = 0, completed tasks = 5]
+2021-03-17 18:42:30.769  WARN 16452 --- [http-nio-49612-exec-1] o.springframework.validation.DataBinder  : Skipping URI variable 'id' because request contains bind value with same name.
+2021-03-17 18:50:58.425  WARN 16452 --- [http-nio-49612-exec-1] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2021-03-17 18:57:10.074  INFO 16452 --- [MessageBroker-6] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 2 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(2)-CONNECTED(2)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 27], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 5], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 3, completed tasks = 245]
+2021-03-17 20:34:46.755  INFO 16452 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 2 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(2)-CONNECTED(2)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 27], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 5], sockJsScheduler[pool size = 8, active threads = 3, queued tasks = 0, completed tasks = 519]
+2021-03-17 20:34:46.756  INFO 16452 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 2 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(2)-CONNECTED(2)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 27], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 5], sockJsScheduler[pool size = 8, active threads = 3, queued tasks = 1, completed tasks = 1021]
+2021-03-17 20:34:46.763  INFO 16452 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 2 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(2)-CONNECTED(2)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 27], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 5], sockJsScheduler[pool size = 8, active threads = 3, queued tasks = 1, completed tasks = 1066]
+2021-03-17 20:34:59.493  WARN 16452 --- [HikariPool-5 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1h20m20s42ms960µs300ns).
+2021-03-17 20:38:48.049  INFO 16452 --- [Thread-45] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2021-03-17 20:38:48.050  INFO 16452 --- [Thread-45] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-03-17 20:38:48.051  INFO 16452 --- [Thread-45] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2021-03-17 20:38:48.056  INFO 16452 --- [Thread-45] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-03-17 20:38:48.066  INFO 16452 --- [Thread-45] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2021-03-17 20:38:48.066  INFO 16452 --- [Thread-45] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2021-03-17 20:38:48.074  INFO 16452 --- [Thread-45] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2021-03-17 20:38:48.075  INFO 16452 --- [Thread-45] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2021-03-17 20:38:48.090  INFO 16452 --- [Thread-45] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-03-17 20:38:48.101  INFO 16452 --- [Thread-45] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2021-03-17 20:38:48.133  INFO 16452 --- [Thread-45] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2021-03-17 20:38:49.408  INFO 16452 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Starting VueStarterApplication on DESKTOP-AFC5970 with PID 16452 (C:\Users\user\projects\Hr\target\classes started by user in C:\Users\user\projects\Hr)
+2021-03-17 20:38:49.426  INFO 16452 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : The following profiles are active: development
+2021-03-17 20:38:51.394  INFO 16452 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-03-17 20:38:51.458  INFO 16452 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53ms. Found 0 repository interfaces.
+2021-03-17 20:38:51.741  INFO 16452 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$d8ed6977] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-03-17 20:38:51.761  INFO 16452 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$586db6a9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-03-17 20:38:52.139  INFO 16452 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 49612 (http)
+2021-03-17 20:38:52.144  INFO 16452 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-03-17 20:38:52.144  INFO 16452 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2021-03-17 20:38:52.285  INFO 16452 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-03-17 20:38:52.286  INFO 16452 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2817 ms
+2021-03-17 20:38:52.667  INFO 16452 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2021-03-17 20:38:52.698  INFO 16452 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2021-03-17 20:38:52.746  INFO 16452 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-03-17 20:38:52.918  INFO 16452 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-03-17 20:38:52.958  INFO 16452 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-03-17 20:38:52.958  INFO 16452 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-03-17 20:38:53.514  INFO 16452 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
+2021-03-17 20:38:53.530  INFO 16452 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-03-17 20:38:53.792  WARN 16452 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-03-17 20:38:54.385  INFO 16452 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 0c7ab4db-a2d4-4c39-a4e3-f46ada8468f6
+
+2021-03-17 20:38:54.494  INFO 16452 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68344801, org.springframework.security.web.context.SecurityContextPersistenceFilter@3263fc4, org.springframework.security.web.header.HeaderWriterFilter@3739e13, org.springframework.security.web.csrf.CsrfFilter@25fe8623, org.springframework.security.web.authentication.logout.LogoutFilter@1f358296, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@54aae3eb, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@6fbad90e, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@6b024b57, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1f8cadb1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@612ed2d2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7eb24be2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@739b3811, org.springframework.security.web.session.SessionManagementFilter@52b8642e, org.springframework.security.web.access.ExceptionTranslationFilter@6f91af75, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@748079f8]
+2021-03-17 20:38:54.744  INFO 16452 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-03-17 20:38:55.488  INFO 16452 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-03-17 20:38:55.606  INFO 16452 --- [restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2021-03-17 20:38:55.667  INFO 16452 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 49612 (http) with context path ''
+2021-03-17 20:38:55.677  INFO 16452 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Started VueStarterApplication in 6.61 seconds (JVM running for 117622.311)
+2021-03-17 20:38:55.708  INFO 16452 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   ManagementWebSecurityAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter' (OnClassCondition)
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnMissingBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   SecurityDataConfiguration#securityEvaluationContextExtension matched:
+      - @ConditionalOnMissingBean (types: org.springframework.security.data.repository.query.SecurityEvaluationContextExtension; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   ThymeleafAutoConfiguration.ThymeleafSecurityDialectConfiguration#securityDialect matched:
+      - @ConditionalOnMissingBean (types: org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   UserDetailsServiceAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
+      - @ConditionalOnBean (types: org.springframework.security.config.annotation.ObjectPostProcessor; SearchStrategy: all) found bean 'objectPostProcessor'; @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   UserDetailsServiceAutoConfiguration#inMemoryUserDetailsManager matched:
+      - @ConditionalOnMissingBean (types: org.springframework.security.oauth2.client.registration.ClientRegistrationRepository; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   WebSecurityEnablerConfiguration matched:
+      - found 'session' scope (OnWebApplicationCondition)
+      - @ConditionalOnBean (types: org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter; SearchStrategy: all) found bean 'org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityConfigurerAdapter'; @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+   WebSocketMessagingAutoConfiguration.WebSocketMessageConverterConfiguration:
+      Did not match:
+         - @ConditionalOnBean (types: org.springframework.web.socket.config.annotation.DelegatingWebSocketMessageBrokerConfiguration,com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) did not find any beans of type org.springframework.web.socket.config.annotation.DelegatingWebSocketMessageBrokerConfiguration (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required classes 'com.fasterxml.jackson.databind.ObjectMapper', 'org.springframework.messaging.simp.config.AbstractMessageBrokerConfiguration' (OnClassCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2021-03-17 20:38:57.861  INFO 16452 --- [http-nio-49612-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-03-17 20:38:57.861  INFO 16452 --- [http-nio-49612-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-03-17 20:38:57.890  INFO 16452 --- [http-nio-49612-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 29 ms
+2021-03-17 20:39:01.320  INFO 16452 --- [Thread-54] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-03-17 20:39:01.320  INFO 16452 --- [Thread-54] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-03-17 20:39:01.325  INFO 16452 --- [Thread-54] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2021-03-17 20:39:01.331  INFO 16452 --- [Thread-54] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2021-03-17 20:39:01.984  INFO 16452 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Starting VueStarterApplication on DESKTOP-AFC5970 with PID 16452 (C:\Users\user\projects\Hr\target\classes started by user in C:\Users\user\projects\Hr)
+2021-03-17 20:39:01.984  INFO 16452 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : The following profiles are active: development

@@ -177,7 +177,8 @@ export default {
       axios.put(`/api/expenses/${this.id}`,
           request).then(resp => {
         this.isLoading = false;
-        Message.success("Expense successfully updated")
+        Message.success("Expense successfully updated");
+        this.$emit("updateSuccessful")
       }, error => {
         this.isLoading = false;
         if (error.response.status == 400) {
