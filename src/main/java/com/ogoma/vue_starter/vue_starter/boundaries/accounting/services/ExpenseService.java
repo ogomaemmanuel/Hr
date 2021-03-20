@@ -39,6 +39,7 @@ public class ExpenseService {
         expense.setPurchaseFrom(expenseRequest.getPurchaseFrom());
         expense.setStatus(expenseRequest.getStatus());
         expense.setPurchasedBy(user);
+        expense.setPaidBy(expenseRequest.getPaidBy());
         // TODO add attachment url after uploading attachment to s3
         this.expenseRepository.save(expense);
         return expense;

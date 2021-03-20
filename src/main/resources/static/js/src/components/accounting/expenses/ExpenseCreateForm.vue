@@ -85,12 +85,14 @@
         <div class="column">
           <div class="field">
             <label class="label">Paid By<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  v-model="expense.paidBy"
+            <div class="select is-fullwidth">
+              <select
                   @input="clearFieldError('paidBy')"
-                  class="input"
-                  type="text">
+                  v-model="expense.paidBy">
+                <option></option>
+                <option value="Cash">Cash</option>
+                <option value="Cheque">Cheque</option>
+              </select>
               <span class="mb-2 has-text-danger" v-if="errors['paidBy']">
 						{{ errors['paidBy'][0] }}
 					</span>
@@ -103,12 +105,14 @@
         <div class="column">
           <div class="field">
             <label class="label">Status<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  v-model="expense.status"
+            <div class="select is-fullwidth">
+              <select
                   @input="clearFieldError('status')"
-                  class="input"
-                  type="text">
+                  v-model="expense.status">
+                <option></option>
+                <option value="APPROVED">Approved</option>
+                <option value="PENDING">Pending</option>
+              </select>
               <span class="mb-2 has-text-danger" v-if="errors['status']">
 						{{ errors['status'][0] }}
 					</span>

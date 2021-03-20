@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.requests;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Expense;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.enums.ExpenseStatus;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +12,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class ExpenseRequest {
+
+
     @NotBlank(message = "Item mame is required")
     private String itemName;
     @NotBlank(message = "Purchase From is required")
@@ -24,6 +27,10 @@ public class ExpenseRequest {
     private Long purchasedById;
     @Enumerated(EnumType.STRING)
     private ExpenseStatus status;
+
+    @NotNull(message = "Select payment method")
+    @Enumerated(EnumType.STRING)
+    private Expense.PaymentMethods paidBy;
 
     public String getItemName() {
         return itemName;
@@ -69,5 +76,13 @@ public class ExpenseRequest {
 
     public void setStatus(ExpenseStatus status) {
         this.status = status;
+    }
+
+    public Expense.PaymentMethods getPaidBy() {
+        return paidBy;
+    }
+
+    public void setPaidBy(Expense.PaymentMethods paidBy) {
+        this.paidBy = paidBy;
     }
 }

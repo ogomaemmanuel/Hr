@@ -15,6 +15,11 @@ import java.util.Set;
 @Entity
 @Table(name = "expenses")
 public class Expense {
+
+    public enum PaymentMethods {
+        Cash, Cheque
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,6 +33,8 @@ public class Expense {
             User_.USER_ROLES
     })
     private User purchasedBy;
+    @Enumerated(EnumType.STRING)
+    private PaymentMethods paidBy;
     @OneToMany(cascade = CascadeType.PERSIST,
             mappedBy = ExpenseAttachment_.EXPENSE)
     private Set<ExpenseAttachment> attachments;
@@ -107,6 +114,14 @@ public class Expense {
 
     public void setPurchasedBy(User purchasedBy) {
         this.purchasedBy = purchasedBy;
+    }
+
+    public PaymentMethods getPaidBy() {
+        return paidBy;
+    }
+
+    public void setPaidBy(PaymentMethods paidBy) {
+        this.paidBy = paidBy;
     }
 
     public ExpenseStatus getStatus() {
