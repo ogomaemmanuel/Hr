@@ -120,19 +120,19 @@
           </div>
         </div>
         <div class="column">
-<!--          <div class="field">-->
-<!--            <label class="label">Attachments<span><sup>*</sup></span></label>-->
-<!--            <div class="control">-->
-<!--              <input-->
-<!--                  v-model="expense.name"-->
-<!--                  @input="clearFieldError('name')"-->
-<!--                  class="input"-->
-<!--                  type="text">-->
-<!--              <span class="mb-2 has-text-danger" v-if="errors['name']">-->
-<!--						{{ errors['name'][0] }}-->
-<!--					</span>-->
-<!--            </div>-->
-<!--          </div>-->
+          <!--          <div class="field">-->
+          <!--            <label class="label">Attachments<span><sup>*</sup></span></label>-->
+          <!--            <div class="control">-->
+          <!--              <input-->
+          <!--                  v-model="expense.name"-->
+          <!--                  @input="clearFieldError('name')"-->
+          <!--                  class="input"-->
+          <!--                  type="text">-->
+          <!--              <span class="mb-2 has-text-danger" v-if="errors['name']">-->
+          <!--						{{ errors['name'][0] }}-->
+          <!--					</span>-->
+          <!--            </div>-->
+          <!--          </div>-->
           <div class="field">
             <div class="control">
               <label class="label">Attachments<span><sup>*</sup></span></label>
@@ -140,7 +140,7 @@
                 <label class="file-label">
                   <input
                       @change="onFileChange"
-                      class="file-input" type="file" multiple name="resume">
+                      class="file-input" type="file"  name="resume">
                   <span class="file-cta">
       <span class="file-icon">
         <i class="fa fa-upload"></i>
@@ -149,8 +149,8 @@
         Browse…
       </span>
     </span>
-                  <span class="file-name">
-      {{fileName}}
+                  <span  class="file-name">
+      {{ fileName }}
     </span>
                 </label>
               </div>
@@ -186,14 +186,17 @@ export default {
     return {
       isLoading: false,
       expense: {},
-      fileName:""
+      fileName: ""
     }
   },
   methods: {
     onFileChange(e) {
       const files = e.target.files;
       this.expense.attachments = files;
-      //this.fileName = files.reduce((ac,current)=>`${ac} ${current}`,"");
+      this.fileName=files[0].name
+      // for (let i = 0; i < files.length; i++) {
+      //   this.fileNames.push(files[i].name);
+      // }
     },
     createExpense() {
       let request = this.createFormData(this.expense);

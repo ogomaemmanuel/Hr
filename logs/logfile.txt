@@ -1108,3 +1108,5 @@ Caused by: java.net.SocketTimeoutException: Read timed out
 	at com.sun.mail.smtp.SMTPTransport.startTLS(SMTPTransport.java:2150) ~[javax.mail-1.6.2.jar:1.6.2]
 	... 39 common frames omitted
 
+2021-03-23 23:50:29.908  WARN 17240 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m49s981ms330µs700ns).
+2021-03-23 23:50:29.912  INFO 17240 --- [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 12], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 2], sockJsScheduler[pool size = 8, active threads = 3, queued tasks = 1, completed tasks = 25]
