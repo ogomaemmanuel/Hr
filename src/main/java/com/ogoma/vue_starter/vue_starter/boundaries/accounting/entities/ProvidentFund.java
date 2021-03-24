@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "provident_funds")
 public class ProvidentFund {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
