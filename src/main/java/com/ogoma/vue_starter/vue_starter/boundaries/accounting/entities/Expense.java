@@ -1,15 +1,19 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User_;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.enums.ExpenseStatus;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.enums.Statuses;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,6 +31,12 @@ public class Expense {
     private String purchaseFrom;
     private Date purchaseDate;
     private BigDecimal amount;
+    @Transient
+    @JsonProperty
+    private PaymentMethods[] paymentMethods;
+    @Transient
+    @JsonProperty
+    private ExpenseStatus[] expenseStatuses;
     @ManyToOne
     @JsonIgnoreProperties(value = {
             User_.EMPLOYEE,
@@ -131,4 +141,12 @@ public class Expense {
     public void setStatus(ExpenseStatus status) {
         this.status = status;
     }
+
+    public PaymentMethods[] getPaymentMethods() {
+        return PaymentMethods.values();
+    }
+    public ExpenseStatus[] getExpenseStatuses() {
+        return ExpenseStatus.values();
+    }
+
 }

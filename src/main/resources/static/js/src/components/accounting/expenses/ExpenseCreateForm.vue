@@ -194,9 +194,6 @@ export default {
       const files = e.target.files;
       this.expense.attachments = files;
       this.fileName=files[0].name
-      // for (let i = 0; i < files.length; i++) {
-      //   this.fileNames.push(files[i].name);
-      // }
     },
     createExpense() {
       let request = this.createFormData(this.expense);

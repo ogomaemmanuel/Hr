@@ -1,7 +1,6 @@
 <template>
   <ModalTemplate width="800" @modalClosed="onModalClosed">
     <ExpenseCreateForm
-        :id="id"
         @createSuccessful="onCreateSuccessful"
         slot="modal-content">
     </ExpenseCreateForm>
