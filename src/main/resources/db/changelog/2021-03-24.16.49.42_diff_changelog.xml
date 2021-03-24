@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="user (generated)" id="1616604606464-1">
+        <createTable tableName="provident_funds">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="provident_fundsPK"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="employee_share" type="DECIMAL(19, 2)"/>
+            <column name="organisation_share" type="DECIMAL(19, 2)"/>
+            <column name="percentage_employee_share" type="DECIMAL(19, 2)"/>
+            <column name="percentage_organisation_share" type="DECIMAL(19, 2)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="employee_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1616604606464-2">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="provident_funds" constraintName="FKr1l4nt9lxx3vww0vk80opp9vf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

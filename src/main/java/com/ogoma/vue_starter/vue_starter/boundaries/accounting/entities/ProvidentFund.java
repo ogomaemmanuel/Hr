@@ -1,10 +1,13 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Table(name = "provident_funds")
@@ -20,6 +23,12 @@ public class ProvidentFund {
     private BigDecimal organisationShare;
     private BigDecimal percentageEmployeeShare;
     private BigDecimal percentageOrganisationShare;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
 
     public Long getId() {
         return id;
@@ -70,5 +79,21 @@ public class ProvidentFund {
 
     public void setPercentageOrganisationShare(BigDecimal percentageOrganisationShare) {
         this.percentageOrganisationShare = percentageOrganisationShare;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
