@@ -1,7 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.requests;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Expense;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.enums.ExpenseStatus;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -9,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class ExpenseRequest {
     @NotBlank(message = "Item mame is required")
@@ -24,6 +27,11 @@ public class ExpenseRequest {
     private Long purchasedById;
     @Enumerated(EnumType.STRING)
     private ExpenseStatus status;
+
+    @NotNull(message = "Select payment method")
+    @Enumerated(EnumType.STRING)
+    private Expense.PaymentMethods paidBy;
+    private List<MultipartFile> attachments;
 
     public String getItemName() {
         return itemName;
@@ -69,5 +77,21 @@ public class ExpenseRequest {
 
     public void setStatus(ExpenseStatus status) {
         this.status = status;
+    }
+
+    public Expense.PaymentMethods getPaidBy() {
+        return paidBy;
+    }
+
+    public void setPaidBy(Expense.PaymentMethods paidBy) {
+        this.paidBy = paidBy;
+    }
+
+    public List<MultipartFile> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<MultipartFile> attachments) {
+        this.attachments = attachments;
     }
 }

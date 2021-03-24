@@ -85,30 +85,33 @@
         <div class="column">
           <div class="field">
             <label class="label">Paid By<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  v-model="expense.paidBy"
+            <div class="select is-fullwidth">
+              <select
                   @input="clearFieldError('paidBy')"
-                  class="input"
-                  type="text">
+                  v-model="expense.paidBy">
+                <option></option>
+                <option value="Cash">Cash</option>
+                <option value="Cheque">Cheque</option>
+              </select>
               <span class="mb-2 has-text-danger" v-if="errors['paidBy']">
 						{{ errors['paidBy'][0] }}
 					</span>
             </div>
           </div>
-
         </div>
       </div>
       <div class="columns">
         <div class="column">
           <div class="field">
             <label class="label">Status<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  v-model="expense.status"
+            <div class="select is-fullwidth">
+              <select
                   @input="clearFieldError('status')"
-                  class="input"
-                  type="text">
+                  v-model="expense.status">
+                <option></option>
+                <option value="APPROVED">Approved</option>
+                <option value="PENDING">Pending</option>
+              </select>
               <span class="mb-2 has-text-danger" v-if="errors['status']">
 						{{ errors['status'][0] }}
 					</span>
@@ -117,19 +120,28 @@
         </div>
         <div class="column">
           <div class="field">
-            <label class="label">Attachments<span><sup>*</sup></span></label>
             <div class="control">
-              <input
-                  v-model="expense.name"
-                  @input="clearFieldError('name')"
-                  class="input"
-                  type="text">
-              <span class="mb-2 has-text-danger" v-if="errors['name']">
-						{{ errors['name'][0] }}
-					</span>
+              <label class="label">Attachments<span><sup>*</sup></span></label>
+              <div class="file has-name is-fullwidth">
+                <label class="file-label">
+                  <input
+                      @change="onFileChange"
+                      class="file-input" type="file"  name="resume">
+                  <span class="file-cta">
+      <span class="file-icon">
+        <i class="fa fa-upload"></i>
+      </span>
+      <span class="file-label">
+        Browse…
+      </span>
+    </span>
+                  <span  class="file-name">
+      {{ fileName }}
+    </span>
+                </label>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
       <div class="flex justify-center m-3">
@@ -164,13 +176,19 @@ export default {
   data() {
     return {
       expense: {},
-      isLoading: false
+      isLoading: false,
+      fileName: ""
     }
   },
   created() {
     this.getExpenseById();
   },
   methods: {
+    onFileChange(e) {
+      const files = e.target.files;
+      this.expense.attachments = files;
+      this.fileName=files[0].name
+    },
     updateExpense() {
       this.isLoading = true
       let request = this.createFormData(this.expense);
