@@ -9,6 +9,8 @@ import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ProvidentFundService {
     private final ProvidentFundRepository providentFundRepository;
@@ -35,5 +37,22 @@ public class ProvidentFundService {
         providentFund.setEmployee(employee);
         this.providentFundRepository.save(providentFund);
         return providentFund;
+    }
+
+
+    public Optional<ProvidentFund> updateProvidentFund(Long id, ProvidentFundRequest providentFundRequest) {
+      Optional<ProvidentFund> providentFund=
+              this.providentFundRepository.findById(id);
+        Employee employee= this.employeeRepository.getOne(providentFundRequest.getEmployeeId());
+        providentFund.ifPresent(p->{
+          p.setEmployee(employee);
+          p.setPercentageOrganisationShare(providentFundRequest.getPercentageOrganisationShare());
+          p.setPercentageEmployeeShare(providentFundRequest.getPercentageEmployeeShare());
+          p.setDescription(providentFundRequest.getDescription());
+          p.setEmployeeShare(providentFundRequest.getEmployeeShare());
+          p.setOrganisationShare(providentFundRequest.getOrganisationShare());
+          this.providentFundRepository.save(p);
+      });
+      return providentFund;
     }
 }
