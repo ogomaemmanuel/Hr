@@ -125,6 +125,10 @@ const ExpenseList = () => import("../components/accounting/expenses/ExpenseList"
 const ExpenseCreate = () => import("../components/accounting/expenses/ExpenseCreateModal")
 const ExpenseEdit = () => import("../components/accounting/expenses/ExpenseEditModal")
 
+const ProvidentFundsPage = () => import("../components/accounting/provident_fund/ProvidentFundPage")
+const ProvidentFundList = () => import("../components/accounting/provident_fund/ProvidentFundList")
+const ProvidentFundCreate = () => import("../components/accounting/provident_fund/ProvidentFundCreateModal")
+
 
 const PolicyPage = () => import("../components/employee_management/policy/PolicyPage")
 const PolicyList = () => import("../components/employee_management/policy/PolicyList")
@@ -840,6 +844,39 @@ const routes = new Router({
                             meta: {
                                 breadcrumb: true,
                                 title: "Expense Create",
+                            }
+                        },
+                        {
+                            path: "/expense-edit/:id",
+                            name: "expense-edit",
+                            component: ExpenseEdit,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Expense  Edit",
+                            }
+                        }
+
+                    ]
+                },
+                {
+                    path: "/provident-funds",
+                    component: ProvidentFundsPage,
+                    meta: {
+                        breadcrumb: true,
+                        title: "Provident Funds",
+                    },
+                    children: [
+                        {
+                            path: "/",
+                            component: ProvidentFundList,
+                        },
+                        {
+                            path: "/provident-fund-create",
+                            name: "provident-fund-create",
+                            component: ProvidentFundCreate,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Provident Fund Create",
                             }
                         },
                         {
