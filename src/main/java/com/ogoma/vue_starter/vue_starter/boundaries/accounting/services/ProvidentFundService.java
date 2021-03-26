@@ -15,6 +15,7 @@ import java.util.Optional;
 public class ProvidentFundService {
     private final ProvidentFundRepository providentFundRepository;
     private final EmployeeRepository employeeRepository;
+
     public ProvidentFundService(ProvidentFundRepository providentFundRepository, EmployeeRepository employeeRepository) {
         this.providentFundRepository = providentFundRepository;
         this.employeeRepository = employeeRepository;
@@ -28,7 +29,7 @@ public class ProvidentFundService {
 
     public ProvidentFund createProvidentFund(ProvidentFundRequest providentFundRequest) {
         ProvidentFund providentFund = new ProvidentFund();
-        Employee employee= this.employeeRepository.getOne(providentFundRequest.getEmployeeId());
+        Employee employee = this.employeeRepository.getOne(providentFundRequest.getEmployeeId());
         providentFund.setDescription(providentFundRequest.getDescription());
         providentFund.setEmployeeShare(providentFundRequest.getEmployeeShare());
         providentFund.setOrganisationShare(providentFundRequest.getOrganisationShare());
@@ -41,18 +42,23 @@ public class ProvidentFundService {
 
 
     public Optional<ProvidentFund> updateProvidentFund(Long id, ProvidentFundRequest providentFundRequest) {
-      Optional<ProvidentFund> providentFund=
-              this.providentFundRepository.findById(id);
-        Employee employee= this.employeeRepository.getOne(providentFundRequest.getEmployeeId());
-        providentFund.ifPresent(p->{
-          p.setEmployee(employee);
-          p.setPercentageOrganisationShare(providentFundRequest.getPercentageOrganisationShare());
-          p.setPercentageEmployeeShare(providentFundRequest.getPercentageEmployeeShare());
-          p.setDescription(providentFundRequest.getDescription());
-          p.setEmployeeShare(providentFundRequest.getEmployeeShare());
-          p.setOrganisationShare(providentFundRequest.getOrganisationShare());
-          this.providentFundRepository.save(p);
-      });
-      return providentFund;
+        Optional<ProvidentFund> providentFund =
+                this.providentFundRepository.findById(id);
+        Employee employee = this.employeeRepository.getOne(providentFundRequest.getEmployeeId());
+        providentFund.ifPresent(p -> {
+            p.setEmployee(employee);
+            p.setPercentageOrganisationShare(providentFundRequest.getPercentageOrganisationShare());
+            p.setPercentageEmployeeShare(providentFundRequest.getPercentageEmployeeShare());
+            p.setDescription(providentFundRequest.getDescription());
+            p.setEmployeeShare(providentFundRequest.getEmployeeShare());
+            p.setOrganisationShare(providentFundRequest.getOrganisationShare());
+            this.providentFundRepository.save(p);
+        });
+        return providentFund;
+    }
+
+    public Optional<ProvidentFund> getProvidentFundById(Long id) {
+        Optional<ProvidentFund> providentFund = this.providentFundRepository.findById(id);
+        return providentFund;
     }
 }

@@ -35,10 +35,18 @@ public class ProvidentFundController {
         return ResponseEntity.ok(providentFund);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getProvidentFundById(@PathVariable Long id) {
+        Optional<ProvidentFund> providentFund =
+                this.providentFundService.getProvidentFundById(id);
+        return ResponseEntity.of(providentFund);
+
+    }
+
     @PutMapping
-    public ResponseEntity<?> updateProvidentFund(Long id,@RequestBody @Valid ProvidentFundRequest providentFundRequest){
-        Optional<ProvidentFund> providentFund=
-                this.providentFundService.updateProvidentFund(id,providentFundRequest);
+    public ResponseEntity<?> updateProvidentFund(Long id, @RequestBody @Valid ProvidentFundRequest providentFundRequest) {
+        Optional<ProvidentFund> providentFund =
+                this.providentFundService.updateProvidentFund(id, providentFundRequest);
         return ResponseEntity.of(providentFund);
     }
 }
