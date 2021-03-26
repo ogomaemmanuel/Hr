@@ -867,7 +867,7 @@ const routes = new Router({
                     children: [
                         {
                             path: "/",
-                            component: ExpenseList,
+                            component: ProvidentFundList,
                         },
                         {
                             path: "/expense-create",
