@@ -307,7 +307,7 @@
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/leave-types">
+                                    <router-link to="/provident-funds">
                                         <span>Provided Fund</span>
                                     </router-link>
                                 </li>

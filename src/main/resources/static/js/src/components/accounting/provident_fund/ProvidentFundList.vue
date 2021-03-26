@@ -29,21 +29,20 @@
           <thead>
           <tr>
             <th>
-              Item
+              Employee Name
             </th>
             <th>
-              Purchase From
+              Provident Fund Type
             </th>
             <th>
-              Purchase Date
+              Employee Share
             </th>
             <th>
-              Purchased By
+              Organisation Share
             </th>
             <th>
               Amount
             </th>
-
             <th>
               Status
             </th>
@@ -60,7 +59,7 @@
               {{ providentFund.purchaseFrom }}
             </td>
             <td>
-              {{ providentFund.purchaseDate  }}
+              {{ providentFund.purchaseDate }}
             </td>
 
             <td>
@@ -72,14 +71,14 @@
             <td data-label="Action">
               <div class="action-controls d-flex justify-end">
                 <router-link
-                    :to="`/expense-edit/${providentFund.id}`" tag="button"
+                    :to="`/provident-fund-edit/${providentFund.id}`" tag="button"
                     @click="" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
                 </router-link>
                 <button
-                    @click="confirmRemoveExpense(providentFund)"
+                    @click="confirmRemoveProvidentFund(providentFund)"
                     class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -121,8 +120,34 @@ export default {
   },
   data() {
     return {
-      providentFunds:[]
+      providentFunds: [],
+      loading: false
     }
+  },
+
+  created() {
+    this.getProvidentFunds();
+  },
+  methods: {
+    fetchRecords() {
+      this.getProvidentFunds();
+    },
+    confirmRemoveProvidentFund(providentFund) {
+
+    },
+    getProvidentFunds() {
+      axios.get("/api/provident-funds", {
+        params: {
+          page: this.page,
+          pageSize: this.pageSize
+        }
+      }).then(resp => {
+        this.loading = false;
+        this.providentFunds = resp.data.content;
+        this.pageable = resp.data;
+      })
+    }
+
   }
 }
 </script>
