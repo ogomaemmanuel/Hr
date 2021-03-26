@@ -43,8 +43,8 @@ public class ProvidentFundController {
 
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateProvidentFund(Long id, @RequestBody @Valid ProvidentFundRequest providentFundRequest) {
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> updateProvidentFund(@PathVariable Long id, @RequestBody @Valid ProvidentFundRequest providentFundRequest) {
         Optional<ProvidentFund> providentFund =
                 this.providentFundService.updateProvidentFund(id, providentFundRequest);
         return ResponseEntity.of(providentFund);
