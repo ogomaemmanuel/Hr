@@ -9,7 +9,7 @@
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
         <span>
-					 Add Expense
+					 Add Provident Fund
 				</span>
       </router-link>
       <a
