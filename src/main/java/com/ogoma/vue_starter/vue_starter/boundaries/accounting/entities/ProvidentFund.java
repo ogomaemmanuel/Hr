@@ -17,6 +17,7 @@ public class ProvidentFund {
     public enum ProvidentFundType {
         fixedAmount, percentOfBasic
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,7 +31,7 @@ public class ProvidentFund {
     private BigDecimal percentageOrganisationShare;
     @Transient
     @JsonProperty
-    private List<Map<ProvidentFundType,String>> providentFundTypesSelectList;
+    private List<Map<ProvidentFundType, String>> providentFundTypesSelectList;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
@@ -39,6 +40,10 @@ public class ProvidentFund {
     private Date updatedAt;
     @Enumerated(EnumType.STRING)
     private ProvidentFundType providentFundType;
+    @Transient
+    @JsonProperty
+    private String providentFundTypeText;
+
 
     public Long getId() {
         return id;
@@ -117,9 +122,10 @@ public class ProvidentFund {
     }
 
     public List<Map<ProvidentFundType, String>> getProvidentFundTypesSelectList() {
-       return Arrays.stream(ProvidentFundType.values()).map(
+        return Arrays.stream(ProvidentFundType.values()).map(
                 x -> {
-                    HashMap<ProvidentFundType, String> hashMap = new HashMap<ProvidentFundType, String>();
+                    HashMap<ProvidentFundType, String> hashMap =
+                            new HashMap<ProvidentFundType, String>();
                     if (x.equals(ProvidentFundType.fixedAmount)) {
                         hashMap.put(x, "Fixed Amount");
                         return hashMap;
@@ -129,4 +135,18 @@ public class ProvidentFund {
                 }
         ).collect(Collectors.toList());
     }
+
+    public String getProvidentFundTypeText() {
+        ProvidentFundType providentFundType = this.getProvidentFundType();
+        if (null != providentFundType && providentFundType.equals(ProvidentFundType.fixedAmount)) {
+            return "Fixed Amount";
+        }
+        if (null != providentFundType &&
+                providentFundType.equals(ProvidentFundType.fixedAmount)) {
+            return "Percentage of Basic Salary";
+        }
+        return "";
+    }
+
+
 }
