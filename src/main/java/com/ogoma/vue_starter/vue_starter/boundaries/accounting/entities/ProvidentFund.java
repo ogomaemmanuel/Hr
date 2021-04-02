@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -7,17 +8,17 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "provident_funds")
 public class ProvidentFund {
-    public enum ProvidentFundType{
+    public enum ProvidentFundType {
         fixedAmount, percentOfBasic
     }
-
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Description is required")
     private String description;
@@ -27,17 +28,22 @@ public class ProvidentFund {
     private BigDecimal organisationShare;
     private BigDecimal percentageEmployeeShare;
     private BigDecimal percentageOrganisationShare;
+    @Transient
+    @JsonProperty
+    private List<Map<ProvidentFundType,String>> providentFundTypesSelectList;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @Enumerated(EnumType.STRING)
     private ProvidentFundType providentFundType;
 
     public Long getId() {
         return id;
     }
+
     public String getDescription() {
         return description;
     }
@@ -108,5 +114,19 @@ public class ProvidentFund {
 
     public void setProvidentFundType(ProvidentFundType providentFundType) {
         this.providentFundType = providentFundType;
+    }
+
+    public List<Map<ProvidentFundType, String>> getProvidentFundTypesSelectList() {
+       return Arrays.stream(ProvidentFundType.values()).map(
+                x -> {
+                    HashMap hashMap = new HashMap<ProvidentFundType, String>();
+                    if (x.equals(ProvidentFundType.fixedAmount)) {
+                        hashMap.put(x, "Fixed Amount");
+                        return hashMap;
+                    }
+                    hashMap.put(x, "Percentage of Basic Salary");
+                    return hashMap;
+                }
+        ).collect(Collectors.toList());
     }
 }
