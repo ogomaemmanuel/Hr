@@ -1,5 +1,5 @@
 <template>
-  <ModalTemplate @modalClosed="onModalClosed">
+  <ModalTemplate width="900" @modalClosed="onModalClosed">
     <ProvidentFundCreateForm slot="modal-content"></ProvidentFundCreateForm>
   </ModalTemplate>
 </template>
