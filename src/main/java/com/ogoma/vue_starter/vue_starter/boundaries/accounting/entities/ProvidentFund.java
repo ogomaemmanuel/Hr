@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -142,11 +143,9 @@ public class ProvidentFund {
             return "Fixed Amount";
         }
         if (null != providentFundType &&
-                providentFundType.equals(ProvidentFundType.fixedAmount)) {
+                providentFundType.equals(ProvidentFundType.percentOfBasic)) {
             return "Percentage of Basic Salary";
         }
         return "";
     }
-
-
 }

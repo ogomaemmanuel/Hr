@@ -40,9 +40,7 @@
             <th>
               Organisation Share
             </th>
-            <th>
-              Amount
-            </th>
+
             <th>
               Status
             </th>
@@ -53,17 +51,17 @@
           <tbody>
           <tr v-for="providentFund in providentFunds">
             <td>
-              {{ providentFund.id }}
+              {{ providentFund.employee.fullName }}
             </td>
             <td>
-              {{ providentFund.purchaseFrom }}
+              {{ providentFund.providentFundTypeText }}
             </td>
             <td>
-              {{ providentFund.purchaseDate }}
+              {{ providentFund.employeeShare }}
             </td>
 
             <td>
-              {{ providentFund.amount }}
+              {{ providentFund.organisationShare }}
             </td>
             <td>
               {{ providentFund.paidBy }}
