@@ -53,3 +53,266 @@
 2021-04-02 22:34:48.533  INFO 16560 --- [MessageBroker-7] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 14 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(14)-CONNECTED(14)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 207], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 41], sockJsScheduler[pool size = 8, active threads = 2, queued tasks = 2, completed tasks = 90396]
 2021-04-02 22:34:50.872  WARN 16560 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h27m38s597ms520µs400ns).
 2021-04-02 22:36:07.453  INFO 16560 --- [MessageBroker-2] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 14 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(14)-CONNECTED(14)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 207], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 41], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 3, completed tasks = 90418]
+2021-04-02 22:48:25.890  INFO 16560 --- [Thread-5] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2021-04-02 22:48:25.903  INFO 16560 --- [Thread-5] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-04-02 22:48:25.903  INFO 16560 --- [Thread-5] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2021-04-02 22:48:25.966  INFO 16560 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-04-02 22:48:26.004  INFO 16560 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2021-04-02 22:48:26.009  INFO 16560 --- [Thread-5] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2021-04-02 22:48:26.017  INFO 16560 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2021-04-02 22:48:26.018  INFO 16560 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2021-04-02 22:48:26.036  INFO 16560 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-04-02 22:48:26.179  INFO 16560 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-04-02 22:48:26.236  INFO 16560 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-04-02 22:48:28.244  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Starting VueStarterApplication on DESKTOP-AFC5970 with PID 16560 (C:\Users\user\projects\Hr\target\classes started by user in C:\Users\user\projects\Hr)
+2021-04-02 22:48:28.245  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : The following profiles are active: development
+2021-04-02 22:48:30.652  INFO 16560 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-04-02 22:48:30.782 ERROR 16560 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.TypeNotPresentException: Type com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.ProvidentFund not present
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:117) ~[na:na]
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125) ~[na:na]
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49) ~[na:na]
+	at java.base/sun.reflect.generics.visitor.Reifier.reifyTypeArguments(Reifier.java:68) ~[na:na]
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:138) ~[na:na]
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49) ~[na:na]
+	at java.base/sun.reflect.generics.repository.ClassRepository.computeSuperInterfaces(ClassRepository.java:117) ~[na:na]
+	at java.base/sun.reflect.generics.repository.ClassRepository.getSuperInterfaces(ClassRepository.java:95) ~[na:na]
+	at java.base/java.lang.Class.getGenericInterfaces(Class.java:1137) ~[na:na]
+	at org.springframework.core.ResolvableType.getInterfaces(ResolvableType.java:491) ~[spring-core-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.core.GenericTypeResolver.buildTypeVariableMap(GenericTypeResolver.java:269) ~[spring-core-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.core.GenericTypeResolver.getTypeVariableMap(GenericTypeResolver.java:246) ~[spring-core-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.data.util.ClassTypeInformation.getTypeVariableMap(ClassTypeInformation.java:115) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.util.ClassTypeInformation.getTypeVariableMap(ClassTypeInformation.java:104) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.util.ClassTypeInformation.<init>(ClassTypeInformation.java:93) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at java.base/java.util.concurrent.ConcurrentMap.computeIfAbsent(ConcurrentMap.java:330) ~[na:na]
+	at org.springframework.data.util.ClassTypeInformation.from(ClassTypeInformation.java:71) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.core.support.AbstractRepositoryMetadata.<init>(AbstractRepositoryMetadata.java:58) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.core.support.DefaultRepositoryMetadata.<init>(DefaultRepositoryMetadata.java:52) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.core.support.AbstractRepositoryMetadata.getMetadata(AbstractRepositoryMetadata.java:73) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport.getRepositoryConfigurations(RepositoryConfigurationExtensionSupport.java:99) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:145) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.boot.autoconfigure.data.AbstractRepositoryConfigurationSourceSupport.registerBeanDefinitions(AbstractRepositoryConfigurationSourceSupport.java:59) ~[spring-boot-autoconfigure-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:364) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:684) ~[na:na]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:363) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:145) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:117) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:327) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:232) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:275) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:95) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:705) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:531) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:742) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:389) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1213) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1202) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at com.ogoma.vue_starter.vue_starter.VueStarterApplication.main(VueStarterApplication.java:25) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+Caused by: java.lang.ClassNotFoundException: com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.ProvidentFund
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522) ~[na:na]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:144) ~[spring-boot-devtools-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522) ~[na:na]
+	at java.base/java.lang.Class.forName0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.forName(Class.java:398) ~[na:na]
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114) ~[na:na]
+	... 45 common frames omitted
+
+2021-04-02 22:48:45.421  INFO 16560 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-04-02 22:48:45.421  INFO 16560 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-04-02 22:48:45.428  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Starting VueStarterApplication on DESKTOP-AFC5970 with PID 16560 (C:\Users\user\projects\Hr\target\classes started by user in C:\Users\user\projects\Hr)
+2021-04-02 22:48:45.428  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : The following profiles are active: development
+2021-04-02 22:48:46.715  INFO 16560 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-04-02 22:48:47.074  INFO 16560 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 359ms. Found 31 repository interfaces.
+2021-04-02 22:48:47.262  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$22dfe846] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.287  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$bb8db080] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.291  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.291  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@422f8e64' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.295  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityConfig' of type [com.ogoma.vue_starter.vue_starter.config.MethodSecurityConfig$$EnhancerBySpringCGLIB$$68e45a5a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.304  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$5b76b48] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.305  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.305  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.314  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$a2603578] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:48:47.581  INFO 16560 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 49612 (http)
+2021-04-02 22:48:47.590  INFO 16560 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-02 22:48:47.590  INFO 16560 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2021-04-02 22:48:47.655  INFO 16560 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-02 22:48:47.655  INFO 16560 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2227 ms
+2021-04-02 22:48:47.660  INFO 16560 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation should only be used on methods with parameters: org.springframework.security.web.AuthenticationEntryPoint com.ogoma.vue_starter.vue_starter.config.AppSecurityConfig.authenticationEntryPoint()
+2021-04-02 22:48:48.048  INFO 16560 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-04-02 22:48:48.116  INFO 16560 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-04-02 22:48:48.197  INFO 16560 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-02 22:48:48.957  INFO 16560 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-04-02 22:48:49.702  INFO 16560 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-02 22:48:49.702  INFO 16560 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-02 22:48:51.564  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2021-04-02 22:48:51.574  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2021-04-02 22:48:51.574  INFO 16560 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2021-04-02 22:48:51.591  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/dist/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/static/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scss/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/photos/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/plugins/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/theme/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts.googleapis.com/**'], []
+2021-04-02 22:48:51.669  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/.i.pravatar.cc'], []
+2021-04-02 22:48:51.673  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/maxcdn.bootstrapcdn.com/**'], []
+2021-04-02 22:48:51.673  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/health'], []
+2021-04-02 22:48:51.713  WARN 16560 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-02 22:48:51.852  INFO 16560 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-04-02 22:48:51.885  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@754efe69, org.springframework.security.web.context.SecurityContextPersistenceFilter@4067ba8, org.springframework.security.web.header.HeaderWriterFilter@552c1774, org.springframework.web.filter.CorsFilter@6dd1b346, org.springframework.security.web.csrf.CsrfFilter@6f5f8fd2, org.springframework.security.web.authentication.logout.LogoutFilter@33a6588f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@28f8cb56, org.springframework.security.web.session.ConcurrentSessionFilter@577f1ced, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@31244beb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1c91a784, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e7f6838, org.springframework.security.web.session.SessionManagementFilter@44cd3ab9, org.springframework.security.web.access.ExceptionTranslationFilter@5ed1af6d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@132013af]
+2021-04-02 22:48:51.889  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
+2021-04-02 22:48:51.893  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-04-02 22:48:52.293  INFO 16560 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-02 22:48:52.322  INFO 16560 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2021-04-02 22:48:52.322  INFO 16560 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-04-02 22:48:52.322  INFO 16560 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2021-04-02 22:48:52.374  INFO 16560 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 49612 (http) with context path ''
+2021-04-02 22:48:52.374  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Started VueStarterApplication in 7.082 seconds (JVM running for 440043.812)
+2021-04-02 22:48:52.492  INFO 16560 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-04-02 22:48:52.553  INFO 16560 --- [http-nio-49612-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-02 22:48:52.553  INFO 16560 --- [http-nio-49612-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-02 22:48:52.568  INFO 16560 --- [http-nio-49612-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+2021-04-02 22:49:04.547  INFO 16560 --- [Thread-23] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2021-04-02 22:49:04.547  INFO 16560 --- [Thread-23] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-04-02 22:49:04.547  INFO 16560 --- [Thread-23] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2021-04-02 22:49:04.551  INFO 16560 --- [Thread-23] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-04-02 22:49:04.552  INFO 16560 --- [Thread-23] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2021-04-02 22:49:04.553  INFO 16560 --- [Thread-23] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2021-04-02 22:49:04.553  INFO 16560 --- [Thread-23] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2021-04-02 22:49:04.553  INFO 16560 --- [Thread-23] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2021-04-02 22:49:04.565  INFO 16560 --- [Thread-23] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-04-02 22:49:04.575  INFO 16560 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2021-04-02 22:49:04.652  INFO 16560 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2021-04-02 22:49:05.271  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Starting VueStarterApplication on DESKTOP-AFC5970 with PID 16560 (C:\Users\user\projects\Hr\target\classes started by user in C:\Users\user\projects\Hr)
+2021-04-02 22:49:05.271  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : The following profiles are active: development
+2021-04-02 22:49:06.287  INFO 16560 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-04-02 22:49:06.553  INFO 16560 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 266ms. Found 31 repository interfaces.
+2021-04-02 22:49:06.955  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$22dfe846] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:06.984  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$bb8db080] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:06.988  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:06.988  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@48f17b98' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:06.988  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityConfig' of type [com.ogoma.vue_starter.vue_starter.config.MethodSecurityConfig$$EnhancerBySpringCGLIB$$68e45a5a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:06.998  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$5b76b48] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:07.000  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:07.000  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:07.008  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$a2603578] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:07.345  INFO 16560 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 49612 (http)
+2021-04-02 22:49:07.350  INFO 16560 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-02 22:49:07.350  INFO 16560 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2021-04-02 22:49:07.385  INFO 16560 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-02 22:49:07.385  INFO 16560 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2111 ms
+2021-04-02 22:49:07.389  INFO 16560 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation should only be used on methods with parameters: org.springframework.security.web.AuthenticationEntryPoint com.ogoma.vue_starter.vue_starter.config.AppSecurityConfig.authenticationEntryPoint()
+2021-04-02 22:49:07.716  INFO 16560 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2021-04-02 22:49:07.767  INFO 16560 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2021-04-02 22:49:07.849  INFO 16560 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-02 22:49:08.228  INFO 16560 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-04-02 22:49:09.589  INFO 16560 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-02 22:49:09.589  INFO 16560 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-02 22:49:12.238  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2021-04-02 22:49:12.250  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2021-04-02 22:49:12.252  INFO 16560 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2021-04-02 22:49:12.276  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/dist/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/static/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scss/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/photos/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/plugins/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/theme/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts.googleapis.com/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/.i.pravatar.cc'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/maxcdn.bootstrapcdn.com/**'], []
+2021-04-02 22:49:12.403  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/health'], []
+2021-04-02 22:49:12.498  WARN 16560 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-02 22:49:12.773  INFO 16560 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-04-02 22:49:12.831  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@440b46ca, org.springframework.security.web.context.SecurityContextPersistenceFilter@4dc2e15f, org.springframework.security.web.header.HeaderWriterFilter@13f9d4c7, org.springframework.web.filter.CorsFilter@38c5c2d8, org.springframework.security.web.csrf.CsrfFilter@13072fa3, org.springframework.security.web.authentication.logout.LogoutFilter@383c605a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@60300ed0, org.springframework.security.web.session.ConcurrentSessionFilter@42caad42, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10c05bcc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2f0b6844, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@133e3e2, org.springframework.security.web.session.SessionManagementFilter@681aedd5, org.springframework.security.web.access.ExceptionTranslationFilter@54db6b97, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@30c121db]
+2021-04-02 22:49:12.840  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
+2021-04-02 22:49:12.842  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2021-04-02 22:49:13.792  INFO 16560 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-04-02 22:49:13.915  INFO 16560 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2021-04-02 22:49:13.919  INFO 16560 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-04-02 22:49:13.919  INFO 16560 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2021-04-02 22:49:13.965  INFO 16560 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 49612 (http) with context path ''
+2021-04-02 22:49:13.965  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Started VueStarterApplication in 8.82 seconds (JVM running for 440065.403)
+2021-04-02 22:49:14.023  INFO 16560 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-04-02 22:49:15.518  INFO 16560 --- [http-nio-49612-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-02 22:49:15.523  INFO 16560 --- [http-nio-49612-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-02 22:49:15.538  INFO 16560 --- [http-nio-49612-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+2021-04-02 22:49:24.727  INFO 16560 --- [Thread-32] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2021-04-02 22:49:24.728  INFO 16560 --- [Thread-32] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2021-04-02 22:49:24.728  INFO 16560 --- [Thread-32] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2021-04-02 22:49:24.729  INFO 16560 --- [Thread-32] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2021-04-02 22:49:24.729  INFO 16560 --- [Thread-32] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2021-04-02 22:49:24.731  INFO 16560 --- [Thread-32] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2021-04-02 22:49:24.732  INFO 16560 --- [Thread-32] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2021-04-02 22:49:24.732  INFO 16560 --- [Thread-32] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2021-04-02 22:49:24.737  INFO 16560 --- [Thread-32] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-04-02 22:49:24.738  INFO 16560 --- [Thread-32] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2021-04-02 22:49:24.748  INFO 16560 --- [Thread-32] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2021-04-02 22:49:25.227  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Starting VueStarterApplication on DESKTOP-AFC5970 with PID 16560 (C:\Users\user\projects\Hr\target\classes started by user in C:\Users\user\projects\Hr)
+2021-04-02 22:49:25.227  INFO 16560 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : The following profiles are active: development
+2021-04-02 22:49:26.327  INFO 16560 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-04-02 22:49:26.587  INFO 16560 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 260ms. Found 31 repository interfaces.
+2021-04-02 22:49:26.690  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$22dfe846] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.703  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$bb8db080] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.703  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.703  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@73716dc8' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.703  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityConfig' of type [com.ogoma.vue_starter.vue_starter.config.MethodSecurityConfig$$EnhancerBySpringCGLIB$$68e45a5a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.707  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$5b76b48] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.707  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.707  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.715  INFO 16560 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$a2603578] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-04-02 22:49:26.906  INFO 16560 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 49612 (http)
+2021-04-02 22:49:26.906  INFO 16560 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-02 22:49:26.906  INFO 16560 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2021-04-02 22:49:26.940  INFO 16560 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-02 22:49:26.940  INFO 16560 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1709 ms
+2021-04-02 22:49:26.945  INFO 16560 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation should only be used on methods with parameters: org.springframework.security.web.AuthenticationEntryPoint com.ogoma.vue_starter.vue_starter.config.AppSecurityConfig.authenticationEntryPoint()
+2021-04-02 22:49:27.194  INFO 16560 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2021-04-02 22:49:27.248  INFO 16560 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2021-04-02 22:49:27.306  INFO 16560 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-04-02 22:49:27.511  INFO 16560 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-04-02 22:49:27.969  INFO 16560 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-04-02 22:49:27.969  INFO 16560 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-04-02 22:49:28.999  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2021-04-02 22:49:29.008  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2021-04-02 22:49:29.012  INFO 16560 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2021-04-02 22:49:29.032  INFO 16560 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/dist/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/static/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scss/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/photos/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/plugins/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/theme/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts.googleapis.com/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/.i.pravatar.cc'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/maxcdn.bootstrapcdn.com/**'], []
+2021-04-02 22:49:29.101  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/health'], []
+2021-04-02 22:49:29.139  WARN 16560 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-04-02 22:49:29.302  INFO 16560 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2021-04-02 22:49:29.332  INFO 16560 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a27dc6e, org.springframework.security.web.context.SecurityContextPersistenceFilter@7980171d, org.springframework.security.web.header.HeaderWriterFilter@4dabf683, org.springframework.web.filter.CorsFilter@72d0d2e5, org.springframework.security.web.csrf.CsrfFilter@4b0f66b5, org.springframework.security.web.authentication.logout.LogoutFilter@cb8368d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@442f2573, org.springframework.security.web.session.ConcurrentSessionFilter@4b3b4095, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6b0de940, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1d16e252, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1d37e08d, org.springframework.security.web.session.SessionManagementFilter@7b31bb88, org.springframework.security.web.access.ExceptionTranslationFilter@32301738, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@bac8486]

@@ -12,6 +12,10 @@ import java.util.Date;
 @Entity
 @Table(name = "provident_funds")
 public class ProvidentFund {
+    public enum ProvidentFundType{
+        fixedAmount, percentOfBasic
+    }
+
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
@@ -29,6 +33,7 @@ public class ProvidentFund {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    private ProvidentFundType providentFundType;
 
     public Long getId() {
         return id;
@@ -95,5 +100,13 @@ public class ProvidentFund {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public ProvidentFundType getProvidentFundType() {
+        return providentFundType;
+    }
+
+    public void setProvidentFundType(ProvidentFundType providentFundType) {
+        this.providentFundType = providentFundType;
     }
 }
