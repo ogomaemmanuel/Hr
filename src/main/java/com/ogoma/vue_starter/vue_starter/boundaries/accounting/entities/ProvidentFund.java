@@ -119,7 +119,7 @@ public class ProvidentFund {
     public List<Map<ProvidentFundType, String>> getProvidentFundTypesSelectList() {
        return Arrays.stream(ProvidentFundType.values()).map(
                 x -> {
-                    HashMap hashMap = new HashMap<ProvidentFundType, String>();
+                    HashMap<ProvidentFundType, String> hashMap = new HashMap<ProvidentFundType, String>();
                     if (x.equals(ProvidentFundType.fixedAmount)) {
                         hashMap.put(x, "Fixed Amount");
                         return hashMap;

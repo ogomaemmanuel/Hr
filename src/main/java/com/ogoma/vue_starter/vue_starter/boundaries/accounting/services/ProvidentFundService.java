@@ -32,6 +32,7 @@ public class ProvidentFundService {
         Employee employee = this.employeeRepository.getOne(providentFundRequest.getEmployeeId());
         providentFund.setDescription(providentFundRequest.getDescription());
         providentFund.setEmployeeShare(providentFundRequest.getEmployeeShare());
+        providentFund.setProvidentFundType(providentFundRequest.getProvidentFundType());
         providentFund.setOrganisationShare(providentFundRequest.getOrganisationShare());
         providentFund.setPercentageEmployeeShare(providentFundRequest.getPercentageEmployeeShare());
         providentFund.setPercentageOrganisationShare(providentFundRequest.getPercentageOrganisationShare());
@@ -50,6 +51,7 @@ public class ProvidentFundService {
             p.setPercentageOrganisationShare(providentFundRequest.getPercentageOrganisationShare());
             p.setPercentageEmployeeShare(providentFundRequest.getPercentageEmployeeShare());
             p.setDescription(providentFundRequest.getDescription());
+            p.setProvidentFundType(providentFundRequest.getProvidentFundType());
             p.setEmployeeShare(providentFundRequest.getEmployeeShare());
             p.setOrganisationShare(providentFundRequest.getOrganisationShare());
             this.providentFundRepository.save(p);

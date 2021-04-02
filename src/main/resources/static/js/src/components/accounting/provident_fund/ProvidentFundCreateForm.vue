@@ -13,18 +13,16 @@
         <div class="column">
           <div class="field">
             <label class="label">Provident Fund Type<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  v-model="providentFund.purchaseFrom"
-                  @input="clearFieldError('purchaseFrom')"
-                  class="input"
-                  type="text">
-              <span class="mb-2 has-text-danger" v-if="errors['purchaseFrom']">
-						{{ errors['purchaseFrom'][0] }}
-					</span>
+            <div class="select is-fullwidth">
+              <select v-model="providentFund.providentFundType">
+                <option value="percentOfBasic">Percentage of Basic Salary</option>
+                <option value="fixedAmount">Fixed Amount</option>
+              </select>
+              <span class="mb-2 has-text-danger" v-if="errors['providentFundType']">
+                {{ errors['providentFundType'][0] }}
+              </span>
             </div>
           </div>
-
         </div>
       </div>
       <div class="columns">
@@ -124,6 +122,7 @@
 import common_mixin from "../../../mixins/common_mixin";
 import EmployeeSelectInput from "../../common/EmployeeSelectInput";
 import {DatePicker} from "element-ui"
+import {Message} from "element-ui"
 
 export default {
   components: {
@@ -141,7 +140,18 @@ export default {
 
   methods: {
     createProvidentFund() {
-
+      this.isLoading = true;
+      axios.post("/api/provident-funds/",
+          this.providentFund).then(resp => {
+        this.isLoading = false
+        Message.success("Provident fund successfully created")
+        this.$emit("createSuccessful");
+      }, error => {
+        this.isLoading = false;
+        if (error.response.status == 400) {
+          this.errors = error.response.data;
+        }
+      })
     }
   },
   computed: {
