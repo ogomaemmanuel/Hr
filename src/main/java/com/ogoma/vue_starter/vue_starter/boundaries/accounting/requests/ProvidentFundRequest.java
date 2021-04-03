@@ -1,5 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.requests;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.ProvidentFund;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -13,6 +17,8 @@ public class ProvidentFundRequest {
     private BigDecimal organisationShare;
     private BigDecimal percentageEmployeeShare;
     private BigDecimal percentageOrganisationShare;
+    @Enumerated(EnumType.STRING)
+    private ProvidentFund.ProvidentFundType providentFundType;
 
     public String getDescription() {
         return description;
@@ -60,5 +66,13 @@ public class ProvidentFundRequest {
 
     public void setPercentageOrganisationShare(BigDecimal percentageOrganisationShare) {
         this.percentageOrganisationShare = percentageOrganisationShare;
+    }
+
+    public ProvidentFund.ProvidentFundType getProvidentFundType() {
+        return providentFundType;
+    }
+
+    public void setProvidentFundType(ProvidentFund.ProvidentFundType providentFundType) {
+        this.providentFundType = providentFundType;
     }
 }
