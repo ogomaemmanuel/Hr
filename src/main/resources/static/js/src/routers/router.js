@@ -128,6 +128,7 @@ const ExpenseEdit = () => import("../components/accounting/expenses/ExpenseEditM
 const ProvidentFundsPage = () => import("../components/accounting/provident_fund/ProvidentFundPage")
 const ProvidentFundList = () => import("../components/accounting/provident_fund/ProvidentFundList")
 const ProvidentFundCreate = () => import("../components/accounting/provident_fund/ProvidentFundCreateModal")
+const ProvidentFundEdit = () => import("../components/accounting/provident_fund/ProvidentFundEditModal")
 
 
 const PolicyPage = () => import("../components/employee_management/policy/PolicyPage")
@@ -880,12 +881,12 @@ const routes = new Router({
                             }
                         },
                         {
-                            path: "/expense-edit/:id",
-                            name: "expense-edit",
-                            component: ExpenseEdit,
+                            path: "/provident-fund-edit/:id",
+                            name: "provident-fund-edit",
+                            component: ProvidentFundEdit,
                             meta: {
                                 breadcrumb: true,
-                                title: "Expense  Edit",
+                                title: "Provident  Edit",
                             }
                         }
 
