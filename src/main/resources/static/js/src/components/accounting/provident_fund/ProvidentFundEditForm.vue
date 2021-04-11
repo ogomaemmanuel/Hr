@@ -127,6 +127,11 @@ export default {
   components: {
     EmployeeSelectInput
   },
+  props: {
+    id: {
+      required: true,
+    }
+  },
   data() {
     return {
       providentFund: {},
