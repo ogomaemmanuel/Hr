@@ -7,14 +7,21 @@
       <div class="columns">
         <div class="column">
           <EmployeeSelectInput
+              @input="clearFieldError('employeeId')"
               v-model="providentFund.employeeId"
-              label="Employee Name"></EmployeeSelectInput>
+              label="Employee Name">
+            <span slot="errors" class="mb-2 has-text-danger" v-if="errors['employeeId']">
+                {{ errors['employeeId'][0] }}
+              </span>
+          </EmployeeSelectInput>
         </div>
         <div class="column">
           <div class="field">
             <label class="label">Provident Fund Type<span><sup>*</sup></span></label>
             <div class="select is-fullwidth">
-              <select v-model="providentFund.providentFundType">
+              <select
+                  @input="clearFieldError('providentFundType')"
+                  v-model="providentFund.providentFundType">
                 <option value="percentOfBasic">Percentage of Basic Salary</option>
                 <option value="fixedAmount">Fixed Amount</option>
               </select>
@@ -46,6 +53,7 @@
             <label class="label">Organization Share (Amount)</label>
             <div class="control">
               <input
+
                   class="input"
                   v-model="providentFund.organisationShare"
                   @input="clearFieldError('organisationShare')">
@@ -151,7 +159,9 @@ export default {
             Message.success("Provident fund successfully updated")
             this.$emit("updateSuccessfull")
           }, error => {
-
+            if (error.response.status == 400) {
+              this.errors = error.response.data;
+            }
           })
     },
 
@@ -162,6 +172,7 @@ export default {
             this.loaded = true;
           }, error => {
             this.loaded = false;
+
           })
     }
   },
