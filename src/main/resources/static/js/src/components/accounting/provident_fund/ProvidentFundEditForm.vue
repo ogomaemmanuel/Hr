@@ -121,6 +121,7 @@
 <script>
 import EmployeeSelectInput from "../../common/EmployeeSelectInput";
 import common_mixin from "../../../mixins/common_mixin";
+import {Message} from "element-ui"
 
 export default {
   mixins: [common_mixin],
@@ -136,11 +137,32 @@ export default {
     return {
       providentFund: {},
       isLoading: false,
+      loaded: false
     }
+  },
+  created() {
+    this.getProvidentFundById();
   },
   methods: {
     updateProvidentFund() {
+      axios.put(`/api/provident-funds/${this.id}`,
+          this.providentFund)
+          .then(resp => {
+            Message.success("Provident fund successfully updated")
+            this.$emit("updateSuccessfull")
+          }, error => {
 
+          })
+    },
+
+    getProvidentFundById() {
+      axios.get(`/api/provident-funds/${this.id}`)
+          .then(resp => {
+            this.providentFund = resp.data;
+            this.loaded = true;
+          }, error => {
+            this.loaded = false;
+          })
     }
   },
   computed: {
