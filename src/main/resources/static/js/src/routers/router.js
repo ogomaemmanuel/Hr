@@ -7,6 +7,7 @@ const Login = () =>
     import ("../components/auth/Login.vue");
 const Home = () =>
     import ("../components/home/Home");
+const MainAppWrapper=()=>import("../components/MainAppWrapper")
 const ForgotPassword = () =>
     import ("../components/auth/ForgotPassword");
 const Register = () =>
@@ -180,227 +181,356 @@ const routes = new Router({
         //     component: ForgotPassword,
         //     props: true
         // },
+
         {
             path: "/",
-            name: "home",
-            component: Home,
-            meta: {},
-
-            children: [
+            component:MainAppWrapper,
+            children:[
                 {
-                    path: "/users",
-                    name: "users",
-                    component: Users,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Users",
-                    },
+                    path: "/",
+                    name: "home",
+                    component: Home,
+                    meta: {},
+
                     children: [
                         {
-                            path: "/users-create",
-                            name: "user-create",
-                            component: UserCreate
-                        },
-                        {
-                            path: "/users-edit/:id",
-                            name: "users-edit",
-                            component: UserEdit
-                        }
-                    ]
-
-                },
-                {
-                    path: "/profile",
-                    name: "users-profile",
-                    component: UserProfile,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Profile",
-                    },
-                    children: []
-
-                },
-                {
-                    path: "/roles",
-                    name: "roles",
-                    component: Roles,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Roles",
-                    },
-                    children: [
-                        {
-                            path: "/role-create",
-                            name: "role-create",
-                            component: RoleCreate
-                        },
-                        {
-                            path: "/role-edit/:id",
-                            name: "role-edit",
-                            component: RoleEdit
-                        }
-                    ]
-
-                },
-                {
-                    path: "/permissions",
-                    name: "permissions",
-                    component: Permissions,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Permissions",
-                    },
-
-
-                },
-                {
-                    path: "/documents",
-                    name: "documents",
-                    component: Documents,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Documents"
-                    },
-
-
-                },
-
-                {
-                    path: "/leave",
-                    name: "leave",
-                    component: LeavePage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Leave Requests",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            name: "leave-requests",
-                            component: LeaveRequests,
-                            children: [
-                                {
-                                    path: "/leave-request-edit/:id",
-                                    name: "leave-request-edit",
-                                    component: LeaveRequestEditModal,
-                                },
-                                {
-                                    path: "/leave-create",
-                                    name: "leave-create",
-                                    component: LeaveRequestForm,
-                                    meta: {
-                                        breadcrumb: 'Leave Create',
-                                    },
-                                },
-                            ]
-                        },
-                    ]
-                },
-                {
-                    path: "/leave-approvals",
-                    name: "leave-approvals-page",
-                    component: LeaveApprovalsPage,
-                    children: [
-                        {
-                            path: "/",
-                            name: "leave-approvals",
-                            component: LeaveApprovalsList,
+                            path: "/users",
+                            name: "users",
+                            component: Users,
                             meta: {
-                                breadcrumb: 'Leave Approvals',
-                            },
-
-                        },
-                        {
-                            path: "leave-details/:id",
-                            name: "leave-details",
-                            component: LeaveApprovalsDetails,
-                            meta: {
-                                breadcrumb: 'Leave Details',
-                            },
-                        }
-                    ]
-                },
-                {
-                    path: "/departments",
-                    name: "departments-page",
-                    component: DepartmentsPage,
-                    meta: {
-                        breadcrumbs: true,
-                        redirect: true,
-                        title: 'Departments'
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            name: "department-list",
-                            component: DepartmentList,
-                            meta: {
-                                breadcrumb: 'Departments',
+                                breadcrumb: true,
+                                title: "Users",
                             },
                             children: [
                                 {
-                                    path: "/departments-edit/:id",
-                                    component: DepartmentEdit,
-                                    name: "departments-edit"
+                                    path: "/users-create",
+                                    name: "user-create",
+                                    component: UserCreate
                                 },
                                 {
-                                    path: "/departments-create",
-                                    component: DepartmentCreate,
-                                    name: "departments-create"
+                                    path: "/users-edit/:id",
+                                    name: "users-edit",
+                                    component: UserEdit
                                 }
                             ]
-                        },
-                    ]
-                },
-                {
-                    path: "/employees",
-                    name: "employee-page",
-                    component: EmployeesPage,
 
-                    meta: {
-                        breadcrumb: 'Employees',
-                        title: 'Employees',
-                        redirect: true,
-                    },
-                    children: [
+                        },
                         {
-                            path: "/",
-                            name: "employee-list",
-                            component: EmployeeList,
+                            path: "/profile",
+                            name: "users-profile",
+                            component: UserProfile,
                             meta: {
-                                // breadcrumb: 'Employees',
-                                // redirect: true
+                                breadcrumb: true,
+                                title: "Profile",
+                            },
+                            children: []
+
+                        },
+                        {
+                            path: "/roles",
+                            name: "roles",
+                            component: Roles,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Roles",
                             },
                             children: [
-                                // {
-                                //     path: "/employeees-edit/:id",
-                                //     component: DepartmentEdit,
-                                //     name: "departments-edit"
-                                // },
-
+                                {
+                                    path: "/role-create",
+                                    name: "role-create",
+                                    component: RoleCreate
+                                },
+                                {
+                                    path: "/role-edit/:id",
+                                    name: "role-edit",
+                                    component: RoleEdit
+                                }
                             ]
+
                         },
                         {
-                            name: "Policy",
-                            component: PolicyPage,
-                            path: "/policies",
+                            path: "/permissions",
+                            name: "permissions",
+                            component: Permissions,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Permissions",
+                            },
+
+
+                        },
+                        {
+                            path: "/documents",
+                            name: "documents",
+                            component: Documents,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Documents"
+                            },
+
+
+                        },
+
+                        {
+                            path: "/leave",
+                            name: "leave",
+                            component: LeavePage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Leave Requests",
+                            },
                             children: [
                                 {
                                     path: "/",
-                                    component: PolicyList,
-                                    meta: {
-                                        breadcrumb: 'Policies',
-                                        title: 'Policies',
-                                        redirect: true,
-                                    },
-                                    children:[
+                                    name: "leave-requests",
+                                    component: LeaveRequests,
+                                    children: [
                                         {
-                                            path: "/policy-create",
-                                            component: PolicyCreate
+                                            path: "/leave-request-edit/:id",
+                                            name: "leave-request-edit",
+                                            component: LeaveRequestEditModal,
                                         },
                                         {
-                                            path: "/policy-edit/:id",
-                                            component: PolicyEdit
+                                            path: "/leave-create",
+                                            name: "leave-create",
+                                            component: LeaveRequestForm,
+                                            meta: {
+                                                breadcrumb: 'Leave Create',
+                                            },
+                                        },
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            path: "/leave-approvals",
+                            name: "leave-approvals-page",
+                            component: LeaveApprovalsPage,
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "leave-approvals",
+                                    component: LeaveApprovalsList,
+                                    meta: {
+                                        breadcrumb: 'Leave Approvals',
+                                    },
+
+                                },
+                                {
+                                    path: "leave-details/:id",
+                                    name: "leave-details",
+                                    component: LeaveApprovalsDetails,
+                                    meta: {
+                                        breadcrumb: 'Leave Details',
+                                    },
+                                }
+                            ]
+                        },
+                        {
+                            path: "/departments",
+                            name: "departments-page",
+                            component: DepartmentsPage,
+                            meta: {
+                                breadcrumbs: true,
+                                redirect: true,
+                                title: 'Departments'
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "department-list",
+                                    component: DepartmentList,
+                                    meta: {
+                                        breadcrumb: 'Departments',
+                                    },
+                                    children: [
+                                        {
+                                            path: "/departments-edit/:id",
+                                            component: DepartmentEdit,
+                                            name: "departments-edit"
+                                        },
+                                        {
+                                            path: "/departments-create",
+                                            component: DepartmentCreate,
+                                            name: "departments-create"
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            path: "/employees",
+                            name: "employee-page",
+                            component: EmployeesPage,
+
+                            meta: {
+                                breadcrumb: 'Employees',
+                                title: 'Employees',
+                                redirect: true,
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "employee-list",
+                                    component: EmployeeList,
+                                    meta: {
+                                        // breadcrumb: 'Employees',
+                                        // redirect: true
+                                    },
+                                    children: [
+                                        // {
+                                        //     path: "/employeees-edit/:id",
+                                        //     component: DepartmentEdit,
+                                        //     name: "departments-edit"
+                                        // },
+
+                                    ]
+                                },
+                                {
+                                    name: "Policy",
+                                    component: PolicyPage,
+                                    path: "/policies",
+                                    children: [
+                                        {
+                                            path: "/",
+                                            component: PolicyList,
+                                            meta: {
+                                                breadcrumb: 'Policies',
+                                                title: 'Policies',
+                                                redirect: true,
+                                            },
+                                            children:[
+                                                {
+                                                    path: "/policy-create",
+                                                    component: PolicyCreate
+                                                },
+                                                {
+                                                    path: "/policy-edit/:id",
+                                                    component: PolicyEdit
+                                                },
+                                            ]
+                                        },
+
+
+                                    ]
+                                },
+                                {
+                                    path: "/employees-create",
+                                    component: EmployeeCreate,
+                                    name: "employees-create",
+
+                                    meta: {
+                                        breadcrumb: 'Employees Create',
+                                        title: 'Employees Create',
+                                        redirect: true,
+                                    },
+                                }
+                            ]
+                        },
+                        {
+                            path: "/designations",
+                            name: "designations-page",
+                            component: DesignationsPage,
+                            meta: {
+                                title: "Designations"
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "designation-list",
+                                    component: DesignationList,
+                                    meta: {
+                                        breadcrumb: 'Designations',
+                                    },
+                                    children: [
+                                        {
+                                            path: "/designations-edit/:id",
+                                            component: DesignationsEdit,
+                                            name: "designations-edit"
+                                        },
+                                        {
+                                            path: "/designations-create",
+                                            component: DesignationsCreate,
+                                            name: "designations-create"
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            path: "/holidays",
+                            name: "holidays-page",
+                            component: HolidaysPage,
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "leave-requests",
+                                    component: HolidayList,
+                                    meta: {
+                                        title: 'Holidays',
+                                    },
+                                    children: [
+                                        {
+                                            path: "/holiday-edit/:id",
+                                            component: HolidayEditModal,
+                                            name: "holiday-edit"
+                                        },
+                                        {
+                                            path: "/holiday-create",
+                                            component: HolidayCreateModal,
+                                            name: "holiday-create"
+                                        }
+                                    ]
+                                },
+                            ]
+                        },
+                        {
+                            path: "/leave-types",
+                            name: "leave-types-page",
+                            component: LeaveTypesPage,
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "leave-types-list",
+                                    component: LeaveTypeList,
+                                    meta: {
+                                        breadcrumb: 'Leave Types',
+                                        title: "Leave Types"
+                                    },
+                                    children: [
+                                        {
+                                            path: "/leave-type-create",
+                                            name: "leave-type-create",
+                                            component: LeaveTypeCreateModal
+                                        },
+                                        {
+                                            path: "/leave-type-edit/:id",
+                                            name: "leave-type-edit",
+                                            component: LeaveTypeEditModal
+                                        }
+                                    ]
+                                },
+
+                            ]
+                        },
+                        {
+                            path: "/overtime-requests",
+                            name: "overtime-requests",
+                            component: OvertimeRequests,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Overtime Requests",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "overtime-requests-list",
+                                    component: OvertimeRequestList,
+                                    children: [
+                                        {
+                                            path: "/overtime-requests-edit/:id",
+                                            name: "overtime-requests-edit",
+                                            component: OvertimeRequestEdit,
                                         },
                                     ]
                                 },
@@ -409,503 +539,385 @@ const routes = new Router({
                             ]
                         },
                         {
-                            path: "/employees-create",
-                            component: EmployeeCreate,
-                            name: "employees-create",
-
-                            meta: {
-                                breadcrumb: 'Employees Create',
-                                title: 'Employees Create',
-                                redirect: true,
-                            },
-                        }
-                    ]
-                },
-                {
-                    path: "/designations",
-                    name: "designations-page",
-                    component: DesignationsPage,
-                    meta: {
-                        title: "Designations"
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            name: "designation-list",
-                            component: DesignationList,
-                            meta: {
-                                breadcrumb: 'Designations',
-                            },
-                            children: [
-                                {
-                                    path: "/designations-edit/:id",
-                                    component: DesignationsEdit,
-                                    name: "designations-edit"
-                                },
-                                {
-                                    path: "/designations-create",
-                                    component: DesignationsCreate,
-                                    name: "designations-create"
-                                }
-                            ]
-                        },
-                    ]
-                },
-                {
-                    path: "/holidays",
-                    name: "holidays-page",
-                    component: HolidaysPage,
-                    children: [
-                        {
-                            path: "/",
-                            name: "leave-requests",
-                            component: HolidayList,
-                            meta: {
-                                title: 'Holidays',
-                            },
-                            children: [
-                                {
-                                    path: "/holiday-edit/:id",
-                                    component: HolidayEditModal,
-                                    name: "holiday-edit"
-                                },
-                                {
-                                    path: "/holiday-create",
-                                    component: HolidayCreateModal,
-                                    name: "holiday-create"
-                                }
-                            ]
-                        },
-                    ]
-                },
-                {
-                    path: "/leave-types",
-                    name: "leave-types-page",
-                    component: LeaveTypesPage,
-                    children: [
-                        {
-                            path: "/",
-                            name: "leave-types-list",
-                            component: LeaveTypeList,
-                            meta: {
-                                breadcrumb: 'Leave Types',
-                                title: "Leave Types"
-                            },
-                            children: [
-                                {
-                                    path: "/leave-type-create",
-                                    name: "leave-type-create",
-                                    component: LeaveTypeCreateModal
-                                },
-                                {
-                                    path: "/leave-type-edit/:id",
-                                    name: "leave-type-edit",
-                                    component: LeaveTypeEditModal
-                                }
-                            ]
-                        },
-
-                    ]
-                },
-                {
-                    path: "/overtime-requests",
-                    name: "overtime-requests",
-                    component: OvertimeRequests,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Overtime Requests",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            name: "overtime-requests-list",
-                            component: OvertimeRequestList,
-                            children: [
-                                {
-                                    path: "/overtime-requests-edit/:id",
-                                    name: "overtime-requests-edit",
-                                    component: OvertimeRequestEdit,
-                                },
-                            ]
-                        },
-
-
-                    ]
-                },
-                {
-                    path: "/employee-resignations",
-                    name: "employee-requests",
-                    component: ResignationPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Resignation",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            name: "employee-resignation-list",
-                            component: ResignationList,
-                            children: [
-                                {
-                                    path: "/employee-resignation-edit/:id",
-                                    name: "employee-resignation-edit",
-                                    component: ResignationEdit,
-                                },
-                            ]
-                        },
-
-
-                    ]
-                },
-                {
-                    path: "/employee-terminations",
-                    name: "employee-terminations",
-                    component: EmployeeTerminationPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Terminations",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            name: "employee-termination-list",
-                            component: EmployeeTerminationList,
-                            children: [
-                                {
-                                    path: "/employee-termination-edit/:id",
-                                    name: "employee-termination-edit",
-                                    component: EmployeeTerminationEdit,
-                                },
-                            ]
-                        },
-
-
-                    ]
-                },
-                {
-                    path: "/payroll-items",
-                    name: "payroll-terminations",
-                    component: PayrollItemsPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Payroll Items",
-                    },
-                },
-                {
-                    path: "/salary-view",
-                    name: "salary-view",
-                    component: SalaryView,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Payslip",
-                    },
-                },
-
-                {
-                    path: "/salary",
-                    name: "salary",
-                    component: EmployeesSalaryPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Employees Salary",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            component: EmployeeSalaryList
-                        },
-                        {
-                            path: "/salary/:id",
-                            name: "employee-details",
-                            component: EmployeeSalaryDetails,
+                            path: "/employee-resignations",
+                            name: "employee-requests",
+                            component: ResignationPage,
                             meta: {
                                 breadcrumb: true,
-                                title: "Salary Details",
+                                title: "Resignation",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "employee-resignation-list",
+                                    component: ResignationList,
+                                    children: [
+                                        {
+                                            path: "/employee-resignation-edit/:id",
+                                            name: "employee-resignation-edit",
+                                            component: ResignationEdit,
+                                        },
+                                    ]
+                                },
+
+
+                            ]
+                        },
+                        {
+                            path: "/employee-terminations",
+                            name: "employee-terminations",
+                            component: EmployeeTerminationPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Terminations",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    name: "employee-termination-list",
+                                    component: EmployeeTerminationList,
+                                    children: [
+                                        {
+                                            path: "/employee-termination-edit/:id",
+                                            name: "employee-termination-edit",
+                                            component: EmployeeTerminationEdit,
+                                        },
+                                    ]
+                                },
+
+
+                            ]
+                        },
+                        {
+                            path: "/payroll-items",
+                            name: "payroll-terminations",
+                            component: PayrollItemsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Payroll Items",
                             },
                         },
                         {
-                            path: "/salary-view/:id",
-                            name: "employee-salary-view",
-                            component: EmployeeSalaryView,
+                            path: "/salary-view",
+                            name: "salary-view",
+                            component: SalaryView,
                             meta: {
                                 breadcrumb: true,
                                 title: "Payslip",
                             },
                         },
-                    ]
-                },
-                {
-                    path: "/clients",
-                    name: "clients",
-                    component: ClientsPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Clients",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            component: ClientList,
-                            children: [
-                                {
-                                    path: "/client-create",
-                                    name: "client-create",
-                                    component: ClientCreate,
-                                    meta: {
-                                        breadcrumb: true,
-                                        title: "Client Create",
-                                    },
-                                },
-                                {
-                                    path: "/clients-edit/:id",
-                                    name: "clients-edit",
-                                    component: ClientEdit,
-                                    meta: {
-                                        breadcrumb: true,
-                                        title: "Client Edit",
-                                    },
-                                },
-                            ]
-                        },
 
-                    ]
-                },
-                {
-                    path: "/projects",
-                    name: "projects",
-                    component: ProjectsPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Projects",
-                    },
-                    children: [
                         {
-                            path: "/",
-                            component: ProjectList,
+                            path: "/salary",
+                            name: "salary",
+                            component: EmployeesSalaryPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Employees Salary",
+                            },
                             children: [
                                 {
-                                    path: "/projects-create",
-                                    name: "projects-create",
-                                    component: ProjectCreate,
+                                    path: "/",
+                                    component: EmployeeSalaryList
+                                },
+                                {
+                                    path: "/salary/:id",
+                                    name: "employee-details",
+                                    component: EmployeeSalaryDetails,
                                     meta: {
                                         breadcrumb: true,
-                                        title: "Project Create",
+                                        title: "Salary Details",
                                     },
                                 },
                                 {
-                                    path: "/project-edit/:id",
-                                    name: "project-edit",
-                                    component: ProjectEdit,
+                                    path: "/salary-view/:id",
+                                    name: "employee-salary-view",
+                                    component: EmployeeSalaryView,
                                     meta: {
                                         breadcrumb: true,
-                                        title: "Project Edit",
+                                        title: "Payslip",
                                     },
                                 },
                             ]
                         },
                         {
-                            path: "/project-details/:id",
-                            name: "project-details",
-                            component: ProjectDetails,
+                            path: "/clients",
+                            name: "clients",
+                            component: ClientsPage,
                             meta: {
                                 breadcrumb: true,
-                                title: "Project Details",
-                            }
-                        }
-
-                    ]
-                },
-                {
-                    path: "/tasks",
-                    component: TasksPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "tasks",
-                    },
-                    // children: [
-                    //     {
-                    //         path: "/",
-                    //         component: ProjectList,
-                    //         children: [
-                    //             {
-                    //                 path: "/projects-create",
-                    //                 name: "projects-create",
-                    //                 component: ProjectCreate,
-                    //                 meta: {
-                    //                     breadcrumb: true,
-                    //                     title: "Project Create",
-                    //                 },
-                    //             },
-                    //             {
-                    //                 path: "/project-edit/:id",
-                    //                 name: "project-edit",
-                    //                 component: ProjectEdit,
-                    //                 meta: {
-                    //                     breadcrumb: true,
-                    //                     title: "Project Edit",
-                    //                 },
-                    //             },
-                    //         ]
-                    //     },
-                    //     {
-                    //         path: "/project-details/:id",
-                    //         name: "project-details",
-                    //         component: ProjectDetails,
-                    //         meta: {
-                    //             breadcrumb: true,
-                    //             title: "Project Details",
-                    //         }
-                    //     }
-                    //
-                    // ]
-                },
-                {
-                    path: "/taxes",
-                    component: TaxPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Taxes",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            component: TaxList,
+                                title: "Clients",
+                            },
                             children: [
                                 {
-                                    path: "/tax-create",
-                                    name: "tax-create",
-                                    component: TaxCreateModal,
-                                    meta: {
-                                        breadcrumb: true,
-                                        title: "Tax Create",
-                                    },
+                                    path: "/",
+                                    component: ClientList,
+                                    children: [
+                                        {
+                                            path: "/client-create",
+                                            name: "client-create",
+                                            component: ClientCreate,
+                                            meta: {
+                                                breadcrumb: true,
+                                                title: "Client Create",
+                                            },
+                                        },
+                                        {
+                                            path: "/clients-edit/:id",
+                                            name: "clients-edit",
+                                            component: ClientEdit,
+                                            meta: {
+                                                breadcrumb: true,
+                                                title: "Client Edit",
+                                            },
+                                        },
+                                    ]
+                                },
+
+                            ]
+                        },
+                        {
+                            path: "/projects",
+                            name: "projects",
+                            component: ProjectsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Projects",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: ProjectList,
+                                    children: [
+                                        {
+                                            path: "/projects-create",
+                                            name: "projects-create",
+                                            component: ProjectCreate,
+                                            meta: {
+                                                breadcrumb: true,
+                                                title: "Project Create",
+                                            },
+                                        },
+                                        {
+                                            path: "/project-edit/:id",
+                                            name: "project-edit",
+                                            component: ProjectEdit,
+                                            meta: {
+                                                breadcrumb: true,
+                                                title: "Project Edit",
+                                            },
+                                        },
+                                    ]
                                 },
                                 {
-                                    path: "/tax-edit/:id",
-                                    name: "tax-edit",
-                                    component: TaxEditModal,
+                                    path: "/project-details/:id",
+                                    name: "project-details",
+                                    component: ProjectDetails,
                                     meta: {
                                         breadcrumb: true,
-                                        title: "Tax Edit",
-                                    },
+                                        title: "Project Details",
+                                    }
+                                }
+
+                            ]
+                        },
+                        {
+                            path: "/tasks",
+                            component: TasksPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "tasks",
+                            },
+                            // children: [
+                            //     {
+                            //         path: "/",
+                            //         component: ProjectList,
+                            //         children: [
+                            //             {
+                            //                 path: "/projects-create",
+                            //                 name: "projects-create",
+                            //                 component: ProjectCreate,
+                            //                 meta: {
+                            //                     breadcrumb: true,
+                            //                     title: "Project Create",
+                            //                 },
+                            //             },
+                            //             {
+                            //                 path: "/project-edit/:id",
+                            //                 name: "project-edit",
+                            //                 component: ProjectEdit,
+                            //                 meta: {
+                            //                     breadcrumb: true,
+                            //                     title: "Project Edit",
+                            //                 },
+                            //             },
+                            //         ]
+                            //     },
+                            //     {
+                            //         path: "/project-details/:id",
+                            //         name: "project-details",
+                            //         component: ProjectDetails,
+                            //         meta: {
+                            //             breadcrumb: true,
+                            //             title: "Project Details",
+                            //         }
+                            //     }
+                            //
+                            // ]
+                        },
+                        {
+                            path: "/taxes",
+                            component: TaxPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Taxes",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: TaxList,
+                                    children: [
+                                        {
+                                            path: "/tax-create",
+                                            name: "tax-create",
+                                            component: TaxCreateModal,
+                                            meta: {
+                                                breadcrumb: true,
+                                                title: "Tax Create",
+                                            },
+                                        },
+                                        {
+                                            path: "/tax-edit/:id",
+                                            name: "tax-edit",
+                                            component: TaxEditModal,
+                                            meta: {
+                                                breadcrumb: true,
+                                                title: "Tax Edit",
+                                            },
+                                        },
+                                    ]
                                 },
                             ]
                         },
-                    ]
-                },
-                {
-                    path: "/estimates",
-                    component: EstimatesPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Estimates",
-                    },
-                    children: [
                         {
-                            path: "/",
-                            component: EstimateList,
-                        },
-                        {
-                            path: "/estimate-create",
-                            name: "estimate-create",
-                            component: EstimateCreate,
+                            path: "/estimates",
+                            component: EstimatesPage,
                             meta: {
                                 breadcrumb: true,
-                                title: "Estimate Create",
-                            }
+                                title: "Estimates",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: EstimateList,
+                                },
+                                {
+                                    path: "/estimate-create",
+                                    name: "estimate-create",
+                                    component: EstimateCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Estimate Create",
+                                    }
+                                },
+                                {
+                                    path: "/estimate-edit/:id",
+                                    name: "estimate-edit",
+                                    component: EstimateEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Estimate Edit",
+                                    }
+                                }
+
+                            ]
                         },
                         {
-                            path: "/estimate-edit/:id",
-                            name: "estimate-edit",
-                            component: EstimateEdit,
+                            path: "/expenses",
+                            component: ExpensePage,
                             meta: {
                                 breadcrumb: true,
-                                title: "Estimate Edit",
-                            }
-                        }
+                                title: "Expenses",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: ExpenseList,
+                                },
+                                {
+                                    path: "/expense-create",
+                                    name: "expense-create",
+                                    component: ExpenseCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Expense Create",
+                                    }
+                                },
+                                {
+                                    path: "/expense-edit/:id",
+                                    name: "expense-edit",
+                                    component: ExpenseEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Expense  Edit",
+                                    }
+                                }
+
+                            ]
+                        },
+                        {
+                            path: "/provident-funds",
+                            component: ProvidentFundsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Provident Funds",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: ProvidentFundList,
+                                },
+                                {
+                                    path: "/provident-fund-create",
+                                    name: "provident-fund-create",
+                                    component: ProvidentFundCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Provident Fund Create",
+                                    }
+                                },
+                                {
+                                    path: "/provident-fund-edit/:id",
+                                    name: "provident-fund-edit",
+                                    component: ProvidentFundEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Provident  Edit",
+                                    }
+                                }
+
+                            ]
+                        },
+                        {
+                            path: "/settings",
+                            name: "settings",
+                            component: SettingsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Settings",
+                            },
+                            children: [
+                            ]
+                        },
 
                     ]
                 },
-                {
-                    path: "/expenses",
-                    component: ExpensePage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Expenses",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            component: ExpenseList,
-                        },
-                        {
-                            path: "/expense-create",
-                            name: "expense-create",
-                            component: ExpenseCreate,
-                            meta: {
-                                breadcrumb: true,
-                                title: "Expense Create",
-                            }
-                        },
-                        {
-                            path: "/expense-edit/:id",
-                            name: "expense-edit",
-                            component: ExpenseEdit,
-                            meta: {
-                                breadcrumb: true,
-                                title: "Expense  Edit",
-                            }
-                        }
-
-                    ]
-                },
-                {
-                    path: "/provident-funds",
-                    component: ProvidentFundsPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Provident Funds",
-                    },
-                    children: [
-                        {
-                            path: "/",
-                            component: ProvidentFundList,
-                        },
-                        {
-                            path: "/provident-fund-create",
-                            name: "provident-fund-create",
-                            component: ProvidentFundCreate,
-                            meta: {
-                                breadcrumb: true,
-                                title: "Provident Fund Create",
-                            }
-                        },
-                        {
-                            path: "/provident-fund-edit/:id",
-                            name: "provident-fund-edit",
-                            component: ProvidentFundEdit,
-                            meta: {
-                                breadcrumb: true,
-                                title: "Provident  Edit",
-                            }
-                        }
-
-                    ]
-                },
-                {
-                    path: "/settings",
-                    name: "settings",
-                    component: SettingsPage,
-                    meta: {
-                        breadcrumb: true,
-                        title: "Settings",
-                    },
-                    children: [
-                    ]
-                },
-
             ]
+
+
         },
+
+
         {path: '*', component: PageNotFound},
 
 
