@@ -8,17 +8,28 @@
         <div class="column">
           <EmployeeSelectInput
               v-model="providentFund.employeeId"
-              label="Employee Name"></EmployeeSelectInput>
+              label="Employee Name">
+         <span
+             slot="errors"
+             class="mb-2 has-text-danger"
+             v-if="errors['employeeId']">
+                {{ errors['employeeId'][0] }}
+         </span>
+          </EmployeeSelectInput>
         </div>
         <div class="column">
           <div class="field">
             <label class="label">Provident Fund Type<span><sup>*</sup></span></label>
             <div class="select is-fullwidth">
-              <select v-model="providentFund.providentFundType">
+              <select
+                  @input="clearFieldError('providentFundType')"
+                  v-model="providentFund.providentFundType">
                 <option value="percentOfBasic">Percentage of Basic Salary</option>
                 <option value="fixedAmount">Fixed Amount</option>
               </select>
-              <span class="mb-2 has-text-danger" v-if="errors['providentFundType']">
+              <span
+                  class="mb-2 has-text-danger"
+                  v-if="errors['providentFundType']">
                 {{ errors['providentFundType'][0] }}
               </span>
             </div>
@@ -35,7 +46,9 @@
                   v-model="providentFund.employeeShare"
                   @input="clearFieldError('employeeShare')">
               </input>
-              <span class="mb-2 has-text-danger" v-if="errors['employeeShare']">
+              <span
+                  class="mb-2 has-text-danger"
+                  v-if="errors['employeeShare']">
 						{{ errors['employeeShare'][0] }}
 					</span>
             </div>
