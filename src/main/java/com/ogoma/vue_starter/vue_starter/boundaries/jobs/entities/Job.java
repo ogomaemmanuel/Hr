@@ -11,6 +11,16 @@ import java.util.Date;
 @Entity
 @Table(name = "jobs")
 public class Job {
+    public enum Status{
+        Open,Closed,Cancelled
+    }
+    public enum JobType{
+        Internship,
+        Remote,
+        Temporary,
+        PartTime,
+        FullTime,
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,6 +44,9 @@ public class Job {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+    private JobType type;
 
     public Long getId() {
         return id;
@@ -141,5 +154,21 @@ public class Job {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public JobType getType() {
+        return type;
+    }
+
+    public void setType(JobType type) {
+        this.type = type;
     }
 }

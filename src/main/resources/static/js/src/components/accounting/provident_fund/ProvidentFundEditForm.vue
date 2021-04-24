@@ -22,7 +22,7 @@
               <select
                   @input="clearFieldError('providentFundType')"
                   v-model="providentFund.providentFundType">
-                <option value="percentOfBasic">Percentage of Basic Salary</option>
+                <option v-for="ptype in providentFund.providentFundTypesSelectList"  :value="Object.keys(ptype)">{{Object.values(ptype)}}</option>
                 <option value="fixedAmount">Fixed Amount</option>
               </select>
               <span class="mb-2 has-text-danger" v-if="errors['providentFundType']">
