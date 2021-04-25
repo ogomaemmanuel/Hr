@@ -51,7 +51,7 @@
           <tbody>
           <tr v-for="providentFund in providentFunds">
             <td>
-              {{ providentFund.employee.fullName }}
+              {{ getEmployeeFullName(providentFund) }}
             </td>
             <td>
               {{ providentFund.providentFundTypeText }}
@@ -132,6 +132,9 @@ export default {
     },
     confirmRemoveProvidentFund(providentFund) {
 
+    },
+    getEmployeeFullName(providentFund) {
+      return providentFund.employee.user.fullName;
     },
     getProvidentFunds() {
       axios.get("/api/provident-funds", {

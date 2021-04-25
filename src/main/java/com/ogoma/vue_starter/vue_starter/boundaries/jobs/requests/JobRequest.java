@@ -1,57 +1,43 @@
-package com.ogoma.vue_starter.vue_starter.boundaries.jobs.entities;
+package com.ogoma.vue_starter.vue_starter.boundaries.jobs.requests;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Department;
+import com.ogoma.vue_starter.vue_starter.boundaries.jobs.entities.Job;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
-
-@Entity
-@Table(name = "jobs")
-public class Job {
-    public enum Status{
-        Open,Closed,Cancelled
-    }
-    public enum JobType{
-        Internship,
-        Remote,
-        Temporary,
-        PartTime,
-        FullTime,
-    }
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class JobRequest {
+    @NotBlank(message = "Title is required")
     private String title;
+    @NotBlank(message = "Location is required")
     private String location;
+    @NotNull(message = "Vacancies is required")
     private Integer vacancies;
+    @NotNull(message = "Minimum salary is required")
     private BigDecimal minimumSalary;
+    @NotNull(message = "Maximum salary is required")
     private BigDecimal maximumSalary;
-    @Temporal(TemporalType.DATE)
+    @NotNull(message = "Start date is required")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date startDate;
-    @Temporal(TemporalType.DATE)
+    @NotNull(message = "End date is required")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date endDate;
     private String description;
     private Integer age;
     private String experience;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Department department;
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date createdAt;
-    @Temporal(TemporalType.TIMESTAMP)
-    @UpdateTimestamp
-    private Date updatedAt;
+    @NotNull(message = "Select department")
+    private Long departmentId;
     @Enumerated(EnumType.STRING)
-    private Status status;
-    private JobType type;
-
-    public Long getId() {
-        return id;
-    }
-
+    private Job.Status status;
+    @NotNull(message = "Select job type")
+    @Enumerated(EnumType.STRING)
+    private Job.JobType type;
     public String getTitle() {
         return title;
     }
@@ -132,43 +118,27 @@ public class Job {
         this.experience = experience;
     }
 
-    public Department getDepartment() {
-        return department;
+    public Long getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Status getStatus() {
+    public Job.Status getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(Job.Status status) {
         this.status = status;
     }
 
-    public JobType getType() {
+    public Job.JobType getType() {
         return type;
     }
 
-    public void setType(JobType type) {
+    public void setType(Job.JobType type) {
         this.type = type;
     }
 }
