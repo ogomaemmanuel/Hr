@@ -17,4 +17,4 @@ RUN mvn -B -f pom.xml clean package -DskipTests
 FROM adoptopenjdk/openjdk11:jre-11.0.10_9-alpine
 COPY --from=build /workspace/target/*.jar app.jar
 EXPOSE 8080/tcp
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]

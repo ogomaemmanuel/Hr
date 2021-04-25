@@ -36,7 +36,7 @@ public class Job {
     private String description;
     private Integer age;
     private String experience;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
