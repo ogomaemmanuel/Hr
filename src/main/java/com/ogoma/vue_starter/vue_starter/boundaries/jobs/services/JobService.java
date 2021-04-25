@@ -53,8 +53,24 @@ public class JobService {
     }
 
     public Optional<Job> updateJob(Long id, JobRequest jobRequest) {
-        //TODO implement method
-        throw new RuntimeException("Method not implemented");
+
+        Optional<Job> job =
+                this.jobsRepository.findById(id);
+        job.ifPresent(j -> {
+            j.setAge(jobRequest.getAge());
+//        j.setDepartment(department);
+            j.setDescription(jobRequest.getDescription());
+            j.setExperience(jobRequest.getExperience());
+            j.setLocation(jobRequest.getLocation());
+            j.setEndDate(jobRequest.getEndDate());
+            j.setMaximumSalary(jobRequest.getMaximumSalary());
+            j.setMinimumSalary(jobRequest.getMinimumSalary());
+            j.setType(jobRequest.getType());
+            j.setVacancies(jobRequest.getVacancies());
+            j.setStatus(jobRequest.getStatus());
+            this.jobsRepository.save(j);
+        });
+        return job;
     }
 
     public void removeJob(Long id) {
