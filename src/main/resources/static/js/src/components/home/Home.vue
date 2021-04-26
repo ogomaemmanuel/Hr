@@ -172,7 +172,7 @@
               </li>
               <li>
                 <a href="#" class="">
-                  <span class="icon"><i class="fa fa-table"></i></span> Accounts
+                  <span class="icon"><i class="fa fa-files-o"></i></span> Accounts
                 </a>
                 <ul class="border-l-0">
                   <li>
