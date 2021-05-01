@@ -56,7 +56,7 @@ After doing basic Hr features, these will be the features we would like to add
 * Desktop and Mobile versions
 
 ## UI template references
-* [Smart hr by dreamguys](https://dreamguys.co.in/smarthr/orange/)
+* [Smart hr by dreamguys](https://smarthr.dreamguystech.com/smarthr-laravel/html-template/orange/index.html)
 * [Lucid](http://www.wrraptheme.com/templates/lucid/hr/html/light/)
 * [Epic Hr](https://preview.themeforest.net/item/epice-laravel-admin-template-for-hr-project-management/full_screen_preview/24466729?_ga=2.267228430.1032879915.1592443235-532036504.1591740750)
 * [Hrsale](https://hrsale.com)

@@ -18,11 +18,9 @@ import java.util.Optional;
 @Controller
 public class AssetController {
     private final AssetsService assetsService;
-
     public AssetController(AssetsService assetsService) {
         this.assetsService = assetsService;
     }
-
     @RequestMapping(value = "api/assets", method = RequestMethod.GET)
     public ResponseEntity<?> getAllAssets(PagedDataRequest pagedDataRequest) {
         Page<Asset> assets =
@@ -52,6 +50,4 @@ public class AssetController {
         Optional<Asset> asset = this.assetsService.updateAsset(id, assetRequest);
         return ResponseEntity.of(asset);
     }
-
-
 }
