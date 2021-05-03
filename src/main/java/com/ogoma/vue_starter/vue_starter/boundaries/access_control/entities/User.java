@@ -75,6 +75,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = PasswordReset_.USER, fetch = FetchType.LAZY)
     //@JsonIgnoreProperties(PasswordReset_.USER)
     private Set<PasswordReset> passwordResetList;
+    @Enumerated(EnumType.STRING)
     private UserType userType;
 
     public Long getId() {
