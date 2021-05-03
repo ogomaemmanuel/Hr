@@ -21,6 +21,7 @@ public class CustomUserDetails implements UserDetails {
     private String phone;
     private Date joiningDate;
     private User user;
+    private User.UserType userType;
 
     public CustomUserDetails(User user) {
         this.user = user;
@@ -41,6 +42,10 @@ public class CustomUserDetails implements UserDetails {
 
     public String getPhone() {
         return this.user.getPhone();
+    }
+
+    public User.UserType getUserType() {
+        return this.user.getUserType();
     }
 
     public String toJson() throws JsonProcessingException {
@@ -101,7 +106,7 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @JsonIgnore
-    public User getUser(){
+    public User getUser() {
         return this.user;
     }
 }

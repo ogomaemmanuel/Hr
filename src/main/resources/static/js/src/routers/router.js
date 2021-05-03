@@ -5,9 +5,10 @@ const AuthLayout = () =>
     import ("../components/auth/AuthLayout.vue");
 const Login = () =>
     import ("../components/auth/Login.vue");
+const Dashboard = () => import("../components/dashboard/DashboardPage")
 const Home = () =>
     import ("../components/home/Home");
-const MainAppWrapper=()=>import("../components/MainAppWrapper")
+const MainAppWrapper = () => import("../components/MainAppWrapper")
 const ForgotPassword = () =>
     import ("../components/auth/ForgotPassword");
 const Register = () =>
@@ -135,7 +136,7 @@ const ProvidentFundEdit = () => import("../components/accounting/provident_fund/
 const PolicyPage = () => import("../components/employee_management/policy/PolicyPage")
 const PolicyList = () => import("../components/employee_management/policy/PolicyList")
 const PolicyCreate = () => import("../components/employee_management/policy/PolicyCreateModal")
-const PolicyEdit= () => import("../components/employee_management/policy/PolicyEditModal")
+const PolicyEdit = () => import("../components/employee_management/policy/PolicyEditModal")
 
 
 Vue.use(Router);
@@ -184,8 +185,8 @@ const routes = new Router({
 
         {
             path: "/",
-            component:MainAppWrapper,
-            children:[
+            component: MainAppWrapper,
+            children: [
                 {
                     path: "/",
                     name: "home",
@@ -193,6 +194,11 @@ const routes = new Router({
                     meta: {},
 
                     children: [
+                        {
+                            path: "/",
+                            name: "Dashboard",
+                            component: Dashboard
+                        },
                         {
                             path: "/users",
                             name: "users",
@@ -399,7 +405,7 @@ const routes = new Router({
                                                 title: 'Policies',
                                                 redirect: true,
                                             },
-                                            children:[
+                                            children: [
                                                 {
                                                     path: "/policy-create",
                                                     component: PolicyCreate
@@ -906,8 +912,7 @@ const routes = new Router({
                                 breadcrumb: true,
                                 title: "Settings",
                             },
-                            children: [
-                            ]
+                            children: []
                         },
 
                     ]
