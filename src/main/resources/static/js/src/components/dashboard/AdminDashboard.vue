@@ -6,7 +6,9 @@
           <div class="card-content">
             <div class="columns">
               <div class="column">
-                <i class="fa fa-cubes"></i>
+                <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
+                  <i class="fa fa-cubes"></i>
+                </div>
               </div>
               <div class="column">
                 <p class="heading ">Projects</p>
@@ -21,7 +23,9 @@
           <div class="card-content">
             <div class="columns">
               <div class="column">
-                <i class="fa fa-cubes"></i>
+                <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
+                  <i class="fa fa-usd"></i>
+                </div>
               </div>
               <div class="column">
                 <p class="heading ">Clients</p>
@@ -36,7 +40,9 @@
           <div class="card-content">
             <div class="columns">
               <div class="column">
-                <i class="fa fa-cubes"></i>
+                <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
+                  <i class="fa fa-diamond"></i>
+                </div>
               </div>
               <div class="column">
                 <p class="heading ">Tasks</p>
@@ -51,7 +57,9 @@
           <div class="card-content">
             <div class="columns">
               <div class="column">
-                <i class="fa fa-cubes"></i>
+                <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
+                  <i class="fa fa-user"></i>
+                </div>
               </div>
               <div class="column">
                 <p class="heading ">Employees</p>
