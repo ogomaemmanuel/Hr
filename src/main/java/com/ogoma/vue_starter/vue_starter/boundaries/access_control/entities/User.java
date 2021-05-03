@@ -34,6 +34,12 @@ import java.util.Set;
 )
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {
+    public enum UserType{
+        Admin,
+        Client,
+        Employee,
+        User,
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -69,6 +75,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = PasswordReset_.USER, fetch = FetchType.LAZY)
     //@JsonIgnoreProperties(PasswordReset_.USER)
     private Set<PasswordReset> passwordResetList;
+    private UserType userType;
 
     public Long getId() {
         return id;
@@ -184,6 +191,14 @@ public class User implements Serializable {
         this.userRoles = userRoles;
     }
 
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
     public Date getCreatedOn() {
         return createdOn;
     }
@@ -195,6 +210,7 @@ public class User implements Serializable {
     public Date getUpdatedOn() {
         return updatedOn;
     }
+
 
     public void setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
