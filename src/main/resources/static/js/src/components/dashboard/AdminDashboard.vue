@@ -172,11 +172,87 @@
 
     <div class="columns">
       <div class="column">
-        <div class="card h-64">
+        <div class="card">
           <p class="card-header-title">
             Statistics
           </p>
-          <div class="card-content"></div>
+          <div class="card-content">
+            <div class="card h-16">
+              <div class="card-content p-1">
+                <div class="flex mt-2 mr-2 ml-2 justify-between">
+                  <p class="title is-7">
+                    Today Leave
+                  </p>
+                  <p class="title is-7">
+                    4 / 65
+                  </p>
+                </div>
+                <div class="mr-2 ml-2">
+                  <Progress :show-text="false" :percentage="70"></Progress>
+                </div>
+              </div>
+            </div>
+            <div class="card h-16 mt-1">
+              <div class="card-content p-1">
+                <div class="flex mt-2 mr-2 ml-2 justify-between">
+                  <p class="title is-7">
+                    Pending Invoice
+                  </p>
+                  <p class="title is-7">
+                    4 / 65
+                  </p>
+                </div>
+                <div class="mr-2 ml-2">
+                  <Progress :show-text="false" :percentage="70"></Progress>
+                </div>
+              </div>
+            </div>
+            <div class="card h-16 mt-1">
+              <div class="card-content p-1">
+                <div class="flex mt-2 mr-2 ml-2 justify-between">
+                  <p class="title is-7">
+                    Completed Projects
+                  </p>
+                  <p class="title is-7">
+                    4 / 65
+                  </p>
+                </div>
+                <div class="mr-2 ml-2">
+                  <Progress :show-text="false" :percentage="70"></Progress>
+                </div>
+              </div>
+            </div>
+            <div class="card h-16 mt-1">
+              <div class="card-content p-1">
+                <div class="flex mt-2 mr-2 ml-2 justify-between">
+                  <p class="title is-7">
+                    Completed Projects
+                  </p>
+                  <p class="title is-7">
+                    4 / 65
+                  </p>
+                </div>
+                <div class="mr-2 ml-2">
+                  <Progress :show-text="false" :percentage="70"></Progress>
+                </div>
+              </div>
+            </div>
+            <div class="card h-16 mt-1">
+              <div class="card-content p-1">
+                <div class="flex mt-2 mr-2 ml-2 justify-between">
+                  <p class="title is-7">
+                    Closed Tickets
+                  </p>
+                  <p class="title is-7">
+                    4 / 65
+                  </p>
+                </div>
+                <div class="mr-2 ml-2">
+                  <Progress :show-text="false" :percentage="70"></Progress>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="column">
@@ -222,7 +298,70 @@
           <p class="card-header-title">
             Clients
           </p>
-          <div class="card-content"></div>
+          <div class="card-content pt-0 pr-0 pl-0">
+            <table class="table is-stripped is-fullwidth">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Barry Cuda</td>
+                <td>barrycuda@example.com</td>
+                <td>Active</td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Barry Cuda</td>
+                <td>barrycuda@example.com</td>
+                <td>Active</td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Barry Cuda</td>
+                <td>barrycuda@example.com</td>
+                <td>Active</td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Barry Cuda</td>
+                <td>barrycuda@example.com</td>
+                <td>Active</td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Barry Cuda</td>
+                <td>barrycuda@example.com</td>
+                <td>Active</td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <div class="column">
@@ -236,10 +375,68 @@
               <tr>
                 <th>Project Name</th>
                 <th>Progress</th>
-                <th>Action</th>
+                <th class="text-right">Action</th>
               </tr>
               </thead>
+              <tbody>
+              <tr>
+                <td>Office Management</td>
+                <td>
+                  <b-progress type="is-success" size="is-small" :value="80"></b-progress>
+                </td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Office Management</td>
+                <td>
+                  <b-progress type="is-success" size="is-small" :value="80"></b-progress>
+                </td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Office Management</td>
+                <td>
+                  <b-progress type="is-success" size="is-small" :value="80"></b-progress>
+                </td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Office Management</td>
+                <td>
+                  <b-progress type="is-success" size="is-small" :value="80"></b-progress>
+                </td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Office Management</td>
+                <td>
+                  <b-progress type="is-success" size="is-small" :value="80"></b-progress>
+                </td>
+                <td>
+                  <div class="text-right">
+                    <i class="fa fa-ellipsis-v"></i>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
             </table>
+
           </div>
         </div>
       </div>
@@ -249,5 +446,11 @@
   </div>
 </template>
 <script>
-export default {}
+import {Progress} from "element-ui"
+
+export default {
+  components: {
+    Progress
+  }
+}
 </script>
