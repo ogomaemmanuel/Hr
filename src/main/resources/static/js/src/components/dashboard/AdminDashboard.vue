@@ -226,7 +226,7 @@
               <div class="card-content p-1">
                 <div class="flex mt-2 mr-2 ml-2 justify-between">
                   <p class="title is-7">
-                    Completed Projects
+                    Open Tickets
                   </p>
                   <p class="title is-7">
                     4 / 65
@@ -256,19 +256,98 @@
         </div>
       </div>
       <div class="column">
-        <div class="card h-64">
+        <div class="card">
           <p class="card-header-title">
             Task Statistics
           </p>
-          <div class="card-content"></div>
+          <div class="card-content">
+            <div class="columns">
+              <div class="column">
+                <div class="card h-16">
+                  <div class="card-content p-2">
+                    <div class="level">
+                      <div class="level-item has-text-centered">
+                        <div>
+                          <p class="heading">Total Tasks</p>
+                          <p class="title is-7">385</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="card h-16">
+                  <div class="card-content p-2">
+                    <div class="level">
+                      <div class="level-item has-text-centered">
+                        <div>
+                          <p class="heading">Overdue Tasks</p>
+                          <p class="title is-7">19</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="progress mb-4">
+              <div class="progress-bar has-background-link-dark" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
+              <div class="progress-bar has-background-warning" role="progressbar" style="width: 22%" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">22%</div>
+              <div class="progress-bar has-background-success" role="progressbar" style="width: 24%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">24%</div>
+              <div class="progress-bar has-background-danger" role="progressbar" style="width: 26%" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">21%</div>
+              <div class="progress-bar has-background-info" role="progressbar" style="width: 10%" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">10%</div>
+            </div>
+
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-link-dark	mr-2"></i>Completed Tasks <span class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-warning mr-2"></i>Inprogress Tasks<span class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-success mr-2"></i>On Hold Tasks<span class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-danger mr-2"></i>Pending Tasks<span class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-info mr-2"></i>Review Tasks<span class="float-right">166</span></p>
+          </div>
         </div>
       </div>
       <div class="column">
-        <div class="card h-64">
+        <div class="card">
           <p class="card-header-title">
             Today Absent
           </p>
-          <div class="card-content"></div>
+          <div class="card-content">
+            <div class="card h-32 mb-4">
+              <div class="card-content">
+
+
+                <article class="media">
+                  <figure class="media-left">
+                    <p class="image is-48x48">
+                      <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                    </p>
+                  </figure>
+                  <div class="media-content align-self-center">
+                    <div class="content">
+                      <p>
+                        John Smith
+                        <br>
+                      </p>
+                    </div>
+                  </div>
+                </article>
+
+
+
+              </div>
+            </div>
+            <div class="card h-32 mb-4">
+              <div class="card-content">
+
+              </div>
+            </div>
+             <div class="flex justify-center">
+               <button class="button">Load More</button>
+             </div>
+          </div>
         </div>
       </div>
 
@@ -454,3 +533,36 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+.progress {
+  display: -ms-flexbox;
+  display: flex;
+  height: 1rem;
+  overflow: hidden;
+  font-size: .75rem;
+  background-color: #e9ecef;
+  border-radius: .25rem;
+}
+
+//.progress > .progress-bar {
+//  background-color: #25628F;
+//}
+
+//.bg-purple, .badge-purple {
+//  background-color: #7460ee !important;
+//}
+.progress-bar {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #007bff;
+  transition: width .6s ease;
+}
+
+</style>
