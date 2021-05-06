@@ -6,7 +6,7 @@
           <div class="card-content">
             <div class="columns is-mobile">
               <div class="column is-6-mobile">
-                <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
+                <div class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-cubes"></i>
                 </div>
               </div>
@@ -23,7 +23,7 @@
           <div class="card-content">
             <div class="columns is-mobile">
               <div class="column">
-                <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
+                <div class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-usd"></i>
                 </div>
               </div>
@@ -40,7 +40,7 @@
           <div class="card-content">
             <div class="columns is-mobile">
               <div class="column">
-                <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
+                <div class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-diamond"></i>
                 </div>
               </div>
@@ -57,7 +57,7 @@
           <div class="card-content">
             <div class="columns is-mobile">
               <div class="column">
-                <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
+                <div class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-user"></i>
                 </div>
               </div>
