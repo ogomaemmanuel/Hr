@@ -4,13 +4,13 @@
       <div class="column">
         <div class="card">
           <div class="card-content">
-            <div class="columns">
-              <div class="column">
+            <div class="columns is-mobile">
+              <div class="column is-6-mobile">
                 <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-cubes"></i>
                 </div>
               </div>
-              <div class="column">
+              <div class="column is-6-mobile">
                 <p class="heading ">Projects</p>
                 <p class="title is-6">3,456</p>
               </div>
@@ -21,13 +21,13 @@
       <div class="column">
         <div class="card">
           <div class="card-content">
-            <div class="columns">
+            <div class="columns is-mobile">
               <div class="column">
                 <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-usd"></i>
                 </div>
               </div>
-              <div class="column">
+              <div class="column ">
                 <p class="heading ">Clients</p>
                 <p class="title is-6">3,456</p>
               </div>
@@ -38,7 +38,7 @@
       <div class="column">
         <div class="card">
           <div class="card-content">
-            <div class="columns">
+            <div class="columns is-mobile">
               <div class="column">
                 <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-diamond"></i>
@@ -55,7 +55,7 @@
       <div class="column">
         <div class="card">
           <div class="card-content">
-            <div class="columns">
+            <div class="columns is-mobile">
               <div class="column">
                 <div class="w-20 h-20 rounded-full  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-user"></i>
@@ -315,11 +315,11 @@
             Today Absent
           </p>
           <div class="card-content">
-            <div class="card h-32 mb-4">
+            <div class="card min-h-32 mb-4">
               <div class="card-content">
 
 
-                <article class="media">
+                <article class="media mb-2">
                   <figure class="media-left">
                     <p class="image is-48x48">
                       <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
@@ -327,23 +327,53 @@
                   </figure>
                   <div class="media-content align-self-center">
                     <div class="content">
-                      <p>
+                      <p class="title is-6">
                         John Smith
-                        <br>
                       </p>
                     </div>
                   </div>
                 </article>
-
-
-
+                <div class="columns is-centered is-mobile">
+                  <div class="column is-6-mobile is-6-tablet">
+                    <h6 class="title mb-0 is-7">4 Sep 2019</h6>
+                    <span class="subtitle text-muted is-7">Leave Date</span>
+                  </div>
+                  <div class="column is-6-mobile is-6-tablet text-right">
+                    <span class="tag is-success is-light">Pending</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="card h-32 mb-4">
+            <div class="card min-h-32 mb-4">
               <div class="card-content">
 
+
+                <article class="media mb-2">
+                  <figure class="media-left">
+                    <p class="image is-48x48">
+                      <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                    </p>
+                  </figure>
+                  <div class="media-content align-self-center">
+                    <div class="content">
+                      <p class="title is-6">
+                        John Smith
+                      </p>
+                    </div>
+                  </div>
+                </article>
+                <div class="columns is-mobile">
+                  <div class="column is-6">
+                    <h6 class="title mb-0 is-7">4 Sep 2019</h6>
+                    <span class="subtitle text-muted is-7">Leave Date</span>
+                  </div>
+                  <div class="column is-6 text-right">
+                    <span class="tag is-success is-light">Pending</span>
+                  </div>
+                </div>
               </div>
             </div>
+
              <div class="flex justify-center">
                <button class="button">Load More</button>
              </div>
