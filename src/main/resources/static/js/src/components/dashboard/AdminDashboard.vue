@@ -6,7 +6,8 @@
           <div class="card-content">
             <div class="columns is-mobile">
               <div class="column is-6-mobile">
-                <div class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
+                <div
+                    class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-cubes"></i>
                 </div>
               </div>
@@ -23,7 +24,8 @@
           <div class="card-content">
             <div class="columns is-mobile">
               <div class="column">
-                <div class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
+                <div
+                    class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-usd"></i>
                 </div>
               </div>
@@ -40,7 +42,8 @@
           <div class="card-content">
             <div class="columns is-mobile">
               <div class="column">
-                <div class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
+                <div
+                    class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-diamond"></i>
                 </div>
               </div>
@@ -57,7 +60,8 @@
           <div class="card-content">
             <div class="columns is-mobile">
               <div class="column">
-                <div class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
+                <div
+                    class="w-20 h-20 rounded-full text-3xl has-text-primary  flex items-center justify-center has-background-primary-light">
                   <i class="fa fa-user"></i>
                 </div>
               </div>
@@ -294,18 +298,33 @@
             </div>
 
             <div class="progress mb-4">
-              <div class="progress-bar has-background-link-dark" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%</div>
-              <div class="progress-bar has-background-warning" role="progressbar" style="width: 22%" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100">22%</div>
-              <div class="progress-bar has-background-success" role="progressbar" style="width: 24%" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100">24%</div>
-              <div class="progress-bar has-background-danger" role="progressbar" style="width: 26%" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">21%</div>
-              <div class="progress-bar has-background-info" role="progressbar" style="width: 10%" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">10%</div>
+              <div class="progress-bar has-background-link-dark" role="progressbar" style="width: 30%"
+                   aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">30%
+              </div>
+              <div class="progress-bar has-background-warning" role="progressbar" style="width: 22%" aria-valuenow="18"
+                   aria-valuemin="0" aria-valuemax="100">22%
+              </div>
+              <div class="progress-bar has-background-success" role="progressbar" style="width: 24%" aria-valuenow="12"
+                   aria-valuemin="0" aria-valuemax="100">24%
+              </div>
+              <div class="progress-bar has-background-danger" role="progressbar" style="width: 26%" aria-valuenow="14"
+                   aria-valuemin="0" aria-valuemax="100">21%
+              </div>
+              <div class="progress-bar has-background-info" role="progressbar" style="width: 10%" aria-valuenow="14"
+                   aria-valuemin="0" aria-valuemax="100">10%
+              </div>
             </div>
 
-            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-link-dark	mr-2"></i>Completed Tasks <span class="float-right">166</span></p>
-            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-warning mr-2"></i>Inprogress Tasks<span class="float-right">166</span></p>
-            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-success mr-2"></i>On Hold Tasks<span class="float-right">166</span></p>
-            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-danger mr-2"></i>Pending Tasks<span class="float-right">166</span></p>
-            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-info mr-2"></i>Review Tasks<span class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-link-dark	mr-2"></i>Completed Tasks <span
+                class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-warning mr-2"></i>Inprogress Tasks<span
+                class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-success mr-2"></i>On Hold Tasks<span
+                class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-danger mr-2"></i>Pending Tasks<span
+                class="float-right">166</span></p>
+            <p class="mb-4"><i class="fa fa-dot-circle-o has-text-info mr-2"></i>Review Tasks<span class="float-right">166</span>
+            </p>
           </div>
         </div>
       </div>
@@ -374,9 +393,9 @@
               </div>
             </div>
 
-             <div class="flex justify-center">
-               <button class="button">Load More</button>
-             </div>
+            <div class="flex justify-center">
+              <button class="button">Load More</button>
+            </div>
           </div>
         </div>
       </div>
@@ -384,15 +403,86 @@
     </div>
     <div class="columns">
       <div class="column">
-        <div class="card h-64">
+        <div class="card">
           <p class="card-header-title">
             Invoices
           </p>
-          <div class="card-content"></div>
+          <div class="card-content pl-0 pr-0">
+            <div class="table-container">
+              <table class="table is-fullwidth">
+                <thead>
+                <tr>
+                  <td>Invoice Id</td>
+                  <td>Client</td>
+                  <td>Due Date</td>
+                  <td>Total</td>
+                  <td>Status</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td><a href="invoice-view.html">#INV-0001</a></td>
+                  <td>
+                    <h2><a href="#">Global Technologies</a></h2>
+                  </td>
+                  <td>11 Mar 2019</td>
+                  <td>$380</td>
+                  <td>
+                    <span class="badge bg-inverse-warning">Partially Paid</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="invoice-view.html">#INV-0001</a></td>
+                  <td>
+                    <h2><a href="#">Global Technologies</a></h2>
+                  </td>
+                  <td>11 Mar 2019</td>
+                  <td>$380</td>
+                  <td>
+                    <span class="badge bg-inverse-warning">Partially Paid</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="invoice-view.html">#INV-0001</a></td>
+                  <td>
+                    <h2><a href="#">Global Technologies</a></h2>
+                  </td>
+                  <td>11 Mar 2019</td>
+                  <td>$380</td>
+                  <td>
+                    <span class="badge bg-inverse-warning">Partially Paid</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="invoice-view.html">#INV-0001</a></td>
+                  <td>
+                    <h2><a href="#">Global Technologies</a></h2>
+                  </td>
+                  <td>11 Mar 2019</td>
+                  <td>$380</td>
+                  <td>
+                    <span class="badge bg-inverse-warning">Partially Paid</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="invoice-view.html">#INV-0001</a></td>
+                  <td>
+                    <h2><a href="#">Global Technologies</a></h2>
+                  </td>
+                  <td>11 Mar 2019</td>
+                  <td>$380</td>
+                  <td>
+                    <span class="badge bg-inverse-warning">Partially Paid</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
       <div class="column">
-        <div class="card h-64">
+        <div class="card ">
           <p class="card-header-title">
             Payments
           </p>

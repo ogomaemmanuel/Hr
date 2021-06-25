@@ -1,7 +1,7 @@
 - name: Install java 11 if not present on ubuntu
-  apt: openjdk-11-jdk
-  state: present
-  when: ansible_distribution ="ubuntu"
+  package:
+    name: openjdk-11-jdk
+    state: present
   become: yes
 - name: Set JAVA_HOME if not configured
   template:
