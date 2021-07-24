@@ -2,7 +2,7 @@
   <div>
     <div class="pb-2 flex justify-end">
       <router-link
-          to="/holiday-create"
+          to="/asset-create"
           tag="button"
           class="button mr-1 is-rounded">
 				<span class="icon">
