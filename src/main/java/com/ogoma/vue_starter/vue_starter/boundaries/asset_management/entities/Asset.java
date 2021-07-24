@@ -9,16 +9,17 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "assets",indexes = {
+@Table(name = "assets", indexes = {
 //        @Index(name = "name",)
 })
 public class Asset {
-    public enum Status{
+    public enum Status {
         Pending,
         Approved,
         Deployed,
         Damaged,
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,13 +31,18 @@ public class Asset {
     private String model;
     private String serialNumber;
     private String supplier;
+    @Column(name = "[condition]")
     private String condition;
     private Integer warrantyInMonths;
+    //column name is enclosed by [] since value is a keyword in mysql, without the [] an exemption is thrown
+    @Column(name = "[value]")
     private BigDecimal value;
     @ManyToOne
     private User assetUser;
     private String description;
     @Enumerated(EnumType.STRING)
+    //column name is enclosed by [] since status is a keyword in mysql
+    @Column(name = "[status]")
     private Status status;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -44,6 +50,10 @@ public class Asset {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -144,6 +154,7 @@ public class Asset {
     public Status getStatus() {
         return status;
     }
+
     public void setStatus(Status status) {
         this.status = status;
     }

@@ -7,13 +7,18 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class AssetRequest {
+    @NotBlank(message = "Asset name is required")
     private String name;
+    @NotBlank(message = "Purchase From is required")
     private String purchasedFrom;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull(message = "Purchase Date is required")
     private Date purchaseDate;
     private String manufacturer;
     private String model;
