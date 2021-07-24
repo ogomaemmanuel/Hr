@@ -31,8 +31,23 @@
     - containerd.io
 
 - name: install docker compose
-    get_url:
+  get_url:
     url: https://github.com/docker/compose/releases/download/1.27.3/docker-compose-Linux-x86_64
     dest: /usr/local/bin/docker-compose
     mode: 755
+
+- name: Copy docker compose file to app directory
+  copy:
+    src: docker-compose-prod.yml
+    dest: ~/hr_app/docker-compose-prod.yml
+
+- name: generate .env file from .env.j2 template and copy to /hr_app/.env
+  template:
+    src: .env.j2
+    dest: ~/hr_app/.env
+
+- name: Run docker compose up
+  shell:
+    cmd: docker-compose up
+    chdir: ~/hr_app
 
