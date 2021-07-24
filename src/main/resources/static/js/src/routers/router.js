@@ -137,6 +137,8 @@ const PolicyPage = () => import("../components/employee_management/policy/Policy
 const PolicyList = () => import("../components/employee_management/policy/PolicyList")
 const PolicyCreate = () => import("../components/employee_management/policy/PolicyCreateModal")
 const PolicyEdit = () => import("../components/employee_management/policy/PolicyEditModal")
+const AssetsPage = () => import("../components/assets/AssestsPage")
+const AssetList = () => import("../components/assets/AssetList")
 
 
 Vue.use(Router);
@@ -913,6 +915,21 @@ const routes = new Router({
                                 title: "Settings",
                             },
                             children: []
+                        },
+                        {
+                            path: "/assets",
+                            name: "assets",
+                            component: AssetsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Assets",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: AssetList,
+                                }
+                            ]
                         },
 
                     ]

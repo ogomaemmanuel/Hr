@@ -208,9 +208,9 @@
                 </ul>
               </li>
               <li>
-                <a href="#" class="">
+                <router-link to="/assets" class="">
                   <span class="icon"><i class="fa fa-object-ungroup"></i></span> Assets
-                </a>
+                </router-link>
               </li>
               <li>
                 <a href="#" class="">

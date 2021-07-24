@@ -1,7 +1,5 @@
 version: '3.4'
-
 services:
-
   app:
     image: mudho/hr
     depends_on:

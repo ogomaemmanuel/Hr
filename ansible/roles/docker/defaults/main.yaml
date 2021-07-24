@@ -1,0 +1,4 @@
+db_password: secret
+db_schema: hr
+db_user: homestead
+db_user_password: secret
