@@ -258,7 +258,6 @@
 </template>
 <script>
 import common_mixin from "../../mixins/common_mixin";
-
 export default {
   mixins: [common_mixin],
   data() {

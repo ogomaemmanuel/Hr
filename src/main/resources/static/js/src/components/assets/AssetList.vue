@@ -135,11 +135,12 @@ export default {
   },
 
   methods: {
+    confirmRemoveAsset(asset){
+
+    },
     fetchRecords() {
       this.getAssets();
     },
-    onAssetCreateSuccessful(){},
-    onAssetUpdateSuccessful(){},
     getAssets() {
       axios.get(`api/assets/`, {
         params: {
@@ -152,9 +153,8 @@ export default {
         this.loading = false
       })
     },
-    confirmRemoveAsset(asset){
-
-    }
+    onAssetCreateSuccessful(){},
+    onAssetUpdateSuccessful(){}
   }
 }
 </script>
