@@ -9,9 +9,9 @@
           <portal-target class="side-menu-portal-target" name="side-menu">
             <ul class="menu-list">
               <li>
-                <a href="#" class="">
-                  <span class="icon"><i class="fa fa-home"></i></span> Home
-                </a>
+                <router-link to="/"  class="">
+                  <span tag="span" to="/" class="icon"><i class="fa fa-home"></i></span> Home
+                </router-link>
               </li>
               <li>
                 <a href="#" class="">
@@ -208,9 +208,9 @@
                 </ul>
               </li>
               <li>
-                <a href="#" class="">
+                <router-link to="/assets" class="">
                   <span class="icon"><i class="fa fa-object-ungroup"></i></span> Assets
-                </a>
+                </router-link>
               </li>
               <li>
                 <a href="#" class="">
