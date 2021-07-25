@@ -74,8 +74,8 @@
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <router-link
-                          :to="`/holiday-edit/${asset.id}`" tag="button"
-                          @click="setHolidayToEdit(asset)" class="button is-white is-small">
+                          :to="`/asset-edit/${asset.id}`" tag="button"
+                           class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
