@@ -142,6 +142,7 @@ const PolicyEdit = () => import("../components/employee_management/policy/Policy
 const AssetsPage = () => import("../components/assets/AssestsPage")
 const AssetList = () => import("../components/assets/AssetList")
 const AssetCreate = () => import("../components/assets/AssetCreateModal")
+const AssetEdit = () => import("../components/assets/AssetEditModal")
 
 
 Vue.use(Router);
@@ -936,6 +937,11 @@ const routes = new Router({
                                             path: "/asset-create",
                                             name: "asset-create",
                                             component: AssetCreate
+                                        },
+                                        {
+                                            path: "/asset-edit/:id",
+                                            name: "asset-edit",
+                                            component: AssetEdit
                                         }
                                     ]
                                 },
