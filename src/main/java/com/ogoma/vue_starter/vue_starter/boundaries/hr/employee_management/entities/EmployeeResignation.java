@@ -23,10 +23,9 @@ public class EmployeeResignation {
     private Date resignationDate;
     @NotBlank(message = "Resignation is required")
     private String reason;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne( fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @MapsId
     @JoinColumn(name = "id")
-    ///@LazyToOne(value = LazyToOneOption.NO_PROXY)
     private Employee employee;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -72,7 +71,7 @@ public class EmployeeResignation {
     }
 
     public void setEmployee(Employee employee) {
-        employee.setEmployeeResignation(this);
+       // employee.setEmployeeResignation(this);
         this.employee = employee;
 
     }

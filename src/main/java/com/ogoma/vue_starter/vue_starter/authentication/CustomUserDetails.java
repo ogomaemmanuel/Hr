@@ -100,10 +100,10 @@ public class CustomUserDetails implements UserDetails {
         return true;
     }
 
-    @JsonIgnore
-    public Employee getEmployee() {
-        return this.user.getEmployee();
-    }
+//    @JsonIgnore
+//    public Employee getEmployee() {
+//        return this.user.getEmployee();
+//    }
 
     @JsonIgnore
     public User getUser() {

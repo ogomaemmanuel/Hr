@@ -103,7 +103,7 @@ public class UsersServiceImp implements UserService {
                     @Override
                     public Predicate toPredicate(Root<User> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                         if(Long.class!=criteriaQuery.getResultType()){
-                            root.fetch(User_.employee, JoinType.LEFT);
+                            //root.fetch(User_.employee, JoinType.LEFT);
                         }
                         return criteriaBuilder.conjunction();
                     }

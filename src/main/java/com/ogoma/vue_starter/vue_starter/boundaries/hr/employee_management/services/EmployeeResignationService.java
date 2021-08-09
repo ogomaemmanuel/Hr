@@ -30,13 +30,12 @@ public class EmployeeResignationService {
                                                                  resignationRequest) {
         Employee employee= this.employeeRepository.findById(resignationRequest.getEmployeeId()).get();
         EmployeeResignation employeeResignation = new EmployeeResignation();
-        employeeResignation.setId(resignationRequest.getEmployeeId());
         employeeResignation.setResignationDate(resignationRequest.getResignationDate());
         employeeResignation.setNoticeDate(resignationRequest.getNoticeDate());
         employeeResignation.setReason(resignationRequest.getReason());
         employeeResignation.setNoticeDate(resignationRequest.getNoticeDate());
         employeeResignation.setEmployee(employee);
-        this.employeeRepository.save(employee);
+        this.employeeResignationRepository.save(employeeResignation);
         return employeeResignation;
     }
 

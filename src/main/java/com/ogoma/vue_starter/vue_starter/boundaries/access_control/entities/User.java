@@ -59,8 +59,6 @@ public class User implements Serializable {
     @Transient
     @JsonProperty
     private String fullName;
-    @OneToOne(mappedBy = Employee_.USER, fetch = FetchType.LAZY)
-    private Employee employee;
     @JsonIgnore
     private String password;
     @Temporal(TemporalType.TIMESTAMP)
@@ -158,14 +156,7 @@ public class User implements Serializable {
         this.fullName = fullName;
     }
 
-    @JsonIgnore
-    public Employee getEmployee() {
-        return employee;
-    }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 
     public void setPhone(String phone) {
         this.phone = phone;
@@ -226,16 +217,7 @@ public class User implements Serializable {
         this.passwordResetList = passwordResetList;
     }
 
-    public void addStaff(Employee newEmployee) {
-        if (newEmployee == null) {
-            if (this.employee != null) {
-                this.employee.setUser(null);
-            }
-        } else {
-            newEmployee.setUser(this);
-        }
-        this.employee = newEmployee;
-    }
+
 
     @PostLoad
     public void setUserFullName() {

@@ -19,7 +19,6 @@ import java.util.*;
 @SQLDelete(sql = "update employees set deleted=true,deleted_at=now()  where id=?")
 public class Employee extends BaseEntity {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date joiningDate;
     @Column(name = "supervisor_id")

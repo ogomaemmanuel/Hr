@@ -37,7 +37,7 @@ public class Asset {
     //column name is enclosed by [] since value is a keyword in mysql, without the [] an exemption is thrown
     @Column(name = "[value]")
     private BigDecimal value;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User assetUser;
     private String description;
     @Enumerated(EnumType.STRING)
