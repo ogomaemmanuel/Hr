@@ -186,20 +186,28 @@
           </div>
         </div>
         <div class="column">
-          <div class="field">
-            <label class="label">Asset User<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  @input="clearFieldError('assetUserId')"
-                  class="input"
-                  type="text"
-                  v-model="asset.assetUserId">
-              </input>
-              <span class="mb-2 has-text-danger" v-if="errors['assetUserId']">
+          <EmployeeSelectInput
+              label="Asset User"
+              @input="clearFieldError('assetUserId')"
+              v-model="asset.assetUserId">
+     <span  slot="errors" class="mb-2 has-text-danger" v-if="errors['assetUserId']">
 						{{ errors['assetUserId'][0] }}
 					</span>
-            </div>
-          </div>
+          </EmployeeSelectInput>
+<!--          <div class="field">-->
+<!--            <label class="label">Asset User<span><sup>*</sup></span></label>-->
+<!--            <div class="control">-->
+<!--              <input-->
+<!--                  @input="clearFieldError('assetUserId')"-->
+<!--                  class="input"-->
+<!--                  type="text"-->
+<!--                  v-model="asset.assetUserId">-->
+<!--              </input>-->
+<!--              <span class="mb-2 has-text-danger" v-if="errors['assetUserId']">-->
+<!--						{{ errors['assetUserId'][0] }}-->
+<!--					</span>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
       </div>
       <div class="columns">
@@ -254,10 +262,11 @@
 <script>
 import common_mixin from "../../mixins/common_mixin";
 import {DatePicker, Message} from "element-ui"
-
+import EmployeeSelectInput from "../common/EmployeeSelectInput";
 export default {
   components: {
-    DatePicker
+    DatePicker,
+    EmployeeSelectInput
   },
   mixins: [common_mixin],
   data() {

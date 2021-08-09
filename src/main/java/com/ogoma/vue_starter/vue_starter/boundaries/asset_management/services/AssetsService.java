@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.asset_management.services;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.asset_management.entities.Asset;
 import com.ogoma.vue_starter.vue_starter.boundaries.asset_management.repositories.AssetsRepository;
@@ -22,7 +23,8 @@ public class AssetsService {
     }
 
     public Page<Asset> getAllAssets(PagedDataRequest pagedDataRequest) {
-        Page<Asset> assets = this.assetsRepository.findAll(pagedDataRequest.toPageable());
+        Page<Asset> assets =
+                this.assetsRepository.findAll(pagedDataRequest.toPageable());
         return assets;
     }
 
@@ -33,7 +35,7 @@ public class AssetsService {
 
     public Asset createAsset(AssetRequest assetRequest) {
         Asset asset = new Asset();
-        this.setAssetDetails(asset,assetRequest);
+        this.setAssetDetails(asset, assetRequest);
         this.assetsRepository.save(asset);
         return asset;
     }
@@ -42,15 +44,20 @@ public class AssetsService {
         this.assetsRepository.deleteById(id);
     }
 
-    public Optional<Asset>  updateAsset(Long id , AssetRequest assetRequest){
+    public Optional<Asset> updateAsset(Long id, AssetRequest assetRequest) {
         Optional<Asset> asset = this.assetsRepository.findById(id);
-        asset.ifPresent(a->{
-            setAssetDetails(a,assetRequest);
+        asset.ifPresent(a -> {
+            setAssetDetails(a, assetRequest);
             this.assetsRepository.save(a);
         });
-      return asset;
+        return asset;
     }
-    private void setAssetDetails(Asset asset, AssetRequest assetRequest){
+
+    private void setAssetDetails(Asset asset, AssetRequest assetRequest) {
+        if (assetRequest.getAssetUserId() != null) {
+            User user = usersRepository.getOne(assetRequest.getAssetUserId());
+            asset.setAssetUser(user);
+        }
         asset.setDescription(assetRequest.getDescription());
         asset.setCondition(assetRequest.getCondition());
         asset.setStatus(assetRequest.getStatus());

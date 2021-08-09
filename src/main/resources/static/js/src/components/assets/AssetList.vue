@@ -66,11 +66,11 @@
                   <td data-label="Name">{{ asset.name }}</td>
                   <td data-label="Date">{{ asset.date }}</td>
                   <td data-label="Description">{{ asset.name }}</td>
+                  <td data-label="Description">{{ asset.purchaseDate }}</td>
+                  <td data-label="Description">{{ asset.warrantyInMonths }}</td>
                   <td data-label="Description">{{ asset.name }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
+                  <td data-label="Description">{{ asset.value }}</td>
+                  <td data-label="Description">{{ asset.status }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <router-link
@@ -128,7 +128,8 @@ export default {
   mixins: [data_table_mixin],
   data() {
     return {
-      assets: []
+      assets: [],
+      loading: false
     }
   },
   created() {
