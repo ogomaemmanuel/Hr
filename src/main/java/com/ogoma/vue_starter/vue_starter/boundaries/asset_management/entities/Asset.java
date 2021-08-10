@@ -1,11 +1,13 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.asset_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -50,6 +52,9 @@ public class Asset {
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @Transient
+    @JsonProperty
+    private Date warrantyEndDate;
 
     public Long getId() {
         return id;
@@ -173,5 +178,19 @@ public class Asset {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Date getWarrantyEndDate() {
+        return warrantyEndDate;
+    }
+    @PostLoad
+    @SuppressWarnings("deprecation")
+    public void calculateWarrantyEndDate(){
+         Calendar calendar = Calendar.getInstance();
+        calendar.set(this.purchaseDate.getYear()+1900,
+                this.purchaseDate.getMonth(),this.purchaseDate.getDay());
+        calendar.add(Calendar.MONTH,this.getWarrantyInMonths());
+        this.warrantyEndDate= calendar.getTime();
+
     }
 }
