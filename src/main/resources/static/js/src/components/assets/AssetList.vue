@@ -68,7 +68,7 @@
                   <td data-label="Description">{{ asset.name }}</td>
                   <td data-label="Description">{{ asset.purchaseDate }}</td>
                   <td data-label="Description">{{ asset.warrantyInMonths }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
+                  <td data-label="Description">{{ asset.warrantyEndDate|formatDate }}</td>
                   <td data-label="Description">{{ asset.value }}</td>
                   <td data-label="Description">{{ asset.status }}</td>
                   <td data-label="Action">
@@ -134,6 +134,14 @@ export default {
   },
   created() {
     this.getAssets();
+  },
+  filters:{
+    formatDate(date){
+      if(date){
+        return moment(date).format("DD-MMM-YYYY");
+      }
+      return ""
+    }
   },
 
   methods: {
