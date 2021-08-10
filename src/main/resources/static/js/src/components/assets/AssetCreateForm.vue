@@ -194,20 +194,6 @@
 						{{ errors['assetUserId'][0] }}
 					</span>
           </EmployeeSelectInput>
-<!--          <div class="field">-->
-<!--            <label class="label">Asset User<span><sup>*</sup></span></label>-->
-<!--            <div class="control">-->
-<!--              <input-->
-<!--                  @input="clearFieldError('assetUserId')"-->
-<!--                  class="input"-->
-<!--                  type="text"-->
-<!--                  v-model="asset.assetUserId">-->
-<!--              </input>-->
-<!--              <span class="mb-2 has-text-danger" v-if="errors['assetUserId']">-->
-<!--						{{ errors['assetUserId'][0] }}-->
-<!--					</span>-->
-<!--            </div>-->
-<!--          </div>-->
         </div>
       </div>
       <div class="columns">
@@ -231,12 +217,15 @@
         <div class="column is-6">
           <div class="field">
             <label class="label">Status<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  v-model="asset.status"
-                  @input="clearFieldError('status')"
-                  class="input"
-                  type="text">
+            <div class="select is-primary is-fullwidth">
+            <select
+                @input="clearFieldError('status')"
+                v-model="asset.status">
+              <option value="Damaged">Damaged</option>
+              <option value="Approved">Approved</option>
+              <option value="Deployed">Deployed</option>
+              <option value="Pending">Pending</option>
+            </select>
               <span class="mb-2 has-text-danger" v-if="errors['status']">
 						{{ errors['status'][0] }}
 					</span>
