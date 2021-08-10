@@ -3,28 +3,42 @@ package com.ogoma.vue_starter.vue_starter.boundaries.asset_management.services;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.asset_management.entities.Asset;
+import com.ogoma.vue_starter.vue_starter.boundaries.asset_management.entities.Asset_;
 import com.ogoma.vue_starter.vue_starter.boundaries.asset_management.repositories.AssetsRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.asset_management.requests.AssetRequest;
+import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project_;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.JoinType;
+import java.util.HashMap;
 import java.util.Optional;
 
 @Service
 public class AssetsService {
     private final AssetsRepository assetsRepository;
     private final UsersRepository usersRepository;
+    private final SimpMessagingTemplate messageSender;
 
     public AssetsService(AssetsRepository assetsRepository,
-                         UsersRepository usersRepository) {
+                         UsersRepository usersRepository, SimpMessagingTemplate messageSender) {
         this.assetsRepository = assetsRepository;
         this.usersRepository = usersRepository;
+        this.messageSender = messageSender;
     }
 
     public Page<Asset> getAllAssets(PagedDataRequest pagedDataRequest) {
         Page<Asset> assets =
-                this.assetsRepository.findAll(pagedDataRequest.toPageable());
+                this.assetsRepository.findAll(
+                        ((root, criteriaQuery, criteriaBuilder) -> {
+                            if (Long.class != criteriaQuery.getResultType()) {
+                                    root.fetch(Asset_.assetUser,JoinType.LEFT);
+                            }
+                            return criteriaBuilder.conjunction();
+                        }),
+                        pagedDataRequest.toPageable());
         return assets;
     }
 
@@ -37,6 +51,11 @@ public class AssetsService {
         Asset asset = new Asset();
         this.setAssetDetails(asset, assetRequest);
         this.assetsRepository.save(asset);
+        HashMap<String, Object> message = new HashMap<String,Object>();
+        message.put("type","chat");
+        message.put("body","Test");
+        this.messageSender.convertAndSendToUser("testuser@gmail.com",
+                "/queue/notifications",message);
         return asset;
     }
 

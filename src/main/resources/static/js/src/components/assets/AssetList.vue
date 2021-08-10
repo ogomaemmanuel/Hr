@@ -63,7 +63,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="asset in assets">
-                  <td data-label="Name">{{ asset.name }}</td>
+                  <td data-label="Name">{{ getAssetUserName(asset) }}</td>
                   <td data-label="Date">{{ asset.date }}</td>
                   <td data-label="Description">{{ asset.name }}</td>
                   <td data-label="Description">{{ asset.purchaseDate }}</td>
@@ -143,6 +143,12 @@ export default {
         message: `Are you sure want to remove <b> ${asset.name}</b> from assets`,
         onConfirm: () => this.removeAsset(asset)
       })
+    },
+    getAssetUserName(asset) {
+      if (asset.assetUser) {
+        return asset.assetUser.fullName;
+      }
+      return ""
     },
     removeAsset(asset) {
       axios.delete(`/api/assets/${asset.id}`).then(resp => {
