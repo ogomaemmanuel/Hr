@@ -46,8 +46,8 @@ public class RolesService {
                     @Override
                     public Predicate toPredicate(Root<Role> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
                         if(Long.class!=criteriaQuery.getResultType()){
-                             root.fetch(Role_.createdBy, JoinType.LEFT)
-                                     .fetch(User_.employee,JoinType.LEFT);
+                             root.fetch(Role_.createdBy, JoinType.LEFT);
+                                     //.fetch(User_.employee,JoinType.LEFT);
                              criteriaBuilder.equal(root.get(Role_.DELETED),true);
                         }
                         return criteriaBuilder.conjunction();

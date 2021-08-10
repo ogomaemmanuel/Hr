@@ -55,7 +55,6 @@ public class EmployeesService {
         employee.setEmployeeContactAddresses(employeeContactAddresses);
         String userPassword = RandomStringGenerator.randomStringGenerator(8, true);
         user.setPassword(userPassword);
-        user.addStaff(employee);
         employee.setUser(user);
         this.employeeRepository.save(employee);
         sendRegistrationEmail(employeeCreateModel, userPassword);

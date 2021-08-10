@@ -186,20 +186,14 @@
           </div>
         </div>
         <div class="column">
-          <div class="field">
-            <label class="label">Asset User<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  @input="clearFieldError('assetUserId')"
-                  class="input"
-                  type="text"
-                  v-model="asset.assetUserId">
-              </input>
-              <span class="mb-2 has-text-danger" v-if="errors['assetUserId']">
+          <EmployeeSelectInput
+              label="Asset User"
+              @input="clearFieldError('assetUserId')"
+              v-model="asset.assetUserId">
+     <span  slot="errors" class="mb-2 has-text-danger" v-if="errors['assetUserId']">
 						{{ errors['assetUserId'][0] }}
 					</span>
-            </div>
-          </div>
+          </EmployeeSelectInput>
         </div>
       </div>
       <div class="columns">
@@ -223,12 +217,15 @@
         <div class="column is-6">
           <div class="field">
             <label class="label">Status<span><sup>*</sup></span></label>
-            <div class="control">
-              <input
-                  v-model="asset.status"
-                  @input="clearFieldError('status')"
-                  class="input"
-                  type="text">
+            <div class="select is-primary is-fullwidth">
+            <select
+                @input="clearFieldError('status')"
+                v-model="asset.status">
+              <option value="Damaged">Damaged</option>
+              <option value="Approved">Approved</option>
+              <option value="Deployed">Deployed</option>
+              <option value="Pending">Pending</option>
+            </select>
               <span class="mb-2 has-text-danger" v-if="errors['status']">
 						{{ errors['status'][0] }}
 					</span>
@@ -254,10 +251,11 @@
 <script>
 import common_mixin from "../../mixins/common_mixin";
 import {DatePicker, Message} from "element-ui"
-
+import EmployeeSelectInput from "../common/EmployeeSelectInput";
 export default {
   components: {
-    DatePicker
+    DatePicker,
+    EmployeeSelectInput
   },
   mixins: [common_mixin],
   data() {

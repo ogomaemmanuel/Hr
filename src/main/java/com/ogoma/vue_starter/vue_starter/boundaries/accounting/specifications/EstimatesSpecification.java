@@ -40,7 +40,7 @@ public class EstimatesSpecification {
                 }
                 if (Long.class != criteriaQuery.getResultType()) {
                     root.fetch(Estimate_.client, JoinType.LEFT)
-                            .fetch(Client_.USER, JoinType.LEFT).fetch(User_.EMPLOYEE, JoinType.LEFT);
+                            .fetch(Client_.USER, JoinType.LEFT);
 
                     if (estimatePagedDataRequest.getClientId() != null) {
                         predicates.add(criteriaBuilder.equal(root.get

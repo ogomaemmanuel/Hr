@@ -1,7 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.payroll;
 
 import com.ogoma.vue_starter.vue_starter.authentication.CustomUserDetails;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.EmployeePayrollAddition;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.entities.EmployeePayrollDeduction;
 import com.ogoma.vue_starter.vue_starter.boundaries.payroll.models.EmployeeSalaryViewModel;
@@ -20,19 +22,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class EmployeeSalaryController {
     private final EmployeeSalaryService employeeSalaryService;
+    private final EmployeeRepository employeeRepository;
 
-    public EmployeeSalaryController(EmployeeSalaryService employeeSalaryService) {
+    public EmployeeSalaryController(EmployeeSalaryService employeeSalaryService, EmployeeRepository employeeRepository) {
         this.employeeSalaryService = employeeSalaryService;
+        this.employeeRepository = employeeRepository;
     }
 
     @RequestMapping(value = "/api/payslip/me", method = RequestMethod.GET)
     public ModelAndView getPayslip() {
-        Employee employee = SecurityUtils.getCurrentUserDetails().getEmployee();
+        CustomUserDetails user = SecurityUtils.getCurrentUserDetails();
+       Employee employee=
+               this.employeeRepository.getOne(user.getId());
         PayslipViewModel payslipViewModel = employeeSalaryService.getPayslipViewModelByEmployeeId(employee.getId());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("payroll/payslip");

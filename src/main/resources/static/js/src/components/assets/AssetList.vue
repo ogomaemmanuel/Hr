@@ -63,14 +63,14 @@
                 </thead>
                 <tbody>
                 <tr v-for="asset in assets">
-                  <td data-label="Name">{{ asset.name }}</td>
+                  <td data-label="Name">{{ getAssetUserName(asset) }}</td>
                   <td data-label="Date">{{ asset.date }}</td>
                   <td data-label="Description">{{ asset.name }}</td>
+                  <td data-label="Description">{{ asset.purchaseDate }}</td>
+                  <td data-label="Description">{{ asset.warrantyInMonths }}</td>
                   <td data-label="Description">{{ asset.name }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
+                  <td data-label="Description">{{ asset.value }}</td>
+                  <td data-label="Description">{{ asset.status }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <router-link
@@ -128,7 +128,8 @@ export default {
   mixins: [data_table_mixin],
   data() {
     return {
-      assets: []
+      assets: [],
+      loading: false
     }
   },
   created() {
@@ -142,6 +143,12 @@ export default {
         message: `Are you sure want to remove <b> ${asset.name}</b> from assets`,
         onConfirm: () => this.removeAsset(asset)
       })
+    },
+    getAssetUserName(asset) {
+      if (asset.assetUser) {
+        return asset.assetUser.fullName;
+      }
+      return ""
     },
     removeAsset(asset) {
       axios.delete(`/api/assets/${asset.id}`).then(resp => {
