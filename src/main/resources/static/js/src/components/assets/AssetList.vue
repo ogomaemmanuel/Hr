@@ -129,7 +129,8 @@ export default {
   data() {
     return {
       assets: [],
-      loading: false
+      loading: false,
+      pageable: false,
     }
   },
   created() {
@@ -181,6 +182,19 @@ export default {
       })
     },
     onAssetCreateSuccessful() {
+      this.getAssets();
+    },
+    goToPrevious() {
+      this.page--;
+      this.getAssets();
+    },
+    goToNext() {
+      this.page++;
+      this.getAssets();
+    },
+    onPaginationChanged(pageSize) {
+      this.page = 0;
+      this.pageSize = pageSize;
       this.getAssets();
     },
     onAssetUpdateSuccessful() {
