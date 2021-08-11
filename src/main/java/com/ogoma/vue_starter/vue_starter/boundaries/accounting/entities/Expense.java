@@ -39,7 +39,6 @@ public class Expense {
     private ExpenseStatus[] expenseStatuses;
     @ManyToOne
     @JsonIgnoreProperties(value = {
-            User_.EMPLOYEE,
             User_.USER_ROLES
     })
     private User purchasedBy;
