@@ -111,8 +111,8 @@
       </div>
     </div>
     <router-view
-        @holidayCreateSuccessful="onAssetCreateSuccessful"
-        @holidayUpdateSuccessful="onAssetUpdateSuccessful">
+        @updateSuccessful="onAssetUpdateSuccessful"
+        @createSuccessful="onAssetCreateSuccessful">
     </router-view>
   </div>
 </template>
@@ -169,7 +169,7 @@ export default {
       this.getAssets();
     },
     getAssets() {
-      axios.get(`api/assets/`, {
+      axios.get(`/api/assets/`, {
         params: {
           page: this.page,
           pageSize: this.pageSize

@@ -1,6 +1,6 @@
 <template>
   <ModalTemplate @modalClosed="goBack()">
-    <AssetEditForm :id="id" slot="modal-content">
+    <AssetEditForm @updateSuccessful="onUpdateSuccessful" :id="id" slot="modal-content">
     </AssetEditForm>
   </ModalTemplate>
 </template>
@@ -24,6 +24,10 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    onUpdateSuccessful() {
+      this.$emit('updateSuccessful');
+      this.goBack();
     }
   }
 
