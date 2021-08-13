@@ -144,6 +144,10 @@ const AssetList = () => import("../components/assets/AssetList")
 const AssetCreate = () => import("../components/assets/AssetCreateModal")
 const AssetEdit = () => import("../components/assets/AssetEditModal")
 
+const JobsPage = () => import("../components/jobs/manage_jobs/JobsPage")
+const JobList = () => import("../components/jobs/manage_jobs/JobList")
+const JobCreate =()=> import("../components/jobs/manage_jobs/JobCreateFormModal")
+
 
 Vue.use(Router);
 const routes = new Router({
@@ -943,6 +947,34 @@ const routes = new Router({
                                             name: "asset-edit",
                                             component: AssetEdit
                                         }
+                                    ]
+                                },
+
+                            ]
+                        },
+                        {
+                            path: "/jobs",
+                            name: "jobs",
+                            component: JobsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Jobs",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: JobList,
+                                    children: [
+                                        {
+                                            path: "/job-create",
+                                            name: "job-create",
+                                            component: JobCreate
+                                        },
+                                        // {
+                                        //     path: "/asset-edit/:id",
+                                        //     name: "asset-edit",
+                                        //     component: AssetEdit
+                                        // }
                                     ]
                                 },
 
