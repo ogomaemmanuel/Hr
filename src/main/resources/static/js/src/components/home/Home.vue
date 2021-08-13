@@ -218,7 +218,7 @@
                 </a>
                 <ul class="border-l-0">
                   <li>
-                    <router-link to="/estimates">
+                    <router-link to="/jobs">
                       <span>Manage Jobs</span>
                     </router-link>
                   </li>
