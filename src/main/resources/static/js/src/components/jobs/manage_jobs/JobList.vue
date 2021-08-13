@@ -105,7 +105,7 @@
       </div>
     </div>
     <router-view
-        @holidayCreateSuccessful="onJobCreateSuccessful"
+        @createSuccessful="onJobCreateSuccessful"
         @holidayUpdateSuccessful="onJobUpdateSuccessful">
     </router-view>
   </div>
@@ -152,8 +152,10 @@ export default {
     confirmRemoveJob() {
     },
     onJobCreateSuccessful() {
+      this.getJobs();
     },
     onJobUpdateSuccessful() {
+      this.getJobs();
     }
   }
 

@@ -1,6 +1,6 @@
 <template>
-  <ModalTemplate @modalClosed="goBack()">
-    <JobCreateForm slot="modal-content"></JobCreateForm>
+  <ModalTemplate width="900" @modalClosed="goBack()">
+    <JobCreateForm @createSuccessful="onCreateSuccessful" slot="modal-content"></JobCreateForm>
   </ModalTemplate>
 </template>
 <script>
@@ -14,6 +14,10 @@ export default {
   methods:{
     goBack(){
       this.$router.go(-1);
+    },
+    onCreateSuccessful(){
+      this.$emit("createSuccessful");
+      this.goBack();
     }
   }
 }
