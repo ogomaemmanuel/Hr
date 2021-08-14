@@ -58,12 +58,12 @@
                 </thead>
                 <tbody>
                 <tr v-for="job in jobs">
-                  <td data-label="Name">{{ job.name }}</td>
-                  <td data-label="Date">{{ job.date }}</td>
-                  <td data-label="Description">{{ job.name }}</td>
-                  <td data-label="Description">{{ job.name }}</td>
-                  <td data-label="Description">{{ job.name }}</td>
-                  <td data-label="Description">{{ job.name }}</td>
+                  <td data-label="Name">{{ job.title }}</td>
+                  <td data-label="Date">{{ getJobDepartment(job) }}</td>
+                  <td data-label="Description">{{ job.startDate }}</td>
+                  <td data-label="Description">{{ job.endDate }}</td>
+                  <td data-label="Description">{{ job.type }}</td>
+                  <td data-label="Description">{{ job.status }}</td>
                   <td data-label="Description">{{ job.name }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
@@ -148,6 +148,12 @@ export default {
       }, error => {
 
       })
+    },
+    getJobDepartment(job) {
+      if (job.department) {
+        return job.department.name;
+      }
+      return  "";
     },
     confirmRemoveJob() {
     },

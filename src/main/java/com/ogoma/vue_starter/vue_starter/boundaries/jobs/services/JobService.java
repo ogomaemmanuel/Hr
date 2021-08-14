@@ -1,14 +1,17 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.jobs.services;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.asset_management.entities.Asset_;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Department;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.DepartmentsRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.jobs.entities.Job;
+import com.ogoma.vue_starter.vue_starter.boundaries.jobs.entities.Job_;
 import com.ogoma.vue_starter.vue_starter.boundaries.jobs.repositories.JobsRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.jobs.requests.JobRequest;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.JoinType;
 import java.util.Optional;
 
 @Service
@@ -23,7 +26,14 @@ public class JobService {
     }
 
     public Page<Job> getJobs(PagedDataRequest pagedDataRequest) {
-        Page<Job> jobs = this.jobsRepository.findAll(pagedDataRequest.toPageable());
+        Page<Job> jobs = this.jobsRepository.findAll(
+                ((root, query, criteriaBuilder) -> {
+                    if (Long.class != query.getResultType()) {
+                        root.fetch(Job_.department, JoinType.LEFT);
+                    }
+                    return criteriaBuilder.conjunction();
+                }),
+                pagedDataRequest.toPageable());
         return jobs;
     }
 
