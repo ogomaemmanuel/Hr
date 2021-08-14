@@ -16,6 +16,7 @@ public class JobApplicant {
     private String firstName;
     private String lastName;
     private String email;
+    private String phone;
     @ManyToOne
     private Job jobApplied;
     @Temporal(TemporalType.TIMESTAMP)
@@ -54,11 +55,11 @@ public class JobApplicant {
         this.email = email;
     }
 
-    public Job getJobsApplied() {
+    public Job getJobApplied() {
         return jobApplied;
     }
 
-    public void setJobsApplied(Job jobsApplied) {
+    public void setJobApplied(Job jobsApplied) {
         this.jobApplied = jobsApplied;
     }
 
@@ -72,6 +73,14 @@ public class JobApplicant {
 
     public Date getUpdatedAt() {
         return updatedAt;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public void setUpdatedAt(Date updatedAt) {
