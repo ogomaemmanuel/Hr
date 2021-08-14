@@ -34,6 +34,7 @@ public class JobService {
         Job job = new Job();
         job.setAge(jobRequest.getAge());
         job.setDepartment(department);
+        job.setTitle(jobRequest.getTitle());
         job.setDescription(jobRequest.getDescription());
         job.setExperience(jobRequest.getExperience());
         job.setLocation(jobRequest.getLocation());
@@ -56,18 +57,23 @@ public class JobService {
 
         Optional<Job> job =
                 this.jobsRepository.findById(id);
+        Department department =
+                departmentsRepository.getOne(jobRequest.getDepartmentId());
         job.ifPresent(j -> {
             j.setAge(jobRequest.getAge());
 //        j.setDepartment(department);
+            j.setTitle(jobRequest.getTitle());
             j.setDescription(jobRequest.getDescription());
             j.setExperience(jobRequest.getExperience());
             j.setLocation(jobRequest.getLocation());
             j.setEndDate(jobRequest.getEndDate());
+            j.setStartDate(jobRequest.getStartDate());
             j.setMaximumSalary(jobRequest.getMaximumSalary());
             j.setMinimumSalary(jobRequest.getMinimumSalary());
             j.setType(jobRequest.getType());
             j.setVacancies(jobRequest.getVacancies());
             j.setStatus(jobRequest.getStatus());
+            j.setDepartment(department);
             this.jobsRepository.save(j);
         });
         return job;
