@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.jobs.entities;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Department;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -47,6 +48,8 @@ public class Job {
     @Enumerated(EnumType.STRING)
     private Status status;
     private JobType type;
+    @Formula(value = "(select count(*) from job_applicants ja where ja.id=id)")
+    private Long totalApplicants;
 
     public Long getId() {
         return id;
@@ -170,5 +173,9 @@ public class Job {
 
     public void setType(JobType type) {
         this.type = type;
+    }
+
+    public Long getTotalApplicants() {
+        return totalApplicants;
     }
 }

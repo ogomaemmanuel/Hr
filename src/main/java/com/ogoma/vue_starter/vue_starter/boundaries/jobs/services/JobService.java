@@ -55,6 +55,7 @@ public class JobService {
         job.setVacancies(jobRequest.getVacancies());
         job.setStatus(Job.Status.Open);
         this.jobsRepository.save(job);
+        // TODO send job to queue for job portal
         return job;
     }
 
