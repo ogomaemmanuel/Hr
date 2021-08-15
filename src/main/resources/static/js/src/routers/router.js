@@ -147,7 +147,7 @@ const AssetEdit = () => import("../components/assets/AssetEditModal")
 const JobsPage = () => import("../components/jobs/manage_jobs/JobsPage")
 const JobList = () => import("../components/jobs/manage_jobs/JobList")
 const JobCreate =()=> import("../components/jobs/manage_jobs/JobCreateFormModal")
-
+const JobEdit =()=> import("../components/jobs/manage_jobs/JobEditFormModal")
 
 Vue.use(Router);
 const routes = new Router({
@@ -970,11 +970,11 @@ const routes = new Router({
                                             name: "job-create",
                                             component: JobCreate
                                         },
-                                        // {
-                                        //     path: "/asset-edit/:id",
-                                        //     name: "asset-edit",
-                                        //     component: AssetEdit
-                                        // }
+                                        {
+                                            path: "/job-edit/:id",
+                                            name: "job-edit",
+                                            component: JobEdit
+                                        }
                                     ]
                                 },
 
