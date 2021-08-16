@@ -33,6 +33,8 @@ public class ProjectProjection {
         this.rateType = project.getRateType();
         this.rate = project.getRate();
         this.priority = project.getPriority();
+        this.id=project.getId();
+
 
 
     }

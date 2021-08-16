@@ -175,7 +175,7 @@
                                              alt="">
                                     </figure>
                                 </template>
-                                <div v-if="project.projectMembers.length>=5">
+                                <div v-if="project.projectMembers && project.projectMembers.length>=5">
                                     +{{project.projectMembers.length-4}}
                                 </div>
                             </div>
