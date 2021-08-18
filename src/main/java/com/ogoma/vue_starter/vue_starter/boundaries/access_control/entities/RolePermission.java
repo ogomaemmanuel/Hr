@@ -11,11 +11,11 @@ public class RolePermission {
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
-    @JsonIgnoreProperties("rolePermissions")
+    @JsonIgnoreProperties(Role_.ROLE_PERMISSIONS)
     private Role role;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "permission_id")
-    @JsonIgnoreProperties("rolePermissions")
+    @JsonIgnoreProperties(Permission_.ROLE_PERMISSIONS)
     private Permission permission;
 
     public Long getId() {
