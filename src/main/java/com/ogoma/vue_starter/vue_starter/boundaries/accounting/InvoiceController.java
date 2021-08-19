@@ -27,6 +27,7 @@ public class InvoiceController {
         return ResponseEntity.ok(invoicePage);
     }
 
+    @RequestMapping(value = "api/invoices", method = RequestMethod.POST)
     public ResponseEntity<?> createInvoice(@RequestBody InvoiceRequest invoiceRequest) {
         Invoice invoice = this.invoiceService.createInvoice(invoiceRequest);
         return ResponseEntity.ok(invoice);
