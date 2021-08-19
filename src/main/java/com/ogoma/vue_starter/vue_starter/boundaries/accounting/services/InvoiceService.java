@@ -3,6 +3,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.accounting.services;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Invoice;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.models.InvoicePagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.accounting.repositories.InvoiceRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.accounting.requests.InvoiceRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,18 @@ public class InvoiceService {
         Optional<Invoice> invoice = this.invoiceRepository.findById(id);
         return invoice;
     }
-    public void removeInvoice(Long id){
+
+    public void removeInvoice(Long id) {
         this.invoiceRepository.deleteById(id);
+    }
+
+    public Invoice createInvoice(InvoiceRequest invoiceRequest) {
+        Invoice invoice = new Invoice();
+        invoice.setInvoiceDate(invoiceRequest.getInvoiceDate());
+        invoice.setDueDate(invoiceRequest.getExpiryDate());
+        invoice.setOtherInformation(invoiceRequest.getOtherInformation());
+        invoice.setItems(invoiceRequest.getItems());
+        this.invoiceRepository.save(invoice);
+        return invoice;
     }
 }

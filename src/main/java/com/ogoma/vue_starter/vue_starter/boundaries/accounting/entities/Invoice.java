@@ -7,9 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "invoices")
@@ -29,7 +27,7 @@ public class Invoice {
     private BigDecimal grandTotal;
     @OneToMany(cascade = CascadeType.PERSIST,
             mappedBy = InvoiceItem_.INVOICE)
-    private Set<InvoiceItem> items = new HashSet<>();
+    private List<InvoiceItem> items = new ArrayList<InvoiceItem>();
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
@@ -105,11 +103,11 @@ public class Invoice {
         this.grandTotal = grandTotal;
     }
 
-    public Set<InvoiceItem> getItems() {
+    public List<InvoiceItem> getItems() {
         return items;
     }
 
-    public void setItems(Set<InvoiceItem> items) {
+    public void setItems(List<InvoiceItem> items) {
         this.items = items;
     }
 
