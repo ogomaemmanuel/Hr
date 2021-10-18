@@ -181,7 +181,7 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/documents">
+                    <router-link to="/invoices">
                       <span>Invoices</span>
                     </router-link>
                   </li>

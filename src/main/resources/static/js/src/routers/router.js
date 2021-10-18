@@ -127,6 +127,9 @@ const ExpenseList = () => import("../components/accounting/expenses/ExpenseList"
 const ExpenseCreate = () => import("../components/accounting/expenses/ExpenseCreateModal")
 const ExpenseEdit = () => import("../components/accounting/expenses/ExpenseEditModal")
 
+const InvoicePage =()=> import("../components/accounting/invoices/InvoicesPage")
+const InvoiceList =()=> import("../components/accounting/invoices/InvoiceList")
+
 const ProvidentFundsPage = () => import("../components/accounting/provident_fund/ProvidentFundPage")
 const ProvidentFundList = () => import("../components/accounting/provident_fund/ProvidentFundList")
 const ProvidentFundCreate = () => import("../components/accounting/provident_fund/ProvidentFundCreateModal")
@@ -826,6 +829,39 @@ const routes = new Router({
                                 {
                                     path: "/",
                                     component: EstimateList,
+                                },
+                                {
+                                    path: "/estimate-create",
+                                    name: "estimate-create",
+                                    component: EstimateCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Estimate Create",
+                                    }
+                                },
+                                {
+                                    path: "/estimate-edit/:id",
+                                    name: "estimate-edit",
+                                    component: EstimateEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Estimate Edit",
+                                    }
+                                }
+
+                            ]
+                        },
+                        {
+                            path: "/invoices",
+                            component: InvoicePage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Invoices",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: InvoiceList,
                                 },
                                 {
                                     path: "/estimate-create",
