@@ -66,13 +66,13 @@
             <thead>
             <tr>
               <th>
-                Estimate Number
+                Invoice Number
               </th>
               <th>
                 Client
               </th>
               <th>
-                Estimate Date
+                Invoice Date
               </th>
               <th>
                 Expiry Date
@@ -85,33 +85,33 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="estimate in estimates">
+            <tr v-for="invoice in invoices">
               <td>
-                {{ estimate.id }}
+                {{ invoice.id }}
               </td>
               <td>
-                {{ estimate.id }}
+                {{ invoice.id }}
               </td>
               <td>
-                {{ estimate.estimateDate |formatDate }}
+                {{ invoice.estimateDate |formatDate }}
               </td>
               <td>
-                {{ estimate.expiryDate|formatDate }}
+                {{ invoice.expiryDate|formatDate }}
               </td>
               <td>
-                {{ estimate.amount }}
+                {{ invoice.amount }}
               </td>
               <td data-label="Action">
                 <div class="action-controls d-flex justify-end">
                   <router-link
-                      :to="`/estimate-edit/${estimate.id}`" tag="button"
+                      :to="`/estimate-edit/${invoice.id}`" tag="button"
                       @click="" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
                   </router-link>
                   <button
-                      @click="confirmRemoveEstimate(estimate)"
+                      @click="confirmRemoveInvoice(invoice)"
                       class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -154,11 +154,11 @@ export default {
   data() {
     return {
       filterParams: {},
-      estimates: []
+      invoices: []
     }
   },
   created() {
-    this.getEstimates();
+    this.getInvoices();
   },
 
   filters: {
@@ -170,18 +170,18 @@ export default {
   },
   methods: {
     fetchRecords() {
-      this.getEstimates()
+      this.getInvoices()
     },
-    confirmRemoveEstimate(estimate){},
-    getEstimates() {
-      axios.get("/api/estimates", {
+    confirmRemoveInvoice(invoice){},
+    getInvoices() {
+      axios.get("/api/invoices", {
         params: {
           page: this.page,
           pageSize: this.pageSize,
         }
       }).then(resp => {
         this.loading = false;
-        this.estimates = resp.data.content;
+        this.invoices = resp.data.content;
         this.pageable = resp.data;
       })
     }
