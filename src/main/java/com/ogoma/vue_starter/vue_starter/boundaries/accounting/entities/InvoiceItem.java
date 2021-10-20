@@ -1,5 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -19,6 +21,7 @@ public class InvoiceItem {
     private BigDecimal unitCost;
     @NotNull(message = "Quantity is required")
     @Min(value = 0)
+    @JsonProperty(value = "qty")
     private Integer quantity;
     @ManyToOne
     private Invoice invoice;
