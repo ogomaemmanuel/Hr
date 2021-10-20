@@ -1,17 +1,27 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "ivoice_items")
+@Table(name = "invoice_items")
 public class InvoiceItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Item name is required")
     private String name;
     private String description;
+    @NotNull(message = "Item unit cost is required")
     private BigDecimal unitCost;
+    @NotNull(message = "Quantity is required")
+    @Min(value = 0)
+    @JsonProperty(value = "qty")
     private Integer quantity;
     @ManyToOne
     private Invoice invoice;

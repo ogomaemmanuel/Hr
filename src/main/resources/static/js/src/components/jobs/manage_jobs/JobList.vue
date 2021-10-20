@@ -64,7 +64,11 @@
                   <td data-label="Description">{{ job.endDate }}</td>
                   <td data-label="Description">{{ job.type }}</td>
                   <td data-label="Description">{{ job.status }}</td>
-                  <td data-label="Description">{{ job.name }}</td>
+                  <td data-label="Description">
+                    <span class="tag is-primary">
+                       {{ job.totalApplicants }} Candidates
+                    </span>
+                  </td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <router-link
