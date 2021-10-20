@@ -2,7 +2,7 @@
   <div>
     <div class="pb-2 flex justify-end">
       <router-link
-          to="/estimate-create"
+          to="/invoice-create"
           tag="button"
           class="button mr-1 is-rounded">
 				<span class="icon">

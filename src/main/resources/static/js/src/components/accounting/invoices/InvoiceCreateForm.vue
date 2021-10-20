@@ -14,7 +14,7 @@
         </div>
         <div class="column">
           <ProjectSelectInput
-              v-model="estimate.projectId"
+              v-model="invoice.projectId"
               @input="clearFieldError('projectId')">
              <span slot="errors" class="mb-2 has-text-danger" v-if="errors['projectId']">
 						        {{ errors['projectId'][0] }}
@@ -36,7 +36,7 @@
           <div class="field">
             <label class="label">Tax</label>
             <div class="select is-fullwidth">
-              <select v-model="estimate.taxId">
+              <select v-model="invoice.taxId">
                 <option value="" selected>Select Tax</option>
                 <option :value="tax.id"
                         v-for="tax in taxes">{{ tax.name }}
@@ -65,14 +65,14 @@
         </div>
         <div class="column">
           <div class="field">
-            <label class="label">Estimate Date</label>
+            <label class="label">Invoice Date</label>
             <div class="control">
               <DatePicker
-                  @input="clearFieldError('estimateDate')"
-                  v-model="estimate.estimateDate">
+                  @input="clearFieldError('invoiceDate')"
+                  v-model="invoice.invoiceDate">
               </DatePicker>
-              <span class="mb-2 has-text-danger" v-if="errors['estimateDate']">
-						        {{ errors['estimateDate'][0] }}
+              <span class="mb-2 has-text-danger" v-if="errors['invoiceDate']">
+						        {{ errors['invoiceDate'][0] }}
 					    </span>
             </div>
           </div>
@@ -83,7 +83,7 @@
             <div class="control">
               <DatePicker
                   @input="clearFieldError('expiryDate')"
-                  v-model="estimate.expiryDate">
+                  v-model="invoice.expiryDate">
               </DatePicker>
               <span class="mb-2 has-text-danger" v-if="errors['expiryDate']">
 						        {{ errors['expiryDate'][0] }}
@@ -109,15 +109,15 @@
           </thead>
           <tbody>
           <tr is="EstimateItemCreate"
-              @removedItem="removeEstimateItem"
+              @removedItem="removeInvoiceItem"
               :errorMessages="errors"
-              v-for="(estimateItem ,index) in estimateItems"
-              :estimateItem="estimateItem" :index="index">
+              v-for="(invoiceItem ,index) in invoiceItems"
+              :invoiceItem="invoiceItem" :index="index">
           </tr>
           </tbody>
         </table>
         <div class="flex justify-end">
-          <button @click="addEstimateItemRow" class="button">
+          <button @click="addInvoiceItemRow" class="button">
 				<span class="icon">
           <i class="fa fa-plus-circle mr-1"></i>
 				</span>
@@ -153,7 +153,7 @@
           </td>
           <td w class="has-text-right w-48">
             <input
-                v-model="estimate.percentageDiscount"
+                v-model="invoice.percentageDiscount"
                 class="input"
                 type="text">
           </td>
@@ -174,7 +174,7 @@
         <div class="control">
           <label class="label">Other Information</label>
           <textarea
-              v-model="estimate.otherInformation"
+              v-model="invoice.otherInformation"
               class="textarea"
               placeholder="Textarea">
           </textarea>
@@ -183,7 +183,7 @@
     </div>
     <div class="mt-3 pb-5 flex justify-center">
       <div class="mr-2">
-        <button @click="createEstimate" class="button is-primary is-rounded">Save and Send</button>
+        <button @click="createInvoice" class="button is-primary is-rounded">Save and Send</button>
       </div>
       <div class="ml-2">
         <button class="button is-primary is-rounded">Save</button>
@@ -195,7 +195,7 @@
 import {Message, DatePicker, InputNumber} from "element-ui"
 import common_mixin from "../../../mixins/common_mixin";
 import ClientSelectInput from "../../common/ClientSelectInput";
-import EstimateItemCreate from "./EstimateItemCreate";
+import EstimateItemCreate from "./InvoiceItemCreate";
 import ProjectSelectInput from "../../common/ProjectSelectInput";
 
 export default {
@@ -211,41 +211,41 @@ export default {
     return {
       taxes: [],
       selectClient: {},
-      estimate: {
+      invoice: {
         taxId: "",
-        estimateItems: [
+        invoiceItems: [
           {}
         ]
       }
     }
   },
   computed: {
-    estimateItems() {
-      return this.estimate.estimateItems;
+    invoiceItems() {
+      return this.invoice.invoiceItems;
     }
   },
   created() {
     this.getTaxes();
   },
   methods: {
-    addEstimateItemRow() {
-      this.estimate.estimateItems.push({})
+    addInvoiceItemRow() {
+      this.invoice.invoiceItems.push({})
     },
-    createEstimate() {
-      this.estimate.clientId = this.selectClient.id;
-      axios.post("/api/estimates",
-          this.estimate).then(resp => {
-        Message.success("Estimate successfully created")
+    createInvoice() {
+      this.invoice.clientId = this.selectClient.id;
+      axios.post("/api/invoices",
+          this.invoice).then(resp => {
+        Message.success("invoice successfully created")
       }, error => {
-        Message.error("There was problem estimate");
+        Message.error("There was problem invoice");
         if (error.response.status == 400) {
           this.errors = error.response.data;
         }
       })
     },
-    removeEstimateItem(index) {
-      if (this.estimateItems.length > 1) {
-        this.estimateItems.splice(index, 1);
+    removeInvoiceItem(index) {
+      if (this.invoiceItems.length > 1) {
+        this.invoiceItems.splice(index, 1);
       }
     },
     getTaxes() {
