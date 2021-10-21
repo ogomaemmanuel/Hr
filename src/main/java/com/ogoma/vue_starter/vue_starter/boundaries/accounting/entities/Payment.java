@@ -25,6 +25,8 @@ public class Payment {
     private Client client;
     @Enumerated(EnumType.STRING)
     private PaymentTypes paymentTypes;
+    @ManyToOne
+    private  Invoice invoice;
 
     public Long getId() {
         return id;
@@ -60,5 +62,13 @@ public class Payment {
 
     public void setPaymentTypes(PaymentTypes paymentTypes) {
         this.paymentTypes = paymentTypes;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 }
