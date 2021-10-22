@@ -40,6 +40,8 @@ public class Payment {
     @ManyToOne(fetch = FetchType.LAZY)
     private User createdBy;
 
+    private String notes;
+
     public Long getId() {
         return id;
     }
@@ -98,5 +100,21 @@ public class Payment {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }
