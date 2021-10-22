@@ -1,6 +1,9 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,6 +23,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal amount;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date paymentDate;
     @ManyToOne
     private Client client;
@@ -27,6 +31,14 @@ public class Payment {
     private PaymentTypes paymentTypes;
     @ManyToOne
     private  Invoice invoice;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    private Date updatedAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User createdBy;
 
     public Long getId() {
         return id;
@@ -70,5 +82,21 @@ public class Payment {
 
     public void setInvoice(Invoice invoice) {
         this.invoice = invoice;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
