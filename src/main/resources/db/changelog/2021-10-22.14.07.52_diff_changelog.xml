@@ -1,34 +1,25 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
-    <changeSet author="user (generated)" id="1634910574196-1">
-        <addColumn tableName="payments">
-            <column name="created_at" type="datetime(6)"/>
-        </addColumn>
-    </changeSet>
-    <changeSet author="user (generated)" id="1634910574196-2">
-        <addColumn tableName="payments">
-            <column name="created_by_id" type="bigint"/>
-        </addColumn>
-    </changeSet>
-    <changeSet author="user (generated)" id="1634910574196-3">
-        <addColumn tableName="payments">
-            <column name="invoice_id" type="bigint"/>
-        </addColumn>
-    </changeSet>
-    <changeSet author="user (generated)" id="1634910574196-4">
+    <changeSet author="user (generated)" id="1634911684498-1">
         <addColumn tableName="payments">
             <column name="notes" type="varchar(255)"/>
         </addColumn>
     </changeSet>
-    <changeSet author="user (generated)" id="1634910574196-5">
+    <changeSet author="user (generated)" id="1634911684498-2">
         <addColumn tableName="payments">
             <column name="updated_at" type="datetime(6)"/>
         </addColumn>
     </changeSet>
-    <changeSet author="user (generated)" id="1634910574196-6">
+    <changeSet author="user (generated)" id="1634911684498-3">
         <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="payments" constraintName="FKii90dsy0qih3bskpwafi5a41j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
     </changeSet>
-    <changeSet author="user (generated)" id="1634910574196-7">
-        <addForeignKeyConstraint baseColumnNames="invoice_id" baseTableName="payments" constraintName="FKrbqec6be74wab8iifh8g3i50i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="invoices" validate="true"/>
+    <changeSet author="user (generated)" id="1634911684498-4">
+        <dropForeignKeyConstraint baseTableName="spring_session_attributes" constraintName="SPRING_SESSION_ATTRIBUTES_FK"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1634911684498-5">
+        <dropTable tableName="spring_session"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1634911684498-6">
+        <dropTable tableName="spring_session_attributes"/>
     </changeSet>
 </databaseChangeLog>
