@@ -134,6 +134,8 @@ const InvoiceEdit =()=> import("../components/accounting/invoices/InvoiceEditFor
 
 
 const PaymentsPage =()=> import("../components/accounting/payments/PaymentsPage")
+const PaymentsList =()=> import("../components/accounting/payments/PaymentList")
+
 
 
 
@@ -896,6 +898,39 @@ const routes = new Router({
                                 {
                                     path: "/expense-create",
                                     name: "expense-create",
+                                    component: ExpenseCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Expense Create",
+                                    }
+                                },
+                                {
+                                    path: "/expense-edit/:id",
+                                    name: "expense-edit",
+                                    component: ExpenseEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Expense  Edit",
+                                    }
+                                }
+
+                            ]
+                        },
+                        {
+                            path: "/payments",
+                            component: PaymentsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Payments",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: PaymentsList,
+                                },
+                                {
+                                    path: "/payment-create",
+                                    name: "payment-create",
                                     component: ExpenseCreate,
                                     meta: {
                                         breadcrumb: true,

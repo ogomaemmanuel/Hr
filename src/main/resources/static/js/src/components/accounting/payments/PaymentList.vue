@@ -2,7 +2,7 @@
   <div>
     <div class="pb-2 flex justify-end">
       <router-link
-          to="/invoice-create"
+          to="/payments-create"
           tag="button"
           class="button mr-1 is-rounded">
 				<span class="icon">
@@ -24,41 +24,7 @@
       </a>
     </div>
     <div>
-      <div class="columns mt-4">
-        <div class="column">
-          <div class="field">
-            <div class="control">
-              <!--              <label class="label">From</label>-->
-              <DatePicker
-                  v-model="filterParams.startDate"
-                  placeholder="From"
-              ></DatePicker>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="field">
-            <div class="control">
-              <DatePicker
-                  v-model="filterParams.endDate"
-                  placeholder="To">
-              </DatePicker>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="field">
-            <div class="control">
-              <input class="input"></input>
-            </div>
-          </div>
-        </div>
-        <div class="column">
-          <div class="button is-fullwidth is-primary">
-            Search
-          </div>
-        </div>
-      </div>
+
 
       <div class="card">
         <div class="card-content">
@@ -70,9 +36,6 @@
               </th>
               <th>
                 Client
-              </th>
-              <th>
-                Invoice Date
               </th>
               <th>
                 Payment Type
@@ -88,39 +51,21 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="invoice in invoices">
+            <tr v-for="payment in payments">
               <td>
-                {{ invoice.id }}
+                {{ payment.id }}
               </td>
               <td>
-                {{ invoice.id }}
+                {{ payment.id }}
               </td>
               <td>
-                {{ invoice.estimateDate |formatDate }}
+                {{ payment.paymentDate  }}
               </td>
               <td>
-                {{ invoice.expiryDate|formatDate }}
+                {{ payment.expiryDate|formatDate }}
               </td>
               <td>
-                {{ invoice.amount }}
-              </td>
-              <td data-label="Action">
-                <div class="action-controls d-flex justify-end">
-                  <router-link
-                      :to="`/estimate-edit/${invoice.id}`" tag="button"
-                      @click="" class="button is-white is-small">
-												<span class="icon">
-					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
-					                       </span>
-                  </router-link>
-<!--                  <button-->
-<!--                      @click="confirmRemoveInvoice(invoice)"-->
-<!--                      class="button is-white is-small">-->
-<!--										           <span class="icon">-->
-<!--						                            <i class="fa fa-trash-o has-text-danger"></i>-->
-<!--					                               </span>-->
-<!--                  </button>-->
-                </div>
+                {{ payment.amount }}
               </td>
             </tr>
             </tbody>
@@ -146,12 +91,41 @@
 <script>
 import Paginator from "../../common/paginator/Paginator";
 import data_table_mixin from "../../../mixins/data_table_mixin";
+
 export default {
-  mixins:[data_table_mixin],
+  mixins: [data_table_mixin],
   components: {
     Paginator
-  }
+  },
+  data() {
+    return {
+      payments: [],
+      loading: false,
+    }
+  },
+  created() {
+    this.getPayments();
+  },
+  methods: {
+    fetchRecords() {
+      this.getInvoices()
+    },
+    getPayments() {
+      this.loading = true;
+      axios.get("api/payments", {
+        params: {
+          page: this.page,
+          pageSize: this.pageSize
 
-  methods
+        }
+      }).then(resp => {
+        this.payments = resp.data.contents;
+        this.pageable = resp.data;
+        this.loading = false
+      }, error => {
+        this.loading = false;
+      })
+    }
+  }
 }
 </script>

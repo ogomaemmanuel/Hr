@@ -186,7 +186,7 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/leave-approvals">
+                    <router-link to="/payments">
                       <span>Payments</span>
                     </router-link>
                   </li>
