@@ -41,7 +41,7 @@
                 <select v-model="invoice.taxId">
                   <option value="" selected>Select Tax</option>
                   <option :value="tax.id"
-                          v-for="tax in taxes">{{ tax.name }}
+                          v-for="tax in taxes" :key="tax.id">{{ tax.name }}
                   </option>
                   <option>No tax</option>
                 </select>
@@ -114,7 +114,7 @@
                 @removedItem="removeInvoiceItem"
                 :errorMessages="errors"
                 v-for="(invoiceItem ,index) in invoiceItems"
-                :invoiceItem="invoiceItem" :index="index">
+                :invoiceItem="invoiceItem" :index="index" :key="index">
             </tr>
             </tbody>
           </table>

@@ -9,7 +9,7 @@
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
         <span>
-					 Create Invoice
+					 New Payment
 				</span>
       </router-link>
       <a
@@ -66,7 +66,7 @@
             <thead>
             <tr>
               <th>
-                Invoice Number
+                Invoice ID
               </th>
               <th>
                 Client
@@ -75,10 +75,13 @@
                 Invoice Date
               </th>
               <th>
-                Expiry Date
+                Payment Type
               </th>
               <th>
-                Amount
+                Payment Date
+              </th>
+              <th>
+                Paid Amount
               </th>
               <th>
               </th>
@@ -104,19 +107,19 @@
               <td data-label="Action">
                 <div class="action-controls d-flex justify-end">
                   <router-link
-                      :to="`/invoice-edit/${invoice.id}`" tag="button"
+                      :to="`/estimate-edit/${invoice.id}`" tag="button"
                       @click="" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
                   </router-link>
-                  <button
-                      @click="confirmRemoveInvoice(invoice)"
-                      class="button is-white is-small">
-										           <span class="icon">
-						                            <i class="fa fa-trash-o has-text-danger"></i>
-					                               </span>
-                  </button>
+<!--                  <button-->
+<!--                      @click="confirmRemoveInvoice(invoice)"-->
+<!--                      class="button is-white is-small">-->
+<!--										           <span class="icon">-->
+<!--						                            <i class="fa fa-trash-o has-text-danger"></i>-->
+<!--					                               </span>-->
+<!--                  </button>-->
                 </div>
               </td>
             </tr>
@@ -141,50 +144,14 @@
   </div>
 </template>
 <script>
-import {DatePicker} from "element-ui"
-import data_table_mixin from "../../../mixins/data_table_mixin";
 import Paginator from "../../common/paginator/Paginator";
-
+import data_table_mixin from "../../../mixins/data_table_mixin";
 export default {
-  mixins: [data_table_mixin],
+  mixins:[data_table_mixin],
   components: {
-    DatePicker,
     Paginator
-  },
-  data() {
-    return {
-      filterParams: {},
-      invoices: []
-    }
-  },
-  created() {
-    this.getInvoices();
-  },
-
-  filters: {
-    formatDate(val) {
-      if(val) {
-        return moment(val).format("DD-MMMM-YYYY")
-      }
-    }
-  },
-  methods: {
-    fetchRecords() {
-      this.getInvoices()
-    },
-    confirmRemoveInvoice(invoice){},
-    getInvoices() {
-      axios.get("/api/invoices", {
-        params: {
-          page: this.page,
-          pageSize: this.pageSize,
-        }
-      }).then(resp => {
-        this.loading = false;
-        this.invoices = resp.data.content;
-        this.pageable = resp.data;
-      })
-    }
   }
+
+  methods
 }
 </script>

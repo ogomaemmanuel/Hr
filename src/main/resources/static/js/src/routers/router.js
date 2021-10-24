@@ -130,6 +130,13 @@ const ExpenseEdit = () => import("../components/accounting/expenses/ExpenseEditM
 const InvoicePage =()=> import("../components/accounting/invoices/InvoicesPage")
 const InvoiceList =()=> import("../components/accounting/invoices/InvoiceList")
 const InvoiceCreate =()=> import("../components/accounting/invoices/InvoiceCreateForm")
+const InvoiceEdit =()=> import("../components/accounting/invoices/InvoiceEditForm")
+
+
+const PaymentsPage =()=> import("../components/accounting/payments/PaymentsPage")
+
+
+
 
 const ProvidentFundsPage = () => import("../components/accounting/provident_fund/ProvidentFundPage")
 const ProvidentFundList = () => import("../components/accounting/provident_fund/ProvidentFundList")
@@ -874,12 +881,12 @@ const routes = new Router({
                                     }
                                 },
                                 {
-                                    path: "/estimate-edit/:id",
-                                    name: "estimate-edit",
-                                    component: EstimateEdit,
+                                    path: "/invoice-edit/:id",
+                                    name: "invoice-edit",
+                                    component: InvoiceEdit,
                                     meta: {
                                         breadcrumb: true,
-                                        title: "Estimate Edit",
+                                        title: "Invoice Edit",
                                     }
                                 }
 
