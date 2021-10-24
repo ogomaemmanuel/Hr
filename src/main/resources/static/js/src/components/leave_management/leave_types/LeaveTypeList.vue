@@ -41,6 +41,7 @@
 				<tr
 						v-for="leaveType in leaveTypes"
 						is="LeaveTypeItem"
+            :key="leaveType.id"
 						@leaveTypeRemoveSuccessful="getLeaveTypes"
 						:leaveType="leaveType">
 				</tr>

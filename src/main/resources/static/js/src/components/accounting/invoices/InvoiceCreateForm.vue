@@ -112,7 +112,7 @@
               @removedItem="removeInvoiceItem"
               :errorMessages="errors"
               v-for="(invoiceItem ,index) in invoiceItems"
-              :invoiceItem="invoiceItem" :index="index">
+              :invoiceItem="invoiceItem" :index="index" :key="index">
           </tr>
           </tbody>
         </table>
