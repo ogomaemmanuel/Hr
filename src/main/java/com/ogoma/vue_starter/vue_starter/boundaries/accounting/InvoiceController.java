@@ -47,4 +47,13 @@ public class InvoiceController {
         return ResponseEntity.ok("Invoice successfully removed");
     }
 
+    @RequestMapping(value = "api/invoice/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateInvoice(@PathVariable("id") Long id,
+                                           @RequestBody InvoiceRequest invoiceRequest){
+     Optional<Invoice> invoice=
+             this.invoiceService.updateInvoice(id,invoiceRequest);
+     return ResponseEntity.of(invoice);
+
+    }
+
 }

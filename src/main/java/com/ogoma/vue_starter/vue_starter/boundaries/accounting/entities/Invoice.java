@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,6 +17,7 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date invoiceDate;
+    @JsonProperty("expiryDate")
     private Date dueDate;
     @ManyToOne
     private Client client;

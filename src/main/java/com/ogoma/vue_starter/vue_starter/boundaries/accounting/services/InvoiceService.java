@@ -41,4 +41,17 @@ public class InvoiceService {
         this.invoiceRepository.save(invoice);
         return invoice;
     }
+
+    public Optional<Invoice> updateInvoice(Long id, InvoiceRequest invoiceRequest) {
+     Optional<Invoice> invoice=
+             this.invoiceRepository.findById(id);
+     invoice.ifPresent(inv->{
+         inv.setInvoiceDate(invoiceRequest.getInvoiceDate());
+         inv.setDueDate(invoiceRequest.getExpiryDate());
+         inv.setOtherInformation(invoiceRequest.getOtherInformation());
+         inv.setItems(invoiceRequest.getItems());
+         invoiceRepository.save(inv);
+     });
+     return invoice;
+    }
 }
