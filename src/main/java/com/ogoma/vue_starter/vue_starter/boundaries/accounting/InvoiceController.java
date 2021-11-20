@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Optional;
+
 @Controller
 public class InvoiceController {
     private final InvoiceService invoiceService;
@@ -25,6 +27,12 @@ public class InvoiceController {
         Page<Invoice> invoicePage =
                 this.invoiceService.getInvoices(invoicePagedDataRequest);
         return ResponseEntity.ok(invoicePage);
+    }
+    @RequestMapping(value = "api/invoices/{id}", method = RequestMethod.GET)
+    public ResponseEntity<?> getInvoiceByID(@PathVariable("id") Long id) {
+        Optional<Invoice> invoice =
+                this.invoiceService.getInvoiceById(id);
+        return ResponseEntity.of(invoice);
     }
 
     @RequestMapping(value = "api/invoices", method = RequestMethod.POST)
