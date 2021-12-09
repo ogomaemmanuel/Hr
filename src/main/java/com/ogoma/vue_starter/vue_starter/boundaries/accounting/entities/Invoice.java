@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Client;
 import com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project;
@@ -29,7 +30,8 @@ public class Invoice {
     private BigDecimal grandTotal;
     @OneToMany(cascade = CascadeType.PERSIST,
             mappedBy = InvoiceItem_.INVOICE)
-    private List<InvoiceItem> items = new ArrayList<InvoiceItem>();
+    @JsonIgnoreProperties(InvoiceItem_.INVOICE)
+    private List<InvoiceItem> items;//= new ArrayList<>();
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
@@ -110,6 +112,9 @@ public class Invoice {
     }
 
     public void setItems(List<InvoiceItem> items) {
+        if (items != null) {
+            items.forEach(i -> i.setInvoice(this));
+        }
         this.items = items;
     }
 

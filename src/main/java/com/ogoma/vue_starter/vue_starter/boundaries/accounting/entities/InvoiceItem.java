@@ -23,7 +23,7 @@ public class InvoiceItem {
     @Min(value = 0)
     @JsonProperty(value = "qty")
     private Integer quantity;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Invoice invoice;
 
     public Long getId() {
@@ -60,5 +60,13 @@ public class InvoiceItem {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
     }
 }
