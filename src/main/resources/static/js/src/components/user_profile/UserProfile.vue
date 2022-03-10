@@ -236,7 +236,8 @@ export default {
     getContact() {
       let vm = this;
       axios.get(`/api/emergency-contacts/${vm.employeeId}`).then(resp => {
-        if (!resp.data.isEmpty())
+        let data = resp.data;
+        if (data.length)
           vm.emergencyContact = resp.data;
       })
     },

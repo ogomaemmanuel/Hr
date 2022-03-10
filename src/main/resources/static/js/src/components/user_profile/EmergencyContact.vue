@@ -187,6 +187,7 @@ export default {
     submit(){
       let vm = this;
       vm.isLoading = true;
+      vm.emergencyContact.userId = vm.employeeId;
       axios.post(`/api/update-emergency-contact`,
           vm.emergencyContact).then(resp => {
         vm.isLoading = false;
