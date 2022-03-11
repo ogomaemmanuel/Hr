@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.access_control.controllers;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmergencyContactModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -62,5 +65,29 @@ public class UsersController {
                 .body(new InputStreamResource(byteArrayInputStream));
     }
 
+    @GetMapping("api/emergency-contacts/{userId}")
+    public ResponseEntity<?> getEmergencyContact(@PathVariable Long userId){
+        List<Map<String,String>> contacts = userService.getEmergencyContacts(userId);
+        if(contacts.isEmpty())
+        return ResponseEntity.ok(contacts);
+
+        return ResponseEntity.ok(contacts.get(0));
+    }
+
+    @PostMapping(value = "api/update-emergency-contact")
+    public ResponseEntity<?> updateContact(@RequestBody @Valid EmergencyContactModel model){
+        Map<String, String> resp = new HashMap<>();
+        String message = userService.updateEmergencyContact(model);
+
+        if("contact updated".equalsIgnoreCase(message)){
+            resp.put("msg", "Emergency contact updated successfully");
+            resp.put("status", "00");
+        }else if("contact exists".equalsIgnoreCase(message)){
+            resp.put("msg", "This contact already exists");
+            resp.put("status", "01");
+        }
+
+        return ResponseEntity.ok(resp);
+    }
 
 }
