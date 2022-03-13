@@ -5,6 +5,8 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.User
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmergencyContactModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
+import com.ogoma.vue_starter.vue_starter.repositories.FamilyRelationshipRepository;
+import com.ogoma.vue_starter.vue_starter.repositories.MaritalStatusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
@@ -25,9 +27,13 @@ import java.util.Optional;
 @Controller
 public class UsersController {
     private UserService userService;
+    private MaritalStatusRepository maritalStatusRepository;
+    private FamilyRelationshipRepository relationshipRepository;
     @Autowired
-    public UsersController(UserService userService) {
+    public UsersController(UserService userService,MaritalStatusRepository maritalStatusRepository,FamilyRelationshipRepository relationshipRepository) {
         this.userService = userService;
+        this.maritalStatusRepository = maritalStatusRepository;
+        this.relationshipRepository = relationshipRepository;
     }
 
     //    @RequestMapping(value = "api/users", method = RequestMethod.GET)
@@ -35,6 +41,16 @@ public class UsersController {
     public ResponseEntity<?> getUsers(PagedDataRequest pagedDataRequest) {
         Page<User> userList = this.userService.getAll(pagedDataRequest);
         return ResponseEntity.ok(userList);
+    }
+
+    @GetMapping("api/users/marital-status")
+    public ResponseEntity<?> getMaritalStatus(){
+        return ResponseEntity.ok(maritalStatusRepository.findAll());
+    }
+
+    @GetMapping("api/users/family-relationships")
+    public ResponseEntity<?> getFamilyRelationships(){
+        return ResponseEntity.ok(relationshipRepository.findAll());
     }
 
     @RequestMapping(value = "api/users/{id}", method = RequestMethod.GET)
@@ -63,31 +79,6 @@ public class UsersController {
         headers.add("Content-Disposition", "attachment; filename=fundraiserReports.pdf");
         return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(byteArrayInputStream));
-    }
-
-    @GetMapping("api/emergency-contacts/{userId}")
-    public ResponseEntity<?> getEmergencyContact(@PathVariable Long userId){
-        List<Map<String,String>> contacts = userService.getEmergencyContacts(userId);
-        if(contacts.isEmpty())
-        return ResponseEntity.ok(contacts);
-
-        return ResponseEntity.ok(contacts.get(0));
-    }
-
-    @PostMapping(value = "api/update-emergency-contact")
-    public ResponseEntity<?> updateContact(@RequestBody @Valid EmergencyContactModel model){
-        Map<String, String> resp = new HashMap<>();
-        String message = userService.updateEmergencyContact(model);
-
-        if("contact updated".equalsIgnoreCase(message)){
-            resp.put("msg", "Emergency contact updated successfully");
-            resp.put("status", "00");
-        }else if("contact exists".equalsIgnoreCase(message)){
-            resp.put("msg", "This contact already exists");
-            resp.put("status", "01");
-        }
-
-        return ResponseEntity.ok(resp);
     }
 
 }

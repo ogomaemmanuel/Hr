@@ -37,6 +37,8 @@ public interface UserService {
 
     void updatePassword(PasswordUpdateRequest passwordUpdateRequest);
 
+    Map<String,String> getUserDetails(Long id);
+
     String updateEmergencyContact(EmergencyContactModel model);
 
     List<Map<String,String>> getEmergencyContacts(Long userId);
