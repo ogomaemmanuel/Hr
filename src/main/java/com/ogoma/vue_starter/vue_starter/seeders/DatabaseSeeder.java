@@ -1,9 +1,12 @@
 package com.ogoma.vue_starter.vue_starter.seeders;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Permission;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.PermissionsRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.banks.entities.Bank;
+import com.ogoma.vue_starter.vue_starter.boundaries.banks.repositories.BanksRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.TerminationReason;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.TerminationReasonsRepository;
 import com.ogoma.vue_starter.vue_starter.entities.FamilyRelationship;
@@ -12,28 +15,33 @@ import com.ogoma.vue_starter.vue_starter.repositories.FamilyRelationshipReposito
 import com.ogoma.vue_starter.vue_starter.repositories.MaritalStatusRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 @Component
 @Profile(value = {"dev", "development", "test", "staging", "demo"})
+
 public class DatabaseSeeder implements CommandLineRunner {
     private final MaritalStatusRepository maritalStatusRepository;
     private final FamilyRelationshipRepository familyRelationshipRepository;
     private final PermissionsRepository permissionsRepository;
     private final UsersRepository usersRepository;
     private final TerminationReasonsRepository terminationReasonsRepository;
+    private final BanksRepository banksRepository;
 
-    public DatabaseSeeder(MaritalStatusRepository maritalStatusRepository, FamilyRelationshipRepository familyRelationshipRepository, PermissionsRepository permissionsRepository, UsersRepository usersRepository, TerminationReasonsRepository terminationReasonsRepository) {
+    public DatabaseSeeder(MaritalStatusRepository maritalStatusRepository, FamilyRelationshipRepository familyRelationshipRepository, PermissionsRepository permissionsRepository, UsersRepository usersRepository, TerminationReasonsRepository terminationReasonsRepository, BanksRepository banksRepository) {
         this.maritalStatusRepository = maritalStatusRepository;
         this.familyRelationshipRepository = familyRelationshipRepository;
         this.permissionsRepository = permissionsRepository;
         this.usersRepository = usersRepository;
         this.terminationReasonsRepository = terminationReasonsRepository;
+        this.banksRepository = banksRepository;
     }
 
     @Override
@@ -43,6 +51,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         seedFamilyRelationship();
         seedPermissions();
         seedTerminationReasons();
+        seedBanks();
     }
 
     public void seedUsers() {
@@ -117,6 +126,20 @@ public class DatabaseSeeder implements CommandLineRunner {
         if (count == 0) {
             TerminationReason terminationReason = new TerminationReason("Misconduct");
             this.terminationReasonsRepository.save(terminationReason);
+        }
+    }
+
+    public void seedBanks() {
+        Long exitingBanks = this.banksRepository.count();
+        if (exitingBanks ==0) {
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+
+                Bank[] banks = mapper.readValue((new ClassPathResource("banks/banks.json")).getFile(), Bank[].class);
+                banksRepository.saveAll(Arrays.asList(banks));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
