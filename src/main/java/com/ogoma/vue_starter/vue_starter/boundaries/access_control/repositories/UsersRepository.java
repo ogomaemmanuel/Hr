@@ -23,10 +23,13 @@ public interface UsersRepository extends JpaRepository<User,Long>, JpaSpecificat
     Page<User> findAll(Pageable pageable);
 
     @Query(value = "select u.id, concat_ws(' ',u.first_name,u.last_name) fullname, e.salary_amount salary, u.identity_no idNo, " +
-            "d.name department, u.email, ms.name maritalStatus, e.nhif_number nhifNo, e.nssf_number nssfNo, e.kra_pin_number kraPin," +
-            " u.phone, date_format(joining_date,'%Y-%m-%d') employmentDate " +
+            "d.name department, u.email, ms.name maritalStatus, e.nhif_number nhifNo, e.nssf_number nssfNo, e.kra_pin_number kraPin, " +
+            "b.name bankName, bb.name bankBranch, e.account_no accountNo, " +
+            "u.phone, date_format(joining_date,'%Y-%m-%d') employmentDate " +
             "from users u left join employees e on e.id = u.id " +
             "left join marital_statuses ms on u.marital_status_id = ms.id " +
+            "left join banks b on e.bank_id = b.id " +
+            "left join bank_branches bb on e.bank_branch_id = bb.id " +
             "left join departments d on e.department_id = d.id where u.id = :id", nativeQuery = true)
     Map<String,String> findUserDetails(Long id);
 }

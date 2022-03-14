@@ -62,7 +62,7 @@
           </div>
           <div class="column">
             <div class="field">
-              <label class="label ">Mobile 2</label>
+              <label class="label ">Mobile Two</label>
               <div class="control">
                 <input
                     v-model="emergencyContact.primaryPhoneTwo"
@@ -86,7 +86,7 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label ">Name <span><sup>*</sup></span></label>
+              <label class="label ">Name</label>
               <div class="control">
                 <input
                     v-model="emergencyContact.secondaryName"
@@ -101,7 +101,7 @@
           </div>
           <div class="column">
             <div class="field">
-              <label class="label ">Relationship <span><sup>*</sup></span></label>
+              <label class="label ">Relationship</label>
               <div class="control">
                 <Select
                     class="form-control is-large w-full"
@@ -124,7 +124,7 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label ">Mobile One <span><sup>*</sup></span></label>
+              <label class="label ">Mobile One</label>
               <div class="control">
                 <input
                     v-model="emergencyContact.secondaryPhoneOne"
@@ -139,7 +139,7 @@
           </div>
           <div class="column">
             <div class="field">
-              <label class="label ">Mobile 2</label>
+              <label class="label ">Mobile Two</label>
               <div class="control">
                 <input
                     v-model="emergencyContact.secondaryPhoneTwo"
