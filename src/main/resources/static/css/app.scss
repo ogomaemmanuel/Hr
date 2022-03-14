@@ -68,3 +68,35 @@ body.modal-open {
 }
 @import "components/MarkdownEditor";
 @import "components/Forms";
+
+//user profile page
+.user-profile-page{
+  .personal-emergency .card-content {
+    height: 420px;
+
+    .contact-detail,.personal-detail {
+      height: 35px;
+    }
+
+    .contact-header {
+      height: 40px;
+    }
+  }
+
+  .fa-pencil {
+    background-color: #f3f3f3;
+    color: #bcbcbd;
+    padding: 7px;
+    width: 30px;
+    border-radius: 15px;
+  }
+
+  .fa-pencil:hover {
+    background-color: #00d1b2;
+    color: #ffffff;
+  }
+
+  .show-top-border{
+    border-top: 2px #a9a9a9 solid;
+  }
+}

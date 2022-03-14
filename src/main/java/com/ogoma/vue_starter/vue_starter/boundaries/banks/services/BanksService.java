@@ -19,7 +19,7 @@ public class BanksService {
         return banks;
     }
 
-    public Bank createBank(Bank bank) {
+    public Bank createBankBranches(Bank bank) {
         this.banksRepository.save(bank);
         return bank;
     }

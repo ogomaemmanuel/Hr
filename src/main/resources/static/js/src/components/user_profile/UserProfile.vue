@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full">
+  <div class="h-full user-profile-page">
     <div class="card min-h-48">
       <div class="card-content">
         <div class="content">
@@ -65,61 +65,52 @@
         <div class="card h-full">
           <div class="card-content">
             <div class="flex">
-              <h1 class="flex-1 title is-5">Personal Informations </h1>
+              <h1 class="flex-1 title is-5 has-text-weight-bold">Personal Information </h1>
               <div>
-                <button>
-                  <i class="fa fa-pencil"></i>
-                </button>
+                <!--                <button @click="showModal=true">-->
+                <!--                  <i class="fa fa-pencil"></i>-->
+                <!--                </button>-->
+              </div>
+            </div>
+            <div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">Identity No</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.idNo }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">Phone</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.phone }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">Employment Date</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.employmentDate }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">Department</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.department }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">KRA Pin</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.kraPin }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">NHIF Number</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.nhifNo }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">NSSF Number</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.nssfNo }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">Marital Status</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.maritalStatus }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="column">
-        <div class="card h-full">
-          <div class="card-content">
-            <div class="flex">
-              <h1 class="flex-1 title is-5 has-text-weight-bold">Emergency Contact</h1>
-              <div>
-                <button @click.prevent="showEcModal=true; showModal=true">
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </div>
-            </div>
-            <div>
-              <div class="columns">
-                <label class="column is-7 has-text-weight-bold">Primary</label>
-              </div>
-              <div class="columns contact-detail">
-                <label class="column is-7 contact-label has-text-weight-bold">Name</label>
-                <p class=" column is-5">{{ emergencyContact.primaryName }}</p>
-              </div>
-              <div class="columns contact-detail">
-                <label class="column is-7 contact-label has-text-weight-bold">Relationship</label>
-                <p class=" column is-5">{{ emergencyContact.primaryRelationship }}</p>
-              </div>
-              <div class="columns">
-                <label class="column is-7 has-text-weight-bold">Phone</label>
-                <p class=" column is-5">{{ primaryPhone }}</p>
-              </div>
-              <div class="columns contact-header show-top-border">
-                <label class="column is-7 has-text-weight-bold">Secondary</label>
-              </div>
-              <div class="columns contact-detail">
-                <label class="column is-7 contact-label has-text-weight-bold">Name</label>
-                <p class=" column is-5">{{ emergencyContact.secondaryName }}</p>
-              </div>
-              <div class="columns contact-detail">
-                <label class="column is-7 contact-label has-text-weight-bold">Relationship</label>
-                <p class=" column is-5">{{ emergencyContact.secondaryRelationship }}</p>
-              </div>
-              <div class="columns contact-detail">
-                <label class="column is-7 contact-label has-text-weight-bold">Phone</label>
-                <p class=" column is-5">{{ secondaryPhone }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ContactsTemplate></ContactsTemplate>
       </div>
     </div>
     <div class="columns mt-2">
@@ -129,27 +120,30 @@
             <div class="flex">
               <h1 class="flex-1 title is-5">Bank information </h1>
               <div>
-                <button>
-                  <i class="fa fa-pencil"></i>
-                </button>
+                <!--                <button>-->
+                <!--                  <i class="fa fa-pencil"></i>-->
+                <!--                </button>-->
+              </div>
+            </div>
+            <div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">Bank Name</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.bankName }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">Branch</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.bankBranch }}</p>
+              </div>
+              <div class="columns personal-detail">
+                <label class="column is-7 personal-label has-text-weight-bold">Account No</label>
+                <p class=" column is-5 has-text-weight-medium text-gray-600">{{ employeeDetails.accountNo }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="column">
-        <div class="card h-full">
-          <div class="card-content">
-            <div class="flex">
-              <h1 class="flex-1 title is-5">Family Informations</h1>
-              <div>
-                <button>
-                  <i class="fa fa-pencil"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <InfoTemplate></InfoTemplate>
       </div>
     </div>
     <ProfilePhotoPreview
@@ -159,29 +153,19 @@
         :key="">
     </ProfilePhotoPreview>
 
-    <ModalTemplate width="920" @modalClosed="closeModal" v-if="showModal">
-      <div slot="modal-content">
-        <EmergencyContact v-if="showEcModal"
-                          @updatedContact="closeModal"
-                          :employeeId="employeeId"
-                          :emergencyContact="emergencyContact">
-        </EmergencyContact>
-      </div>
-    </ModalTemplate>
-
   </div>
 </template>
 <script>
 import {mapGetters} from "vuex"
 import ProfilePhotoPreview from "./ProfilePhotoPreview";
-import ModalTemplate from "../common/ModalTemplate";
-import EmergencyContact from "./EmergencyContact";
+import ContactsTemplate from "./emergencyContacts/ContactsTemplate";
+import InfoTemplate from "./familyInfo/InfoTemplate";
 
 export default {
   components: {
-    ProfilePhotoPreview,
-    ModalTemplate,
-    EmergencyContact
+    InfoTemplate,
+    ContactsTemplate,
+    ProfilePhotoPreview
   },
   data() {
     return {
@@ -189,63 +173,21 @@ export default {
       employeeSalaryInfo: {},
       showImagePreview: false,
       newImageUrl: "",
-      showModal: false,
-      showEcModal: false,
-      emergencyContact: {
-        userId: this.employeeId,
-        primaryName: "",
-        primaryRelationship: "",
-        primaryPhoneOne: "",
-        primaryPhoneTwo: "",
-        secondaryName: "",
-        secondaryRelationship: "",
-        secondaryPhoneOne: "",
-        secondaryPhoneTwo: ""
-      }
+      employeeDetails: {}
     }
   },
   computed: {
     ...mapGetters(["authenticatedUser"]),
     employeeId() {
       return this.authenticatedUser.id;
-    },
-    primaryPhone() {
-      let phoneOne = this.emergencyContact.primaryPhoneOne;
-      let phoneTwo = this.emergencyContact.primaryPhoneTwo;
-      if (phoneTwo !== null && phoneTwo !== "")
-        return phoneOne + ", " + phoneTwo;
-
-      return phoneOne
-    },
-    secondaryPhone() {
-      let phoneOne = this.emergencyContact.secondaryPhoneOne;
-      let phoneTwo = this.emergencyContact.secondaryPhoneTwo;
-      if (phoneTwo !== null && phoneTwo !== "")
-        return phoneOne + ", " + phoneTwo;
-
-      return phoneOne
     }
   },
   created() {
-    this.getContact();
-
+    this.getEmployeeDetails();
     //this.getEmployeeSalaryInfo();
 
   },
   methods: {
-    getContact() {
-      let vm = this;
-      axios.get(`/api/emergency-contacts/${vm.employeeId}`).then(resp => {
-        let data = resp.data;
-        if (data.length)
-          vm.emergencyContact = resp.data;
-      })
-    },
-    closeModal() {
-      let vm = this;
-      vm.showModal = false;
-      vm.showEcModal = false;
-    },
     closeImagePreview(refresh) {
       let vm = this;
       vm.showImagePreview = false;
@@ -258,6 +200,11 @@ export default {
     getEmployeeSalaryInfo() {
       axios.get(`/api/employee-salary/${this.employeeId}`).then(resp => {
         this.employeeSalaryInfo = resp.data;
+      })
+    },
+    getEmployeeDetails() {
+      axios.get(`/api/profile/details/${this.employeeId}`).then(resp => {
+        this.employeeDetails = resp.data;
       })
     },
     onFileChange(e) {
@@ -347,35 +294,6 @@ export default {
   width: 128px;
   background: #fff;
   overflow: hidden;
-}
-
-.personal-emergency .card-content {
-  height: 420px;
-}
-
-.fa-pencil {
-  background-color: #f3f3f3;
-  color: #bcbcbd;
-  padding: 7px;
-  width: 30px;
-  border-radius: 15px;
-}
-
-.fa-pencil:hover {
-  background-color: #00d1b2;
-  color: #ffffff;
-}
-
-.contact-detail {
-  height: 35px;
-}
-
-.contact-header {
-  height: 40px;
-}
-
-.show-top-border{
-  border-top: 2px #a9a9a9 solid;
 }
 
 </style>

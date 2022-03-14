@@ -21,9 +21,11 @@ public class EmployeeCreateModel {
     @NotNull
     private BasicInfo basicInfo;
     @Valid
-    @NotNull
-    @NotEmpty
-    private List<ContactAddress> contactAddresses;
+//    @NotNull
+//    @NotEmpty
+    @JsonProperty("emergencyContact")
+    private EmergencyContactModel contactModel;
+//    private List<ContactAddress> contactAddresses;
     @Valid
     @NotNull
     private EmployementDetail employementDetail;
@@ -36,13 +38,21 @@ public class EmployeeCreateModel {
         this.basicInfo = basicInfo;
     }
 
-    public List<ContactAddress> getContactAddresses() {
-        return contactAddresses;
+    public EmergencyContactModel getContactModel() {
+        return contactModel;
     }
 
-    public void setContactAddresses(List<ContactAddress> contactAddresses) {
-        this.contactAddresses = contactAddresses;
+    public void setContactModel(EmergencyContactModel contactModel) {
+        this.contactModel = contactModel;
     }
+
+    //    public List<ContactAddress> getContactAddresses() {
+//        return contactAddresses;
+//    }
+//
+//    public void setContactAddresses(List<ContactAddress> contactAddresses) {
+//        this.contactAddresses = contactAddresses;
+//    }
 
     public EmployementDetail getEmployementDetail() {
         return employementDetail;
@@ -169,39 +179,39 @@ public class EmployeeCreateModel {
         }
     }
 
-    public static class ContactAddress {
-        @NotBlank(message = "Employee contact phone is required")
-        private String phoneNumber;
-        @NotBlank(message = "Employee contact name is required")
-        private String name;
-        @NotBlank(message = "Select employee contact relationship")
-        private String relationshipId;
-
-        public String getPhoneNumber() {
-            return phoneNumber;
-        }
-
-        public void setPhoneNumber(String phoneNumber) {
-            this.phoneNumber = phoneNumber;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getRelationshipId() {
-            return relationshipId;
-        }
-
-        public void setRelationshipId(String relationshipId) {
-            this.relationshipId = relationshipId;
-        }
-
-    }
+//    public static class ContactAddress {
+//        @NotBlank(message = "Employee contact phone is required")
+//        private String phoneNumber;
+//        @NotBlank(message = "Employee contact name is required")
+//        private String name;
+//        @NotBlank(message = "Select employee contact relationship")
+//        private String relationshipId;
+//
+//        public String getPhoneNumber() {
+//            return phoneNumber;
+//        }
+//
+//        public void setPhoneNumber(String phoneNumber) {
+//            this.phoneNumber = phoneNumber;
+//        }
+//
+//        public String getName() {
+//            return name;
+//        }
+//
+//        public void setName(String name) {
+//            this.name = name;
+//        }
+//
+//        public String getRelationshipId() {
+//            return relationshipId;
+//        }
+//
+//        public void setRelationshipId(String relationshipId) {
+//            this.relationshipId = relationshipId;
+//        }
+//
+//    }
 
     public static class EmployementDetail {
         @NotNull(message = "Select department")
@@ -229,6 +239,18 @@ public class EmployeeCreateModel {
         @NotNull(message = "Select gender")
         @Convert(converter = GenderEnumConverter.class)
         private GenderEnum gender;
+
+        @NotBlank(message = "Account number is required")
+        @JsonProperty("accountNo")
+        private String accountNo;
+
+        @NotNull(message = "Bank is required")
+        @JsonProperty("bankId")
+        private Long bankId;
+
+        @NotNull(message = "Bank Branch is required")
+        @JsonProperty("bankBranchId")
+        private Long bankBranchId;
 
         public Long getDepartmentId() {
             return departmentId;
@@ -308,6 +330,30 @@ public class EmployeeCreateModel {
 
         public void setGender(GenderEnum gender) {
             this.gender = gender;
+        }
+
+        public String getAccountNo() {
+            return accountNo;
+        }
+
+        public void setAccountNo(String accountNo) {
+            this.accountNo = accountNo;
+        }
+
+        public Long getBankId() {
+            return bankId;
+        }
+
+        public void setBankId(Long bankId) {
+            this.bankId = bankId;
+        }
+
+        public Long getBankBranchId() {
+            return bankBranchId;
+        }
+
+        public void setBankBranchId(Long bankBranchId) {
+            this.bankBranchId = bankBranchId;
         }
     }
 }

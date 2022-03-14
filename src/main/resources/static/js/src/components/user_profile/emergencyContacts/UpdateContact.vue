@@ -26,11 +26,17 @@
             <div class="field">
               <label class="label ">Relationship <span><sup>*</sup></span></label>
               <div class="control">
-                <input
+                <Select
+                    class="form-control is-large w-full"
                     v-model="emergencyContact.primaryRelationship"
-                    @input="clearFieldError('primaryRelationship')"
-                    class="input"
-                    type="text">
+                    required
+                >
+                  <Option v-for="relationship in relationships"
+                          :value="relationship.name"
+                          :label="relationship.name"
+                          :key="relationship.id" class="form-control">
+                  </Option>
+                </Select>
                 <span class="mb-2 has-text-danger" v-if="errors['primaryRelationship']">
 						{{ errors['primaryRelationship'][0] }}
 					</span>
@@ -56,7 +62,7 @@
           </div>
           <div class="column">
             <div class="field">
-              <label class="label ">Mobile 2</label>
+              <label class="label ">Mobile Two</label>
               <div class="control">
                 <input
                     v-model="emergencyContact.primaryPhoneTwo"
@@ -80,7 +86,7 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label ">Name <span><sup>*</sup></span></label>
+              <label class="label ">Name</label>
               <div class="control">
                 <input
                     v-model="emergencyContact.secondaryName"
@@ -95,13 +101,19 @@
           </div>
           <div class="column">
             <div class="field">
-              <label class="label ">Relationship <span><sup>*</sup></span></label>
+              <label class="label ">Relationship</label>
               <div class="control">
-                <input
+                <Select
+                    class="form-control is-large w-full"
                     v-model="emergencyContact.secondaryRelationship"
-                    @input="clearFieldError('relationship')"
-                    class="input"
-                    type="text">
+                    required
+                >
+                  <Option v-for="relationship in relationships"
+                          :value="relationship.name"
+                          :label="relationship.name"
+                          :key="relationship.id" class="form-control">
+                  </Option>
+                </Select>
                 <span class="mb-2 has-text-danger" v-if="errors['relationship']">
 						{{ errors['relationship'][0] }}
 					</span>
@@ -112,7 +124,7 @@
         <div class="columns">
           <div class="column">
             <div class="field">
-              <label class="label ">Mobile One <span><sup>*</sup></span></label>
+              <label class="label ">Mobile One</label>
               <div class="control">
                 <input
                     v-model="emergencyContact.secondaryPhoneOne"
@@ -127,7 +139,7 @@
           </div>
           <div class="column">
             <div class="field">
-              <label class="label ">Mobile 2</label>
+              <label class="label ">Mobile Two</label>
               <div class="control">
                 <input
                     v-model="emergencyContact.secondaryPhoneTwo"
@@ -156,11 +168,11 @@
 </template>
 
 <script>
-import common_mixin from "../../mixins/common_mixin";
-import {Message} from "element-ui";
+import common_mixin from "../../../mixins/common_mixin";
+import {Message,Select,Option} from "element-ui";
 
 export default {
-  name: "EmergencyContact",
+  name: "UpdateContact",
   mixins: [common_mixin],
   props: {
     employeeId: {
@@ -170,10 +182,15 @@ export default {
       required: true
     }
   },
+  components:{
+    Select,
+    Option
+  },
   data(){
     return{
       errors:[],
-      isLoading: false
+      isLoading: false,
+      relationships:[]
     }
   },
   computed: {
@@ -183,7 +200,16 @@ export default {
           || vm.primaryPhoneOne.length <= 0 || this.isLoading;
     }
   },
+  created() {
+    this.getFamilyRelations();
+  },
   methods: {
+    getFamilyRelations() {
+      let vm = this;
+      axios.get(`/api/users/family-relationships`).then(resp => {
+          vm.relationships = resp.data;
+      })
+    },
     submit(){
       let vm = this;
       vm.isLoading = true;

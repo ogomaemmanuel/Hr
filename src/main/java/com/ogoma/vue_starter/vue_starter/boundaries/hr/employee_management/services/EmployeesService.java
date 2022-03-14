@@ -1,8 +1,10 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.EmployeeContactAddress;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmergencyContactModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeQuery;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
@@ -29,10 +31,12 @@ import java.util.*;
 public class EmployeesService {
     private final EmployeeRepository employeeRepository;
     private final MailSender mailSender;
+    private final UserService userService;
 
-    public EmployeesService(EmployeeRepository employeeRepository, MailSender mailSender) {
+    public EmployeesService(EmployeeRepository employeeRepository, MailSender mailSender, UserService userService) {
         this.mailSender = mailSender;
         this.employeeRepository = employeeRepository;
+        this.userService = userService;
     }
 
     public Page<EmployeeQuery> getEmployees(PagedDataRequest pagedDataRequest) {
@@ -44,19 +48,25 @@ public class EmployeesService {
     public Employee createEmployee(EmployeeCreateModel employeeCreateModel) {
         User user = new User();
         Employee employee = new Employee();
-        List<EmployeeContactAddress> employeeContactAddresses = new ArrayList<>();
-        employeeCreateModel.getContactAddresses().forEach(add -> {
-            EmployeeContactAddress employeeContactAddress = new EmployeeContactAddress();
-            BeanUtils.copyProperties(add, employeeContactAddress);
-            employeeContactAddresses.add(employeeContactAddress);
-        });
+//        List<EmployeeContactAddress> employeeContactAddresses = new ArrayList<>();
+//        employeeCreateModel.getContactAddresses().forEach(add -> {
+//            EmployeeContactAddress employeeContactAddress = new EmployeeContactAddress();
+//            BeanUtils.copyProperties(add, employeeContactAddress);
+//            employeeContactAddresses.add(employeeContactAddress);
+//        });
         BeanUtils.copyProperties(employeeCreateModel.getBasicInfo(), user);
         BeanUtils.copyProperties(employeeCreateModel.getEmployementDetail(), employee);
-        employee.setEmployeeContactAddresses(employeeContactAddresses);
+//        employee.setEmployeeContactAddresses(employeeContactAddresses);
         String userPassword = RandomStringGenerator.randomStringGenerator(8, true);
         user.setPassword(userPassword);
         employee.setUser(user);
         this.employeeRepository.save(employee);
+
+        //save emergency contacts
+        EmergencyContactModel contactModel = employeeCreateModel.getContactModel();
+        contactModel.setUserId(user.getId());
+        userService.updateEmergencyContact(contactModel);
+
         sendRegistrationEmail(employeeCreateModel, userPassword);
         return employee;
     }

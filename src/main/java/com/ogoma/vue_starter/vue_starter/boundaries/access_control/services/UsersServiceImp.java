@@ -170,6 +170,11 @@ public class UsersServiceImp implements UserService {
     }
 
     @Override
+    public Map<String,String> getUserDetails(Long id){
+        return usersRepository.findUserDetails(id);
+    }
+
+    @Override
     public ByteArrayOutputStream report() throws Exception {
         List<User> users = this.usersRepository.findAll();
         return reportGenerator.generatePdfReport("reports/users.jasper", null, users);
