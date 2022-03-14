@@ -17,7 +17,7 @@ public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long
     @Query("Select le from LeaveRequest le where le.applicantId=?#{ principal?.id }")
     public Page<LeaveRequest> findCurrentUserLeaveRequest(Pageable pageable);
 
-    @Query(value = "select s.user_id as userId,s.id as staffId,concat_ws(u.first_name,u.last_name) as fullName from employees s left join users u on s.user_id=u.id where s.user_id!=?#{principal.id}", nativeQuery = true)
+    @Query(value = "select s.id as userId,s.id as staffId,concat_ws(u.first_name,u.last_name) as fullName from employees s left join users u on s.id=u.id where s.id!=?#{principal.id}", nativeQuery = true)
     public List<Map<String, String>> getInplaceEmployeeSelectList();
 
     @Query(value = "select lt.id, lt.name as leaveType,lt.number_of_days as elligibleDays," +
@@ -33,7 +33,7 @@ public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long
 
     @Query(value = "Select le.id,le.start_date startDate,le.end_date endDate,le.number_of_days numberOfDays, le.leave_statuses status,lt.name  leaveType,CONCAT_WS(applicant.first_name,applicant.last_name) employee  from leave_requests le left join employees s on le.in_place=s.id left join leave_types  lt on le.leave_type_id=lt.id left join users applicant on le.applicant_user_id=applicant.id where le.leave_statuses in (?1) and s.id=?#{ principal?.id } and le.applicant_user_id !=?#{ principal?.id }",
             nativeQuery = true,
-            countQuery = "Select le.* from leave_requests le left join employees s on le.in_place=s.id where le.leave_statuses in ?#{#leaveStatuses} and s.user_id=?#{ principal?.id } and le.applicant_user_id !=?#{ principal?.id }"
+            countQuery = "Select le.* from leave_requests le left join employees s on le.in_place=s.id where le.leave_statuses in ?#{#leaveStatuses} and s.id=?#{ principal?.id } and le.applicant_user_id !=?#{ principal?.id }"
     )
     public Page<Map<String, String>> getLeaveRequestToApprove(List<String> leaveStatuses, Pageable pageable);
 

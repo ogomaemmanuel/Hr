@@ -63,12 +63,12 @@
                 </thead>
                 <tbody>
                 <tr v-for="asset in assets">
-                  <td data-label="Name">{{ asset.name }}</td>
+                  <td data-label="Name">{{ getAssetUserName(asset) }}</td>
                   <td data-label="Date">{{ asset.date }}</td>
                   <td data-label="Description">{{ asset.name }}</td>
                   <td data-label="Description">{{ asset.purchaseDate }}</td>
                   <td data-label="Description">{{ asset.warrantyInMonths }}</td>
-                  <td data-label="Description">{{ asset.name }}</td>
+                  <td data-label="Description">{{ asset.warrantyEndDate|formatDate }}</td>
                   <td data-label="Description">{{ asset.value }}</td>
                   <td data-label="Description">{{ asset.status }}</td>
                   <td data-label="Action">
@@ -111,8 +111,8 @@
       </div>
     </div>
     <router-view
-        @holidayCreateSuccessful="onAssetCreateSuccessful"
-        @holidayUpdateSuccessful="onAssetUpdateSuccessful">
+        @updateSuccessful="onAssetUpdateSuccessful"
+        @createSuccessful="onAssetCreateSuccessful">
     </router-view>
   </div>
 </template>
@@ -129,11 +129,20 @@ export default {
   data() {
     return {
       assets: [],
-      loading: false
+      loading: false,
+      pageable: false,
     }
   },
   created() {
     this.getAssets();
+  },
+  filters:{
+    formatDate(date){
+      if(date){
+        return moment(date).format("DD-MMM-YYYY");
+      }
+      return ""
+    }
   },
 
   methods: {
@@ -143,6 +152,12 @@ export default {
         message: `Are you sure want to remove <b> ${asset.name}</b> from assets`,
         onConfirm: () => this.removeAsset(asset)
       })
+    },
+    getAssetUserName(asset) {
+      if (asset.assetUser) {
+        return asset.assetUser.fullName;
+      }
+      return ""
     },
     removeAsset(asset) {
       axios.delete(`/api/assets/${asset.id}`).then(resp => {
@@ -155,7 +170,7 @@ export default {
       this.getAssets();
     },
     getAssets() {
-      axios.get(`api/assets/`, {
+      axios.get(`/api/assets/`, {
         params: {
           page: this.page,
           pageSize: this.pageSize
@@ -167,6 +182,19 @@ export default {
       })
     },
     onAssetCreateSuccessful() {
+      this.getAssets();
+    },
+    goToPrevious() {
+      this.page--;
+      this.getAssets();
+    },
+    goToNext() {
+      this.page++;
+      this.getAssets();
+    },
+    onPaginationChanged(pageSize) {
+      this.page = 0;
+      this.pageSize = pageSize;
       this.getAssets();
     },
     onAssetUpdateSuccessful() {

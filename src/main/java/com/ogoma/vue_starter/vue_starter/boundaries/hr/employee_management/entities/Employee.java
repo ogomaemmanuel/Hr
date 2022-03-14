@@ -25,6 +25,12 @@ public class Employee extends BaseEntity {
     private Long supervisorId;
     @Column(name = "designation_id")
     private Long designationId;
+    @Column(name = "bank_id")
+    private Long bankId;
+    @Column(name = "bank_branch_id")
+    private Long bankBranchId;
+    @Column(name = "account_no")
+    private String accountNo;
     private BigDecimal salaryAmount;
     @Column(unique = true)
     private String nssfNumber;
@@ -79,6 +85,32 @@ public class Employee extends BaseEntity {
         this.joiningDate = joiningDate;
     }
 
+    public Long getBankId() {
+        return bankId;
+    }
+
+    public Employee setBankId(Long bankId) {
+        this.bankId = bankId;
+        return this;
+    }
+
+    public Long getBankBranchId() {
+        return bankBranchId;
+    }
+
+    public Employee setBankBranchId(Long bankBranchId) {
+        this.bankBranchId = bankBranchId;
+        return this;
+    }
+
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public Employee setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+        return this;
+    }
 
     public BigDecimal getSalaryAmount() {
         return salaryAmount;

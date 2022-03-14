@@ -181,12 +181,12 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/documents">
+                    <router-link to="/invoices">
                       <span>Invoices</span>
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/leave-approvals">
+                    <router-link to="/payments">
                       <span>Payments</span>
                     </router-link>
                   </li>
@@ -218,7 +218,7 @@
                 </a>
                 <ul class="border-l-0">
                   <li>
-                    <router-link to="/estimates">
+                    <router-link to="/jobs">
                       <span>Manage Jobs</span>
                     </router-link>
                   </li>

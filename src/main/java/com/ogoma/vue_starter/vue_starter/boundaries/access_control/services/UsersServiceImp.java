@@ -1,9 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.authentication.CustomUserDetails;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.EmergencyContact;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
-import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User_;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.EmergencyContactRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmergencyContactModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.user_profile.models.PasswordUpdateRequest;
 import com.ogoma.vue_starter.vue_starter.events.auth.PasswordResetEvent;
@@ -22,24 +24,20 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.*;
 import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 
 public class UsersServiceImp implements UserService {
     private final ApplicationEventPublisher applicationEventPublisher;
     private final UsersRepository usersRepository;
+    private final EmergencyContactRepository contactRepository;
     private final PasswordEncoder passwordEncoder;
     private final PasswordResetRepository passwordResetRepository;
     private final ReportGenerator reportGenerator;
@@ -47,6 +45,7 @@ public class UsersServiceImp implements UserService {
     @Autowired
     public UsersServiceImp(UsersRepository usersRepository,
                            PasswordEncoder passwordEncoder,
+                           EmergencyContactRepository contactRepository,
                            PasswordResetRepository passwordResetRepository,
                            ReportGenerator reportGenerator,
                            ApplicationEventPublisher applicationEventPublisher) {
@@ -54,6 +53,7 @@ public class UsersServiceImp implements UserService {
         this.passwordResetRepository = passwordResetRepository;
         this.reportGenerator = reportGenerator;
         this.passwordEncoder = passwordEncoder;
+        this.contactRepository = contactRepository;
 
         this.applicationEventPublisher = applicationEventPublisher;
     }
@@ -61,7 +61,6 @@ public class UsersServiceImp implements UserService {
     public User getUserByEmail(String email) {
         return usersRepository.findByEmail(email);
     }
-
 
     public User register(UserRegistrationModel userRegistrationModel) {
         User user = new User();
@@ -171,8 +170,47 @@ public class UsersServiceImp implements UserService {
     }
 
     @Override
+    public Map<String,String> getUserDetails(Long id){
+        return usersRepository.findUserDetails(id);
+    }
+
+    @Override
     public ByteArrayOutputStream report() throws Exception {
         List<User> users = this.usersRepository.findAll();
         return reportGenerator.generatePdfReport("reports/users.jasper", null, users);
+    }
+
+    @Override
+    public String updateEmergencyContact(EmergencyContactModel model){
+        Long userId = SecurityUtils.getCurrentUserDetails().getId();
+        EmergencyContact em = contactRepository.findByUserId(model.getUserId());
+
+        if(null != em && model.getId() == null)
+            return "contact exists";
+        else if(null == em) {
+            em = new EmergencyContact();
+            em.setCreatedAt(new Date());
+            em.setCreatedBy(userId);
+
+        }
+
+        em.setPrimaryName(model.getPrimaryName());
+        em.setPrimaryRelationship(model.getPrimaryRelationship());
+        em.setPrimaryPhoneOne(model.getPrimaryPhoneOne());
+        em.setPrimaryPhoneTwo(model.getPrimaryPhoneTwo());
+        em.setSecondaryName(model.getSecondaryName());
+        em.setSecondaryRelationship(model.getSecondaryRelationship());
+        em.setSecondaryPhoneOne(model.getSecondaryPhoneOne());
+        em.setSecondaryPhoneTwo(model.getSecondaryPhoneTwo());
+        em.setUserId(model.getUserId());
+        em.setUpdatedAt(new Date());
+        em.setUpdatedBy(userId);
+
+        contactRepository.save(em);
+        return "contact updated";
+    }
+
+    public List<Map<String,String>> getEmergencyContacts(Long userId){
+        return contactRepository.findAllContactsByUserId(userId);
     }
 }

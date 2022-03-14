@@ -1,6 +1,7 @@
 <template>
   <ModalTemplate @modalClosed="$router.go(-1)">
-    <AssetCreateForm slot="modal-content">
+    <AssetCreateForm
+        @createSuccessful="onCreateSuccessful" slot="modal-content">
     </AssetCreateForm>
   </ModalTemplate>
 </template>
@@ -11,6 +12,16 @@ export default {
   components: {
     ModalTemplate,
     AssetCreateForm
+  },
+  methods:{
+    goBack(){
+      this.$router.go(-1);
+    },
+    onCreateSuccessful(){
+      this.$emit("createSuccessful");
+      this.goBack();
+
+    }
   }
 }
 </script>

@@ -127,6 +127,19 @@ const ExpenseList = () => import("../components/accounting/expenses/ExpenseList"
 const ExpenseCreate = () => import("../components/accounting/expenses/ExpenseCreateModal")
 const ExpenseEdit = () => import("../components/accounting/expenses/ExpenseEditModal")
 
+const InvoicePage =()=> import("../components/accounting/invoices/InvoicesPage")
+const InvoiceList =()=> import("../components/accounting/invoices/InvoiceList")
+const InvoiceCreate =()=> import("../components/accounting/invoices/InvoiceCreateForm")
+const InvoiceEdit =()=> import("../components/accounting/invoices/InvoiceEditForm")
+
+
+const PaymentsPage =()=> import("../components/accounting/payments/PaymentsPage")
+const PaymentsList =()=> import("../components/accounting/payments/PaymentList")
+
+
+
+
+
 const ProvidentFundsPage = () => import("../components/accounting/provident_fund/ProvidentFundPage")
 const ProvidentFundList = () => import("../components/accounting/provident_fund/ProvidentFundList")
 const ProvidentFundCreate = () => import("../components/accounting/provident_fund/ProvidentFundCreateModal")
@@ -144,6 +157,10 @@ const AssetList = () => import("../components/assets/AssetList")
 const AssetCreate = () => import("../components/assets/AssetCreateModal")
 const AssetEdit = () => import("../components/assets/AssetEditModal")
 
+const JobsPage = () => import("../components/jobs/manage_jobs/JobsPage")
+const JobList = () => import("../components/jobs/manage_jobs/JobList")
+const JobCreate =()=> import("../components/jobs/manage_jobs/JobCreateFormModal")
+const JobEdit =()=> import("../components/jobs/manage_jobs/JobEditFormModal")
 
 Vue.use(Router);
 const routes = new Router({
@@ -195,7 +212,6 @@ const routes = new Router({
             children: [
                 {
                     path: "/",
-                    name: "home",
                     component: Home,
                     meta: {},
 
@@ -285,7 +301,6 @@ const routes = new Router({
 
                         {
                             path: "/leave",
-                            name: "leave",
                             component: LeavePage,
                             meta: {
                                 breadcrumb: true,
@@ -316,7 +331,6 @@ const routes = new Router({
                         },
                         {
                             path: "/leave-approvals",
-                            name: "leave-approvals-page",
                             component: LeaveApprovalsPage,
                             children: [
                                 {
@@ -340,7 +354,6 @@ const routes = new Router({
                         },
                         {
                             path: "/departments",
-                            name: "departments-page",
                             component: DepartmentsPage,
                             meta: {
                                 breadcrumbs: true,
@@ -372,7 +385,6 @@ const routes = new Router({
                         },
                         {
                             path: "/employees",
-                            name: "employee-page",
                             component: EmployeesPage,
 
                             meta: {
@@ -399,13 +411,13 @@ const routes = new Router({
                                     ]
                                 },
                                 {
-                                    name: "Policy",
                                     component: PolicyPage,
                                     path: "/policies",
                                     children: [
                                         {
                                             path: "/",
                                             component: PolicyList,
+                                            name: "Policy",
                                             meta: {
                                                 breadcrumb: 'Policies',
                                                 title: 'Policies',
@@ -441,7 +453,6 @@ const routes = new Router({
                         },
                         {
                             path: "/designations",
-                            name: "designations-page",
                             component: DesignationsPage,
                             meta: {
                                 title: "Designations"
@@ -471,12 +482,11 @@ const routes = new Router({
                         },
                         {
                             path: "/holidays",
-                            name: "holidays-page",
                             component: HolidaysPage,
                             children: [
                                 {
                                     path: "/",
-                                    name: "leave-requests",
+                                    name: "holidays",
                                     component: HolidayList,
                                     meta: {
                                         title: 'Holidays',
@@ -498,7 +508,6 @@ const routes = new Router({
                         },
                         {
                             path: "/leave-types",
-                            name: "leave-types-page",
                             component: LeaveTypesPage,
                             children: [
                                 {
@@ -527,7 +536,6 @@ const routes = new Router({
                         },
                         {
                             path: "/overtime-requests",
-                            name: "overtime-requests",
                             component: OvertimeRequests,
                             meta: {
                                 breadcrumb: true,
@@ -552,7 +560,6 @@ const routes = new Router({
                         },
                         {
                             path: "/employee-resignations",
-                            name: "employee-requests",
                             component: ResignationPage,
                             meta: {
                                 breadcrumb: true,
@@ -577,7 +584,6 @@ const routes = new Router({
                         },
                         {
                             path: "/employee-terminations",
-                            name: "employee-terminations",
                             component: EmployeeTerminationPage,
                             meta: {
                                 breadcrumb: true,
@@ -621,7 +627,6 @@ const routes = new Router({
 
                         {
                             path: "/salary",
-                            name: "salary",
                             component: EmployeesSalaryPage,
                             meta: {
                                 breadcrumb: true,
@@ -630,6 +635,7 @@ const routes = new Router({
                             children: [
                                 {
                                     path: "/",
+                                    name: "Salary",
                                     component: EmployeeSalaryList
                                 },
                                 {
@@ -654,7 +660,6 @@ const routes = new Router({
                         },
                         {
                             path: "/clients",
-                            name: "clients",
                             component: ClientsPage,
                             meta: {
                                 breadcrumb: true,
@@ -664,6 +669,7 @@ const routes = new Router({
                                 {
                                     path: "/",
                                     component: ClientList,
+                                    name: "clients",
                                     children: [
                                         {
                                             path: "/client-create",
@@ -690,7 +696,6 @@ const routes = new Router({
                         },
                         {
                             path: "/projects",
-                            name: "projects",
                             component: ProjectsPage,
                             meta: {
                                 breadcrumb: true,
@@ -700,6 +705,7 @@ const routes = new Router({
                                 {
                                     path: "/",
                                     component: ProjectList,
+                                    name: "projects",
                                     children: [
                                         {
                                             path: "/projects-create",
@@ -845,6 +851,39 @@ const routes = new Router({
                             ]
                         },
                         {
+                            path: "/invoices",
+                            component: InvoicePage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Invoices",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: InvoiceList,
+                                },
+                                {
+                                    path: "/invoice-create",
+                                    name: "invoice-create",
+                                    component: InvoiceCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Invoice Create",
+                                    }
+                                },
+                                {
+                                    path: "/invoice-edit/:id",
+                                    name: "invoice-edit",
+                                    component: InvoiceEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Invoice Edit",
+                                    }
+                                }
+
+                            ]
+                        },
+                        {
                             path: "/expenses",
                             component: ExpensePage,
                             meta: {
@@ -859,6 +898,39 @@ const routes = new Router({
                                 {
                                     path: "/expense-create",
                                     name: "expense-create",
+                                    component: ExpenseCreate,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Expense Create",
+                                    }
+                                },
+                                {
+                                    path: "/expense-edit/:id",
+                                    name: "expense-edit",
+                                    component: ExpenseEdit,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Expense  Edit",
+                                    }
+                                }
+
+                            ]
+                        },
+                        {
+                            path: "/payments",
+                            component: PaymentsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Payments",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: PaymentsList,
+                                },
+                                {
+                                    path: "/payment-create",
+                                    name: "payment-create",
                                     component: ExpenseCreate,
                                     meta: {
                                         breadcrumb: true,
@@ -922,7 +994,6 @@ const routes = new Router({
                         },
                         {
                             path: "/assets",
-                            name: "assets",
                             component: AssetsPage,
                             meta: {
                                 breadcrumb: true,
@@ -932,6 +1003,7 @@ const routes = new Router({
                                 {
                                     path: "/",
                                     component: AssetList,
+                                    name: "assets",
                                     children: [
                                         {
                                             path: "/asset-create",
@@ -942,6 +1014,34 @@ const routes = new Router({
                                             path: "/asset-edit/:id",
                                             name: "asset-edit",
                                             component: AssetEdit
+                                        }
+                                    ]
+                                },
+
+                            ]
+                        },
+                        {
+                            path: "/jobs",
+                            component: JobsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Jobs",
+                            },
+                            children: [
+                                {
+                                    path: "/",
+                                    component: JobList,
+                                    name: "jobs",
+                                    children: [
+                                        {
+                                            path: "/job-create",
+                                            name: "job-create",
+                                            component: JobCreate
+                                        },
+                                        {
+                                            path: "/job-edit/:id",
+                                            name: "job-edit",
+                                            component: JobEdit
                                         }
                                     ]
                                 },

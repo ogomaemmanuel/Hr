@@ -1,4 +1,5 @@
 <template>
+  <div class="modal-wrapper">
     <div ref="modal" class="modal">
 <!--        <div ref="modalBackground" class="modal-background"></div>-->
         <div ref="modalContent" :style="{'max-width': width + 'px','overflow':overflow}" class="modal-content">
@@ -11,6 +12,7 @@
             <button @click.stop="closeModal" class="modal-close is-large" aria-label="close"></button>
         </template>
     </div>
+  </div>
 </template>
 <script>
     import ModalMixin from "../../mixins/modal_mixin"
