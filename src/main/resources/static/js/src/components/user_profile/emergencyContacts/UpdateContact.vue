@@ -160,7 +160,7 @@
           :disabled="disableSubmitButton"
           @click.prevent="submit"
           :class="{'is-loading':isLoading}"
-          class="button is-primary is-rounded p-2">
+          class="button is-rounded p-2">
         Submit
       </button>
     </div>
