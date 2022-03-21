@@ -4,6 +4,7 @@ import com.ogoma.vue_starter.vue_starter.authentication.CustomUserDetails;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.EmergencyContact;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.PasswordReset;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.models.FamilyMemberModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.EmergencyContactRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmergencyContactModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
@@ -41,6 +42,7 @@ public class UsersServiceImp implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final PasswordResetRepository passwordResetRepository;
     private final ReportGenerator reportGenerator;
+    private final FamilyMemberService memberService;
 
     @Autowired
     public UsersServiceImp(UsersRepository usersRepository,
@@ -48,14 +50,15 @@ public class UsersServiceImp implements UserService {
                            EmergencyContactRepository contactRepository,
                            PasswordResetRepository passwordResetRepository,
                            ReportGenerator reportGenerator,
-                           ApplicationEventPublisher applicationEventPublisher) {
+                           ApplicationEventPublisher applicationEventPublisher,
+                           FamilyMemberService memberService) {
         this.usersRepository = usersRepository;
         this.passwordResetRepository = passwordResetRepository;
         this.reportGenerator = reportGenerator;
         this.passwordEncoder = passwordEncoder;
         this.contactRepository = contactRepository;
-
         this.applicationEventPublisher = applicationEventPublisher;
+        this.memberService = memberService;
     }
 
     public User getUserByEmail(String email) {
@@ -212,5 +215,15 @@ public class UsersServiceImp implements UserService {
 
     public List<Map<String,String>> getEmergencyContacts(Long userId){
         return contactRepository.findAllContactsByUserId(userId);
+    }
+
+    @Override
+    public String saveFamilyMembers(FamilyMemberModel model){
+        return memberService.addFamilyMembers(model);
+    }
+
+    @Override
+    public String updateFamilyMember(FamilyMemberModel.Member member){
+        return memberService.updateMember(member);
     }
 }

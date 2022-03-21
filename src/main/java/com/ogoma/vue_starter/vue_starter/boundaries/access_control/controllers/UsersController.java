@@ -1,9 +1,12 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.controllers;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.models.FamilyMemberModel;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.FamilyMemberRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.services.UserService;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmergencyContactModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
+import com.ogoma.vue_starter.vue_starter.models.ResponseModel;
 import com.ogoma.vue_starter.vue_starter.models.requests.PagedDataRequest;
 import com.ogoma.vue_starter.vue_starter.repositories.FamilyRelationshipRepository;
 import com.ogoma.vue_starter.vue_starter.repositories.MaritalStatusRepository;
@@ -29,11 +32,13 @@ public class UsersController {
     private UserService userService;
     private MaritalStatusRepository maritalStatusRepository;
     private FamilyRelationshipRepository relationshipRepository;
+    private FamilyMemberRepository memberRepository;
     @Autowired
-    public UsersController(UserService userService,MaritalStatusRepository maritalStatusRepository,FamilyRelationshipRepository relationshipRepository) {
+    public UsersController(UserService userService,MaritalStatusRepository maritalStatusRepository,FamilyRelationshipRepository relationshipRepository,FamilyMemberRepository memberRepository) {
         this.userService = userService;
         this.maritalStatusRepository = maritalStatusRepository;
         this.relationshipRepository = relationshipRepository;
+        this.memberRepository = memberRepository;
     }
 
     //    @RequestMapping(value = "api/users", method = RequestMethod.GET)
@@ -69,6 +74,41 @@ public class UsersController {
     public ResponseEntity<?> updateUser(@PathVariable("id") Long id, @Valid @RequestBody EmployeeCreateModel.BasicInfo basicInfo) {
         Optional<User> user = this.userService.updateUser(id, basicInfo);
         return ResponseEntity.of(user);
+    }
+
+    @PostMapping(value = "api/users/family-members/new")
+    public ResponseEntity<?> createFamilyMembers(@RequestBody @Valid FamilyMemberModel model){
+        Map<String,String> resp = new HashMap<>();
+        String message = userService.saveFamilyMembers(model);
+
+        if("members created".equalsIgnoreCase(message)){
+            resp.put("msg", model.getMembers().size() +" family members created successfully");
+            resp.put("status", "00");
+        }else {
+            resp.put("msg", message +" already exists as a relative");
+            resp.put("status", "01");
+        }
+        return ResponseEntity.ok(resp);
+    }
+
+    @PostMapping(value = "api/users/family-members/update")
+    public ResponseEntity<?> updateFamilyMember(@RequestBody @Valid FamilyMemberModel.Member model){
+        Map<String,String> resp = new HashMap<>();
+        String message = userService.updateFamilyMember(model);
+
+        if("member updated".equalsIgnoreCase(message)){
+            resp.put("msg", "Family member updated successfully");
+            resp.put("status", "00");
+        }else {
+            resp.put("msg", message +" already exists as a relative");
+            resp.put("status", "01");
+        }
+        return ResponseEntity.ok(resp);
+    }
+
+    @GetMapping("api/users/family-members/{userId}")
+    public ResponseEntity<?> getFamilyMembers(@PathVariable Long userId){
+        return ResponseEntity.ok(memberRepository.findByUserId(userId));
     }
 
     @RequestMapping(value = "api/users/reports", method = RequestMethod.GET)
