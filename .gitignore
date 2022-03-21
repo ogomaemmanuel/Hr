@@ -37,3 +37,4 @@ src/main/resources/application.properties
 src/main/resources/message.properties
 
 logs
+logs/logfile.txt
