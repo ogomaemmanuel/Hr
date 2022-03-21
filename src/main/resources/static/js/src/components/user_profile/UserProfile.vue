@@ -143,7 +143,7 @@
         </div>
       </div>
       <div class="column">
-        <InfoTemplate></InfoTemplate>
+        <InfoTemplate :user-id="employeeId"></InfoTemplate>
       </div>
     </div>
     <ProfilePhotoPreview

@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.access_control.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User;
+import com.ogoma.vue_starter.vue_starter.boundaries.access_control.models.FamilyMemberModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmergencyContactModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.models.EmployeeCreateModel;
 import com.ogoma.vue_starter.vue_starter.boundaries.user_profile.models.PasswordUpdateRequest;
@@ -42,6 +43,10 @@ public interface UserService {
     String updateEmergencyContact(EmergencyContactModel model);
 
     List<Map<String,String>> getEmergencyContacts(Long userId);
+
+    String saveFamilyMembers(FamilyMemberModel model);
+
+    String updateFamilyMember(FamilyMemberModel.Member member);
 
     ByteArrayOutputStream report() throws Exception;
 }
