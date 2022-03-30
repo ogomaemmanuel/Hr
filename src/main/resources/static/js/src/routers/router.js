@@ -110,6 +110,7 @@ const ProjectDetails = () => import("../components/project_management/projects/P
 const TasksPage = () => import("../components/project_management/tasks/TasksPage")
 
 const SettingsPage = () => import("../components/settings/Settings")
+const CompanySetting = () => import("../components/settings/company/CompanyDetailsForm")
 
 
 const TaxPage = () => import("../components/accounting/taxes/TaxPage")
@@ -990,7 +991,17 @@ const routes = new Router({
                                 breadcrumb: true,
                                 title: "Settings",
                             },
-                            children: []
+                            children: [
+                                {
+                                    path: "/settings/company",
+                                    name: "companySettings",
+                                    component: CompanySetting,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Company",
+                                    },
+                                }
+                            ]
                         },
                         {
                             path: "/assets",
