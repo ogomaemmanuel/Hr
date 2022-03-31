@@ -146,28 +146,28 @@
             </div>
           </div>
         </div>
-<!--        <div class="column">-->
-<!--          <div class="field">-->
-<!--            <label class="label ">Marital Status<span><sup>*</sup></span></label>-->
-<!--            <div class="control">-->
-<!--              <Select-->
-<!--                  class="form-control is-large w-full"-->
-<!--                  v-model="companyDetails.maritalStatusId"-->
-<!--                  required-->
-<!--                  placeholder="Select Status"-->
-<!--              >-->
-<!--                <Option v-for="mStatus in maritalStatuses"-->
-<!--                        :value="mStatus.id"-->
-<!--                        :label="mStatus.name"-->
-<!--                        :key="mStatus.id" class="form-control">-->
-<!--                </Option>-->
-<!--              </Select>-->
-<!--              <span class="mb-2 has-text-danger" v-if="errors['name']">-->
-<!--                    {{ errors['name'][0] }}-->
-<!--                  </span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+        <!--        <div class="column">-->
+        <!--          <div class="field">-->
+        <!--            <label class="label ">Marital Status<span><sup>*</sup></span></label>-->
+        <!--            <div class="control">-->
+        <!--              <Select-->
+        <!--                  class="form-control is-large w-full"-->
+        <!--                  v-model="companyDetails.maritalStatusId"-->
+        <!--                  required-->
+        <!--                  placeholder="Select Status"-->
+        <!--              >-->
+        <!--                <Option v-for="mStatus in maritalStatuses"-->
+        <!--                        :value="mStatus.id"-->
+        <!--                        :label="mStatus.name"-->
+        <!--                        :key="mStatus.id" class="form-control">-->
+        <!--                </Option>-->
+        <!--              </Select>-->
+        <!--              <span class="mb-2 has-text-danger" v-if="errors['name']">-->
+        <!--                    {{ errors['name'][0] }}-->
+        <!--                  </span>-->
+        <!--            </div>-->
+        <!--          </div>-->
+        <!--        </div>-->
       </div>
       <div class="flex justify-end">
         <button
@@ -215,21 +215,22 @@ export default {
     this.getDetails();
   },
   computed: {
-    disableSubmitButton(){
+    disableSubmitButton() {
+      // return false;
       let vm = this.companyDetails;
-      return vm.name.length <= 0 || vm.websiteUrl.length <= 0 ||vm.registrationNo.length <= 0
-          || vm.dateEstablished.length <= 0 || vm.businessDescription.length <= 0 ||vm.businessEntityType.length <= 0
+      return vm.name.length <= 0 || vm.websiteUrl.length <= 0 || vm.registrationNo.length <= 0
+          || vm.dateEstablished.toString().length <= 0 || vm.businessDescription.length <= 0 || vm.businessEntityType.length <= 0
           || vm.stateOfIncorporation.length <= 0 || vm.email.length <= 0 || this.isLoading
     }
   },
   methods: {
-    getDetails(){
+    getDetails() {
       let vm = this;
       axios.get(`/api/company-details`).then(resp => {
-        vm.companyDetails = resp.data;
+        vm.companyDetails = {...vm.companyDetails, ...resp.data};
       })
     },
-    submit(){
+    submit() {
       let vm = this;
       vm.isLoading = true;
       axios.post(`/api/company-details/update`,
@@ -246,7 +247,7 @@ export default {
         if (error.response.status === 400) {
           vm.isLoading = false;
           this.errors = error.response.data;
-        }else{
+        } else {
           vm.isLoading = false;
           Message.error("Something went wrong. Contact Admin");
         }
