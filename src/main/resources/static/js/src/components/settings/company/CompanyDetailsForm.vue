@@ -192,21 +192,21 @@ export default {
     this.getDetails();
   },
   computed: {
-    disableSubmitButton(){
+    disableSubmitButton() {
       let vm = this.companyDetails;
-      return vm.name.length <= 0 || vm.websiteUrl.length <= 0 ||vm.registrationNo.length <= 0
-          || vm.dateEstablished.length <= 0 || vm.businessDescription.length <= 0 ||vm.businessEntityType.length <= 0
+      return vm.name.length <= 0 || vm.websiteUrl.length <= 0 || vm.registrationNo.length <= 0
+          || vm.dateEstablished.toString().length <= 0 || vm.businessDescription.length <= 0 || vm.businessEntityType.length <= 0
           || vm.stateOfIncorporation.length <= 0 || vm.email.length <= 0 || this.isLoading
     }
   },
   methods: {
-    getDetails(){
+    getDetails() {
       let vm = this;
       axios.get(`/api/settings/company`).then(resp => {
-        vm.companyDetails = resp.data;
+        vm.companyDetails = {...vm.companyDetails, ...resp.data};
       })
     },
-    submit(){
+    submit() {
       let vm = this;
       vm.isLoading = true;
       axios.post(`/api/settings/company/update`,
@@ -222,7 +222,7 @@ export default {
         if (error.response.status === 400) {
           vm.isLoading = false;
           this.errors = error.response.data;
-        }else{
+        } else {
           vm.isLoading = false;
           Message.error("Something went wrong. Contact Admin");
         }
