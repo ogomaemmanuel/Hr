@@ -146,28 +146,6 @@
             </div>
           </div>
         </div>
-<!--        <div class="column">-->
-<!--          <div class="field">-->
-<!--            <label class="label ">Marital Status<span><sup>*</sup></span></label>-->
-<!--            <div class="control">-->
-<!--              <Select-->
-<!--                  class="form-control is-large w-full"-->
-<!--                  v-model="companyDetails.maritalStatusId"-->
-<!--                  required-->
-<!--                  placeholder="Select Status"-->
-<!--              >-->
-<!--                <Option v-for="mStatus in maritalStatuses"-->
-<!--                        :value="mStatus.id"-->
-<!--                        :label="mStatus.name"-->
-<!--                        :key="mStatus.id" class="form-control">-->
-<!--                </Option>-->
-<!--              </Select>-->
-<!--              <span class="mb-2 has-text-danger" v-if="errors['name']">-->
-<!--                    {{ errors['name'][0] }}-->
-<!--                  </span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
       </div>
       <div class="flex justify-end">
         <button
@@ -207,8 +185,7 @@ export default {
         stateOfIncorporation: "",
         email: "",
       },
-      isLoading: false,
-      maritalStatuses: []
+      isLoading: false
     }
   },
   created() {
@@ -225,18 +202,17 @@ export default {
   methods: {
     getDetails(){
       let vm = this;
-      axios.get(`/api/company-details`).then(resp => {
+      axios.get(`/api/settings/company`).then(resp => {
         vm.companyDetails = resp.data;
       })
     },
     submit(){
       let vm = this;
       vm.isLoading = true;
-      axios.post(`/api/company-details/update`,
+      axios.post(`/api/settings/company/update`,
           vm.companyDetails).then(resp => {
         vm.isLoading = false;
         if (resp.data.status === "00") {
-          this.$emit("updatedDetails");
           Message.success(resp.data.msg);
         } else {
           Message.error(resp.data.msg);

@@ -7,6 +7,8 @@ import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.
 import com.ogoma.vue_starter.vue_starter.boundaries.access_control.repositories.UsersRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.banks.entities.Bank;
 import com.ogoma.vue_starter.vue_starter.boundaries.banks.repositories.BanksRepository;
+import com.ogoma.vue_starter.vue_starter.boundaries.company.entities.NotificationSetting;
+import com.ogoma.vue_starter.vue_starter.boundaries.company.repositories.NotificationSettingRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.TerminationReason;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.TerminationReasonsRepository;
 import com.ogoma.vue_starter.vue_starter.entities.FamilyRelationship;
@@ -34,14 +36,16 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final UsersRepository usersRepository;
     private final TerminationReasonsRepository terminationReasonsRepository;
     private final BanksRepository banksRepository;
+    private final NotificationSettingRepository notificationSettingRepository;
 
-    public DatabaseSeeder(MaritalStatusRepository maritalStatusRepository, FamilyRelationshipRepository familyRelationshipRepository, PermissionsRepository permissionsRepository, UsersRepository usersRepository, TerminationReasonsRepository terminationReasonsRepository, BanksRepository banksRepository) {
+    public DatabaseSeeder(NotificationSettingRepository notificationSettingRepository, MaritalStatusRepository maritalStatusRepository, FamilyRelationshipRepository familyRelationshipRepository, PermissionsRepository permissionsRepository, UsersRepository usersRepository, TerminationReasonsRepository terminationReasonsRepository, BanksRepository banksRepository) {
         this.maritalStatusRepository = maritalStatusRepository;
         this.familyRelationshipRepository = familyRelationshipRepository;
         this.permissionsRepository = permissionsRepository;
         this.usersRepository = usersRepository;
         this.terminationReasonsRepository = terminationReasonsRepository;
         this.banksRepository = banksRepository;
+        this.notificationSettingRepository = notificationSettingRepository;
     }
 
     @Override
@@ -52,6 +56,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         seedPermissions();
         seedTerminationReasons();
         seedBanks();
+        seedNotificationSettings();
     }
 
     public void seedUsers() {
@@ -140,6 +145,19 @@ public class DatabaseSeeder implements CommandLineRunner {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void seedNotificationSettings() {
+        if (this.notificationSettingRepository.count() == 0) {
+            List<NotificationSetting> permissionList = new ArrayList<>();
+            permissionList.add(new NotificationSetting("Employees", false));
+            permissionList.add(new NotificationSetting("Holidays", true));
+            permissionList.add(new NotificationSetting("Leaves", true));
+            permissionList.add(new NotificationSetting("Events", true));
+            permissionList.add(new NotificationSetting("Chat", true));
+            permissionList.add(new NotificationSetting("Jobs", false));
+            this.notificationSettingRepository.saveAll(permissionList);
         }
     }
 }
