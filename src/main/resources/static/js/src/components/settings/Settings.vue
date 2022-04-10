@@ -32,12 +32,12 @@
                             </router-link>
                         </li>
                         <li>
-                            <router-link to="/permissions">
+                            <router-link to="/settings/email">
                                 <span>Email Settings</span>
                             </router-link>
                         </li>
                         <li>
-                            <router-link to="/permissions">
+                            <router-link to="/settings/invoice">
                                 <span>Invoice Settings</span>
                             </router-link>
                         </li>
@@ -47,7 +47,7 @@
                             </router-link>
                         </li>
                         <li>
-                            <router-link to="/permissions">
+                            <router-link to="/settings/notifications">
                                 <span>Notifications</span>
                             </router-link>
                         </li>
