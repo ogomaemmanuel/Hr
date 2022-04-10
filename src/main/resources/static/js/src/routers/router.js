@@ -111,6 +111,9 @@ const TasksPage = () => import("../components/project_management/tasks/TasksPage
 
 const SettingsPage = () => import("../components/settings/Settings")
 const CompanySetting = () => import("../components/settings/company/CompanyDetailsForm")
+const EmailSetting = () => import("../components/settings/email/EmailSettingsForm")
+const NotificationSetting = () => import("../components/settings/notifications/NotificationsSettingsForm")
+const InvoiceSetting = () => import("../components/settings/invoice/InvoiceSettingsForm")
 
 
 const TaxPage = () => import("../components/accounting/taxes/TaxPage")
@@ -999,6 +1002,33 @@ const routes = new Router({
                                     meta: {
                                         breadcrumb: true,
                                         title: "Company",
+                                    },
+                                },
+                                {
+                                    path: "/settings/email",
+                                    name: "emailSettings",
+                                    component: EmailSetting,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Email",
+                                    },
+                                },
+                                {
+                                    path: "/settings/notifications",
+                                    name: "notificationSettings",
+                                    component: NotificationSetting,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Notifications",
+                                    },
+                                },
+                                {
+                                    path: "/settings/invoice",
+                                    name: "invoiceSettings",
+                                    component: InvoiceSetting,
+                                    meta: {
+                                        breadcrumb: true,
+                                        title: "Invoice",
                                     },
                                 }
                             ]

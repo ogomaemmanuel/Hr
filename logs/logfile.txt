@@ -27,3 +27,185 @@
 2022-04-10 11:10:25.006  INFO 8780 --- [MessageBroker-5] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 5 total, 0 closed abnormally (0 connect failure, 0 send limit, 1 transport error)], stompSubProtocol[processed CONNECT(5)-CONNECTED(5)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 75], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 15], sockJsScheduler[pool size = 8, active threads = 3, queued tasks = 1, completed tasks = 173820]
 2022-04-10 11:10:50.279  WARN 8780 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=27m58s495ms183µs700ns).
 2022-04-10 11:28:10.824  INFO 8780 --- [MessageBroker-4] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 5 total, 0 closed abnormally (0 connect failure, 0 send limit, 1 transport error)], stompSubProtocol[processed CONNECT(5)-CONNECTED(5)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 75], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 15], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 2, completed tasks = 174179]
+2022-04-10 11:31:52.683  INFO 8780 --- [Thread-5] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2022-04-10 11:31:52.689  INFO 8780 --- [Thread-5] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2022-04-10 11:31:52.689  INFO 8780 --- [Thread-5] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2022-04-10 11:31:52.777  INFO 8780 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2022-04-10 11:31:52.807  INFO 8780 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2022-04-10 11:31:52.807  INFO 8780 --- [Thread-5] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2022-04-10 11:31:52.826  INFO 8780 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2022-04-10 11:31:52.827  INFO 8780 --- [Thread-5] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2022-04-10 11:31:52.860  INFO 8780 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-10 11:31:52.996  INFO 8780 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-04-10 11:31:53.084  INFO 8780 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-04-10 11:31:55.524  INFO 8780 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Starting VueStarterApplication on DESKTOP-AFC5970 with PID 8780 (C:\Users\user\projects\Hr\target\classes started by user in C:\Users\user\projects\Hr)
+2022-04-10 11:31:55.527  INFO 8780 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : The following profiles are active: development
+2022-04-10 11:31:58.374  INFO 8780 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-04-10 11:31:58.838  INFO 8780 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 464ms. Found 42 repository interfaces.
+2022-04-10 11:31:59.049  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$8302db56] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.072  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$1bb0a390] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.077  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.077  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@795fed94' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.085  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityConfig' of type [com.ogoma.vue_starter.vue_starter.config.MethodSecurityConfig$$EnhancerBySpringCGLIB$$c9074d6a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.091  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration' of type [org.springframework.security.config.annotation.method.configuration.Jsr250MetadataSourceConfiguration$$EnhancerBySpringCGLIB$$65da5e58] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.091  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'jsr250MethodSecurityMetadataSource' of type [org.springframework.security.access.annotation.Jsr250MethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.097  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.105  INFO 8780 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.hateoas.config.HateoasConfiguration' of type [org.springframework.hateoas.config.HateoasConfiguration$$EnhancerBySpringCGLIB$$2832888] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-10 11:31:59.391  INFO 8780 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 49612 (http)
+2022-04-10 11:31:59.397  INFO 8780 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-10 11:31:59.397  INFO 8780 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2022-04-10 11:31:59.442  INFO 8780 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-10 11:31:59.442  INFO 8780 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3890 ms
+2022-04-10 11:31:59.447  INFO 8780 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation should only be used on methods with parameters: org.springframework.security.web.AuthenticationEntryPoint com.ogoma.vue_starter.vue_starter.config.AppSecurityConfig.authenticationEntryPoint()
+2022-04-10 11:31:59.887  INFO 8780 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2022-04-10 11:31:59.924  INFO 8780 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2022-04-10 11:32:00.039  INFO 8780 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-10 11:32:00.263  INFO 8780 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-04-10 11:32:00.772  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Estimate
+2022-04-10 11:32:00.877  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Expense
+2022-04-10 11:32:00.893  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.Invoice
+2022-04-10 11:32:01.027  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.accounting.entities.ChartOfAccount
+2022-04-10 11:32:01.027  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Ticket
+2022-04-10 11:32:01.104  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.banks.entities.Bank
+2022-04-10 11:32:01.194  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.project_management.entities.Project
+2022-04-10 11:32:01.207  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.User
+2022-04-10 11:32:01.248  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Permission
+2022-04-10 11:32:01.282  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.hr.leave_management.entities.LeaveRequest
+2022-04-10 11:32:01.317  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.access_control.entities.Role
+2022-04-10 11:32:01.375  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee
+2022-04-10 11:32:01.427  INFO 8780 --- [restartedMain] o.h.tuple.entity.EntityMetamodel         : HHH000157: Lazy property fetching available for: com.ogoma.vue_starter.vue_starter.boundaries.hr.policy.entities.Policy
+2022-04-10 11:32:01.566  INFO 8780 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-10 11:32:01.567  INFO 8780 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-10 11:32:02.682  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientInboundChannelExecutor'
+2022-04-10 11:32:02.690  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'clientOutboundChannelExecutor'
+2022-04-10 11:32:03.498  INFO 8780 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'messageBrokerTaskScheduler'
+2022-04-10 11:32:03.533  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'brokerChannelExecutor'
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/dist/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/static/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/scss/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/photos/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/plugins/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/theme/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/fonts.googleapis.com/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/.i.pravatar.cc'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/maxcdn.bootstrapcdn.com/**'], []
+2022-04-10 11:32:03.648  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/health'], []
+2022-04-10 11:32:03.683  WARN 8780 --- [restartedMain] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-10 11:32:03.851  INFO 8780 --- [restartedMain] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2022-04-10 11:32:03.921  INFO 8780 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f161373, org.springframework.security.web.context.SecurityContextPersistenceFilter@490ff68b, org.springframework.security.web.header.HeaderWriterFilter@3211d816, org.springframework.web.filter.CorsFilter@59170ef, org.springframework.security.web.csrf.CsrfFilter@28b884c3, org.springframework.security.web.authentication.logout.LogoutFilter@9f6735e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3a1b1d5d, org.springframework.security.web.session.ConcurrentSessionFilter@64451bba, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@756246d4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4522388b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6d7ef2a3, org.springframework.security.web.session.SessionManagementFilter@83708e3, org.springframework.security.web.access.ExceptionTranslationFilter@1e967e3f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@13390a65]
+2022-04-10 11:32:03.930  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService
+2022-04-10 11:32:03.930  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'threadPoolTaskExecutor'
+2022-04-10 11:32:04.518  INFO 8780 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-04-10 11:32:04.547  INFO 8780 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2022-04-10 11:32:04.547  INFO 8780 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2022-04-10 11:32:04.547  INFO 8780 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2022-04-10 11:32:04.570  INFO 8780 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 49612 (http) with context path ''
+2022-04-10 11:32:04.575  INFO 8780 --- [restartedMain] c.o.v.vue_starter.VueStarterApplication  : Started VueStarterApplication in 9.922 seconds (JVM running for 855309.682)
+2022-04-10 11:32:04.709  WARN 8780 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1146, SQLState: 42S02
+2022-04-10 11:32:04.710 ERROR 8780 --- [restartedMain] o.h.engine.jdbc.spi.SqlExceptionHelper   : Table 'hr.notification_settings' doesn't exist
+2022-04-10 11:32:04.754  INFO 8780 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-10 11:32:04.780 ERROR 8780 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:782) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:763) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1213) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1202) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at com.ogoma.vue_starter.vue_starter.VueStarterApplication.main(VueStarterApplication.java:25) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+Caused by: org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:279) ~[spring-orm-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:253) ~[spring-orm-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:527) ~[spring-orm-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:61) ~[spring-tx-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:242) ~[spring-tx-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:153) ~[spring-tx-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:138) ~[spring-data-jpa-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:93) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:61) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:212) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at com.sun.proxy.$Proxy284.count(Unknown Source) ~[na:na]
+	at com.ogoma.vue_starter.vue_starter.seeders.DatabaseSeeder.seedNotificationSettings(DatabaseSeeder.java:152) ~[classes/:na]
+	at com.ogoma.vue_starter.vue_starter.seeders.DatabaseSeeder.run(DatabaseSeeder.java:59) ~[classes/:na]
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:779) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	... 10 common frames omitted
+Caused by: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:63) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:67) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:2303) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2056) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:2018) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:948) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:349) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2849) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2831) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2663) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.Loader.list(Loader.java:2658) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:506) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:400) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:219) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1414) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.doList(AbstractProducedQuery.java:1625) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.list(AbstractProducedQuery.java:1593) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.hibernate.query.internal.AbstractProducedQuery.getSingleResult(AbstractProducedQuery.java:1641) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.count(SimpleJpaRepository.java:488) ~[spring-data-jpa-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:359) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:200) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:644) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:608) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.lambda$invoke$3(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:595) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:59) ~[spring-data-commons-2.1.9.RELEASE.jar:2.1.9.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:295) ~[spring-tx-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:98) ~[spring-tx-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139) ~[spring-tx-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	... 22 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: Table 'hr.notification_settings' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.16.jar:8.0.16]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.16.jar:8.0.16]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.16.jar:8.0.16]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:955) ~[mysql-connector-java-8.0.16.jar:8.0.16]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1005) ~[mysql-connector-java-8.0.16.jar:8.0.16]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-3.2.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-3.2.0.jar:na]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:57) ~[hibernate-core-5.4.28.Final.jar:5.4.28.Final]
+	... 57 common frames omitted
+
+2022-04-10 11:32:04.787  INFO 8780 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopping...
+2022-04-10 11:32:04.787  INFO 8780 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2022-04-10 11:32:04.787  INFO 8780 --- [restartedMain] o.s.m.s.b.SimpleBrokerMessageHandler     : Stopped.
+2022-04-10 11:32:04.789  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'threadPoolTaskExecutor'
+2022-04-10 11:32:04.790  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'brokerChannelExecutor'
+2022-04-10 11:32:04.791  INFO 8780 --- [restartedMain] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2022-04-10 11:32:04.791  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2022-04-10 11:32:04.792  INFO 8780 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'clientInboundChannelExecutor'
+2022-04-10 11:32:04.824  INFO 8780 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-10 11:32:04.825  INFO 8780 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2022-04-10 11:32:04.880  INFO 8780 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
