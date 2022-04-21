@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.boundaries.performance.training;
+package com.ogoma.vue_starter.vue_starter.boundaries.performance.training.entities;
 
 import javax.persistence.*;
 import java.util.Date;

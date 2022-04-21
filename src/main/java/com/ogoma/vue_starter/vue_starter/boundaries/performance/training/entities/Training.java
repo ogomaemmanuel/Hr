@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.boundaries.performance.training;
+package com.ogoma.vue_starter.vue_starter.boundaries.performance.training.entities;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import org.hibernate.annotations.CreationTimestamp;
