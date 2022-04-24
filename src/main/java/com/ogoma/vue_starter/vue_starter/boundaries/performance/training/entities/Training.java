@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,21 +20,21 @@ public class Training {
     private Date startDate;
     private Date endDate;
     private BigDecimal cost;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "trainer_id")
     private Trainer trainer;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "training_type_id")
     private TrainingType trainingType;
     @JoinTable(name = "employee_training")
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Employee> employees;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    private  Date updatedAt;
+    private Date updatedAt;
 
     public Long getId() {
         return id;
@@ -113,5 +114,18 @@ public class Training {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public void addEmployee(Employee employee) {
+        List<Employee> employees = this.getEmployees();
+        employees = employees == null ? new ArrayList<>() : employees;
+        if (employee != null) {
+            employees.add(employee);
+        }
+    }
+    public void addEmployees(List<Employee> employees) {
+        List<Employee> attachedEmployees = this.getEmployees();
+        attachedEmployees = employees == null ? new ArrayList<>() : attachedEmployees;
+        attachedEmployees.addAll(employees);
     }
 }
