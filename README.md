@@ -49,7 +49,7 @@ To run image from docker-hub, run
 ## Road Map
 After doing basic Hr features, these will be the features we would like to add
 * Oauth2 authentication
-* Multi-tenancy
+* Multi-tenancy using k8 and helm chart
 * Bulk sms 
 * Bulk sending money/credit to employees
 * Two factor authentication
