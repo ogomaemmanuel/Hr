@@ -1,6 +1,7 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.performance.training.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -13,10 +14,15 @@ public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
+    @NotBlank
     private String email;
+    @NotBlank
     private String role;
+    @NotBlank
     private String phone;
     private String description;
     private Status status;
