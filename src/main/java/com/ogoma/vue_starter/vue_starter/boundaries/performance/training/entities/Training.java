@@ -1,5 +1,6 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.performance.training.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,7 +18,11 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date endDate;
     private BigDecimal cost;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -123,6 +128,7 @@ public class Training {
             employees.add(employee);
         }
     }
+
     public void addEmployees(List<Employee> employees) {
         List<Employee> attachedEmployees = this.getEmployees();
         attachedEmployees = employees == null ? new ArrayList<>() : attachedEmployees;
