@@ -1,6 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.attendance.entities;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -17,9 +19,14 @@ public class Attendance {
     @ManyToOne
     private Employee employee;
     private Date attendanceTime;
+    @Enumerated(EnumType.STRING)
     private Type type;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private  Date createdAt;
-    private  Date updatedAT;
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    private  Date updatedAt;
 
     public Long getId() {
         return id;
@@ -61,11 +68,11 @@ public class Attendance {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAT() {
-        return updatedAT;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdatedAT(Date updatedAT) {
-        this.updatedAT = updatedAT;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

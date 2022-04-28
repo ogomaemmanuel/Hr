@@ -3,14 +3,16 @@ package com.ogoma.vue_starter.vue_starter.boundaries.attendance.requests;
 import com.ogoma.vue_starter.vue_starter.boundaries.attendance.entities.Attendance;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.Date;
 
 public class AttendanceRequest {
     private Long employeeId;
     private Date attendanceTime;
+    @Enumerated(EnumType.STRING)
     private Attendance.Type type;
-    private  Date createdAt;
-    private  Date updatedAT;
+
 
     public Long getEmployeeId() {
         return employeeId;
@@ -36,19 +38,4 @@ public class AttendanceRequest {
         this.type = type;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAT() {
-        return updatedAT;
-    }
-
-    public void setUpdatedAT(Date updatedAT) {
-        this.updatedAT = updatedAT;
-    }
 }

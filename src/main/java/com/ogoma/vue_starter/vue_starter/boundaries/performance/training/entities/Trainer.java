@@ -1,5 +1,8 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.performance.training.entities;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -25,8 +28,13 @@ public class Trainer {
     @NotBlank
     private String phone;
     private String description;
+    @Enumerated(EnumType.STRING)
     private Status status;
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date createdAt;
+    @LastModifiedDate
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
     public Long getId() {
