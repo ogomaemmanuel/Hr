@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.performance.promotion.servi
 
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Designation;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee;
+import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities.Employee_;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.DesignationRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.performance.promotion.entities.Promotion;
@@ -11,10 +12,7 @@ import com.ogoma.vue_starter.vue_starter.boundaries.performance.promotion.reques
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,14 +38,19 @@ public class PromotionService {
         return promotion;
     }
 
-    public List<Promotion> getPromotionByEmployeeId(Long id) {
+    public List<Promotion> getPromotionByEmployeeId(Long employeeId) {
         List<Promotion> promotions = this.promotionsRepository.findAll(new Specification<Promotion>() {
             @Override
             public Predicate toPredicate(Root<Promotion> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                return criteriaBuilder.equal(root.get(Promotion_.ID), id);
+                root.fetch(Promotion_.EMPLOYEE, JoinType.LEFT);
+                return criteriaBuilder.equal(root.<Employee>get(Promotion_.EMPLOYEE).<Long>get(Employee_.ID), employeeId);
             }
         });
         return promotions;
+    }
+    public Optional<Promotion> getPromotionById(Long id){
+        Optional<Promotion> promotion = this.promotionsRepository.findById(id);
+        return  promotion;
     }
 
     public List<Promotion> getPromotions() {
