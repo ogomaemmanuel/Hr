@@ -29,7 +29,7 @@ public class ChatMessage {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private ChatGroup chatGroup;
 
     public Long getId() {
