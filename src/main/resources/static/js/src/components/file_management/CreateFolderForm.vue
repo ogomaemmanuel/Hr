@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      isLoading: false,
+      loading: false,
       folder: {
         name: "",
         type: "FOLDER",
