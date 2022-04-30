@@ -1,10 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.file_management.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "file_metadata")
-public class FileMetadata {
+public class FileMetadata implements Serializable {
     @Id
     @OneToOne
     @MapsId

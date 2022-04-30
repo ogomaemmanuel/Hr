@@ -4,12 +4,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "files")
-public class File {
+public class File implements Serializable {
     public enum Type {
         FOLDER, FILE
     }
@@ -27,6 +28,8 @@ public class File {
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @OneToOne(mappedBy = FileMetadata_.FILE,fetch = FetchType.LAZY)
+    private FileMetadata fileMetadata;
 
     public Long getId() {
         return id;
@@ -78,5 +81,13 @@ public class File {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public FileMetadata getFileMetadata() {
+        return fileMetadata;
+    }
+
+    public void setFileMetadata(FileMetadata fileMetadata) {
+        this.fileMetadata = fileMetadata;
     }
 }
