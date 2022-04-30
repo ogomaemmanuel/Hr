@@ -3,19 +3,19 @@
     <div class="flex justify-end pb-2">
       <div class="columns">
         <div class="column">
-          <button class="button is-small is-rounded">
+          <button @click="showFileCreateForm=true" class="button is-rounded">
 					 <span class="icon">
                      <i class="fa fa-upload"></i>
                      </span>
             <span>Upload File</span>
           </button>
-          <button @click="showCreateFolderForm=true" class="button is-small is-rounded">
+          <button @click="showCreateFolderForm=true" class="button is-rounded">
 					<span class="icon">
 						<i class="fa fa-folder-open"></i>
 					</span>
             <span>Create Folder</span>
           </button>
-          <button class="button is-small is-rounded">
+          <button class="button is-rounded">
 					<span class="icon">
 						<i class="fa fa-trash"></i>
 					</span>
@@ -48,20 +48,31 @@
       </tbody>
     </table>
     <CreateFolderForm
+        @createSuccess="refreshFiles"
+        @modalClosed="showCreateFolderForm=false"
         :parentId="currentFolderId"
         v-if="showCreateFolderForm">
     </CreateFolderForm>
+    <FileCreateForm
+        @modalClosed="showFileCreateForm=false"
+        v-if="showFileCreateForm">
+    </FileCreateForm>
   </div>
 </template>
 <script>
 import CreateFolderForm from "./CreateFolderForm";
+import FileCreateForm from "./FileCreateForm";
 
 export default {
-  components: {CreateFolderForm},
+  components: {
+    CreateFolderForm,
+    FileCreateForm
+  },
   data() {
     return {
       currentFolderId: null,
       showCreateFolderForm: false,
+      showFileCreateForm: false,
       files: []
     }
   },
@@ -82,8 +93,12 @@ export default {
     getFileType(file) {
       return file.type.toLowerCase();
     },
+    refreshFiles() {
+      this.showCreateFolderForm = false;
+      this.getFiles();
+    },
     changeParentFolder(file) {
-      if(file.type=="FOLDER") {
+      if (file.type == "FOLDER") {
         let vm = this;
         this.currentFolderId = file.id;
         this.$nextTick(() => {

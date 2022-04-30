@@ -1,5 +1,5 @@
 <template>
-  <ModalTemplate>
+  <ModalTemplate @modalClosed="$emit('modalClosed')">
     <div slot="modal-content">
       <form>
         <div class="has-text-centered m-3">
@@ -62,6 +62,7 @@ export default {
       this.folder.parentId = this.parentId;
       axios.post("/api/files", this.folder).then(resp => {
         Message.success("folder created")
+        this.$emit("createSuccess");
       }, error => {
 
       })
