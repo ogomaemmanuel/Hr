@@ -25,14 +25,15 @@ public class AttendanceController {
         List<Attendance> attendanceList = this.attendanceService.getAttendances();
         return ResponseEntity.ok(attendanceList);
     }
+
     @GetMapping(value = "employee/{employeeId}")
-    public ResponseEntity<?> getEmployeeAttendances(@PathVariable Long employeeId){
-      List<Attendance> attendances=
-              this.attendanceService.getAttendanceByEmployeeId(employeeId);
-      return ResponseEntity.ok(attendances);
+    public ResponseEntity<?> getEmployeeAttendances(@PathVariable Long employeeId) {
+        List<Attendance> attendances =
+                this.attendanceService.getAttendanceByEmployeeId(employeeId);
+        return ResponseEntity.ok(attendances);
     }
 
-    @GetMapping(value = "{/id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<?> getAttendanceById(@PathVariable Long id) {
         Optional<Attendance> attendance = this.attendanceService.getAttendanceById(id);
         return ResponseEntity.of(attendance);
@@ -44,11 +45,11 @@ public class AttendanceController {
         return ResponseEntity.ok(attendance);
     }
 
-    @PutMapping
-    public ResponseEntity<?> updateAttendance(Long id, @RequestBody @Valid AttendanceRequest attendanceRequest){
-       Optional<Attendance>  attendance=
-               this.attendanceService.updateAttendance(id, attendanceRequest);
-       return  ResponseEntity.of(attendance);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> updateAttendance(@PathVariable Long id, @RequestBody @Valid AttendanceRequest attendanceRequest) {
+        Optional<Attendance> attendance =
+                this.attendanceService.updateAttendance(id, attendanceRequest);
+        return ResponseEntity.of(attendance);
     }
 
 

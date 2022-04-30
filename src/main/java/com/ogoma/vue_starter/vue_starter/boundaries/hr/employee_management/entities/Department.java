@@ -20,6 +20,12 @@ public class Department extends BaseEntity {
     private Long id;
     @NotBlank(message = "Name is required")
     private String name;
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private Department parent;
+    @OneToOne
+    @MapsId
+    private Employee manager;
+
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date createdAt;
@@ -58,5 +64,21 @@ public class Department extends BaseEntity {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Department getParent() {
+        return parent;
+    }
+
+    public void setParent(Department parent) {
+        this.parent = parent;
+    }
+
+    public Employee getManager() {
+        return manager;
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
     }
 }
