@@ -20,6 +20,7 @@ public class FilesService {
     public File createFile(FileCreateRequest fileCreateRequest) throws Exception {
         File file = new File();
         mapToEntity(fileCreateRequest, file);
+        this.fileRepository.save(file);
         return file;
     }
 
@@ -40,6 +41,7 @@ public class FilesService {
         file.ifPresent(fi -> {
             try {
                 mapToEntity(fileCreateRequest, fi);
+                this.fileRepository.save(fi);
             } catch (Exception e) {
                 e.printStackTrace();
             }

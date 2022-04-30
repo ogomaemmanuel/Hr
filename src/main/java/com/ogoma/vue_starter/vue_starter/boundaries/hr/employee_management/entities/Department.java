@@ -23,9 +23,7 @@ public class Department extends BaseEntity implements Serializable {
     private String name;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Department parent;
-    @OneToOne
-    @MapsId
-    private Employee manager;
+
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -75,11 +73,4 @@ public class Department extends BaseEntity implements Serializable {
         this.parent = parent;
     }
 
-    public Employee getManager() {
-        return manager;
-    }
-
-    public void setManager(Employee manager) {
-        this.manager = manager;
-    }
 }

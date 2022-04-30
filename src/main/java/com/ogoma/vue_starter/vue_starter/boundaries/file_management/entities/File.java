@@ -18,6 +18,7 @@ public class File implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private double size;
     @Enumerated(EnumType.STRING)
     private Type type;
     @ManyToOne(fetch = FetchType.LAZY)
@@ -89,5 +90,13 @@ public class File implements Serializable {
 
     public void setFileMetadata(FileMetadata fileMetadata) {
         this.fileMetadata = fileMetadata;
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,7 @@ public class FilesController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createFile(FileCreateRequest fileCreateRequest) throws Exception {
+    public ResponseEntity<?> createFile(@RequestBody @Valid FileCreateRequest fileCreateRequest) throws Exception {
         File file = this.filesService.createFile(fileCreateRequest);
         return ResponseEntity.ok(file);
     }
