@@ -37,7 +37,8 @@
       </thead>
       <tbody>
       <tr v-for="file in files">
-        <td><i :class="`fa-${getFileType(file)}-o`" class="fa  has-text-primary mr-2"></i>{{ file.name }}
+        <td @click.stop="changeParentFolder(file)"><i :class="`fa-${getFileType(file)}-o`"
+                                                      class="fa  mr-2"></i>{{ file.name }}
         </td>
         <td>{{ file.size }}</td>
         <td>{{ file.createBy }}</td>
@@ -46,7 +47,10 @@
       </tr>
       </tbody>
     </table>
-    <CreateFolderForm v-if="showCreateFolderForm"></CreateFolderForm>
+    <CreateFolderForm
+        :parentId="currentFolderId"
+        v-if="showCreateFolderForm">
+    </CreateFolderForm>
   </div>
 </template>
 <script>
@@ -56,6 +60,7 @@ export default {
   components: {CreateFolderForm},
   data() {
     return {
+      currentFolderId: null,
       showCreateFolderForm: false,
       files: []
     }
@@ -65,9 +70,10 @@ export default {
   },
   methods: {
     getFiles() {
+      let vm = this;
       return axios.get("/api/files/", {
         params: {
-          parent: null
+          parentId: vm.currentFolderId
         }
       }).then(resp => {
         this.files = resp.data;
@@ -75,6 +81,15 @@ export default {
     },
     getFileType(file) {
       return file.type.toLowerCase();
+    },
+    changeParentFolder(file) {
+      if(file.type=="FOLDER") {
+        let vm = this;
+        this.currentFolderId = file.id;
+        this.$nextTick(() => {
+          vm.getFiles();
+        })
+      }
     }
   },
 

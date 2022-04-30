@@ -1,9 +1,11 @@
 package com.ogoma.vue_starter.vue_starter.boundaries.file_management.services;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.file_management.entities.File;
+import com.ogoma.vue_starter.vue_starter.boundaries.file_management.entities.File_;
 import com.ogoma.vue_starter.vue_starter.boundaries.file_management.repositories.FileRepository;
 import com.ogoma.vue_starter.vue_starter.boundaries.file_management.requests.FileCreateRequest;
 import com.ogoma.vue_starter.vue_starter.boundaries.file_management.query_filters.FileQueryFilter;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +34,7 @@ public class FilesService {
 
     public List<File> getFiles(FileQueryFilter fileQuery) {
         List<File> files =
-                this.fileRepository.findAllByParentId(fileQuery.getParentId());
+                this.fileRepository.findAllByParentId(fileQuery.getParentId(),Sort.by(File_.TYPE).descending().and(Sort.by( File_.CREATED_AT)));
         return files;
     }
 
@@ -53,7 +55,7 @@ public class FilesService {
         file.setName(fileCreateRequest.getName());
         file.setType(fileCreateRequest.getType());
         if (fileCreateRequest.getParentId() != null) {
-            File parent = this.fileRepository.getOne(fileCreateRequest.getParentId());
+            File parent = this.fileRepository.findById(fileCreateRequest.getParentId()).orElse(null);
             file.setParent(parent);
         }
     }

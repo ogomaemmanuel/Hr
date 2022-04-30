@@ -42,17 +42,24 @@ export default {
   components: {
     ModalTemplate
   },
+  props: {
+    parentId: {
+      default: null
+    }
+  },
   data() {
     return {
       isLoading: false,
       folder: {
         name: "",
         type: "FOLDER",
+
       }
     }
   },
   methods: {
     createFolder() {
+      this.folder.parentId = this.parentId;
       axios.post("/api/files", this.folder).then(resp => {
         Message.success("folder created")
       }, error => {

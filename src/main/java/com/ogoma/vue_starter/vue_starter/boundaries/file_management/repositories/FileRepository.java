@@ -2,6 +2,7 @@ package com.ogoma.vue_starter.vue_starter.boundaries.file_management.repositorie
 
 import com.ogoma.vue_starter.vue_starter.boundaries.file_management.entities.File;
 import com.ogoma.vue_starter.vue_starter.boundaries.performance.promotion.repository.BaseRepo;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,5 +12,6 @@ public interface FileRepository extends BaseRepo<File> {
     Optional<File> findById(Long id);
 
     List<File> findAllByParentId(Long id);
+    List<File> findAllByParentId(Long id,Sort sort);
 
 }
