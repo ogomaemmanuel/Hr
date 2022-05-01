@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Table(name = "file_metadata")
 public class FileMetadata implements Serializable {
     @Id
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "file_id")
     private File file;
