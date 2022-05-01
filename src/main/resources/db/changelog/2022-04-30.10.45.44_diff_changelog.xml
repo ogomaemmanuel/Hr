@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="user (generated)" id="1651315570996-1">
+        <addColumn tableName="departments">
+            <column name="parent_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-2">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="departments" constraintName="FK63q917a0aq92i7gcw6h7f1jrv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="departments" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-3">
+        <addForeignKeyConstraint baseColumnNames="chat_group_id" baseTableName="chat_messages" constraintName="FKdjgeu89v45u4vx4uydldkfwyb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="chat_groups" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-4">
+        <addForeignKeyConstraint baseColumnNames="file_id" baseTableName="file_metadata" constraintName="FKhxsftvp813rshxc81fx6lf20q" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="files" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-5">
+        <addForeignKeyConstraint baseColumnNames="members_id" baseTableName="chat_group_members" constraintName="FKldu5l6iedk1sq9639kvr8rn8t" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-6">
+        <addForeignKeyConstraint baseColumnNames="chat_group_id" baseTableName="chat_group_members" constraintName="FKlvoe5sok23sdg7lcf8cyncj0n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="chat_groups" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-7">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="address_book_contacts" constraintName="FKoc77oiscr1rd1sgv83ddlmqyt" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-8">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="files" constraintName="FKod0go0ye9ao1yql0nj9hs0k78" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="files" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-9">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="chat_groups" constraintName="FKsm7knvk2vdobxuck5q616v16i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-10">
+        <dropColumn columnName="department_manager_id" tableName="jobs"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-11">
+        <dropColumn columnName="departments_manager_id" tableName="department_policies"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651315570996-12">
+        <dropColumn columnName="manager_id" tableName="departments"/>
+    </changeSet>
+</databaseChangeLog>

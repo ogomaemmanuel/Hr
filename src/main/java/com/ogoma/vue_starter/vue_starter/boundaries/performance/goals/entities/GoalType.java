@@ -17,6 +17,7 @@ public class GoalType {
     private Long id;
     private String name;
     private String description;
+    @Enumerated(EnumType.STRING)
     private Status status;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp

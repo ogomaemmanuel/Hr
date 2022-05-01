@@ -1,4 +1,4 @@
-package com.ogoma.vue_starter.vue_starter.boundaries.hr.employee_management.entities;
+package com.ogoma.vue_starter.vue_starter.boundaries.event_management.entities;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,8 +16,8 @@ public class Event {
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
     @Temporal(TemporalType.TIME)
-    private  Date startTime;
-
+    private Date startTime;
+    private Date endDate;
     private String venue;
 
     public Long getId() {
@@ -71,6 +71,16 @@ public class Event {
 
     public Event setVenue(String venue) {
         this.venue = venue;
+        return this;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+
+    }
+
+    public Event setEndDate(Date endDate) {
+        this.endDate = endDate;
         return this;
     }
 }

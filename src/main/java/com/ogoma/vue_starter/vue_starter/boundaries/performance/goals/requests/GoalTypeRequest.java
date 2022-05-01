@@ -2,9 +2,13 @@ package com.ogoma.vue_starter.vue_starter.boundaries.performance.goals.requests;
 
 import com.ogoma.vue_starter.vue_starter.boundaries.performance.goals.entities.GoalType;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 public class GoalTypeRequest {
     private String name;
     private String description;
+    @Enumerated(EnumType.STRING)
     private GoalType.Status status;
 
     public String getName() {

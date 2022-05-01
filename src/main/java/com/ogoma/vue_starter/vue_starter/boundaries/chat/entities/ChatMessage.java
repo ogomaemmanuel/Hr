@@ -29,6 +29,8 @@ public class ChatMessage {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date updatedAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ChatGroup chatGroup;
 
     public Long getId() {
         return id;
@@ -56,6 +58,18 @@ public class ChatMessage {
 
     public void setRecipient(User recipient) {
         this.recipient = recipient;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ChatGroup getChatGroup() {
+        return chatGroup;
+    }
+
+    public void setChatGroup(ChatGroup chatGroup) {
+        this.chatGroup = chatGroup;
     }
 
     public Date getCreatedAt() {
