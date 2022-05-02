@@ -1,0 +1,6 @@
+hr-deployment:
+  applicationName: hr-app
+  image: mudho/hr
+  port: 8080
+  replicaCount: 1
+  databaseHost: somedbhost
