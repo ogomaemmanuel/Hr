@@ -32,6 +32,8 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TaskStatus taskStatus;
 
     public Long getId() {
         return id;
@@ -103,5 +105,13 @@ public class Task {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public TaskStatus getTaskStatus() {
+        return taskStatus;
+    }
+
+    public void setTaskStatus(TaskStatus taskStatus) {
+        this.taskStatus = taskStatus;
     }
 }
