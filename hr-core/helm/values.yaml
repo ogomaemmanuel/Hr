@@ -7,8 +7,10 @@ hr_deployment:
   serviceType: NodePort  # can be NodePort or LoadBalancer,
   activeProfile: production # can be production, development, staging or demo
   databasePassword: secret
+  databaseUserName: homestead
   tiers:
     - frontend
     - backend
     - database
   databaseHost: somedbhost
+  secrets:

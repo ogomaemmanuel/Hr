@@ -3,7 +3,6 @@
 apiVersion: apps/v1 # API version
 kind: Deployment # Type of kubernetes resource
 metadata:
-  namespace: {{ .Values.hr_deployment.tenantName}}
   name: {{  $name }} # Name of the kubernetes resource
   labels:
     app: {{ .Chart.Name }} # Labels that will be applied to this resource

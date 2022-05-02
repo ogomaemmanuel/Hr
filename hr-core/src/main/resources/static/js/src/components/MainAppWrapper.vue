@@ -123,7 +123,7 @@ const PasswordResetForm = () => import("./user_profile/ChangePasswordModal")
 import LogoutForm from "./auth/LogoutForm.vue"
 import {mapActions, mapGetters} from "vuex";
 import utils from "../utils/utils";
-import firebaseUtil from "../firebase/ firebaseConfig";
+// import firebaseUtil from "../firebase/ firebaseConfig";
 import {Message} from "element-ui"
 
 let handleOutsideClick;
