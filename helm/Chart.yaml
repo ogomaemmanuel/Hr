@@ -1,7 +1,7 @@
   apiVersion: v2
-  name: Beetle-HR
+  name: hr-app
   description: Employee management application written in java and vue js
-  version: 1 # version of the chart
+  version: 1.2.3 # version of the chart
   maintainers:
     - name: Emmanuel Ogoma
       email: ogoma.emmanuel@gmail.com

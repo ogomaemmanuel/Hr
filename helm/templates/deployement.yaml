@@ -1,52 +1,55 @@
 #  https://www.callicoder.com/deploy-spring-mysql-react-nginx-kubernetes-persistent-volume-secret/
+  {{- $name := include "hr-app.fullname" -}}
 apiVersion: apps/v1 # API version
 kind: Deployment # Type of kubernetes resource
 metadata:
-  name: hr-app-deployment # Name of the kubernetes resource
+  namespace: {{ .Values.hr_deployment.tenantName}}
+  name: {{  $name }} # Name of the kubernetes resource
   labels:
-    app: hr-app # Labels that will be applied to this resource
+    app: {{ .Chart.Name }} # Labels that will be applied to this resource
     tier: frontend
     group: hr
 spec:
-  replicas: 1 # No. of replicas/pods to run in this deployment
+  replicas: {{ .Values.hr_deployment.replicaCount }} # No. of replicas/pods to run in this deployment
   selector:
     matchLabels:
-      app: hr-app-web # The deployment applies to any pods matching the specified labels
+      app: {{ .Chart.Name }}-web # The deployment applies to any pods matching the specified labels
   template: # Template for creating the pods in this deployment
     metadata:
       labels:
-        app: hr-app-web # Labels that will be applied to each Pod in this deployment
+        app: {{ .Chart.Name }}-web # Labels that will be applied to each Pod in this deployment
     spec: # Spec for the containers that will be run in the Pods
       containers:
-        - name: hr-app-web
-          image: mudho/hr
+        - name: {{ .Chart.Name }}-web
+          image: {{ .Values.hr_deployment.image}}
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080 # The port that the container exposes
+            - containerPort: {{ .Values.hr_deployment.port }} # The port that the container exposes
               name: http
               protocol: TCP
           env:
             - name: SERVER_PORT
-              value: "8080"
+              value: {{ .Values.hr_deployment.port | quote }}
             - name: SPRING_PROFILES_ACTIVE
               value: production
             - name: SPRING_DATASOURCE_PASSWORD
-              value: secret
+              value: {{ .Values.hr_deployment.databasePassword }}
             - name: SPRING_DATASOURCE_USERNAME
               value: homestead
-            - name:  "jdbc:mysql://db:3306/hr?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
+            - name: "jdbc:mysql://{{ .Values.hr_deployment.databaseHost }}/hr?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
 
 ---
 apiVersion: v1 # API version
 kind: Service  # Type of the kubernetes resource
 metadata:
-  name: hr-app # Name of the kubernetes resource// This is also the DNS name for this
+  namespace: {{ .Values.hr_deployment.tenantName }}
+  name: {{ $name }} # Name of the kubernetes resource// This is also the DNS name for this
   labels:
-    app: hr-app # Labels that will be applied to this resource
+    app: {{ .Chart.Name }} # Labels that will be applied to this resource
 spec:
-  type: NodePort # The service will be exposed by opening a Port on each node and proxying it.
+  type: {{ .Values.hr_deployment.serviceType }} # The service will be exposed by opening a Port on each node and proxying it.
   selector:
-    app: hr-app-web # The service exposes Pods with label `app=hr-app
+    app: {{ .Chart.Name }}-web # The service exposes Pods with label `app=hr-app
   ports:
     - port: 8080
       name: htpp
