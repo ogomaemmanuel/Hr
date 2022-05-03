@@ -1,5 +1,7 @@
 package com.ogoma.hr_core.boundaries.event_management.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,7 +11,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @JsonProperty("title")
     private String name;
 
     private String description;

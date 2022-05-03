@@ -15,13 +15,17 @@
       </button>
     </div>
     <div>
-      <EventCreateForm v-if="showEventCreateForm"></EventCreateForm>
+      <EventCreateForm
+          @createSuccessful="createSuccessful"
+          v-if="showEventCreateForm"></EventCreateForm>
     </div>
     <calendar-view
+        :items="events"
         :show-date="showDate"
         class="theme-default holiday-us-traditional holiday-us-official">
       <template #header="{ headerProps }">
         <calendar-view-header
+
             :header-props="headerProps"
             @input="setShowDate"/>
       </template>
@@ -57,7 +61,12 @@ export default {
       axios.get("api/events").then(resp => {
         this.events = resp.data;
       })
+    },
+    createSuccessful() {
+      this.showEventCreateForm = false;
+      this.getEvents();
     }
+
   }
 }
 </script>

@@ -21,12 +21,14 @@
         <label class="label">Start Date<span><sup>*</sup></span></label>
         <DatePicker
             class="datepicker"
+            value-format="timestamp"
             v-model="calenderEvent.startDate"
             type="datetime">
 
         </DatePicker>
         <label class="label">End Date<span><sup>*</sup></span></label>
         <DatePicker
+            value-format="timestamp"
             class="datepicker"
             v-model="calenderEvent.endDate"
             type="datetime">
@@ -70,10 +72,12 @@ export default {
     createEvent() {
       axios.post("/api/events",
           this.calenderEvent).then(resp => {
-        Message.success("Event successfully created")
+        Message.success("Event successfully created");
+        this.$emit("createSuccessful");
       }, error => {
         if (error.response.status == 400) {
           this.errors = error.response.data;
+
         }
       })
     }
