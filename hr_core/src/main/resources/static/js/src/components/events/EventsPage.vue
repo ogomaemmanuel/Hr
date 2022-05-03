@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="pb-2 flex justify-end">
-      <router-link
+      <button
+          @click.stop="showEventCreateForm=true"
           to="/holiday-create"
           tag="button"
           class="button mr-1 is-rounded">
@@ -11,7 +12,10 @@
         <span>
 					 Add Event
 				</span>
-      </router-link>
+      </button>
+    </div>
+    <div>
+      <EventCreateForm v-if="showEventCreateForm"></EventCreateForm>
     </div>
     <calendar-view
         :show-date="showDate"
@@ -19,20 +23,24 @@
       <template #header="{ headerProps }">
         <calendar-view-header
             :header-props="headerProps"
-            @input="setShowDate" />
+            @input="setShowDate"/>
       </template>
     </calendar-view>
   </div>
 </template>
 <script>
-import {CalendarView,CalendarViewHeader} from "vue-simple-calendar";
+import {CalendarView, CalendarViewHeader} from "vue-simple-calendar";
+import EventCreateForm from "./EventCreateForm";
+
 export default {
-  components:{
+  components: {
     CalendarView,
     CalendarViewHeader,
+    EventCreateForm
   },
   data() {
     return {
+      showEventCreateForm: false,
       showDate: new Date(),
       events: []
     }

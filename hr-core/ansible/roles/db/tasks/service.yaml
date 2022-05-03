@@ -1,3 +1,0 @@
-# filename: roles/mysql/tasks/service.yml
-- name: start mysql server
-  service: name="{{ mysql_service }}" state=started

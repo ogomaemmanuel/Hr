@@ -1,9 +1,0 @@
-[Unit]
-Description=HR App
-[Service]
-WorkingDirectory={{app_dir}}/target
-Restart=on-failure
-ExecStart=/bin/java -jar {{jar_file_name}}
-User={{hr_user}}
-[Install]
-WantedBy=multi-user.target

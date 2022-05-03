@@ -1,3 +1,0 @@
-- hosts: oracle_compute_one
-  roles:
-    - {role: docker}

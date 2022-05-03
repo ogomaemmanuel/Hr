@@ -1,16 +1,27 @@
 package com.ogoma.hr_core.boundaries.event_management.requests;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class EventCreateRequest {
+    @NotBlank(message = "Title is required")
+    @JsonProperty("title")
     private String name;
     private String description;
+    @NotNull(message = "Start date is required")
+//    @JsonFormat(pattern = "yyyy-MM-dd" )
     private Date startDate;
-    private  Date startTime;
-    private String venue;
+    @NotNull(message = "End date is required")
     private Date endDate;
+    private Date startTime;
+    private String venue;
+
 
     public String getName() {
         return name;

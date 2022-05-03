@@ -15,7 +15,7 @@
     </parent> -->
 
     <modules>
-        <module>hr-core</module>
+        <module>hr_core</module>
         <!-- <module>service</module> -->
         <!-- <module>webapp</module> -->
     </modules>

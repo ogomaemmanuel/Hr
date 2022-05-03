@@ -1,2 +1,0 @@
-#files that can be deployed by this role
-#Any copy, script, template or include tasks (in the role) can reference files in roles/x/{files,templates,tasks}/ (dir depends on task) without having to path them relatively or absolutely.
