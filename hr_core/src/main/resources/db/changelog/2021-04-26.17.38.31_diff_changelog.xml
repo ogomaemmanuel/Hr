@@ -1,0 +1,52 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="user (generated)" id="1619458735276-1">
+        <createTable tableName="assets">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="assetsPK"/>
+            </column>
+            <column name="condition" type="VARCHAR(255)"/>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="manufacturer" type="VARCHAR(255)"/>
+            <column name="model" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="purchase_date" type="date"/>
+            <column name="purchased_from" type="VARCHAR(255)"/>
+            <column name="serial_number" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="supplier" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="value" type="DECIMAL(19, 2)"/>
+            <column name="warranty_in_months" type="INT"/>
+            <column name="asset_user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1619458735276-2">
+        <createTable tableName="payments">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="paymentsPK"/>
+            </column>
+            <column name="amount" type="DECIMAL(19, 2)"/>
+            <column name="payment_date" type="datetime(6)"/>
+            <column name="payment_types" type="VARCHAR(255)"/>
+            <column name="client_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1619458735276-3">
+        <addColumn tableName="jobs">
+            <column name="status" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1619458735276-4">
+        <addColumn tableName="jobs">
+            <column name="type" type="integer"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1619458735276-5">
+        <addForeignKeyConstraint baseColumnNames="asset_user_id" baseTableName="assets" constraintName="FK1f99qn6iecx3hfcy2vupt6e9k" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1619458735276-6">
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="payments" constraintName="FK7q4i5uacsdt9cx0xx77nwmaso" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="clients" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

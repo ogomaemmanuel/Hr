@@ -1,0 +1,102 @@
+html{
+  background-color: #f2f2f2;
+  overflow-y: auto;
+}
+body {
+  background-color: #f2f2f2;
+  height: 100%;
+}
+.menu-list a {
+  border-radius: 2px;
+  color: #4a4a4a;
+  display: block;
+  padding: 0.5em 0.2em;
+
+}
+.menu-list li ul {
+  border-left: 0px solid #dbdbdb;
+  margin: 0rem;
+  padding-left: 0rem;
+
+  li {
+    a {
+      padding-left: 0.9rem;
+    }
+  }
+
+  //a {
+  //  &:hover {
+  //    background-color: #000000;
+  //  }
+  //}
+}
+
+.menu-list a {
+  border-radius: 2px;
+  color: #ffffff;
+  display: block;
+  //padding: 0.5em 0.75em;
+}
+
+.menu-list a:hover {
+  background-color: #000000;
+  border-left: 4px solid #1d8e72;
+  color: #FFFFFF;
+}
+
+.breadcrumb{
+  display: flex;
+  ul{
+    align-self: center;
+  }
+}
+
+.vue-portal-target {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+@import "components/MarkdownEditor";
+@import "components/Forms";
+
+//user profile page
+.user-profile-page{
+  .personal-emergency .card-content {
+    height: 420px;
+
+    .contact-detail,.personal-detail {
+      height: 35px;
+    }
+
+    .contact-header {
+      height: 40px;
+    }
+  }
+
+  .fa-pencil {
+    background-color: #f3f3f3;
+    color: #bcbcbd;
+    padding: 7px;
+    width: 30px;
+    border-radius: 15px;
+  }
+
+  .fa-pencil:hover {
+    background-color: #00d1b2;
+    color: #ffffff;
+  }
+
+  .show-top-border{
+    border-top: 2px #a9a9a9 solid;
+  }
+}

@@ -1,0 +1,71 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="USER (generated)" id="1599853469270-1">
+        <createTable tableName="clients">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="clientsPK"/>
+            </column>
+            <column name="company_name" type="VARCHAR(255)"/>
+            <column name="user_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-2">
+        <createTable tableName="employee_payroll_additions">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="employee_payroll_additionsPK"/>
+            </column>
+            <column name="amount" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-3">
+        <createTable tableName="projects">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="projectsPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="end_date" type="datetime(6)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="rate" type="DECIMAL(19, 2)"/>
+            <column name="start_date" type="datetime(6)"/>
+            <column name="client_id" type="BIGINT"/>
+            <column name="team_leader_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-4">
+        <createTable tableName="projects_project_members">
+            <column name="project_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="project_members_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-5">
+        <addUniqueConstraint columnNames="project_members_id" constraintName="UK_tixl1c3ocrylbno6jf23cvvtw" tableName="projects_project_members"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-6">
+        <addForeignKeyConstraint baseColumnNames="team_leader_id" baseTableName="projects" constraintName="FK3mu3t0kj6brpchrqqvvvi2vd2" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-7">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="projects_project_members" constraintName="FKdwia3g0srrto443b144pemubh" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projects" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-8">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employee_payroll_additions" constraintName="FKi78mf6x99k1xtecb2c478d2rx" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-9">
+        <addForeignKeyConstraint baseColumnNames="client_id" baseTableName="projects" constraintName="FKksdiyuily2f4ca2y53k07pmq" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="clients" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-10">
+        <addForeignKeyConstraint baseColumnNames="project_members_id" baseTableName="projects_project_members" constraintName="FKta2nwffyfo3lgpxjaimji7v6" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="USER (generated)" id="1599853469270-11">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="clients" constraintName="FKtiuqdledq2lybrds2k3rfqrv4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

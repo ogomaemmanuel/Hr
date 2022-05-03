@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="user (generated)" id="1651170880107-1">
+        <createTable tableName="attendance">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="attendancePK"/>
+            </column>
+            <column name="attendance_time" type="datetime(6)"/>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="employee_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651170880107-2">
+        <createTable tableName="employee_promotion">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="employee_promotionPK"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="promotion_date" type="datetime(6)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="employee_id" type="BIGINT"/>
+            <column name="from_id" type="BIGINT"/>
+            <column name="to_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651170880107-3">
+        <addColumn tableName="events">
+            <column name="end_date" type="datetime(6)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651170880107-4">
+        <addForeignKeyConstraint baseColumnNames="to_id" baseTableName="employee_promotion" constraintName="FKa2uopaqtgu5t2wq7c4h9i9k6h" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="designations" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651170880107-5">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="attendance" constraintName="FKb48lmkou5j4rvde9sr88bqgjw" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651170880107-6">
+        <addForeignKeyConstraint baseColumnNames="employee_id" baseTableName="employee_promotion" constraintName="FKdn9b6jwnt8xvcwonitbc3murp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1651170880107-7">
+        <addForeignKeyConstraint baseColumnNames="from_id" baseTableName="employee_promotion" constraintName="FKp5900m9yd2qrgu1r3ndxphxy3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="designations" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,111 @@
+<div class="card">
+    <div class="card-content">
+        <h4 class="mb-8 text-center underline uppercase">Payslip for the month of Feb 2019</h4>
+        <div class="columns">
+            <div class="column m-b-20">
+                <figure class="image is-128x128">
+                    <img  src="/images/logos/bettle_hr.png"
+                         class="inv-logo is-rounded max-h-12" alt="">
+                </figure>
+
+                <ul class="list-unstyled mb-0">
+                    <li>Dreamguy's Technologies</li>
+                    <li>3864 Quiet Valley Lane,</li>
+                    <li>Sherman Oaks, CA, 91403</li>
+                </ul>
+            </div>
+            <div class="column m-b-20">
+                <div class="flex sm:items-start lg:items-end flex-col">
+                    <div class="text-left">
+                        <h3 class="uppercase">Payslip #49029</h3>
+                        <ul class="list-unstyled">
+                            <li>Salary Month: <span>March, 2019</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column m-b-20">
+                <ul class="list-unstyled">
+                    <li><h5 class="mb-0"><strong th:text="${payslip.employee.user.fullName}">John Doe</strong></h5></li>
+                    <li><span>Designation: </span><span
+                            th:text="${payslip.employee.designation.name}">Web Designer</span></li>
+                    <li>Employee ID: FT-0009</li>
+                    <li>Joining Date: <span th:text="${#dates.format(payslip.employee.joiningDate,'dd MMM yyyy')}">1 Jan 2013</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column is-6">
+                <div>
+                    <h4 class="mb-4"><strong>Earnings</strong></h4>
+                    <table class="table min-w-full is-bordered">
+                        <tbody>
+                        <tr>
+                            <td><strong>Basic Salary</strong>
+                                <span class="float-right"
+                                      th:text="${#numbers.formatDecimal(payslip.employee.salaryAmount,3,'COMMA',2,'POINT')}">$6500
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr th:each="addition : ${payslip.payrollAdditions}">
+                            <td><strong th:text="${addition.name}">Provident Fund</strong>
+                                <span th:if="${addition.calculation.name()}=='FLAT_RATE'" class="float-right"
+                                      th:text="${addition.amount}">$0</span>
+                                <th:block th:if="${addition.calculation.name()}=='PERCENTAGE'">
+                                    <span class="float-right"
+                                          th:text="${#numbers.formatDecimal((addition.amount*payslip.employee.salaryAmount)/100,3,'COMMA',2,'POINT')}">$0
+                                    </span>
+                                </th:block>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Total Earnings</strong> <span
+                                    class="float-right"><strong th:text="${#numbers.formatDecimal(payslip.totalEarnings,3,'COMMA',2,'POINT')}">$55</strong></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="column is-6">
+                <div>
+                    <h4 class="mb-4"><strong>Deductions</strong></h4>
+                    <table class="table min-w-full is-bordered">
+                        <tbody>
+                        <tr th:each="deduction : ${payslip.payrollDeductions}">
+                            <td><strong th:text="${deduction.name}">Provident Fund</strong>
+                                <span th:if="${deduction.calculation.name()}=='FLAT_RATE'" class="float-right"
+                                      th:text="${#numbers.formatDecimal(deduction.amount,3,'COMMA',2,'POINT')}">$0</span>
+                                <th:block th:if="${deduction.calculation.name()}=='PERCENTAGE'">
+                                    <span class="float-right"
+                                          th:text="${#numbers.formatDecimal((deduction.amount*payslip.employee.salaryAmount)/100,3,'COMMA',2,'POINT')}">$0
+                                    </span>
+                                </th:block>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Deductions</strong> <span
+                                    class="float-right"><strong
+                                    th:text="${#numbers.formatDecimal(payslip.totalDeduction,3,'COMMA',2,'POINT')}">$59698</strong></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="columns">
+            <div class="column is-12">
+                <p><strong>Net Salary: <span th:text="${#numbers.formatDecimal(payslip.netSalary,3,'COMMA',2,'POINT')}">$59698</span> </strong> <span>(<span
+                        th:text="${payslip.netSalaryToWords()}">Fifty nine thousand six hundred and ninety eight only</span>.)</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

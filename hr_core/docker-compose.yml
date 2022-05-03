@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8060:8080"
+    restart: on-failure
+    environment:
+      SPRING_PROFILES_ACTIVE: "production"
+      SPRING_DATASOURCE_PASSWORD: ${DB_USER_SECRET}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+#    https://docs.docker.com/compose/compose-file/#variable-substitution
+      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/${HR_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
+
+
+
+  db:
+    image: mariadb/server
+    # restart: always
+    ports:
+      - "3301:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MARIADB_DATABASE: ${HR_SCHEMA:-hr}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD : ${DB_USER_SECRET}

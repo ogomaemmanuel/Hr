@@ -1,0 +1,6 @@
+- hosts: oracle_compute_one
+  roles:
+    - {role: db}
+    - {role: java}
+    - {role: app}
+    - {role: nginx}

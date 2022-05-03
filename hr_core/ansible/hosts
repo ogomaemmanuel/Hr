@@ -1,0 +1,6 @@
+[oracle_compute_one]
+localhost ansible_user=ogoma
+
+[myserver]
+158.111.165.5
+
