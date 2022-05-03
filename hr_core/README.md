@@ -63,4 +63,5 @@ After doing basic Hr features, these will be the features we would like to add
 * [NewHrm by bdtask ltd](https://newhrm.bdtask.com/hrmv3_demo/login)
 * [Hrm saas](https://hrm-saas.froid.works/panel/dashboard)
 * [Mambu](https://support.mambu.com/docs/linking-products-to-accounting)
+* [mostdesk](https://mostdesk.com)
 

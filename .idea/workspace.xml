@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/event_management/entities/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/event_management/entities/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/event_management/services/EventsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/event_management/services/EventsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/events/EventCreateForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/events/EventCreateForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/events/EventsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/events/EventsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/logfile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logs/logfile.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +83,7 @@
       <workItem from="1651572107520" duration="376000" />
       <workItem from="1651572552299" duration="521000" />
       <workItem from="1651573145710" duration="1464000" />
-      <workItem from="1651574917397" duration="5799000" />
+      <workItem from="1651574917397" duration="6662000" />
     </task>
     <servers />
   </component>
