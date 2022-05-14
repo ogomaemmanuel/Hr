@@ -16,6 +16,7 @@ const Register = () =>
 
 // Apps
 const EventsPage = ()=> import("../components/events/EventsPage");
+const ContactsPage = ()=> import("../components/contacts/ContactsPage");
 
 //users,user permission and roles routes go here
 const Users = () =>
@@ -235,6 +236,15 @@ const routes = new Router({
                             meta: {
                                 breadcrumb: true,
                                 title: "Events",
+                            },
+                        },
+                        {
+                            path: "/contacts",
+                            name: "contacts",
+                            component: ContactsPage,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Contacts",
                             },
                         },
                         {

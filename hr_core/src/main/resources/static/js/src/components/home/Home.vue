@@ -25,7 +25,7 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="roles">
+                    <router-link to="/contacts">
                       <span>Contacts</span>
                     </router-link>
                   </li>

@@ -70,7 +70,7 @@
 
             <figure class="image is-fullwidth navbar-link">
               <img class="is-rounded profile-image"
-                   src="https://bulma.io/images/placeholders/128x128.png">
+                   src="/images/undraw_profile_pic_ic-5-t.svg">
             </figure>
 
             <div class="navbar-dropdown is-right">
@@ -81,7 +81,7 @@
                   <figure class="media-left">
                     <p class="image is-32x32">
                       <img class="is-rounded"
-                           src="https://bulma.io/images/placeholders/128x128.png">
+                           src="/images/undraw_profile_pic_ic-5-t.svg">
                     </p>
                   </figure>
                   <div class="media-content">

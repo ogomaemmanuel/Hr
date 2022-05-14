@@ -8,7 +8,7 @@
               <div class="profile-image-wrapper ">
                 <figure class="image is-128x128 relative profile-img-wrap edit-img">
                   <img class="is-rounded"
-                       src="https://dreamguys.co.in/smarthr/orange/assets/img/profiles/avatar-02.jpg"
+                       src="/images/undraw_profile_pic_ic-5-t.svg"
                        alt="">
                   <div class="fileupload btn">
                     <span class="btn-text">edit</span>

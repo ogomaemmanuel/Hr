@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/images/undraw_profile_pic_ic-5-t.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactCreateForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactsPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/css/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/css/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/MainAppWrapper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/MainAppWrapper.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/user_profile/UserProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/user_profile/UserProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/logfile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logs/logfile.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,9 +61,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/hr_core/src/main/resources/static/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\projects\Hr\hr_core\src\main\resources\static\images" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="VueStarterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -84,6 +97,9 @@
       <workItem from="1651572552299" duration="521000" />
       <workItem from="1651573145710" duration="1464000" />
       <workItem from="1651574917397" duration="6662000" />
+      <workItem from="1651604599874" duration="8707000" />
+      <workItem from="1651914669574" duration="90000" />
+      <workItem from="1652515209440" duration="5915000" />
     </task>
     <servers />
   </component>
