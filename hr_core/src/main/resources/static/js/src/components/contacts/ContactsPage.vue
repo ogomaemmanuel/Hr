@@ -105,7 +105,7 @@ export default {
       this.$buefy.dialog.confirm({
         title: 'Delete Contact',
         message: `Are you sure want to remove <b> ${contact.email}</b>`,
-        onConfirm: () => this.removeClient(contact)
+        onConfirm: () => this.removeContact(contact)
       })
     },
     removeContact(contact) {
