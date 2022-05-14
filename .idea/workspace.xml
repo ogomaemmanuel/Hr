@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactEditForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactCreateForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactCreateForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactsPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/logfile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logs/logfile.txt" afterDir="false" />
     </list>
@@ -92,7 +94,7 @@
       <workItem from="1651574917397" duration="6662000" />
       <workItem from="1651604599874" duration="8707000" />
       <workItem from="1651914669574" duration="90000" />
-      <workItem from="1652515209440" duration="6073000" />
+      <workItem from="1652515209440" duration="11537000" />
     </task>
     <servers />
   </component>

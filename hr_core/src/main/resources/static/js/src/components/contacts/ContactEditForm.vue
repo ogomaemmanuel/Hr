@@ -3,13 +3,13 @@
     <div slot="modal-content">
       <form>
         <div class="has-text-centered m-3">
-          <h1 class="has-text-black"><b>Add Contact</b></h1>
+          <h1 class="has-text-black"><b>Update Contact</b></h1>
         </div>
         <div class="field">
           <label class="label">Name<span><sup>*</sup></span></label>
           <div class="control">
             <input
-                v-model="contact.name"
+                v-model="contactClone.name"
                 @input="clearFieldError('name')"
                 class="input"
                 type="text">
@@ -22,7 +22,7 @@
           <label class="label">Email<span><sup>*</sup></span></label>
           <div class="control">
             <input
-                v-model="contact.email"
+                v-model="contactClone.email"
                 @input="clearFieldError('email')"
                 class="input"
                 type="text">
@@ -35,7 +35,7 @@
           <label class="label">Phone No<span><sup>*</sup></span></label>
           <div class="control">
             <input
-                v-model="contact.phoneNo"
+                v-model="contactClone.phoneNo"
                 @input="clearFieldError('phoneNo')"
                 class="input"
                 type="text">
@@ -49,7 +49,7 @@
 
               :class="{'is-loading':loading}"
               :disabled="disableSubmitButton"
-              @click.prevent.stop="createContact"
+              @click.prevent.stop="updateContact"
               class="button  is-rounded"
               type="submit">Submit
           </button>
@@ -60,40 +60,54 @@
 </template>
 <script>
 import ModalTemplate from "../common/ModalTemplate";
-import common_mixin from "../../mixins/common_mixin";
 import {Message} from "element-ui"
+import common_mixin from "../../mixins/common_mixin";
 
 export default {
-  mixins: [common_mixin],
   components: {
     ModalTemplate
+  },
+  mixins: [
+    common_mixin
+  ],
+  props: {
+    contact: {
+      // type: Object,
+      required: true
+    }
   },
   data() {
     return {
       loading: false,
-      contact: {
+      contactClone: {
         email: "",
         phoneNo: "",
         name: "",
       }
     }
-
+  },
+  created() {
+    this.contactClone = {...this.contact}
+  },
+  computed: {
+    disableSubmitButton() {
+      return false
+    }
   },
   methods: {
-    createContact() {
-      axios.post("api/address-book", this.contact).then(resp => {
-        Message.success("Contact successfully created");
-        this.$emit("createSuccessful")
+    getContactById() {
+    },
+    updateContact() {
+      let vm = this;
+      axios.put(`/api/address-book/${this.contactClone.id}`,
+          this.contactClone).then(resp => {
+        Message.success("Contact successfully updated");
+        vm.$emit("updateSuccessful")
       }, error => {
         if (error.response.status == 400) {
           this.errors = error.response.data;
         }
       })
-    }
-  },
-  computed: {
-    disableSubmitButton() {
-      return false;
     }
   }
 }

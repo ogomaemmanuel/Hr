@@ -36,7 +36,7 @@
                   <p>
                     <strong>{{ contact.name }}</strong>
                     <br>
-                    <i class="fa fa-mail-forward"></i> {{ contact.email }} <i class="fa fa-phone"></i>
+                    <i class="fa fa-envelope"></i> {{ contact.email }} <i class="fa fa-phone"></i>
                     {{ contact.phoneNo }}
                   </p>
                 </div>
@@ -56,6 +56,7 @@
                     Remove
                   </b-dropdown-item>
                   <b-dropdown-item
+                      @click="setContactToEdit(contact)"
                       :disabled="false" value="edit" aria-role="listitem">
                     <!--                    <router-link :to="`/clients-edit/${client.id}`">-->
                     <span class="icon"><i class="fa fa-pencil"></i></span>
@@ -68,6 +69,9 @@
 
             <div>
               <Paginator
+                  @previousPage="goToPrevious"
+                  @nextPage="goToNext"
+                  @paginationChanged="onPaginationChanged"
                   :paginationData="pageable"
                   v-if="pageable"></Paginator>
             </div>
@@ -76,24 +80,34 @@
       </div>
     </div>
     <ContactCreateForm
+        @createSuccessful="handleContactCreatedEvent"
         @modalClosed="showCreateForm=false"
         v-if="showCreateForm"></ContactCreateForm>
+    <ContactEditForm
+        @modalClosed="showEditForm=false"
+        :contact="contactToEdit"
+        v-if="showEditForm">
+    </ContactEditForm>
   </div>
 </template>
 <script>
 import ContactCreateForm from "./ContactCreateForm";
 import Paginator from "../common/paginator/Paginator";
 import data_table_mixin from "../../mixins/data_table_mixin";
+import ContactEditForm from "./ContactEditForm";
 
 export default {
   mixins: [data_table_mixin],
   components: {
+    ContactEditForm,
     Paginator,
     ContactCreateForm
   },
   data() {
     return {
       showCreateForm: false,
+      showEditForm: false,
+      contactToEdit: {},
       contacts: []
     }
   },
@@ -115,11 +129,26 @@ export default {
           }, error => {
           })
     },
+    handleContactCreatedEvent() {
+      this.showCreateForm = false;
+      this.getContacts();
+    },
+    fetchRecords() {
+      this.getContacts();
+    },
+    setContactToEdit(contact) {
+      let vm = this;
+      this.contactToEdit = contact;
+      this.$nextTick(() => {
+        vm.showEditForm = true;
+      })
+    },
     getContacts() {
+      let vm = this;
       axios.get("/api/address-book", {
         params: {
-          pageSize: 10,
-          page: 0
+          pageSize: vm.pageSize,
+          page: vm.page
         }
       }).then(resp => {
         this.contacts = resp.data.content;
