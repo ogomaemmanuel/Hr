@@ -25,7 +25,7 @@
         <div class="card-content">
           <div class="content">
 
-            <article v-for="contact in contacts" class="media">
+            <article v-for="contact in contacts" class="media min-h-4">
               <figure class="media-left">
                 <p class="image is-64x64">
                   <img src="/images/undraw_profile_pic_ic-5-t.svg">
@@ -84,6 +84,7 @@
         @modalClosed="showCreateForm=false"
         v-if="showCreateForm"></ContactCreateForm>
     <ContactEditForm
+        @updateSuccessful="handleContactUpdateEvent"
         @modalClosed="showEditForm=false"
         :contact="contactToEdit"
         v-if="showEditForm">
@@ -131,6 +132,10 @@ export default {
     },
     handleContactCreatedEvent() {
       this.showCreateForm = false;
+      this.getContacts();
+    },
+    handleContactUpdateEvent() {
+      this.showEditForm = false;
       this.getContacts();
     },
     fetchRecords() {
