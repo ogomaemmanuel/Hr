@@ -170,6 +170,9 @@ const JobList = () => import("../components/jobs/manage_jobs/JobList")
 const JobCreate =()=> import("../components/jobs/manage_jobs/JobCreateFormModal")
 const JobEdit =()=> import("../components/jobs/manage_jobs/JobEditFormModal")
 
+
+const ChatPage =()=> import("../components/chat/ChatPage")
+
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
@@ -1114,6 +1117,11 @@ const routes = new Router({
 
                     ]
                 },
+
+                {
+                    path:"/messaging",
+                    component: ChatPage
+                }
             ]
 
 

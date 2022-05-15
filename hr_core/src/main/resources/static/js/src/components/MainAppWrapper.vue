@@ -55,9 +55,9 @@
     handler: 'hideNotifications'
   }" v-if="showNotifications"></NotificationDropDown>
           </a>
-          <a class="navbar-item">
+          <router-link to="/messaging" class="navbar-item">
             <i class="fa fa-envelope"></i>
-          </a>
+          </router-link>
           <div class="navbar-item">
             <LogoutForm></LogoutForm>
           </div>
