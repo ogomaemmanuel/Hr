@@ -57,6 +57,9 @@ const EmployeeTerminationList = () => import("../components/employee_management/
 const EmployeeTerminationEdit = () => import("../components/employee_management/termination/TerminationEditModal")
 
 
+const EmployeeAttendance = () => import("../components/attendance/EmployeeAttendancePage")
+
+
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
 const EmployeeList = () => import("../components/employee_management/employees/list/EmployeeList")
 const EmployeeCreate = () => import("../components/employee_management/employees/create/EmployeeCreateForm")
@@ -610,6 +613,10 @@ const routes = new Router({
 
 
                             ]
+                        },
+                        {
+                            path:"/employee-attendance",
+                            component: EmployeeAttendance
                         },
                         {
                             path: "/employee-terminations",

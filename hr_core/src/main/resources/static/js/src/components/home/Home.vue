@@ -85,9 +85,9 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <router-link to="/employee-attendance">
                       <span>Attendance(Employee)</span>
-                    </a>
+                    </router-link>
                   </li>
                   <li>
                     <router-link to="/overtime-requests">

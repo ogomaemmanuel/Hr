@@ -4,7 +4,7 @@
       <div class=" h-full pt-8 pr-16 pl-16">
 
         <div class="card overflow-hidden h-full rounded-t-lg">
-          <div class="card-content pt-0 pb-0 h-full pr-0">
+          <div class="card-content pt-0  h-full pr-0">
             <div class="columns h-full">
               <div class="column is-3 border-r-2 h-full pr-0">
                 <div class="conversation-header">
