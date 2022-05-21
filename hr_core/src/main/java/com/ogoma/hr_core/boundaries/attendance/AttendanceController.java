@@ -44,7 +44,11 @@ public class AttendanceController {
         Attendance attendance = this.attendanceService.createAttendance(attendanceRequest);
         return ResponseEntity.ok(attendance);
     }
-
+    @PostMapping(value = "/me")
+    public ResponseEntity<?> createAttendanceForCurrentUser(@RequestBody @Valid AttendanceRequest attendanceRequest) {
+        Attendance attendance = this.attendanceService.createAttendanceForCurrentUser(attendanceRequest);
+        return ResponseEntity.ok(attendance);
+    }
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> updateAttendance(@PathVariable Long id, @RequestBody @Valid AttendanceRequest attendanceRequest) {
         Optional<Attendance> attendance =
