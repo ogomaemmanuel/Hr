@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactEditForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/PunchINForm.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactCreateForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactCreateForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/contacts/ContactsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/AttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/AttendanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/MainAppWrapper.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/MainAppWrapper.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/EmployeeAttendancePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/EmployeeAttendancePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/common/ModalTemplate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/common/ModalTemplate.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/events/EventsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/events/EventsPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/logfile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/logs/logfile.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +38,7 @@
       <map>
         <entry key="JPA Inspector" value="false" />
         <entry key="JPA Palette" value="false" />
-        <entry key="JPA Structure" value="true" />
+        <entry key="JPA Structure" value="false" />
       </map>
     </option>
   </component>
@@ -94,7 +98,8 @@
       <workItem from="1651574917397" duration="6662000" />
       <workItem from="1651604599874" duration="8707000" />
       <workItem from="1651914669574" duration="90000" />
-      <workItem from="1652515209440" duration="11537000" />
+      <workItem from="1652515209440" duration="42195000" />
+      <workItem from="1653113447449" duration="15915000" />
     </task>
     <servers />
   </component>

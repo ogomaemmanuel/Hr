@@ -19,23 +19,29 @@
           @createSuccessful="createSuccessful"
           v-if="showEventCreateForm"></EventCreateForm>
     </div>
-    <calendar-view
-        :items="events"
-        :show-date="showDate"
-        class="theme-default holiday-us-traditional holiday-us-official">
-      <template #header="{ headerProps }">
-        <calendar-view-header
-
-            :header-props="headerProps"
-            @input="setShowDate"/>
-      </template>
-    </calendar-view>
+    <div class="flex flex-col flex-grow">
+      <calendar-view
+          :items="events"
+          :show-date="showDate"
+          class="theme-default holiday-us-traditional holiday-us-official">
+<!--        <template #header="{ headerProps }">-->
+          <calendar-view-header
+              slot="header"
+              slot-scope="t"
+              :header-props="t.headerProps"
+              @input="setShowDate"
+              />
+<!--        </template>-->
+      </calendar-view>
+    </div>
   </div>
 </template>
 <script>
-import {CalendarView, CalendarViewHeader} from "vue-simple-calendar";
+import {CalendarView,CalendarViewHeader } from "vue-simple-calendar";
 import EventCreateForm from "./EventCreateForm";
-
+import "vue-simple-calendar/static/css/default.css"
+import "vue-simple-calendar/static/css/gcal.css"
+import "vue-simple-calendar/static/css/holidays-us.css"
 export default {
   components: {
     CalendarView,
@@ -70,6 +76,6 @@ export default {
   }
 }
 </script>
-<style scoped lang="scss">
-
+<style  scoped lang="scss">
+//@import "../../../node_modules/vue-simple-calendar";
 </style>

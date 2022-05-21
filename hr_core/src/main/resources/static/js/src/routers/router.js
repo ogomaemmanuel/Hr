@@ -57,6 +57,9 @@ const EmployeeTerminationList = () => import("../components/employee_management/
 const EmployeeTerminationEdit = () => import("../components/employee_management/termination/TerminationEditModal")
 
 
+const EmployeeAttendance = () => import("../components/attendance/EmployeeAttendancePage")
+
+
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
 const EmployeeList = () => import("../components/employee_management/employees/list/EmployeeList")
 const EmployeeCreate = () => import("../components/employee_management/employees/create/EmployeeCreateForm")
@@ -169,6 +172,9 @@ const JobsPage = () => import("../components/jobs/manage_jobs/JobsPage")
 const JobList = () => import("../components/jobs/manage_jobs/JobList")
 const JobCreate =()=> import("../components/jobs/manage_jobs/JobCreateFormModal")
 const JobEdit =()=> import("../components/jobs/manage_jobs/JobEditFormModal")
+
+
+const ChatPage =()=> import("../components/chat/ChatPage")
 
 Vue.use(Router);
 const routes = new Router({
@@ -607,6 +613,10 @@ const routes = new Router({
 
 
                             ]
+                        },
+                        {
+                            path:"/employee-attendance",
+                            component: EmployeeAttendance
                         },
                         {
                             path: "/employee-terminations",
@@ -1114,6 +1124,11 @@ const routes = new Router({
 
                     ]
                 },
+
+                {
+                    path:"/messaging",
+                    component: ChatPage
+                }
             ]
 
 

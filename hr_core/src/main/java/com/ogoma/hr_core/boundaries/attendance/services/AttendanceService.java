@@ -1,10 +1,12 @@
 package com.ogoma.hr_core.boundaries.attendance.services;
 
+import com.ogoma.hr_core.authentication.CustomUserDetails;
 import com.ogoma.hr_core.boundaries.attendance.entities.Attendance;
 import com.ogoma.hr_core.boundaries.attendance.repository.AttendanceRepository;
 import com.ogoma.hr_core.boundaries.attendance.requests.AttendanceRequest;
 import com.ogoma.hr_core.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.hr_core.boundaries.hr.employee_management.repositories.EmployeeRepository;
+import com.ogoma.hr_core.utils.CustomUserDetailsProvider;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,7 +47,7 @@ public class AttendanceService {
                 this.attendanceRepository.findById(id);
         attendance.ifPresent(at -> {
             convertToEntity(at, attendanceRequest);
-
+            this.attendanceRepository.save(at);
         });
         return attendance;
     }
@@ -54,6 +56,7 @@ public class AttendanceService {
     public Attendance createAttendance(AttendanceRequest attendanceRequest) {
         Attendance attendance = new Attendance();
         convertToEntity(attendance, attendanceRequest);
+        this.attendanceRepository.save(attendance);
         return attendance;
     }
 
@@ -65,4 +68,10 @@ public class AttendanceService {
     }
 
 
+    public Attendance createAttendanceForCurrentUser(AttendanceRequest attendanceRequest) {
+        CustomUserDetailsProvider customUserDetailsProvider = new CustomUserDetailsProvider();
+        CustomUserDetails userDetails = customUserDetailsProvider.getCurrentUserDetails();
+        attendanceRequest.setEmployeeId(userDetails.getId());
+        return this.createAttendance(attendanceRequest);
+    }
 }
