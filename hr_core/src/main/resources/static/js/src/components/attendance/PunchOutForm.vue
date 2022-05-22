@@ -21,7 +21,7 @@
 
         <div class="mt-5 pb-5">
           <div class="flex flex-col items-center justify-center">
-            <i @click="punchIn" class="fa fa-sign-in fa-3x has-text-primary"></i>
+            <i @click="punchIn" class="fa fa-sign-out fa-3x has-text-primary"></i>
             <h2> Click to Punch In</h2>
           </div>
         </div>

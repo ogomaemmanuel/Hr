@@ -3,6 +3,7 @@ package com.ogoma.hr_core.boundaries.attendance;
 import com.ogoma.hr_core.boundaries.attendance.entities.Attendance;
 import com.ogoma.hr_core.boundaries.attendance.requests.AttendanceRequest;
 import com.ogoma.hr_core.boundaries.attendance.services.AttendanceService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -39,16 +40,24 @@ public class AttendanceController {
         return ResponseEntity.of(attendance);
     }
 
+    @GetMapping(value = "/today-activity")
+    public ResponseEntity<?> getAttendanceActivityToday() {
+        List<Attendance> attendancePage = this.attendanceService.todayAttendanceActivities();
+        return ResponseEntity.ok(attendancePage);
+    }
+
     @PostMapping
     public ResponseEntity<?> createAttendance(@RequestBody @Valid AttendanceRequest attendanceRequest) {
         Attendance attendance = this.attendanceService.createAttendance(attendanceRequest);
         return ResponseEntity.ok(attendance);
     }
+
     @PostMapping(value = "/me")
     public ResponseEntity<?> createAttendanceForCurrentUser(@RequestBody @Valid AttendanceRequest attendanceRequest) {
         Attendance attendance = this.attendanceService.createAttendanceForCurrentUser(attendanceRequest);
         return ResponseEntity.ok(attendance);
     }
+
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> updateAttendance(@PathVariable Long id, @RequestBody @Valid AttendanceRequest attendanceRequest) {
         Optional<Attendance> attendance =

@@ -13,7 +13,6 @@
                 </div>
               </div>
             </div>
-
             <div class="flex mt-5 justify-center items-center">
               <div class="flex  border-gray-200
               border-2
@@ -25,7 +24,8 @@
 
             <div class="flex justify-center mt-5">
               <button @click="showPunchInForm=true"
-                      class="button primary">Punch In</button>
+                      class="button primary">Punch In
+              </button>
             </div>
             <div class="flex justify-between mt-8">
               <div class="flex items-center justify-center h-8 bg-gray-200 pb-5 pt-5 pl-10 pr-10">
@@ -149,6 +149,7 @@
 
     </table>
     <PunchINForm
+        @createSuccessful="handlePunchInSuccessful"
         @modalClosed="showPunchInForm=false"
         v-if="showPunchInForm"></PunchINForm>
   </div>
@@ -171,6 +172,11 @@ export default {
       axios.get("/api/attendance").then(resp => {
         this.attendance = resp.data.content;
       })
+    },
+
+    handlePunchInSuccessful() {
+      this.showPunchInForm = false;
+      this.getAttendance();
     }
 
   }
