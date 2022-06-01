@@ -1,0 +1,6 @@
+extend type Mutation {
+    addJobCategory(input: JobCategoryInput):JobCategory
+}
+input JobCategoryInput{
+    name: String
+}

@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 @Entity
 @Table(name = "attendance")
@@ -18,7 +19,7 @@ public class Attendance {
     private Long id;
     @ManyToOne
     private Employee employee;
-    private Date attendanceTime;
+    private LocalDateTime attendanceTime;
     @Enumerated(EnumType.STRING)
     private Type type;
     @CreationTimestamp
@@ -26,7 +27,7 @@ public class Attendance {
     private  Date createdAt;
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
-    private  Date updatedAt;
+    private Date updatedAt;
 
     public Long getId() {
         return id;
@@ -44,11 +45,11 @@ public class Attendance {
         this.employee = employee;
     }
 
-    public Date getAttendanceTime() {
+    public LocalDateTime getAttendanceTime() {
         return attendanceTime;
     }
 
-    public void setAttendanceTime(Date attendanceTime) {
+    public void setAttendanceTime(LocalDateTime attendanceTime) {
         this.attendanceTime = attendanceTime;
     }
 

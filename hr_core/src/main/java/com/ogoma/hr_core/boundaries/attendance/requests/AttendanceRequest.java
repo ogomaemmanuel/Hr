@@ -4,11 +4,12 @@ import com.ogoma.hr_core.boundaries.attendance.entities.Attendance;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class AttendanceRequest {
     private Long employeeId;
-    private Date attendanceTime;
+    private LocalDateTime attendanceTime;
     @Enumerated(EnumType.STRING)
     private Attendance.Type type;
 
@@ -21,11 +22,11 @@ public class AttendanceRequest {
         this.employeeId = employeeId;
     }
 
-    public Date getAttendanceTime() {
+    public LocalDateTime getAttendanceTime() {
         return attendanceTime;
     }
 
-    public void setAttendanceTime(Date attendanceTime) {
+    public void setAttendanceTime(LocalDateTime attendanceTime) {
         this.attendanceTime = attendanceTime;
     }
 

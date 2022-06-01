@@ -1,6 +1,7 @@
 package com.ogoma.hr_core.boundaries.attendance;
 
 import com.ogoma.hr_core.boundaries.attendance.entities.Attendance;
+import com.ogoma.hr_core.boundaries.attendance.projections.PunchInPunchOutProjection;
 import com.ogoma.hr_core.boundaries.attendance.requests.AttendanceRequest;
 import com.ogoma.hr_core.boundaries.attendance.services.AttendanceService;
 import org.springframework.data.domain.Page;
@@ -32,6 +33,13 @@ public class AttendanceController {
         List<Attendance> attendances =
                 this.attendanceService.getAttendanceByEmployeeId(employeeId);
         return ResponseEntity.ok(attendances);
+    }
+
+    @GetMapping(value = "last-activity")
+    private ResponseEntity<?> getEmployeeLastAttendanceActivity(){
+        PunchInPunchOutProjection punchInPunchOutProjection=
+                this.attendanceService.lastAttendanceActivity();
+        return ResponseEntity.ok(punchInPunchOutProjection);
     }
 
     @GetMapping(value = "/{id}")

@@ -53,9 +53,11 @@ import common_mixin from "../../mixins/common_mixin";
 import {Message} from "element-ui"
 import ModalTemplate from "../common/ModalTemplate";
 
+
 export default {
   components: {
-    ModalTemplate
+    ModalTemplate,
+
   },
   mixins: [common_mixin],
   data() {

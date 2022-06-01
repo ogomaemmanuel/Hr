@@ -2,6 +2,7 @@ package com.ogoma.hr_core.boundaries.attendance.services;
 
 import com.ogoma.hr_core.authentication.CustomUserDetails;
 import com.ogoma.hr_core.boundaries.attendance.entities.Attendance;
+import com.ogoma.hr_core.boundaries.attendance.projections.PunchInPunchOutProjection;
 import com.ogoma.hr_core.boundaries.attendance.repository.AttendanceRepository;
 import com.ogoma.hr_core.boundaries.attendance.requests.AttendanceRequest;
 import com.ogoma.hr_core.boundaries.hr.employee_management.entities.Employee;
@@ -80,9 +81,13 @@ public class AttendanceService {
     }
 
     public List<Attendance> todayAttendanceActivities() {
-      List<Attendance> attendances =
-              this.attendanceRepository.findAttendanceByAttendanceTimeBetween((LocalDateTime.now().toLocalDate().atTime(LocalTime.MIN)),LocalDateTime.now());
-      return  attendances;
+        List<Attendance> attendances =
+                this.attendanceRepository.findTop5AttendanceByAttendanceTimeBetween((LocalDateTime.now().toLocalDate().atTime(LocalTime.MIN)), LocalDateTime.now());
+        return attendances;
+    }
+
+    public PunchInPunchOutProjection lastAttendanceActivity() {
+        return this.attendanceRepository.getLastPunchInPunchOut();
     }
 }
 
