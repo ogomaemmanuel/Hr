@@ -16,6 +16,7 @@
 
     <modules>
         <module>hr_core</module>
+        <module>hr_job_portal</module>
         <!-- <module>service</module> -->
         <!-- <module>webapp</module> -->
     </modules>

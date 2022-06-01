@@ -13,7 +13,6 @@
                 </div>
               </div>
             </div>
-
             <div class="flex mt-5 justify-center items-center">
               <div class="flex  border-gray-200
               border-2
@@ -25,7 +24,8 @@
 
             <div class="flex justify-center mt-5">
               <button @click="showPunchInForm=true"
-                      class="button primary">Punch In</button>
+                      class="button primary">Punch In
+              </button>
             </div>
             <div class="flex justify-between mt-8">
               <div class="flex items-center justify-center h-8 bg-gray-200 pb-5 pt-5 pl-10 pr-10">
@@ -72,66 +72,7 @@
         </div>
       </div>
       <div class="column">
-        <div class="card h-60">
-          <div class="card-content">
-            <h2 class="font-bold">Today Activity</h2>
-            <div class="attendance-activity mt-2 h-16 border-l-2 relative pl-2">
-              <div>
-                <p>Punch In at</p>
-                <p><span><i class="fa fa-clock-o"></i></span> 10.00 AM.</p>
-              </div>
-
-              <div class="absolute dot">
-                <span class="block h-2 w-2 rounded-full bg-gray-300"></span>
-              </div>
-
-            </div>
-            <div class="attendance-activity mt-2 h-16 border-l-2 relative pl-2">
-              <div>
-                <p>Punch In at</p>
-                <p><span><i class="fa fa-clock-o"></i></span> 10.00 AM.</p>
-              </div>
-
-              <div class="absolute dot">
-                <span class="block h-2 w-2 rounded-full bg-gray-300"></span>
-              </div>
-
-            </div>
-            <div class="attendance-activity mt-2 h-16 border-l-2 relative pl-2">
-              <div>
-                <p>Punch In at</p>
-                <p><span><i class="fa fa-clock-o"></i></span> 10.00 AM.</p>
-              </div>
-
-              <div class="absolute dot">
-                <span class="block h-2 w-2 rounded-full bg-gray-300"></span>
-              </div>
-
-            </div>
-            <div class="attendance-activity mt-2 h-16 border-l-2 relative pl-2">
-              <div>
-                <p>Punch In at</p>
-                <p><span><i class="fa fa-clock-o"></i></span> 10.00 AM.</p>
-              </div>
-
-              <div class="absolute dot">
-                <span class="block h-2 w-2 rounded-full bg-gray-300"></span>
-              </div>
-
-            </div>
-            <div class="attendance-activity mt-2 h-16 border-l-2 relative pl-2">
-              <div>
-                <p>Punch In at</p>
-                <p><span><i class="fa fa-clock-o"></i></span> 10.00 AM.</p>
-              </div>
-
-              <div class="absolute dot">
-                <span class="block h-2 w-2 rounded-full bg-gray-300"></span>
-              </div>
-
-            </div>
-          </div>
-        </div>
+        <AttendanceActivities></AttendanceActivities>
       </div>
     </div>
 
@@ -149,21 +90,25 @@
 
     </table>
     <PunchINForm
+        @createSuccessful="handlePunchInSuccessful"
         @modalClosed="showPunchInForm=false"
         v-if="showPunchInForm"></PunchINForm>
   </div>
 </template>
 <script>
 import PunchINForm from "./PunchINForm";
+import AttendanceActivities from "./AttendanceActivities";
 
 export default {
   components: {
-    PunchINForm
+    PunchINForm,
+    AttendanceActivities
   },
   data() {
     return {
       showPunchInForm: false,
-      attendance: []
+      attendance: [],
+      activities: [],
     }
   },
   methods: {
@@ -171,14 +116,18 @@ export default {
       axios.get("/api/attendance").then(resp => {
         this.attendance = resp.data.content;
       })
+    },
+
+    getActivityForToday() {
+      axios.get("/api/attendance/today-activity").then(resp => {
+        this.activities = resp.data;
+      })
+    },
+    handlePunchInSuccessful() {
+      this.showPunchInForm = false;
+      this.getAttendance();
     }
 
   }
 }
 </script>
-<style scoped lang="scss">
-.dot {
-  left: -5px;
-  top: -7px;
-}
-</style>

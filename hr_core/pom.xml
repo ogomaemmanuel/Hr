@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
+        <version>2.6.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ogoma.hr_core</groupId>
@@ -37,17 +37,17 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-hateoas</artifactId>
-            <version>2.4.1</version>
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.springframework.hateoas</groupId>-->
-<!--                    <artifactId>spring-hateoas</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-hateoas</artifactId>-->
+<!--            <version>2.4.1</version>-->
+<!--&lt;!&ndash;            <exclusions>&ndash;&gt;-->
+<!--&lt;!&ndash;                <exclusion>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <groupId>org.springframework.hateoas</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <artifactId>spring-hateoas</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;                </exclusion>&ndash;&gt;-->
+<!--&lt;!&ndash;            </exclusions>&ndash;&gt;-->
+<!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.hateoas</groupId>-->
 <!--            <artifactId>spring-hateoas</artifactId>-->
@@ -237,6 +237,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-messaging</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
     </dependencies>
     <build>
         <!--        <resources>-->
@@ -292,6 +297,22 @@
                         <groupId>javax.validation</groupId>
                         <artifactId>validation-api</artifactId>
                         <version>2.0.1.Final</version>
+                    </dependency>
+<!--                    <dependency>-->
+<!--                        <groupId>org.springframework.boot</groupId>-->
+<!--                        <artifactId>spring-boot-starter-validation</artifactId>-->
+<!--                    </dependency>-->
+<!--                    <dependency>-->
+<!--                        <groupId>jakarta.validation</groupId>-->
+<!--                        <artifactId>jakarta.validation-api</artifactId>-->
+<!--                        <version>3.0.1</version>-->
+<!--                    </dependency>-->
+                    <dependency>
+                        <groupId>org.yaml</groupId>
+                        <artifactId>snakeyaml</artifactId>
+                        <version>1.24</version>
+                        <scope>compile</scope>
+                        <optional>true</optional>
                     </dependency>
                     <dependency>
                         <groupId>org.javassist</groupId>

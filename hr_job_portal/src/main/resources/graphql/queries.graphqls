@@ -1,0 +1,4 @@
+extend type Query {
+    jobCategory(id:ID):JobCategory
+
+}

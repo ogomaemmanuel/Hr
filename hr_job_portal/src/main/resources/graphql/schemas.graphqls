@@ -1,0 +1,64 @@
+#scalar Date
+#scalar DateTime
+#scalar Long
+type Query{
+    jobs: [Job!]
+    job(id: ID! ):Job
+    jobsPaged(page: Int=0,pageSize: Int=0): [Job!]
+    jobCount: Int
+    jobByTitle(title: String): Job
+    users: [User!]
+    user(id: ID!):User
+
+}
+
+type Mutation {
+    createJob(title: String!) : Job
+    updateJob(id: ID!) : Job
+}
+
+enum JobTypes{
+    INTERNSHIP,
+    PERMANENT,
+    CONTRACT
+}
+input  PaginationInput{
+    page: Int
+    pageSize: Int
+}
+enum  Gender {
+    MALE,
+    FEMALE,
+    OTHER
+}
+
+
+
+type Job{
+    id: ID!
+    title: String
+    vacancies: Int
+}
+
+type JobCategory{
+    id: ID!
+    name: String
+}
+type User implements BaseEntity{
+    id: ID!
+    firstName: String
+    lastName: String
+    email: String
+    createdAt: String
+    createdBy: User
+    updatedAt: String
+}
+
+
+interface BaseEntity{
+    id: ID!
+    createdAt: String
+    updatedAt: String
+    createdBy: User
+}
+

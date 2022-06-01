@@ -3,20 +3,20 @@ package com.ogoma.hr_core.unit;
 import com.ogoma.hr_core.boundaries.access_control.entities.Role;
 import com.ogoma.hr_core.boundaries.access_control.repositories.RolesRepository;
 import com.ogoma.hr_core.boundaries.access_control.services.RolesService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import static org.mockito.ArgumentMatchers.any;
+
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
 public class RoleUnitTest {
     @InjectMocks

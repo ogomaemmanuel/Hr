@@ -2,13 +2,18 @@ package com.ogoma.hr_core.boundaries.attendance.services;
 
 import com.ogoma.hr_core.authentication.CustomUserDetails;
 import com.ogoma.hr_core.boundaries.attendance.entities.Attendance;
+import com.ogoma.hr_core.boundaries.attendance.projections.PunchInPunchOutProjection;
 import com.ogoma.hr_core.boundaries.attendance.repository.AttendanceRepository;
 import com.ogoma.hr_core.boundaries.attendance.requests.AttendanceRequest;
 import com.ogoma.hr_core.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.hr_core.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.hr_core.utils.CustomUserDetailsProvider;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,4 +79,15 @@ public class AttendanceService {
         attendanceRequest.setEmployeeId(userDetails.getId());
         return this.createAttendance(attendanceRequest);
     }
+
+    public List<Attendance> todayAttendanceActivities() {
+        List<Attendance> attendances =
+                this.attendanceRepository.findTop5AttendanceByAttendanceTimeBetween((LocalDateTime.now().toLocalDate().atTime(LocalTime.MIN)), LocalDateTime.now());
+        return attendances;
+    }
+
+    public PunchInPunchOutProjection lastAttendanceActivity() {
+        return this.attendanceRepository.getLastPunchInPunchOut();
+    }
 }
+
