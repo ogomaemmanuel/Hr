@@ -1,0 +1,241 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="user (generated)" id="1654111439312-18">
+        <createTable tableName="address_book_contacts">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="address_book_contactsPK"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="phone_no" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="created_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-19">
+        <createTable tableName="chat_group_members">
+            <column name="chat_group_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="members_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-20">
+        <createTable tableName="chat_groups">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="chat_groupsPK"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="created_by_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-21">
+        <createTable tableName="file_metadata">
+            <column name="extension" type="VARCHAR(255)"/>
+            <column name="file_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="file_metadataPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-22">
+        <createTable tableName="files">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="filesPK"/>
+            </column>
+            <column name="created_at" type="datetime(6)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="size" type="DOUBLE precision">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="updated_at" type="datetime(6)"/>
+            <column name="parent_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-23">
+        <createTable tableName="invoice_items">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="invoice_itemsPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="quantity" type="INT"/>
+            <column name="unit_cost" type="DECIMAL(19, 2)"/>
+            <column name="invoice_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-24">
+        <createTable tableName="task_assingment">
+            <column name="task_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="assigned_employees_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-25">
+        <createTable tableName="task_status">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="task_statusPK"/>
+            </column>
+            <column name="is_default" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-26">
+        <addColumn tableName="chat_messages">
+            <column name="chat_group_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-27">
+        <addColumn tableName="payments">
+            <column name="created_at" type="datetime(6)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-28">
+        <addColumn tableName="payments">
+            <column name="created_by_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-29">
+        <addColumn tableName="payments">
+            <column name="invoice_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-30">
+        <addColumn tableName="payments">
+            <column name="notes" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-31">
+        <addColumn tableName="departments">
+            <column name="parent_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-32">
+        <addColumn tableName="tasks">
+            <column name="project_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-33">
+        <addColumn tableName="tasks">
+            <column name="task_status_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-34">
+        <addColumn tableName="payments">
+            <column name="updated_at" type="datetime(6)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-35">
+        <addForeignKeyConstraint baseColumnNames="invoice_id" baseTableName="invoice_items" constraintName="FK46ae0lhu1oqs7cv91fn6y9n7w" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="invoices" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-36">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="departments" constraintName="FK63q917a0aq92i7gcw6h7f1jrv" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="departments" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-37">
+        <addForeignKeyConstraint baseColumnNames="chat_group_id" baseTableName="chat_messages" constraintName="FKdjgeu89v45u4vx4uydldkfwyb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="chat_groups" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-38">
+        <addForeignKeyConstraint baseColumnNames="task_status_id" baseTableName="tasks" constraintName="FKe3ebe6kjret8akcdil10eh2wc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="task_status" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-39">
+        <addForeignKeyConstraint baseColumnNames="file_id" baseTableName="file_metadata" constraintName="FKhxsftvp813rshxc81fx6lf20q" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="files" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-40">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="payments" constraintName="FKii90dsy0qih3bskpwafi5a41j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-41">
+        <addForeignKeyConstraint baseColumnNames="members_id" baseTableName="chat_group_members" constraintName="FKldu5l6iedk1sq9639kvr8rn8t" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-42">
+        <addForeignKeyConstraint baseColumnNames="chat_group_id" baseTableName="chat_group_members" constraintName="FKlvoe5sok23sdg7lcf8cyncj0n" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="chat_groups" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-43">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="address_book_contacts" constraintName="FKoc77oiscr1rd1sgv83ddlmqyt" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-44">
+        <addForeignKeyConstraint baseColumnNames="parent_id" baseTableName="files" constraintName="FKod0go0ye9ao1yql0nj9hs0k78" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="files" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-45">
+        <addForeignKeyConstraint baseColumnNames="task_id" baseTableName="task_assingment" constraintName="FKplolcaisi3hkehnu8hcl6loji" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="tasks" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-46">
+        <addForeignKeyConstraint baseColumnNames="invoice_id" baseTableName="payments" constraintName="FKrbqec6be74wab8iifh8g3i50i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="invoices" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-47">
+        <addForeignKeyConstraint baseColumnNames="project_id" baseTableName="tasks" constraintName="FKsfhn82y57i3k9uxww1s007acc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="projects" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-48">
+        <addForeignKeyConstraint baseColumnNames="created_by_id" baseTableName="chat_groups" constraintName="FKsm7knvk2vdobxuck5q616v16i" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="users" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-49">
+        <addForeignKeyConstraint baseColumnNames="assigned_employees_id" baseTableName="task_assingment" constraintName="FKtgc3anvdn91sb9f9awbrsv7lf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="employees" validate="true"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-50">
+        <dropForeignKeyConstraint baseTableName="ivoice_items" constraintName="FKjcbci1vn6d4wvnliw3ktdew3n"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-51">
+        <dropTable tableName="ivoice_items"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-1">
+        <dropNotNullConstraint columnDataType="decimal(19,2)" columnName="amount" tableName="employee_payroll_additions"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-2">
+        <dropNotNullConstraint columnDataType="decimal(19,2)" columnName="amount" tableName="employee_payroll_deductions"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-3">
+        <dropNotNullConstraint columnDataType="datetime(6)" columnName="date" tableName="holidays"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-4">
+        <dropNotNullConstraint columnDataType="bigint" columnName="employee_id" tableName="employee_payroll_additions"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-5">
+        <dropNotNullConstraint columnDataType="bigint" columnName="employee_id" tableName="employee_payroll_deductions"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-6">
+        <dropNotNullConstraint columnDataType="bigint" columnName="employee_id" tableName="overtime_requests"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-7">
+        <dropNotNullConstraint columnDataType="bigint" columnName="employee_id" tableName="terminated_employees"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-8">
+        <dropNotNullConstraint columnDataType="date" columnName="end_date" tableName="projects"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-9">
+        <dropNotNullConstraint columnDataType="date" columnName="notice_date" tableName="employee_resignations"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-10">
+        <dropNotNullConstraint columnDataType="date" columnName="notice_date" tableName="terminated_employees"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-11">
+        <dropNotNullConstraint columnDataType="date" columnName="overtime_date" tableName="overtime_requests"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-12">
+        <dropNotNullConstraint columnDataType="bigint" columnName="overtime_hours" tableName="overtime_requests"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-13">
+        <dropNotNullConstraint columnDataType="decimal(19,2)" columnName="rate" tableName="projects"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-14">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="rate_type" tableName="projects"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-15">
+        <dropNotNullConstraint columnDataType="date" columnName="resignation_date" tableName="employee_resignations"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-16">
+        <dropNotNullConstraint columnDataType="date" columnName="start_date" tableName="projects"/>
+    </changeSet>
+    <changeSet author="user (generated)" id="1654111439312-17">
+        <dropNotNullConstraint columnDataType="date" columnName="termination_date" tableName="terminated_employees"/>
+    </changeSet>
+</databaseChangeLog>

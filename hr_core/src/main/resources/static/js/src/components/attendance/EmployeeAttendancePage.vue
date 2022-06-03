@@ -2,41 +2,7 @@
   <div>
     <div class="columns">
       <div class="column">
-        <div class="card">
-          <div class="card-content">
-            <h2>Timesheet 11 Mar 2019</h2>
-            <div>
-              <div class="flex mt-5 justify-center p-2 bg-gray-100">
-                <div>
-                  <h2 class="font-bold">Punch In at</h2>
-                  <h2>Wed, 11th Mar 2019 10.00 AM</h2>
-                </div>
-              </div>
-            </div>
-            <div class="flex mt-5 justify-center items-center">
-              <div class="flex  border-gray-200
-              border-2
-              h-24
-               w-24 rounded-full bg-gray-100 items-center justify-center">
-                <h2>3.45 hrs</h2>
-              </div>
-            </div>
-
-            <div class="flex justify-center mt-5">
-              <button @click="showPunchInForm=true"
-                      class="button primary">Punch In
-              </button>
-            </div>
-            <div class="flex justify-between mt-8">
-              <div class="flex items-center justify-center h-8 bg-gray-200 pb-5 pt-5 pl-10 pr-10">
-                <h2>Break</h2>
-              </div>
-              <div class="flex items-center justify-center h-8 bg-gray-200 pb-5 pt-5 pl-10 pr-10">
-                <h2>Overtime</h2>
-              </div>
-            </div>
-          </div>
-        </div>
+        <LastActivityCard></LastActivityCard>
       </div>
       <div class="column">
         <div class="card">
@@ -89,23 +55,25 @@
       </thead>
 
     </table>
-    <PunchINForm
+    <PunchInForm
         @createSuccessful="handlePunchInSuccessful"
         @modalClosed="showPunchInForm=false"
-        v-if="showPunchInForm"></PunchINForm>
+        v-if="showPunchInForm"></PunchInForm>
   </div>
 </template>
 <script>
-import PunchINForm from "./PunchINForm";
+import PunchInForm from "./PunchInForm";
 import AttendanceActivities from "./AttendanceActivities";
-
+import LastActivityCard from "./LastActivityCard";
 export default {
   components: {
-    PunchINForm,
+    PunchInForm,
+    LastActivityCard,
     AttendanceActivities
   },
   data() {
     return {
+      lastActivity: null,
       showPunchInForm: false,
       attendance: [],
       activities: [],
@@ -118,6 +86,12 @@ export default {
       })
     },
 
+
+    getLastActivity() {
+      axios.get("/api/attendance/last-activity").then(resp => {
+        this.lastActivity = resp.data;
+      })
+    },
     getActivityForToday() {
       axios.get("/api/attendance/today-activity").then(resp => {
         this.activities = resp.data;

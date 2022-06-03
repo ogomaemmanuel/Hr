@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -37,7 +38,7 @@ public class AttendanceController {
 
     @GetMapping(value = "last-activity")
     private ResponseEntity<?> getEmployeeLastAttendanceActivity(){
-        PunchInPunchOutProjection punchInPunchOutProjection=
+        Map<String,String> punchInPunchOutProjection=
                 this.attendanceService.lastAttendanceActivity();
         return ResponseEntity.ok(punchInPunchOutProjection);
     }
