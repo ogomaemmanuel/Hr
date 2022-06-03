@@ -23,11 +23,11 @@
         <button
             v-if="showPunchInButton"
             @click="showPunchInForm=true"
-                class="button primary">Punch In
+            class="button primary">Punch In
         </button>
         <button
             v-else
-            @click="showPunchInForm=true"
+            @click="showPunchOutForm=true"
             class="button primary">Punch Out
         </button>
       </div>
@@ -44,22 +44,29 @@
         @createSuccessful="handlePunchInSuccessful"
         @modalClosed="showPunchInForm=false"
         v-if="showPunchInForm"></PunchInForm>
+    <PunchOutForm
+        @createSuccessful="handlePunchOutSuccessful"
+        @modalClosed="showPunchOutForm=false"
+        v-if="showPunchOutForm"></PunchOutForm>
   </div>
 
 </template>
 <script>
 import PunchInForm from "./PunchInForm";
+import PunchOutForm from "./PunchOutForm";
 
 export default {
   components: {
-    PunchInForm
+    PunchInForm,
+    PunchOutForm
   },
   data() {
     return {
+      showPunchOutForm: false,
       showPunchInForm: false,
       lastActivity: {
-        punchInTime:null,
-        punchOutTime:null,
+        punchInTime: null,
+        punchOutTime: null,
 
       }
     }
@@ -76,15 +83,22 @@ export default {
     },
     handlePunchInSuccessful() {
       this.showPunchInForm = false;
-      // this.getAttendance();
+      this.getLastActivity();
     },
+    handlePunchOutSuccessful() {
+      this.showPunchOutForm = false;
+      this.getLastActivity();
+    }
 
 
   },
-  computed:{
-    showPunchInButton(){
-      if(this.lastActivity.punchInTime && this.lastActivity.punchOutTime){
-        return Date.parse(this.lastActivity.punchInTime)<Date.parse(this.lastActivity.punchOutTime)
+  computed: {
+    showPunchInButton() {
+      if (this.lastActivity.punchInTime && this.lastActivity.punchOutTime) {
+        return Date.parse(this.lastActivity.punchInTime) < Date.parse(this.lastActivity.punchOutTime)
+      }
+      if (this.lastActivity.punchInTime) {
+        return false;
       }
       return true;
     }

@@ -15,14 +15,14 @@
             <h2>Emmanuel Ogoma</h2>
           </div>
           <div>
-            <h2>Welcome!</h2>
+            <h2>Want to checkout?</h2>
           </div>
         </div>
 
         <div class="mt-5 pb-5">
           <div class="flex flex-col items-center justify-center">
             <i @click="punchIn" class="fa fa-sign-out fa-3x has-text-primary"></i>
-            <h2> Click to Punch In</h2>
+            <h2> Click to Check Out</h2>
           </div>
         </div>
       </template>
@@ -32,15 +32,15 @@
             <h2>Emmanuel Ogoma</h2>
           </div>
           <div>
-            <h2>Welcome!</h2>
+            <h2>Have a good day?</h2>
           </div>
           <div class="mt-5">
-            Checked in at {{ attendance.attendanceTime.toLocaleTimeString() }}
+            Checked out at {{ attendance.attendanceTime.toLocaleTimeString() }}
           </div>
         </div>
         <div class="mt-5 pb-5">
           <div class="flex flex-col items-center justify-center">
-            <button @click="$emit('createSuccessful')" class="button is-primary">OK</button>
+            <button @click="$emit('createSuccessful')" class="button is-primary">Goodbye</button>
           </div>
         </div>
       </template>
@@ -62,7 +62,7 @@ export default {
     return {
       showSuccessMessage: false,
       attendance: {
-        type: "PUNCH_IN",
+        type: "PUNCH_OUT",
         attendanceTime: null
       },
     }
