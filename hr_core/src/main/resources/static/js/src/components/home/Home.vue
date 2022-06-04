@@ -30,8 +30,8 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/permissions">
-                      <span>Permissions</span>
+                    <router-link to="/messaging">
+                      <span>Chat</span>
                     </router-link>
                   </li>
                 </ul>
