@@ -3,6 +3,7 @@ package com.ogoma.hr_core.boundaries.hr.employee_management.repositories;
 import com.ogoma.hr_core.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.hr_core.boundaries.hr.employee_management.models.EmployeeQuery;
 import com.ogoma.hr_core.boundaries.payroll.models.EmployeeSalaryViewModel;
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import com.ogoma.hr_core.enums.GenderEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends BaseRepo<Employee> {
 
 
     @Query(value = "SELECT \n" +

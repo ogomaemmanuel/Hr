@@ -2,6 +2,8 @@ package com.ogoma.hr_core.boundaries.attendance.services;
 
 import com.ogoma.hr_core.authentication.CustomUserDetails;
 import com.ogoma.hr_core.boundaries.attendance.entities.Attendance;
+import com.ogoma.hr_core.boundaries.attendance.entities.Attendance_;
+import com.ogoma.hr_core.boundaries.attendance.projections.AttendanceReport;
 import com.ogoma.hr_core.boundaries.attendance.projections.PunchInPunchOutProjection;
 import com.ogoma.hr_core.boundaries.attendance.repository.AttendanceRepository;
 import com.ogoma.hr_core.boundaries.attendance.requests.AttendanceRequest;
@@ -9,6 +11,7 @@ import com.ogoma.hr_core.boundaries.hr.employee_management.entities.Employee;
 import com.ogoma.hr_core.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.hr_core.utils.CustomUserDetailsProvider;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,6 +20,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class AttendanceService {
@@ -82,13 +86,23 @@ public class AttendanceService {
     }
 
     public List<Attendance> todayAttendanceActivities() {
+        Sort sort = Sort.by(Sort.Direction.DESC, Attendance_.ATTENDANCE_TIME);
         List<Attendance> attendances =
-                this.attendanceRepository.findTop5AttendanceByAttendanceTimeBetween((LocalDateTime.now().toLocalDate().atTime(LocalTime.MIN)), LocalDateTime.now());
+                this.attendanceRepository.findTop5AttendanceByAttendanceTimeBetween((LocalDateTime.now().toLocalDate().atTime(LocalTime.MIN)), LocalDateTime.now(),sort);
         return attendances;
     }
 
-    public Map<String, String> lastAttendanceActivity() {
+    public PunchInPunchOutProjection lastAttendanceActivity() {
         return this.attendanceRepository.getLastPunchInPunchOut();
     }
+
+    public Map<Long, List<AttendanceReport>> getAttendanceReport(){
+
+        Map<Long, List<AttendanceReport>> report=
+        this.attendanceRepository.getAttendanceReportData().stream().collect(Collectors.groupingBy(x->x.getEmployeeId()));
+        return  report;
+    }
+    record  EmployeeIdName(Long id, String fullName){};
 }
+
 

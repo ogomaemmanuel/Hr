@@ -1,6 +1,7 @@
 package com.ogoma.hr_core.boundaries.hr.leave_management.repositories;
 
 import com.ogoma.hr_core.boundaries.hr.leave_management.entities.LeaveRequest;
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +14,7 @@ import java.util.Map;
 
 
 @Repository
-public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long> {
+public interface LeaveRequestRepository extends BaseRepo<LeaveRequest> {
     @Query("Select le from LeaveRequest le where le.applicantId=?#{ principal?.id }")
     public Page<LeaveRequest> findCurrentUserLeaveRequest(Pageable pageable);
 

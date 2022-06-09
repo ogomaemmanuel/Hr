@@ -38,7 +38,7 @@ public class AttendanceController {
 
     @GetMapping(value = "last-activity")
     private ResponseEntity<?> getEmployeeLastAttendanceActivity(){
-        Map<String,String> punchInPunchOutProjection=
+        PunchInPunchOutProjection punchInPunchOutProjection=
                 this.attendanceService.lastAttendanceActivity();
         return ResponseEntity.ok(punchInPunchOutProjection);
     }

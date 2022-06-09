@@ -2,12 +2,13 @@ package com.ogoma.hr_core.boundaries.hr.employee_management.repositories;
 
 import com.ogoma.hr_core.boundaries.hr.employee_management.entities.TerminatedEmployee;
 import com.ogoma.hr_core.boundaries.hr.employee_management.models.TerminatedEmployeeView;
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface TerminatedEmployeeRepository extends JpaRepository<TerminatedEmployee, Long> {
+public interface TerminatedEmployeeRepository extends BaseRepo<TerminatedEmployee> {
     @Query(value = "select te.id,\n" +
             "       u.first_name        as emoloyeeFirstName,\n" +
             "       u.last_name         as employeeLastName,\n" +

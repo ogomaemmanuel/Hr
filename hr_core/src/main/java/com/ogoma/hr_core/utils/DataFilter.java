@@ -4,7 +4,7 @@ import com.ogoma.hr_core.models.requests.PagedDataRequest;
 
 import java.util.List;
 
-public class Filter extends PagedDataRequest {
+public class DataFilter extends PagedDataRequest {
     public enum QueryOperator {
         EQUALS, NOT_EQUALS,
         GREATER_THAN, LESS_THAN, LIKE, IN

@@ -1,6 +1,7 @@
 package com.ogoma.hr_core.boundaries.access_control.repositories;
 
 import com.ogoma.hr_core.boundaries.access_control.entities.User;
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 
 @Repository
-public interface UsersRepository extends JpaRepository<User,Long>, JpaSpecificationExecutor<User> {
+public interface UsersRepository extends BaseRepo<User> {
     @Nullable
     User findByEmail(String email);
     @Query(value = "SELECT u.* FROM users u left join employees s on u.id=s.user_id where s.id=:id",nativeQuery = true)
