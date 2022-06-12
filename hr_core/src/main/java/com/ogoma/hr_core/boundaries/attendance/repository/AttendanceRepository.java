@@ -24,6 +24,6 @@ public interface AttendanceRepository extends BaseRepo<Attendance> {
     public PunchInPunchOutProjection getLastPunchInPunchOut();
 
 
-    @Query(value ="select employee_id as employeeId,concat_ws(\' \', u.first_name, u.last_name) as fullname, min(attendance_time) from checkInTime at  right join users u on at.employee_id=u.id where at.type='PUNCH_IN'  group by at.employee_id, date(at.attendance_time)", nativeQuery = true)
+    @Query(value ="select employee_id as employeeId,concat_ws(\' \', u.first_name, u.last_name) as fullname, min(attendance_time) as checkInTime from attendance at  right join users u on at.employee_id=u.id where at.type='PUNCH_IN'  group by at.employee_id, date(at.attendance_time)", nativeQuery = true)
     public List<AttendanceReport> getAttendanceReportData();
 }

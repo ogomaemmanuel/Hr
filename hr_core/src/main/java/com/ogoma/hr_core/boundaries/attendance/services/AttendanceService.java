@@ -96,13 +96,20 @@ public class AttendanceService {
         return this.attendanceRepository.getLastPunchInPunchOut();
     }
 
-    public Map<Long, List<AttendanceReport>> getAttendanceReport(){
+    public Map<EmployeeIdNameRecord, List<AttendanceReport>> getAttendanceReport(){
 
-        Map<Long, List<AttendanceReport>> report=
-        this.attendanceRepository.getAttendanceReportData().stream().collect(Collectors.groupingBy(x->x.getEmployeeId()));
+        Map<EmployeeIdNameRecord, List<AttendanceReport>> report=
+        this.attendanceRepository.getAttendanceReportData().stream().collect(Collectors.groupingBy(x->{
+           return new  EmployeeIdNameRecord(x.getEmployeeId(),x.getFullName());
+        }));
         return  report;
     }
-    record  EmployeeIdName(Long id, String fullName){};
+    record  EmployeeIdNameRecord(Long id, String fullName){
+        @Override
+        public String toString() {
+            return id.toString();
+        }
+    };
 }
 
 

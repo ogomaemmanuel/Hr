@@ -80,9 +80,9 @@
                     </router-link>
                   </li>
                   <li>
-                    <a href="#">
+                    <router-link to="/admin-attendance">
                       <span>Attendance(Admin)</span>
-                    </a>
+                    </router-link>
                   </li>
                   <li>
                     <router-link to="/employee-attendance">

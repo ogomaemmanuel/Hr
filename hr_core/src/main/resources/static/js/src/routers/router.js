@@ -58,6 +58,7 @@ const EmployeeTerminationEdit = () => import("../components/employee_management/
 
 
 const EmployeeAttendance = () => import("../components/attendance/EmployeeAttendancePage")
+const AdminAttendancePage = () => import("../components/attendance/AdminAttendancePage")
 
 
 const EmployeesPage = () => import("../components/employee_management/employees/list/EmployeePage")
@@ -617,6 +618,10 @@ const routes = new Router({
                         {
                             path:"/employee-attendance",
                             component: EmployeeAttendance
+                        },
+                        {
+                            path:"/admin-attendance",
+                            component: AdminAttendancePage
                         },
                         {
                             path: "/employee-terminations",
