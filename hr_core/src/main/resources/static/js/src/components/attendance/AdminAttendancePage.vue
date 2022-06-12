@@ -13,8 +13,8 @@
         <tbody>
         <tr v-for="(value, propertyName ) in attendanceData">
           <td>{{ value[0].fullName }}</td>
-          <td v-for="daysInMonth in 30">
-            <i v-if="checkAttendance(daysInMonth, value)" class="fa fa-check has-text-primary"></i>
+          <td v-for="day in 30">
+            <i v-if="checkAttendance(day, value)" class="fa fa-check has-text-primary"></i>
             <i v-else class="fa fa-close has-text-danger"></i>
           </td>
         </tr>
@@ -43,14 +43,14 @@ export default {
 
     checkAttendance(dayInMonth, attendanceList) {
       let vm = this;
-      let result = attendanceList.find(x => vm.getDayFromDate(x.checkInTime) === dayInMonth);
+      let result = attendanceList.find(x => vm.getDayFromDate(x.checkInTime) == dayInMonth);
       if (result) {
         return true
       }
       return false
     },
     getDayFromDate(dateString) {
-      return new Date(Date.parse(dateString)).getDay();
+      return (new Date(Date.parse(dateString))).getDate();
     }
   },
   computed: {}

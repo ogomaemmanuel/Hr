@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AdminAttendancePage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/AttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/AttendanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/projections/AttendanceReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/projections/AttendanceReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AdminAttendancePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AdminAttendancePage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +196,8 @@
       <workItem from="1654106913958" duration="2211000" />
       <workItem from="1654110953565" duration="24473000" />
       <workItem from="1654754694744" duration="6110000" />
-      <workItem from="1655051376369" duration="4322000" />
+      <workItem from="1655051376369" duration="6077000" />
+      <workItem from="1655061371929" duration="523000" />
     </task>
     <servers />
   </component>
