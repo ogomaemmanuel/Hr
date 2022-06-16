@@ -91,7 +91,7 @@ export default {
       })
     },
     getFileType(file) {
-      return file.type.toLowerCase();
+      return file.type||"".toLowerCase();
     },
     refreshFiles() {
       this.showCreateFolderForm = false;

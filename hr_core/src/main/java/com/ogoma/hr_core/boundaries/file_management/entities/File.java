@@ -17,6 +17,7 @@ public class File implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String fileUUID;
     private double size;
     @Enumerated(EnumType.STRING)
     private Type type;
@@ -30,6 +31,7 @@ public class File implements Serializable {
     private Date updatedAt;
     @OneToOne(mappedBy = FileMetadata_.FILE,fetch = FetchType.LAZY)
     private FileMetadata fileMetadata;
+
 
     public Long getId() {
         return id;
@@ -97,5 +99,13 @@ public class File implements Serializable {
 
     public void setSize(double size) {
         this.size = size;
+    }
+
+    public String getFileUUID() {
+        return fileUUID;
+    }
+
+    public void setFileUUID(String fileUUID) {
+        this.fileUUID = fileUUID;
     }
 }

@@ -1,5 +1,6 @@
 package com.ogoma.hr_core.boundaries.file_management.services;
 
+import com.ogoma.hr_core.boundaries.documents.services.CloudObjectService;
 import com.ogoma.hr_core.boundaries.file_management.entities.File;
 import com.ogoma.hr_core.boundaries.file_management.entities.File_;
 import com.ogoma.hr_core.boundaries.file_management.repositories.FileRepository;
@@ -14,14 +15,21 @@ import java.util.Optional;
 @Service
 public class FilesService {
     private final FileRepository fileRepository;
+    private final CloudObjectService cloudObjectService;
 
-    public FilesService(FileRepository fileRepository) {
+    public FilesService(FileRepository fileRepository, CloudObjectService cloudObjectService) {
         this.fileRepository = fileRepository;
+        this.cloudObjectService = cloudObjectService;
     }
 
     public File createFile(FileCreateRequest fileCreateRequest) throws Exception {
         File file = new File();
         mapToEntity(fileCreateRequest, file);
+        if(fileCreateRequest.getType()== File.Type.FILE){
+         String fileName=   this.cloudObjectService.createObject("aws-tutorial-ogoma",
+                 fileCreateRequest.getAttachment());
+         file.setFileUUID(fileName);
+        }
         this.fileRepository.save(file);
         return file;
     }
@@ -34,7 +42,7 @@ public class FilesService {
 
     public List<File> getFiles(FileQueryFilter fileQuery) {
         List<File> files =
-                this.fileRepository.findAllByParentId(fileQuery.getParentId(),Sort.by(File_.TYPE).descending().and(Sort.by( File_.CREATED_AT)));
+                this.fileRepository.findAllByParentId(fileQuery.getParentId(), Sort.by(File_.TYPE).descending().and(Sort.by(File_.CREATED_AT)));
         return files;
     }
 

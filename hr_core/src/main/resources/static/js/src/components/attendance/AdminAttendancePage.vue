@@ -1,7 +1,7 @@
 <template>
   <div class="h-full">
     <div class="table-container h-full">
-      <table class="table h-full">
+      <table class="table">
         <thead>
         <tr>
           <th>Employee</th>

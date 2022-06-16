@@ -8,7 +8,6 @@
 
         <b-field class="is-fullwidth">
           <b-upload class="file-upload is-fullwidth" v-model="dropFiles"
-                    multiple
                     drag-drop>
             <section class="section">
               <div class="content has-text-centered">
@@ -23,10 +22,17 @@
             </section>
           </b-upload>
         </b-field>
+        <div class="tags">
+      <span v-if="dropFiles.name"  class="tag is-primary">
+        {{ dropFiles.name }}
+        <button class="delete is-small" type="button"></button>
+      </span>
+        </div>
         <div class="field">
           <label class="label">Description</label>
           <div class="control">
             <input
+                :native="true"
                 v-model="file.name"
                 @input="clearFieldError('name')"
                 class="input"
@@ -64,14 +70,17 @@ export default {
       dropFiles: {},
       file: {
         name: "",
-        description: ""
+        description: "",
+        type: "FILE"
       }
     }
   },
   methods: {
     createFile() {
+      this.file.name=this.dropFiles.name
+      this.file.attachment = this.dropFiles;
       let formData = this.createFormData(this.file);
-      this.axios.post("/api/files", formData).then(resp => {
+      axios.post("/api/files", formData).then(resp => {
 
       })
 
@@ -88,10 +97,11 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.is-fullwidth /deep/ .upload-draggable{
+.is-fullwidth /deep/ .upload-draggable {
   min-width: 100%;
 }
+
 .is-fullwidth /deep/ label {
-    min-width: 100%;
+  min-width: 100%;
 }
 </style>
