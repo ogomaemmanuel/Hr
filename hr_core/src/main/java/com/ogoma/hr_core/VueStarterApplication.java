@@ -67,27 +67,27 @@ public class VueStarterApplication {
         return executor;
     }
 
-    @Bean
-    AmazonS3 s3client (
-            @Value("${minio.access.key}") String accessKey,
-            @Value("${minio.secret.key}") String secretKey
-    ) throws Exception {
-        var cred = new BasicAWSCredentials(
-                accessKey,
-                secretKey
-        );
-        ClientConfiguration clientConfiguration = new ClientConfiguration();
-        SSLConnectionSocketFactory scsf =new  SSLConnectionSocketFactory(
-                SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build(),
-                NoopHostnameVerifier.INSTANCE);
-        clientConfiguration.getApacheHttpClientConfig().setSslSocketFactory(scsf);
-        return AmazonS3ClientBuilder
-                .standard()
-                .withCredentials(new AWSStaticCredentialsProvider(cred))
-                .withRegion("us-east-2")
-                .withClientConfiguration(clientConfiguration)
-                .build();
-    }
+//    @Bean
+//    AmazonS3 s3client (
+//            @Value("${minio.access.key}") String accessKey,
+//            @Value("${minio.secret.key}") String secretKey
+//    ) throws Exception {
+//        var cred = new BasicAWSCredentials(
+//                accessKey,
+//                secretKey
+//        );
+//        ClientConfiguration clientConfiguration = new ClientConfiguration();
+//        SSLConnectionSocketFactory scsf =new  SSLConnectionSocketFactory(
+//                SSLContexts.custom().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build(),
+//                NoopHostnameVerifier.INSTANCE);
+//        clientConfiguration.getApacheHttpClientConfig().setSslSocketFactory(scsf);
+//        return AmazonS3ClientBuilder
+//                .standard()
+//                .withCredentials(new AWSStaticCredentialsProvider(cred))
+//                .withRegion("us-east-2")
+//                .withClientConfiguration(clientConfiguration)
+//                .build();
+//    }
     //this makes json serialization not to include lazy loaded objects
 //    @Bean
 //    public Hibernate5Module hibernate5Module() {

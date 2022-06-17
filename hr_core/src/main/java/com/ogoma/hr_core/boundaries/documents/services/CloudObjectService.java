@@ -17,18 +17,18 @@ import java.util.UUID;
 @Service
 public class CloudObjectService {
     private final MinioClient minioClient;
-    private final AmazonS3 s3Client;
+    private final AmazonS3 amazonS3;
 
     @Autowired
-    public CloudObjectService(MinioClient minioClient, AmazonS3 s3Client) {
+    public CloudObjectService(MinioClient minioClient, AmazonS3 amazonS3) {
         this.minioClient = minioClient;
-        this.s3Client = s3Client;
+        this.amazonS3 = amazonS3;
     }
 
     public String createObject(String bucketName, MultipartFile file) throws Exception {
         String fileName = UUID.randomUUID().toString();
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName,fileName+".txt",file.getInputStream(),new ObjectMetadata());
-        s3Client.putObject(putObjectRequest);
+        amazonS3.putObject(putObjectRequest);
         return fileName;
     }
 
