@@ -41,13 +41,26 @@
               <div class="column pl-0">
                 <div class="message-title-bar pl-2 pr-2">
                   <div class="flex w-full">
-                   <div class="flex-1">
-                     Emmanuel Ogoma
-                   </div>
+                    <div class="flex-1">
+                      Emmanuel Ogoma
+                    </div>
                     <div class="flex">
-                     <i class="fa fa-ellipsis-h text-danger"></i>
+                      <i class="fa fa-ellipsis-h text-danger"></i>
                       <i class="fa fa-video-camera pl-2"></i>
                     </div>
+                  </div>
+                </div>
+                <div class="message-area flex flex-col h-full">
+
+                  <div class="conversions flex-1"></div>
+
+                  <div class="message-input-wrapper flex">
+                    <input class="input flex-1" type="text">
+                    <button class="button is-primary">
+                     <span class="icon is-small">
+      <i class="fa fa-send"></i>
+    </span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -99,7 +112,8 @@ export default {
     display: flex;
     align-items: center;
   }
-  .message-title-bar{
+
+  .message-title-bar {
     height: 44px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;

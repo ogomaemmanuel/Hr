@@ -42,8 +42,8 @@
         </td>
         <td>{{ file.size }}</td>
         <td>{{ file.createBy }}</td>
-        <td>{{ file.createdAt }}</td>
-        <td>{{ file.updatedAt }}</td>
+        <td>{{ formatDate(file.createdAt) }}</td>
+        <td>{{ formatDate(file.updatedAt) }}</td>
       </tr>
       </tbody>
     </table>
@@ -93,11 +93,18 @@ export default {
       })
     },
     getFileType(file) {
-      return (file.type||"").toLowerCase();
+      return (file.type || "").toLowerCase();
     },
     refreshFiles() {
       this.showCreateFolderForm = false;
       this.getFiles();
+    },
+    formatDate(date) {
+      if (date) {
+        return new Date(Date.parse(date)).toLocaleDateString();
+      }
+      return ""
+
     },
     changeParentFolder(file) {
       if (file.type == "FOLDER") {
