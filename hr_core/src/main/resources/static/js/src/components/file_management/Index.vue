@@ -54,6 +54,8 @@
         v-if="showCreateFolderForm">
     </CreateFolderForm>
     <FileCreateForm
+        @createSuccess="refreshFiles"
+        :parentId="currentFolderId"
         @modalClosed="showFileCreateForm=false"
         v-if="showFileCreateForm">
     </FileCreateForm>
@@ -91,7 +93,7 @@ export default {
       })
     },
     getFileType(file) {
-      return file.type||"".toLowerCase();
+      return (file.type||"").toLowerCase();
     },
     refreshFiles() {
       this.showCreateFolderForm = false;

@@ -58,10 +58,16 @@
 <script>
 import common_mixin from "../../mixins/common_mixin";
 import ModalTemplate from "../common/ModalTemplate";
+import {Message} from "element-ui";
 
 export default {
   components: {
     ModalTemplate
+  },
+  props: {
+    parentId: {
+      default: null
+    }
   },
   mixins: [common_mixin],
   data() {
@@ -79,9 +85,11 @@ export default {
     createFile() {
       this.file.name=this.dropFiles.name
       this.file.attachment = this.dropFiles;
+      this.file.parentId = this.parentId;
       let formData = this.createFormData(this.file);
       axios.post("/api/files", formData).then(resp => {
-
+        Message.success("folder created")
+        this.$emit("createSuccess");
       })
 
 
