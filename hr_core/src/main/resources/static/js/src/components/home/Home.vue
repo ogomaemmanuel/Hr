@@ -237,6 +237,39 @@
               </li>
               <li>
                 <a href="#" class="">
+                  <span class="icon"><i class="fa fa-graduation-cap"></i></span> Performance
+                </a>
+                <ul class="border-l-0">
+                  <li>
+                    <router-link to="/jobs">
+                      <span>Goal List</span>
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link to="/jobs">
+                      <span>Goal Type</span>
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link to="/taxes">
+                      <span>Training List</span>
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link to="/taxes">
+                      <span>Trainer</span>
+                    </router-link>
+                  </li>
+                   <li>
+                    <router-link to="/taxes">
+                      <span>Training Type</span>
+                    </router-link>
+                  </li>
+
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="">
                   <span class="icon"><i class="fa fa-briefcase"></i></span> Jobs
                 </a>
                 <ul class="border-l-0">

@@ -5,14 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/chat/RecievedMessage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/chat/SentMessage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals/GoalTypeCreateForm.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals/GoalsTypes.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/projections/AttendanceReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/projections/AttendanceReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AdminAttendancePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AdminAttendancePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/chat/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/chat/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="ComposerSettings">
     <execution />
@@ -64,9 +71,9 @@
         <entry key="JPA Inspector" value="false" />
         <entry key="JPA Palette" value="false" />
         <entry key="JPA Structure" value="false" />
-        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
   </component>
@@ -93,7 +100,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/hr_core/src/main/resources/application.properties" />
     <property name="jdk.selected.JAVA_MODULE" value="temurin-17" />
-    <property name="last_opened_file_path" value="$USER_HOME$/dynatrace_dt_edge_api" />
+    <property name="last_opened_file_path" value="$USER_HOME$/hr-app-secrets/.env" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -102,7 +109,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="settings.jsgraphql" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
     <property name="ts.external.directory.path" value="C:\Users\user\projects\Hr\hr_core\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -144,11 +151,29 @@
     </configuration>
     <configuration name="VueStarterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="hr_core" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="true" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="true" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH="$USER_HOME$/hr-app-secrets/.env" />
+        </ENTRIES>
+      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ogoma.hr_core.VueStarterApplication" />
       <option name="ACTIVE_PROFILES" value="development" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/temurin-17.0.3" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="SHORTEN_COMMAND_LINE" value="MANIFEST" />
+      <envs>
+        <env name="MINIO_ACCESS_KEY" value="AKIASNPQTJPGLJRHTQAR" />
+        <env name="MINION_SECRET_KEY" value="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" />
+        <env name="MINIO_END_POINT" value="https://fr1em3uqu0zu.compat.objectstorage.eu-frankfurt-1.oraclecloud.com" />
+        <env name="AWS_ACCESS_KEY_ID" value="AKIASNPQTJPGLJRHTQAR" />
+        <env name="AWS_SECRET_ACCESS_KEY" value="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" />
+      </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -197,7 +222,10 @@
       <workItem from="1654110953565" duration="24473000" />
       <workItem from="1654754694744" duration="6110000" />
       <workItem from="1655051376369" duration="6077000" />
-      <workItem from="1655061371929" duration="523000" />
+      <workItem from="1655061371929" duration="5795000" />
+      <workItem from="1655390129419" duration="1180000" />
+      <workItem from="1655391408270" duration="29547000" />
+      <workItem from="1656146409107" duration="3462000" />
     </task>
     <servers />
   </component>
@@ -403,6 +431,37 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/file_management/FilesController.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/file_management/FilesController.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/file_management/services/FilesService.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/file_management/services/FilesService.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/documents/services/CloudObjectService.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -52,8 +52,9 @@
                 </div>
                 <div class="message-area flex flex-col h-full">
 
-                  <div class="conversions flex-1"></div>
+                  <div class="conversions-messages-wrapper flex-1">
 
+                  </div>
                   <div class="message-input-wrapper flex">
                     <input class="input flex-1" type="text">
                     <button class="button is-primary">
