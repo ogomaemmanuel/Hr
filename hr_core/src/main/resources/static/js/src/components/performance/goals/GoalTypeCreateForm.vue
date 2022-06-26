@@ -73,7 +73,7 @@ export default {
       loading: false,
       goalType: {
         type: "",
-        description: ""
+        description: "",
         status: ""
       }
     }
@@ -82,6 +82,7 @@ export default {
     createGoalType() {
       axios.post("/api/goal-types", this.goalType).then(resp => {
         Message.success("Goal Type Successfully created")
+        this.$emit("createSuccess")
       }, error => {
         if (error.response.status == 400) {
           this.errors = error.response.data;

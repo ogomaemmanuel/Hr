@@ -149,6 +149,9 @@ const PaymentsPage =()=> import("../components/accounting/payments/PaymentsPage"
 const PaymentsList =()=> import("../components/accounting/payments/PaymentList")
 
 
+const GoalTypes =()=> import("../components/performance/goals/GoalsTypes")
+
+
 
 
 
@@ -1125,6 +1128,34 @@ const routes = new Router({
                                 },
 
                             ]
+                        },
+                        {
+                            path: "/goal-types",
+                            component: GoalTypes,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Goal Types",
+                            },
+                            // children: [
+                            //     {
+                            //         path: "/",
+                            //         component: JobList,
+                            //         name: "jobs",
+                            //         children: [
+                            //             {
+                            //                 path: "/job-create",
+                            //                 name: "job-create",
+                            //                 component: JobCreate
+                            //             },
+                            //             {
+                            //                 path: "/job-edit/:id",
+                            //                 name: "job-edit",
+                            //                 component: JobEdit
+                            //             }
+                            //         ]
+                            //     },
+                            //
+                            // ]
                         },
 
                     ]

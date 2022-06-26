@@ -18,9 +18,9 @@
         <java.version>17</java.version>
         <timestamp>${maven.build.timestamp}</timestamp>
         <humanize.version>1.2.2</humanize.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <maven.compiler.release>17</maven.compiler.release>
+<!--        <maven.compiler.source>17</maven.compiler.source>-->
+<!--        <maven.compiler.target>17</maven.compiler.target>-->
+<!--        <maven.compiler.release>17</maven.compiler.release>-->
         <maven.build.timestamp.format>yyyy-MM-dd.HH.mm.ss</maven.build.timestamp.format>
     </properties>
     <repositories>
@@ -206,6 +206,7 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
+            <version>4.12.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -245,7 +246,11 @@
             <version>2.4</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.ow2.asm/asm-analysis -->
-
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>9.2</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -286,7 +291,7 @@
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>4.8.0</version>
+                <version>4.12.0</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                     <changeLogFile>src/main/resources/db/db.changelog-master.xml</changeLogFile>
@@ -299,12 +304,23 @@
                     <dependency>
                         <groupId>org.liquibase</groupId>
                         <artifactId>liquibase-core</artifactId>
-                        <version>4.8.0</version>
+                        <version>4.12.0</version>
                     </dependency>
                     <dependency>
                         <groupId>org.liquibase.ext</groupId>
                         <artifactId>liquibase-hibernate5</artifactId>
-                        <version>4.8.0</version>
+                        <version>4.12.0</version>
+                        <exclusions>
+                            <exclusion>  <!-- declare the exclusion here -->
+                                <groupId>org.ow2.asm</groupId>
+                                <artifactId>asm</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>9.2</version>
                     </dependency>
                     <dependency>
                         <groupId>org.springframework.boot</groupId>
@@ -362,7 +378,7 @@
             <plugin>
                 <groupId>org.hibernate.orm.tooling</groupId>
                 <artifactId>hibernate-enhance-maven-plugin</artifactId>
-                <version>5.4.2.Final</version>
+                <version>6.1.0.Final</version>
                 <executions>
                     <execution>
                         <configuration>

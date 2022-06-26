@@ -193,6 +193,7 @@
                   </li>
                 </ul>
               </li>
+
               <li>
                 <a href="#" class="">
                   <span class="icon"><i class="fa fa-files-o"></i></span> Accounts
@@ -246,7 +247,7 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/jobs">
+                    <router-link to="/goal-types">
                       <span>Goal Type</span>
                     </router-link>
                   </li>
