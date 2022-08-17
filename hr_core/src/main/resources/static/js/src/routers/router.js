@@ -149,7 +149,8 @@ const PaymentsPage =()=> import("../components/accounting/payments/PaymentsPage"
 const PaymentsList =()=> import("../components/accounting/payments/PaymentList")
 
 
-const GoalTypes =()=> import("../components/performance/goals/GoalsTypes")
+const GoalTypes =()=> import("../components/performance/goals_types/GoalsTypes")
+const GoalTracking =()=> import("../components/performance/goals_tracking/GoalTrackingList")
 
 
 
@@ -1135,6 +1136,34 @@ const routes = new Router({
                             meta: {
                                 breadcrumb: true,
                                 title: "Goal Types",
+                            },
+                            // children: [
+                            //     {
+                            //         path: "/",
+                            //         component: JobList,
+                            //         name: "jobs",
+                            //         children: [
+                            //             {
+                            //                 path: "/job-create",
+                            //                 name: "job-create",
+                            //                 component: JobCreate
+                            //             },
+                            //             {
+                            //                 path: "/job-edit/:id",
+                            //                 name: "job-edit",
+                            //                 component: JobEdit
+                            //             }
+                            //         ]
+                            //     },
+                            //
+                            // ]
+                        },
+                        {
+                            path: "/goal-tracking",
+                            component: GoalTracking,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Goal Tracking",
                             },
                             // children: [
                             //     {

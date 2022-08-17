@@ -53,4 +53,8 @@ public class GoalTypeService {
                 this.goalTypeRepository.findAll(pagedDataRequest.toPageable());
         return goalTypes;
     }
+
+    public void removeGoalType(Long id) {
+        this.goalTypeRepository.deleteById(id);
+    }
 }

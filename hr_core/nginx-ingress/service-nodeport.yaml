@@ -10,12 +10,12 @@ spec:
   type: NodePort
   ports:
     - name: http
-      nodePort: 30036
-      targetPort: {{ .Values.hr_deployment.port }}
+      port: 80
+      nodePort: 30127
       protocol: TCP
     - name: https
-      port: 30037
-      targetPort: {{ .Values.hr_deployment.port }}
+      port: 443
+      nodePort: 30128
       protocol: TCP
   selector:
     app.kubernetes.io/name: ingress-nginx

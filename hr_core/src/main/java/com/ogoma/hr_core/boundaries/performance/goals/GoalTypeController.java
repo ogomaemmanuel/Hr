@@ -48,4 +48,10 @@ public class GoalTypeController {
         return ResponseEntity.of(goalType);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> removeGoalType(@PathVariable Long id){
+        this.goalTypeService.removeGoalType(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

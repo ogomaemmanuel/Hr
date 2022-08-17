@@ -5,13 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/chat/RecievedMessage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/chat/SentMessage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals/GoalTypeCreateForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals/GoalsTypes.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/chat/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/chat/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm_install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/helm_install.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/nginx-ingress/nginx-deployement.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/nginx-ingress/nginx-deployement.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/nginx-ingress/service-nodeport.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/nginx-ingress/service-nodeport.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/VueStarterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/VueStarterApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/GoalTrackingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/GoalTrackingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/GoalTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/GoalTypeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/services/GoalTrackingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/services/GoalTrackingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/services/GoalTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/services/GoalTypeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingCreateForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingCreateForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingEditForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingEditForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,15 +55,15 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/AttendanceController.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AdminAttendancePage.vue" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/validators/UserRegistrationModelValidator.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/hr_core/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/validators/UserRegistrationModelValidator.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/hr/holidays/HolidaysController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/repository/AttendanceRepository.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/hr_job_portal/pom.xml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/hr/holidays/HolidaysController.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AdminAttendancePage.vue" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -119,6 +129,7 @@
       <recent name="C:\Users\user\projects\Hr\hr_core\src\main\resources\static\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\projects\Hr\hr_core\helm\templates" />
       <recent name="C:\Users\user\projects\Hr\hr_job_portal" />
       <recent name="C:\Users\user\projects\Hr\hr_job_portal\src" />
     </key>
@@ -225,7 +236,17 @@
       <workItem from="1655061371929" duration="5795000" />
       <workItem from="1655390129419" duration="1180000" />
       <workItem from="1655391408270" duration="29547000" />
-      <workItem from="1656146409107" duration="3462000" />
+      <workItem from="1656146409107" duration="5415000" />
+      <workItem from="1656181087438" duration="10391000" />
+      <workItem from="1656696775436" duration="20831000" />
+      <workItem from="1660391672903" duration="20047000" />
+      <workItem from="1660582123673" duration="4895000" />
+      <workItem from="1660625798958" duration="7869000" />
+      <workItem from="1660637628280" duration="2603000" />
+      <workItem from="1660666064013" duration="337000" />
+      <workItem from="1660730258505" duration="1940000" />
+      <workItem from="1660733667372" duration="344000" />
+      <workItem from="1660737374204" duration="3250000" />
     </task>
     <servers />
   </component>

@@ -38,6 +38,7 @@ rules:
       - ""
     resources:
       - configmaps
+      - ingressclasses
       - endpoints
       - nodes
       - pods
@@ -61,8 +62,10 @@ rules:
       - watch
   - apiGroups:
       - "extensions"
+      - "networking.k8s.io"
     resources:
       - ingresses
+      - ingressclasses
     verbs:
       - get
       - list
@@ -76,6 +79,7 @@ rules:
       - patch
   - apiGroups:
       - "extensions"
+      - "networking.k8s.io"
     resources:
       - ingresses/status
     verbs:
@@ -97,6 +101,7 @@ rules:
       - configmaps
       - pods
       - secrets
+      - ingressclasses
       - namespaces
     verbs:
       - get
@@ -161,6 +166,15 @@ subjects:
     name: nginx-ingress-serviceaccount
     namespace: ingress-nginx
 
+
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+spec:
+  controller: nginx.org/ingress-controller
+
 ---
 
 apiVersion: apps/v1
@@ -189,18 +203,22 @@ spec:
       serviceAccountName: nginx-ingress-serviceaccount
       containers:
         - name: nginx-ingress-controller
-          image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.20.0
+          image: nginx/nginx-ingress
+
           args:
             - /nginx-ingress-controller
             - --configmap=$(POD_NAMESPACE)/nginx-configuration
             - --publish-service=$(POD_NAMESPACE)/ingress-nginx
+            - '--controller-class=k8s.io/internal-ingress-nginx'
+            - '--ingress-class=nginx.org/ingress-controller'
             - --annotations-prefix=nginx.ingress.kubernetes.io
           securityContext:
-            capabilities:
-              drop:
-                - ALL
-              add:
-                - NET_BIND_SERVICE
+            allowPrivilegeEscalation: true
+#            capabilities:
+#              drop:
+#                - ALL
+#              add:
+#                - NET_BIND_SERVICE
             # www-data -> 33
             runAsUser: 33
           env:
@@ -236,3 +254,4 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 1
+

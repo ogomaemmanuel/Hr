@@ -242,7 +242,7 @@
                 </a>
                 <ul class="border-l-0">
                   <li>
-                    <router-link to="/jobs">
+                    <router-link to="/goal-tracking">
                       <span>Goal List</span>
                     </router-link>
                   </li>

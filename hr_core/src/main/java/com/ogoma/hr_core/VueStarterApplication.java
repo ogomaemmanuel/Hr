@@ -24,7 +24,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.concurrent.Executor;
-
 @SpringBootApplication
 @EnableJpaAuditing
 @EnableAsync
