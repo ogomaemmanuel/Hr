@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helm_install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/helm_install.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/nginx-ingress/nginx-deployement.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/nginx-ingress/nginx-deployement.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/nginx-ingress/service-nodeport.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/nginx-ingress/service-nodeport.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/VueStarterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/VueStarterApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/GoalTrackingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/GoalTrackingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/GoalTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/GoalTypeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/services/GoalTrackingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/services/GoalTrackingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/services/GoalTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/performance/goals/services/GoalTypeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingCreateForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingCreateForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingEditForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingEditForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/goals_tracking/GoalTrackingList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/application-production.properties" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/application-production.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,6 +161,11 @@
           <ENTRY IS_ENABLED="true" PARSER="env" PATH="$USER_HOME$/hr-app-secrets/.env" />
         </ENTRIES>
       </extension>
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ogoma.hr_core.VueStarterApplication" />
       <option name="ACTIVE_PROFILES" value="development" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -183,7 +176,7 @@
         <env name="MINION_SECRET_KEY" value="99oOvpQYp1vM4w7ib5Dk5s+LticEZBqYfSqoNyLW" />
         <env name="MINIO_END_POINT" value="https://fr1em3uqu0zu.compat.objectstorage.eu-frankfurt-1.oraclecloud.com" />
         <env name="AWS_ACCESS_KEY_ID" value="AKIASNPQTJPGLJRHTQAR" />
-        <env name="AWS_SECRET_ACCESS_KEY" value="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" />
+        <env name="AWS_SECRET_ACCESS_KEY" value="99oOvpQYp1vM4w7ib5Dk5s+LticEZBqYfSqoNyLWaws" />
       </envs>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -246,7 +239,9 @@
       <workItem from="1660666064013" duration="337000" />
       <workItem from="1660730258505" duration="1940000" />
       <workItem from="1660733667372" duration="344000" />
-      <workItem from="1660737374204" duration="3250000" />
+      <workItem from="1660737374204" duration="4553000" />
+      <workItem from="1660746156120" duration="2320000" />
+      <workItem from="1660751795549" duration="15409000" />
     </task>
     <servers />
   </component>

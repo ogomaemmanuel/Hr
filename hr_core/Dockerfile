@@ -1,11 +1,12 @@
 #FROM node:12.20.1-alpine3.10 as nodejs
-FROM node:12 as nodejs
+FROM node:14.15.4 as nodejs
 WORKDIR /app
 COPY . .
+RUN git config --global url."https://github.com".insteadOf git://github.com
 RUN npm install
 RUN npm run prod
 
-FROM maven:3.6.3-ibmjava-8-alpine AS build
+FROM maven:3.8.6-eclipse-temurin-17 AS build
 RUN mkdir -p /workspace
 WORKDIR /workspace
 COPY pom.xml /workspace
@@ -14,7 +15,7 @@ COPY --from=nodejs /app/src/main/resources/static/js/dist /workspace/src/main/re
 RUN mvn -B -f pom.xml clean package -DskipTests
 
 
-FROM adoptopenjdk/openjdk11:jre-11.0.10_9-alpine
+FROM eclipse-temurin:17.0.4_8-jre-alpine
 COPY --from=build /workspace/target/*.jar app.jar
 EXPOSE 8080/tcp
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
