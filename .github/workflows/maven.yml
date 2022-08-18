@@ -46,6 +46,7 @@ jobs:
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
+          context: "{{defaultContext}}:hr_core"
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
           dockerfile: hr_core/Dockerfile
