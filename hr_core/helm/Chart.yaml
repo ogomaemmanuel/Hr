@@ -1,12 +1,8 @@
-  apiVersion: v2
+  apiVersion: v1
   name: hr-app
   description: Employee management application written in java and vue js
-  version: 1.2.3 # version of the chart
+  version: 1.2.3
   maintainers:
     - name: Emmanuel Ogoma
       email: ogoma.emmanuel@gmail.com
-  dependencies:
-    - name: bitnami/redis
-      version: 6.2.7
-      repository: https://charts.bitnami.com/bitnami
-  appVersion: 1.0.0  #version of the application being deployed using the chart
+  appVersion: 1.0.0

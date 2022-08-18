@@ -4,13 +4,15 @@ hr_deployment:
   image: mudho/hr
   port: 8080 # use any port within acceptable range
   replicaCount: 1
-  serviceType: NodePort  # can be NodePort or LoadBalancer,
+  serviceType: ClusterIP  # can be NodePort or LoadBalancer,
   activeProfile: production # can be production, development, staging or demo
-  databasePassword: secret
-  databaseUserName: homestead
+  databasePassword: "Test"
+  databaseUserName: hr_app
+  databaseHost: 158.101.165.5
+  ingress:
+    host: bettlehr.com
   tiers:
     - frontend
     - backend
     - database
-  databaseHost: somedbhost
   secrets:

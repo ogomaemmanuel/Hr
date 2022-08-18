@@ -7,26 +7,37 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - db
+      - hr_db
     ports:
       - "8060:8080"
     restart: on-failure
+    links:
+      - hr_db:hr_db
+    env_file:
+      - ../../../app-secrets/s3.env
     environment:
       SPRING_PROFILES_ACTIVE: "production"
-      SPRING_DATASOURCE_PASSWORD: ${DB_USER_SECRET}
-      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_USER_SECRET:-dbusersecret}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-testuser}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+#      SPRING_DATASOURCE_PLATFORM: mysql
+#      SPRING_BATCH_INITIALIZE_SCHEMA: always
+      SPRING_LIQUIBASE_ENABLED: "false"
 #    https://docs.docker.com/compose/compose-file/#variable-substitution
-      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/${HR_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://hr_db:3306/${HR_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true"
 
-
-
-  db:
-    image: mariadb/server
-    # restart: always
+  hr_db:
+    image: "mysql:8.0"
+    restart: always
+    volumes:
+      - hr_db_v_2:/var/lib/mysql
     ports:
-      - "3301:3306"
+      - "3308:3306"
     environment:
-      MARIADB_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MARIADB_DATABASE: ${HR_SCHEMA:-hr}
-      MARIADB_USER: ${DB_USER}
-      MARIADB_PASSWORD : ${DB_USER_SECRET}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${HR_SCHEMA:-hr}
+      MYSQL_USER: ${DB_USER:-testuser}
+      MYSQL_PASSWORD: ${DB_USER_SECRET:-dbusersecret}
+
+volumes:
+  hr_db_v_2:

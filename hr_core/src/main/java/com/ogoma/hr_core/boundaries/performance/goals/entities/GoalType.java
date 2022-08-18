@@ -1,5 +1,6 @@
 package com.ogoma.hr_core.boundaries.performance.goals.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -15,9 +16,11 @@ public class GoalType {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
+    @JsonProperty("type")
     private String name;
     private String description;
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR")
     private Status status;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp

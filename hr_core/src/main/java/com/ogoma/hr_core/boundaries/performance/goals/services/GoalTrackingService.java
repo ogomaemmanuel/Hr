@@ -5,6 +5,8 @@ import com.ogoma.hr_core.boundaries.performance.goals.entities.GoalType;
 import com.ogoma.hr_core.boundaries.performance.goals.repository.GoalTrackingRepository;
 import com.ogoma.hr_core.boundaries.performance.goals.repository.GoalTypeRepository;
 import com.ogoma.hr_core.boundaries.performance.goals.requests.GoalTrackingRequest;
+import com.ogoma.hr_core.models.requests.PagedDataRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +23,11 @@ public class GoalTrackingService {
         this.goalTypeRepository = goalTypeRepository;
     }
 
-    public List<GoalTracking> getGoalTrackings() {
+    public List<GoalTracking> getAllGoalTrackings() {
         return this.goalTrackingRepository.findAll();
+    }
+    public Page<GoalTracking> getGoalTrackings(PagedDataRequest pagedDataRequest) {
+        return this.goalTrackingRepository.findAll(pagedDataRequest.toPageable());
     }
 
     public Optional<GoalTracking> getGoalTrackingByID(Long ID) {

@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "documents")
-public class Document {
+public class CloudObject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +18,7 @@ public class Document {
         return id;
     }
 
-    public Document setId(Long id) {
+    public CloudObject setId(Long id) {
         this.id = id;
         return this;
     }
@@ -27,7 +27,7 @@ public class Document {
         return name;
     }
 
-    public Document setName(String name) {
+    public CloudObject setName(String name) {
         this.name = name;
         return this;
     }
@@ -36,7 +36,7 @@ public class Document {
         return createdOn;
     }
 
-    public Document setCreatedOn(Date createdOn) {
+    public CloudObject setCreatedOn(Date createdOn) {
         this.createdOn = createdOn;
         return this;
     }
@@ -45,7 +45,7 @@ public class Document {
         return updatedOn;
     }
 
-    public Document setUpdatedOn(Date updatedOn) {
+    public CloudObject setUpdatedOn(Date updatedOn) {
         this.updatedOn = updatedOn;
         return this;
     }
@@ -55,7 +55,7 @@ public class Document {
     }
 
 
-    public Document setSize(Long size) {
+    public CloudObject setSize(Long size) {
         this.size = size;
         return this;
     }

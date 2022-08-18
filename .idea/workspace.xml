@@ -5,50 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/projections/PunchInPunchOutProjection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/utils/Filter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AttendanceActivities.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/.graphqlconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/GraphQLConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/QueryBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/access_control/entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/access_control/repositories/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/controllers/JobApplicationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/controllers/JobCategoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/controllers/JobsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/dtos/JobCategoryInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/dtos/JobInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/entities/Job.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/entities/JobApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/entities/JobCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/queries/JobsQueryResolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/repositories/JobCategoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/repositories/JobRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/services/JobService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/boundaries/jobs/specifications/JobSpecifications.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/common/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/common/BaseRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/java/com/ogoma/hr_job_portal/common/CustomRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/resources/graphql/mutations.graphqls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/resources/graphql/queries.graphqls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hr_job_portal/src/main/resources/graphql/schemas.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/AttendanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/AttendanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/entities/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/entities/Attendance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/requests/AttendanceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/requests/AttendanceRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/EmployeeAttendancePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/EmployeeAttendancePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/PunchINForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/PunchINForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hr_core/helm/templates/deployement.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/helm/templates/deployement.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="ComposerSettings">
     <execution />
@@ -64,12 +31,35 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/AttendanceController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/validators/UserRegistrationModelValidator.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/hr/holidays/HolidaysController.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/services/AttendanceService.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/home/Home.vue" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/attendance/repository/AttendanceRepository.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_job_portal/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/routers/router.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/attendance/AdminAttendancePage.vue" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
       <map>
         <entry key="JPA Inspector" value="true" />
         <entry key="JPA Palette" value="true" />
         <entry key="JPA Structure" value="true" />
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
       </map>
     </option>
     <option name="myId2Visible">
@@ -77,6 +67,9 @@
         <entry key="JPA Inspector" value="false" />
         <entry key="JPA Palette" value="false" />
         <entry key="JPA Structure" value="false" />
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
   </component>
@@ -90,6 +83,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -102,23 +96,26 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/hr_core/src/main/resources/application.properties" />
     <property name="jdk.selected.JAVA_MODULE" value="temurin-17" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/hr_core/src/main/resources/static/images" />
+    <property name="last_opened_file_path" value="$USER_HOME$/hr-app-secrets/.env" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="settings.jsgraphql" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="ts.external.directory.path" value="C:\Users\user\projects\Hr\hr_core\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\user\projects\Hr" />
       <recent name="C:\Users\user\projects\Hr\hr_core\src\main\resources\static\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\projects\Hr\hr_core\helm\templates" />
       <recent name="C:\Users\user\projects\Hr\hr_job_portal" />
       <recent name="C:\Users\user\projects\Hr\hr_job_portal\src" />
     </key>
@@ -130,7 +127,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.HrJobPortalApplication">
+  <component name="RunManager" selected="Spring Boot.VueStarterApplication">
     <configuration name="HrJobPortalApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="hr_job_portal" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ogoma.hr_job_portal.HrJobPortalApplication" />
@@ -151,10 +148,34 @@
     </configuration>
     <configuration name="VueStarterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="hr_core" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="true" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="true" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+          <ENTRY IS_ENABLED="true" PARSER="env" PATH="$USER_HOME$/hr-app-secrets/.env" />
+        </ENTRIES>
+      </extension>
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ogoma.hr_core.VueStarterApplication" />
       <option name="ACTIVE_PROFILES" value="development" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/.jdks/temurin-17.0.3" />
+      <option name="SHORTEN_COMMAND_LINE" value="MANIFEST" />
+      <envs>
+        <env name="MINIO_ACCESS_KEY" value="AKIASNPQTJPGLJRHTQAR" />
+        <env name="MINION_SECRET_KEY" value="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" />
+        <env name="MINIO_END_POINT" value="https://fr1em3uqu0zu.compat.objectstorage.eu-frankfurt-1.oraclecloud.com" />
+        <env name="AWS_ACCESS_KEY_ID" value="AKIASNPQTJPGLJRHTQAR" />
+        <env name="AWS_SECRET_ACCESS_KEY" value="99oOvpQYp1vM4w7ib5Dk5s+LticEZBqYfSqoNyLWaws" />
+      </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -198,7 +219,27 @@
       <workItem from="1653327914198" duration="13949000" />
       <workItem from="1653471773353" duration="42000" />
       <workItem from="1653471873640" duration="40239000" />
-      <workItem from="1654065548276" duration="437000" />
+      <workItem from="1654065548276" duration="16287000" />
+      <workItem from="1654106913958" duration="2211000" />
+      <workItem from="1654110953565" duration="24473000" />
+      <workItem from="1654754694744" duration="6110000" />
+      <workItem from="1655051376369" duration="6077000" />
+      <workItem from="1655061371929" duration="5795000" />
+      <workItem from="1655390129419" duration="1180000" />
+      <workItem from="1655391408270" duration="29547000" />
+      <workItem from="1656146409107" duration="5415000" />
+      <workItem from="1656181087438" duration="10391000" />
+      <workItem from="1656696775436" duration="20831000" />
+      <workItem from="1660391672903" duration="20047000" />
+      <workItem from="1660582123673" duration="4895000" />
+      <workItem from="1660625798958" duration="7869000" />
+      <workItem from="1660637628280" duration="2603000" />
+      <workItem from="1660666064013" duration="337000" />
+      <workItem from="1660730258505" duration="1940000" />
+      <workItem from="1660733667372" duration="344000" />
+      <workItem from="1660737374204" duration="4553000" />
+      <workItem from="1660746156120" duration="2320000" />
+      <workItem from="1660751795549" duration="17086000" />
     </task>
     <servers />
   </component>
@@ -404,6 +445,37 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/file_management/FilesController.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/file_management/FilesController.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/file_management/services/FilesService.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/file_management/services/FilesService.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/hr_core/src/main/java/com/ogoma/hr_core/boundaries/documents/services/CloudObjectService.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

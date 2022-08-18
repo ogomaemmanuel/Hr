@@ -1,11 +1,13 @@
 package com.ogoma.hr_core.boundaries.file_management.requests;
 
 import com.ogoma.hr_core.boundaries.file_management.entities.File;
+import org.springframework.web.multipart.MultipartFile;
 
 public class FileCreateRequest {
     private String name;
     private File.Type type;
     private Long parentId;
+    private MultipartFile attachment;
 
 
     public String getName() {
@@ -30,5 +32,13 @@ public class FileCreateRequest {
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public MultipartFile getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(MultipartFile attachment) {
+        this.attachment = attachment;
     }
 }

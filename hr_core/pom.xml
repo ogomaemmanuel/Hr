@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.8</version>
+        <version>2.7.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ogoma.hr_core</groupId>
@@ -15,9 +15,12 @@
     <description>A spring boot application starter with Mysql, vuejs, webpack and bulma and beufy</description>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <timestamp>${maven.build.timestamp}</timestamp>
         <humanize.version>1.2.2</humanize.version>
+        <!--        <maven.compiler.source>17</maven.compiler.source>-->
+        <!--        <maven.compiler.target>17</maven.compiler.target>-->
+        <!--        <maven.compiler.release>17</maven.compiler.release>-->
         <maven.build.timestamp.format>yyyy-MM-dd.HH.mm.ss</maven.build.timestamp.format>
     </properties>
     <repositories>
@@ -37,22 +40,22 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-hateoas</artifactId>-->
-<!--            <version>2.4.1</version>-->
-<!--&lt;!&ndash;            <exclusions>&ndash;&gt;-->
-<!--&lt;!&ndash;                <exclusion>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <groupId>org.springframework.hateoas</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <artifactId>spring-hateoas</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;                </exclusion>&ndash;&gt;-->
-<!--&lt;!&ndash;            </exclusions>&ndash;&gt;-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.hateoas</groupId>-->
-<!--            <artifactId>spring-hateoas</artifactId>-->
-<!--            <version>1.2.3</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-hateoas</artifactId>-->
+        <!--            <version>2.4.1</version>-->
+        <!--&lt;!&ndash;            <exclusions>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <exclusion>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <groupId>org.springframework.hateoas</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <artifactId>spring-hateoas</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;                </exclusion>&ndash;&gt;-->
+        <!--&lt;!&ndash;            </exclusions>&ndash;&gt;-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.hateoas</groupId>-->
+        <!--            <artifactId>spring-hateoas</artifactId>-->
+        <!--            <version>1.2.3</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -86,6 +89,18 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.9.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.awspring.cloud/spring-cloud-starter-aws -->
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-starter-aws</artifactId>
+            <version>2.4.1</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -184,13 +199,14 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.3.1</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.flywaydb</groupId>-->
-<!--            <artifactId>flyway-core</artifactId>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.flywaydb</groupId>-->
+        <!--            <artifactId>flyway-core</artifactId>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
+            <version>4.12.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -200,7 +216,7 @@
         <dependency>
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
-            <version>6.0.11</version>
+            <version>8.4.2</version>
         </dependency>
 
         <dependency>
@@ -229,6 +245,13 @@
             <artifactId>slugify</artifactId>
             <version>2.4</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.ow2.asm/asm-analysis -->
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>9.2</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
@@ -242,6 +265,11 @@
             <artifactId>validation-api</artifactId>
             <version>2.0.1.Final</version>
         </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.hateoas</groupId>-->
+        <!--            <artifactId>spring-hateoas</artifactId>-->
+        <!--            <version>1.2.3</version>-->
+        <!--        </dependency>-->
     </dependencies>
     <build>
         <!--        <resources>-->
@@ -263,12 +291,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.1</version>
             </plugin>
 
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
-                <version>4.8.0</version>
+                <version>4.12.0</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                     <changeLogFile>src/main/resources/db/db.changelog-master.xml</changeLogFile>
@@ -281,12 +310,23 @@
                     <dependency>
                         <groupId>org.liquibase</groupId>
                         <artifactId>liquibase-core</artifactId>
-                        <version>4.8.0</version>
+                        <version>4.12.0</version>
                     </dependency>
                     <dependency>
                         <groupId>org.liquibase.ext</groupId>
                         <artifactId>liquibase-hibernate5</artifactId>
-                        <version>4.8.0</version>
+                        <version>4.12.0</version>
+                        <exclusions>
+                            <exclusion>  <!-- declare the exclusion here -->
+                                <groupId>org.ow2.asm</groupId>
+                                <artifactId>asm</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>9.2</version>
                     </dependency>
                     <dependency>
                         <groupId>org.springframework.boot</groupId>
@@ -298,15 +338,33 @@
                         <artifactId>validation-api</artifactId>
                         <version>2.0.1.Final</version>
                     </dependency>
-<!--                    <dependency>-->
-<!--                        <groupId>org.springframework.boot</groupId>-->
-<!--                        <artifactId>spring-boot-starter-validation</artifactId>-->
-<!--                    </dependency>-->
-<!--                    <dependency>-->
-<!--                        <groupId>jakarta.validation</groupId>-->
-<!--                        <artifactId>jakarta.validation-api</artifactId>-->
-<!--                        <version>3.0.1</version>-->
-<!--                    </dependency>-->
+                    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas -->
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-hateoas</artifactId>
+                        <version>2.6.8</version>
+<!--                        <exclusions>-->
+<!--                            <exclusion>-->
+<!--                                <groupId>org.springframework</groupId>-->
+<!--                                <artifactId>hateoas</artifactId>-->
+<!--                            </exclusion>-->
+<!--                        </exclusions>-->
+                    </dependency>
+
+
+                    <!--                    <dependency>-->
+                    <!--                        <groupId>org.springframework.boot</groupId>-->
+                    <!--                        <artifactId>spring-boot-starter-hateoas</artifactId>-->
+                    <!--                    </dependency>-->
+                    <!--                    <dependency>-->
+                    <!--                        <groupId>org.springframework.boot</groupId>-->
+                    <!--                        <artifactId>spring-boot-starter-validation</artifactId>-->
+                    <!--                    </dependency>-->
+                    <!--                    <dependency>-->
+                    <!--                        <groupId>jakarta.validation</groupId>-->
+                    <!--                        <artifactId>jakarta.validation-api</artifactId>-->
+                    <!--                        <version>3.0.1</version>-->
+                    <!--                    </dependency>-->
                     <dependency>
                         <groupId>org.yaml</groupId>
                         <artifactId>snakeyaml</artifactId>
@@ -333,10 +391,9 @@
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <!--                    <source>1.9</source>-->
+                    <!--                    <target>1.9</target>-->
                     <compilerArguments>
                         <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
                     </compilerArguments>
@@ -345,7 +402,7 @@
             <plugin>
                 <groupId>org.hibernate.orm.tooling</groupId>
                 <artifactId>hibernate-enhance-maven-plugin</artifactId>
-                <version>5.4.2.Final</version>
+                <version>6.1.0.Final</version>
                 <executions>
                     <execution>
                         <configuration>

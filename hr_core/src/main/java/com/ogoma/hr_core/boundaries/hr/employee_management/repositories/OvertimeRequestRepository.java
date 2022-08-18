@@ -2,6 +2,7 @@ package com.ogoma.hr_core.boundaries.hr.employee_management.repositories;
 
 import com.ogoma.hr_core.boundaries.hr.employee_management.entities.OvertimeRequest;
 import com.ogoma.hr_core.boundaries.hr.employee_management.models.OvertimeRequestView;
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OvertimeRequestRepository extends JpaRepository<OvertimeRequest, Long> {
+public interface OvertimeRequestRepository extends BaseRepo<OvertimeRequest> {
     @Query(value = "select ovr.id,\n" +
             "       u.first_name       as employeeFirstName,\n" +
             "       u.last_name        as employeeLastName,\n" +

@@ -38,7 +38,7 @@ public class AttendanceController {
 
     @GetMapping(value = "last-activity")
     private ResponseEntity<?> getEmployeeLastAttendanceActivity(){
-        Map<String,String> punchInPunchOutProjection=
+        PunchInPunchOutProjection punchInPunchOutProjection=
                 this.attendanceService.lastAttendanceActivity();
         return ResponseEntity.ok(punchInPunchOutProjection);
     }
@@ -48,6 +48,12 @@ public class AttendanceController {
         Optional<Attendance> attendance = this.attendanceService.getAttendanceById(id);
         return ResponseEntity.of(attendance);
     }
+    @GetMapping(value = "/reports")
+    public ResponseEntity<?> getReport() {
+        var attendanceReport = this.attendanceService.getAttendanceReport();
+        return ResponseEntity.ok(attendanceReport);
+    }
+
 
     @GetMapping(value = "/today-activity")
     public ResponseEntity<?> getAttendanceActivityToday() {
@@ -66,6 +72,7 @@ public class AttendanceController {
         Attendance attendance = this.attendanceService.createAttendanceForCurrentUser(attendanceRequest);
         return ResponseEntity.ok(attendance);
     }
+
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> updateAttendance(@PathVariable Long id, @RequestBody @Valid AttendanceRequest attendanceRequest) {

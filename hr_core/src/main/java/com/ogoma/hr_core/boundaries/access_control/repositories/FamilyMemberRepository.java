@@ -1,6 +1,7 @@
 package com.ogoma.hr_core.boundaries.access_control.repositories;
 
 import com.ogoma.hr_core.boundaries.access_control.entities.FamilyMember;
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public interface FamilyMemberRepository extends JpaRepository<FamilyMember,Long>, JpaSpecificationExecutor<FamilyMember> {
+public interface FamilyMemberRepository extends BaseRepo<FamilyMember>{
     List<FamilyMember> findByPhoneNumberAndUserId(String phone, Long userId);
     
     @Query(value = "select m.id, m.name, m.phone_number phoneNumber, m.relationship_id relationshipId, m.user_id userId, " +

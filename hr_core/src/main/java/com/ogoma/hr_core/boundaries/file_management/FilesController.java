@@ -4,6 +4,7 @@ import com.ogoma.hr_core.boundaries.file_management.entities.File;
 import com.ogoma.hr_core.boundaries.file_management.query_filters.FileQueryFilter;
 import com.ogoma.hr_core.boundaries.file_management.requests.FileCreateRequest;
 import com.ogoma.hr_core.boundaries.file_management.services.FilesService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +35,13 @@ public class FilesController {
         return ResponseEntity.of(file);
     }
 
-    @PostMapping
-    public ResponseEntity<?> createFile(@RequestBody @Valid FileCreateRequest fileCreateRequest) throws Exception {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createFileJson(@RequestBody @Valid FileCreateRequest fileCreateRequest) throws Exception {
+        File file = this.filesService.createFile(fileCreateRequest);
+        return ResponseEntity.ok(file);
+    }
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> createFile(@Valid FileCreateRequest fileCreateRequest) throws Exception {
         File file = this.filesService.createFile(fileCreateRequest);
         return ResponseEntity.ok(file);
     }

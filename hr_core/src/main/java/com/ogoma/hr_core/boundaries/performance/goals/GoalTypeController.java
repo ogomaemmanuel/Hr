@@ -3,6 +3,8 @@ package com.ogoma.hr_core.boundaries.performance.goals;
 import com.ogoma.hr_core.boundaries.performance.goals.entities.GoalType;
 import com.ogoma.hr_core.boundaries.performance.goals.requests.GoalTypeRequest;
 import com.ogoma.hr_core.boundaries.performance.goals.services.GoalTypeService;
+import com.ogoma.hr_core.models.requests.PagedDataRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +25,11 @@ public class GoalTypeController {
         List<GoalType> goalTypeList = this.goalTypeService.getGoalTypes();
         return ResponseEntity.ok(goalTypeList);
     }
+    @GetMapping(value = "/paged")
+    public ResponseEntity<?> getGoalTypesPaged(PagedDataRequest pagedDataRequest){
+        Page<GoalType> goalTypeList = this.goalTypeService.getGoalTypesPaged(pagedDataRequest);
+        return ResponseEntity.ok(goalTypeList);
+    }
     @GetMapping(value = "/{id}")
     public  ResponseEntity<?> getGoalTypeById(@PathVariable  Long id){
         Optional<GoalType> goalType= this.goalTypeService.getGoalTypeById(id);
@@ -39,6 +46,12 @@ public class GoalTypeController {
     public ResponseEntity<?> updateGoalType(@PathVariable Long id, @RequestBody @Valid GoalTypeRequest goalTypeRequest){
         Optional<GoalType> goalType = this.goalTypeService.updateGoalType(id, goalTypeRequest);
         return ResponseEntity.of(goalType);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> removeGoalType(@PathVariable Long id){
+        this.goalTypeService.removeGoalType(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

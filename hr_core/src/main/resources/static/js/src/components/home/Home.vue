@@ -30,8 +30,8 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/permissions">
-                      <span>Permissions</span>
+                    <router-link to="/messaging">
+                      <span>Chat</span>
                     </router-link>
                   </li>
                 </ul>
@@ -80,9 +80,9 @@
                     </router-link>
                   </li>
                   <li>
-                    <a href="#">
+                    <router-link to="/admin-attendance">
                       <span>Attendance(Admin)</span>
-                    </a>
+                    </router-link>
                   </li>
                   <li>
                     <router-link to="/employee-attendance">
@@ -193,6 +193,7 @@
                   </li>
                 </ul>
               </li>
+
               <li>
                 <a href="#" class="">
                   <span class="icon"><i class="fa fa-files-o"></i></span> Accounts
@@ -234,6 +235,39 @@
                 <router-link to="/assets" class="">
                   <span class="icon"><i class="fa fa-object-ungroup"></i></span> Assets
                 </router-link>
+              </li>
+              <li>
+                <a href="#" class="">
+                  <span class="icon"><i class="fa fa-graduation-cap"></i></span> Performance
+                </a>
+                <ul class="border-l-0">
+                  <li>
+                    <router-link to="/goal-tracking">
+                      <span>Goal List</span>
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link to="/goal-types">
+                      <span>Goal Type</span>
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link to="/taxes">
+                      <span>Training List</span>
+                    </router-link>
+                  </li>
+                  <li>
+                    <router-link to="/taxes">
+                      <span>Trainer</span>
+                    </router-link>
+                  </li>
+                   <li>
+                    <router-link to="/taxes">
+                      <span>Training Type</span>
+                    </router-link>
+                  </li>
+
+                </ul>
               </li>
               <li>
                 <a href="#" class="">

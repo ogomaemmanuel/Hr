@@ -1,5 +1,6 @@
 package com.ogoma.hr_core.boundaries.project_management.repositories;
 
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import com.ogoma.hr_core.boundaries.project_management.entities.Client;
 import com.ogoma.hr_core.boundaries.project_management.models.ClientProjection;
 import com.ogoma.hr_core.boundaries.project_management.models.ClientViewModel;
@@ -13,7 +14,7 @@ import java.util.Optional;
 
 
 @Repository
-public interface ClientsRepository extends JpaRepository<Client, Long> {
+public interface ClientsRepository extends BaseRepo<Client> {
     @Query(value = "select c.id as id ,c.companyName as companyName ,c.description,c.user.firstName as firstName," +
             "c.user.lastName as lastName,c.user.phone as phone,c.user.email as email" +
             " from Client  c ")

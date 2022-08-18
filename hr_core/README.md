@@ -36,6 +36,10 @@ To run image from docker-hub, run
 > docker-compose -f docker-compose.prod.yml
 
 
+### Using helm
+Cd to helm directory and Run 
+> helm install ogoma .  --create-namespace --namespace ogoma --set hr_deployment.image=mudho/hr --set hr_deployment.ingress.host=ogoma.bettle.com --set hr_deployment.databasePassword="Test%&123456"  --set hr_deployment.tenantName=ogoma  --debug
+
 ## Current Backlog
 * [x] assign roles to users
 * [ ] assign permissions to roles

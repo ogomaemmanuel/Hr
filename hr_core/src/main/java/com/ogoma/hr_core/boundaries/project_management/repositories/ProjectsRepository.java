@@ -1,5 +1,6 @@
 package com.ogoma.hr_core.boundaries.project_management.repositories;
 
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import com.ogoma.hr_core.boundaries.project_management.entities.Project;
 import com.ogoma.hr_core.boundaries.project_management.models.ProjectProjection;
 import com.ogoma.hr_core.boundaries.project_management.models.TeamMemberProjection;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ProjectsRepository extends JpaRepository<Project, Long> {
+public interface ProjectsRepository extends BaseRepo<Project> {
     @Query(value = "select id, name,start_date as startDate,end_date as endDate,description from projects",
             nativeQuery = true,
             countQuery = "select count(*) from projects")

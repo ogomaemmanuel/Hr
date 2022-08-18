@@ -1,11 +1,13 @@
 package com.ogoma.hr_core.boundaries.performance.goals.requests;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ogoma.hr_core.boundaries.performance.goals.entities.GoalType;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 public class GoalTypeRequest {
+    @JsonProperty("type")
     private String name;
     private String description;
     @Enumerated(EnumType.STRING)

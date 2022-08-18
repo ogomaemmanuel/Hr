@@ -1,0 +1,26 @@
+{{- $name := include "hr-app.fullname" . -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+  labels:
+    app: {{ $name }}
+spec:
+  type: {{ .Values.hr_deployment.serviceType }}
+  selector:
+    app: {{ .Chart.Name }}-web
+  ports:
+    - port: {{ .Values.hr_deployment.port }}
+      name: htpp
+      targetPort: {{ .Values.hr_deployment.port }}
+
+
+
+
+
+
+
+
+
+
+

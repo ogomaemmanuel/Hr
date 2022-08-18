@@ -1,2 +1,19 @@
-# Todo create ingress
-
+ {{- $name := include "hr-app.fullname" . -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hr-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - host: "{{ .Values.hr_deployment.ingress.host }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: {{ $name }}
+                port:
+                  number: {{ .Values.hr_deployment.port }}

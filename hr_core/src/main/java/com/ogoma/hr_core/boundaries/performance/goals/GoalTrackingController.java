@@ -3,10 +3,15 @@ package com.ogoma.hr_core.boundaries.performance.goals;
 import com.ogoma.hr_core.boundaries.performance.goals.entities.GoalTracking;
 import com.ogoma.hr_core.boundaries.performance.goals.requests.GoalTrackingRequest;
 import com.ogoma.hr_core.boundaries.performance.goals.services.GoalTrackingService;
+import com.ogoma.hr_core.models.requests.PagedDataRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +24,9 @@ public class GoalTrackingController {
         this.goalTrackingService = goalTrackingService;
     }
     @GetMapping
-    public ResponseEntity<?> getGoalTrackings(){
-        List<GoalTracking> goalTrackings = this.goalTrackingService.getGoalTrackings();
-        return ResponseEntity.ok( goalTrackings);
+    public ResponseEntity<Page<GoalTracking>> getGoalTrackings(PagedDataRequest pagedDataRequest){
+        Page<GoalTracking> goalTrackings = this.goalTrackingService.getGoalTrackings(pagedDataRequest);
+        return ResponseEntity.ok(goalTrackings);
     }
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> getGoalTrackingById(@PathVariable  Long id){

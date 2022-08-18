@@ -2,6 +2,7 @@ package com.ogoma.hr_core.boundaries.hr.employee_management.repositories;
 
 import com.ogoma.hr_core.boundaries.hr.employee_management.entities.EmployeeResignation;
 import com.ogoma.hr_core.boundaries.hr.employee_management.models.EmployeeResignationView;
+import com.ogoma.hr_core.boundaries.performance.promotion.repository.BaseRepo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EmployeeResignationRepository extends JpaRepository<EmployeeResignation, Long> {
+public interface EmployeeResignationRepository extends BaseRepo<EmployeeResignation> {
     @Query(value = "select er.id,\n" +
             "       u.first_name        as employeeFirstName,\n" +
             "       u.last_name         as employeeLastName,\n" +
