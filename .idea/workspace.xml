@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.github/actions/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/actions/action.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/actions/entrypoint.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -241,7 +238,7 @@
       <workItem from="1660733667372" duration="344000" />
       <workItem from="1660737374204" duration="4553000" />
       <workItem from="1660746156120" duration="2320000" />
-      <workItem from="1660751795549" duration="17480000" />
+      <workItem from="1660751795549" duration="17985000" />
     </task>
     <servers />
   </component>
