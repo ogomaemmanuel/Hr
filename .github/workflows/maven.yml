@@ -53,6 +53,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: "{{defaultContext}}:hr_core"
           push: true
           tags: mudho/hr:latest
