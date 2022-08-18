@@ -26,8 +26,6 @@ services:
 #    https://docs.docker.com/compose/compose-file/#variable-substitution
       SPRING_DATASOURCE_URL: "jdbc:mysql://hr_db:3306/${HR_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true"
 
-
-
   hr_db:
     image: "mysql:8.0"
     restart: always

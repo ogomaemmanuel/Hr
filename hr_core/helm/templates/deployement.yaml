@@ -27,14 +27,16 @@ spec:
               protocol: TCP
           env:
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-              value: create
+              value: update
             - name: SERVER_PORT
               value: {{ .Values.hr_deployment.port | quote }}
             - name: SPRING_PROFILES_ACTIVE
               value: production
+            - name:  SPRING_LIQUIBASE_ENABLED
+              value: "false"
             - name: SPRING_DATASOURCE_PASSWORD
               value: {{ .Values.hr_deployment.databasePassword }}
             - name: SPRING_DATASOURCE_USERNAME
               value: {{ .Values.hr_deployment.databaseUserName }}
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://{{ .Values.hr_deployment.databaseHost }}/{{ .Values.hr_deployment.tenantName }}_hr?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
+              value: "jdbc:mysql://{{ .Values.hr_deployment.databaseHost }}/{{ .Values.hr_deployment.tenantName }}_hr?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true"
