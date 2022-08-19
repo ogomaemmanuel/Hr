@@ -44,4 +44,10 @@ public class TrainingTypeController {
                 this.trainingTypeService.createTrainingType(trainingTypeRequest);
         return ResponseEntity.ok(trainingType);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> removeTrainingType(@PathVariable  Long id){
+        this.trainingTypeService.removeTrainingType(id);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -77,13 +77,17 @@
         </div>
       </div>
     </div>
-    <TrainingTypeCreateForm v-if="showCreateForm"></TrainingTypeCreateForm>
+    <TrainingTypeCreateForm
+        @modalClosed="showCreateForm=false"
+        @createSuccessful="createSuccessfulHandler"
+        v-if="showCreateForm"></TrainingTypeCreateForm>
   </div>
 </template>
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
 import Paginator from "../../common/paginator/Paginator";
 import TrainingTypeCreateForm from "./TrainingTypeCreateForm";
+import {Message} from "element-ui";
 
 export default {
   components: {
@@ -120,8 +124,22 @@ export default {
     setTrainingTypeEdit(trainingType) {
 
     },
+    createSuccessfulHandler() {
+      this.showCreateForm = false;
+      this.getGoalTypes();
+    },
     confirmRemoveTrainingType(trainingType) {
-
+      this.$buefy.dialog.confirm({
+        title: 'Delete Holiday',
+        message: `Are you sure want to delete <b> ${trainingType.type}</b> training type`,
+        onConfirm: () => this.removeTrainingType(trainingType)
+      })
+    },
+    removeTrainingType(trainingType) {
+      axios.delete(`/api/training-types/${trainingType.id}`).then(resp => {
+        Message.success("Training type successfully deleted");
+        this.getGoalTypes();
+      })
     }
 
   }

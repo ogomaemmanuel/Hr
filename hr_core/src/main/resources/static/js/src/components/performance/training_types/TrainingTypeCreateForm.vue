@@ -21,11 +21,11 @@
         <div class="field">
           <label class="label">Description<span><sup>*</sup></span></label>
           <div class="control">
-            <input
+            <textarea
                 v-model="trainingType.description"
                 @input="clearFieldError('description')"
-                class="input"
-                type="text">
+                class="textarea"
+                type="text"></textarea>
             <span class="mb-2 has-text-danger" v-if="errors['description']">
 						{{ errors['description'][0] }}
 					</span>
@@ -81,7 +81,8 @@ export default {
     createTrainingType() {
       axios.post("/api/training-types",
           this.trainingType).then(resp => {
-        Message.success("Training Type Successfully Created")
+        Message.success("Training Type Successfully Created");
+        this.$emit("createSuccessful")
       }, error => {
 
       })
