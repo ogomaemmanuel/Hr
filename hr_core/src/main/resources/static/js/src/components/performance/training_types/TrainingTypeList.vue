@@ -42,7 +42,7 @@
                     <div class="action-controls d-flex justify-end">
                       <button
                           :to="`/goal-type-edit/${trainingType.id}`" tag="button"
-                          @click="setTrainingTypeEdit(trainingType)" class="button is-white is-small">
+                          @click="setTrainingTypeToUpdate(trainingType)" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
@@ -81,6 +81,11 @@
         @modalClosed="showCreateForm=false"
         @createSuccessful="createSuccessfulHandler"
         v-if="showCreateForm"></TrainingTypeCreateForm>
+    <TrainingTypeEditForm
+        @updateSuccessful="updateSuccessfulHandler"
+        :id="trainingTypeToUpdate.id"
+        @modalClosed="showEditForm=false"
+        v-if="showEditForm"></TrainingTypeEditForm>
   </div>
 </template>
 <script>
@@ -88,11 +93,13 @@ import data_table_mixin from "../../../mixins/data_table_mixin";
 import Paginator from "../../common/paginator/Paginator";
 import TrainingTypeCreateForm from "./TrainingTypeCreateForm";
 import {Message} from "element-ui";
+import TrainingTypeEditForm from "./TrainingTypeEditForm";
 
 export default {
   components: {
     Paginator,
-    TrainingTypeCreateForm
+    TrainingTypeCreateForm,
+    TrainingTypeEditForm
   },
   mixins: [
     data_table_mixin
@@ -101,6 +108,8 @@ export default {
     return {
       loading: false,
       showCreateForm: false,
+      showEditForm: false,
+      trainingTypeToUpdate: null,
       trainingTypeList: []
     }
   },
@@ -139,6 +148,18 @@ export default {
       axios.delete(`/api/training-types/${trainingType.id}`).then(resp => {
         Message.success("Training type successfully deleted");
         this.getGoalTypes();
+      })
+    },
+    updateSuccessfulHandler() {
+      this.showEditForm = false
+      this.getGoalTypes();
+    },
+
+    setTrainingTypeToUpdate(trainingType) {
+      this.trainingTypeToUpdate = trainingType;
+      let vm = this;
+      this.$nextTick(() => {
+        vm.showEditForm = true;
       })
     }
 
