@@ -3,7 +3,7 @@
     <div slot="modal-content">
       <form>
         <div class="has-text-centered m-3">
-          <h1 class="has-text-black"><b>Update Training Type</b></h1>
+          <h1 class="has-text-weight-bold modal-heading"><b>Update Training Type</b></h1>
         </div>
         <div class="field">
           <label class="label">Name<span><sup>*</sup></span></label>
