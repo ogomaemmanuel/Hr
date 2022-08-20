@@ -3,6 +3,8 @@ package com.ogoma.hr_core.boundaries.performance.training.services;
 import com.ogoma.hr_core.boundaries.performance.training.entities.Trainer;
 import com.ogoma.hr_core.boundaries.performance.training.repository.TrainersRepository;
 import com.ogoma.hr_core.boundaries.performance.training.requests.TrainerRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public class TrainersService {
         this.trainersRepository = trainersRepository;
     }
 
-    public List<Trainer> getAllTrainers() {
-        List<Trainer> trainers = this.trainersRepository.findAll();
+    public Page<Trainer> getAllTrainers(Pageable pageable) {
+        Page<Trainer> trainers = this.trainersRepository.findAll(pageable);
         return trainers;
     }
 
