@@ -75,8 +75,7 @@ jobs:
           name: 'hr-jars'
           path: ~/hr-jars
       - name: Display structure of downloaded files
-        working-directory: ~/hr-jars
-        run: ls -R
+        run: ls -R ~/hr-jars
       - uses: burnett01/rsync-deployments@5.2.1
         name: rsynch jar files
         with:
