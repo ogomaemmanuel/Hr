@@ -75,7 +75,7 @@ jobs:
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -avzr --delete
-          path: *.jars
+          path: target/*.jars
           remote_path: /opt/my-application.jar
           remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
           remote_user: opc
