@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hr-jars
-          path: target/*.jar
+          path: hr_core/target/*.jar
 #      - name: Set up Java for publishing to Maven Central Repository
 #        uses: actions/setup-java@v1
 #        with:
