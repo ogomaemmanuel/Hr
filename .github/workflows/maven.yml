@@ -74,13 +74,17 @@ jobs:
         with:
           name: 'hr-jars'
           path: ~/hr-jars
-      - uses: burnett01/rsync-deployments@5.2.1
-        name: rsynch jar files
-#        working-directory: ~
-        with:
-          switches: -avzr --delete
-          path: /home/runner/target/*.jar
-          remote_path: /opt/my-application.jar
-          remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
-          remote_user: opc
-          remote_key: ${{ secrets.ORACLE_COMPUTE_817_DEPLOY_KEY }}
+        run: |
+          echo "${{secrets.ORACLE_COMPUTE_817_DEPLOY_KEY}}" > deploy_key
+          chmod 600 ./deploy_key
+          rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --delete /home/runner/target/*.jar opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }}:/opt/my-application.jar
+#      - uses: burnett01/rsync-deployments@5.2.1
+#        name: rsynch jar files
+##        working-directory: ~
+#        with:
+#          switches: -avzr --delete
+#          path: /home/runner/target/*.jar
+#          remote_path: /opt/my-application.jar
+#          remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
+#          remote_user: opc
+#          remote_key: ${{ secrets.ORACLE_COMPUTE_817_DEPLOY_KEY }}
