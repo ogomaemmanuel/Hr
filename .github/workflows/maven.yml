@@ -64,6 +64,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    name: Deploy to oracle compute vm
     steps:
       - name: Download JAR
         uses: actions/download-artifact@v3
