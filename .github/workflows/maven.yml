@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hr-jars
-          path: target/hr_core.0.0.1-SNAPSHOT.jar
+          path: ${{ github.workspace }}/target/*.jar
 #      - name: Set up Java for publishing to Maven Central Repository
 #        uses: actions/setup-java@v1
 #        with:
@@ -63,22 +63,22 @@ jobs:
           push: true
           tags: mudho/hr:latest
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    name: Deploy to oracle compute vm
-    steps:
-      - name: Download JAR
-        uses: actions/download-artifact@v3
-        with:
-          name: hr-jars
-      - uses: actions/checkout@v2
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@5.2.1
-        with:
-          switches: -avzr --delete
-          path: target/hr_core.0.0.1-SNAPSHOT.jar
-          remote_path: /opt/my-application.jar
-          remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
-          remote_user: opc
-          remote_key: ${{ secrets.ORACLE_COMPUTE_817_DEPLOY_KEY }}
+#  deploy:
+#    needs: test
+#    runs-on: ubuntu-latest
+#    name: Deploy to oracle compute vm
+#    steps:
+#      - name: Download JAR
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: hr-jars
+#      - uses: actions/checkout@v2
+#      - name: rsync deployments
+#        uses: burnett01/rsync-deployments@5.2.1
+#        with:
+#          switches: -avzr --delete
+#          path: target/hr_core.0.0.1-SNAPSHOT.jar
+#          remote_path: /opt/my-application.jar
+#          remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
+#          remote_user: opc
+#          remote_key: ${{ secrets.ORACLE_COMPUTE_817_DEPLOY_KEY }}
