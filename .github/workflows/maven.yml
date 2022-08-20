@@ -69,18 +69,19 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy to oracle compute vm
     steps:
-      - uses: actions/checkout@v2
       - name: Download JAR
         uses: actions/download-artifact@v3
         with:
           name: 'hr-jars'
+          path: ~/hr-jars
       - name: Display structure of downloaded files
+        working-directory: ~/hr-jars
         run: ls -R
       - uses: burnett01/rsync-deployments@5.2.1
         name: rsynch jar files
         with:
           switches: -avzr --delete
-          path: hr_core/target/*.jar
+          path: ~/hr-jars/target/*.jar
           remote_path: /opt/my-application.jar
           remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
           remote_user: opc
