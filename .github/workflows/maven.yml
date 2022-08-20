@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hr-jars
-          path: target/*.jar
+          path: target/hr_core.0.0.1-SNAPSHOT.jar
 #      - name: Set up Java for publishing to Maven Central Repository
 #        uses: actions/setup-java@v1
 #        with:
@@ -41,6 +41,7 @@ jobs:
 #          GITHUB_TOKEN: ${{ secrets.DEPLOY }}
 #        run: mvn -B clean deploy -DskipTests
   docker:
+    needs: test
     name: Publish - Docker Hub
     runs-on: ubuntu-latest
     steps:
@@ -76,7 +77,7 @@ jobs:
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -avzr --delete
-          path: target/*.jars
+          path: target/hr_core.0.0.1-SNAPSHOT.jar
           remote_path: /opt/my-application.jar
           remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
           remote_user: opc
