@@ -78,9 +78,10 @@ jobs:
 #        run: ls -R ~/hr-jars
       - uses: burnett01/rsync-deployments@5.2.1
         name: rsynch jar files
+        working-directory: ~
         with:
           switches: -avzr --delete
-          path: ~/hr-jars/target/*.jar
+          path: ./hr-jars/target/*.jar
           remote_path: /opt/my-application.jar
           remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
           remote_user: opc
