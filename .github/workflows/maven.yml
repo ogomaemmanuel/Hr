@@ -73,6 +73,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy to oracle compute vm
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Download JAR
         uses: actions/download-artifact@v3
         with:
