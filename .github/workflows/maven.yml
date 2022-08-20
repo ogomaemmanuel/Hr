@@ -73,14 +73,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: hr-jars
-      - uses: actions/checkout@v2
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@5.2.1
-
-        with:
-          switches: -avzr --delete
-          path: hr_core/target/*.jar
-          remote_path: /opt/my-application.jar
-          remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
-          remote_user: opc
-          remote_key: ${{ secrets.ORACLE_COMPUTE_817_DEPLOY_KEY }}
+      - name: Display structure of downloaded files
+        run: ls -R
+#      - uses: actions/checkout@v2
+#      - name: rsync deployments
+#        uses: burnett01/rsync-deployments@5.2.1
+#        with:
+#          switches: -avzr --delete
+#          path: hr_core/target/*.jar
+#          remote_path: /opt/my-application.jar
+#          remote_host: ${{ secrets.ORACLE_COMPUTE_HOST_817 }}
+#          remote_user: opc
+#          remote_key: ${{ secrets.ORACLE_COMPUTE_817_DEPLOY_KEY }}
