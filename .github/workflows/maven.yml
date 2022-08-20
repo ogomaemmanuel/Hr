@@ -63,6 +63,7 @@ jobs:
           tags: mudho/hr:latest
 
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     name: Deploy to oracle compute vm
     steps:
