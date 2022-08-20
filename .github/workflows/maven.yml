@@ -1,7 +1,5 @@
 name: Main Branch
-defaults:
-  run:
-    working-directory: hr_core
+
 on:
   push:
     branches: [ master]
@@ -13,6 +11,9 @@ on:
 jobs:
   test:
     name: Unit Test
+    defaults:
+      run:
+        working-directory: hr_core
     runs-on: ubuntu-18.04
 
     steps:
@@ -43,6 +44,9 @@ jobs:
 #        run: mvn -B clean deploy -DskipTests
   docker:
     needs: test
+    defaults:
+      run:
+        working-directory: hr_core
     name: Publish - Docker Hub
     runs-on: ubuntu-latest
     steps:
@@ -67,9 +71,6 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: $HOME
     name: Deploy to oracle compute vm
     steps:
       - name: Download JAR
