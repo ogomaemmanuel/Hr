@@ -29,9 +29,9 @@ jobs:
         run: mvn -B clean verify
       - name: Archive jar files to be used in deploy step
         uses: actions/upload-artifact@v3
-          with:
-            name: hr-jars
-            path: target/*.jar
+        with:
+          name: hr-jars
+          path: target/*.jar
 #      - name: Set up Java for publishing to Maven Central Repository
 #        uses: actions/setup-java@v1
 #        with:
