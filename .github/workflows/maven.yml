@@ -84,7 +84,7 @@ jobs:
         run: |
           echo "${{secrets.ORACLE_COMPUTE_817_DEPLOY_KEY}}" > deploy_key
           chmod 600 ./deploy_key
-          rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --delete ~/hr-jars/hr-jars/*.jar opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }}:~/app.jar
+          rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --delete ~/hr-jars/*.jar opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }}:~/app.jar
 #      - uses: burnett01/rsync-deployments@5.2.1
 #        name: rsynch jar files
 ##        working-directory: ~
