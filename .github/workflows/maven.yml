@@ -73,11 +73,11 @@ jobs:
           name: 'hr-jars'
           path: ~/hr-jars
       - name: Create jar folder on remote machine
-        run: ssh opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} mkdir -p ~/hr-jars
+        run: ssh -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} mkdir -p ~/hr-jars
       - name: Rsynch files
         run: |
           echo "${{secrets.ORACLE_COMPUTE_817_DEPLOY_KEY}}" > deploy_key
           chmod 600 ./deploy_key
           rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --progress ~/hr-jars/*.jar opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }}:~/hr-jars/app.jar
       - name: Restart application
-        run: ssh opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} 'systemctl reload hr_app.service'
+        run: ssh -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} 'systemctl reload hr_app.service'
