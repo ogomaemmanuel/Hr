@@ -34,14 +34,6 @@ jobs:
         with:
           name: hr-jars
           path: hr_core/target/*.jar
-#      - name: Set up Java for publishing to Maven Central Repository
-#        uses: actions/setup-java@v1
-#        with:
-#          java-version: 1.11
-#      - name: Publish to GitHub Packages
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.DEPLOY }}
-#        run: mvn -B clean deploy -DskipTests
   docker:
     needs: test
     defaults:
@@ -80,10 +72,12 @@ jobs:
         with:
           name: 'hr-jars'
           path: ~/hr-jars
+      - name: Create jar folder on remote machine
+        run: ssh opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} mkdir -p ~/hr-jars
       - name: Rsynch files
         run: |
           echo "${{secrets.ORACLE_COMPUTE_817_DEPLOY_KEY}}" > deploy_key
           chmod 600 ./deploy_key
-          rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --progress --delete ~/hr-jars/*.jar opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }}:~/hr-jars/app.jar
+          rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --progress ~/hr-jars/*.jar opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }}:~/hr-jars/app.jar
       - name: Restart application
         run: ssh opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} 'systemctl reload hr_app.service'
