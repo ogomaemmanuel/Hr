@@ -73,7 +73,7 @@ jobs:
           name: 'hr-jars'
           path: ~/hr-jars
       - name: Create jar folder on remote machine
-        run: ssh -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} mkdir -p ~/hr-jars
+        run: ssh -o 'StrictHostKeyChecking=no' opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} 'mkdir -p hr-jars'
       - name: Rsynch files
         run: |
           echo "${{secrets.ORACLE_COMPUTE_817_DEPLOY_KEY}}" > deploy_key
