@@ -19,7 +19,7 @@
         <div class="card" ref="leaveRequests">
           <div class="card-content">
             <div class="content b-table is-relative">
-              <h4>Training Types</h4>
+              <h4>Trainers</h4>
               <table class="table has-mobile-cards w-full is-hoverable">
                 <thead class="font-thin">
                 <tr>
@@ -77,11 +77,12 @@
         </div>
       </div>
     </div>
-    <!--    <TrainingTypeCreateForm-->
-    <!--        @modalClosed="showCreateForm=false"-->
-    <!--        @createSuccessful="createSuccessfulHandler"-->
-    <!--        v-if="showCreateForm"></TrainingTypeCreateForm>-->
-    <!--    <TrainingTypeEditForm-->
+    <TrainersCreateForm
+        @modalClosed="showCreateForm=false"
+        @createSuccessful="createSuccessfulHandler"
+        v-if="showCreateForm">
+    </TrainersCreateForm>
+    <!--        <TrainingTypeEditForm-->
     <!--        @updateSuccessful="updateSuccessfulHandler"-->
     <!--        :id="trainingTypeToUpdate.id"-->
     <!--        @modalClosed="showEditForm=false"-->
@@ -90,14 +91,20 @@
 </template>
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
+import TrainersCreateForm from "./TrainersCreateForm";
 
 export default {
+  components: {
+    TrainersCreateForm
+  },
   mixins: [data_table_mixin],
+
   data() {
     return {
       trainers: [],
       trainerToUpdate: null,
       showEditForm: false,
+      showCreateForm: false,
     }
   },
   created() {
@@ -113,6 +120,10 @@ export default {
     },
     removeTrainer() {
 
+    },
+    createSuccessfulHandler() {
+      this.showCreateForm = false;
+      this.getTrainers()
     },
     getTrainers() {
       axios.get("/api/trainers", {
