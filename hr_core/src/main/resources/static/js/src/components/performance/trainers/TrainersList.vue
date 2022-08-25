@@ -118,8 +118,10 @@ export default {
         onConfirm: () => this.removeTrainer(trainer)
       })
     },
-    removeTrainer() {
-
+    removeTrainer(trainer) {
+      axios.delete(`/api/trainers/${trainer.id}`).then(resp => {
+        this.getTrainers();
+      })
     },
     createSuccessfulHandler() {
       this.showCreateForm = false;

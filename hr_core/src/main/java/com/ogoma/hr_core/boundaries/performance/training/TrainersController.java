@@ -34,7 +34,7 @@ public class TrainersController {
         return ResponseEntity.of(trainer);
     }
     @PostMapping
-    public ResponseEntity<?> createTrainer(@Valid @RequestBody TrainerRequest  trainerRequest){
+    public ResponseEntity<?> createTrainer( @RequestBody @Valid TrainerRequest  trainerRequest){
         Trainer trainer=
                 this.trainersService.createTrainer(trainerRequest);
         return  ResponseEntity.ok(trainer);
