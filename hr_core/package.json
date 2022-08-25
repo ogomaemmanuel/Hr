@@ -5,7 +5,7 @@
     "dev": "webpack --mode development",
     "watch": "webpack-dev-server --inline",
     "test": "jest",
-    "prod": "webpack --mode production --optimize-minimize --config webpack.config.dev.js"
+    "prod": "webpack --mode production  --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
