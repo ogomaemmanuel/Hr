@@ -23,6 +23,7 @@ jobs:
         name: build client packages
         with:
           node-version: 14
+      - run: npm install
       - run: npm run prod
       - name: Set up JDK 17
         uses: actions/setup-java@v3
