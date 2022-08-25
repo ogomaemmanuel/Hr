@@ -9,6 +9,9 @@ hr_deployment:
   databasePassword: "Test"
   databaseUserName: hr_app
   databaseHost: 158.101.165.5
+  awsSecretAccessKey: ''
+  awsAccessKeyID: ''
+  awsRegion: ''
   ingress:
     host: bettlehr.com
   tiers:

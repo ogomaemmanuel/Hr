@@ -40,3 +40,9 @@ spec:
               value: {{ .Values.hr_deployment.databaseUserName }}
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:mysql://{{ .Values.hr_deployment.databaseHost }}/{{ .Values.hr_deployment.tenantName }}_hr?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true"
+            - name: AWS_ACCESS_KEY_ID
+              value: AKIASNPQTJPGLJRHTQAR
+            - name: AWS_SECRET_ACCESS_KEY
+              value: 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
+            - name: AWS_REGION
+              value: us-east-2
