@@ -2,11 +2,19 @@ package com.ogoma.hr_core.boundaries.performance.training.requests;
 
 import com.ogoma.hr_core.boundaries.performance.training.entities.Trainer;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
 public class TrainerRequest {
+    @NotBlank(message = "First name is required")
     private String firstName;
+    @NotBlank(message = "Last name is required")
     private String lastName;
+    @NotBlank(message = "Email is required")
+    @Email
     private String email;
     private String role;
+    @NotBlank(message = "Phone number is required")
     private String phone;
     private String description;
     private Trainer.Status status;
