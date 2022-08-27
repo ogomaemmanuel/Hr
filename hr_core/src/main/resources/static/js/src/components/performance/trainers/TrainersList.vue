@@ -112,6 +112,7 @@ export default {
   data() {
     return {
       trainers: [],
+      loading: false,
       trainerToUpdate: null,
       showEditForm: false,
       showCreateForm: false,

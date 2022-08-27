@@ -7,8 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +41,7 @@ public class TrainingTypeController {
      return ResponseEntity.of(trainingType);
     }
     @PostMapping
-    public ResponseEntity<?> createTrainingType(@RequestBody TrainingTypeRequest trainingTypeRequest) {
+    public ResponseEntity<?> createTrainingType(@RequestBody @Valid TrainingTypeRequest trainingTypeRequest) {
         TrainingType trainingType =
                 this.trainingTypeService.createTrainingType(trainingTypeRequest);
         return ResponseEntity.ok(trainingType);
