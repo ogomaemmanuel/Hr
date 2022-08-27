@@ -36,7 +36,7 @@ public class TrainingTypeController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateTrainingType(@PathVariable Long id,
-                                                @RequestBody TrainingTypeRequest trainingTypeRequest){
+                                                @RequestBody @Valid TrainingTypeRequest trainingTypeRequest){
      Optional<TrainingType> trainingType= this.trainingTypeService.updateTrainingType( id, trainingTypeRequest);
      return ResponseEntity.of(trainingType);
     }
