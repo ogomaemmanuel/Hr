@@ -4,10 +4,14 @@ import com.ogoma.hr_core.boundaries.address_book.entities.AddressBookContact;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
 
 public class AddressBookContactCreateRequest {
+    @NotBlank(message = "Name is required")
     private String name;
+    @NotBlank(message = "Email is required")
     private String email;
+    @NotBlank(message = "Phone number is required")
     private String phoneNo;
     @Enumerated(EnumType.STRING)
     private AddressBookContact.Type type;

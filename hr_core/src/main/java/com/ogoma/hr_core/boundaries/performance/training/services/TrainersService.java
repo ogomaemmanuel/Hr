@@ -56,5 +56,9 @@ public class TrainersService {
         return trainer;
     }
 
+
+    public void removeTrainer(Long id) {
+        this.trainersRepository.deleteById(id);
+    }
 }
 

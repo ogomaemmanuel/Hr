@@ -24,7 +24,13 @@
                 <thead class="font-thin">
                 <tr>
                   <th>
-                    Type
+                    Name
+                  </th>
+                  <th>
+                    Contact Number
+                  </th>
+                  <th>
+                    Email
                   </th>
                   <th>
                     Description
@@ -36,8 +42,10 @@
                 </thead>
                 <tbody>
                 <tr v-for="trainer in trainers">
-                  <td data-label="Name">{{ trainer.type }}</td>
+                  <td data-label="Name">{{ trainer.fullName }}</td>
                   <td data-label="Description">{{ trainer.description }}</td>
+                  <td data-label="Email">{{ trainer.email }}</td>
+                  <td data-label="Email">{{ trainer.description }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <button
@@ -60,7 +68,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <td colspan="4">
+                  <td colspan="5">
                     <Paginator
                         @previousPage="goToPrevious"
                         @nextPage="goToNext"
@@ -82,29 +90,35 @@
         @createSuccessful="createSuccessfulHandler"
         v-if="showCreateForm">
     </TrainersCreateForm>
-    <!--        <TrainingTypeEditForm-->
-    <!--        @updateSuccessful="updateSuccessfulHandler"-->
-    <!--        :id="trainingTypeToUpdate.id"-->
-    <!--        @modalClosed="showEditForm=false"-->
-    <!--        v-if="showEditForm"></TrainingTypeEditForm>-->
+    <TrainersEditForm
+        @updateSuccessful="updateSuccessfulHandler"
+        :id="trainerToUpdate.id"
+        @modalClosed="showEditForm=false"
+        v-if="showEditForm"></TrainersEditForm>
   </div>
 </template>
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
 import TrainersCreateForm from "./TrainersCreateForm";
+import Paginator from "../../common/paginator/Paginator";
+import TrainersEditForm from "./TrainersEditForm";
 
 export default {
   components: {
-    TrainersCreateForm
+    TrainersEditForm,
+    TrainersCreateForm,
+    Paginator
   },
   mixins: [data_table_mixin],
 
   data() {
     return {
       trainers: [],
+      loading: false,
       trainerToUpdate: null,
       showEditForm: false,
       showCreateForm: false,
+
     }
   },
   created() {
@@ -118,12 +132,18 @@ export default {
         onConfirm: () => this.removeTrainer(trainer)
       })
     },
-    removeTrainer() {
-
+    removeTrainer(trainer) {
+      axios.delete(`/api/trainers/${trainer.id}`).then(resp => {
+        this.getTrainers();
+      })
     },
     createSuccessfulHandler() {
       this.showCreateForm = false;
       this.getTrainers()
+    },
+    updateSuccessfulHandler() {
+      this.showEditForm = false;
+      this.getTrainers();
     },
     getTrainers() {
       axios.get("/api/trainers", {

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("api/trainers")
+@Validated
 public class TrainersController {
     private final TrainersService trainersService;
     public TrainersController(TrainersService trainersService) {
@@ -32,16 +34,22 @@ public class TrainersController {
         return ResponseEntity.of(trainer);
     }
     @PostMapping
-    public ResponseEntity<?> createTrainer(@Valid @RequestBody TrainerRequest  trainerRequest){
+    public ResponseEntity<?> createTrainer( @RequestBody @Valid TrainerRequest  trainerRequest){
         Trainer trainer=
                 this.trainersService.createTrainer(trainerRequest);
         return  ResponseEntity.ok(trainer);
     }
 
-    @PutMapping("/id")
-    public ResponseEntity<?> updateTrainer(@PathVariable  Long id, @RequestBody TrainerRequest trainerRequest){
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateTrainer(@PathVariable  Long id, @Valid @RequestBody TrainerRequest trainerRequest){
        Optional<Trainer> trainer=
                this.trainersService.updateTrainer(id, trainerRequest);
        return  ResponseEntity.of(trainer);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> removeTrainer(@PathVariable Long id ){
+        this.trainersService.removeTrainer(id);
+        return ResponseEntity.noContent().build();
     }
 }

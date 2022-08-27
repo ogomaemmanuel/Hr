@@ -94,7 +94,9 @@ export default {
         Message.success("Training type update successful");
         this.$emit("updateSuccessful")
       }, error => {
-
+        if (error.response.status == 400) {
+           this.errors= error.response.data;
+        }
       })
     }
   },

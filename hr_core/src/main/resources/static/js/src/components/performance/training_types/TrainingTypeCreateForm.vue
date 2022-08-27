@@ -84,7 +84,9 @@ export default {
         Message.success("Training Type Successfully Created");
         this.$emit("createSuccessful")
       }, error => {
-
+        if (error.response.status == 400) {
+          this.errors = error.response.data;
+        }
       })
     }
   },

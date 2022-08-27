@@ -1,5 +1,6 @@
 package com.ogoma.hr_core.boundaries.performance.training.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,9 +12,10 @@ import java.util.Date;
 @Table(name = "trainers")
 public class Trainer {
 
-    public enum Status{
-        inactive,active
+    public enum Status {
+        inactive, active
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -40,6 +42,7 @@ public class Trainer {
     public Long getId() {
         return id;
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -110,5 +113,10 @@ public class Trainer {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @JsonProperty
+    private String getFullName() {
+        return this.getFirstName() +" "+ this.getLastName();
     }
 }
