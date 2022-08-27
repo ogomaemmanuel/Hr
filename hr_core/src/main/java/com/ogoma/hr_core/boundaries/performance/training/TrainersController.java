@@ -41,7 +41,7 @@ public class TrainersController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateTrainer(@PathVariable  Long id, @RequestBody TrainerRequest trainerRequest){
+    public ResponseEntity<?> updateTrainer(@PathVariable  Long id, @Valid @RequestBody TrainerRequest trainerRequest){
        Optional<Trainer> trainer=
                this.trainersService.updateTrainer(id, trainerRequest);
        return  ResponseEntity.of(trainer);

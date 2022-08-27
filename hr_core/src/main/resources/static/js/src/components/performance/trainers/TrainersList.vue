@@ -90,20 +90,22 @@
         @createSuccessful="createSuccessfulHandler"
         v-if="showCreateForm">
     </TrainersCreateForm>
-    <!--        <TrainingTypeEditForm-->
-    <!--        @updateSuccessful="updateSuccessfulHandler"-->
-    <!--        :id="trainingTypeToUpdate.id"-->
-    <!--        @modalClosed="showEditForm=false"-->
-    <!--        v-if="showEditForm"></TrainingTypeEditForm>-->
+    <TrainersEditForm
+        @updateSuccessful="updateSuccessfulHandler"
+        :id="trainerToUpdate.id"
+        @modalClosed="showEditForm=false"
+        v-if="showEditForm"></TrainersEditForm>
   </div>
 </template>
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
 import TrainersCreateForm from "./TrainersCreateForm";
 import Paginator from "../../common/paginator/Paginator";
+import TrainersEditForm from "./TrainersEditForm";
 
 export default {
   components: {
+    TrainersEditForm,
     TrainersCreateForm,
     Paginator
   },
@@ -116,6 +118,7 @@ export default {
       trainerToUpdate: null,
       showEditForm: false,
       showCreateForm: false,
+
     }
   },
   created() {
@@ -137,6 +140,10 @@ export default {
     createSuccessfulHandler() {
       this.showCreateForm = false;
       this.getTrainers()
+    },
+    updateSuccessfulHandler() {
+      this.showEditForm = false;
+      this.getTrainers();
     },
     getTrainers() {
       axios.get("/api/trainers", {
