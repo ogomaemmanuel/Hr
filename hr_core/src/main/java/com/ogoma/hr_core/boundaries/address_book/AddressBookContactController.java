@@ -7,6 +7,7 @@ import com.ogoma.hr_core.models.requests.PagedDataRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "api/address-book")
+@Validated
 public class AddressBookContactController {
     private final AddressBookContactService addressBookContactService;
 
