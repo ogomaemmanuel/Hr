@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hr_core/src/main/resources/static/js/src/components/performance/trainining/TrainingList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hr_job_portal/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/hr_job_portal/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="30f29a33-b543-4d74-8a00-828b6f510a5c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -246,7 +241,7 @@
       <workItem from="1661187447298" duration="4388000" />
       <workItem from="1661415134238" duration="10214000" />
       <workItem from="1661605233461" duration="13350000" />
-      <workItem from="1662142965781" duration="129000" />
+      <workItem from="1662142965781" duration="594000" />
     </task>
     <servers />
   </component>
