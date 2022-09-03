@@ -99,7 +99,7 @@
         <!-- https://mvnrepository.com/artifact/io.awspring.cloud/spring-cloud-starter-aws -->
         <dependency>
             <groupId>io.awspring.cloud</groupId>
-            <artifactId>spring-cloud-starter-aws</artifactId>
+            <artifactId>spring-cloud-aws-autoconfigure</artifactId>
             <version>2.4.1</version>
         </dependency>
         <dependency>
