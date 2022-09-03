@@ -93,4 +93,6 @@ jobs:
         run: |
           rsync -e 'ssh -i ./deploy_key -o StrictHostKeyChecking=no' -avzr --progress ~/hr-jars/*.jar opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }}:~/hr-jars/app.jar
       - name: Restart application
-        run: ssh -i ./deploy_key -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} 'sudo systemctl restart hr_app.service'
+        run: |
+          ssh -i ./deploy_key -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} 'sudo chmod +x $HOME/hr-jars/app.jar'
+          ssh -i ./deploy_key -o "StrictHostKeyChecking=no" opc@${{ secrets.ORACLE_COMPUTE_HOST_817 }} 'sudo systemctl restart hr_app.service'
