@@ -3,6 +3,8 @@ package com.ogoma.hr_core.boundaries.performance.training;
 import com.ogoma.hr_core.boundaries.performance.training.entities.Training;
 import com.ogoma.hr_core.boundaries.performance.training.requests.TrainingRequest;
 import com.ogoma.hr_core.boundaries.performance.training.services.TrainingService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,8 @@ public class TrainingController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getTrainings() {
-        List<Training> trainingList = this.trainingService.getTrainings();
+    public ResponseEntity<?> getTrainings(Pageable pageable) {
+        Page<Training> trainingList = this.trainingService.getTrainings(pageable);
         return ResponseEntity.ok(trainingList);
     }
 
