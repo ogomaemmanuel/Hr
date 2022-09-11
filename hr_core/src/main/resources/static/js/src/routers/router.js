@@ -153,6 +153,7 @@ const GoalTypes =()=> import("../components/performance/goals_types/GoalsTypes")
 const GoalTracking =()=> import("../components/performance/goals_tracking/GoalTrackingList")
 const TrainingType =()=> import("../components/performance/training_types/TrainingTypeList")
 const Trainers =()=> import("../components/performance/trainers/TrainersList")
+const TrainingList =()=> import("../components/performance/training/TrainingList")
 
 
 
@@ -1217,8 +1218,36 @@ const routes = new Router({
                             // ]
                         },
                         {
+                            path: "/training",
+                            component: TrainingList,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Training",
+                            },
+                            // children: [
+                            //     {
+                            //         path: "/",
+                            //         component: JobList,
+                            //         name: "jobs",
+                            //         children: [
+                            //             {
+                            //                 path: "/job-create",
+                            //                 name: "job-create",
+                            //                 component: JobCreate
+                            //             },
+                            //             {
+                            //                 path: "/job-edit/:id",
+                            //                 name: "job-edit",
+                            //                 component: JobEdit
+                            //             }
+                            //         ]
+                            //     },
+                            //
+                            // ]
+                        },
+                        {
                             path: "/trainers",
-                            component: Trainers,
+                            component: TrainingList,
                             meta: {
                                 breadcrumb: true,
                                 title: "Trainers",
