@@ -7,19 +7,21 @@
         </div>
         <div class="columns">
           <div class="column">
-            <div class="field">
-              <label class="label">Training Type<span><sup>*</sup></span></label>
-              <div class="control">
-                <input
-                    v-model="training.trainingTypeId"
-                    @input="clearFieldError('trainingTypeId')"
-                    class="input"
-                    type="text">
-                <span class="mb-2 has-text-danger" v-if="errors['trainingTypeId']">
-						{{ errors['trainingTypeId'][0] }}
-					</span>
-              </div>
-            </div>
+<!--            <div class="field">-->
+<!--              <label class="label">Training Type<span><sup>*</sup></span></label>-->
+<!--              <div class="control">-->
+<!--                <input-->
+<!--                    v-model="training.trainingTypeId"-->
+<!--                    @input="clearFieldError('trainingTypeId')"-->
+<!--                    class="input"-->
+<!--                    type="text">-->
+<!--                <span class="mb-2 has-text-danger" v-if="errors['trainingTypeId']">-->
+<!--						{{ errors['trainingTypeId'][0] }}-->
+<!--					</span>-->
+<!--              </div>-->
+<!--            </div>-->
+
+            <TrainingTypeSelectInput></TrainingTypeSelectInput>
           </div>
           <div class="column">
             <div class="field">
@@ -156,10 +158,11 @@
 import ModalTemplate from "../../common/ModalTemplate";
 import common_mixin from "../../../mixins/common_mixin";
 import {Message} from "element-ui"
-
+import TrainingTypeSelectInput from "./TrainingTypeSelectInput";
 export default {
   components: {
-    ModalTemplate
+    ModalTemplate,
+    TrainingTypeSelectInput
   },
   mixins: [common_mixin],
   data() {
