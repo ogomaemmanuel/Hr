@@ -3,7 +3,10 @@ package com.ogoma.hr_core.boundaries.file_management.requests;
 import com.ogoma.hr_core.boundaries.file_management.entities.File;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotBlank;
+
 public class FileCreateRequest {
+    @NotBlank(message = "Name is required")
     private String name;
     private File.Type type;
     private Long parentId;

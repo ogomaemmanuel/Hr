@@ -252,7 +252,7 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/taxes">
+                    <router-link to="/training">
                       <span>Training List</span>
                     </router-link>
                   </li>

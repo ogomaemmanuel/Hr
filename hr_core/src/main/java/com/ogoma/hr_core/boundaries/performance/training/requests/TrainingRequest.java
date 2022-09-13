@@ -1,15 +1,21 @@
 package com.ogoma.hr_core.boundaries.performance.training.requests;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class TrainingRequest {
     private String description;
+    @NotNull(message = "Start date is required")
     private Date startDate;
+    @NotNull(message = "End date is required")
     private Date endDate;
     private BigDecimal cost;
+    @NotNull(message = "Select trainer")
     private Long trainerId;
+    @NotNull(message = "Select training type")
     private Long trainingTypeId;
+    @NotNull(message = "Select employee")
     private Long employeeId;
 
     public String getDescription() {
