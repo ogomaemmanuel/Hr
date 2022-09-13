@@ -81,23 +81,25 @@
         @modalClosed="showCreateForm=false"
         @createSuccessful="createSuccessfulHandler"
         v-if="showCreateForm"></TrainingCreateForm>
-    <!--    <TrainingTypeEditForm-->
-    <!--        @updateSuccessful="updateSuccessfulHandler"-->
-    <!--        :id="trainingToUpdate.id"-->
-    <!--        @modalClosed="showEditForm=false"-->
-    <!--        v-if="showEditForm"></TrainingTypeEditForm>-->
+        <TrainingEditForm
+            @updateSuccessful="updateSuccessfulHandler"
+            :id="trainingToUpdate.id"
+            @modalClosed="showEditForm=false"
+            v-if="showEditForm"></TrainingEditForm>
   </div>
 </template>
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
 import Paginator from "../../common/paginator/Paginator";
 import TrainingCreateForm from "./TrainingCreateForm";
+import TrainingEditForm from "./TrainingEditForm";
 
 export default {
   mixins: [data_table_mixin],
   components: {
     Paginator,
-    TrainingCreateForm
+    TrainingCreateForm,
+    TrainingEditForm
   },
   data() {
     return {
@@ -119,8 +121,11 @@ export default {
       this.showCreateForm = false;
       this.getTrainingList();
     },
-    setTrainingToUpdate() {
-
+    setTrainingToUpdate(training) {
+      this.trainingToUpdate = training;
+      this.$nextTick(() => {
+        this.showEditForm = true;
+      })
     },
     updateSuccessfulHandler() {
     },
