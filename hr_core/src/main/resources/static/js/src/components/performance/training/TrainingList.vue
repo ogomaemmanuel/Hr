@@ -124,8 +124,17 @@ export default {
     },
     updateSuccessfulHandler() {
     },
+    removeTraining({id}) {
+      axios.delete(`/api/trainings/${id}`).then(resp => {
+        this.getTrainingList();
+      })
+    },
     confirmRemoveTraining(training) {
-
+      this.$buefy.dialog.confirm({
+        title: 'Delete Training',
+        message: `Are you sure want to delete <b> ${training.description}</b> training`,
+        onConfirm: () => this.removeTraining(training)
+      })
     },
     getTrainingList() {
       let vm = this;

@@ -71,4 +71,8 @@ public class TrainingService {
         training.setTrainer(trainer);
         training.addEmployee(employee);
     }
+
+    public void removeTraining(Long id) {
+        this.trainingRepository.deleteById(id);
+    }
 }
