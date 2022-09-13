@@ -7,54 +7,47 @@
         </div>
         <div class="columns">
           <div class="column">
-<!--            <div class="field">-->
-<!--              <label class="label">Training Type<span><sup>*</sup></span></label>-->
-<!--              <div class="control">-->
-<!--                <input-->
-<!--                    v-model="training.trainingTypeId"-->
-<!--                    @input="clearFieldError('trainingTypeId')"-->
-<!--                    class="input"-->
-<!--                    type="text">-->
-<!--                <span class="mb-2 has-text-danger" v-if="errors['trainingTypeId']">-->
-<!--						{{ errors['trainingTypeId'][0] }}-->
-<!--					</span>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--            <div class="field">-->
+            <!--              <label class="label">Training Type<span><sup>*</sup></span></label>-->
+            <!--              <div class="control">-->
+            <!--                <input-->
+            <!--                    v-model="training.trainingTypeId"-->
+            <!--                    @input="clearFieldError('trainingTypeId')"-->
+            <!--                    class="input"-->
+            <!--                    type="text">-->
+            <!--                <span class="mb-2 has-text-danger" v-if="errors['trainingTypeId']">-->
+            <!--						{{ errors['trainingTypeId'][0] }}-->
+            <!--					</span>-->
+            <!--              </div>-->
+            <!--            </div>-->
 
-            <TrainingTypeSelectInput></TrainingTypeSelectInput>
+            <TrainingTypeSelectInput
+                @input="clearFieldError('trainingTypeId')"
+                v-model="training.trainingTypeId">
+               <span slot="errors" class="mb-2 has-text-danger" v-if="errors['trainingTypeId']">
+						{{ errors['trainingTypeId'][0] }}
+					</span>
+            </TrainingTypeSelectInput>
           </div>
           <div class="column">
-            <div class="field">
-              <label class="label">Trainer<span><sup>*</sup></span></label>
-              <div class="control">
-                <input
-                    v-model="training.trainerId"
-                    @input="clearFieldError('trainerId')"
-                    class="input"
-                    type="text">
-                <span class="mb-2 has-text-danger" v-if="errors['trainerId']">
+            <TrainersSelectInput
+                @input="clearFieldError('trainerId')"
+                v-model="training.trainerId">
+              <span slot="errors" class="mb-2 has-text-danger" v-if="errors['trainerId']">
 						{{ errors['trainerId'][0] }}
 					</span>
-              </div>
-            </div>
+            </TrainersSelectInput>
           </div>
         </div>
         <div class="columns">
           <div class="column">
-            <div class="field">
-              <label class="label">Employees<span><sup>*</sup></span></label>
-              <div class="control">
-                <input
-                    v-model="training.employeeId"
-
-                    @input="clearFieldError('employeeId')"
-                    class="input"
-                    type="text">
-                <span class="mb-2 has-text-danger" v-if="errors['employeeId']">
+            <EmployeeSelectInput
+                @input="clearFieldError('employeeId')"
+                v-model="training.employeeId">
+              <span slot="errors" class="mb-2 has-text-danger" v-if="errors['employeeId']">
 						{{ errors['employeeId'][0] }}
 					</span>
-              </div>
-            </div>
+            </EmployeeSelectInput>
           </div>
           <div class="column">
             <div class="field">
@@ -159,10 +152,15 @@ import ModalTemplate from "../../common/ModalTemplate";
 import common_mixin from "../../../mixins/common_mixin";
 import {Message} from "element-ui"
 import TrainingTypeSelectInput from "./TrainingTypeSelectInput";
+import TrainersSelectInput from "./TrainersSelectInput";
+import EmployeeSelectInput from "../../common/EmployeeSelectInput";
+
 export default {
   components: {
     ModalTemplate,
-    TrainingTypeSelectInput
+    TrainingTypeSelectInput,
+    TrainersSelectInput,
+    EmployeeSelectInput
   },
   mixins: [common_mixin],
   data() {
@@ -175,17 +173,21 @@ export default {
         endDate: "",
         trainerId: "",
         trainingTypeId: "",
-        description:""
+        description: ""
       }
     }
   },
   methods: {
     createTraining() {
-      axios.post("/api/training", this.training).then(resp => {
+      axios.post("/api/trainings", this.training).then(resp => {
         Message.success("Training successfully created")
         this.$emit("createSuccessful")
       }, error => {
-
+        if (error.response.status == 400) {
+          this.errors = error.response.data;
+          return
+        }
+        Message.error("Error submitting request");
       })
     }
   }, computed: {

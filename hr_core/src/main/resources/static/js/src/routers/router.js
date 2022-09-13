@@ -1247,7 +1247,7 @@ const routes = new Router({
                         },
                         {
                             path: "/trainers",
-                            component: TrainingList,
+                            component: Trainers,
                             meta: {
                                 breadcrumb: true,
                                 title: "Trainers",

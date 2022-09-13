@@ -2,28 +2,28 @@
   <section>
     <b-field>
       <template slot="label">
-        <span>Training Type<sup>*</sup></span>
+        <span>Trainer<sup>*</sup></span>
       </template>
-    <b-autocomplete
-        :data="data"
-        field="type"
-        :loading="isFetching"
-        :check-infinite-scroll="true"
-        @typing="getAsyncData"
-        @select="option => selected = option"
-        @infinite-scroll="getMoreAsyncData">
-      <template slot-scope="props">
-        <div class="media">
-          <div class="media-content">
-            {{ props.option.type }}
-            <br>
+      <b-autocomplete
+          :data="data"
+          field="fullName"
+          :loading="isFetching"
+          :check-infinite-scroll="true"
+          @typing="getAsyncData"
+          @select="option => selected = option"
+          @infinite-scroll="getMoreAsyncData">
+        <template slot-scope="props">
+          <div class="media">
+            <div class="media-content">
+              {{ props.option.fullName }}
+              <br>
+            </div>
           </div>
-        </div>
-      </template>
-      <template #footer>
-        <span v-show="page > totalPages" class="has-text-grey"> Thats it! No more movies found. </span>
-      </template>
-    </b-autocomplete>
+        </template>
+        <template #footer>
+          <span v-show="page > totalPages" class="has-text-grey"> Thats it! No more movies found. </span>
+        </template>
+      </b-autocomplete>
       <div slot="message">
         <slot name="errors">
         </slot>
@@ -69,7 +69,7 @@ export default {
         return
       }
       this.isFetching = true
-      axios.get(`/api/training-types`, {
+      axios.get(`/api/trainers`, {
         params: {
           page: this.page,
           pageSize: this.pageSize,
@@ -91,7 +91,7 @@ export default {
       this.getAsyncData(this.name)
     }, 250)
   },
-  watch:{
+  watch: {
     selected: function (val) {
       this.$emit('input', val.id);
     }
