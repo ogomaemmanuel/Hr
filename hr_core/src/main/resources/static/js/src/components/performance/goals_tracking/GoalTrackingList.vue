@@ -19,7 +19,7 @@
         <div class="card" ref="leaveRequests">
           <div class="card-content">
             <div class="content b-table is-relative">
-              <h4>Goal Types</h4>
+              <h4>Goal Tracking</h4>
               <table class="table has-mobile-cards w-full is-hoverable">
                 <thead class="font-thin">
                 <tr>
@@ -42,7 +42,7 @@
                     <div class="action-controls d-flex justify-end">
                       <button
                           :to="`/goal-type-edit/${goal.id}`" tag="button"
-                          @click="setGoalTypeEdit(goal)" class="button is-white is-small">
+                          @click="setGoalTrackingToEdit(goal)" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
@@ -77,23 +77,36 @@
         </div>
       </div>
     </div>
-
+    <GoalTrackingCreateForm
+        @modalClosed="showCreateForm=false"
+        @createSuccessful="createSuccessfulHandler"
+        v-if="showCreateForm"></GoalTrackingCreateForm>
+    <GoalTrackingEditForm
+        @updateSuccessful="updateSuccessfulHandler"
+        @modalClosed="showEditForm=false"
+        v-if="showEditForm">
+    </GoalTrackingEditForm>
   </div>
 </template>
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
 import Paginator from "../../common/paginator/Paginator";
-import {Message} from "element-ui";
+import GoalTrackingEditForm from "./GoalTrackingEditForm";
+import GoalTrackingCreateForm from "./GoalTrackingCreateForm";
 
 export default {
   components: {
-    Paginator
+    Paginator,
+    GoalTrackingEditForm,
+    GoalTrackingCreateForm
   },
   mixins: [data_table_mixin],
   data() {
     return {
       goalTrackingList: [],
       showCreateForm: false,
+      goalTrackingToEdit: null,
+      loading: false,
       showEditForm: false
     }
   },
@@ -101,6 +114,20 @@ export default {
     this.getGoalTrackingList();
   },
   methods: {
+    setGoalTrackingToEdit(goal) {
+      this.goalTrackingToEdit = goal;
+      this.$nextTick(() => {
+        this.showEditForm = true;
+      })
+    },
+    createSuccessfulHandler() {
+      this.showCreateForm = false;
+      this.getGoalTrackingList();
+    },
+    updateSuccessfulHandler() {
+      this.showEditForm = false;
+      this.getGoalTrackingList();
+    },
     getGoalTrackingList() {
       axios.get("/api/goal-tracking", {
         params: {
