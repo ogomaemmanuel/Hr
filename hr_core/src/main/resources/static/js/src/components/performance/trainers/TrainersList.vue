@@ -36,6 +36,9 @@
                     Description
                   </th>
                   <th>
+                    Status
+                  </th>
+                  <th>
                     Action
                   </th>
                 </tr>
@@ -43,9 +46,10 @@
                 <tbody>
                 <tr v-for="trainer in trainers">
                   <td data-label="Name">{{ trainer.fullName }}</td>
-                  <td data-label="Description">{{ trainer.description }}</td>
-                  <td data-label="Email">{{ trainer.email }}</td>
+                  <td data-label="Description">{{ trainer.phone }}</td>
+                  <td data-label="Description">{{ trainer.email }}</td>
                   <td data-label="Email">{{ trainer.description }}</td>
+                  <td data-label="Email">{{ trainer.status }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <button
@@ -68,7 +72,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <td colspan="5">
+                  <td colspan="6">
                     <Paginator
                         @previousPage="goToPrevious"
                         @nextPage="goToNext"

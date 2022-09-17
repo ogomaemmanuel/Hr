@@ -66,6 +66,7 @@ public class TrainingService {
         training.setCost(trainingRequest.getCost());
         training.setStartDate(trainingRequest.getStartDate());
         training.setEndDate(trainingRequest.getEndDate());
+        training.setDescription(trainingRequest.getDescription());
         training.setCost(trainingRequest.getCost());
         training.setTrainingType(trainingType);
         training.setTrainer(trainer);
