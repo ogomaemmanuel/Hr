@@ -27,7 +27,19 @@
                     Name
                   </th>
                   <th>
+                    Subject
+                  </th>
+                  <th>
                     Description
+                  </th>
+                  <th>
+                    Target Achievement
+                  </th>
+                  <th>
+                    Start Date
+                  </th>
+                  <th>
+                    End Date
                   </th>
                   <th>
                     Action
@@ -37,7 +49,11 @@
                 <tbody>
                 <tr v-for="goal in goalTrackingList">
                   <td data-label="Name">{{ goal.type }}</td>
+                  <td data-label="Description">{{ goal.subject }}</td>
                   <td data-label="Description">{{ goal.description }}</td>
+                  <td data-label="Description">{{ goal.targetAchievement }}</td>
+                  <td data-label="Description">{{ goal.startDate }}</td>
+                  <td data-label="Description">{{ goal.endDate }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <button
@@ -60,7 +76,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <td colspan="4">
+                  <td colspan="8">
                     <Paginator
                         @previousPage="goToPrevious"
                         @nextPage="goToNext"
@@ -82,6 +98,7 @@
         @createSuccessful="createSuccessfulHandler"
         v-if="showCreateForm"></GoalTrackingCreateForm>
     <GoalTrackingEditForm
+        :id="goalTrackingToEdit.id"
         @updateSuccessful="updateSuccessfulHandler"
         @modalClosed="showEditForm=false"
         v-if="showEditForm">
@@ -91,8 +108,8 @@
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
 import Paginator from "../../common/paginator/Paginator";
-import GoalTrackingEditForm from "./GoalTrackingEditForm";
-import GoalTrackingCreateForm from "./GoalTrackingCreateForm";
+import GoalTrackingEditForm from "./GoalEditForm";
+import GoalTrackingCreateForm from "./GoalCreateForm";
 
 export default {
   components: {
@@ -129,7 +146,7 @@ export default {
       this.getGoalTrackingList();
     },
     getGoalTrackingList() {
-      axios.get("/api/goal-tracking", {
+      axios.get("/api/goals", {
         params: {
           page: this.page,
           pageSize: this.pageSize

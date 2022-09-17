@@ -1,20 +1,21 @@
 package com.ogoma.hr_core.boundaries.performance.goals.requests;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.util.Date;
 
-public class GoalTrackingRequest {
+public class GoalRequest {
     @NotBlank
     private String subject;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-    private Date startDate;
-    @JsonFormat(pattern  = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     @NotBlank
     private String description;
-
+    private String targetAchievement;
+    @JsonAlias("goalTypeId")
     private Long goalTypeID;
 
     public String getSubject() {
@@ -25,19 +26,20 @@ public class GoalTrackingRequest {
         this.subject = subject;
     }
 
-    public Date getStartDate() {
+
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -55,5 +57,13 @@ public class GoalTrackingRequest {
 
     public void setGoalTypeID(Long goalType) {
         this.goalTypeID = goalType;
+    }
+
+    public String getTargetAchievement() {
+        return targetAchievement;
+    }
+
+    public void setTargetAchievement(String targetAchievement) {
+        this.targetAchievement = targetAchievement;
     }
 }
