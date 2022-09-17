@@ -1,10 +1,12 @@
 package com.ogoma.hr_core.boundaries.performance.training.requests;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
 public class TrainingRequest {
+    @NotBlank(message = "Description is required")
     private String description;
     @NotNull(message = "Start date is required")
     private Date startDate;

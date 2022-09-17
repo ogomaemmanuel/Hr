@@ -39,7 +39,7 @@ public class TrainingService {
     }
 
     public Optional<Training> getTrainingById(Long id) {
-        Optional<Training> training = this.trainingRepository.findById(id);
+        Optional<Training> training = this.trainingRepository.getTrainingByID(id);
         return training;
     }
 
@@ -70,5 +70,9 @@ public class TrainingService {
         training.setTrainingType(trainingType);
         training.setTrainer(trainer);
         training.addEmployee(employee);
+    }
+
+    public void removeTraining(Long id) {
+        this.trainingRepository.deleteById(id);
     }
 }

@@ -1,32 +1,20 @@
 package com.ogoma.hr_core.boundaries.performance.goals.entities;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.LastModifiedDate;
+import com.ogoma.hr_core.boundaries.hr.employee_management.entities.Employee;
 
 import javax.persistence.*;
-import java.util.Date;
 
+@Table(name = "goal-tracking")
 @Entity
-@Table(name = "goal_tracking")
 public class GoalTracking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String subject;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startDate;
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
-    private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private GoalType goalType;
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
-    private Date createdAt;
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
-
+    private Integer progress;
+    @ManyToOne
+    private Employee employee;
+    @ManyToOne
+    private Goal goal;
     public Long getId() {
         return id;
     }
@@ -35,59 +23,27 @@ public class GoalTracking {
         this.id = id;
     }
 
-    public String getSubject() {
-        return subject;
+    public Integer getProgress() {
+        return progress;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setProgress(Integer progress) {
+        this.progress = progress;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public Goal getGoal() {
+        return goal;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public GoalType getGoalType() {
-        return goalType;
-    }
-
-    public void setGoalType(GoalType goalType) {
-        this.goalType = goalType;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setGoal(Goal goal) {
+        this.goal = goal;
     }
 }
