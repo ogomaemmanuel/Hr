@@ -26,6 +26,7 @@ public class GoalsService {
     public List<Goal> getAllGoals() {
         return this.goalRepository.findAll();
     }
+
     public Page<Goal> getGoals(PagedDataRequest pagedDataRequest) {
         return this.goalRepository.findAll(pagedDataRequest.toPageable());
     }
@@ -36,7 +37,7 @@ public class GoalsService {
     }
 
     public Optional<Goal> updateGoal(Long id, GoalRequest goalRequest) {
-        Optional<Goal> goal= this.goalRepository.findById(id);
+        Optional<Goal> goal = this.goalRepository.findById(id);
         goal.ifPresent(gt -> {
             GoalType goalType = this.goalTypeRepository.getOne(goalRequest.getGoalTypeID());
             gt.setGoalType(goalType);
@@ -62,6 +63,7 @@ public class GoalsService {
         this.goalRepository.save(goal);
         return goal;
     }
-
-
+    public void removeGoal(Long id) {
+        this.goalRepository.deleteById(id);
+    }
 }

@@ -128,7 +128,7 @@ export default {
     }
   },
   created() {
-    this.getGoalTrackingList();
+    this.getGoalList();
   },
   methods: {
     setGoalTrackingToEdit(goal) {
@@ -139,13 +139,13 @@ export default {
     },
     createSuccessfulHandler() {
       this.showCreateForm = false;
-      this.getGoalTrackingList();
+      this.getGoalList();
     },
     updateSuccessfulHandler() {
       this.showEditForm = false;
-      this.getGoalTrackingList();
+      this.getGoalList();
     },
-    getGoalTrackingList() {
+    getGoalList() {
       axios.get("/api/goals", {
         params: {
           page: this.page,
@@ -156,9 +156,18 @@ export default {
         this.pageable = resp.data;
       })
     },
+    removeGoal({id}) {
+      axios.delete(`/api/goals/${id}`).then(resp => {
+        this.getGoalList();
+      })
+    },
     confirmRemoveGoal(goal) {
-
-    }
+      this.$buefy.dialog.confirm({
+        title: 'Delete Goal',
+        message: `Are you sure want to delete <b> ${goal.description}</b> goal`,
+        onConfirm: () => this.removeGoal(goal)
+      })
+    },
   }
 }
 </script>

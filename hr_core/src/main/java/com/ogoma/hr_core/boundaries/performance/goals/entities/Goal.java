@@ -18,7 +18,7 @@ public class Goal {
     private Integer progress;
     private LocalDate endDate;
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private GoalType goalType;
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp

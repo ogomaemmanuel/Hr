@@ -37,5 +37,11 @@ public class GoalsController {
         return ResponseEntity.ok(goal);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> removeGoal(@PathVariable  Long id){
+        this.goalsService.removeGoal(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
