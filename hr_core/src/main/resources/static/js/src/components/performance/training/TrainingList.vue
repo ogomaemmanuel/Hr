@@ -52,8 +52,8 @@
                   <td data-label="Description">{{ training.description }}</td>
                   <td data-label="Description">{{ training.startDate }}</td>
                   <td data-label="Description">{{ training.endDate }}</td>
-                  <td data-label="Description">{{ training.status }}</td>
                   <td data-label="Description">{{ training.cost }}</td>
+                  <td data-label="Description">{{ training.status }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <button

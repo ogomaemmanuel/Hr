@@ -24,7 +24,7 @@
                 <thead class="font-thin">
                 <tr>
                   <th>
-                    Name
+                    Goal Type
                   </th>
                   <th>
                     Subject

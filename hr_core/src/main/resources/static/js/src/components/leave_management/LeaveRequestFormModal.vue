@@ -1,7 +1,6 @@
 <template>
 	<ModalTemplate @modalClosed="$router.back()">
 		<LeaveRequestForm @leaveRequestSuccessful="onLeaveRequestSuccessful" slot="modal-content">
-		
 		</LeaveRequestForm>
 	</ModalTemplate>
 </template>
