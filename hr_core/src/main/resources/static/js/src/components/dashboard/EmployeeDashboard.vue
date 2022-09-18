@@ -6,11 +6,7 @@
       </div>
     </div>
     <div class="column is-4">
-      <div class="card h-40">
-        <div class="card-content">
-
-        </div>
-      </div>
+      <PunchINPunchOutCard></PunchINPunchOutCard>
       <div class="mt-5">
         <h2>YOUR LEAVE</h2>
         <div class="card h-40 mt-3">
@@ -66,9 +62,11 @@
 </template>
 <script>
 const LeaveForm = () => import("../leave_management/LeaveRequestFormModal")
+const PunchINPunchOutCard = () => import("../attendance/LastActivityCard")
 export default {
   components: {
-    LeaveForm
+    LeaveForm,
+    PunchINPunchOutCard
   },
 
   data() {
