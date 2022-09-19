@@ -1,8 +1,9 @@
 <template>
   <div class="columns">
     <div class="column">
-      <div class="card h-full w-full">
-
+      <p class="title is-4">Upcoming Holiday</p>
+      <div class="box p-5">
+        <h2>Madaraka Day</h2>
       </div>
     </div>
     <div class="column is-4">
@@ -57,7 +58,11 @@
         </div>
       </div>
     </div>
-    <LeaveForm v-if="showLeaveForm"></LeaveForm>
+    <LeaveForm
+        :use-router="false"
+        @leaveRequestSuccessful="showLeaveForm=false"
+        @modalClosed="showLeaveForm=false"
+        v-if="showLeaveForm"></LeaveForm>
   </div>
 </template>
 <script>
