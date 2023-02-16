@@ -12,16 +12,16 @@ services:
     environment:
       SERVER_PORT: 8080
       SPRING_PROFILES_ACTIVE: "production"
-      SPRING_DATASOURCE_PASSWORD: ${DB_USER_SECRET}
-      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_SECRET}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
       #    https://docs.docker.com/compose/compose-file/#variable-substitution
-      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/${HR_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/${DB_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
 
   db:
     image: mariadb/server
     restart: always
     environment:
       MARIADB_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MARIADB_DATABASE: ${HR_SCHEMA:-hr}
-      MARIADB_USER: ${DB_USER}
-      MARIADB_PASSWORD : ${DB_USER_SECRET}
+      MARIADB_DATABASE: ${DB_SCHEMA:-hr}
+      MARIADB_USER: ${DB_USERNAME}
+      MARIADB_PASSWORD : ${DB_SECRET}
