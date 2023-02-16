@@ -28,7 +28,8 @@ First create a .env file in the root directory of the application and add the fo
 * DB_SECRET=dbusersecret
 * AWS_ACCESS_KEY_ID=aws_access-key-id
 * AWS_REGION=aws-region
-* AWS_SECRET_ACCESS_KEY=aws_secret_access_key
+* AWS_SECRET_ACCESS_KEY=aws_secret_access_key 
+> The aws secret should have access read and write to s3 buckets
 
 Run 
 > docker-compose up
