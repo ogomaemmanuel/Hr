@@ -89,7 +89,7 @@
             <label class="label">Status<span><sup>*</sup></span></label>
             <div class="control">
               <input
-                  v-model="trainer.email"
+                  v-model="trainer.status"
                   @input="clearFieldError('status')"
                   class="input"
                   type="text">

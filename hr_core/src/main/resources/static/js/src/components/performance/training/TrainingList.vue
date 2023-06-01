@@ -19,21 +19,24 @@
         <div class="card" ref="leaveRequests">
           <div class="card-content">
             <div class="content b-table is-relative">
-              <h4>Trainers</h4>
+              <h4>Training</h4>
               <table class="table has-mobile-cards w-full is-hoverable">
                 <thead class="font-thin">
                 <tr>
                   <th>
-                    Name
-                  </th>
-                  <th>
-                    Contact Number
-                  </th>
-                  <th>
-                    Email
+                    Type
                   </th>
                   <th>
                     Description
+                  </th>
+                  <th>
+                    Start Date
+                  </th>
+                  <th>
+                    End Date
+                  </th>
+                  <th>
+                    Cost
                   </th>
                   <th>
                     Status
@@ -44,23 +47,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="trainer in trainers">
-                  <td data-label="Name">{{ trainer.fullName }}</td>
-                  <td data-label="Description">{{ trainer.phone }}</td>
-                  <td data-label="Description">{{ trainer.email }}</td>
-                  <td data-label="Email">{{ trainer.description }}</td>
-                  <td data-label="Email">{{ trainer.status }}</td>
+                <tr v-for="training in trainingList">
+                  <td data-label="Name">{{ training.trainingType.type }}</td>
+                  <td data-label="Description">{{ training.description }}</td>
+                  <td data-label="Description">{{ training.startDate }}</td>
+                  <td data-label="Description">{{ training.endDate }}</td>
+                  <td data-label="Description">{{ training.cost }}</td>
+                  <td data-label="Description">{{ training.status }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <button
-                          :to="`/goal-type-edit/${trainer.id}`" tag="button"
-                          @click="setTrainerToUpdate(trainer)" class="button is-white is-small">
+                          :to="`/goal-type-edit/${training.id}`" tag="button"
+                          @click="setTrainingToUpdate(training)" class="button is-white is-small">
 												<span class="icon">
 					                        	<i class="fa fa-pencil-square-o has-text-primary"></i>
 					                       </span>
                       </button>
                       <button
-                          @click="confirmRemoveTrainer(trainer)"
+                          @click="confirmRemoveTraining(training)"
                           class="button is-white is-small">
 										           <span class="icon">
 						                            <i class="fa fa-trash-o has-text-danger"></i>
@@ -72,7 +76,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <td colspan="6">
+                  <td colspan="7">
                     <Paginator
                         @previousPage="goToPrevious"
                         @nextPage="goToNext"
@@ -89,84 +93,83 @@
         </div>
       </div>
     </div>
-    <TrainersCreateForm
+    <TrainingCreateForm
         @modalClosed="showCreateForm=false"
         @createSuccessful="createSuccessfulHandler"
-        v-if="showCreateForm">
-    </TrainersCreateForm>
-    <TrainersEditForm
-        @updateSuccessful="updateSuccessfulHandler"
-        :id="trainerToUpdate.id"
-        @modalClosed="showEditForm=false"
-        v-if="showEditForm"></TrainersEditForm>
+        v-if="showCreateForm"></TrainingCreateForm>
+        <TrainingEditForm
+            @updateSuccessful="updateSuccessfulHandler"
+            :id="trainingToUpdate.id"
+            @modalClosed="showEditForm=false"
+            v-if="showEditForm"></TrainingEditForm>
   </div>
 </template>
 <script>
 import data_table_mixin from "../../../mixins/data_table_mixin";
-import TrainersCreateForm from "./TrainersCreateForm";
 import Paginator from "../../common/paginator/Paginator";
-import TrainersEditForm from "./TrainersEditForm";
+import TrainingCreateForm from "./TrainingCreateForm";
+import TrainingEditForm from "./TrainingEditForm";
 
 export default {
-  components: {
-    TrainersEditForm,
-    TrainersCreateForm,
-    Paginator
-  },
   mixins: [data_table_mixin],
-
+  components: {
+    Paginator,
+    TrainingCreateForm,
+    TrainingEditForm
+  },
   data() {
     return {
-      trainers: [],
-      loading: false,
-      trainerToUpdate: null,
       showEditForm: false,
+      loading: false,
       showCreateForm: false,
-
+      trainingToUpdate: null,
+      trainingList: []
     }
   },
   created() {
-    this.getTrainers();
+    this.getTrainingList();
   },
   methods: {
-    confirmRemoveTrainer(trainer) {
-      this.$buefy.dialog.confirm({
-        title: 'Delete Trainer',
-        message: `Are you sure want to delete <b> ${trainer.firstName}</b> trainer`,
-        onConfirm: () => this.removeTrainer(trainer)
-      })
-    },
-    removeTrainer(trainer) {
-      axios.delete(`/api/trainers/${trainer.id}`).then(resp => {
-        this.getTrainers();
-      })
+    fetchRecords() {
+      this.getTrainingList();
     },
     createSuccessfulHandler() {
       this.showCreateForm = false;
-      this.getTrainers()
+      this.getTrainingList();
+    },
+    setTrainingToUpdate(training) {
+      this.trainingToUpdate = training;
+      this.$nextTick(() => {
+        this.showEditForm = true;
+      })
     },
     updateSuccessfulHandler() {
-      this.showEditForm = false;
-      this.getTrainers();
     },
-    getTrainers() {
-      axios.get("/api/trainers", {
+    removeTraining({id}) {
+      axios.delete(`/api/trainings/${id}`).then(resp => {
+        this.getTrainingList();
+      })
+    },
+    confirmRemoveTraining(training) {
+      this.$buefy.dialog.confirm({
+        title: 'Delete Training',
+        message: `Are you sure want to delete <b> ${training.description}</b> training`,
+        onConfirm: () => this.removeTraining(training)
+      })
+    },
+    getTrainingList() {
+      let vm = this;
+      axios.get("/api/trainings", {
         params: {
-          page: this.page,
-          pageSize: this.pageSize
+          page: vm.page,
+          pageSize: vm.pageSize
         }
       }).then(resp => {
-        this.trainers = resp.data.content;
-        this.pageable = resp.data;
-      })
-    },
-    setTrainerToUpdate(trainer) {
-      let vm = this;
-      this.trainerToUpdate = trainer;
-      this.$nextTick(() => {
-        vm.showEditForm = true;
-      })
+        vm.trainingList = resp.data.content;
+        vm.pageable = resp.data;
+      }, error => {
 
+      })
     }
   }
 }

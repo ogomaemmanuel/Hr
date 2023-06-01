@@ -150,9 +150,10 @@ const PaymentsList =()=> import("../components/accounting/payments/PaymentList")
 
 
 const GoalTypes =()=> import("../components/performance/goals_types/GoalsTypes")
-const GoalTracking =()=> import("../components/performance/goals_tracking/GoalTrackingList")
+const GoalList =()=> import("../components/performance/goals/GoalList")
 const TrainingType =()=> import("../components/performance/training_types/TrainingTypeList")
 const Trainers =()=> import("../components/performance/trainers/TrainersList")
+const TrainingList =()=> import("../components/performance/training/TrainingList")
 
 
 
@@ -1161,11 +1162,11 @@ const routes = new Router({
                             // ]
                         },
                         {
-                            path: "/goal-tracking",
-                            component: GoalTracking,
+                            path: "/goals",
+                            component: GoalList,
                             meta: {
                                 breadcrumb: true,
-                                title: "Goal Tracking",
+                                title: "Goals",
                             },
                             // children: [
                             //     {
@@ -1194,6 +1195,34 @@ const routes = new Router({
                             meta: {
                                 breadcrumb: true,
                                 title: "Training Types",
+                            },
+                            // children: [
+                            //     {
+                            //         path: "/",
+                            //         component: JobList,
+                            //         name: "jobs",
+                            //         children: [
+                            //             {
+                            //                 path: "/job-create",
+                            //                 name: "job-create",
+                            //                 component: JobCreate
+                            //             },
+                            //             {
+                            //                 path: "/job-edit/:id",
+                            //                 name: "job-edit",
+                            //                 component: JobEdit
+                            //             }
+                            //         ]
+                            //     },
+                            //
+                            // ]
+                        },
+                        {
+                            path: "/training",
+                            component: TrainingList,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Training",
                             },
                             // children: [
                             //     {

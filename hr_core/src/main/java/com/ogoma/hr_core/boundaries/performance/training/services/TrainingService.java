@@ -9,6 +9,8 @@ import com.ogoma.hr_core.boundaries.performance.training.repository.TrainersRepo
 import com.ogoma.hr_core.boundaries.performance.training.repository.TrainingRepository;
 import com.ogoma.hr_core.boundaries.performance.training.repository.TrainingTypeRepository;
 import com.ogoma.hr_core.boundaries.performance.training.requests.TrainingRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,13 +33,13 @@ public class TrainingService {
         this.employeeRepository = employeeRepository;
     }
 
-    public List<Training> getTrainings() {
-        List<Training> trainings = this.trainingRepository.findAll();
+    public Page<Training> getTrainings(Pageable pageable) {
+        Page<Training> trainings = this.trainingRepository.findAll(pageable);
         return trainings;
     }
 
     public Optional<Training> getTrainingById(Long id) {
-        Optional<Training> training = this.trainingRepository.findById(id);
+        Optional<Training> training = this.trainingRepository.getTrainingByID(id);
         return training;
     }
 
@@ -64,9 +66,14 @@ public class TrainingService {
         training.setCost(trainingRequest.getCost());
         training.setStartDate(trainingRequest.getStartDate());
         training.setEndDate(trainingRequest.getEndDate());
+        training.setDescription(trainingRequest.getDescription());
         training.setCost(trainingRequest.getCost());
         training.setTrainingType(trainingType);
         training.setTrainer(trainer);
         training.addEmployee(employee);
+    }
+
+    public void removeTraining(Long id) {
+        this.trainingRepository.deleteById(id);
     }
 }

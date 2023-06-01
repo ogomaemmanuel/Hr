@@ -242,7 +242,7 @@
                 </a>
                 <ul class="border-l-0">
                   <li>
-                    <router-link to="/goal-tracking">
+                    <router-link to="/goals">
                       <span>Goal List</span>
                     </router-link>
                   </li>
@@ -252,7 +252,7 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/taxes">
+                    <router-link to="/training">
                       <span>Training List</span>
                     </router-link>
                   </li>
