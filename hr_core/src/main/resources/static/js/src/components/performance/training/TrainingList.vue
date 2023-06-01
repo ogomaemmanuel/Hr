@@ -30,14 +30,30 @@
                     Description
                   </th>
                   <th>
+                    Start Date
+                  </th>
+                  <th>
+                    End Date
+                  </th>
+                  <th>
+                    Cost
+                  </th>
+                  <th>
+                    Status
+                  </th>
+                  <th>
                     Action
                   </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="training in trainingList">
-                  <td data-label="Name">{{ training.type }}</td>
+                  <td data-label="Name">{{ training.trainingType.type }}</td>
                   <td data-label="Description">{{ training.description }}</td>
+                  <td data-label="Description">{{ training.startDate }}</td>
+                  <td data-label="Description">{{ training.endDate }}</td>
+                  <td data-label="Description">{{ training.cost }}</td>
+                  <td data-label="Description">{{ training.status }}</td>
                   <td data-label="Action">
                     <div class="action-controls d-flex justify-end">
                       <button
@@ -60,7 +76,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <td colspan="4">
+                  <td colspan="7">
                     <Paginator
                         @previousPage="goToPrevious"
                         @nextPage="goToNext"
