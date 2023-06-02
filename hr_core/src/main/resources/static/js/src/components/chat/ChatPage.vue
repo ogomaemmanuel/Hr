@@ -52,11 +52,21 @@
                 </div>
                 <div class="message-area flex flex-col h-full">
 
-                  <div class="conversions-messages-wrapper flex-1">
+                  <div class="conversions-messages-wrapper flex-1 p-3">
 
+                    <ReceivedMessage message="Test"></ReceivedMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <ReceivedMessage message="Test"></ReceivedMessage>
                   </div>
-                  <div class="message-input-wrapper flex">
-                    <input class="input flex-1" type="text">
+                  <div class="message-input-wrapper flex p-4">
+                    <div class="flex justify-center pr-3 items-center">
+                     <span class="icon is-small">
+      <i class="fa fa-paperclip fa-2x paper-clip"></i>
+    </span>
+                    </div>
+                    <input placeholder="Type message..." class="input flex-1" type="text">
                     <button class="button is-primary">
                      <span class="icon is-small">
       <i class="fa fa-send"></i>
@@ -73,7 +83,13 @@
   </div>
 </template>
 <script>
+import ReceivedMessage from "./ReceivedMessage";
+import SentMessage from "./SentMessage";
 export default {
+  components:{
+    ReceivedMessage,
+    SentMessage
+  },
   data() {
     return {
       conversions: {
@@ -104,9 +120,11 @@ export default {
   .conversations-body {
     overflow-x: hidden;
     overflow-y: scroll;
+  }
+  .conversions-messages-wrapper{
+    background-color: #f7f7f7;
 
   }
-
   .conversation-header-title {
     height: 44px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -119,6 +137,15 @@ export default {
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     display: flex;
     align-items: center;
+  }
+
+  .message-input-wrapper{
+    border-top-style: solid;
+    border-top-width: 1px;
+    z-index: 8;
+    .paper-clip{
+      transform: rotate(90deg);
+    }
   }
 }
 
