@@ -58,6 +58,22 @@
                     <SentMessage message="Test Sent message"></SentMessage>
                     <SentMessage message="Test Sent message"></SentMessage>
                     <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
+                    <SentMessage message="Test Sent message"></SentMessage>
                     <ReceivedMessage message="Test"></ReceivedMessage>
                   </div>
                   <div class="message-input-wrapper flex p-4">
@@ -123,6 +139,7 @@ export default {
   }
   .conversions-messages-wrapper{
     background-color: #f7f7f7;
+    overflow-y: auto;
 
   }
   .conversation-header-title {
