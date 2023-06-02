@@ -106,6 +106,7 @@
     "pdfvuer": "^1.7.1",
     "popper.js": "^1.15.0",
     "portal-vue": "^2.1.7",
+    "sass": "^1.62.1",
     "sinon": "^9.0.3",
     "sockjs-client": "^1.4.0",
     "stompjs": "^2.3.3",

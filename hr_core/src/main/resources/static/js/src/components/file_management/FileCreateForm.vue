@@ -105,11 +105,11 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-.is-fullwidth /deep/ .upload-draggable {
+.is-fullwidth ::v-deep .upload-draggable {
   min-width: 100%;
 }
 
-.is-fullwidth /deep/ label {
+.is-fullwidth ::v-deep label {
   min-width: 100%;
 }
 </style>
