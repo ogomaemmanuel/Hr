@@ -25,15 +25,7 @@
                 </div>
                 <div class="relative w-full h-full overflow-hidden pb-3">
                   <div class="conversations-body w-full h-full absolute">
-
-                    <div class="flex pb-3 pt-3" v-for=" conversation in generateConversions " :key="conversation.id">
-                      <figure class="image is-32x32">
-                        <img src="/images/undraw_profile_pic_ic-5-t.svg"></img>
-                      </figure>
-                      <div>
-                        {{ conversation.username }}
-                      </div>
-                    </div>
+                    <UserConversations></UserConversations>
                   </div>
                 </div>
 
@@ -101,8 +93,10 @@
 <script>
 import ReceivedMessage from "./ReceivedMessage";
 import SentMessage from "./SentMessage";
+import UserConversations from "./UserConversations";
 export default {
   components:{
+    UserConversations,
     ReceivedMessage,
     SentMessage
   },
@@ -115,17 +109,7 @@ export default {
     }
   },
   computed: {
-    generateConversions() {
-      let conversions = [];
-      for (let i = 0; i < 1000; i++) {
-        conversions.push({
-          id: `${i}`,
-          username: "Emmanuel Ogoma",
-          message: `Hey there, I am using Whatapp, this is message ${i}`
-        })
-      }
-      return conversions;
-    }
+
   }
 }
 </script>
