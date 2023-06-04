@@ -18,10 +18,8 @@ public interface ChatMessageRepository extends BaseRepo<ChatMessage> {
 
 
     @Query(value = """
-            select cm.message as lastChatMessage,cm.created_at as lastChatTime, u.first_name as firstName, u.id as userId   from users u left join (
-            select coalesce(sender_id,recipient_id) as user_id, message, created_at from chat_messages  cm where (cm.sender_id=:userId or cm.recipient_id=:userId) and(sender_id is not null or recipient_id is not null )
-            order by created_at desc limit 1
-            ) cm on cm.user_id=u.id where u.id!=:userId
+            select u.first_name as firstName,u.last_name as lastName,cm.message as lastMessage, u.id as userId from users u left join 
+            (select case when sender_id=:userId then recipient_id else sender_id end as user_id,cm.message,cm.created_at from chat_messages cm where (sender_id=:userId or recipient_id=:userId) and created_at=(select max(created_at) from chat_messages where (sender_id=cm.sender_id and recipient_id=cm.recipient_id) or (sender_id=cm.recipient_id and recipient_id=cm.sender_id) ) order by created_at desc) cm on cm.user_id=u.id where u.id!=:userId order by cm.created_at desc
             """, nativeQuery = true)
     public Page<ChatConversationsProjection> getUserConversations(Long userId, Pageable pageable);
 }

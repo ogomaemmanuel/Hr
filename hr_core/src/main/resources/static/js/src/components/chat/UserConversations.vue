@@ -1,11 +1,12 @@
 <template>
   <div>
-    <div class="flex pb-3 pt-3" v-for=" conversation in conversations " :key="conversation.id">
+    <div @click="onConversationClick(conversation)" class="flex pb-3 pt-3" v-for=" conversation in conversations "
+         :key="conversation.id">
       <figure class="image is-32x32">
         <img src="/images/undraw_profile_pic_ic-5-t.svg"></img>
       </figure>
       <div>
-        {{ conversation.username }}
+        {{ conversation.fullName }}
       </div>
     </div>
   </div>
@@ -26,6 +27,10 @@ export default {
   },
 
   methods: {
+    onConversationClick(conversation) {
+      this.$emit("conversationChanged",conversation)
+    },
+
     async getConversations() {
       let resp = await axios.get("/chats/conversations", {
         params: {

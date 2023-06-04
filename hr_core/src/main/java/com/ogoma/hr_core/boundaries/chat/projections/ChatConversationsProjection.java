@@ -1,6 +1,7 @@
 package com.ogoma.hr_core.boundaries.chat.projections;
 
-import liquibase.pro.packaged.S;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 
@@ -9,9 +10,15 @@ public interface ChatConversationsProjection {
 
     public String getUsername();
 
-    public String getFullName();
+    public String getFirstName();
 
-    public String getLastChatMessage();
+    public String getLastName();
+@JsonProperty
+    public String getLastMessage();
+@JsonProperty
+    public LocalDate getTime();
 
-    public LocalDate getLastChatTime();
+    public default String getFullName(){
+        return String.format("%s %s",getFirstName()==null?"":getFirstName(),getLastName()==null?"":getLastName());
+    }
 }
