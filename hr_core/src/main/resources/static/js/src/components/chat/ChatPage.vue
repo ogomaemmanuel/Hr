@@ -2,7 +2,6 @@
   <div class="h-screen">
     <div class="chat-page h-full">
       <div class=" h-full pt-8 pr-16 pl-16">
-
         <div class="card overflow-hidden h-full rounded-t-lg">
           <div class="card-content pt-0  h-full pr-0">
             <div class="columns h-full">
@@ -43,32 +42,6 @@
                   </div>
                 </div>
                 <div class="message-area flex flex-col h-full">
-
-<!--                  <div class="conversions-messages-wrapper flex-1 p-3">-->
-
-<!--                    <ReceivedMessage message="Test"></ReceivedMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <SentMessage message="Test Sent message"></SentMessage>-->
-<!--                    <ReceivedMessage message="Test"></ReceivedMessage>-->
-<!--                  </div>-->
-
                   <ChatMessages :recipient="recipient" :key="recipient.userId"></ChatMessages>
                   <div class="message-input-wrapper flex p-4">
                     <div class="flex justify-center pr-3 items-center">
