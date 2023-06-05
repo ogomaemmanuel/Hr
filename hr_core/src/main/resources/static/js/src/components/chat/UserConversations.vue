@@ -7,8 +7,8 @@
       </figure>
       <div>
         {{ conversation.fullName }}
-        <div >
-          {{conversation.lastMessage}}
+        <div>
+          {{ conversation.lastMessage }}
         </div>
       </div>
 
@@ -17,6 +17,8 @@
 </template>
 <script>
 import data_table_mixin from "../../mixins/data_table_mixin";
+import {mapGetters} from "vuex";
+import chatMessages from "./ChatMessages";
 
 export default {
   mixins: [data_table_mixin],
@@ -27,12 +29,20 @@ export default {
   },
 
   created() {
+
     this.getConversations();
   },
-
+  computed: {
+    ...mapGetters(["chatMessage"])
+  },
+  watch: {
+    chatMessage() {
+      this.getConversations();
+    }
+  },
   methods: {
     onConversationClick(conversation) {
-      this.$emit("conversationChanged",conversation)
+      this.$emit("conversationChanged", conversation)
     },
 
     async getConversations() {
@@ -43,7 +53,6 @@ export default {
         }
       })
       this.conversations = resp.data.content;
-
     }
   }
 }

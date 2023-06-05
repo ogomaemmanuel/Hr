@@ -36,19 +36,25 @@ public class ChatMessageService {
         chatMessage.setMessage(chatMessageCreateRequest.getMessage());
         chatMessage.setSender(userDetails.getUser());
         this.chatMessageRepository.save(chatMessage);
-      var notification=  new ChatMessageResponse(chatMessage.getMessage(),chatMessage.getId(), chatMessage.getSender().getId(), chatMessage.getRecipient().getId(), "");
-        this.simpMessagingTemplate.convertAndSendToUser(chatMessage.getRecipient().getEmail(),"/queue/chat-messages",notification);
+        var notification = new ChatMessageResponse(
+                chatMessage.getMessage(),
+                chatMessage.getId(),
+                chatMessage.getSender().getId(),
+                chatMessage.getRecipient().getId(),
+                chatMessage.getCreatedAt(), "");
+        this.simpMessagingTemplate.convertAndSendToUser(chatMessage.getRecipient().getEmail(), "/queue/chat-messages", notification);
         return chatMessage;
     }
+
     public Page<ChatMessage> getCurrentUserConversationMessages(Long otherUserId, Pageable pageable) {
         CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Page<ChatMessage> chatMessagePage = this.chatMessageRepository.getUserMessage(userDetails.getUser().getId(), otherUserId, pageable);
         return chatMessagePage;
     }
 
-    public Page<ChatConversationsProjection> getUserConversations(Pageable pageable){
+    public Page<ChatConversationsProjection> getUserConversations(Pageable pageable) {
         CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Page<ChatConversationsProjection> chatMessagePage = this.chatMessageRepository.getUserConversations(userDetails.getUser().getId(),pageable);
-        return  chatMessagePage;
+        Page<ChatConversationsProjection> chatMessagePage = this.chatMessageRepository.getUserConversations(userDetails.getUser().getId(), pageable);
+        return chatMessagePage;
     }
 }

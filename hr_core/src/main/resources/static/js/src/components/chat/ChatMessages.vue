@@ -1,12 +1,11 @@
 <template>
   <div class="conversions-messages-wrapper flex-1 p-3" ref="messages">
-    <div v-for="(message,index) in messages" :key="index">
-      <SentMessage v-if="isSender(message)" :message="message.message"></SentMessage>
-      <ReceivedMessage v-else :message="message.message"></ReceivedMessage>
+    <div v-for="(message,index) in sortedMessages" :key="index">
+      <SentMessage v-if="isSender(message)" :message="message"></SentMessage>
+      <ReceivedMessage v-else :message="message"></ReceivedMessage>
     </div>
   </div>
 </template>
-
 <script>
 import {mapGetters} from "vuex"
 import SentMessage from "./SentMessage";
@@ -29,7 +28,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["authenticatedUser","chatMessage"])
+    ...mapGetters(["authenticatedUser","chatMessage"]),
+    sortedMessages(){
+    return   this.messages.sort(function (messageA, messageB) {
+        return messageA.createdAt == messageB.createdAt
+            ? 0
+            : +(messageA.createdAt > messageB.createdAt) || -1
+      })
+    }
   },
   watch: {
     chatMessage(message,oldMessage) {
@@ -53,6 +59,7 @@ export default {
   created() {
     this.getChatMessages();
   },
+
   methods: {
     async getChatMessages() {
       try {
@@ -62,6 +69,7 @@ export default {
 
       }
     },
+
     isSender(message) {
     return   message.senderId == this.authenticatedUser.id;
     },

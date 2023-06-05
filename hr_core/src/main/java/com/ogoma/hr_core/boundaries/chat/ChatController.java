@@ -25,7 +25,12 @@ public class ChatController {
     @PostMapping
     public ResponseEntity<?> createChatMessage(@RequestBody ChatMessageCreateRequest createRequest) {
         ChatMessage message = this.chatMessageService.createMessage(createRequest);
-        var response = new ChatMessageResponse(message.getMessage(),message.getId(), message.getSender().getId(), message.getRecipient().getId(), "");
+        var response = new ChatMessageResponse(
+                message.getMessage(),
+                message.getId(),
+                message.getSender().getId(),
+                message.getRecipient().getId(),
+                message.getCreatedAt(), "");
         return ResponseEntity.ok(response);
     }
 
@@ -33,7 +38,14 @@ public class ChatController {
     public ResponseEntity<?> getConversationMessages(@PathVariable Long otherUserId, Pageable pageable) {
         Page<ChatMessage> chatMessagePage =
                 this.chatMessageService.getCurrentUserConversationMessages(otherUserId, pageable);
-        var chatresult=chatMessagePage.map(message->new ChatMessageResponse(message.getMessage(), message.getId(), message.getSender().getId(),message.getRecipient().getId(),""));
+        var chatresult = chatMessagePage.map(message ->
+                new ChatMessageResponse(
+                        message.getMessage(),
+                        message.getId(),
+                        message.getSender().getId(),
+                        message.getRecipient().getId(),
+                        message.getCreatedAt(),
+                        ""));
         return ResponseEntity.ok(chatresult);
     }
 

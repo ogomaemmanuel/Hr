@@ -33,7 +33,7 @@
                 <div class="message-title-bar pl-2 pr-2">
                   <div class="flex w-full">
                     <div class="flex-1">
-                      {{recipient.fullName}}
+                      {{ recipient.fullName }}
                     </div>
                     <div class="flex">
                       <i class="fa fa-ellipsis-h text-danger"></i>
@@ -69,7 +69,9 @@
 import ReceivedMessage from "./ReceivedMessage";
 import SentMessage from "./SentMessage";
 import UserConversations from "./UserConversations";
-import  ChatMessages from "./ChatMessages"
+import ChatMessages from "./ChatMessages"
+import {mapActions} from "vuex";
+
 export default {
   components: {
     UserConversations,
@@ -80,19 +82,13 @@ export default {
   data() {
     return {
       message: "",
-      recipient: {},
-      conversions: {
-        username: "Emmanuel Ogoma",
-        message: " Hey there, I am using Whatapp",
-        chatMessages: [],
-      }
+      recipient: {}
     }
   },
 
   methods: {
-    getChatMessages(userId) {
-      axios.get("")
-    },
+
+    ...mapActions(["setChatMessage"]),
     changeRecipient(recipient) {
       console.log(recipient);
       this.recipient = {...recipient};
@@ -104,9 +100,10 @@ export default {
         recipient: this.recipient.userId
       }
       try {
-        await axios.post("/chats", message);
-        this.message="";
-      }catch (e){
+        let resp = await axios.post("/chats", message);
+        this.setChatMessage(resp.data);
+        this.message = "";
+      } catch (e) {
         console.log("Error sending chat message");
       }
     }

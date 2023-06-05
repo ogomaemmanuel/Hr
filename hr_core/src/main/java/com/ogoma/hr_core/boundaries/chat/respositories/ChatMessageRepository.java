@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ChatMessageRepository extends BaseRepo<ChatMessage> {
 
-    @Query(value = "select  c from ChatMessage c left join  fetch c.sender left join  fetch c.recipient where (c.sender.id=:userOneId and c.recipient.id=:userTwoId) or (c.sender.id=:userTwoId and c.recipient.id=:userOneId) order by c.createdAt"
+    @Query(value = "select  c from ChatMessage c left join  fetch c.sender left join  fetch c.recipient where (c.sender.id=:userOneId and c.recipient.id=:userTwoId) or (c.sender.id=:userTwoId and c.recipient.id=:userOneId) order by c.createdAt desc "
     ,countQuery = "select  count(c) from ChatMessage c where (c.sender.id=:userOneId and c.recipient.id=:userTwoId) or (c.sender.id=:userTwoId and c.recipient.id=:userOneId)"
     )
     public Page<ChatMessage> getUserMessage(Long userOneId, Long userTwoId, Pageable pageable);
