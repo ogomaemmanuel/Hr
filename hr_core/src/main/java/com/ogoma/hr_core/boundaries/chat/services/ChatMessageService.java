@@ -36,8 +36,8 @@ public class ChatMessageService {
         chatMessage.setMessage(chatMessageCreateRequest.getMessage());
         chatMessage.setSender(userDetails.getUser());
         this.chatMessageRepository.save(chatMessage);
-      var notification=  new ChatMessageResponse(chatMessage.getMessage(), chatMessage.getSender().getId(), chatMessage.getRecipient().getId(), "");
-        this.simpMessagingTemplate.convertAndSendToUser(chatMessage.getRecipient().getEmail(),"",notification);
+      var notification=  new ChatMessageResponse(chatMessage.getMessage(),chatMessage.getId(), chatMessage.getSender().getId(), chatMessage.getRecipient().getId(), "");
+        this.simpMessagingTemplate.convertAndSendToUser(chatMessage.getRecipient().getEmail(),"/queue/chat-messages",notification);
         return chatMessage;
     }
     public Page<ChatMessage> getCurrentUserConversationMessages(Long otherUserId, Pageable pageable) {

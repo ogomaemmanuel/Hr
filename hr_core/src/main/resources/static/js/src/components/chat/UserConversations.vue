@@ -7,7 +7,11 @@
       </figure>
       <div>
         {{ conversation.fullName }}
+        <div >
+          {{conversation.lastMessage}}
+        </div>
       </div>
+
     </div>
   </div>
 </template>
