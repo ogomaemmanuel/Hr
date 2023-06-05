@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-full">
     <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
       <!--      <div class="navbar-brand">-->
       <!--        <a class="navbar-item" href="https://bulma.io">-->

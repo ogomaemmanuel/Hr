@@ -17,9 +17,9 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/dist/main.css}">
 </head>
 <body>
-<div id="app-root">
-    <div>
-        <div sec:authorize="isAuthenticated()">
+<div id="app-root" class="h-full">
+    <div class="h-full">
+        <div sec:authorize="isAuthenticated()" class="h-full">
             <router-view  th:attr="user=${#authentication.getPrincipal().toJson()}">
             </router-view>
         </div>

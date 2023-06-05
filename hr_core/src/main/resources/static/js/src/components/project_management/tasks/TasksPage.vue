@@ -1,105 +1,137 @@
 <template>
-    <div class="h-full">
-        <div class="h-full">
-<!--            <router-view></router-view>-->
-            <div class="columns h-full">
-                <div class="column">
-                    <div class="bg-white h-12 w-full">
+  <div class="task-page h-full columns is-gapless">
+    <div class="project-list h-full column is-one-fifth">
 
-                    </div>
-                </div>
-                <div class="column h-full bg-white"></div>
-            </div>
-        </div>
-        <portal to="side-menu">
-            <ul class="menu-list">
-                <li>
-                    <router-link to="/" class="">
-                        <span class="icon"><i class="fa fa-home"></i></span> Back Home
-                    </router-link>
-                </li>
-                <li @wheel="fetchMoreProjects">
-                    <div  class="flex project-menu-head">
-                        <span class="icon"><i class="fa fa-group"></i></span>
-                        <div class="flex w-full">
-                            <div class="flex-1 menu-header-text">Projects</div>
-                            <i class="fa fa-plus mr-1"></i>
-                        </div>
-                    </div>
-
-                    <ul class="mr-0 pr-0 border-l-0">
-                        <li v-for="project in projects">
-                            <router-link to="/users">
-                                <span>{{project.name}}</span>
-                            </router-link>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </portal>
     </div>
+    <div class="project-task-list column">
+      <div class="task-list-header pl-5 pr-5 pb-3 pt-3 bg-white flex items-center">
+        <div class="flex-1">
+          <button @click="showAddTaskInput=!showAddTaskInput" class="button">Add task</button>
+        </div>
+        <div>
+       <span class="icon">
+       <i class="fa fa-cog fa-2x"></i>
+        </span>
+        </div>
+      </div>
+      <div class="p-5">
+        <div v-if="showAddTaskInput">
+          <input class="input" placeholder="Enter new task here ..." type="text">
+          <div class="flex justify-end mt-3 gap-1">
+            <button class="button is-light">Close</button>
+            <button class="button">
+              Add Task
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="project-details column bg-white">
+
+      <div
+          class="project-details-header border-solid	 border-b border-slate-200 pr-5 pl-5 pb-4 pt-4 flex items-center">
+        <div class="flex-1">
+          <button class="button">
+          <span class="icon">
+      <i class="fa fa-check"></i>
+    </span>
+            <span>Mark Complete</span>
+          </button>
+        </div>
+        <span class="icon">
+           <i class="fa fa-ellipsis-v"></i>
+        </span>
+      </div>
+
+      <div class="project-details-footer border-t border-slate-200 pr-5 pl-5 pb-4 pt-4">
+        <div>
+        <input placeholder="Type message..." class="input" type="text"></input>
+        </div>
+        <div class="flex justify-start items-center mt-3 gap-2">
+          <span>Followers</span>
+          <figure class="image is-32x32">
+            <img src="/images/undraw_profile_pic_ic-5-t.svg">
+          </figure>
+          <figure class="image is-32x32">
+            <img src="/images/undraw_profile_pic_ic-5-t.svg">
+          </figure>
+          <figure class="image is-32x32">
+            <img src="/images/undraw_profile_pic_ic-5-t.svg">
+          </figure>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </template>
 <script>
-    import _throttle from "lodash.throttle"
+import _throttle from "lodash.throttle"
 
-    export default {
-        data() {
-            return {
-                page: 0,
-                pageSize: 10,
-                projects: [],
-                loading: false,
-                loaded: false,
-            }
-        },
-        created() {
-            this.getProjects();
-        },
-        methods: {
-
-            getProjects() {
-                let vm = this;
-                let request = {
-                    page: vm.page,
-                    pageSize: vm.pageSize
-                }
-                vm.loading = true;
-                axios.get("/api/projects",
-                    {params: request}).then(resp => {
-                    vm.loaded = true;
-                    vm.loading = false;
-                    vm.projects.push(...resp.data.content);
-                    if (resp.data.totalPages > vm.page) {
-                        vm.page++;
-                    }
-                }, error => {
-                    vm.loading = false;
-                })
-            },
-            fetchMoreProjects: _throttle(function (event) {
-                    let vm = this;
-                    if (event.deltaY > 0) {
-                        vm.getProjects();
-                    }
-                },
-                2000),
-        }
+export default {
+  data() {
+    return {
+      page: 0,
+      pageSize: 10,
+      projects: [],
+      loading: false,
+      loaded: false,
+      showAddTaskInput: false,
     }
+  },
+  created() {
+    this.getProjects();
+  },
+  methods: {
+    getProjects() {
+      let vm = this;
+      let request = {
+        page: vm.page,
+        pageSize: vm.pageSize
+      }
+      vm.loading = true;
+      axios.get("/api/projects",
+          {params: request}).then(resp => {
+        vm.loaded = true;
+        vm.loading = false;
+        vm.projects.push(...resp.data.content);
+        if (resp.data.totalPages > vm.page) {
+          vm.page++;
+        }
+      }, error => {
+        vm.loading = false;
+      })
+    },
+    fetchMoreProjects: _throttle(function (event) {
+          let vm = this;
+          if (event.deltaY > 0) {
+            vm.getProjects();
+          }
+        },
+        2000),
+  }
+}
 </script>
 <style scoped lang="scss">
-    .project-menu-head {
-        .menu-header-text {
-            padding-left: 0.5em;
-        }
+.task-page {
+  margin-top: 3.25rem;
+  min-height: 100%;
 
-        border-radius: 2px;
-        padding: 0.5em 0.2em;
+  .project-list {
+    background-color: #34444c;
+    min-height: 100%;
+  }
 
-        &:hover {
-            border-left: 4px solid;
-            background-color: #000000;
-            border-left: 4px solid #1d8e72;
-            color: #FFFFFF;
-        }
+  .project-details {
+    position: relative;
+
+    .project-details-footer {
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
     }
+
+  }
+}
 </style>

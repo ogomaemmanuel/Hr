@@ -787,50 +787,50 @@ const routes = new Router({
 
                             ]
                         },
-                        {
-                            path: "/tasks",
-                            component: TasksPage,
-                            meta: {
-                                breadcrumb: true,
-                                title: "tasks",
-                            },
-                            // children: [
-                            //     {
-                            //         path: "/",
-                            //         component: ProjectList,
-                            //         children: [
-                            //             {
-                            //                 path: "/projects-create",
-                            //                 name: "projects-create",
-                            //                 component: ProjectCreate,
-                            //                 meta: {
-                            //                     breadcrumb: true,
-                            //                     title: "Project Create",
-                            //                 },
-                            //             },
-                            //             {
-                            //                 path: "/project-edit/:id",
-                            //                 name: "project-edit",
-                            //                 component: ProjectEdit,
-                            //                 meta: {
-                            //                     breadcrumb: true,
-                            //                     title: "Project Edit",
-                            //                 },
-                            //             },
-                            //         ]
-                            //     },
-                            //     {
-                            //         path: "/project-details/:id",
-                            //         name: "project-details",
-                            //         component: ProjectDetails,
-                            //         meta: {
-                            //             breadcrumb: true,
-                            //             title: "Project Details",
-                            //         }
-                            //     }
-                            //
-                            // ]
-                        },
+                        // {
+                        //     path: "/tasks",
+                        //     component: TasksPage,
+                        //     meta: {
+                        //         breadcrumb: true,
+                        //         title: "tasks",
+                        //     },
+                        //     // children: [
+                        //     //     {
+                        //     //         path: "/",
+                        //     //         component: ProjectList,
+                        //     //         children: [
+                        //     //             {
+                        //     //                 path: "/projects-create",
+                        //     //                 name: "projects-create",
+                        //     //                 component: ProjectCreate,
+                        //     //                 meta: {
+                        //     //                     breadcrumb: true,
+                        //     //                     title: "Project Create",
+                        //     //                 },
+                        //     //             },
+                        //     //             {
+                        //     //                 path: "/project-edit/:id",
+                        //     //                 name: "project-edit",
+                        //     //                 component: ProjectEdit,
+                        //     //                 meta: {
+                        //     //                     breadcrumb: true,
+                        //     //                     title: "Project Edit",
+                        //     //                 },
+                        //     //             },
+                        //     //         ]
+                        //     //     },
+                        //     //     {
+                        //     //         path: "/project-details/:id",
+                        //     //         name: "project-details",
+                        //     //         component: ProjectDetails,
+                        //     //         meta: {
+                        //     //             breadcrumb: true,
+                        //     //             title: "Project Details",
+                        //     //         }
+                        //     //     }
+                        //     //
+                        //     // ]
+                        // },
                         {
                             path: "/taxes",
                             component: TaxPage,
@@ -1280,6 +1280,10 @@ const routes = new Router({
                 {
                     path:"/messaging",
                     component: ChatPage
+                },
+                {
+                    path: "/tasks",
+                    component: TasksPage
                 }
             ]
 
