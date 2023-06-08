@@ -1,9 +1,9 @@
 <template>
   <div class="received-message mb-3">
     <div class="message-text">
-   {{message}}
+      {{ message.message }}
       <div class="chat-time">
-        8:30 AM
+        {{ formatDate(message.createdAt) }}
       </div>
     </div>
   </div>
@@ -13,12 +13,28 @@ export default {
   props: {
     message: {
       required: true,
-      type: String
+      type: Object
     }
   },
   data() {
-    return {
+    return {}
+  },
+  methods: {
 
+    isToday(date) {
+      const today = new Date();
+      return date.getFullYear() === today.getFullYear() &&
+          date.getMonth() === today.getMonth() &&
+          date.getDate() === today.getDate();
+    },
+    formatDate(date) {
+      if (date) {
+        if (this.isToday(new Date(date))) {
+          return new Date(date).toLocaleTimeString()
+        } else {
+          return new Date(date).toLocaleDateString();
+        }
+      }
     }
   }
 }
@@ -28,7 +44,7 @@ export default {
   display: flex;
   justify-content: start;
 
-  .message-text{
+  .message-text {
     //padding: 10px;
     background-color: #FFFFFF;
     max-width: 60%;

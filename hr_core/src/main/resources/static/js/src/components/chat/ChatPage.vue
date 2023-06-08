@@ -2,7 +2,6 @@
   <div class="h-screen">
     <div class="chat-page h-full">
       <div class=" h-full pt-8 pr-16 pl-16">
-
         <div class="card overflow-hidden h-full rounded-t-lg">
           <div class="card-content pt-0  h-full pr-0">
             <div class="columns h-full">
@@ -25,15 +24,7 @@
                 </div>
                 <div class="relative w-full h-full overflow-hidden pb-3">
                   <div class="conversations-body w-full h-full absolute">
-
-                    <div class="flex pb-3 pt-3" v-for=" conversation in generateConversions " :key="conversation.id">
-                      <figure class="image is-32x32">
-                        <img src="/images/undraw_profile_pic_ic-5-t.svg"></img>
-                      </figure>
-                      <div>
-                        {{ conversation.username }}
-                      </div>
-                    </div>
+                    <UserConversations @conversationChanged="changeRecipient"></UserConversations>
                   </div>
                 </div>
 
@@ -42,7 +33,7 @@
                 <div class="message-title-bar pl-2 pr-2">
                   <div class="flex w-full">
                     <div class="flex-1">
-                      Emmanuel Ogoma
+                      {{ recipient.fullName }}
                     </div>
                     <div class="flex">
                       <i class="fa fa-ellipsis-h text-danger"></i>
@@ -51,26 +42,18 @@
                   </div>
                 </div>
                 <div class="message-area flex flex-col h-full">
-
-                  <div class="conversions-messages-wrapper flex-1 p-3">
-
-                    <ReceivedMessage message="Test"></ReceivedMessage>
-                    <SentMessage message="Test Sent message"></SentMessage>
-                    <SentMessage message="Test Sent message"></SentMessage>
-                    <SentMessage message="Test Sent message"></SentMessage>
-                    <ReceivedMessage message="Test"></ReceivedMessage>
-                  </div>
+                  <ChatMessages :recipient="recipient" :key="recipient.userId"></ChatMessages>
                   <div class="message-input-wrapper flex p-4">
                     <div class="flex justify-center pr-3 items-center">
                      <span class="icon is-small">
       <i class="fa fa-paperclip fa-2x paper-clip"></i>
     </span>
                     </div>
-                    <input placeholder="Type message..." class="input flex-1" type="text">
-                    <button class="button is-primary">
-                     <span class="icon is-small">
-      <i class="fa fa-send"></i>
-    </span>
+                    <input v-model="message" placeholder="Type message..." class="input flex-1" type="text">
+                    <button @click="sendChatMessage" class="button is-primary">
+                      <span class="icon is-small">
+                       <i class="fa fa-send"></i>
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -85,32 +68,47 @@
 <script>
 import ReceivedMessage from "./ReceivedMessage";
 import SentMessage from "./SentMessage";
+import UserConversations from "./UserConversations";
+import ChatMessages from "./ChatMessages"
+import {mapActions} from "vuex";
+
 export default {
-  components:{
+  components: {
+    UserConversations,
     ReceivedMessage,
+    ChatMessages,
     SentMessage
   },
   data() {
     return {
-      conversions: {
-        username: "Emmanuel Ogoma",
-        message: " Hey there, I am using Whatapp"
+      message: "",
+      recipient: {}
+    }
+  },
+
+  methods: {
+
+    ...mapActions(["setChatMessage"]),
+    changeRecipient(recipient) {
+      console.log(recipient);
+      this.recipient = {...recipient};
+    },
+
+    async sendChatMessage() {
+      let message = {
+        message: this.message,
+        recipient: this.recipient.userId
+      }
+      try {
+        let resp = await axios.post("/chats", message);
+        this.setChatMessage(resp.data);
+        this.message = "";
+      } catch (e) {
+        console.log("Error sending chat message");
       }
     }
   },
-  computed: {
-    generateConversions() {
-      let conversions = [];
-      for (let i = 0; i < 1000; i++) {
-        conversions.push({
-          id: `${i}`,
-          username: "Emmanuel Ogoma",
-          message: `Hey there, I am using Whatapp, this is message ${i}`
-        })
-      }
-      return conversions;
-    }
-  }
+  computed: {}
 }
 </script>
 <style scoped lang="scss">
@@ -121,10 +119,13 @@ export default {
     overflow-x: hidden;
     overflow-y: scroll;
   }
-  .conversions-messages-wrapper{
+
+  .conversions-messages-wrapper {
     background-color: #f7f7f7;
+    overflow-y: auto;
 
   }
+
   .conversation-header-title {
     height: 44px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -139,11 +140,12 @@ export default {
     align-items: center;
   }
 
-  .message-input-wrapper{
+  .message-input-wrapper {
     border-top-style: solid;
     border-top-width: 1px;
     z-index: 8;
-    .paper-clip{
+
+    .paper-clip {
       transform: rotate(90deg);
     }
   }

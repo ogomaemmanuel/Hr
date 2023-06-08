@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-full">
     <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
       <!--      <div class="navbar-brand">-->
       <!--        <a class="navbar-item" href="https://bulma.io">-->
@@ -122,7 +122,7 @@ export default {
     ...mapGetters(["authenticatedUser"])
   },
   methods: {
-    ...mapActions(["setUser"]),
+    ...mapActions(["setUser","setChatMessage"]),
     hideNotifications() {
       this.showNotifications = false
     },
@@ -153,6 +153,11 @@ export default {
         connection.subscribe("/user/topic/notifications", function (message) {
           Message.info(message.body);
         });
+        connection.subscribe("/user/queue/chat-messages", function (message){
+          if(message.command=="MESSAGE") {
+            vm.setChatMessage(JSON.parse(message.body));
+          }
+        })
         //subcribe to notifications on login, invoke by me
         connection.subscribe("/swat-chat/user-notifications-me", function (message) {
           Message.info(message.body);
