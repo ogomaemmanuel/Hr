@@ -29,8 +29,8 @@ export default {
   },
 
   created() {
-
     this.getConversations();
+
   },
   computed: {
     ...mapGetters(["chatMessage"])
@@ -53,6 +53,9 @@ export default {
         }
       })
       this.conversations = resp.data.content;
+      if(this.conversations.length > 0){
+        this.$emit("conversationChanged", this.conversations[0])
+      }
     }
   }
 }
