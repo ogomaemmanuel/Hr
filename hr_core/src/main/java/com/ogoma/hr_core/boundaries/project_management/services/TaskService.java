@@ -38,8 +38,8 @@ public class TaskService {
 
     public Task createTask(TaskCreateRequest taskCreateRequest) {
         Task task = new Task();
-        List<Employee> employees = this.employeeRepository.findAllById(taskCreateRequest.getAssignedEmployeesId());
-        task.setAssignedEmployees(employees);
+        //List<Employee> employees = this.employeeRepository.findAllById(taskCreateRequest.getAssignedEmployeesId());
+       // task.setAssignedEmployees(employees);
         convertToEntity(taskCreateRequest, task);
         return task;
     }

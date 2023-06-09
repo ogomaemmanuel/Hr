@@ -1,7 +1,7 @@
 <template>
   <div class="task-page h-full columns is-gapless">
-    <div class="project-list h-full column is-one-fifth">
-
+    <div class="project-list column is-one-fifth">
+      <ProjectList :key="currentProject.id" @projectSelected="setCurrentProject"></ProjectList>
     </div>
     <div class="project-task-list column">
       <div class="task-list-header pl-5 pr-5 pb-3 pt-3 bg-white flex items-center">
@@ -15,11 +15,18 @@
         </div>
       </div>
       <div class="p-5">
+        <div class="task-list-item-container">
+        <div v-for="(task,index) in tasks"
+             :key="index"
+             class="task-list-item bg-white mt-0 p-2">
+          {{ task.title }}
+        </div>
+        </div>
         <div v-if="showAddTaskInput">
-          <input class="input" placeholder="Enter new task here ..." type="text">
+          <input class="input" v-model="taskCreateRequest.title" placeholder="Enter new task here ..." type="text">
           <div class="flex justify-end mt-3 gap-1">
-            <button class="button is-light">Close</button>
-            <button class="button">
+            <button @click="showAddTaskInput=!showAddTaskInput" class="button is-light">Close</button>
+            <button @click="createTask" class="button">
               Add Task
             </button>
           </div>
@@ -46,7 +53,7 @@
 
       <div class="project-details-footer border-t border-slate-200 pr-5 pl-5 pb-4 pt-4">
         <div>
-        <input placeholder="Type message..." class="input" type="text"></input>
+          <input placeholder="Type message..." class="input" type="text"></input>
         </div>
         <div class="flex justify-start items-center mt-3 gap-2">
           <span>Followers</span>
@@ -67,8 +74,12 @@
 </template>
 <script>
 import _throttle from "lodash.throttle"
+import ProjectList from "./ProjectList";
 
 export default {
+  components: {
+    ProjectList
+  },
   data() {
     return {
       page: 0,
@@ -77,6 +88,9 @@ export default {
       loading: false,
       loaded: false,
       showAddTaskInput: false,
+      taskCreateRequest: {},
+      currentProject: {},
+      tasks: []
     }
   },
   created() {
@@ -101,6 +115,15 @@ export default {
       }, error => {
         vm.loading = false;
       })
+    },
+    async createTask() {
+      this.taskCreateRequest.projectId = this.currentProject.id;
+      let result = await axios.post("/api/tasks", this.taskCreateRequest)
+      this.tasks = [...this.tasks, result.data];
+      this.taskCreateRequest = {}
+    },
+    setCurrentProject(project) {
+      this.currentProject = project;
     },
     fetchMoreProjects: _throttle(function (event) {
           let vm = this;
@@ -131,7 +154,15 @@ export default {
       left: 0px;
       right: 0px;
     }
+  }
 
+  .task-list-item-container:first-child {
+    border-bottom: none;
+  }
+  .task-list-item-container{
+    .task-list-item{
+      border: 1px solid #eaeaea;
+    }
   }
 }
 </style>
