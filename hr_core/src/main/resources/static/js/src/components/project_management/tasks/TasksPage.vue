@@ -16,11 +16,23 @@
       </div>
       <div class="p-5">
         <div class="task-list-item-container">
-        <div v-for="(task,index) in tasks"
-             :key="index"
-             class="task-list-item bg-white mt-0 p-2">
-          {{ task.title }}
-        </div>
+          <div v-for="(task,index) in tasks"
+               :key="index"
+               class="task-list-item bg-white mt-0 p-2 flex">
+            <div class="flex flex-1 items-center">
+              <div class="gap-1">
+                <i class="fa fa-check-circle fa-2x"></i>
+              </div>
+              <div class="ml-1">
+                {{ task.title }}
+              </div>
+            </div>
+            <div class="flex action-icons items-center justify-end gap-1">
+              <i  class="fa fa-user-plus fa-2x"></i>
+              <i @click="deleteTask(task)" class="fa fa-trash fa-2x"></i>
+            </div>
+
+          </div>
         </div>
         <div v-if="showAddTaskInput">
           <input class="input" v-model="taskCreateRequest.title" placeholder="Enter new task here ..." type="text">
@@ -51,7 +63,13 @@
         </span>
       </div>
 
+      <div class="project-details-body pl-5 pr-5 pt-3">
+        <h2>Hospital Administration Phase 1</h2>
+      </div>
+
       <div class="project-details-footer border-t border-slate-200 pr-5 pl-5 pb-4 pt-4">
+
+
         <div>
           <input placeholder="Type message..." class="input" type="text"></input>
         </div>
@@ -93,25 +111,24 @@ export default {
       tasks: []
     }
   },
-  created() {
-    this.getProjects();
+  watch: {
+    currentProject() {
+      this.getTasks();
+    }
   },
   methods: {
-    getProjects() {
+    getTasks() {
       let vm = this;
       let request = {
-        page: vm.page,
-        pageSize: vm.pageSize
+        active: true,
+        projectId: vm.currentProject.id
       }
       vm.loading = true;
-      axios.get("/api/projects",
+      axios.get("/api/tasks",
           {params: request}).then(resp => {
         vm.loaded = true;
         vm.loading = false;
-        vm.projects.push(...resp.data.content);
-        if (resp.data.totalPages > vm.page) {
-          vm.page++;
-        }
+        vm.tasks=resp.data
       }, error => {
         vm.loading = false;
       })
@@ -119,19 +136,17 @@ export default {
     async createTask() {
       this.taskCreateRequest.projectId = this.currentProject.id;
       let result = await axios.post("/api/tasks", this.taskCreateRequest)
-      this.tasks = [...this.tasks, result.data];
+      this.tasks = [...this.tasks,result.data];
       this.taskCreateRequest = {}
+    },
+
+    async deleteTask(task) {
+      await axios.delete(`/api/tasks/${task.id}`)
+      this.getTasks();
     },
     setCurrentProject(project) {
       this.currentProject = project;
     },
-    fetchMoreProjects: _throttle(function (event) {
-          let vm = this;
-          if (event.deltaY > 0) {
-            vm.getProjects();
-          }
-        },
-        2000),
   }
 }
 </script>
@@ -159,9 +174,20 @@ export default {
   .task-list-item-container:first-child {
     border-bottom: none;
   }
-  .task-list-item-container{
-    .task-list-item{
+
+  .task-list-item-container {
+    .task-list-item {
       border: 1px solid #eaeaea;
+
+      .action-icons {
+        display: none;
+      }
+
+      &:hover {
+        .action-icons {
+          display: flex;
+        }
+      }
     }
   }
 }

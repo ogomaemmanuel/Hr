@@ -116,6 +116,7 @@ const ProjectEdit = () => import("../components/project_management/projects/Proj
 const ProjectDetails = () => import("../components/project_management/projects/ProjectDetails")
 
 const TasksPage = () => import("../components/project_management/tasks/TasksPage")
+const TasksBoard = () => import("../components/project_management/task_board/TaskBoardPage")
 
 const SettingsPage = () => import("../components/settings/Settings")
 const CompanySetting = () => import("../components/settings/company/CompanyDetailsForm")
@@ -786,6 +787,14 @@ const routes = new Router({
                                 }
 
                             ]
+                        },
+                        {
+                            path: "/task-boards/:id",
+                            component: TasksBoard,
+                            meta: {
+                                breadcrumb: true,
+                                title: "Projects",
+                            },
                         },
                         // {
                         //     path: "/tasks",

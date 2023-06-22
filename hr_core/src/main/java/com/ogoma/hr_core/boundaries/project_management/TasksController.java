@@ -39,6 +39,12 @@ public class TasksController {
         Task task = this.taskService.createTask(taskCreateRequest);
         return ResponseEntity.ok(task);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> removeTask(@PathVariable Long id){
+        this.taskService.removeTask(id);
+        return ResponseEntity.ok().build();
+    }
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> updateTask(@PathVariable Long id, @RequestBody @Valid TaskCreateRequest taskCreateRequest) {
         Optional<Task> task = this.taskService.updateTask(id, taskCreateRequest);

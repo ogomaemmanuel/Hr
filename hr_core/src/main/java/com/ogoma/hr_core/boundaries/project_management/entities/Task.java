@@ -3,6 +3,7 @@ package com.ogoma.hr_core.boundaries.project_management.entities;
 
 import com.ogoma.hr_core.boundaries.hr.employee_management.entities.Employee;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -11,10 +12,13 @@ import java.util.List;
 
 @Entity
 @Table(name = "tasks")
+@SQLDelete(sql = "update tasks set active=false where id=?")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private Boolean active;
     private String title;
     private String description;
     @OneToOne
@@ -113,5 +117,22 @@ public class Task {
 
     public void setTaskStatus(TaskStatus taskStatus) {
         this.taskStatus = taskStatus;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    @PreRemove
+    public void onRemove() {
+        this.project = null;
+    }
+    @PrePersist
+    public void onSave(){
+        this.active=true;
     }
 }

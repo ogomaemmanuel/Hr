@@ -123,6 +123,7 @@
     "vue-popperjs": "^2.0.4",
     "vue-simple-calendar": "^5.0.1",
     "vue-virtualscroll": "^1.0.0",
+    "vuedraggable": "^2.24.3",
     "vuetify": "^1.5.14"
   },
   "main": "webpack.config.js",

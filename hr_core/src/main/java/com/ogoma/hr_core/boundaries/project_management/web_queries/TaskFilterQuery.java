@@ -8,6 +8,8 @@ public class TaskFilterQuery {
     private Long projectId;
     private Long assignedEmployeeId;
 
+    private Boolean active;
+
     public Long getProjectId() {
         return projectId;
     }
@@ -24,7 +26,16 @@ public class TaskFilterQuery {
         this.assignedEmployeeId = assignedEmployeeId;
     }
 
-   public Specification<Task> taskSpecification(){
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean status) {
+        this.active = status;
+    }
+
+    public Specification<Task> taskSpecification(){
         return TaskSpecification.createSpecification(this);
     }
+
 }
