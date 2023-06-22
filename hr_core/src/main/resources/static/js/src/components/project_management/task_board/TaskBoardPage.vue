@@ -1,14 +1,23 @@
 <template>
-<div>
-  <H2>Task Board</H2>
-</div>
+  <div>
+    <h2>Task Board</h2>
+    <div class="flex justify-start gap-5">
+        <TaskBoardCard v-for="(boardStatus, index) in boardStatuses" :project-id="1" :status="boardStatus"></TaskBoardCard>
+    </div>
+  </div>
 </template>
 <script>
 
-import draggable from "vuedraggable"
+import TaskBoardCard from "./TaskBoardCard"
+
 export default {
-  data(){
-    return{
+  components: {
+    TaskBoardCard
+  },
+  data() {
+    return {
+
+      boardStatuses: ["TODO", "IN PROGRESS", "DONE", "COMPLETE"]
 
     }
   }
