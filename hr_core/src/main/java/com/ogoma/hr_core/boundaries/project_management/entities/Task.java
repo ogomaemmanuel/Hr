@@ -36,7 +36,7 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
     private TaskStatus taskStatus;
 
     public Long getId() {
@@ -129,10 +129,13 @@ public class Task {
 
     @PreRemove
     public void onRemove() {
-        this.project = null;
+        this.active = null;
     }
     @PrePersist
     public void onSave(){
+       TaskStatus taskStatus = new TaskStatus();
+       taskStatus.setName("TODO");
+       this.setTaskStatus(taskStatus);
         this.active=true;
     }
 }

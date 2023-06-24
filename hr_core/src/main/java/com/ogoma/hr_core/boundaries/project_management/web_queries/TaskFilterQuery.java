@@ -8,6 +8,8 @@ public class TaskFilterQuery {
     private Long projectId;
     private Long assignedEmployeeId;
 
+    private String status;
+
     private Boolean active;
 
     public Long getProjectId() {
