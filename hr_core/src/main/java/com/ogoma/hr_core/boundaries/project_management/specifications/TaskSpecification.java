@@ -9,24 +9,28 @@ import com.ogoma.hr_core.boundaries.project_management.web_queries.TaskFilterQue
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskSpecification  {
     public static Specification<Task> createSpecification(TaskFilterQuery taskFilterQuery){
-       return  new Specification<Task>() {
+       return new Specification<>() {
            @Override
            public Predicate toPredicate(Root<Task> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-               if(taskFilterQuery!=null) {
+               ArrayList<Predicate> predicates = new ArrayList<>();
+               if (taskFilterQuery != null) {
                    if (taskFilterQuery.getProjectId() != null) {
-                       root.fetch(Task_.project, JoinType.LEFT);
-                       criteriaBuilder.equal(root.get(Project_.ID), taskFilterQuery.getProjectId());
+                       root.fetch(Task_.PROJECT, JoinType.LEFT);
+                       predicates.add(criteriaBuilder.equal(root.get(Task_.PROJECT).get(Project_.ID), taskFilterQuery.getProjectId()));
                    }
                    if (taskFilterQuery.getAssignedEmployeeId() != null) {
                        root.fetch(Task_.ASSIGNED_EMPLOYEES, JoinType.LEFT);
-                       criteriaBuilder.equal(root.<List<Employee>>get(Task_.ASSIGNED_EMPLOYEES).<List<Long>>get(Employee_.ID), taskFilterQuery.getAssignedEmployeeId());
+                       predicates.add(criteriaBuilder.equal(root.<List<Employee>>get(Task_.ASSIGNED_EMPLOYEES).<List<Long>>get(Employee_.ID), taskFilterQuery.getAssignedEmployeeId()));
                    }
                }
-               return criteriaBuilder.conjunction();
+               predicates.add(criteriaBuilder.equal(root.get(Task_.ACTIVE), taskFilterQuery.getActive()));
+
+               return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
            }
        };
     }

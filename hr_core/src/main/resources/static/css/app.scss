@@ -1,17 +1,21 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
-html{
+
+
+html {
   background-color: #f2f2f2;
   height: 100%;
   overflow-y: auto;
 }
+
 body {
   background-color: #f2f2f2;
   height: 100%;
   min-height: 100%;
 }
+
 .menu-wrapper {
   .menu-list a {
     border-radius: 2px;
@@ -21,6 +25,7 @@ body {
 
   }
 }
+
 .menu-wrapper {
   .menu-list li ul {
     border-left: 0px solid #dbdbdb;
@@ -40,6 +45,7 @@ body {
     //}
   }
 }
+
 .menu-wrapper {
   .menu-list a {
     border-radius: 2px;
@@ -54,9 +60,11 @@ body {
     color: #FFFFFF;
   }
 }
-.breadcrumb{
+
+.breadcrumb {
   display: flex;
-  ul{
+
+  ul {
     align-self: center;
   }
 }
@@ -67,7 +75,6 @@ body {
 }
 
 
-
 body.modal-open {
   overflow: hidden;
   position: fixed;
@@ -76,15 +83,16 @@ body.modal-open {
   right: 0;
   bottom: 0;
 }
+
 @import "components/MarkdownEditor";
 @import "components/Forms";
 
 //user profile page
-.user-profile-page{
+.user-profile-page {
   .personal-emergency .card-content {
     height: 420px;
 
-    .contact-detail,.personal-detail {
+    .contact-detail, .personal-detail {
       height: 35px;
     }
 
@@ -106,7 +114,7 @@ body.modal-open {
     color: #ffffff;
   }
 
-  .show-top-border{
+  .show-top-border {
     border-top: 2px #a9a9a9 solid;
   }
 }

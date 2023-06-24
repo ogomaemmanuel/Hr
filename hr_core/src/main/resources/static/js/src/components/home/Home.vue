@@ -154,7 +154,7 @@
                     </router-link>
                   </li>
                   <li>
-                    <router-link to="/payroll-items">
+                    <router-link to="/task-boards/1">
                       <span>Task Board</span>
                     </router-link>
                   </li>

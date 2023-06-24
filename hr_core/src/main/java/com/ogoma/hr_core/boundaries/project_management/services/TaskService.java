@@ -31,6 +31,10 @@ public class TaskService {
         return tasks;
     }
 
+    public void removeTask(Long id){
+        this.taskRepository.deleteById(id);
+    }
+
     public Optional<Task> getTaskById(Long id) {
         Optional<Task> task = this.taskRepository.findById(id);
         return task;
@@ -38,9 +42,8 @@ public class TaskService {
 
     public Task createTask(TaskCreateRequest taskCreateRequest) {
         Task task = new Task();
-        List<Employee> employees = this.employeeRepository.findAllById(taskCreateRequest.getAssignedEmployeesId());
-        task.setAssignedEmployees(employees);
         convertToEntity(taskCreateRequest, task);
+        this.taskRepository.save(task);
         return task;
     }
 
