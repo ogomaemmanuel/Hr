@@ -17,14 +17,14 @@ services:
       - ../../../app-secrets/s3.env
     environment:
       SPRING_PROFILES_ACTIVE: "production"
-      SPRING_DATASOURCE_PASSWORD: ${DB_USER_SECRET:-dbusersecret}
-      SPRING_DATASOURCE_USERNAME: ${DB_USER:-testuser}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-dbusersecret}
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME:-testuser}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
 #      SPRING_DATASOURCE_PLATFORM: mysql
 #      SPRING_BATCH_INITIALIZE_SCHEMA: always
       SPRING_LIQUIBASE_ENABLED: "false"
 #    https://docs.docker.com/compose/compose-file/#variable-substitution
-      SPRING_DATASOURCE_URL: "jdbc:mysql://hr_db:3306/${HR_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://hr_db:3306/${DB_SCHEMA:-hr}?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true"
 
   hr_db:
     image: "mysql:8.0"
@@ -35,9 +35,9 @@ services:
       - "3308:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-rootpass}
-      MYSQL_DATABASE: ${HR_SCHEMA:-hr}
-      MYSQL_USER: ${DB_USER:-testuser}
-      MYSQL_PASSWORD: ${DB_USER_SECRET:-dbusersecret}
+      MYSQL_DATABASE: ${DB_SCHEMA:-hr}
+      MYSQL_USER: ${DB_USERNAME:-testuser}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-dbusersecret}
 
 volumes:
   hr_db_v_2:
