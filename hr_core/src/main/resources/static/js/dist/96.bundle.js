@@ -1,1 +1,1 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[96],{468:function(n,e,t){"use strict";t.r(e);var s={},l=t(15),a=Object(l.a)(s,(function(){var n=this.$createElement;return(this._self._c||n)("div",[this._v("\n  Employee Dashboard\n")])}),[],!1,null,null,null);e.default=a.exports}}]);
+(window.webpackJsonp=window.webpackJsonp||[]).push([[96],{522:function(n,t,e){"use strict";e.r(t);var r=function(){var n=this._self._c;return n("div",[n("router-view")],1)};r._withStripped=!0;var i={},u=e(14),l=Object(u.a)(i,r,[],!1,null,null,null);t.default=l.exports}}]);

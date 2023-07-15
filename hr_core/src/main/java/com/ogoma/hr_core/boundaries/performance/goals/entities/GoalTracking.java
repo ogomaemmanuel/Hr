@@ -4,7 +4,7 @@ import com.ogoma.hr_core.boundaries.hr.employee_management.entities.Employee;
 
 import javax.persistence.*;
 
-@Table(name = "goal-tracking")
+@Table(name = "goal_tracking")
 @Entity
 public class GoalTracking {
     @Id
