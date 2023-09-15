@@ -2,7 +2,7 @@
   <div>
     <h2>Task Board</h2>
     <div class="flex justify-start gap-5">
-      <TaskBoardCard v-for="(boardStatus, index) in boardStatuses" :project-id="1"
+      <TaskBoardCard v-for="(boardStatus, index) in boardStatuses" :project-id="1" :key="index"
                      :status="boardStatus"></TaskBoardCard>
     </div>
   </div>

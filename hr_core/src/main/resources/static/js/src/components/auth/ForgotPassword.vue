@@ -1,80 +1,84 @@
 <template>
-	<form>
-		<div class="hero is-fullheight">
-			<div class="hero-body">
-				<div class="container">
-					<div class="columns is-centered">
-						
-						<div class="column is-12-mobile is-6">
-							<article class="message is-medium">
-								<div class="message-header">
-									<p>Forgot Password</p>
-									<button class="delete" aria-label="delete"></button>
-								</div>
-								<div class="message-body">
-									An Email with password reset link will be sent to the email you used during
-									registration
-								</div>
-							</article>
-							<div class="field">
-								<p class="control has-icons-left">
-									<input
-											@input="clearFieldError('email')"
-											v-model="forgotPasswordRequest.email" class="input" type="email"
-											placeholder="Your Email">
-									<span class="icon is-small is-left">
-      <i class="fa fa-lock"></i>
-    </span>
-								</p>
-								<span v-if="errors['email']" class="has-text-danger">
-                                    {{errors['email'][0]}}
-                                </span>
-							</div>
-							<div class="field">
-								<div class="control is-block">
-									<button :class="{'is-loading':isLoading}" @click.prevent="submitRequest"
-											class="button  is-fullwidth is-success">
-										Submit
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-			</div>
-		</div>
-	</form>
+  <Layout>
+    <template v-slot:auth-form>
+      <h1 class="title has-text-dark has-text-centered" style="">Forgot Password.</h1>
+      <p class="mb-8 has-text-left "> An Email with password reset link will be sent to the email you used during
+        registration </p>
+      <form class="box">
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left">
+            <input v-model="forgotPasswordRequest.email"
+                   class="input has-text-left"
+                   placeholder="e.g. didinkaj@lambo-hr.com"
+                   @input="clearFieldError('email')"
+                   required type="email">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-envelope"></i>
+                  </span>
+                  <span v-if="errors['email']" class="has-text-danger">
+                      {{ errors['email'][0] }}
+                  </span>
+          </div>
+        </div>
+        <div class="field mt-8">
+          <div class="control is-block">
+            <button :class="{'is-loading':isLoading}" class="button  is-fullwidth is-success"
+                    @click.prevent="submitRequest">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <div class="columns">
+          <div class="column">
+          </div>
+          <div class="column">
+            <div class="field">
+              <router-link button class="button is-text has-text-centered" tag="button" to="login"
+                           @click.prevent="">
+                Or Sign In
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </form>
+    </template>
+  </Layout>
 </template>
 <script>
-    import {Notification} from "element-ui"
-    import CommonMixin from "../../mixins/common_mixin.js"
+import {Notification} from "element-ui"
+import CommonMixin from "../../mixins/common_mixin.js"
+import Layout from "./Layout.vue";
 
-    export default {
-        mixins: [
-            CommonMixin
-        ],
-        data() {
-            return {
-                isLoading: false,
-                forgotPasswordRequest: {}
-            }
-        }
-        ,
-        methods: {
-            submitRequest() {
-                let vm = this;
-                vm.isLoading = true,
-                    axios.post("/forgot-password", vm.forgotPasswordRequest).then(resp => {
-                        vm.isLoading = false
-                        Notification.success(resp.data);
-                    }, error => {
-                        vm.isLoading = false
-                        if (error.response.status == 400) {
-                            vm.errors = error.response.data;
-                        }
-                    })
-            }
-        }
+export default {
+  mixins: [
+    CommonMixin
+  ],
+  components: {
+    Layout
+  },
+  data() {
+    return {
+      isLoading: false,
+      forgotPasswordRequest: {}
     }
+  }
+  ,
+  methods: {
+    submitRequest() {
+      let vm = this;
+      vm.isLoading = true,
+          axios.post("/forgot-password", vm.forgotPasswordRequest).then(resp => {
+            vm.isLoading = false
+            Notification.success(resp.data);
+          }, error => {
+            vm.isLoading = false
+            if (error.response.status == 400) {
+              vm.errors = error.response.data;
+            }
+          })
+    }
+  }
+}
 </script>
