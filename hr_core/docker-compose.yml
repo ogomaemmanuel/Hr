@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.7'
 
 services:
 
@@ -6,6 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    platform: linux/amd64
+    image: mudho/hr
     depends_on:
       - hr_db
     ports:
@@ -13,8 +15,8 @@ services:
     restart: on-failure
     links:
       - hr_db:hr_db
-    env_file:
-      - ../../../app-secrets/s3.env
+#    env_file:
+#      - ../../../app-secrets/s3.env
     environment:
       SPRING_PROFILES_ACTIVE: "production"
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-dbusersecret}
