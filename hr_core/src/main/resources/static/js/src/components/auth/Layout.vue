@@ -4,9 +4,9 @@
       <nav class="navbar" style="background: #fff">
         <div class="container">
           <div class="navbar-brand">
-            <a class="navbar-item">
+            <router-link to="home" class="navbar-item">
               <LogoMini/>
-            </a>
+            </router-link>
             <a class="navbar-item bd-navbar-item bd-navbar-item-base bd-navbar-item " href="#">
               <span class="icon has-text-primary">
               </span><span>Home</span>
@@ -84,7 +84,10 @@ import LogoMini from "./Logos/LogoMini2.vue";
 
 export default {
   props:{
-    padding:'4.5rem'
+    padding:{
+      type:String,
+      default:'4.5em'
+    }
   },
   components: {LogoMini, Logo},
   mixins: [

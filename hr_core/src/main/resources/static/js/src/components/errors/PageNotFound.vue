@@ -3,7 +3,7 @@
 		<div class="hero-body">
 			<div class="container">
 				<div class="text-center">
-					<h2 class="text-black font-semibold">This page isn't available</h2>
+          <h1 class="title has-text-dark has-text-centered" style="">This page isn't available</h1>
 					<h5>The link you followed may be broken, or the page may have been removed.</h5>
 					<div class="flex m-2 justify-center">
 					<img src="/images/undraw_not_found_60pq.svg" width="200px" alt="page not found image">

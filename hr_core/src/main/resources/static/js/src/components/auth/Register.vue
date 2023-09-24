@@ -1,7 +1,7 @@
 <template>
   <Layout :padding="'1.5rem 4.5rem 4.5rem 4.5rem'">
     <template v-slot:auth-form style="margin-top: -2em!important;">
-      <h1 class="title has-text-dark has-text-centered" style="">Sing up.</h1>
+      <h1 class="title has-text-dark has-text-centered" style="">Let's Get You Signed Up.</h1>
       <p class="mb-2 has-text-left "> It is free and only takes a few seconds </p>
       <form class="box">
         <div class="field">

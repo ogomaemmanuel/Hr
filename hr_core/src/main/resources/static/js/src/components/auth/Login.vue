@@ -44,7 +44,7 @@
             <div class="field has-text-right">
               <router-link button class="button is-text has-text-right" tag="button" to="forgot-password"
                            @click.prevent="">
-                Forgot password
+                Forgot password?
               </router-link>
               <router-link button class="button is-text has-text-right" tag="button" to="register"
                            @click.prevent="">
