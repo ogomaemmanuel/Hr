@@ -3,7 +3,7 @@
     <div class="text-center">
       <h2>{{ status.name }}</h2>
     </div>
-    <draggable class="draggable-list" :list="tasks" group="task-group">
+    <draggable class="draggable-list" @change="onChangeHandler" :list="tasks" group="task-group">
       <div class="list-item" v-for="task in tasks" :key="task.id">
         {{ task.name }}
       </div>
@@ -39,6 +39,24 @@ export default {
     this.getTasks();
   },
   methods: {
+
+    onChangeHandler(event) {
+      console.log("onChangeHandler", event);
+      if (event.added) {
+        this.tasks = [...this.tasks, ...event.added.element];
+
+        //TODO update task status in the backend
+        console.log()
+        //this.updateTask();
+      }
+      if (event.removed) {
+        this.tasks = this.tasks.filter(task => task.id != event.added.element.id);
+      }
+    },
+    async updateTask(taskUpdate) {
+      let resp = await axios.put("api/tasks", taskUpdate);
+    },
+
     async getTasks() {
       try {
         let resp = await axios.get("/api/tasks", {
@@ -47,7 +65,7 @@ export default {
             status: this.status,
           }
         })
-       // this.tasks = resp.data;
+        // this.tasks = resp.data;
       } catch (e) {
         console.log("Error fetching tasks")
       }
