@@ -23,7 +23,7 @@ public class AppUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("User does not exist");
         }
-        return new com.ogoma.hr_core.authentication.CustomUserDetails(user);
+        return new CustomUserDetails(user);
 
     }
 }
