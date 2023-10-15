@@ -5,6 +5,7 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import com.ogoma.hr_core.authentication.CustomUserDetails;
 
 import java.util.Optional;
 

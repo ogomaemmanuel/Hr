@@ -1,122 +1,129 @@
 <template>
-    <form>
-        <div class="hero is-fullheight">
-            <div class="hero-body">
-                <div class="container">
-                    <div class="columns is-centered">
-
-                        <div class="column is-12-mobile is-6">
-                            <div class="field ">
-                            <section class="section is-paddingless">
-                                <div class="container">
-                                    <div class="columns">
-                                        <div class="column is-centered">
-                                            <h1 class="title">Sing up</h1>
-                                        </div>
-                                    </div>
-
-                                    <h2 class="subtitle">
-                                       It is free and only takes a few seconds
-                                    </h2>
-                                </div>
-                            </section>
-                            </div>
-                            <div class="field ">
-                                <div class="control">
-                                    <input v-model="user.firstName" class="input" type="text"
-                                           placeholder="First name">
-                                    <span class="icon is-small is-left">
-    </span>
-                                </div>
-                            </div>
-
-                            <div class="field">
-                                <div class="control">
-                                    <input v-model="user.lastName" class="input" type="text"
-                                           placeholder="Last name">
-                                    <span class="icon is-small is-left">
-    </span>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <div class="control">
-                                    <input v-model="user.email" class="input" type="email"
-                                           placeholder="Email">
-                                    <span class="icon is-small is-left">
-    </span>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <div class="control">
-                                    <input v-model="user.phone" class="input" type="phone"
-                                           placeholder="Phone">
-                                    <span class="icon is-small is-left">
-    </span>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <div class="control">
-                                    <input v-model="user.password" class="input" type="password"
-                                           placeholder="Password">
-                                    <span class="icon is-small is-left">
-    </span>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <div class="control">
-                                    <input v-model="user.confirmPassword" class="input" type="password"
-                                           placeholder="Confirm password">
-                                    <span class="icon is-small is-left">
-    </span>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <div class="control is-block">
-                                    <button :class="{'is-loading':isLoading}" @click.prevent="submitRequest"
-                                            class="button  is-fullwidth is-success">
-                                        Sing up
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+  <Layout :padding="'1.5rem 4.5rem 4.5rem 4.5rem'">
+    <template v-slot:auth-form style="margin-top: -2em!important;">
+      <h1 class="title has-text-dark has-text-centered" style="">Let's Get You Signed Up.</h1>
+      <p class="mb-2 has-text-left "> It is free and only takes a few seconds </p>
+      <form class="box">
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control has-icons-left">
+            <input v-model="user.name" class="input has-text-left" placeholder="Name"
+                   required type="text">
+            <span class="icon is-small is-left">
+              <i class="fa fa-user"></i>
+            </span>
+            <span v-if="errors['firstName'] || errors['lastName']" class="has-text-danger">
+              {{ errors['firstName'][0] }} {{ errors['lastName'][0]}}
+            </span>
+          </div>
         </div>
-    </form>
+
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left">
+            <input v-model="user.email" class="input has-text-left" placeholder="e.g. didinkaj@lambo-hr.com"
+                   required type="email">
+            <span class="icon is-small is-left">
+              <i class="fa fa-envelope"></i>
+            </span>
+            <span v-if="errors['email']" class="has-text-danger">
+              {{ errors['email'][0] }}
+            </span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control has-icons-left">
+            <input v-model="user.password" class="input" placeholder="********" required
+                   type="password">
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+            <span v-if="errors['password']" class="has-text-danger">
+              {{ errors['password'][0] }}
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Confirm Password</label>
+          <div class="control has-icons-left">
+            <input v-model="user.confirmPassword" class="input" placeholder="********" required
+                   type="password">
+            <span class="icon is-small is-left">
+              <i class="fa fa-lock"></i>
+            </span>
+            <span v-if="errors['confirmPassword']" class="has-text-danger">
+              {{ errors['confirmPassword'][0] }}
+            </span>
+          </div>
+        </div>
+
+
+        <div class="field">
+          <div class="control is-block">
+            <button :class="{'is-loading':isLoading}" class="button  is-fullwidth is-success"
+                    @click.prevent="submitRequest">
+              Register
+            </button>
+            <span v-if="errors['msg']" class="has-text-danger">
+              {{ errors['msg'] }}
+            </span>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column">
+          </div>
+          <div class="column">
+            <div class="field">
+              <router-link button class="button is-text has-text-centered" tag="button" to="login"
+                           @click.prevent="">
+                Or Sign In
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </form>
+    </template>
+  </Layout>
 </template>
 <script>
-    import {Notification} from "element-ui"
+import {Notification} from "element-ui"
+import Layout from "./Layout.vue";
+import CommonMixin from "../../mixins/common_mixin"
 
-    export default {
-        data() {
-            return {
-                isLoading: false,
-                user: {}
-            }
-        },
-        methods: {
-            submitRequest() {
-                let vm = this;
-                vm.isLoading = true,
-                    axios.post("/register", vm.user).then(resp => {
-                        vm.isLoading = false
-                        Notification.success(resp.data);
-                    }, error => {
-                        vm.isLoading = false
-                    })
-            }
-        }
+export default {
+  components: {
+    Layout
+  },
+  mixins: [
+    CommonMixin
+  ],
+  data() {
+    return {
+      isLoading: false,
+      user: {
+        phone: +new Date()
+      }
     }
+  },
+  methods: {
+    submitRequest() {
+      let vm = this;
+      let fullName = vm.user.name.split(' ');
+          vm.user.firstName = fullName;
+          vm.user.lastName = fullName[fullName.length - 1];
+      vm.isLoading = true;
+          axios.post("/register", vm.user).then(resp => {
+            vm.isLoading = false
+            Notification.success(resp.data);
+          }, error => {
+            vm.isLoading = false
+            if (error.response.status === 400) {
+              vm.errors = error.response.data;
+            }
+          })
+    }
+  }
+}
 </script>

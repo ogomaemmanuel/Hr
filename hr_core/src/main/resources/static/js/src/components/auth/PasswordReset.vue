@@ -23,7 +23,7 @@
         methods: {
             resetPassword() {
                 axios.post("/password-reset", this.passwordResetRequest).then((resp) => {
-                    if (resp.status == 200) {
+                    if (resp.status === 200) {
                         Notification.success(resp.data.message);
                     }
                 }, error => {

@@ -10,7 +10,6 @@ public class CustomUserDetailsProvider implements CustomUserDetailsProviderStrat
     public CustomUserDetails getCurrentUserDetails() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
-        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-        return customUserDetails;
+        return (CustomUserDetails) authentication.getPrincipal();
     }
 }
