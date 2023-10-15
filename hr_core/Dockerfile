@@ -15,7 +15,7 @@ COPY --from=nodejs /app/src/main/resources/static/js/dist /workspace/src/main/re
 RUN mvn -B -f pom.xml clean package -DskipTests
 
 
-FROM eclipse-temurin:17.0.4_8-jre-alpine
+FROM eclipse-temurin:21_35-jre-alpine
 COPY --from=build /workspace/target/*.jar app.jar
 EXPOSE 8080/tcp
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
