@@ -74,7 +74,7 @@ export default {
             Notification.success(resp.data);
           }, error => {
             vm.isLoading = false
-            if (error.response.status == 400) {
+            if (error.response.status === 400) {
               vm.errors = error.response.data;
             }
           })

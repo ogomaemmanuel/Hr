@@ -31,7 +31,7 @@
                   </li>
                   <li>
                     <router-link to="/messaging">
-                      <span>Chat</span>
+                      <span>AI Chat</span>
                     </router-link>
                   </li>
                 </ul>

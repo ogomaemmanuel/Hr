@@ -10,8 +10,11 @@
             <input v-model="user.name" class="input has-text-left" placeholder="Name"
                    required type="text">
             <span class="icon is-small is-left">
-                    <i class="fa fa-user"></i>
-                  </span>
+              <i class="fa fa-user"></i>
+            </span>
+            <span v-if="errors['firstName'] || errors['lastName']" class="has-text-danger">
+              {{ errors['firstName'][0] }} {{ errors['lastName'][0]}}
+            </span>
           </div>
         </div>
 
@@ -21,8 +24,11 @@
             <input v-model="user.email" class="input has-text-left" placeholder="e.g. didinkaj@lambo-hr.com"
                    required type="email">
             <span class="icon is-small is-left">
-                    <i class="fa fa-envelope"></i>
-                  </span>
+              <i class="fa fa-envelope"></i>
+            </span>
+            <span v-if="errors['email']" class="has-text-danger">
+              {{ errors['email'][0] }}
+            </span>
           </div>
         </div>
         <div class="field">
@@ -31,8 +37,11 @@
             <input v-model="user.password" class="input" placeholder="********" required
                    type="password">
             <span class="icon is-small is-left">
-                    <i class="fa fa-lock"></i>
-                  </span>
+              <i class="fa fa-lock"></i>
+            </span>
+            <span v-if="errors['password']" class="has-text-danger">
+              {{ errors['password'][0] }}
+            </span>
           </div>
         </div>
 
@@ -42,8 +51,11 @@
             <input v-model="user.confirmPassword" class="input" placeholder="********" required
                    type="password">
             <span class="icon is-small is-left">
-                    <i class="fa fa-lock"></i>
-                  </span>
+              <i class="fa fa-lock"></i>
+            </span>
+            <span v-if="errors['confirmPassword']" class="has-text-danger">
+              {{ errors['confirmPassword'][0] }}
+            </span>
           </div>
         </div>
 
@@ -54,6 +66,9 @@
                     @click.prevent="submitRequest">
               Register
             </button>
+            <span v-if="errors['msg']" class="has-text-danger">
+              {{ errors['msg'] }}
+            </span>
           </div>
         </div>
         <div class="columns">
@@ -75,28 +90,38 @@
 <script>
 import {Notification} from "element-ui"
 import Layout from "./Layout.vue";
+import CommonMixin from "../../mixins/common_mixin"
 
 export default {
   components: {
     Layout
   },
+  mixins: [
+    CommonMixin
+  ],
   data() {
     return {
       isLoading: false,
       user: {
-        phone: '00000000'
+        phone: +new Date()
       }
     }
   },
   methods: {
     submitRequest() {
       let vm = this;
-      vm.isLoading = true,
+      let fullName = vm.user.name.split(' ');
+          vm.user.firstName = fullName;
+          vm.user.lastName = fullName[fullName.length - 1];
+      vm.isLoading = true;
           axios.post("/register", vm.user).then(resp => {
             vm.isLoading = false
             Notification.success(resp.data);
           }, error => {
             vm.isLoading = false
+            if (error.response.status === 400) {
+              vm.errors = error.response.data;
+            }
           })
     }
   }

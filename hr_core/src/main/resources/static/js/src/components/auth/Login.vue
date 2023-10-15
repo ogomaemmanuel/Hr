@@ -10,8 +10,11 @@
             <input v-model="user.email" class="input has-text-left" placeholder="e.g. didinkaj@lambo-hr.com"
                    required type="email">
             <span class="icon is-small is-left">
-                    <i class="fa fa-envelope"></i>
-                  </span>
+              <i class="fa fa-envelope"></i>
+            </span>
+            <span v-if="errors['email']" class="has-text-danger">
+              {{ errors['email'][0] }}
+            </span>
           </div>
         </div>
 
@@ -21,8 +24,11 @@
             <input v-model="user.password" class="input" placeholder="********" required
                    type="password">
             <span class="icon is-small is-left">
-                    <i class="fa fa-lock"></i>
-                  </span>
+              <i class="fa fa-lock"></i>
+            </span>
+            <span v-if="errors['password']" class="has-text-danger">
+              {{ errors['password'][0] }}
+            </span>
           </div>
         </div>
 
@@ -37,6 +43,9 @@
           <button class="button is-fullwidth is-success" @click.prevent="login">
             Login
           </button>
+          <span v-if="errors['msg']" class="has-text-danger">
+            {{ errors['msg'] }}
+          </span>
         </div>
 
         <div class="columns">
@@ -62,6 +71,7 @@ import CommonMixin from "../../mixins/common_mixin"
 import Logo from "./Logos/Logo3.vue";
 import LogoMini from "./Logos/LogoMini2.vue";
 import Layout from "./Layout.vue";
+import {Notification} from "element-ui";
 
 export default {
   components: {Layout, LogoMini, Logo},
@@ -75,10 +85,15 @@ export default {
   },
   methods: {
     login() {
+      let vm = this;
       let request = this.createFormData(this.user);
       axios.post("/login", request).then(resp => {
+        Notification.success(resp.data);
         window.location.replace("/")
       }, error => {
+        if (error.response.status === 400) {
+          vm.errors = error.response.data;
+        }
         console.log(error.response.status);
       })
     }
