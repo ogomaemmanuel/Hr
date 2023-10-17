@@ -1,14 +1,15 @@
 <template>
-	<b-tooltip label="logout"
-			   type="is-dark"
-			   position="is-left">
 		<form ref="logoutForm" method="post" action="/logout">
 			<input type="hidden" name="_csrf" :value="csrfToken">
-			<i @click="logout" class="fa fa-sign-out fa-2x"></i>
+      <span @click="logout" class="text-white cursor-pointer">
+        <i class="fa fa-sign-out font-medium pr-2 "></i>
+        Logout <span class="bold">({{ authenticatedUser.fullName.split(" ")[0] }})</span>
+      </span>
 		</form>
-	</b-tooltip>
 </template>
 <script>
+    import {mapGetters} from "vuex";
+
     export default {
         data() {
             return {
@@ -22,6 +23,9 @@
             logout() {
                 this.$refs.logoutForm.submit();
             },
-		}
+		},
+      computed: {
+        ...mapGetters(["authenticatedUser"])
+      },
     }
 </script>
