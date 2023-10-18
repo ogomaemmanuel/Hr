@@ -1,53 +1,53 @@
 <template>
-    <div>
-        <div class="pb-2 flex justify-end">
-            <button
-                    @click="showOvertimeRequestForm=true"
-                    to="/departments-create"
-                    tag="button"
-                    class="button mr-1 is-rounded">
+  <div>
+    <div class="pb-2 flex justify-start">
+      <button
+          class="button mr-1 is-rounded"
+          tag="button"
+          to="/departments-create"
+          @click="showOvertimeRequestForm=true">
 				<span class="icon">
 					<i class="fa fa-plus-circle mr-1"></i>
 				</span>
-                <span>
+        <span>
 					 Add Overtime
 				</span>
-            </button>
-            <a
-                    href="/api/overtime-requests/excel-reports"
-                    class="button is-rounded">
+      </button>
+      <a
+          class="button is-rounded"
+          href="/api/overtime-requests/excel-reports">
 				<span class="icon">
 					<i class="fa fa-download mr-1"></i>
 				</span>
-                <span>
+        <span>
 					 Export
 				</span>
-            </a>
-        </div>
-        <OvertimeRequestCreateForm
-                @modalClosed="showOvertimeRequestForm=false"
-                v-if="showOvertimeRequestForm">
-        </OvertimeRequestCreateForm>
-        <router-view></router-view>
+      </a>
     </div>
+    <OvertimeRequestCreateForm
+        v-if="showOvertimeRequestForm"
+        @modalClosed="showOvertimeRequestForm=false">
+    </OvertimeRequestCreateForm>
+    <router-view></router-view>
+  </div>
 </template>
 <script>
-    import OvertimeRequestCreateForm from "./OvertimeRequestCreateForm";
+import OvertimeRequestCreateForm from "./OvertimeRequestCreateForm";
 
-    export default {
-        components: {
-            OvertimeRequestCreateForm
-        },
-        data() {
-            return {
-                showOvertimeRequestForm: false
-            }
-        },
-        methods: {
-            getOvertimeRequests() {
-
-            }
-        }
+export default {
+  components: {
+    OvertimeRequestCreateForm
+  },
+  data() {
+    return {
+      showOvertimeRequestForm: false
+    }
+  },
+  methods: {
+    getOvertimeRequests() {
 
     }
+  }
+
+}
 </script>

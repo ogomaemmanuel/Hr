@@ -3,7 +3,7 @@
     <div class="card-content">
       <h2>Timesheet 11 Mar 2019</h2>
       <div>
-        <div class="flex mt-5 justify-center p-2 bg-gray-100">
+        <div class="flex justify-center p-2 bg-gray-100">
           <div>
             <h2 class="font-bold">Punch In at</h2>
             <h2>Wed, 11th Mar 2019 10.00 AM</h2>

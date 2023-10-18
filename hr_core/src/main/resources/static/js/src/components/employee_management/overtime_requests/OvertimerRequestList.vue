@@ -4,7 +4,6 @@
             <div class="card" ref="leaveRequests">
                 <div class="card-content">
                     <div class="content b-table is-relative">
-                        <h4>Overtime Requests</h4>
                         <table class="table has-mobile-cards w-full is-hoverable">
                             <thead class="font-thin">
                             <tr>
