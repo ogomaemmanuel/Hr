@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class=" -mt-5">
     <div class="columns">
       <div class="column">
         <LastActivityCard></LastActivityCard>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-white p-4">
         <div class="tabs">
             <ul>
                 <li @click="activeForm=0" :class="{'is-active':activeForm==0}"><a>Additions</a></li>

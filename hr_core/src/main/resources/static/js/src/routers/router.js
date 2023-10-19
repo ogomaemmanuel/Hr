@@ -7,7 +7,7 @@ const Login = () =>
     import ("../components/auth/Login.vue");
 const Dashboard = () => import("../components/dashboard/DashboardPage")
 const Home = () =>
-    import ("../components/home/Home");
+    import ("../components/home/Home.vue");
 const MainAppWrapper = () => import("../components/MainAppWrapper")
 const ForgotPassword = () =>
     import ("../components/auth/ForgotPassword");

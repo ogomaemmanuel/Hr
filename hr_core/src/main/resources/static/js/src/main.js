@@ -37,6 +37,10 @@ Vue.component('password-reset', require('./components/auth/PasswordReset').defau
 Vue.use(VueSweetalert2);
 Vue.use(PasswordInput);
 
+import VueSidebarMenu from 'vue-sidebar-menu'
+import 'vue-sidebar-menu/dist/vue-sidebar-menu.css'
+Vue.use(VueSidebarMenu)
+
 Vue.use(Buefy, {
     defaultIconPack: 'fa',
     defaultProgrammaticPromise:true
