@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "webpack --mode development",
-    "watch": "webpack-dev-server --openssl-legacy-provider --inline",
+    "watch": "NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server  --inline",
     "test": "jest",
-    "prod": "webpack --mode production --openssl-legacy-provider --config webpack.config.dev.js"
+    "prod": "NODE_OPTIONS=--openssl-legacy-provider webpack --mode production  --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
