@@ -17,7 +17,7 @@ export default {
   computed: {
     ...mapGetters(["authenticatedUser"]),
     showAdminDashBoard() {
-      return this.authenticatedUser.userType == "Admin";
+      return this.authenticatedUser.userType === "Admin";
     }
   }
 }

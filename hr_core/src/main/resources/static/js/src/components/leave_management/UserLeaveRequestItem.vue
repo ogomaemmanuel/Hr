@@ -1,6 +1,6 @@
 <template>
 	<tr>
-		<td data-label="Name">{{leaveRequestClone.leaveType.name}}</td>
+		<td data-label="Name">{{leaveRequestClone.leaveType}}</td>
 		<td data-label="Number of Days">{{leaveRequestClone.numberOfDays}}</td>
 		<td data-label="Start Date">{{leaveRequestClone.startDate|dateFormat}}</td>
 		<td data-label="End Date">{{leaveRequestClone.endDate|dateFormat}}</td>

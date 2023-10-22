@@ -146,7 +146,7 @@ export default {
           icon: 'fa fa-table'
         },
         {
-          href: '#',
+          href: {path: '/employee-attendance'},
           icon: 'fa fa-clock-o',
           title: 'Attendance',
           child: [

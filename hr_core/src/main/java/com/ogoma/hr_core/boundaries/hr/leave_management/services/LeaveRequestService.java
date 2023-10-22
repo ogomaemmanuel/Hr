@@ -65,26 +65,19 @@ public class LeaveRequestService {
 
     public Page<LeaveRequest> getLoggedInUserLeaveRequest(PagedDataRequest pagedDataRequest) {
         PageRequest pageRequest = PageRequest.of(pagedDataRequest.getPage(), pagedDataRequest.getPageSize());
-        Page<LeaveRequest> leaveRequests =
-                leaveRequestRepository.findCurrentUserLeaveRequest(pageRequest);
-        return leaveRequests;
+        return leaveRequestRepository.findCurrentUserLeaveRequest(pageRequest);
     }
 
     public List<Map<String, String>> inPlaceStaffSelectList() {
-        List<Map<String, String>> inPlaceEmployeeSelectList =
-                this.leaveRequestRepository.getInplaceEmployeeSelectList();
-        return inPlaceEmployeeSelectList;
+        return this.leaveRequestRepository.getInplaceEmployeeSelectList();
     }
 
     public List<Map<String, String>> getLoggedInUserLeaveBalances() {
-        List<Map<String, String>> leaveBalances =
-                this.leaveRequestRepository.findCurrentUserLeaveBalances();
-        return leaveBalances;
+        return this.leaveRequestRepository.findCurrentUserLeaveBalances();
     }
 
     public Long getLoggedInUserLeaveBalance(Long leaveTypeId) {
-        Long leaveBalance = this.leaveRequestRepository.currentUserLeaveBalanceByLeaveTypeId(leaveTypeId);
-        return leaveBalance;
+        return this.leaveRequestRepository.currentUserLeaveBalanceByLeaveTypeId(leaveTypeId);
     }
 
     public ResponseModel withdrawRequest(Long leaveId) {
