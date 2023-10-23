@@ -3,6 +3,7 @@ FROM node:18.16.0 as nodejs
 WORKDIR /app
 COPY . .
 RUN git config --global url."https://github.com".insteadOf git://github.com
+RUN unset NODE_OPTIONS
 RUN npm install
 RUN npm run prod
 
