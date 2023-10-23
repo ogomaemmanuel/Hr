@@ -47,7 +47,7 @@ public class AuthController {
     }
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login() {
-        return "forward:/";
+        return "forward:/dashboard";
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST)

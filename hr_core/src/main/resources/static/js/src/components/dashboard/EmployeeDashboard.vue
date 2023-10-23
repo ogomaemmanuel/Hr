@@ -255,7 +255,7 @@
         </div>
       </div>
 
-      <div class="card mt-5 ">
+      <div class="card mt-5 pb-2 ">
         <div class="card-header">
           <p class="card-header-title">
             <i class="fa fa-umbrella mr-2"></i>
@@ -322,7 +322,7 @@
             </div>
           </div>
 
-          <div class="flex justify-center mt-4">
+          <div class="flex justify-center mt-4 mb-2">
             <button class="button">Load More</button>
           </div>
         </div>
