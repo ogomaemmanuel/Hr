@@ -38,9 +38,7 @@
           <div class="column p-0">
             <div class="flex flex-col pt-2">
               <TestBreadCrump></TestBreadCrump>
-
               <portal-target name="header">
-
               </portal-target>
             </div>
           </div>
@@ -76,7 +74,7 @@ export default {
       menu: [
 
         {
-          href:  { path: '/' },
+          href:  { path: '/dashboard' },
           title: 'Dashboard',
           icon: 'fa fa-user'
         },

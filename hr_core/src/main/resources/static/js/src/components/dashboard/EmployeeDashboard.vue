@@ -19,8 +19,8 @@
                       <div class="level">
                         <div class="level-item has-text-centered">
                           <div>
-                            <p class="heading">Total Tasks</p>
-                            <p class="title is-7">385</p>
+                            <p class="mb-2 is-7 title has-text-grey">Total Tasks</p>
+                            <p class="title is-6">385</p>
                           </div>
                         </div>
                       </div>
@@ -33,8 +33,8 @@
                       <div class="level">
                         <div class="level-item has-text-centered">
                           <div>
-                            <p class="heading is-6">Overdue Tasks</p>
-                            <p class="title is-7">19</p>
+                            <p class="mb-2 is-7 title has-text-grey">Overdue Tasks</p>
+                            <p class="title is-6">19</p>
                           </div>
                         </div>
                       </div>
@@ -120,7 +120,7 @@
                         <div class="image is-24x24">
                           <img
                               class="is-rounded"
-                              src="https://www.gravatar.com/avatar/46f35f22abb304ff81d1eb5fb7d53cbd.jpg?s=200&d=identicon">
+                              src="https://avatars.dicebear.com/v2/initials/felicita-yundt.svg">
                         </div>
                       </td>
                       <td data-label="Name">Rebecca Bauch</td>
@@ -238,14 +238,14 @@
           <div class="columns">
             <div class="column">
               <div class="has-text-centered">
-                <p class="title is-6">5.0</p>
-                <p class="subtitle is-7">Leave Taken</p>
+                <p class="title mb-2 is-6">5.0</p>
+                <p class="mt-2 is-7 title has-text-grey">Leave Taken</p>
               </div>
             </div>
             <div class="column">
               <div class="has-text-centered">
-                <p class="title is-6">5.0</p>
-                <h2 class="subtitle is-7">Remaining</h2>
+                <p class="title mb-2 is-6">5.0</p>
+                <p class="mt-2 is-7 title has-text-grey">Remaining</p>
               </div>
             </div>
           </div>
@@ -262,8 +262,8 @@
             Today Absent
           </p>
         </div>
-        <div class="card-content">
-          <div class="card min-h-32 mb-4">
+        <div class="card-content p-0">
+          <div class="card min-h-32 mb-4 mt-2">
             <div class="card-content">
               <article class="media mb-2">
                 <figure class="media-left">
@@ -284,7 +284,7 @@
               <div class="columns is-centered is-mobile">
                 <div class="column is-6-mobile is-6-tablet">
                   <h6 class="title mb-0 is-7">4 Sep 2019</h6>
-                  <span class="subtitle text-muted is-7">Leave Date</span>
+                  <span class="mt-2 is-7 title has-text-grey">Leave Date</span>
                 </div>
                 <div class="column is-6-mobile is-6-tablet text-right">
                   <span class="tag is-success is-light">Pending</span>
@@ -313,7 +313,7 @@
               <div class="columns is-mobile">
                 <div class="column is-6">
                   <h6 class="title mb-0 is-7">4 Sep 2019</h6>
-                  <span class="subtitle text-muted is-7">Leave Date</span>
+                  <span class="mt-2 is-7 title has-text-grey">Leave Date</span>
                 </div>
                 <div class="column is-6 text-right">
                   <span class="tag is-success is-light">Pending</span>
@@ -393,5 +393,6 @@ export default {
 .is-progress-cell {
   width: 25%;
 }
+
 
 </style>

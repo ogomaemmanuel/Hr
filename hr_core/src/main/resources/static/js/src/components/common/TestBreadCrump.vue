@@ -1,5 +1,5 @@
 <template>
-    <Breadcrumb class="app-breadcrumb" separator="/">
+    <Breadcrumb class="app-breadcrumb has-text-grey" separator="/">
         <transition-group name="breadcrumb">
             <BreadcrumbItem v-for="(item,index) in levelList" :key="item.path">
                 <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
@@ -44,6 +44,7 @@
                 if (!this.isHome(first)) {
                     matched = [{path: '/', meta: {title: 'Home',redirect: true}}].concat(matched)
                 }
+
                 this.levelList = matched.filter(item => item.meta && item.meta.title && item.meta.breadcrumb !== false)
             },
             isHome(route) {
@@ -78,7 +79,7 @@
         line-height: 50px;
         margin-left: 8px;
         .no-redirect {
-            color: #97a8be;
+            //color: #97a8be;
             cursor: text;
         }
     }

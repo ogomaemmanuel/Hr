@@ -240,7 +240,7 @@ const routes = new Router({
 
                     children: [
                         {
-                            path: "/",
+                            path: "/dashboard",
                             name: "Dashboard",
                             component: Dashboard
                         },

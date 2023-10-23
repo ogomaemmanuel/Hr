@@ -8,9 +8,9 @@
     </div>
     <div class="card-content has-text-centered">
       <div>
-        <p class="mb-5 is-7 subtitle ">Thursday, 23/10/2023</p>
+        <p class="mb-2 is-7 title has-text-grey">Thursday, 23/10/2023</p>
         <p class="title is-5 mb-0 p-1">3:45PM</p>
-        <p class="mt-2 is-7 subtitle ">Clocked Today: 0 Minutes</p>
+        <p class=" mt-2 is-7 title has-text-grey">Clocked Today: 0 Minutes</p>
       </div>
 
       <div class="flex justify-center mt-5">
