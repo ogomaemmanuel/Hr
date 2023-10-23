@@ -21,7 +21,7 @@ jobs:
       - uses: actions/setup-node@v3
         name: build client packages
         with:
-          node-version: 14
+          node-version: 18
       - run: |
           git config --global url."https://github.com".insteadOf git://github.com
           npm install
