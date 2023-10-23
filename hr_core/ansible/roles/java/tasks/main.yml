@@ -1,6 +1,6 @@
 - name: Install java 11 if not present on ubuntu
   package:
-    name: openjdk-11-jdk
+    name: openjdk-17-jdk
     state: present
   become: yes
 - name: Set JAVA_HOME if not configured
