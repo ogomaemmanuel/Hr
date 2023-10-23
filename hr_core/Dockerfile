@@ -1,5 +1,5 @@
 #FROM node:12.20.1-alpine3.10 as nodejs
-FROM node:14.15.4 as nodejs
+FROM node:18.16.0 as nodejs
 WORKDIR /app
 COPY . .
 RUN git config --global url."https://github.com".insteadOf git://github.com
