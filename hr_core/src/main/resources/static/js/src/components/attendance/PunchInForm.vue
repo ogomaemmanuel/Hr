@@ -1,7 +1,7 @@
 <template>
   <ModalTemplate :has-padding="false" @modalClosed="$emit(`modalClosed`)">
     <div slot="modal-content">
-      <div class="punch-in-header h-16 bg-yellow-800">
+      <div class="punch-in-header h-16 bg-green-800">
         <div class="flex justify-center relative">
           <figure class="image punch-in-user-profile-image is-64x64 absolute">
             <img src="/images/undraw_profile_pic_ic-5-t.svg" alt=""/>

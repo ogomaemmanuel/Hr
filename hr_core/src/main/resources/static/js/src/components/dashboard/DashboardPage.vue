@@ -18,7 +18,7 @@ export default {
     ...mapGetters(["authenticatedUser"]),
     showAdminDashBoard() {
       return this.authenticatedUser?.authorities.some(auth =>
-          auth?.authority?.toLowerCase() == "admin");
+          auth?.authority?.toLowerCase() === "admin");
     }
   }
 }
