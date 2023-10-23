@@ -75,6 +75,7 @@ let babelConfig = {
                 "styleLibraryName": "theme-chalk"
             }
         ],
+        "@babel/plugin-transform-optional-chaining",
         "@babel/plugin-proposal-object-rest-spread",
         "transform-vue-jsx",
         "@babel/plugin-transform-runtime",
