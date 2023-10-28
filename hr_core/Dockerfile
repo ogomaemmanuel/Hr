@@ -5,7 +5,7 @@ COPY . .
 RUN unset NODE_OPTIONS
 RUN  apk add --no-cache python3 git make g++
 RUN git config --global url."https://github.com".insteadOf git://github.com
-RuN npm install --no-optional
+RuN npm install
 RUN npm run prod
 
 FROM maven:3.8.6-eclipse-temurin-17 AS build
