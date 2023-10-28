@@ -1,10 +1,10 @@
 #FROM node:12.20.1-alpine3.10 as nodejs
-FROM node:18.16.0 as nodejs
+FROM node:18.16.0-alpine as nodejs
 WORKDIR /app
 COPY . .
 RUN git config --global url."https://github.com".insteadOf git://github.com
 RUN unset NODE_OPTIONS
-RUN npm install
+RUN  apk add --no-cache python3 make g++ && npm install --no-optional
 RUN npm run prod
 
 FROM maven:3.8.6-eclipse-temurin-17 AS build

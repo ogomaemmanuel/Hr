@@ -9,10 +9,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.ogoma.hr_core.boundaries.access_control.entities.User;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CustomUserDetails implements UserDetails {
     private Long id;
@@ -55,13 +53,13 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // user.getUserRoles().stream().findFirst().orElse(new Role());
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        //  for (String privilege : privileges) {
-        authorities.add(new SimpleGrantedAuthority("ADMIN"));
-        // }
-        //return new ArrayList<GrantedAuthority>();
-        return authorities;
+    List<SimpleGrantedAuthority> roles=    user.getUserRoles().stream().map(role->
+                new SimpleGrantedAuthority(Optional.ofNullable(role.getRole())
+                        .map(r->r.getName())
+                        .get())).collect(Collectors.toList());
+    roles.add(new SimpleGrantedAuthority(Optional.ofNullable(this.getUser())
+            .map(user->getUserType()).map(type->type.name()).orElse("User")));
+      return roles;
     }
 
     @Override
