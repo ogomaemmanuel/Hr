@@ -3,8 +3,7 @@ FROM node:18.16.0-alpine as nodejs
 WORKDIR /app
 COPY . .
 RUN unset NODE_OPTIONS
-#RUN  apk add --no-cache python3 git make g++
-RUN apk add git
+RUN  apk add --no-cache python3 git make g++
 RUN git config --global url."https://github.com".insteadOf git://github.com
 RUN npm install -g node-gyp && npm install
 RUN npm run prod
