@@ -6,7 +6,7 @@ RUN unset NODE_OPTIONS
 #RUN  apk add --no-cache python3 git make g++
 RUN apk add git
 RUN git config --global url."https://github.com".insteadOf git://github.com
-RUN  RUN npm install -g node-gyp && npm install
+RUN npm install -g node-gyp && npm install
 RUN npm run prod
 
 FROM maven:3.8.6-eclipse-temurin-17 AS build
