@@ -3,9 +3,9 @@ FROM node:18-alpine3.15 as nodejs
 WORKDIR /app
 COPY . .
 RUN unset NODE_OPTIONS
-RUN  apk add --update --no-cache python2.7 git make g++
+RUN  apk add --update --no-cache python2 git make g++
 RUN git config --global url."https://github.com".insteadOf git://github.com
-RUN npm install -g node-gyp && npm install
+RUN npm install -g node-gyp@latest && npm install
 RUN npm run prod
 
 FROM maven:3.8.6-eclipse-temurin-17 AS build
