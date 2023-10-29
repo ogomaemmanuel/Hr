@@ -84,7 +84,13 @@ module.exports = env => {
                         use: [
                             'vue-style-loader',
                             'css-loader',
-                            'sass-loader'
+                            {
+                                loader: 'sass-loader',
+                                options: {
+                                    // Prefer `dart-sass`
+                                    implementation: require('sass'),
+                                },
+                            }
                         ]
                     },
 // for loading css not in vue files
