@@ -74,7 +74,7 @@ export default {
       menu: [
 
         {
-          href:  { path: '/dashboard' },
+          href:  { path: '/' },
           title: 'Dashboard',
           icon: 'fa fa-user'
         },
