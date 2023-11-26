@@ -39,6 +39,8 @@ public class LeaveRequest {
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @ManyToMany
+    private Set<Employee> approvers;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "applicant_user_id", updatable = false, insertable = false)
@@ -196,5 +198,13 @@ public class LeaveRequest {
             this.leaveRequestHistory.add(leaveRequestHistory);
         }
 
+    }
+
+    public Set<Employee> getApprovers() {
+        return approvers;
+    }
+
+    public void setApprovers(Set<Employee> approvers) {
+        this.approvers = approvers;
     }
 }
