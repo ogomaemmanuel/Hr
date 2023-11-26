@@ -46,7 +46,7 @@ public class LeaveRequest {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "in_place", insertable = false, updatable = false)
     private Employee inPlace;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne()
     @JoinColumn(name = "leave_type_id", insertable = false, updatable = false)
     private LeaveType leaveType;
     @OneToMany(mappedBy = "leaveRequest", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
