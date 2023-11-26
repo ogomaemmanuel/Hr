@@ -2,7 +2,7 @@
     <Breadcrumb class="app-breadcrumb text-black font-weight-bold" separator="/">
         <transition-group name="breadcrumb">
             <BreadcrumbItem v-for="(item,index) in levelList" :key="item.path">
-                <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
+                <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" :class="levelList.length<=1?'level-one':''" class="no-redirect">{{ item.meta.title }}</span>
                 <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
             </BreadcrumbItem>
         </transition-group>
@@ -91,4 +91,11 @@
       font-weight: 700 !important;
       font-size: 16px !important;
     }
+
+    .level-one{
+      font-weight: 700 !important;
+      font-size: 16px !important;
+      color: #363636 !important;
+    }
+
 </style>

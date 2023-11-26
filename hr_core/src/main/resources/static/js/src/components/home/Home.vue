@@ -34,7 +34,7 @@
 
     <div class=" column is-offset-2 is-10 pr-10 pl-10 h-screen mb-0">
       <div class=" ">
-        <div class="columns mt-1 mb-8" style="border-bottom: 1px solid rgb(224, 220, 229);">
+        <div class="columns mt-1 mb-8 is-3" style="border-bottom: 1px solid rgb(224, 220, 229);">
           <div class="column p-0">
             <div class="flex flex-col  ">
               <TestBreadCrump></TestBreadCrump>
@@ -42,8 +42,10 @@
               </portal-target>
             </div>
           </div>
-          <div class="column p-0"></div>
-          <div class="column p-0">
+          <div class="column p-0 is-5">
+            <GlobalSearchInput></GlobalSearchInput>
+          </div>
+          <div class="column p-0 is-4">
             <div class="flex sm:justify-start md:justify-end py-1">
               <portal-target name="page-controls">
                 <!--
@@ -90,9 +92,10 @@ import LogoutForm from "../auth/LogoutForm.vue"
 import {mapGetters} from "vuex";
 import ProfileMenuItem from "./ProfileMenuItem.vue"
 import SideMenuFooter from "./SideMenuFooter.vue"
+import GlobalSearchInput from "./GlobalSearchInput.vue"
 
 export default {
-  components: {LogoutForm, TestBreadCrump, ProfileMenuItem, SideMenuFooter},
+  components: {LogoutForm, TestBreadCrump, ProfileMenuItem, SideMenuFooter,GlobalSearchInput},
   data() {
     return {
       menu: [
