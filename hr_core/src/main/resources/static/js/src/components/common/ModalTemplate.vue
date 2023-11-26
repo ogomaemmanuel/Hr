@@ -4,13 +4,14 @@
       <!--        <div ref="modalBackground" class="modal-background"></div>-->
       <div ref="modalContent" :style="{'max-width': width + 'px','overflow':overflow}" class="modal-content">
         <div :class="hasPadding?'':'p-0'" class="box">
+          <template v-if="showCloseButton">
+            <button @click.stop="closeModal" class="modal-close is-large" aria-label="close"></button>
+          </template>
           <slot name="modal-content">
+
           </slot>
         </div>
       </div>
-      <template v-if="showCloseButton">
-        <button @click.stop="closeModal" class="modal-close is-large" aria-label="close"></button>
-      </template>
     </div>
   </div>
 </template>

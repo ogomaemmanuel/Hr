@@ -2,7 +2,7 @@
   "name": "vue_starter",
   "version": "1.0.0",
   "scripts": {
-    "dev": "webpack --mode development",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider webpack --mode development",
     "watch": "NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server  --inline",
     "test": "jest",
     "prod": "NODE_OPTIONS=--openssl-legacy-provider webpack --mode production  --config webpack.config.dev.js"
@@ -37,8 +37,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-preset-vue-app": "^2.0.0",
-    "brotli-gzip-webpack-plugin": "^0.5.0",
-    "brotli-webpack-plugin": "^1.1.0",
     "clean-webpack-plugin": "^1.0.1",
     "cropperjs": "^1.5.8",
     "css-loader": "^2.1.0",

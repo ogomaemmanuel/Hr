@@ -1,5 +1,5 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const BrotliGzipPlugin = require('brotli-gzip-webpack-plugin');
+// const BrotliGzipPlugin = require('brotli-gzip-webpack-plugin');
 const path = require("path")
 const webpack = require("webpack")
 const HtmlWebpacktPlugin = require("html-webpack-plugin")
@@ -133,22 +133,22 @@ let commonConfig=
                 'PRODUCTION': JSON.stringify(true),
             }),
             new webpack.NormalModuleReplacementPlugin(/element-ui[\/\\]lib[\/\\]locale[\/\\]lang[\/\\]zh-CN/, 'element-ui/lib/locale/lang/en'),
-            new BrotliGzipPlugin({
-                asset: '[path].br[query]',
-                algorithm: 'brotli',
-                test: /\.(js|css|html|svg)$/,
-                threshold: 10240,
-                minRatio: 0.8,
-                quality: 11
-            }),
-            new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en-Us/),
-            new BrotliGzipPlugin({
-                asset: '[path].gz[query]',
-                algorithm: 'gzip',
-                test: /\.(js|css|html|svg)$/,
-                threshold: 10240,
-                minRatio: 0.8
-            }),
+            // new BrotliGzipPlugin({
+            //     asset: '[path].br[query]',
+            //     algorithm: 'brotli',
+            //     test: /\.(js|css|html|svg)$/,
+            //     threshold: 10240,
+            //     minRatio: 0.8,
+            //     quality: 11
+            // }),
+            // new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en-Us/),
+            // new BrotliGzipPlugin({
+            //     asset: '[path].gz[query]',
+            //     algorithm: 'gzip',
+            //     test: /\.(js|css|html|svg)$/,
+            //     threshold: 10240,
+            //     minRatio: 0.8
+            // }),
             new webpack.ProvidePlugin({
                 $ : "jquery",
                 jQuery : "jquery",

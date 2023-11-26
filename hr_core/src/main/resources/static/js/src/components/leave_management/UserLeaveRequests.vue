@@ -18,14 +18,14 @@
     </portal>
     <div class="tabs">
       <ul>
-        <li :class="{'is-active':showLeaveBalances==false}" @click="showLeaveBalances=false"><a>My Leave
+        <li :class="{'is-active':showLeaveBalances===false}" @click="showLeaveBalances=false"><a>My Leave
           Requests</a></li>
-        <li :class="{'is-active':showLeaveBalances==true}" @click="showLeaveBalances=true"><a>My Leave
+        <li :class="{'is-active':showLeaveBalances===true}" @click="showLeaveBalances=true"><a>My Leave
           Balances</a></li>
       </ul>
     </div>
     <div class="columns">
-      <div v-if="showLeaveBalances==false" class="column is-12">
+      <div v-if="showLeaveBalances===false" class="column is-12">
         <EmptyState v-if="showEmptyState">
           <h4 class="ml-3">Leave requests not found</h4>
           <div class="flex justify-center">
