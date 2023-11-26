@@ -52,7 +52,7 @@
                 This component can be located anywhere in your App.
                 The slot content of the above portal component will be rendered here.
                 -->
-                <div class="pt-2 pr-2 flex justify-end">
+                <div class="py-1 pr-2 flex justify-end">
                   <p class="buttons">
                     <router-link
                         class="button  is-rounded"

@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-white p-4">
+  <div class="bg-white card p-4">
     <portal to="page-controls">
-      <div class="pt-2 pr-2 flex justify-end">
+      <div class="py-1 pr-2 flex justify-end">
         <p class="buttons">
           <router-link
               class="button  is-rounded"
@@ -18,14 +18,18 @@
     </portal>
     <div class="tabs">
       <ul>
-        <li :class="{'is-active':showLeaveBalances===false}" @click="showLeaveBalances=false"><a>My Leave
+        <li :class="{'is-active':MyLeaveRequest===true}" @click="MyLeaveRequest=true;showLeaveBalances=false;showLeaveApproval=false"><a>My Leave
           Requests</a></li>
-        <li :class="{'is-active':showLeaveBalances===true}" @click="showLeaveBalances=true"><a>My Leave
-          Balances</a></li>
+        <li :class="{'is-active':showLeaveBalances===true}" @click="showLeaveBalances=true;MyLeaveRequest=false;showLeaveApproval=false"><a>My Leave
+          Balances</a>
+        </li>
+        <li :class="{'is-active':showLeaveApproval===true}" @click="showLeaveApproval=true;showLeaveBalances=false;MyLeaveRequest=false"><a> Leave
+          Approval</a>
+        </li>
       </ul>
     </div>
-    <div class="columns">
-      <div v-if="showLeaveBalances===false" class="column is-12">
+    <div class="columns px-4 pb-4 pt-2">
+      <div v-if="MyLeaveRequest===true" class="column is-12 ">
         <EmptyState v-if="showEmptyState">
           <h4 class="ml-3">Leave requests not found</h4>
           <div class="flex justify-center">
@@ -34,18 +38,18 @@
                   class="button  is-rounded"
                   tag="button"
                   to="leave-create">
-				<span class="icon">
- 
-				<i class="fa fa-plus-circle"></i>
-				</span>
+                <span class="icon">
+
+                <i class="fa fa-plus-circle"></i>
+                </span>
                 <span>New Requests</span>
               </router-link>
             </p>
           </div>
 
         </EmptyState>
-        <div v-else ref="leaveRequests" class="card">
-          <div v-if="loaded" class="card-content card-simple">
+        <div v-else ref="leaveRequests" >
+          <div v-if="loaded">
             <div class="content b-table">
               <table class="table has-mobile-cards is-hoverable">
                 <thead class="font-thin">
@@ -95,8 +99,11 @@
           </div>
         </div>
       </div>
-      <div v-else class="column is-12">
+      <div v-if="showLeaveBalances===true" class="column is-12 ">
         <LeaveBalanceCard></LeaveBalanceCard>
+      </div>
+      <div v-if="showLeaveApproval===true" class="column is-12 ">
+        <LeaveApprovalCard></LeaveApprovalCard>
       </div>
     </div>
     <router-view
@@ -107,6 +114,7 @@
 </template>
 <script>
 import LeaveBalanceCard from "./LeaveBalanceCard.vue"
+import LeaveApprovalCard from "./leave_approval/LeaveApprovalList.vue"
 import Paginator from "../common/paginator/Paginator"
 import UserLeaveRequestItem from "./UserLeaveRequestItem"
 import EmptyState from "../common/EmptyState"
@@ -114,6 +122,7 @@ import EmptyState from "../common/EmptyState"
 export default {
   components: {
     LeaveBalanceCard,
+    LeaveApprovalCard,
     Paginator,
     UserLeaveRequestItem,
     EmptyState
@@ -126,7 +135,9 @@ export default {
       pageSize: 10,
       page: 0,
       loaded: false,
-      showLeaveBalances: false
+      MyLeaveRequest: true,
+      showLeaveBalances: false,
+      showLeaveApproval:false
     }
   },
   created() {
