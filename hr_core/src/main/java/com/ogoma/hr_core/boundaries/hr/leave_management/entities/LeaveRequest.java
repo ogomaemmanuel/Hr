@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -206,5 +207,14 @@ public class LeaveRequest {
 
     public void setApprovers(Set<Employee> approvers) {
         this.approvers = approvers;
+    }
+
+    public void addApprovers(List<Employee> approvers) {
+        if (approvers!=null){
+            approvers.forEach(approver->{
+                this.approvers.add(approver);
+            });
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 package com.ogoma.hr_core.boundaries.hr.leave_management.services;
 
 import com.ogoma.hr_core.boundaries.hr.employee_management.enums.LeaveStatuses;
+import com.ogoma.hr_core.boundaries.hr.employee_management.repositories.EmployeeRepository;
 import com.ogoma.hr_core.boundaries.hr.leave_management.entities.LeaveRequest;
 import com.ogoma.hr_core.boundaries.hr.leave_management.entities.LeaveRequestHistory;
 import com.ogoma.hr_core.boundaries.hr.leave_management.events.LeaveRequestEvent;
@@ -27,24 +28,29 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+
 public class LeaveRequestService {
     private final LeaveRequestRepository leaveRequestRepository;
     private final LeaveHistoryRepository leaveHistoryRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final HttpServletRequest httpServletRequest;
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
     public LeaveRequestService(LeaveRequestRepository leaveRequestRepository,
                                LeaveHistoryRepository leaveHistoryRepository,
                                ApplicationEventPublisher applicationEventPublisher,
-                               HttpServletRequest httpServletRequest) {
+                               HttpServletRequest httpServletRequest, EmployeeRepository employeeRepository) {
         this.leaveRequestRepository = leaveRequestRepository;
         this.leaveHistoryRepository = leaveHistoryRepository;
         this.applicationEventPublisher = applicationEventPublisher;
         this.httpServletRequest = httpServletRequest;
+        this.employeeRepository = employeeRepository;
     }
 
     public LeaveRequest createLeaveRequest(LeaveRequestModel leaveRequestModel) {
+
+       var approvers= this.employeeRepository.findEmployeeByIdIn(leaveRequestModel.getApproversIds());
         Long userId = SecurityUtils.getCurrentUserDetails().getId();
         LeaveRequestHistory leaveRequestHistory = new
                 LeaveRequestHistory();
@@ -54,6 +60,7 @@ public class LeaveRequestService {
         BeanUtils.copyProperties(leaveRequestModel, leaveRequest);
         leaveRequest.setLeaveStatuses(LeaveStatuses.NEW.name());
         leaveRequest.setApplicantId(userId);
+        leaveRequest.addApprovers(approvers);
         leaveRequest.addLeaveHistory(leaveRequestHistory);
         leaveRequestRepository.save(leaveRequest);
         LeaveRequestEventData leaveRequestEventData = new LeaveRequestEventData(
