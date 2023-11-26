@@ -1,5 +1,5 @@
 <template>
-    <Breadcrumb class="app-breadcrumb has-text-grey" separator="/">
+    <Breadcrumb class="app-breadcrumb text-black font-weight-bold" separator="/">
         <transition-group name="breadcrumb">
             <BreadcrumbItem v-for="(item,index) in levelList" :key="item.path">
                 <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
@@ -82,5 +82,13 @@
             //color: #97a8be;
             cursor: text;
         }
+    }
+    .el-breadcrumb__item{
+      align-items: center;
+      color: #363636;
+      display: flex;
+      flex-grow: 1;
+      font-weight: 700 !important;
+      font-size: 16px !important;
     }
 </style>
