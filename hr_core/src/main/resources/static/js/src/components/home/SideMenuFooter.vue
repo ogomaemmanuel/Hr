@@ -2,11 +2,8 @@
   <div class=" left-0 justify-center hidden w-full space-x-4 lg:flex dark:bg-gray-800">
     <router-link
         class="inline-flex vsm--link vsm--link_level-1 justify-center p-2 text-gray-200 rounded cursor-pointer dark:hover:text-white"
-        to="#">
-      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path
-            d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
-      </svg>
+        to="/profile">
+      <svg fill="#ffffff"  class="flex-shrink-0 w-6 h-6 transition text-white duration-75 dark:text-gray-400 dark:group-hover:text-white" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.71,12.71a6,6,0,1,0-7.42,0,10,10,0,0,0-6.22,8.18,1,1,0,0,0,2,.22,8,8,0,0,1,15.9,0,1,1,0,0,0,1,.89h.11a1,1,0,0,0,.88-1.1A10,10,0,0,0,15.71,12.71ZM12,12a4,4,0,1,1,4-4A4,4,0,0,1,12,12Z"/></svg>
     </router-link>
     <router-link
         title="Settings"

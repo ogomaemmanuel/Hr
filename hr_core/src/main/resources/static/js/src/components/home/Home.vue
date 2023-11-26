@@ -66,7 +66,7 @@
                     <router-link
                         class="button  is-rounded"
                         tag="button"
-                        to="leave-create">
+                        to="employee-attendance">
                       <span class="icon">
                         <i class="fa fa-plus-circle"></i>
                       </span>
