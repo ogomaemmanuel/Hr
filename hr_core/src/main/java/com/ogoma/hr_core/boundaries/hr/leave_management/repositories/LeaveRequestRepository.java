@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Repository
 public interface LeaveRequestRepository extends BaseRepo<LeaveRequest> {
-    @Query("Select le from LeaveRequest le where le.applicantId=?#{ principal?.id }")
+    @Query("Select le from LeaveRequest le left join fetch le.leaveType where  le.applicantId=?#{ principal?.id }")
     public Page<LeaveRequest> findCurrentUserLeaveRequest(Pageable pageable);
 
     @Query(value = "select s.id as userId,s.id as staffId,concat_ws(u.first_name,u.last_name) as fullName from employees s left join users u on s.id=u.id where s.id!=?#{principal.id}", nativeQuery = true)
