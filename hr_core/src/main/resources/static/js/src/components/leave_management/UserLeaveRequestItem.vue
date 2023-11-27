@@ -1,7 +1,7 @@
 <template>
 	<tr>
 		<td data-label="Name">
-      <router-link :to="'leave-details/'+leaveRequestClone.id" >
+      <router-link :to="'/leave-approvals/leave-details/'+leaveRequestClone.id" >
       {{leaveRequestClone?.leaveType?.name}}
       </router-link>
     </td>
@@ -17,7 +17,7 @@
 		<td>
 			<b-dropdown aria-role="list">
 				<i
-						class="fa fa-ellipsis-h text-muted"
+						class="fa fa-ellipsis-h icon is-small text-muted"
 						slot="trigger"
 						role="button">
 				</i>

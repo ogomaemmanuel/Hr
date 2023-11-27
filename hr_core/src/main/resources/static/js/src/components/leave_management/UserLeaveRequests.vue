@@ -6,7 +6,7 @@
           <router-link
               class="button  is-rounded"
               tag="button"
-              to="leave-create">
+              to="leave-create" >
 				<span class="icon">
 
 				<i class="fa fa-plus-circle"></i>
@@ -72,7 +72,7 @@
                   <th>
                     Date Requested
                   </th>
-                  <th>
+                  <th class="text-center">
                     Action
                   </th>
                 </tr>
