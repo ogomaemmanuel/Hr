@@ -3,6 +3,7 @@ package com.ogoma.hr_core.boundaries.hr.leave_management.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 public class LeaveRequestModel {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -13,6 +14,8 @@ public class LeaveRequestModel {
     private String reason;
     private Long inPlaceId;
     private Long leaveTypeId;
+    
+    private List<Long> approversIds;
 
     public Date getStartDate() {
         return startDate;
@@ -63,5 +66,13 @@ public class LeaveRequestModel {
     public LeaveRequestModel setLeaveTypeId(Long leaveTypeId) {
         this.leaveTypeId = leaveTypeId;
         return this;
+    }
+
+    public List<Long> getApproversIds() {
+        return approversIds;
+    }
+
+    public void setApproversIds(List<Long> approversIds) {
+        this.approversIds = approversIds;
     }
 }

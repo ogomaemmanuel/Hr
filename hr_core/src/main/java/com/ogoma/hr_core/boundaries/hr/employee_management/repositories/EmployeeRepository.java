@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface EmployeeRepository extends BaseRepo<Employee> {
@@ -87,4 +88,6 @@ public interface EmployeeRepository extends BaseRepo<Employee> {
             " left join departments d on e.department_id = d.id" +
             " where e.deleted=0 and e.id=:employeeId",nativeQuery=true)
     public EmployeeSalaryViewModel getEmployeeSalaryByEmployeeId(Long employeeId);
+
+    public List<Employee> findEmployeeByIdIn(List<Long> ids);
 }

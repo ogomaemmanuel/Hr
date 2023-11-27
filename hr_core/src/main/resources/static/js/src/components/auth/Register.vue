@@ -111,7 +111,7 @@ export default {
     submitRequest() {
       let vm = this;
       let fullName = vm.user.name.split(' ');
-          vm.user.firstName = fullName;
+          vm.user.firstName = fullName[0];
           vm.user.lastName = fullName[fullName.length - 1];
       vm.isLoading = true;
           axios.post("/register", vm.user).then(resp => {
