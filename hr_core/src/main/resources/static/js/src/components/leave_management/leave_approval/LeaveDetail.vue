@@ -1,7 +1,23 @@
 <template>
-	<div class="is-size-7 h-full">
-		<div class="flex justify-end">
-			<router-link tag="a" to="/leave-approvals">
+	<div class="is-size-8 h-full">
+    <portal to="page-controls">
+      <div class="py-1 pr-2 flex justify-end">
+        <p class="buttons">
+          <router-link
+              class="button  is-rounded"
+              tag="button"
+              :to="{name:'leave-create'}">
+				<span class="icon">
+
+				<i class="fa fa-plus-circle"></i>
+				</span>
+            <span>New Request</span>
+          </router-link>
+        </p>
+      </div>
+    </portal>
+		<div class="flex justify-start">
+			<router-link tag="a" to="/leave">
 				<span class="icon">
 					<i class="fa fa-angle-left"></i>
 				</span>
@@ -10,55 +26,55 @@
 		</div>
 		<div class="relative bg-white mt-5 p-5">
 			<div class="columns">
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Employee Name</h4>
 					<h4 class="has-text-grey-light">{{leaveDetail.employee}}</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Date Submitted</h4>
 					<h4 class="has-text-grey-light">{{leaveDetail.createdAt|dateFormat}}</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Leave Type</h4>
 					<h4 class="has-text-grey-light">{{leaveDetail.leaveType}}</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Status</h4>
 					<h4 class="has-text-grey-light">Status</h4>
 				</div>
 			</div>
 			<div class="columns">
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Start Date</h4>
 					<h4 class="has-text-grey-light">{{leaveDetail.startDate|dateFormat}}</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">End Date</h4>
 					<h4 class="has-text-grey-light">{{leaveDetail.endDate|dateFormat}}</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Days To End Date</h4>
 					<h4 class="has-text-grey-light">{{daysToEndDate}}</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Reason</h4>
 					<h4 class="has-text-grey-light">{{leaveDetail.status}}</h4>
 				</div>
 			</div>
 			<div class="columns">
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Leave Balance</h4>
 					<h4 class="has-text-grey-light">{{leaveBalance}} days</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Balance After Approval</h4>
 					<h4 class="has-text-grey-light">{{balanceAfterApproval}}</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Leave Period in Days</h4>
 					<h4 class="has-text-grey-light">{{leaveDetail.numberOfDays}}</h4>
 				</div>
-				<div class="column">
+				<div class="column flex gap-4">
 					<h4 class="has-text-black">Employee Department</h4>
 					<h4 class="has-text-grey-light">Status</h4>
 				</div>
@@ -84,13 +100,13 @@
 			</div>
 		</div>
 		<LeaveRequestHistoryList></LeaveRequestHistoryList>
-	</div>
+  </div>
 </template>
 <script>
-    import LeaveRequestHistoryList from "./LeaveRequestHistoryList.vue"
-    import {Message} from "element-ui"
+import LeaveRequestHistoryList from "./LeaveRequestHistoryList.vue"
+import {Message} from "element-ui"
 
-    export default {
+export default {
         components: {
             LeaveRequestHistoryList
         },

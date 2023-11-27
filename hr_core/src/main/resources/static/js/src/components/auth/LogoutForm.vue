@@ -1,31 +1,40 @@
 <template>
-		<form ref="logoutForm" method="post" action="/logout">
-			<input type="hidden" name="_csrf" :value="csrfToken">
-      <span @click="logout" class="text-white cursor-pointer">
-        <i class="fa fa-sign-out font-medium pr-2 " style="font-size: 20px;"></i>
-<!--        Logout <span class="bold">({{ authenticatedUser.fullName.split(" ")[0] }})</span>-->
+  <form ref="logoutForm" action="/logout" method="post">
+    <input :value="csrfToken" name="_csrf" type="hidden">
+    <span class="text-white cursor-pointer" @click="logout">
+        <svg class="flex-shrink-0 w-6 h-6 transition duration-75 dark:text-gray-400 dark:group-hover:text-white" enable-background="new 0 0 52 52"
+             fill="#ffffff"
+             height="800px" viewBox="0 0 52 52" width="800px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+            <g>
+              <path d="M21,48.5v-3c0-0.8-0.7-1.5-1.5-1.5h-10C8.7,44,8,43.3,8,42.5v-33C8,8.7,8.7,8,9.5,8h10
+                C20.3,8,21,7.3,21,6.5v-3C21,2.7,20.3,2,19.5,2H6C3.8,2,2,3.8,2,6v40c0,2.2,1.8,4,4,4h13.5C20.3,50,21,49.3,21,48.5z"/>
+              <path d="M49.6,27c0.6-0.6,0.6-1.5,0-2.1L36.1,11.4c-0.6-0.6-1.5-0.6-2.1,0l-2.1,2.1c-0.6,0.6-0.6,1.5,0,2.1l5.6,5.6
+                c0.6,0.6,0.2,1.7-0.7,1.7H15.5c-0.8,0-1.5,0.6-1.5,1.4v3c0,0.8,0.7,1.6,1.5,1.6h21.2c0.9,0,1.3,1.1,0.7,1.7l-5.6,5.6
+                c-0.6,0.6-0.6,1.5,0,2.1l2.1,2.1c0.6,0.6,1.5,0.6,2.1,0L49.6,27z"/>
+            </g>
+        </svg>
       </span>
-		</form>
+  </form>
 </template>
 <script>
-    import {mapGetters} from "vuex";
+import {mapGetters} from "vuex";
 
-    export default {
-        data() {
-            return {
-                csrfToken: null,
-        }
-        },
-        created() {
-            this.csrfToken =document.querySelector("meta[name='_csrf']").getAttribute("content");
-        },
-		methods:{
-            logout() {
-                this.$refs.logoutForm.submit();
-            },
-		},
-      computed: {
-        ...mapGetters(["authenticatedUser"])
-      },
+export default {
+  data() {
+    return {
+      csrfToken: null,
     }
+  },
+  created() {
+    this.csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+  },
+  methods: {
+    logout() {
+      this.$refs.logoutForm.submit();
+    },
+  },
+  computed: {
+    ...mapGetters(["authenticatedUser"])
+  },
+}
 </script>

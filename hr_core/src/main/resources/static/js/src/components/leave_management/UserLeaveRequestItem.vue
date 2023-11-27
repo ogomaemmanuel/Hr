@@ -1,19 +1,23 @@
 <template>
 	<tr>
-		<td data-label="Name">{{leaveRequestClone?.leaveType?.name}}</td>
+		<td data-label="Name">
+      <router-link :to="'/leave-approvals/leave-details/'+leaveRequestClone.id" >
+      {{leaveRequestClone?.leaveType?.name}}
+      </router-link>
+    </td>
 		<td data-label="Number of Days">{{leaveRequestClone.numberOfDays}}</td>
 		<td data-label="Start Date">{{leaveRequestClone.startDate|dateFormat}}</td>
 		<td data-label="End Date">{{leaveRequestClone.endDate|dateFormat}}</td>
 		<td data-label="Status">
-										<span :class="statusColor" class="tag  is-light">
-										{{leaveRequestClone.leaveStatuses}}
-										</span>
+      <span :class="statusColor" class="tag  is-light">
+        {{leaveRequestClone.leaveStatuses}}
+      </span>
 		</td>
 		<td data-label="Date Requested">{{leaveRequestClone.createdAt|dateFormat}}</td>
 		<td>
 			<b-dropdown aria-role="list">
 				<i
-						class="fa fa-ellipsis-h text-muted"
+						class="fa fa-ellipsis-h icon is-small text-muted"
 						slot="trigger"
 						role="button">
 				</i>

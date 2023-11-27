@@ -1,25 +1,24 @@
 <template>
-  <div>
-    <div class="flex  justify-end  mb-5">
-      <div class="columns">
-        <div class="column is-inline-flex">
-          <input class="input flex-grow-0 is-rounded is-small mr-1" type="text" placeholder="Search ...">
-
+  <div class="w-full">
+    <div class="flex  justify-start ">
+      <div class=" columns w-full py-3 ml-0 bg-white">
+        <div class="column is-5 is-inline-flex">
           <span class="">
 						<button class="button is-small is-rounded">
-				<span class="icon">
-					<i class="fa fa-download"></i>
-				</span>
-							<span>
-					Export All
-				</span>
+              <span class="icon">
+                <i class="fa fa-download"></i>
+              </span>
+                    <span>
+                Export All
+              </span>
 						</button>
 					</span>
+          <input class="input flex-grow-0 is-small is-rounded ml-2" placeholder="Search ..." type="text">
         </div>
       </div>
     </div>
 
-    <div class="mt-5 b-table bg-white p-5 is-size-7 is-full">
+    <div class="b-table bg-white is-full">
 
       <table class="table has-mobile-cards  w-full">
         <thead>
@@ -34,20 +33,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="leaveRequest in leaveRequests"
-            is="LeaveApprovalItem"
-            :leaveRequest="leaveRequest"
-            :key="leaveRequest.id">
+        <tr is="LeaveApprovalItem"
+            v-for="leaveRequest in leaveRequests"
+            :key="leaveRequest.id"
+            :leaveRequest="leaveRequest">
         </tr>
         </tbody>
         <tfoot>
         <tr>
           <td colspan="8">
             <Paginator
-                @previousPage="goToPrevious"
+                :paginationData="pageable"
                 @nextPage="goToNext"
                 @paginationChanged="onPaginationChanged"
-                :paginationData="pageable"
+                @previousPage="goToPrevious"
             ></Paginator>
           </td>
         </tr>

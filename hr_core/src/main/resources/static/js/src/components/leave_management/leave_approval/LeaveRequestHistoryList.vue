@@ -3,13 +3,13 @@
 		<EmptyState v-if="showEmptyState" >
 			<h4 class="ml-10">Leave request has no history</h4>
 		</EmptyState>
-		<div class="is-size-7 ">
+		<div class="is-size-8 ">
 		<div v-for="leaveHistory in leaveRequestHistory" class="bg-white p-5 h-full w-full">
-			<div class="flex flex-col">
-				<h4 class="pl-1">{{leaveHistory.leaveStatuses}}</h4>
+			<div class="flex flex-row">
+				<h4 class="px-1">{{leaveHistory.leaveStatuses}}</h4>
 				<span>
-					<span class="icon"><i class="fa fa-calendar"></i></span><span><span class="has-text-primary">Performed On : </span>{{leaveHistory.createdAt|dateFormat}}</span>
-					<span class="icon"><i class="fa fa-user"></i></span><span><span class="has-text-primary">Performed By: </span>{{leaveHistory.user.firstName}}</span>
+					<span class="icon px-1"><i class="fa fa-calendar"></i></span><span><span class="has-text-primary">Performed On : </span>{{leaveHistory.createdAt|dateFormat}}</span>
+					<span class="icon px-1"><i class="fa fa-user"></i></span><span><span class="has-text-primary">Performed By: </span>{{leaveHistory.user.firstName}}</span>
 				</span>
 			
 			</div>

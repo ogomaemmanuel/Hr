@@ -12,7 +12,7 @@
       <template v-if="!showSuccessMessage">
         <div class="flex mt-5 flex-col items-center justify-center">
           <div>
-            <h2>Emmanuel Ogoma</h2>
+            <h2>{{ authenticatedUser.fullName }}</h2>
           </div>
           <div>
             <h2>Welcome!</h2>
@@ -21,7 +21,7 @@
 
         <div class="mt-5 pb-5">
           <div class="flex flex-col items-center justify-center">
-            <i @click="punchIn" class="fa fa-sign-in fa-3x has-text-primary"></i>
+            <i @click="punchIn" class="fa fa-sign-in fa-3x has-text-primary cursor-pointer"></i>
             <h2> Click to Punch In</h2>
           </div>
         </div>
@@ -29,7 +29,7 @@
       <template v-if="showSuccessMessage">
         <div class="flex mt-5 flex-col items-center justify-center">
           <div>
-            <h2>Emmanuel Ogoma</h2>
+            <h2>{{ authenticatedUser.fullName }}</h2>
           </div>
           <div>
             <h2>Welcome!</h2>
@@ -52,6 +52,7 @@
 import common_mixin from "../../mixins/common_mixin";
 import {Message} from "element-ui"
 import ModalTemplate from "../common/ModalTemplate";
+import {mapGetters} from "vuex";
 
 
 export default {
@@ -76,12 +77,15 @@ export default {
         this.showSuccessMessage = true
         Message.success("Attendance created Successfully")
       }, error => {
-        if (error.response.status == 400) {
+        if (error.response.status === 400) {
           this.errors = error.response.data;
         }
       })
-    }
-  }
+    },
+  },
+  computed: {
+    ...mapGetters(["authenticatedUser"])
+  },
 }
 </script>
 <style lang="scss" scoped>
