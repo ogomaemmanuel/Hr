@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -39,6 +40,8 @@ public class LeaveRequest {
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    @ManyToMany
+    private Set<Employee> approvers;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "applicant_user_id", updatable = false, insertable = false)
@@ -194,6 +197,23 @@ public class LeaveRequest {
         if (leaveRequestHistory != null) {
             leaveRequestHistory.setLeaveRequest(this);
             this.leaveRequestHistory.add(leaveRequestHistory);
+        }
+
+    }
+
+    public Set<Employee> getApprovers() {
+        return approvers;
+    }
+
+    public void setApprovers(Set<Employee> approvers) {
+        this.approvers = approvers;
+    }
+
+    public void addApprovers(List<Employee> approvers) {
+        if (approvers!=null){
+            approvers.forEach(approver->{
+                this.approvers.add(approver);
+            });
         }
 
     }
