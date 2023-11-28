@@ -86,7 +86,40 @@
                 Upcoming Events
               </p>
             </div>
-            <div class="card-content">
+            <div class="card-content pt-2">
+              <ul role="list" class="divide-y">
+                <li class="py-4 flex first:pt-0 last:pb-0">
+                  <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                  <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-medium text-slate-900">Kristen Ramos</p>
+                    <p class="text-sm text-slate-500 truncate">kristen.ramos@example.com</p>
+                  </div>
+                </li>
+                <li class="py-4 flex first:pt-0 last:pb-0">
+                  <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                  <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-medium text-slate-900">Johnson Didinya</p>
+                    <p class="text-sm text-slate-500 truncate">johnson.didinya@example.com</p>
+                  </div>
+                </li>
+                <li class="py-4 flex first:pt-0 last:pb-0">
+                  <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                  <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-medium text-slate-900">Courtney Henry</p>
+                    <p class="text-sm text-slate-500 truncate">courtney.henry@example.com</p>
+                  </div>
+                </li>
+                <li class="py-4 flex first:pt-0 ">
+                  <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                  <div class="ml-3 overflow-hidden">
+                    <p class="text-sm font-medium text-slate-900">Ted Fox</p>
+                    <p class="text-sm text-slate-500 truncate">ted.fox@example.com</p>
+                  </div>
+                </li>
+                <li class="pt-4 cursor-pointer flex justify-center text-sm first:pt-0">
+                  Load more
+                </li>
+              </ul>
 
             </div>
           </div>
@@ -128,7 +161,7 @@
                         <progress class="progress is-small is-primary" max="100" value="79">79</progress>
                       </td>
                       <td data-label="Created">
-                        <small class="has-text-grey is-abbr-like" title="Oct 25, 2020">Oct 25, 2020</small>
+                        <small class="has-text-grey is-abbr-like" title="Oct 25, 2020">Oct 25, 2023</small>
                       </td>
                       <td class="is-actions-cell">
                         <div class="buttons is-right">
@@ -152,7 +185,7 @@
                         <progress class="progress is-small is-primary" max="100" value="67">67</progress>
                       </td>
                       <td data-label="Created">
-                        <small class="has-text-grey is-abbr-like" title="Jan 8, 2020">Jan 8, 2020</small>
+                        <small class="has-text-grey is-abbr-like" title="Jan 8, 2020">Jan 8, 2023</small>
                       </td>
                       <td class="is-actions-cell">
                         <div class="buttons is-right">
@@ -177,7 +210,7 @@
                         <progress class="progress is-small is-primary" max="100" value="16">16</progress>
                       </td>
                       <td data-label="Created">
-                        <small class="has-text-grey is-abbr-like" title="Dec 18, 2020">Dec 18, 2020</small>
+                        <small class="has-text-grey is-abbr-like" title="Dec 18, 2020">Dec 18, 2023</small>
                       </td>
                       <td class="is-actions-cell">
                         <div class="buttons is-right">
@@ -201,7 +234,31 @@
                         <progress class="progress is-small is-primary" max="100" value="71">71</progress>
                       </td>
                       <td data-label="Created">
-                        <small class="has-text-grey is-abbr-like" title="Sep 13, 2020">Sep 13, 2020</small>
+                        <small class="has-text-grey is-abbr-like" title="Sep 13, 2020">Sep 13, 2023</small>
+                      </td>
+                      <td class="is-actions-cell">
+                        <div class="buttons is-right">
+                          <button class="button is-small" type="button">
+                            <span class="icon"><i class="fa fa-eye"></i></span>
+                          </button>
+                          <button class="button is-small jb-modal" data-target="sample-modal" type="button">
+                            <span class="icon"><i class="fa fa-trash-o"></i></span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="is-image-cell">
+                        <div class="image is-24x24">
+                          <img class="is-rounded" src="https://avatars.dicebear.com/v2/initials/mr-broderick-kub.svg">
+                        </div>
+                      </td>
+                      <td data-label="Name">Mr. Johnson Didinya</td>
+                      <td class="is-progress-cell" data-label="Progress">
+                        <progress class="progress is-small is-primary" max="100" value="51">71</progress>
+                      </td>
+                      <td data-label="Created">
+                        <small class="has-text-grey is-abbr-like" title="Sep 13, 2020">Sep 13, 2023</small>
                       </td>
                       <td class="is-actions-cell">
                         <div class="buttons is-right">
