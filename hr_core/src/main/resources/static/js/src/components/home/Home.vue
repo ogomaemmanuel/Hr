@@ -1,6 +1,6 @@
 <template>
   <div class="relative z-0 flex h-full w-full overflow-hidden">
-    <div class=" h-full flex-shrink-0 overflow-x-hidden " :style="{width:collapsed?'0':sideBarWidth}">
+    <div class=" h-full flex-shrink-0 overflow-x-hidden " :class="{'opacity-75':hover && !collapsed}" :style="{width:collapsed?'0':sideBarWidth}">
       <sidebar-menu
           :menu="menu"
           :showOneChild="true"
@@ -39,17 +39,17 @@
     <div class="relative flex h-full max-w-full flex-1 flex-col overflow-hidden">
       <main class="transition-width relative h-full w-full flex-1 overflow-auto">
 
-        <div class=" fixed top-1/2 z-40 -translate-y-1/2 transition-transform translate-x-[260px] rotate-0">
-          <div class="cursor-pointer" @click="toggleSideNav()">
-              <div class="flex h-20 w-8 items-center justify-center opacity-25  group-hover:opacity-100">
-                <div class="flex h-6 w-6 flex-col items-center">
-                  <div class="bg-gray-800  h-3 w-1 rounded-full" style="transform: translateY(0.15rem) rotate(0deg) translateZ(0px);"></div>
-                  <div class="bg-gray-800  h-3 w-1 rounded-full" style="transform: translateY(-0.15rem) rotate(0deg) translateZ(0px);"></div>
+        <div class="fixed top-1/2 z-40 -translate-y-1/2 transition-transform translate-x-[260px]" @mouseover="hover = true"
+             @mouseleave="hover = false" v-tooltip.right="collapsed?'Open Sidebar':'Close Sidebar'">
+          <div class="cursor-pointer" @click="toggleSideNav() ">
+              <div class="flex h-20 w-8 items-center justify-center opacity-25  hover:opacity-100">
+                <div class="flex h-6 w-6 flex-col items-center"  :style="{rotate: collapsed?'180deg':'0deg'}">
+                  <div class="bg-gray-800  h-3 w-1 rounded-full" :style="{transform: hover || collapsed?'translateY(0.15rem) rotate(15deg) translateZ(0px)':'translateY(0.15rem) rotate(0deg) translateZ(0px)'}"></div>
+                  <div class="bg-gray-800  h-3 w-1 rounded-full" :style="{transform: hover || collapsed?'translateY(-0.15rem) rotate(-15deg)  translateZ(0px)':'translateY(-0.15rem) rotate(0deg) translateZ(0px)'}"></div>
                 </div>
               </div>
           </div>
         </div>
-
 
         <div class="px-8">
           <div class="columns mt-1 mb-8 is-3" style="border-bottom: 1px solid rgb(224, 220, 229);">
@@ -118,6 +118,7 @@ export default {
   data() {
     return {
       collapsed:false,
+      hover: false,
       sideBarWidth:'250px',
       menu: [
 
@@ -208,6 +209,17 @@ export default {
             }
           ]
         },
+        {
+          href: {path: '/events'},
+          icon: 'fa fa-calendar-check-o',
+          title: 'Calender',
+          badge: {
+            text: 'new',
+            class: 'vsm--badge_default',
+             // attributes: {},
+             // element: 'span',
+          }
+        }
       ],
       // Sidebar width (expanded)
 

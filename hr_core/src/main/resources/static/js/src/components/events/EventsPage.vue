@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="pb-2 flex justify-end">
+    <div class="pb-2 flex justify-start">
       <button
           @click.stop="showEventCreateForm=true"
           to="/holiday-create"
