@@ -1,6 +1,7 @@
 <template>
   <div class=" left-0 justify-center hidden w-full space-x-4 lg:flex dark:bg-gray-800">
     <router-link
+        v-tooltip.top="'Profile'"
         class="inline-flex vsm--link vsm--link_level-1 justify-center p-2 text-gray-200 rounded cursor-pointer dark:hover:text-white"
         to="/profile">
       <svg class="flex-shrink-0 w-6 h-6 transition text-white duration-75 dark:text-gray-400 dark:group-hover:text-white"
@@ -13,7 +14,7 @@
     <router-link
         class="inline-flex vsm--link vsm--link_level-1 justify-center p-2 text-gray-200 rounded cursor-pointer hover:text-gray-900  dark:hover:bg-gray-700 dark:hover:text-white"
         data-tooltip-target="tooltip-settings"
-        title="Settings"
+        v-tooltip.top="'Settings'"
         to="/profile">
       <svg class="flex-shrink-0 w-6 h-6 transition duration-75 dark:text-gray-400 dark:group-hover:text-white"
            height="80"
@@ -25,7 +26,7 @@
     </router-link>
     <router-link
         class="inline-flex vsm--link vsm--link_level-1 justify-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white"
-        title="Logout"
+        v-tooltip.top="'Logout'"
         to="#">
       <LogoutForm></LogoutForm>
     </router-link>

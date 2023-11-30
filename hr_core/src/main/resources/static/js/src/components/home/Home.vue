@@ -61,7 +61,7 @@
               </div>
             </div>
             <div class="column p-0 is-5">
-              <GlobalSearchInput></GlobalSearchInput>
+              <GlobalSearch></GlobalSearch>
             </div>
             <div class="column p-0 is-4">
               <div class="flex sm:justify-start md:justify-end py-1">
@@ -97,7 +97,7 @@
             </div>
           </div>
         </div>
-        <div class="mt-5 h-full px-8 ">
+        <div class="mt-5 h-full px-8 main-container">
           <router-view></router-view>
         </div>
       </main>
@@ -111,10 +111,10 @@ import LogoutForm from "../auth/LogoutForm.vue"
 import {mapGetters} from "vuex";
 import ProfileMenuItem from "./ProfileMenuItem.vue"
 import SideMenuFooter from "./SideMenuFooter.vue"
-import GlobalSearchInput from "./GlobalSearchInput.vue"
+import GlobalSearch from "./GlobalSearch.vue"
 
 export default {
-  components: {LogoutForm, TestBreadCrump, ProfileMenuItem, SideMenuFooter,GlobalSearchInput},
+  components: {LogoutForm, TestBreadCrump, ProfileMenuItem, SideMenuFooter,GlobalSearch},
   data() {
     return {
       collapsed:false,
