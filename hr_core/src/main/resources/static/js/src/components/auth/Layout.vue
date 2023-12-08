@@ -1,5 +1,5 @@
 <template>
-  <div class="hero hero-bg-color is-fullheight">
+  <div :class="showHeroSection? 'hero hero-bg-color is-fullheight':''">
     <div class="hero-head">
       <nav class="navbar" style="background: #fff">
         <div class="container">
@@ -7,10 +7,10 @@
             <router-link to="home" class="navbar-item">
               <LogoMini/>
             </router-link>
-            <a class="navbar-item bd-navbar-item bd-navbar-item-base bd-navbar-item " href="#">
+            <router-link to="home" class="navbar-item bd-navbar-item bd-navbar-item-base bd-navbar-item ">
               <span class="icon has-text-primary">
               </span><span>Home</span>
-            </a>
+            </router-link>
 
             <a class="navbar-item bd-navbar-item bd-navbar-item-base bd-navbar-item " href="#">
               <span class="icon has-text-primary">
@@ -44,7 +44,7 @@
         </div>
       </nav>
     </div>
-    <div class="hero-body">
+    <div class="hero-body" v-if="showHeroSection">
       <div class="container">
         <div class="columns is-multiline">
           <div class="column is-12 is-offset-0 register">
@@ -75,6 +75,10 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      <slot name="hero-section" ></slot>
+    </div>
+
   </div>
 </template>
 <script>
@@ -87,6 +91,10 @@ export default {
     padding:{
       type:String,
       default:'4.5em'
+    },
+    showHeroSection:{
+      type: Boolean,
+      default: true
     }
   },
   components: {LogoMini, Logo},

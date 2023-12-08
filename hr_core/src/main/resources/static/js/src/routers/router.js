@@ -14,6 +14,9 @@ const ForgotPassword = () =>
 const Register = () =>
     import ("../components/auth/Register");
 
+const HomePage = () =>
+    import ("../components/auth/HomePage");
+
 // Apps
 const EventsPage = ()=> import("../components/events/EventsPage");
 const ContactsPage = ()=> import("../components/contacts/ContactsPage");
@@ -195,7 +198,6 @@ const routes = new Router({
         {
             path: "/login",
             component: AuthLayout,
-
             meta: {
                 breadcrumb: 'Login',
             },
@@ -204,19 +206,24 @@ const routes = new Router({
                 name: "login",
                 component: Login,
             },
+            {
+                path: "/home",
+                name: "home",
+                component: HomePage,
+            },
 
-                {
-                    path: "/register",
-                    name: "register",
-                    component: Register,
-                },
+            {
+                path: "/register",
+                name: "register",
+                component: Register,
+            },
 
 
-                {
-                    path: "/forgot-password",
-                    name: "forgot-password",
-                    component: ForgotPassword,
-                },
+            {
+                path: "/forgot-password",
+                name: "forgot-password",
+                component: ForgotPassword,
+            },
 
             ]
         },

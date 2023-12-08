@@ -160,7 +160,7 @@ export default {
             {
               href: {path: '/employee-terminations'},
               icon: 'fa fa-',
-              title: 'Termination'
+              title: 'Terminations'
             }
           ]
         },
