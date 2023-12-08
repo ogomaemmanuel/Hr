@@ -15,7 +15,7 @@ const Register = () =>
     import ("../components/auth/Register");
 
 const HomePage = () =>
-    import ("../components/auth/HomePage");
+    import ("../components/auth/Welcome.vue");
 
 // Apps
 const EventsPage = ()=> import("../components/events/EventsPage");

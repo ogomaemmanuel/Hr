@@ -9,12 +9,12 @@
                 <h1 class="mb-5 text-4xl font-bold !leading-[1.208] text-white dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
                   The Greatest <br>
                   Journey Of Talent <br>
-                  thrive.
+                  Thrive.
                 </h1>
                 <p class="mb-8 max-w-[480px] text-white text-body-color dark:text-dark-6">
-                  With TailGrids, business and students thrive together. Business
-                  can perfectly match their staffing to changing demand throughout
-                  the dayed.
+                  With Lambo-HR, business can cost-effectively outsource the management of payroll,
+                  workers’ compensation, human resources, HR Data & Analytics,
+                  and employee benefits with an easy transition.
                 </p>
                 <ul class="flex flex-wrap items-center">
                   <li>
