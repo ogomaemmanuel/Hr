@@ -1,7 +1,7 @@
 <template>
   <Layout :padding="'1.5rem 4.5rem 4.5rem 4.5rem'" :show-hero-section="false">
     <template v-slot:hero-section>
-      <div class="relative bg-white pt-32 pb-32 dark:bg-dark lg:pt-[150px]" style="background-color: rgb(39, 29, 59);">
+      <div class="relative bg-white pt-32 pb-20 dark:bg-dark lg:pt-[150px]" style="background-color: rgb(39, 29, 59);">
         <div class="container mx-auto">
           <div class="-mx-4 flex flex-wrap items-center">
             <div class="w-full px-4 lg:w-7/12">
