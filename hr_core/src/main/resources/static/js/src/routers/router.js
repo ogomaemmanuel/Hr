@@ -14,6 +14,12 @@ const ForgotPassword = () =>
 const Register = () =>
     import ("../components/auth/Register");
 
+const HomePage = () =>
+    import ("../components/auth/Welcome.vue");
+
+const PricingPage = () =>
+    import ("../components/auth/Pricing.vue");
+
 // Apps
 const EventsPage = ()=> import("../components/events/EventsPage");
 const ContactsPage = ()=> import("../components/contacts/ContactsPage");
@@ -188,14 +194,14 @@ const ChatPage =()=> import("../components/chat/ChatPage")
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
-    linkExactActiveClass: "",
+    linkExactActiveClass: "active-link",
     linkActiveClass: "ant-breadcrumb",
+
     routes: [
 
         {
             path: "/login",
             component: AuthLayout,
-
             meta: {
                 breadcrumb: 'Login',
             },
@@ -204,19 +210,29 @@ const routes = new Router({
                 name: "login",
                 component: Login,
             },
+            {
+                path: "/home",
+                name: "home",
+                component: HomePage,
+            },
+            {
+                path: "/pricing",
+                name: "pricing",
+                component: PricingPage,
+            },
 
-                {
-                    path: "/register",
-                    name: "register",
-                    component: Register,
-                },
+            {
+                path: "/register",
+                name: "register",
+                component: Register,
+            },
 
 
-                {
-                    path: "/forgot-password",
-                    name: "forgot-password",
-                    component: ForgotPassword,
-                },
+            {
+                path: "/forgot-password",
+                name: "forgot-password",
+                component: ForgotPassword,
+            },
 
             ]
         },
