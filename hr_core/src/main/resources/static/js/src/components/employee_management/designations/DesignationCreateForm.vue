@@ -73,6 +73,7 @@
 <script>
     import CommonMixin from "../../../mixins/common_mixin"
     import _debounce from "lodash.debounce"
+    import  {Notification as notify} from "element-ui";
 
     export default {
         mixins: [CommonMixin],
@@ -103,10 +104,10 @@
                 let vm = this;
                 this.designation.departmentId = this.selectedDepartment.id;
                 axios.post("/api/designations", this.designation).then(resp => {
-                    vm.$swal({
+                    notify({
                         type: "success",
                         title: "Success",
-                        text: "Designation  successfully created"
+                        message: "Designation  successfully created"
                     })
                     this.$emit("designationCreated")
                 }, error => {

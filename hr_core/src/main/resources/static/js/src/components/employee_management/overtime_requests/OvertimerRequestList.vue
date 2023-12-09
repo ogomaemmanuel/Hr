@@ -77,6 +77,7 @@
             </div>
         </div>
         <router-view
+                @overtimeRequestCreated="getOvertimeRequests()"
                 @overtimeRequestUpdated="getOvertimeRequests()">
         </router-view>
     </div>

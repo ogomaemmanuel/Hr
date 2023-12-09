@@ -75,6 +75,8 @@
     import {DatePicker} from "element-ui"
     import ModalTemplate from "../../common/ModalTemplate";
 
+    import {Notification as notify } from  "element-ui"
+
     export default {
         mixins: [CommonMixin],
         components: {
@@ -107,12 +109,13 @@
                 let vm = this;
                 axios.post("/api/overtime-requests",
                     this.overtimeRequest).then(resp => {
-                    vm.$swal({
-                        type: "success",
+                      notify({
+                        message: "Overtime request successfully saved",
                         title: "Success",
-                        text: "Overtime request successfully saved"
-                    })
-                    this.$emit("overtimeRequestCreated")
+                        type: "success"
+                      })
+                  this.$router.back();
+                    //this.$emit("overtimeRequestCreated")
                 }, error => {
                     if (error.response.status == 400) {
                         this.errors = error.response.data;
