@@ -17,6 +17,9 @@ const Register = () =>
 const HomePage = () =>
     import ("../components/auth/Welcome.vue");
 
+const PricingPage = () =>
+    import ("../components/auth/Pricing.vue");
+
 // Apps
 const EventsPage = ()=> import("../components/events/EventsPage");
 const ContactsPage = ()=> import("../components/contacts/ContactsPage");
@@ -210,6 +213,11 @@ const routes = new Router({
                 path: "/home",
                 name: "home",
                 component: HomePage,
+            },
+            {
+                path: "/pricing",
+                name: "pricing",
+                component: PricingPage,
             },
 
             {

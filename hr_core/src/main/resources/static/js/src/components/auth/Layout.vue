@@ -12,15 +12,15 @@
               </span><span>Home</span>
             </router-link>
 
-            <a class="navbar-item bd-navbar-item bd-navbar-item-base bd-navbar-item " href="#">
+            <router-link  to="pricing" class="navbar-item bd-navbar-item bd-navbar-item-base bd-navbar-item " href="#">
               <span class="icon has-text-primary">
               </span><span>Pricing</span>
-            </a>
+            </router-link>
 
-            <a class="navbar-item bd-navbar-item bd-navbar-item-base bd-navbar-item " href="#">
+            <router-link  to="docs" class="navbar-item bd-navbar-item bd-navbar-item-base bd-navbar-item " href="#">
               <span class="icon has-text-primary">
               </span><span>Docs</span>
-            </a>
+            </router-link>
             <span class="navbar-burger burger" data-target="navbarMenuHeroA">
             <span></span>
             <span></span>
@@ -57,28 +57,33 @@
               </div>
             </div>
           </div>
-          <div class="column is-8 is-offset-2">
-            <br>
-            <nav class="level">
-              <div class="level-left">
-                <div class="level-item">
-
-                </div>
-              </div>
-              <div class="level-right">
-                <small class="level-item" style="color: var(--textLight)">
-                  &copy; Lambo HR. All Rights Reserved.
-                </small>
-              </div>
-            </nav>
-          </div>
         </div>
       </div>
     </div>
     <div v-else>
       <slot name="hero-section" ></slot>
     </div>
-
+    <footer class="relative z-10 bg-white">
+      <div class=" bg-dark-2 py-8  px-12 lg:mt-[60px]">
+        <div class="max-w-7xl mx-auto">
+          <div class="flex flex-wrap -mx-4">
+            <div class="w-full px-4 md:w-1/3 lg:w-1/2">
+              <div class="flex justify-center my-1 md:justify-start"><p class="text-base text-[#CACBCF]">© 2025
+                Lambo HR All Rights Reserved</p></div>
+            </div>
+            <div class="w-full px-4 md:w-2/3 lg:w-1/2">
+              <div class="my-1">
+                <div class="flex flex-wrap items-center justify-center -mx-3 md:justify-end"><a
+                    class="px-3 text-base text-[#CACBCF] hover:text-white" href="javascript:void(0)"> Privacy
+                  policy </a><a class="px-3 text-base text-[#CACBCF] hover:text-white" href="javascript:void(0)">
+                  Legal notice </a><a class="px-3 text-base text-[#CACBCF] hover:text-white"
+                                      href="javascript:void(0)"> Terms of service </a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 <script>

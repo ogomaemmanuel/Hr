@@ -75,12 +75,7 @@
           <div class="column">
           </div>
           <div class="column">
-            <div class="field">
-              <router-link button class="button is-text has-text-centered" tag="button" to="login"
-                           @click.prevent="">
-                Or Sign In
-              </router-link>
-            </div>
+
           </div>
         </div>
       </form>

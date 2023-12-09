@@ -1,124 +1,79 @@
 <template>
   <Layout :padding="'1.5rem 4.5rem 4.5rem 4.5rem'" :show-hero-section="false">
     <template v-slot:hero-section>
-      <div class="relative bg-white pt-32 pb-32 dark:bg-dark lg:pt-[150px]" style="background-color: rgb(39, 29, 59);">
-        <div class="container mx-auto">
-          <div class="-mx-4 flex flex-wrap items-center">
-            <div class="w-full px-4 lg:w-5/12">
-              <div class="hero-content">
-                <h1 class="mb-5 text-4xl font-bold !leading-[1.208] text-white dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                  The Greatest <br>
-                  Journey Of Talent <br>
-                  Thrive.
-                </h1>
-                <p class="mb-8 max-w-[480px] text-white text-body-color dark:text-dark-6">
-                  With Lambo-HR, business can cost-effectively outsource the management of payroll,
-                  workers’ compensation, human resources, HR Data & Analytics,
-                  and employee benefits with an easy transition.
-                </p>
-                <ul class="flex flex-wrap items-center">
-                  <li>
-                    <a class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
-                       href="javascript:void(0)">
-                      Get Started
-                    </a>
-                  </li>
-                  <li>
-                    <a class="inline-flex items-center justify-center px-5 py-3 text-center text-white font-medium text-[#464646] hover:text-primary dark:text-white"
-                       href="javascript:void(0)">
-                    <span class="mr-2">
-                      <svg fill="none" height="25" viewBox="0 0 24 25" width="24" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12.6152" fill="#3758F9" r="12"></circle>
-                        <rect fill="white" height="1.63636" width="8.18182" x="7.99893" y="14.979"></rect>
-                        <rect fill="white" height="4.09091" width="1.63636" x="11.2717" y="7.61523"></rect>
-                        <path d="M12.0898 14.1606L14.9241 11.0925H9.25557L12.0898 14.1606Z" fill="white"></path>
-                      </svg>
-                    </span>
-                      Download App
-                    </a>
-                  </li>
-                </ul>
-                <div class="clients pt-16">
-                  <h6 class="mb-6 flex items-center text-xs font-normal text-white dark:text-dark-6">
-                    Some Of Our Clients
-                    <span class="ml-3 inline-block h-px w-8 bg-body-color"></span>
-                  </h6>
-                  <div class="flex items-center gap-4 xl:gap-[50px]">
-                    <a class="block py-3" href="javascript:void(0)">
-                      <img alt="oracle" src="../assets/images/brands/oracle.svg">
-                    </a>
-                    <a class="block py-3" href="javascript:void(0)">
-                      <img alt="intel" src="../assets/images/brands/intel.svg">
-                    </a>
-                    <a class="block py-3" href="javascript:void(0)">
-                      <img alt="logitech" src="../assets/images/brands/logitech.svg">
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="hidden px-4 lg:block lg:w-1/12"></div>
-            <div class="w-full px-4 lg:w-6/12">
-              <div class="lg:ml-auto lg:text-right">
-                <div class="relative z-10 inline-block pt-11 lg:pt-0">
-                  <img alt="hero" class="max-w-full lg:ml-auto" src="../assets/images/hero/hero-image-01.png">
-                  <span class="absolute -bottom-8 -left-8 z-[-1]">
-                  <svg fill="none" height="93" viewBox="0 0 93 93" width="93" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="2.5" cy="2.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="2.5" cy="24.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="2.5" cy="46.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="2.5" cy="68.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="2.5" cy="90.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="24.5" cy="2.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="24.5" cy="24.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="24.5" cy="46.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="24.5" cy="68.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="24.5" cy="90.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="46.5" cy="2.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="46.5" cy="24.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="46.5" cy="46.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="46.5" cy="68.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="46.5" cy="90.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="68.5" cy="2.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="68.5" cy="24.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="68.5" cy="46.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="68.5" cy="68.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="68.5" cy="90.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="90.5" cy="2.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="90.5" cy="24.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="90.5" cy="46.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="90.5" cy="68.5" fill="#3056D3" r="2.5"></circle>
-                    <circle cx="90.5" cy="90.5" fill="#3056D3" r="2.5"></circle>
-                  </svg>
-                </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="relative bg-white h-full lg:pt-[150px]"
+           style="background-color: rgb(39, 29, 59);">
 
-      <footer class="relative z-10 bg-dark">
-        <div class=" bg-dark-2 py-8  px-12 lg:mt-[60px]">
-          <div class="max-w-7xl mx-auto">
+        <section
+            class="relative z-20 overflow-hidden  dark:bg-dark dark:bg-dark-2 pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
+          <div class="container mx-auto">
             <div class="flex flex-wrap -mx-4">
-              <div class="w-full px-4 md:w-1/3 lg:w-1/2">
-                <div class="flex justify-center my-1 md:justify-start"><p class="text-base text-[#CACBCF]">© 2025
-                  Lambo HR All Rights Reserved</p></div>
+              <div class="w-full px-4">
+                <div class="mx-auto mb-[60px] max-w-[510px] text-center">
+                  <h2 class="mb-4 text-3xl leading-[1.208] font-bold text-white dark:text-white sm:text-4xl md:text-[40px]">
+                    Our Pricing Plan </h2>
+                  <p class="text-base text-white pb-8 dark:text-dark-6"> There are many variations of passages of Lorem Ipsum
+                    available but the majority have suffered alteration in some form. </p></div>
               </div>
-              <div class="w-full px-4 md:w-2/3 lg:w-1/2">
-                <div class="my-1">
-                  <div class="flex flex-wrap items-center justify-center -mx-3 md:justify-end"><a
-                      class="px-3 text-base text-[#CACBCF] hover:text-white" href="javascript:void(0)"> Privacy
-                    policy </a><a class="px-3 text-base text-[#CACBCF] hover:text-white" href="javascript:void(0)">
-                    Legal notice </a><a class="px-3 text-base text-[#CACBCF] hover:text-white"
-                                        href="javascript:void(0)"> Terms of service </a></div>
+            </div>
+            <div class="flex flex-wrap justify-center -mx-4">
+              <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div
+                    class="relative z-10 px-8 py-10 mb-10 overflow-hidden text-center bg-white rounded-xl dark:bg-dark-3 shadow-pricing-5 sm:p-12 lg:py-10 lg:px-6 xl:p-14">
+                  <span class="block mb-4 text-xl font-medium text-dark dark:text-white"> Starter </span>
+                  <h2 class="mb-10 xl:mb-[50px] text-4xl font-semibold text-dark dark:text-white xl:leading-[1.24] xl:text-[42px]">
+                    <sup class="text-xl font-medium -top-5">$</sup><span class="px-0.5">25</span><span
+                      class="text-base text-body-color dark:text-dark-6"> Month </span></h2>
+                  <div class="mb-11 space-y-[14px]"><p class="text-base text-body-color dark:text-dark-6"> Core UI
+                    Components </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Use on Unlimited Projects </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Personal and Commercial Use </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Lifetime Free Updates </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Figma Source File </p></div>
+                  <a class="inline-block rounded-md bg-secondary py-4 px-8 mt-4 text-center text-base font-medium text-white transition hover:bg-opacity-90"
+                     href="javascript:void(0)"> Purchase Now </a>
+
+                </div>
+              </div>
+              <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div
+                    class="relative z-10 px-8 py-10 mb-10 overflow-hidden text-center bg-white rounded-xl dark:bg-dark-3 shadow-pricing-5 sm:p-12 lg:py-10 lg:px-6 xl:p-14">
+                  <span class="block mb-4 text-xl font-medium text-dark dark:text-white"> Business </span>
+                  <h2 class="mb-10 xl:mb-[50px] text-4xl font-semibold text-dark dark:text-white xl:leading-[1.24] xl:text-[42px]">
+                    <sup class="text-xl font-medium -top-5">$</sup><span class="px-0.5">59</span><span
+                      class="text-base text-body-color dark:text-dark-6"> Month </span></h2>
+                  <div class="mb-11 space-y-[14px]"><p class="text-base text-body-color dark:text-dark-6"> Core UI
+                    Components </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Use on Unlimited Projects </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Personal and Commercial Use </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Lifetime Free Updates </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Figma Source File </p></div>
+                  <a class="inline-block rounded-md bg-primary py-4 px-8 mt-4 text-center text-base font-medium text-white transition hover:bg-opacity-90"
+                     href="javascript:void(0)"> Purchase Now </a>
+                </div>
+              </div>
+              <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div
+                    class="relative z-10 px-8 py-10 mb-10 overflow-hidden text-center bg-white rounded-xl dark:bg-dark-3 shadow-pricing-5 sm:p-12 lg:py-10 lg:px-6 xl:p-14">
+                  <span class="block mb-4 text-xl font-medium text-dark dark:text-white"> Extended </span>
+                  <h2 class="mb-10 xl:mb-[50px] text-4xl font-semibold text-dark dark:text-white xl:leading-[1.24] xl:text-[42px]">
+                    <sup class="text-xl font-medium -top-5">$</sup><span class="px-0.5">199</span><span
+                      class="text-base text-body-color dark:text-dark-6"> Month </span></h2>
+                  <div class="mb-11 space-y-[14px]"><p class="text-base text-body-color dark:text-dark-6"> Core UI
+                    Components </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Use on Unlimited Projects </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Personal and Commercial Use </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Lifetime Free Updates </p>
+                    <p class="text-base text-body-color dark:text-dark-6"> Figma Source File </p></div>
+                  <a class="inline-block rounded-md bg-dark py-4 px-8 mt-4 text-center text-base font-medium text-white transition hover:bg-opacity-90"
+                     href="javascript:void(0)"> Purchase Now </a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </section>
+
+      </div>
     </template>
   </Layout>
 </template>
@@ -142,5 +97,27 @@ export default {
 .bg-primary {
   --tw-bg-opacity: 1;
   background-color: rgb(55 88 249 / var(--tw-bg-opacity));
+}
+.bg-secondary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(19 194 150 / var(--tw-bg-opacity));
+}
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 88 249 / var(--tw-bg-opacity));
+}
+.bg-dark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 25 40 / var(--tw-bg-opacity));
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.shadow-pricing-5 {
+
+  --tw-shadow: 0px 10px 25px 0px rgba(0, 0, 0, .08);
+  --tw-shadow-colored: 0px 10px 25px 0px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow);
 }
 </style>
