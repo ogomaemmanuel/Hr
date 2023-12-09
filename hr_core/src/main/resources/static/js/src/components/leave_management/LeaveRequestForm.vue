@@ -125,6 +125,7 @@
       <div class="control w-full">
         <div class="select w-full">
           <select
+              multiple
               v-model="leaveRequest.ApproverId"
               class="w-full"
               @input="clearFieldError('inPlaceId')">
@@ -189,7 +190,7 @@ export default {
         inPlaceId: "",
         startDate: "",
         endDate: "",
-        ApproverId:""
+        ApproverId:[]
 
       },
       leaveTypes: [],
