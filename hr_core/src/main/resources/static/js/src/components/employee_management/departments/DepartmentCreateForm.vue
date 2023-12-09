@@ -32,6 +32,7 @@
 </template>
 <script>
     import CommonMixin from "../../../mixins/common_mixin"
+    import {Notification as notify} from "element-ui";
 
     export default {
         mixins: [CommonMixin],
@@ -50,10 +51,10 @@
                 axios.post("/api/departments",
                     this.department).then(resp => {
                     this.loading = false
-                    vm.$swal({
+                    notify({
                         type: "success",
                         title: "Success",
-                        text: "Department  successfully created"
+                        message: "Department  successfully created"
                     })
                     this.$emit("departmentCreated")
                 }, error => {
