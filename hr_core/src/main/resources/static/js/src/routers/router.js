@@ -194,8 +194,9 @@ const ChatPage =()=> import("../components/chat/ChatPage")
 Vue.use(Router);
 const routes = new Router({
     mode: "history",
-    linkExactActiveClass: "",
+    linkExactActiveClass: "active-link",
     linkActiveClass: "ant-breadcrumb",
+
     routes: [
 
         {

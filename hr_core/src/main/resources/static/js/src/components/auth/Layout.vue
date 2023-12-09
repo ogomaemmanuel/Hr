@@ -208,6 +208,14 @@ input:focus {
   background: #f1f5f9;
 }
 
+.active-link{
+  -webkit-text-fill-color: transparent;
+  background-color: #36312b;
+  background-image: linear-gradient(90deg, #8360c3, #2ebf91);
+  -webkit-background-clip: text;
+  font-weight: 500;
+}
+
 </style>
 
 
