@@ -4,11 +4,10 @@
       <div class="relative bg-white pt-32 pb-32 dark:bg-dark lg:pt-[150px]" style="background-color: rgb(39, 29, 59);">
         <div class="container mx-auto">
           <div class="-mx-4 flex flex-wrap items-center">
-            <div class="w-full px-4 lg:w-5/12">
+            <div class="w-full px-4 lg:w-7/12">
               <div class="hero-content">
                 <h1 class="mb-5 text-4xl font-bold !leading-[1.208] text-white dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                  The Greatest <br>
-                  Journey Of Talent <br>
+                  The Greatest Journey Of Talent <br>
                   Thrive.
                 </h1>
                 <p class="mb-8 max-w-[480px] text-white text-body-color dark:text-dark-6">
@@ -57,12 +56,12 @@
                 </div>
               </div>
             </div>
-            <div class="hidden px-4 lg:block lg:w-1/12"></div>
-            <div class="w-full px-4 lg:w-6/12">
+            <div class="w-full px-4 lg:w-5/12">
               <div class="lg:ml-auto lg:text-right">
-                <div class="relative z-10 inline-block pt-11 lg:pt-0">
-                  <img alt="hero" class="max-w-full lg:ml-auto" src="../assets/images/hero/hero-image-01.png">
-                  <span class="absolute -bottom-8 -left-8 z-[-1]">
+                <div class="relative z-10 inline-block pt-11 lg:pt-0" >
+<!--                  <img alt="hero" class="max-w-full lg:ml-auto" src="../assets/images/hero/hero-image-01.png">-->
+                  <img alt="hero" class="max-w-full lg:ml-auto" src="../assets/images/logo/hr-logo.png">
+                  <span class="absolute -bottom-8 -right-8 z-[-1]">
                   <svg fill="none" height="93" viewBox="0 0 93 93" width="93" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="2.5" cy="2.5" fill="#3056D3" r="2.5"></circle>
                     <circle cx="2.5" cy="24.5" fill="#3056D3" r="2.5"></circle>
