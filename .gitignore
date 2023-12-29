@@ -38,3 +38,4 @@ src/main/resources/message.properties
 
 logs
 logs/logfile.txt
+hr_core/src/main/resources/static/js/dist

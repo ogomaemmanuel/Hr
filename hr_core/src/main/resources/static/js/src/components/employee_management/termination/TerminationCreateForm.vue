@@ -78,6 +78,7 @@
     import EmployeeSelectInput from "../../common/EmployeeSelectInput";
     import common_mixin from "../../../mixins/common_mixin";
     import {DatePicker} from "element-ui"
+    import {Notification as notify} from "element-ui"
 
     export default {
         mixins: [common_mixin],
@@ -109,10 +110,10 @@
                 if (this.$refs.terminationForm.checkValidity()) {
                     axios.post(`/api/employee-terminations`,
                         this.employeeTermination).then(resp => {
-                        vm.$swal({
+                        notify({
                             type: "success",
                             title: "Success",
-                            text: "Resignation successfully saved"
+                            message: "Resignation successfully saved"
                         })
                         this.$emit("terminationSaved")
                     }, error => {
