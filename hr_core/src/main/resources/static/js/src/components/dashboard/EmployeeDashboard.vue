@@ -153,7 +153,7 @@
                         <div class="image is-24x24">
                           <img
                               class="is-rounded"
-                              src="https://avatars.dicebear.com/v2/initials/felicita-yundt.svg">
+                              src="../assets/images/profile.png" alt="">
                         </div>
                       </td>
                       <td data-label="Name">Rebecca Bauch</td>
@@ -177,7 +177,9 @@
                     <tr>
                       <td class="is-image-cell">
                         <div class="image is-24x24">
-                          <img class="is-rounded" src="https://avatars.dicebear.com/v2/initials/felicita-yundt.svg">
+                          <img
+                              class="is-rounded"
+                              src="../assets/images/profile.png" alt="">
                         </div>
                       </td>
                       <td data-label="Name">Felicita Yundt</td>
@@ -201,8 +203,9 @@
                     <tr>
                       <td class="is-image-cell">
                         <div class="image is-24x24">
-                          <img class="is-rounded"
-                               src="https://avatars.dicebear.com/v2/initials/mr-larry-satterfield-v.svg">
+                          <img
+                              class="is-rounded"
+                              src="../assets/images/profile.png" alt="">
                         </div>
                       </td>
                       <td data-label="Name">Mr. Larry Satterfield V</td>
@@ -226,7 +229,9 @@
                     <tr>
                       <td class="is-image-cell">
                         <div class="image is-24x24">
-                          <img class="is-rounded" src="https://avatars.dicebear.com/v2/initials/mr-broderick-kub.svg">
+                          <img
+                              class="is-rounded"
+                              src="../assets/images/profile.png" alt="">
                         </div>
                       </td>
                       <td data-label="Name">Mr. Broderick Kub</td>
@@ -250,7 +255,9 @@
                     <tr>
                       <td class="is-image-cell">
                         <div class="image is-24x24">
-                          <img class="is-rounded" src="https://avatars.dicebear.com/v2/initials/mr-broderick-kub.svg">
+                          <img
+                              class="is-rounded"
+                              src="../assets/images/profile.png" alt="">
                         </div>
                       </td>
                       <td data-label="Name">Mr. Johnson Didinya</td>

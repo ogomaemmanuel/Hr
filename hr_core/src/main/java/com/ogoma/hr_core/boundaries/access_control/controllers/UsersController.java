@@ -26,10 +26,10 @@ import java.util.Optional;
 
 @Controller
 public class UsersController {
-    private UserService userService;
-    private MaritalStatusRepository maritalStatusRepository;
-    private FamilyRelationshipRepository relationshipRepository;
-    private FamilyMemberRepository memberRepository;
+    private final UserService userService;
+    private final MaritalStatusRepository maritalStatusRepository;
+    private final FamilyRelationshipRepository relationshipRepository;
+    private final FamilyMemberRepository memberRepository;
     @Autowired
     public UsersController(UserService userService,MaritalStatusRepository maritalStatusRepository,FamilyRelationshipRepository relationshipRepository,FamilyMemberRepository memberRepository) {
         this.userService = userService;

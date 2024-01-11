@@ -18,7 +18,7 @@
                autocomplete="off"
                v-model="searchTerm"
                @focusin="globalSearchFocus(true)"
-               type="text">
+               type="search">
       </div>
     </div>
     <div id="globalSearchDropdown" class="dropdown-content w-full  shadow-xl" >
